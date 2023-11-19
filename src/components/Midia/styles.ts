@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import theme from "../../styles/theme/theme";
 // import theme from "../../styles/theme";
 
 interface ImageMapProps {
@@ -41,7 +40,7 @@ export const FileContainer = styled.section`
 export const ImageTypeFileContent = styled.section`
 	margin: 0.7rem;
 	width: 200%;
-	box-shadow: 2px 2px 3px ${theme.colors.neutral.black};
+	box-shadow: 2px 2px 3px ${({theme}) => theme.colors.neutral.black};
 `;
 
 export const downAndUpAnimation = keyframes`

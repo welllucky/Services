@@ -22,12 +22,15 @@
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18",
+    "sharp": "^0.32.6",
     "styled-components": "^6.1.0",
     "swr": "^2.2.4",
     "usehooks-ts": "^2.9.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@next/eslint-plugin-next": "^14.0.3",
     "@playwright/experimental-ct-react": "^1.39.0",
     "@playwright/test": "^1.39.0",
     "@types/node": "^20",

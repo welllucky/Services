@@ -1,4 +1,4 @@
 export * from "./home";
 export * from "./login";
-export * from "./solicitações";
+export * from "./solicitacoes";
 export * from "./pesquisa";
