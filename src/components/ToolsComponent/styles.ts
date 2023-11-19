@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import theme from "../../styles/theme/theme";
 
 export const ContianerGeneralToolsComponent = styled.section`
 	display: flex;
@@ -9,7 +8,7 @@ export const ContianerGeneralToolsComponent = styled.section`
 `;
 
 export const ToolsComponentContianer = styled.form`
-	background-color: ${theme.colors.green["085"]};
+	background-color: ${({ theme }) => theme.colors.green["085"]};
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-end;
@@ -21,7 +20,7 @@ export const ToolsComponentContianer = styled.form`
 
 export const BorderBottom = styled.section`
 	margin: 1.2rem 0;
-	border-bottom: 1px solid ${theme.colors.neutral[195]};
+	border-bottom: 1px solid ${({ theme }) => theme.colors.neutral[195]};
 	width: 100%;
 `;
 

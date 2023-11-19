@@ -18,9 +18,8 @@
 				"name": "next"
 			}
 		],
-		"baseUrl": ".",
 		"paths": {
-			"@/*": ["src/*"]
+			"@/*": ["./src/*"]
 		}
 	},
 	"include": [
@@ -28,8 +27,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"cypress.config.js",
-		"cypress/**/*"
+		"playwright.config.ts",
+		"tests/**/*"
 	],
 	"exclude": ["node_modules"]
 }

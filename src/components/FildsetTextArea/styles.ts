@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { type ILegendProps } from ".";
 
 export const TextArea = styled.textarea`
 	width: 100%;

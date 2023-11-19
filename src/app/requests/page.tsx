@@ -1,4 +1,4 @@
-import RequestsPage from "@/screens/solicitações";
+import RequestsPage from "@/screens/solicitacoes";
 
 export default function Requests() {
 	return <RequestsPage />;
