@@ -1,7 +1,7 @@
 import { Column } from "@/styles";
 import styled from "styled-components";
 
-export const FlexContainer = styled(Column)<{ $backgroundColor?: string }>`
+export const FlexContainer = styled(Column)<{ backgroundColor?: string }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -9,7 +9,7 @@ export const FlexContainer = styled(Column)<{ $backgroundColor?: string }>`
 	height: 100vh;
 	padding: 2rem;
 	padding-bottom: 0;
-	background-color: ${({ $backgroundColor }) => $backgroundColor || "#fff"};
+	background-color: ${({ backgroundColor }) => backgroundColor || "#fff"};
 `;
 
 export const PageContainer = styled(Column)`

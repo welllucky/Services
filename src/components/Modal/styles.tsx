@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import theme from "../../styles/theme/theme";
 
 interface ModalProps {
 	isTrue: boolean;
@@ -11,14 +10,14 @@ export const ModalContainer = styled.section<ModalProps>`
 	right: 0;
 	bottom: 0;
 	top: 0;
-	background-color: ${theme.colors.neutral.opacity};
+	background-color: ${({ theme }) => theme.colors.neutral.opacity};
 	z-index: 2;
 
 	display: ${(isTrue) => (isTrue ? "flex" : "none")};
 `;
 
 export const ModalContet = styled.section`
-	background-color: ${theme.colors.green["015"]};
+	background-color: ${({ theme }) => theme.colors.green["015"]};
 	margin: auto;
 	width: 30rem;
 	height: 20rem;
@@ -32,7 +31,7 @@ export const ModalContet = styled.section`
 `;
 
 export const MessageSuccess = styled.p`
-	color: ${theme.colors.neutral.white};
+	color: ${({theme}) => theme.colors.neutral.white};
 	font-size: 20px;
 	font-family: inter;
 	font-weight: 600;

@@ -1,4 +1,4 @@
-import { IssueMobileProps } from "../../../Assets";
+import { IssueMobileProps } from "@/types";
 
 export const searchResults: IssueMobileProps[] = [
 	{

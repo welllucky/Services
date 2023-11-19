@@ -1,7 +1,7 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { Fildset, TextArea, Legend, LegendText } from "./styles";
 
-export interface ILegendProps {
+interface ILegendProps {
 	legendText?: string;
 	width?: string;
 	placeholder?: string;
@@ -18,12 +18,6 @@ export const FildsetTextArea = ({
 	value,
 	onChange,
 }: ILegendProps) => {
-	const [value, setValue] = useState<unknown>("");
-
-	useEffect(() => {
-		getValue(value);
-	}, [getValue, value]);
-
 	return (
 		<Fildset
 			height={height}

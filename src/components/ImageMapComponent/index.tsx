@@ -15,6 +15,7 @@ import iconTrash from "./svg/Trash.svg";
 import close from "./svg/Close.svg";
 import iconTypeImage from "./svg/image.png";
 import iconTypeVideo from "./svg/video.png";
+import Image from "next/image";
 
 interface ImageMapComponentProps {
 	img: File;
@@ -42,13 +43,13 @@ export const ImageMapComponent = ({ img }: ImageMapComponentProps) => {
 			<FileContainer onClick={() => setOpenImage(true)}>
 				<TypeFile showImage={openImage}>
 					<IconCloseContent onClick={() => setOpenImage(false)}>
-						<img
+						<Image
 							src={close}
 							alt="Fechar imagem"
 						/>
 					</IconCloseContent>
 					{img.type === "image" ? (
-						<img
+						<Image
 							src={image}
 							width={350}
 							height={170}
@@ -72,23 +73,16 @@ export const ImageMapComponent = ({ img }: ImageMapComponentProps) => {
 					)}
 				</TypeFile>
 				<ImageTypeFileContent>
-					{img.type === "image" ? (
-						<img
-							src={iconTypeImage}
-							alt="Tipo de arquivo"
-						/>
-					) : (
-						<img
-							src={iconTypeVideo}
-							alt="Tipo de arquivo"
-						/>
-					)}
+					<Image
+						src={img.type === "image" ? iconTypeImage : iconTypeVideo}
+						alt="Tipo de arquivo"
+					/>
 				</ImageTypeFileContent>
 			</FileContainer>
 			<Title>{img.name}</Title>
 			<ButtonActionContainer>
 				<ButtonAction radiusRightTop="10px">
-					<img
+					<Image
 						src={iconRestart}
 						alt="Botão para atualizar"
 					/>
@@ -98,7 +92,7 @@ export const ImageMapComponent = ({ img }: ImageMapComponentProps) => {
 					borderTop="#000"
 					alignItems="flex-end"
 					onClick={() => img.slice()}>
-					<img
+					<Image
 						src={iconTrash}
 						alt="Botão para Excluir"
 					/>

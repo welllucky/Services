@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import theme from "../../styles/theme";
 
 interface ImageMapProps {
 	radiusRightTop?: string;
@@ -12,7 +11,7 @@ interface ImageMapProps {
 export const ImageMapContainer = styled.section`
 	width: calc(100%);
 	height: 8rem;
-	background-color: ${theme.colors.green["085"]};
+	background-color: ${({ theme }) => theme.colors.green["085"]};
 	border-radius: 10px;
 	display: grid;
 	grid-template-columns: repeat(1fr, 3fr);
@@ -21,7 +20,7 @@ export const ImageMapContainer = styled.section`
 `;
 
 export const FileContainer = styled.section<ImageMapProps>`
-	background-color: ${theme.colors.green[185]};
+	background-color: ${({ theme }) => theme.colors.green["185"]};
 	width: 4rem;
 	height: 4rem;
 	border-radius: 50%;
@@ -72,7 +71,7 @@ export const Title = styled.h1`
 	font-size: 1.4rem;
 	font-weight: 600;
 	line-height: 2.4rem;
-	color: ${theme.colors.neutral.black};
+	color: ${({ theme }) => theme.colors.neutral.black};
 	padding: 0.8rem;
 	width: 20rem;
 	text-overflow: ellipsis;
@@ -87,7 +86,7 @@ export const ButtonActionContainer = styled.section`
 `;
 
 export const ButtonAction = styled.section<ImageMapProps>`
-	background-color: ${theme.colors.green[195]};
+	background-color: ${({ theme }) => theme.colors.green["195"]};
 	width: 6rem;
 	height: 4rem;
 	display: flex;

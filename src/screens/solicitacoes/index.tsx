@@ -1,6 +1,4 @@
-"use client";
-
-import { FlexContainer } from "@/components/PageStruct/style";
+// import { FlexContainer } from "@/components/PageStruct/style";
 
 // import { HeaderMobile } from "../../Components/Home/HeaderMobile";
 // import { NavigationBar } from "../../Components/MenuNavegation";
@@ -38,9 +36,10 @@ const RequestsPage = () => {
 	// }, [usuarioLogado.matricula, usuarioLogado.token]);
 
 	// const isLoading = false;
-	return (
-		<FlexContainer $backgroundColor="#D2F4B7">
-			{/* <HeaderMobile
+	return <div>Requests</div>;
+
+	/*  <FlexContainer backgroundColor="#D2F4B7">
+			<HeaderMobile
 				userName={usuarioLogado ? usuarioLogado.nome : ""}
 				pageTittle="Chamados solicitados"
 				grettingsMessageColor="#569720"
@@ -79,9 +78,8 @@ const RequestsPage = () => {
 					</>
 				)}
 			</PageContainer>
-			<NavigationBar $backgroundColor="#D8FFB9" /> */}
-		</FlexContainer>
-	);
+			<NavigationBar $backgroundColor="#D8FFB9" /> 
+		 </FlexContainer> */
 };
 
 export default RequestsPage;

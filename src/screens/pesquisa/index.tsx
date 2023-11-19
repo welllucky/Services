@@ -1,5 +1,3 @@
-"use client";
-
 import { FlexContainer } from "@/components/PageStruct/style";
 
 // import { useEffect, useState } from "react";
@@ -56,9 +54,9 @@ const SearchPage = () => {
 	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	// }, [search]);
 
-	return (
-		<FlexContainer>
-			{/* <HeaderMobile userName={usuarioLogado ? usuarioLogado.nome : ""} />
+	return <div>pesquisa</div>;
+	/* 	<FlexContainer>
+			<HeaderMobile userName={usuarioLogado ? usuarioLogado.nome : ""} />
 			<PageContainer>
 				<SearchContainer>
 					<Searchbar getInputValue={(value: string) => setSearch(value)} />
@@ -91,9 +89,8 @@ const SearchPage = () => {
 					)}
 				</MainContainer>
 			</PageContainer>
-			<NavigationBar /> */}
-		</FlexContainer>
-	);
+			<NavigationBar /> 
+		</FlexContainer>*/
 };
 
 export default SearchPage;

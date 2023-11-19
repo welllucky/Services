@@ -8,13 +8,6 @@ import {
 	Image,
 	ToolsComponentContianer,
 	Video,
-	Attach,
-	BorderBottom,
-	Camera,
-	ContianerGeneralToolsComponent,
-	Image,
-	ToolsComponentContianer,
-	Video,
 } from "./styles";
 import anexar from "./svg/Anexar.svg";
 import camera from "./svg/Camera.svg";
@@ -84,16 +77,7 @@ export const ToolsComponent = ({ postImage }: TypesToolsCompoent) => {
 			cancelButton.addEventListener("click", () => {
 				stream.getTracks().forEach((track) => track.stop());
 			});
-			const cancelButton = document.createElement("button");
-			cancelButton.textContent = "Cancel";
-			cancelButton.addEventListener("click", () => {
-				stream.getTracks().forEach((track) => track.stop());
-			});
 
-			const cameraContainer = document.createElement("div");
-			cameraContainer.appendChild(video);
-			cameraContainer.appendChild(takePictureButton);
-			cameraContainer.appendChild(cancelButton);
 			const cameraContainer = document.createElement("div");
 			cameraContainer.appendChild(video);
 			cameraContainer.appendChild(takePictureButton);
@@ -105,15 +89,7 @@ export const ToolsComponent = ({ postImage }: TypesToolsCompoent) => {
 			cameraOverlay.style.left = "0";
 			cameraOverlay.style.width = "100%";
 			cameraOverlay.style.height = "100%";
-			cameraOverlay.style.$backgroundColor = "rgba(0, 0, 0, 0.5)";
-			cameraOverlay.appendChild(cameraContainer);
-			const cameraOverlay = document.createElement("div");
-			cameraOverlay.style.position = "fixed";
-			cameraOverlay.style.top = "0";
-			cameraOverlay.style.left = "0";
-			cameraOverlay.style.width = "100%";
-			cameraOverlay.style.height = "100%";
-			cameraOverlay.style.$backgroundColor = "rgba(0, 0, 0, 0.5)";
+			cameraOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
 			cameraOverlay.appendChild(cameraContainer);
 
 			document.body.appendChild(cameraOverlay);
@@ -179,9 +155,6 @@ export const ToolsComponent = ({ postImage }: TypesToolsCompoent) => {
 				</Camera>
 			</ToolsComponentContianer>
 
-			<BorderBottom />
-		</ContianerGeneralToolsComponent>
-	);
 			<BorderBottom />
 		</ContianerGeneralToolsComponent>
 	);

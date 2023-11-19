@@ -17,17 +17,17 @@ import consultWhiteIcon from "./svg/consultarbranco.svg";
 import sectorsIcon from "./svg/setorestracado.svg";
 import sectorsWhiteIcon from "./svg/setoresbranco.svg";
 
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 export const SideBarLeft = () => {
-	const navigate = useNavigate();
+	const navigate = useRouter();
 	return (
 		<ContainerSideBar>
 			<FCLogo />
 
 			<ContainerIcon>
 				<SpaceIcon
-					onClick={() => navigate("/mainpage")}
+					onClick={() => navigate.push("/mainpage")}
 					id={window.location.pathname === "/mainpage" ? "active" : ""}>
 					<ImageIcon
 						src={
@@ -45,7 +45,7 @@ export const SideBarLeft = () => {
 				</SpaceIcon>
 
 				<SpaceIcon
-					onClick={() => navigate("/attendancespage")}
+					onClick={() => navigate.push("/attendancespage")}
 					id={window.location.pathname === "/attendancespage" ? "active" : ""}>
 					<ImageIcon
 						src={
@@ -65,7 +65,7 @@ export const SideBarLeft = () => {
 				</SpaceIcon>
 
 				<SpaceIcon
-					onClick={() => navigate("/requestspage")}
+					onClick={() => navigate.push("/requestspage")}
 					id={window.location.pathname === "/requestspage" ? "active" : ""}>
 					<ImageIcon src={requestIcon} />
 					<IconTitle
@@ -77,7 +77,7 @@ export const SideBarLeft = () => {
 				</SpaceIcon>
 
 				<SpaceIcon
-					onClick={() => navigate("/consultspage")}
+					onClick={() => navigate.push("/consultspage")}
 					id={window.location.pathname === "/consultspage" ? "active" : ""}>
 					<ImageIcon
 						src={
@@ -95,7 +95,7 @@ export const SideBarLeft = () => {
 				</SpaceIcon>
 
 				<SpaceIcon
-					onClick={() => navigate("/sectorespage")}
+					onClick={() => navigate.push("/sectorespage")}
 					id={window.location.pathname === "/sectorespage" ? "active" : ""}>
 					<ImageIcon
 						src={

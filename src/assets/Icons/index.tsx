@@ -270,7 +270,7 @@ export const FcLogoMobile = () => {
 	);
 };
 
-export const CallsIcon = ({ width, height, color }: IconsProps) => {
+export const CallsIcon = ({ width, height, color }: IconProps) => {
 	return (
 		<svg
 			width={width}
@@ -321,7 +321,7 @@ export const CallsIcon = ({ width, height, color }: IconsProps) => {
 		</svg>
 	);
 };
-export const HomeIcon = ({ width, height, color }: IconsProps) => {
+export const HomeIcon = ({ width, height, color }: IconProps) => {
 	return (
 		<svg
 			width={width}
@@ -374,7 +374,7 @@ export const HomeIcon = ({ width, height, color }: IconsProps) => {
 	);
 };
 
-export const SettingsIcon = ({ width, height, color }: IconsProps) => {
+export const SettingsIcon = ({ width, height, color }: IconProps) => {
 	return (
 		<svg
 			width={width}
@@ -486,7 +486,7 @@ export const SearchIcon = ({
 	width = "40px",
 	height = "40px",
 	color = "black",
-}: IconsProps) => {
+}: IconProps) => {
 	return (
 		<svg
 			width={width}
@@ -506,7 +506,7 @@ export const ClearIcon = ({
 	width = "40px",
 	height = "40px",
 	color = "black",
-}: IconsProps) => {
+}: IconProps) => {
 	return (
 		<svg
 			width={width}
@@ -528,7 +528,7 @@ export const ClearDisabledIcon = ({
 	width = "40px",
 	height = "40px",
 	color = "black",
-}: IconsProps) => {
+}: IconProps) => {
 	return (
 		<svg
 			width={width}
@@ -550,7 +550,7 @@ export const ClearDisabledIcon = ({
 // 	width = "40px",
 // 	height = "40px",
 // 	color = "black",
-// }: IconsProps) => {
+// }: IconProps) => {
 // 	return (
 // 		<svg
 // 			width={width}
@@ -610,7 +610,7 @@ export const ClearDisabledIcon = ({
 // 	width = "40px",
 // 	height = "40px",
 // 	color = "black",
-// }: IconsProps) => {
+// }: IconProps) => {
 // 	return (
 // 		<svg
 // 			width={width}

@@ -1,11 +1,11 @@
-import { HeaderMobile } from "@/components";
+import { Header } from "@/components";
 import { FlexContainer, PageContainer } from "./style";
 import { ReactNode } from "react";
 
-const PageStructContainer = ({ children }: ReactNode) => {
+const PageStructContainer = (children : ReactNode) => {
 	return (
 		<FlexContainer>
-			<HeaderMobile userName={"Usuário não autenticado"} />
+			<Header userName={"Usuário não autenticado"} />
 			<PageContainer>{children}</PageContainer>
 		</FlexContainer>
 	);
