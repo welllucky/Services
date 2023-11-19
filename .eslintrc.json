@@ -33,6 +33,7 @@
 		"import/prefer-default-export": "off",
 		"jsx-quotes": ["error", "prefer-double"],
 		"camelcase": "warn",
-		"complexity": ["warn", 10]
+		"complexity": ["warn", 10],
+    "import/no-unresolved": ["error", { "ignore": ["^@"] }]
 	}
 }
