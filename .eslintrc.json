@@ -28,7 +28,8 @@
 		"eslint-plugin-promise",
 		"eslint-plugin-react",
 		"eslint-plugin-react-hooks",
-		"eslint-plugin-tsdoc"
+		"eslint-plugin-tsdoc",
+		"eslint-plugin-next"
 	],
 	"rules": {
 		"prettier/prettier": "error",
