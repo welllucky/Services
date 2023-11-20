@@ -14,7 +14,7 @@ export default defineConfig({
 	testMatch: "**/?(*.)+(e2e|integration).[tj]s?(x)",
 
 	// Folder for test artifacts such as screenshots, videos, traces, etc.
-	outputDir: "./tests/output/",
+	outputDir: "./tests/playwright/output/",
 
 	// path to the global setup files.
 	// globalSetup: require.resolve('./global-setup'),
@@ -35,7 +35,7 @@ export default defineConfig({
 
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: [
-		["html", { outputFolder: "./tests/report", host: "localhost", port: 4100 }],
+		["html", { outputFolder: "./tests/playwright/report", host: "localhost", port: 4100 }],
 	],
 
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -47,7 +47,7 @@ export default defineConfig({
 		trace: "retain-on-failure",
 
 		// Populates context with given storage state.
-		storageState: "./tests/fixture/state.json",
+		storageState: "./tests/playwright/fixture/state.json",
 
 		// Emulates `'prefers-colors-scheme'` media feature.
 		colorScheme: "light",
