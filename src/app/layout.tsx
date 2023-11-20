@@ -4,6 +4,7 @@ import StyledComponentsRegistry from "@/utils/providers/registry";
 import { AppProviders } from "../utils/providers/providers";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
 				<StyledComponentsRegistry>
 					<AppProviders>
 						<Suspense fallback={<Loading />}>{children}</Suspense>
+						<Analytics />
 					</AppProviders>
 				</StyledComponentsRegistry>
 			</body>
