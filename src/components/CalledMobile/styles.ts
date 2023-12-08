@@ -1,4 +1,5 @@
 import { Row } from "@/styles";
+import Link from "next/link";
 import styled, { css } from "styled-components";
 
 type ContainerStyleProps = {
@@ -12,8 +13,8 @@ export const IconeSelo = styled.section`
 	position: relative;
 	width: 1rem;
 	z-index: 2;
-  top: 15px;
-  left: 5px;
+	top: 15px;
+	left: 5px;
 
 	& > svg {
 		position: absolute;
@@ -23,7 +24,7 @@ export const IconeSelo = styled.section`
 	}
 `;
 
-export const IssueWrapper = styled.div`
+export const IssueWrapper = styled(Link)`
 	width: 100%;
 	height: fit-content;
 	padding-left: 0.3rem;

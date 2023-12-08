@@ -44,6 +44,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
   text-decoration: none;
   border-color: transparent;
+  font-family: Inter, Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 button {

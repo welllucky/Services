@@ -9,7 +9,7 @@ interface BackButtonProps {
 
 export const Container = styled.div`
 	display: flex;
-	width: 100%;
+	width: fit-content;
 	gap: 10px;
 	align-items: center;
 	margin-bottom: 3.5rem;
@@ -24,7 +24,7 @@ export const BackIcon = styled(Image)`
 export const TextBack = styled.span<BackButtonProps>`
 	font-style: normal;
 	font-weight: ${({ fontWeight }) => fontWeight || 500};
-	font-size: 1.6rem;
+	font-size: 1.2rem;
 	display: flex;
 	line-height: 36px;
 	align-items: center;

@@ -57,3 +57,5 @@ package-lock.json
 /tests/output/*
 
 settings.json
+
+.horusec/*

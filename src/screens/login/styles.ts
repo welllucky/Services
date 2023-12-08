@@ -103,14 +103,21 @@ export const ContainerLogin = styled.div`
 export const Logo = styled.div`
 	display: flex;
 	justify-content: center;
-	padding: 6rem 0;
+	align-items: center;
+	width: 100%;
+	max-height: 280px;
+  flex: 1;
+  /* padding: 128px 0; */
 `;
 
 export const LoginMobile = styled.div`
-	display: none;
+	display: flex;
 	width: 100%;
 	height: 100lvh;
 	padding: 0px 20px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
 	background-color: #f8fcf6;
 `;
 
@@ -169,7 +176,7 @@ export const ButtonSection = styled.div`
 	flex-direction: column;
 	align-items: center;
 	padding: 1.2rem;
-	margin-top: 1.2rem;
+	padding-top: 2.4rem;
 	gap: 1rem;
 
 	span,
@@ -250,5 +257,6 @@ export const ForgotPasswordContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: end;
-	padding: 1rem;
+	padding: 0.5rem;
+	padding-right: 0;
 `;
