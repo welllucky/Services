@@ -2,15 +2,13 @@
 import { AddNewIssueButton } from "@/components/Buttons";
 import { IssueMobile } from "@/components/CalledMobile";
 import { Header } from "@/components";
-import { NavigationBar } from "@/components/NavBar";
 import { ButtonWrapper } from "./styles";
 import { issueMobileData } from "./data";
-import { FlexContainer, PageContainer } from "@/components/PageStruct/style";
+import { PageContainer } from "@/styles";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { MainContainer } from "../pesquisa/styles";
 import { BoxEmpty } from "@/components";
 import { useTheme } from "styled-components";
-import navigationOptions from "@/components/NavBar/data";
 
 const Homepage = () => {
 	const theme = useTheme();
@@ -18,7 +16,7 @@ const Homepage = () => {
 	const isLoading = false;
 	const listaChamados = issueMobileData;
 	return (
-		<FlexContainer>
+		<>
 			<Header
 				userName={"Colaborador"}
 				pageTittle="Meus chamados"
@@ -29,7 +27,7 @@ const Homepage = () => {
 					<LoadingScreen overlayOn={false} />
 				) : (
 					<>
-						<MainContainer>
+						<MainContainer hasContent={!!listaChamados}>
 							{listaChamados && listaChamados?.length ? (
 								listaChamados.map((issue) => {
 									return (
@@ -44,7 +42,6 @@ const Homepage = () => {
 									);
 								})
 							) : (
-						
 								<BoxEmpty
 									alt="caixa vazia"
 									title="Não há chamados no momento."
@@ -60,8 +57,7 @@ const Homepage = () => {
 					</>
 				)}
 			</PageContainer>
-			<NavigationBar options={navigationOptions} />
-		</FlexContainer>
+		</>
 	);
 };
 

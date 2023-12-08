@@ -1,4 +1,4 @@
-import { Row } from "@/styles";
+import { Column, Row } from "@/styles";
 import styled, { css } from "styled-components";
 
 export const HeaderHome = styled.div`
@@ -29,7 +29,7 @@ export const UserText = styled.text<{ isSmallClientMobile?: boolean }>`
 	display: flex;
 	align-items: center;
 	letter-spacing: 0.01em;
-	margin-top: 1.5rem;
+	margin: .6rem 0;
 	color: ${({ theme }) => theme.colors.green.default};
 
 	${({ isSmallClientMobile }) =>
@@ -79,7 +79,7 @@ export const ButtonImage = styled.img`
 	height: 20px;
 `;
 
-export const FirstSection = styled(Row)`
+export const FirstSection = styled(Column)`
 	width: 100%;
 	height: fit-content;
 	display: flex;

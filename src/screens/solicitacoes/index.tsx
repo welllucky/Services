@@ -1,4 +1,19 @@
-// import { FlexContainer } from "@/components/PageStruct/style";
+"use client";
+
+import {
+	AddNewIssueButton,
+	BoxEmpty,
+	Header,
+	IssueMobile,
+	LoadingScreen,
+} from "@/components";
+import { MainContainer } from "../pesquisa/styles";
+import { PageContainer } from "@/styles";
+import { ButtonWrapper } from "../home/styles";
+import { useTheme } from "styled-components";
+import { issueMobileData } from "../home/data";
+import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
 // import { HeaderMobile } from "../../Components/Home/HeaderMobile";
 // import { NavigationBar } from "../../Components/MenuNavegation";
@@ -14,72 +29,54 @@
 // import { MainContainer } from "../pesquisa/styles";
 
 const RequestsPage = () => {
-	// const usuarioLogado = JSON.parse(localStorage.getItem("userData") ?? "null");
-	// function verificarLogin() {
-	// 	if (!usuarioLogado) {
-	// 		window.location.replace("/login");
-	// 	}
-	// }
-	// verificarLogin();
+	const theme = useTheme();
+	const isLoading = false;
+	const listaChamados = issueMobileData;
 
-	// useEffect(() => {
-	// 	setIsLoading(true);
-	// 	api
-	// 		.get(`/ConsultaSolicitacoes/${usuarioLogado.matricula}`, {
-	// 			headers: { Authorization: `Bearer ${usuarioLogado.token}` },
-	// 		})
-	// 		.then((response) => setListaSolicitacoes(response.data))
-	// 		.catch((err) => {
-	// 			console.error(`ops! ocorreu um erro ${err}`);
-	// 		})
-	// 		.finally(() => setIsLoading(false));
-	// }, [usuarioLogado.matricula, usuarioLogado.token]);
+	const isRequestsPage = useMemo(() => {
+		return usePathname() === "/requests";
+	}, [usePathname]);
 
-	// const isLoading = false;
-	return <div>Requests</div>;
-
-	/*  <FlexContainer backgroundColor="#D2F4B7">
-			<HeaderMobile
-				userName={usuarioLogado ? usuarioLogado.nome : ""}
+	return (
+		<>
+			<Header
+				userName={"Colaborador"}
 				pageTittle="Chamados solicitados"
-				grettingsMessageColor="#569720"
 			/>
 			<PageContainer>
 				{isLoading ? (
 					<LoadingScreen overlayOn={false} />
 				) : (
 					<>
-						<MainContainer>
-							{issueMobileData ? (
-								issueMobileData.map((issue) => {
+						<MainContainer hasContent={!!listaChamados}>
+							{listaChamados && listaChamados?.length ? (
+								listaChamados.map((issue) => {
 									return (
 										<IssueMobile
-											key={issue?.id}
-											id={issue?.id}
-											nome={issue?.nome}
-											date={issue?.date}
-											$status={issue?.$status}
-											isUpdated={issue?.isUpdated}
-											color={"#9edc72"}
-											borderColor={"#61A12F"}
+											color="#9EDC72"
+                      borderColor="#61A12F"
+											key={issue.id}
+											id={issue.id}
+											nome={issue.nome}
+											date={issue.date}
+											$status={issue.$status}
+											isUpdated={issue.isUpdated}
 										/>
 									);
 								})
 							) : (
-								<BoxEmptyContainer>
-									<BoxEmpty
-										alt="caixa vazia"
-										title="Não há solicitações no momento."
-										color="#494949"
-									/>
-								</BoxEmptyContainer>
+								<BoxEmpty
+									alt="caixa vazia"
+									title="Não há solicitações no momento."
+									color={theme.colors.neutral["55"]}
+								/>
 							)}
 						</MainContainer>
 					</>
 				)}
 			</PageContainer>
-			<NavigationBar $backgroundColor="#D8FFB9" /> 
-		 </FlexContainer> */
+		</>
+	);
 };
 
 export default RequestsPage;

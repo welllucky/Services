@@ -17,7 +17,11 @@ body {
 ::before,
 ::after {
 	box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+  -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+  outline: none !important;
 }
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -40,6 +44,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
   text-decoration: none;
   border-color: transparent;
+  font-family: Inter, Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 button {
@@ -70,5 +75,15 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+a{
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+     -webkit-tap-highlight-color: transparent;
+     -webkit-user-select: none;
+     -khtml-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+      user-select: none;
 }
 `;

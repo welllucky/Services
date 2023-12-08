@@ -20,15 +20,15 @@ type DividerProps = {
 };
 
 const StyledSearchBarContainer = styled.div<SearchBarProps>`
-	height: ${({ height }) => height ?? "4.8rem"};
+	min-height: 0.4rem;
 	width: ${({ width }) => width ?? "100%"};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border: 0.3rem solid ${({ borderColor }) => borderColor ?? "#000"};
+	border: 0.2rem solid ${({ borderColor }) => borderColor ?? "#000"};
 	border-radius: ${({ borderRadius }) => borderRadius ?? "0.5rem"};
 	padding: ${({ padding }) => padding ?? "0.5rem"};
-	gap: 0.8rem;
+	gap: 0.4rem;
 `;
 
 const StyledSearchBar = styled.input<SearchBarProps>`
@@ -37,7 +37,7 @@ const StyledSearchBar = styled.input<SearchBarProps>`
 	border: none;
 	border-radius: 0.5rem;
 	padding: 0.5rem;
-	font-size: ${({ fontSize }) => fontSize ?? "1.6rem"};
+	font-size: ${({ fontSize }) => fontSize ?? "1rem"};
 	font-weight: 400;
 	outline: none;
 	transition: 0.2s;

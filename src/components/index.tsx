@@ -17,4 +17,4 @@ export * from "./LoadingScreen";
 export * from "./SelectOption";
 export * from "./SideBarLeft";
 export * from "./ToolsComponent";
-// export * from "./Midia";
+export * from "./MediaPreview";
