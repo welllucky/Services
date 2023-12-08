@@ -12,7 +12,7 @@ export const FlexContainer = styled(Column)<{ backgroundColor?: string }>`
 	background-color: ${({ backgroundColor }) => backgroundColor || "#fff"};
 `;
 
-export const PageContainer = styled(Column)`
+export const PageStructContainer = styled(Column)`
 	width: 100%;
 	height: 100%;
 	display: flex;

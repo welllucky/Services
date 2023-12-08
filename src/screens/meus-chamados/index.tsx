@@ -6,12 +6,13 @@ import { Header } from "@/components";
 import { NavigationBar } from "@/components/NavBar";
 import { ButtonWrapper } from "./styles";
 import { issueMobileData } from "../home/data";
-import { FlexContainer, PageContainer } from "@/components/PageStruct/style";
+import { FlexContainer } from "@/components/PageStruct/style";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { MainContainer } from "../pesquisa/styles";
 import { BoxEmpty } from "@/components";
 import { useTheme } from "styled-components";
 import navigationOptions from "@/components/NavBar/data";
+import { PageContainer } from "@/styles";
 
 const Homepage = () => {
 	const theme = useTheme();

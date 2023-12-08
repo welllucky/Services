@@ -1,33 +1,24 @@
-import { FlexContainer } from "@/components/PageStruct/style";
+"use client";
 
-// import { useEffect, useState } from "react";
-// import { IssueMobile } from "../../Components/Home/CalledMobile";
-// import { HeaderMobile } from "../../Components/Home/HeaderMobile";
-// import { NavigationBar } from "../../Components/MenuNavegation";
-// import Searchbar from "../../components/Searchbar";
-// import { api } from "../../Services";
-// import { MainContainer } from "./styles";
-// import { IssueDto } from "../../Assets";
-// import { LoadingScreen } from "../../components/LoadingScreen";
-// import { BoxEmptyContainer } from "../Home/styles";
-// import { BoxEmpty } from "../../Components/BoxEmpty";
+import { useState } from "react";
+import { SearchBar } from "../../components/Searchbar";
+import { MainContainer, SearchContainer } from "./styles";
+import { LoadingScreen } from "../../components/LoadingScreen";
+import { BoxEmpty, Header, IssueMobile } from "@/components";
+import { IssueMobileProps } from "@/types";
+import { useTheme } from "styled-components";
+import { PageContainer } from "@/styles";
+import { issueMobileData } from "../home/data";
 
-const SearchPage = () => {
-	// const [isLoading, setIsLoading] = useState(false);
-	// const [searchResults, setSearchResults] = useState<IssueDto[]>([]);
-	// const [search, setSearch] = useState("");
-
-	// const [isLoading, setIsLoading] = useState(false);
-	// const [searchResults, setSearchResults] = useState<IssueDto[]>([]);
-	// const [search, setSearch] = useState("");
-
-	// const usuarioLogado = JSON.parse(localStorage.getItem("userData") ?? "null");
-	// function verificarLogin() {
-	// 	if (!usuarioLogado) {
-	// 		window.location.replace("/login");
-	// 	}
-	// }
-	// verificarLogin();
+const SearchPage = ({
+	searchResults,
+}: {
+	searchResults: IssueMobileProps[];
+}) => {
+	const theme = useTheme();
+	const [isLoading, setIsLoading] = useState(false);
+	// const [searchResults, setSearchResults] = useState<IssueMobileProps[]>([]);
+	const [search, setSearch] = useState("");
 
 	// const searchUserIssue = (issueString: string) => {
 	// 	api
@@ -54,43 +45,44 @@ const SearchPage = () => {
 	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	// }, [search]);
 
-	return <div>pesquisa</div>;
-	/* 	<FlexContainer>
-			<HeaderMobile userName={usuarioLogado ? usuarioLogado.nome : ""} />
+	return (
+		<>
+			<Header userName={"Colaborador"} />
+			<SearchContainer>
+				<SearchBar getInputValue={(value: string) => setSearch(value)} />
+			</SearchContainer>
 			<PageContainer>
-				<SearchContainer>
-					<Searchbar getInputValue={(value: string) => setSearch(value)} />
-				</SearchContainer>
-				<MainContainer>
-					{isLoading ? (
-						<LoadingScreen overlayOn={false} />
-					) : (
-						<>
-							{searchResults.length === 0 ? (
-								<BoxEmptyContainer>
-									<BoxEmpty title="Nenhum chamado encontrado" />
-								</BoxEmptyContainer>
+				{isLoading ? (
+					<LoadingScreen overlayOn={false} />
+				) : (
+					<>
+						<MainContainer hasContent={!!searchResults}>
+							{searchResults?.length ? (
+								searchResults.map((issue) => {
+									return (
+										<IssueMobile
+											key={issue.id}
+											id={issue.id}
+											nome={issue.nome}
+											date={issue.date}
+											$status={issue.$status}
+											isUpdated={issue.isUpdated}
+										/>
+									);
+								})
 							) : (
-								<></>
+								<BoxEmpty
+									alt="caixa vazia"
+									title="Pesquise pelo seu chamado"
+									color={theme.colors.neutral["55"]}
+								/>
 							)}
-							{searchResults.map((issue) => {
-								return (
-									<IssueMobile
-										key={issue.idChamado}
-										id={issue.idChamado.toString()}
-										nome={issue.nome}
-										$status={issue.$status}
-										date={issue.dataRelato}
-										isUpdated
-									/>
-								);
-							})}
-						</>
-					)}
-				</MainContainer>
+						</MainContainer>
+					</>
+				)}
 			</PageContainer>
-			<NavigationBar /> 
-		</FlexContainer>*/
+		</>
+	);
 };
 
 export default SearchPage;

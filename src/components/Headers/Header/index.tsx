@@ -51,19 +51,21 @@ export const Header = ({
 					</UserName>
 				</Row>
 			</FirstSection>
-			<SecondSection>
-				<PageTitle isSmallClientMobile={isClientSmallMobile}>
-					<TittleText isSmallClientMobile={isClientSmallMobile}>
-						{pageTittle}
-					</TittleText>
-					{issueQuantify && issueQuantify > 4 ? (
-						<IconButton
-							path={"/abrir-chamado"}
-							icon={addButtonAlt}
-						/>
-					) : null}
-				</PageTitle>
-			</SecondSection>
+			{pageTittle && (
+				<SecondSection>
+					<PageTitle isSmallClientMobile={isClientSmallMobile}>
+						<TittleText isSmallClientMobile={isClientSmallMobile}>
+							{pageTittle}
+						</TittleText>
+						{issueQuantify && issueQuantify > 4 ? (
+							<IconButton
+								path={"/abrir-chamado"}
+								icon={addButtonAlt}
+							/>
+						) : null}
+					</PageTitle>
+				</SecondSection>
+			)}
 		</HeaderHome>
 	);
 };

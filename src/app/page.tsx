@@ -1,9 +1,5 @@
-import Homepage from "@/screens/home";
+// import Homepage from "@/screens/home";
 
 export default function Home() {
-	return (
-		<>
-			<Homepage />
-		</>
-	);
+	return <>{/* <Homepage /> */}</>;
 }
