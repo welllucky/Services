@@ -41,8 +41,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+.vsgitbuild
 
-yarn.lock
 package-lock.json
 /test-results/
 /playwright-report/
@@ -55,3 +55,5 @@ package-lock.json
 /tests/report/*
 /tests/report/index.html
 /tests/output/*
+
+settings.json

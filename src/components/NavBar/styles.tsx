@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { OptionMenuStyleProps } from "@/assets";
 
-export const ContainerMenu = styled.div`
+export const ContainerMenu = styled.div<{ color?: string }>`
 	position: fixed;
 	bottom: 0;
 	width: 100%;
 	padding: 0;
+	background-color: ${({ color }) => color || "#f5f5f5"};
 `;
 
 export const MenuList = styled.div<OptionMenuStyleProps>`
@@ -13,7 +14,6 @@ export const MenuList = styled.div<OptionMenuStyleProps>`
 	justify-content: space-around;
 	align-items: center;
 	padding: 1rem;
-	background-color: #f5f5f5;
 `;
 
 export const OptionMenuStyle = styled.a<OptionMenuStyleProps>`
@@ -33,7 +33,8 @@ export const IconArea = styled.div<OptionMenuStyleProps>`
 	border-radius: 16px;
 	align-items: center;
 	justify-content: center;
-	background-color: ${({ $isClicked }) => ($isClicked ? "#7AC143" : "#F5F5F5")};
+	background-color: ${({ $isClicked, backgroundColor }) =>
+		$isClicked ? "#7AC143" : backgroundColor || "#F5F5F5"};
 `;
 
 export const TextMenu = styled.p<OptionMenuStyleProps>`
@@ -42,8 +43,7 @@ export const TextMenu = styled.p<OptionMenuStyleProps>`
 	font-size: 12px;
 	font-weight: 600;
 	line-height: 16px;
-	color: ${({ $isClicked }) => ($isClicked ? "#7AC143" : "#252728")};
+	color: ${({ $isClicked, highlightTextColor }) =>
+		$isClicked ? highlightTextColor || "#7AC143" : "#252728"};
 	list-style: none;
 `;
-
-

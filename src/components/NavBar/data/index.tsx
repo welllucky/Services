@@ -11,7 +11,7 @@ import settingsWhite from "@/assets/Images/SettingsWhite.png";
 const navigationOptions: OptionMenuProps[] = [
 	{
 		name: "Iniciar",
-		path: "/",
+		path: "/tickets",
 		alt: "Ícone de casa",
 		iconUnselect: homeBlack,
 		iconSelect: homeWhite,
