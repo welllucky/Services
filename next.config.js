@@ -11,15 +11,15 @@ const nextConfig = {
 		},
 	},
 	optimizeFonts: true,
-	redirects: async () => {
-		return [
-			{
-				source: "/",
-				destination: "/tickets",
-				permanent: false,
-			},
-		];
-	},
+	// redirects: async () => {
+	// 	return [
+	// 		{
+	// 			source: "/",
+	// 			destination: "/chamados",
+	// 			permanent: false,
+	// 		},
+	// 	];
+	// },
 };
 
 module.exports = nextConfig;

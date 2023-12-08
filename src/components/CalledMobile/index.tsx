@@ -22,7 +22,7 @@ export const IssueMobile = ({
 	borderColor,
 }: IssueMobileProps) => {
 	return (
-		<IssueWrapper>
+		<IssueWrapper href={`/chamado/${id}`}>
 			{isUpdated && (
 				<IconeSelo>
 					<Selo />

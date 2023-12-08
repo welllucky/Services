@@ -5,25 +5,25 @@ interface ImageMapProps {
 	showImage?: boolean;
 }
 
-export const MidiaContainer = styled.div`
+export const MediaPreviewContainer = styled.div`
 	height: 100px;
 `;
 
-export const MidiaText = styled.span`
+export const MediaPreviewText = styled.span`
 	font-style: normal;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 24px;
 `;
 
-export const MidiaDiv = styled.div`
+export const MediaPreviewDiv = styled.div`
 	display: grid;
 	grid-template-columns: repeat(1fr, 3fr);
 	grid-template-areas: "1 1 1";
 	gap: 2rem;
 `;
 
-export const ContainerDeMidia = styled.section`
+export const ContainerDeMediaPreview = styled.section`
 	position: absolute;
 	top: 50%;
 	left: 15%;

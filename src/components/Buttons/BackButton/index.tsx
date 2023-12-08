@@ -16,7 +16,7 @@ export const BackButton = ({
 	const router = useRouter();
 	return (
 		<Container onClick={() => router.back()}>
-			{actionText === "Login" ? (
+			{actionText !== "Login" ? (
 				<BackIcon
 					src={arrowLeft}
 					alt="voltar"

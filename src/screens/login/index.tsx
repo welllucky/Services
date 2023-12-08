@@ -34,7 +34,6 @@ export const LoginPage = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [passwordVisible, setPasswordVisible] = useState(false);
 
-
 	const isInactiveButton = false;
 	const validEmail = false;
 	return (
@@ -51,7 +50,8 @@ export const LoginPage = () => {
 							<CustomInput
 								type="email"
 								placeholder="Digite o seu email"
-								labelText="Email"
+								$status="none"
+								// labelText="Email"
 								trailingButton={{ icon: ClearIcon, alt: "Limpar" }}
 								leadingButton={{ icon: EmailIcon, alt: "Email" }}
 								errorText="Formato inválido, tente novamente!"
@@ -59,7 +59,7 @@ export const LoginPage = () => {
 
 							<CustomInput
 								type={passwordVisible ? "text" : "password"}
-								labelText="Senha"
+								// labelText="Senha"
 								placeholder="Digite a sua senha"
 								trailingButton={{
 									icon: passwordVisible ? EyeClosedIcon : EyeIcon,
@@ -72,7 +72,7 @@ export const LoginPage = () => {
 									size: 24,
 								}}
 								height="58px"
-								$status="valid"
+								$status="none"
 								errorText="Formato inválido, tente novamente!"
 							/>
 						</InputSection>

@@ -21,7 +21,6 @@ export const ContentContainer = styled(Row)<ContentContainerProps>`
 	border-radius: 4px 4px 0px 0px;
 	margin: 0.5rem 0rem 0.1rem 0rem;
 	height: ${({ height }) => height || "100%"};
-	border-bottom: 0.2rem #49454f40 solid;
 
 	${({ $status }) =>
 		$status === "invalid"
@@ -36,7 +35,6 @@ export const ContentContainer = styled(Row)<ContentContainerProps>`
 			    `
 			  : css`
 						background-color: #e5e6e6;
-						border-bottom: 0.2rem #49454f40 solid;
 			    `}
 `;
 

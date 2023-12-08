@@ -22,7 +22,7 @@ export default function Template({ children }: { children: ReactNode }) {
 	useDebugValue(isMobile);
 
 	const isRequestsPage = useMemo(() => {
-		return usePathname() === "/requests";
+		return usePathname() === "/solicitacoes";
 	}, [usePathname]);
 
 	if (!isMobile && isClient) {
