@@ -30,7 +30,7 @@ interface UserLoginProps {
 	senha: string;
 }
 
-export const LoginPage = () => {
+const LoginPage = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -102,3 +102,5 @@ export const LoginPage = () => {
 		</>
 	);
 };
+
+export { LoginPage };

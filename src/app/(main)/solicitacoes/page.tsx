@@ -1,4 +1,4 @@
-import RequestsPage from "@/screens/solicitacoes";
+import { RequestsPage } from "@/screens/solicitacoes";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

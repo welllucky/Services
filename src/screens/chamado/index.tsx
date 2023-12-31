@@ -1,14 +1,8 @@
 "use client";
 
-import {
-	BackButton,
-	CustomInput,
-	LoadingScreen,
-	OutlinedInput,
-} from "@/components";
+import { BackButton, OutlinedInput } from "@/components";
 import { IssuePageContainer, IssuePageContent } from "./styles";
 import { Column, Row, TitleComponent } from "@/styles";
-import { ClearIcon, EmailIcon } from "@/assets";
 
 const IssuePage = () => {
 	return (
@@ -53,4 +47,4 @@ const IssuePage = () => {
 	);
 };
 
-export default IssuePage;
+export { IssuePage };

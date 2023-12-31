@@ -2,7 +2,9 @@ import { useState } from "react";
 import { IconContainer, IconImage } from "./styles";
 
 interface IconProps {
+	// skipcq: JS-0323
 	src?: any;
+	// skipcq: JS-0323
 	alternate?: any;
 	alt?: string;
 	color?: string;

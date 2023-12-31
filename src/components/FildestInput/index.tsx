@@ -12,7 +12,7 @@ export interface ILegendProps {
 	minLength?: number;
 	value?: string;
 	onChange?: ChangeEventHandler<HTMLInputElement>;
-	source?: any;
+	source?: string;
 	imgDescription?: string;
 	hasImage?: boolean;
 	border?: string;
