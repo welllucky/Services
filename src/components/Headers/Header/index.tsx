@@ -2,16 +2,14 @@ import { LogoFC } from "@/assets/Icons";
 import addButtonAlt from "@/assets/Images/AddButtonAlt.png";
 import {
 	UserName,
-	UserText,
 	PageTitle,
-	TittleText,
 	HeaderHome,
 	FirstSection,
 	SecondSection,
 } from "./styles";
 import { IconButton } from "@/components";
 import { useMemo } from "react";
-import { Row } from "@/styles";
+import { Row, SubTitleComponent, TitleComponent } from "@/styles";
 import { useApp } from "@/utils";
 
 export type HeaderMobileProps = {
@@ -45,18 +43,18 @@ export const Header = ({
 				</Row>
 				<Row isSmallClientMobile={isClientSmallMobile}>
 					<UserName isSmallClientMobile={isClientSmallMobile}>
-						<UserText isSmallClientMobile={isClientSmallMobile}>
+						<TitleComponent isSmallClientMobile={isClientSmallMobile}>
 							{greetingMessage}, {userName}!
-						</UserText>
+						</TitleComponent>
 					</UserName>
 				</Row>
 			</FirstSection>
 			{pageTittle && (
 				<SecondSection>
 					<PageTitle isSmallClientMobile={isClientSmallMobile}>
-						<TittleText isSmallClientMobile={isClientSmallMobile}>
+						<SubTitleComponent isSmallClientMobile={isClientSmallMobile}>
 							{pageTittle}
-						</TittleText>
+						</SubTitleComponent>
 						{issueQuantify && issueQuantify > 4 ? (
 							<IconButton
 								path={"/abrir-chamado"}

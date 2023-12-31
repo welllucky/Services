@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const IssuePageContainer = styled(Column)`
 	align-items: center;
+  gap: 16px;
 `;
 
 export const IssuePageContent = styled(Column)`
@@ -10,9 +11,9 @@ export const IssuePageContent = styled(Column)`
 	flex: 1;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 	padding-bottom: 82px;
-	gap: 24px;
+	gap: 16px;
 	font-weight: 600;
 	color: ${({ theme }) => theme.colors.red.default};
 `;
