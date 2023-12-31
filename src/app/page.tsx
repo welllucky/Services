@@ -4,7 +4,7 @@ import { NavigationBar } from "@/components";
 import navigationOptions from "@/components/NavBar/data";
 import { FlexContainer } from "@/components/PageStruct/style";
 import { NoMobileDevice } from "@/screens/NoMobileDevice";
-import Homepage from "@/screens/home";
+import { Homepage } from "@/screens/home";
 import { useApp } from "@/utils";
 import { useEffect, useState } from "react";
 

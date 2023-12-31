@@ -7,7 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { SWRConfig } from "swr";
 import { AppProvider } from "..";
 import { useDarkMode } from "usehooks-ts";
-
+// skipcq: JS-0323
 const AppProviders = ({ children }: any & ReactNode) => {
 	// const { isDarkMode } = useDarkMode(false);
 	const isDarkMode = false;

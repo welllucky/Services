@@ -6,7 +6,7 @@ import { FlexContainer } from "@/components/PageStruct/style";
 import { NoMobileDevice } from "@/screens/NoMobileDevice";
 import { useApp } from "@/utils";
 import { usePathname } from "next/navigation";
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useIsClient } from "usehooks-ts";
 
 export default function Template({ children }: { children: ReactNode }) {

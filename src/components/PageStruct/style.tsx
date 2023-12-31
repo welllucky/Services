@@ -9,7 +9,7 @@ export const FlexContainer = styled(Column)<{ $backgroundColor?: string }>`
 	height: 100vh;
 	padding: 2rem;
 	padding-bottom: 0;
-	background-color: ${({ backgroundColor }) => backgroundColor || "#fff"};
+	background-color: ${({ $backgroundColor }) => $backgroundColor || "#fff"};
 `;
 
 export const PageStructContainer = styled(Column)`

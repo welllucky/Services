@@ -65,4 +65,4 @@ const MyCallsPage = () => {
 	);
 };
 
-export default MyCallsPage;
+export { MyCallsPage };

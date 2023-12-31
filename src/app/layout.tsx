@@ -6,6 +6,8 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import { Analytics } from "@vercel/analytics/react";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -34,6 +36,7 @@ export default function RootLayout({
 	return (
 		<html lang="pt-br">
 			<body className={inter.className}>
+				<SpeedInsights />
 				<AppProviders>
 					<Suspense fallback={<Loading />}>
 						<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
