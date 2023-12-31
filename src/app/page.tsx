@@ -24,12 +24,12 @@ export default function Home() {
 	return (
 		<>
 			<FlexContainer
-				backgroundColor={"#F5F5F5"}
-				full={true}>
+				$backgroundColor={"#F5F5F5"}
+				$full={true}>
 				<Homepage />
 				<NavigationBar
 					color={"#F8FCF6"}
-					highlightTextColor={"#7AC143"}
+					$highlightTextColor={"#7AC143"}
 					options={navigationOptions}
 				/>
 			</FlexContainer>
