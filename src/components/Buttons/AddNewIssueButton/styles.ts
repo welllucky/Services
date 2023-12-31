@@ -9,7 +9,7 @@ export const ButtonNewCalled = styled.button<AddNewIssueButtonProps>`
 	padding: 0;
 	width: ${({ size }) => size || "3.5rem"};
 	height: ${({ size }) => size || "3.5rem"};
-	background-color: ${({ styles }) => styles?.backgroundColor || "#ebf6e3"};
+	background-color: ${({ styles }) => styles?.$backgroundColor || "#ebf6e3"};
 	${({ styles }) =>
 		styles?.hasShadow &&
 		css`

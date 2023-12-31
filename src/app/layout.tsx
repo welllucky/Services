@@ -34,12 +34,12 @@ export default function RootLayout({
 	return (
 		<html lang="pt-br">
 			<body className={inter.className}>
-				<StyledComponentsRegistry>
-					<AppProviders>
-						<Suspense fallback={<Loading />}>{children}</Suspense>
+				<AppProviders>
+					<Suspense fallback={<Loading />}>
+						<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+					</Suspense>
 						<Analytics />
-					</AppProviders>
-				</StyledComponentsRegistry>
+				</AppProviders>
 			</body>
 		</html>
 	);

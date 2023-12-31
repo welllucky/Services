@@ -1,7 +1,7 @@
 import { Column } from "@/styles";
 import styled from "styled-components";
 
-export const FlexContainer = styled(Column)<{ backgroundColor?: string }>`
+export const FlexContainer = styled(Column)<{ $backgroundColor?: string }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -19,5 +19,5 @@ export const PageStructContainer = styled(Column)`
 	overflow: hidden;
 	justify-content: center;
 	align-items: center;
-  padding-bottom: 5rem;
+	padding-bottom: 5rem;
 `;

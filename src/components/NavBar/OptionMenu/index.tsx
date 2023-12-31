@@ -12,15 +12,15 @@ const OptionMenu = ({
 	onClick,
 	$isSelected,
 	color,
-	highlightTextColor,
+	$highlightTextColor,
 }: OptionMenuProps) => {
 	return (
 		<button onClick={onClick}>
 			<CustomLink
-				flexDirection="column"
+				$flexDirection="column"
 				href={path}>
 				<IconArea
-					backgroundColor={color}
+					$backgroundColor={color}
 					$isClicked={$isSelected}>
 					<Image
 						src={$isSelected ? iconSelect : iconUnselect}
@@ -28,7 +28,7 @@ const OptionMenu = ({
 					/>
 				</IconArea>
 				<TextMenu
-					highlightTextColor={highlightTextColor}
+					$highlightTextColor={$highlightTextColor}
 					$isClicked={$isSelected}>
 					{name}
 				</TextMenu>
