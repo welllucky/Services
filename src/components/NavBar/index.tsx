@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation";
 
 interface NavigationBarProps {
 	color?: string;
-  highlightTextColor?: string;
+	$highlightTextColor?: string;
 	options: OptionMenuProps[];
 }
 
 export const NavigationBar = ({
 	color,
-	highlightTextColor,
+	$highlightTextColor,
 	options,
 }: NavigationBarProps) => {
 	const actualRoute = usePathname();
@@ -21,7 +21,7 @@ export const NavigationBar = ({
 				{options.map((option) => {
 					return (
 						<OptionMenu
-							highlightTextColor={highlightTextColor}
+							$highlightTextColor={$highlightTextColor}
 							color={color}
 							key={option.name}
 							name={option.name}

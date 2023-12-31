@@ -5,7 +5,7 @@ import { ButtonNewCalled } from "./styles";
 interface AddNewIssueButtonStyleProps {
 	iconColor?: string;
 	iconSize?: number;
-	backgroundColor?: string;
+	$backgroundColor?: string;
 	borderRadius?: number;
 	hasShadow?: boolean;
 }

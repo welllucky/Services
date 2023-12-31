@@ -120,3 +120,7 @@ export const StatusText = styled.text`
 	letter-spacing: 0.06em;
 	color: ${({ theme }) => theme.colors.neutral.inverted};
 `;
+
+export const InfoLabel = styled.label`
+	color: ${({ theme }) => theme.colors.neutral.inverted};
+`;

@@ -13,9 +13,9 @@ export const Row = styled.section<{ isSmallClientMobile?: boolean }>`
 		`}
 `;
 
-export const Column = styled.section<{ full?: boolean }>`
+export const Column = styled.section<{ $full?: boolean }>`
 	width: 100%;
-	height: ${({ full }) => (full ? "100dvh" : "fit-content")};
+	height: ${({ $full }) => ($full ? "100dvh" : "fit-content")};
 	display: flex;
 	flex-direction: column;
 `;

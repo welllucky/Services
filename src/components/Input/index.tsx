@@ -9,6 +9,7 @@ import {
 	SupportText,
 	ErrorText,
 	Label,
+	WarningText,
 } from "./styles";
 import { Icon } from "..";
 import { StaticImageData } from "next/image";
@@ -22,6 +23,7 @@ export interface InputStylesProps {
 	borderColor?: string;
 	width?: string;
 	height?: string;
+	mode?: "filled" | "outlined";
 	placeholderColor?: string;
 }
 
@@ -44,22 +46,24 @@ interface InputProps {
 	labelText?: string;
 	trailingButton?: ActionButton;
 	leadingButton?: ActionButton;
-	type: "text" | "password" | "email" | "number" | "tel" | "search" | "url";
+	type?: "text" | "password" | "email" | "number" | "tel" | "search" | "url";
 	style?: InputStylesProps;
 	width?: string;
 	height?: string;
+	mode?: "filled" | "outlined";
 }
 
 const CustomInput = ({
 	type = "text",
-	placeholder,
+	placeholder = "Digite aqui",
 	$status = "none",
 	labelText,
-	errorText,
+	errorText = "Houve um erro, tente novamente!",
 	onChange,
 	style,
 	value,
 	warnText,
+	mode = "filled",
 	leadingButton,
 	trailingButton,
 	width,
@@ -68,8 +72,10 @@ const CustomInput = ({
 	const [inputType, setInputType] = useState(type);
 	return (
 		<InputContainer width={width}>
-			{labelText && <Label>{labelText}</Label>}
+			{labelText && <Label mode={mode}>{labelText}</Label>}
 			<ContentContainer
+				backgroundColor={style?.$backgroundColor}
+				mode={mode}
 				$status={$status}
 				height={height}>
 				{leadingButton && (
@@ -101,8 +107,22 @@ const CustomInput = ({
 				{/* <InputBottomLine /> */}
 			</ContentContainer>
 			{$status === "invalid" && <ErrorText>{errorText}</ErrorText>}
+			{$status === "warning" && <WarningText>{warnText}</WarningText>}
 		</InputContainer>
 	);
 };
 
-export { CustomInput };
+const OutlinedInput = (props: InputProps) => {
+	return (
+		<CustomInput
+			{...props}
+			mode="outlined"
+			height={props.height || "56px"}
+			labelText={props.labelText || "Label"}
+			type={props.type || "text"}
+			placeholder={props.placeholder || "Placeholder"}
+		/>
+	);
+};
+
+export { CustomInput, OutlinedInput };
