@@ -1,4 +1,4 @@
-import IssuePage from "@/screens/chamado";
+import { IssuePage } from "@/screens/chamado";
 import { Metadata } from "next";
 
 // export async function generateStaticParams() {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 	title: { default: `Chamado`, template: "%s | Services" },
 };
 
-export default function Issue({ id }: { id: string }) {
+export default function Issue() {
 	return (
 		<>
 			<IssuePage />
