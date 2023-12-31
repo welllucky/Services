@@ -21,28 +21,6 @@ export const UserName = styled.div<{ isSmallClientMobile?: boolean }>`
 		`}
 `;
 
-export const UserText = styled.text<{ isSmallClientMobile?: boolean }>`
-	font-style: normal;
-	font-weight: 600;
-	font-size: 1.5rem;
-	line-height: 1.9rem;
-	display: flex;
-	align-items: center;
-	letter-spacing: 0.01em;
-	margin: .6rem 0;
-	color: ${({ theme }) => theme.colors.green.default};
-
-	${({ isSmallClientMobile }) =>
-		isSmallClientMobile &&
-		css`
-			font-size: 1.2rem;
-			line-height: 1.5rem;
-			margin-top: 4rem;
-			text-align: center;
-			margin-bottom: 0.6rem;
-		`}
-`;
-
 export const PageTitle = styled.div<{ isSmallClientMobile?: boolean }>`
 	display: flex;
 	justify-content: space-between;
@@ -54,23 +32,6 @@ export const PageTitle = styled.div<{ isSmallClientMobile?: boolean }>`
 		css`
 			padding: 0;
 			justify-content: center;
-		`}
-`;
-
-export const TittleText = styled.text<{ isSmallClientMobile?: boolean }>`
-	font-style: normal;
-	font-weight: 600;
-	font-size: 1.25rem;
-	line-height: 1.25rem;
-	letter-spacing: 0.0125rem;
-	display: flex;
-
-	${({ isSmallClientMobile }) =>
-		isSmallClientMobile &&
-		css`
-			font-size: 1.5rem;
-			line-height: 1.6rem;
-			text-align: center;
 		`}
 `;
 

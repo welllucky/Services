@@ -12,7 +12,6 @@ export const Container = styled.div`
 	width: fit-content;
 	gap: 10px;
 	align-items: center;
-	margin-bottom: 3.5rem;
 `;
 
 export const BackIcon = styled(Image)`
