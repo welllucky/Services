@@ -43,7 +43,7 @@ export const TextMenu = styled.p<OptionMenuStyleProps>`
 	font-size: 12px;
 	font-weight: 600;
 	line-height: 16px;
-	color: ${({ $isClicked, highlightTextColor }) =>
-		$isClicked ? highlightTextColor || "#7AC143" : "#252728"};
+	color: ${({ $isClicked, $highlightTextColor }) =>
+		$isClicked ? $highlightTextColor || "#7AC143" : "#252728"};
 	list-style: none;
 `;
