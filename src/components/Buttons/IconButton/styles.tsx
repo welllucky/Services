@@ -7,7 +7,7 @@ interface CustomButtonProps {
 	color?: string;
 	width?: string;
 	height?: string;
-	onHover?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+	onHover?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const IconButtonWrapper = styled.div``;
