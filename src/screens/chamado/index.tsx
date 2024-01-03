@@ -1,8 +1,14 @@
 "use client";
 
-import { BackButton, OutlinedInput } from "@/components";
+import {
+	BackButton,
+	CustomSelect,
+	CustomTextArea,
+	OutlinedInput,
+} from "@/components";
 import { IssuePageContainer, IssuePageContent } from "./styles";
 import { Column, Row, TitleComponent } from "@/styles";
+import { FormButtons } from "@/components/Form";
 
 const IssuePage = () => {
 	return (
@@ -10,7 +16,7 @@ const IssuePage = () => {
 			<Row>
 				<BackButton actionText="voltar" />
 			</Row>
-			<Column gap="24px">
+			<Column $gap="12px">
 				<TitleComponent>O que aconteceu?</TitleComponent>
 				<IssuePageContent>
 					<OutlinedInput
@@ -20,28 +26,36 @@ const IssuePage = () => {
 						labelText="Resumo"
 						errorText="Formato inválido, tente novamente!"
 					/>
-					<OutlinedInput
-						type="text"
+					<CustomSelect
 						placeholder="Qual o tipo do chamado?"
-						$status="none"
 						labelText="Tipo"
-						errorText="Formato inválido, tente novamente!"
+						isRequired
+						options={[
+							{ key: "1", value: "1", text: "1" },
+							{ key: "2", value: "2", text: "2" },
+							{ key: "3", value: "3", text: "3" },
+						]}
 					/>
-					<OutlinedInput
-						type="text"
+					<CustomTextArea
 						placeholder="Nos conte mais detalhes sobre o ocorrido..."
-						$status="none"
 						labelText="Descrição"
-						errorText="Formato inválido, tente novamente!"
+						onChange={() => {}}
+						isRequired
 					/>
 					<OutlinedInput
-						type="text"
+						type="date"
 						placeholder="dd/mm/aaaa"
 						$status="none"
 						labelText="Data do ocorrido"
 						errorText="Formato inválido, tente novamente!"
 					/>
 				</IssuePageContent>
+				<FormButtons
+					nextPage="/"
+					canBack={true}
+					canNext={true}
+          hasBackButton={false}
+				/>
 			</Column>
 		</IssuePageContainer>
 	);

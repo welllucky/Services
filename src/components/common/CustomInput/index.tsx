@@ -11,7 +11,7 @@ import {
 	Label,
 	WarningText,
 } from "./styles";
-import { Icon } from "..";
+import { Icon } from "../..";
 import { StaticImageData } from "next/image";
 import { useState } from "react";
 
@@ -46,7 +46,7 @@ interface InputProps {
 	labelText?: string;
 	trailingButton?: ActionButton;
 	leadingButton?: ActionButton;
-	type?: "text" | "password" | "email" | "number" | "tel" | "search" | "url";
+	type?: "text" | "password" | "email" | "number" | "tel" | "search" | "url" | "date";
 	style?: InputStylesProps;
 	width?: string;
 	height?: string;

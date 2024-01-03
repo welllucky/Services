@@ -1,10 +1,14 @@
 import styled, { css } from "styled-components";
 
-export const Row = styled.section<{ isSmallClientMobile?: boolean }>`
+export const Row = styled.section<{
+	isSmallClientMobile?: boolean;
+	$gap?: string;
+}>`
 	width: 100%;
 	height: fit-content;
 	display: flex;
 	flex-direction: row;
+	gap: ${({ $gap }) => $gap};
 
 	${({ isSmallClientMobile }) =>
 		isSmallClientMobile &&
@@ -13,12 +17,12 @@ export const Row = styled.section<{ isSmallClientMobile?: boolean }>`
 		`}
 `;
 
-export const Column = styled.section<{ $full?: boolean, gap?: string }>`
+export const Column = styled.section<{ $full?: boolean; $gap?: string }>`
 	width: 100%;
 	height: ${({ $full }) => ($full ? "100dvh" : "fit-content")};
 	display: flex;
 	flex-direction: column;
-  gap: ${({ gap }) => gap};
+	gap: ${({ $gap }) => $gap};
 `;
 
 export const PageContainer = styled.main`
