@@ -17,6 +17,7 @@ const config: StorybookConfig = {
 		options: {
 			strictMode: true,
 			fastRefresh: true,
+      
 			nextConfigPath: "../next.config.js",
 		},
 	},

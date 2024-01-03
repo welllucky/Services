@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SearchBar } from "../../components/Searchbar";
+import { SearchBar } from "../../components/SearchBar";
 import { MainContainer, SearchContainer } from "./styles";
 import { LoadingScreen } from "../../components/LoadingScreen";
 import { BoxEmpty, Header, IssueMobile } from "@/components";
