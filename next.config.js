@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	basePath: "",
+	generateBuildId: async () => {
+		return `build-id-${new Date()}`;
+	},
 	compiler: {
 		styledComponents: true,
+		removeConsole: true,
 	},
 	pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
 	experimental: {

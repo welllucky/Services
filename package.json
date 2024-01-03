@@ -2,11 +2,17 @@
 	"name": "services",
 	"version": "0.1.0",
 	"private": true,
-	"repository": "https://github.com/welllucky/services.git",
-	"author": "Wellington Braga <wellingtonbat.wl@gmail.com>",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/welllucky/services.git"
+	},
+	"author": {
+		"name": "Wellington Braga",
+		"email": "wellingtonbat.wl@gmail.com"
+	},
 	"license": "LGPL-3.0-only",
 	"scripts": {
-		"dev": "next dev && yarn storybook",
+		"dev": "next dev",
 		"build": "next build",
 		"lint": "next lint",
 		"e2e:open": "playwright test --ui",
@@ -14,7 +20,8 @@
 		"e2e:debug": "playwright test --debug",
 		"e2e:gen": "playwright codegen",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"build-storybook": "storybook build",
+		"chromatic": "npx chromatic --project-token=chpt_79aa966e7eb4a6e --auto-accept-changes"
 	},
 	"dependencies": {
 		"@vercel/speed-insights": "^1.0.2",
@@ -50,6 +57,7 @@
 		"@types/react-dom": "^18",
 		"@typescript-eslint/eslint-plugin": "^6.4.0",
 		"@typescript-eslint/parser": "^6.11.0",
+		"chromatic": "^10.2.0",
 		"dotenv": "^16.3.1",
 		"eslint": "^8.0.1",
 		"eslint-config-airbnb": "^19.0.4",
@@ -87,5 +95,14 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	}
+	},
+	"resolutions": {
+		"jackspeak": "2.1.1"
+	},
+	"bugs": {
+		"url": "https://github.com/welllucky/services/issues"
+	},
+	"readme": "ERROR: No README data found!",
+	"homepage": "https://github.com/welllucky/services#readme",
+	"_id": "services@0.1.0"
 }
