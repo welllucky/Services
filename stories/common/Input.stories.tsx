@@ -3,19 +3,23 @@ import { StoryObj, Meta } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 export default {
-	title: "Common/Input",
+	title: "Common/Inputs/CustomInput",
 	component: CustomInput,
 	// More on argTypes: https://storybook.js.org/docs/api/argtypes
 	argTypes: {
 		placeholder: {
 			description: "Texto do placeholder",
 			control: "text",
+			table: {
+				category: "Conteúdo",
+			},
 		},
 
 		backgroundColor: {
 			description: "Cor do input",
 			control: "color",
 			table: {
+				category: "Aparência",
 				disable: true,
 			},
 		},
@@ -23,6 +27,7 @@ export default {
 		style: {
 			description: "Estilo do input",
 			table: {
+				category: "Aparência",
 				disable: true,
 			},
 		},
@@ -33,12 +38,18 @@ export default {
 				type: "inline-radio",
 				options: ["none", "valid", "invalid", "warning"],
 			},
+			table: {
+				category: "Estado",
+			},
 			name: "status",
 		},
 
 		errorText: {
 			description: "Texto de erro",
 			control: "text",
+			table: {
+				category: "Conteúdo",
+			},
 			if: {
 				arg: "$status",
 				eq: "invalid",
@@ -48,6 +59,9 @@ export default {
 		warnText: {
 			description: "Texto de alerta",
 			control: "text",
+			table: {
+				category: "Conteúdo",
+			},
 			if: {
 				arg: "$status",
 				eq: "warning",
@@ -57,31 +71,49 @@ export default {
 		labelText: {
 			description: "Texto do label",
 			control: "text",
+			table: {
+				category: "Conteúdo",
+			},
 		},
 
 		height: {
 			description: "Altura do input",
 			control: "text",
+			table: {
+				category: "Aparência",
+			},
 		},
 
 		width: {
 			description: "Largura do input",
 			control: "text",
+			table: {
+				category: "Aparência",
+			},
 		},
 
 		type: {
 			description: "Tipo do input",
 			control: "select",
+			table: {
+				category: "Estado",
+			},
 		},
 
 		leadingButton: {
 			description: "Botão à esquerda do input",
 			control: { type: "file", accept: ".svg" },
+			table: {
+				category: "Aparência",
+			},
 		},
 
 		trailingButton: {
 			description: "Botão à direita do input",
 			control: { type: "file", accept: ".svg" },
+			table: {
+				category: "Aparência",
+			},
 		},
 
 		mode: {
@@ -90,17 +122,23 @@ export default {
 				type: "select",
 				options: ["filled", "outlined"],
 			},
+			table: {
+				category: "Aparência",
+			},
 		},
 
 		onChange: {
 			description: "Função de mudança",
 			table: {
-				disable: true,
+				category: "Eventos",
 			},
 		},
 
 		value: {
 			description: "Valor do input",
+			table: {
+				category: "Valor",
+			},
 		},
 	},
 	args: {

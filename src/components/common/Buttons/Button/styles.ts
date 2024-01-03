@@ -5,17 +5,33 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: ${({ $backgroundColor, theme }) =>
-		$backgroundColor ? $backgroundColor : theme.colors.green[185]};
-	color: ${({ color, theme }) => (color ? color : theme.colors.neutral.white)};
+	font-size: 1rem;
 	border-radius: 10rem;
-	border: ${({ borderColor }) =>
-		borderColor ? `1px solid ${borderColor}` : "none"};
+	padding: 10px 24px;
 	width: ${({ width }) => (width ? width : "100%")};
 	height: ${({ height }) => (height ? height : "100%")};
-	font-size: 1.4rem;
-	${({ disabled }) =>
+
+	color: ${({ color, theme }) => (color ? color : theme.colors.neutral.white)};
+
+	border: ${({ $borderColor, mode }) =>
+		$borderColor && mode === "outlined" ? `1px solid ${$borderColor}` : "none"};
+
+	${({ disabled, mode }) =>
 		disabled &&
+		mode === "outlined" &&
+		css`
+			border: 1px solid #bfbfbf;
+			pointer-events: none;
+		`};
+
+	background-color: ${({ $backgroundColor, mode, theme }) =>
+		$backgroundColor && mode === "filled"
+			? $backgroundColor
+			: theme.colors.green[185]};
+
+	${({ disabled, mode }) =>
+		disabled &&
+		mode === "filled" &&
 		css`
 			background-color: #e5e6e6;
 			pointer-events: none;
@@ -36,5 +52,7 @@ export const ButtonComponent = styled.button<{ color?: string }>`
 	&:disabled {
 		color: #1c1b1f;
 		opacity: 0.5;
+		pointer-events: none;
+		cursor: default;
 	}
 `;

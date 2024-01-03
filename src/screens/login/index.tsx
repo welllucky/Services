@@ -23,7 +23,7 @@ import Link from "next/link";
 import { CustomInput } from "@/components";
 import EmailIcon from "@/assets/Icons/png/MailIcon.png";
 import ClearIcon from "@/assets/Icons/png/ClearIcon.png";
-import { CustomButton } from "@/components/Buttons/Button";
+import { CustomButton } from "@/components/common/Buttons/Button";
 
 interface UserLoginProps {
 	email: string;
