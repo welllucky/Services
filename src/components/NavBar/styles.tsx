@@ -33,8 +33,8 @@ export const IconArea = styled.div<OptionMenuStyleProps>`
 	border-radius: 16px;
 	align-items: center;
 	justify-content: center;
-	background-color: ${({ $isClicked, backgroundColor }) =>
-		$isClicked ? "#7AC143" : backgroundColor || "#F5F5F5"};
+	background-color: ${({ $isClicked, $backgroundColor }) =>
+		$isClicked ? "#7AC143" : $backgroundColor || "#F5F5F5"};
 `;
 
 export const TextMenu = styled.p<OptionMenuStyleProps>`
@@ -43,7 +43,7 @@ export const TextMenu = styled.p<OptionMenuStyleProps>`
 	font-size: 12px;
 	font-weight: 600;
 	line-height: 16px;
-	color: ${({ $isClicked, highlightTextColor }) =>
-		$isClicked ? highlightTextColor || "#7AC143" : "#252728"};
+	color: ${({ $isClicked, $highlightTextColor }) =>
+		$isClicked ? $highlightTextColor || "#7AC143" : "#252728"};
 	list-style: none;
 `;

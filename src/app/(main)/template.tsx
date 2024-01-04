@@ -6,7 +6,7 @@ import { FlexContainer } from "@/components/PageStruct/style";
 import { NoMobileDevice } from "@/screens/NoMobileDevice";
 import { useApp } from "@/utils";
 import { usePathname } from "next/navigation";
-import { ReactNode, useDebugValue, useEffect, useMemo, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useIsClient } from "usehooks-ts";
 
 export default function Template({ children }: { children: ReactNode }) {
@@ -19,11 +19,7 @@ export default function Template({ children }: { children: ReactNode }) {
 	}, [isClientMediumMobile, isClientMobile, isClientSmallMobile]);
 
 	const isClient = useIsClient();
-	useDebugValue(isMobile);
-
-	const isRequestsPage = useMemo(() => {
-		return usePathname() === "/requests";
-	}, [usePathname]);
+	const isRequestsPage = usePathname() === "/solicitacoes";
 
 	if (!isMobile && isClient) {
 		return <NoMobileDevice />;
@@ -31,12 +27,12 @@ export default function Template({ children }: { children: ReactNode }) {
 
 	return (
 		<FlexContainer
-			backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}
-			full={true}>
+			$backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}
+			$full={true}>
 			{children}{" "}
 			<NavigationBar
 				color={isRequestsPage ? "#D8FFB9" : "#F8FCF6"}
-        highlightTextColor={isRequestsPage ? "#4D7D28" : "#7AC143"} 
+				$highlightTextColor={isRequestsPage ? "#4D7D28" : "#7AC143"}
 				options={navigationOptions}
 			/>
 		</FlexContainer>

@@ -9,6 +9,7 @@ import {
 	StatusText,
 	IconeSelo,
 	IssueWrapper,
+	InfoLabel,
 } from "./styles";
 import { Selo } from "@/assets/Icons";
 import { IssueMobileProps } from "@/assets";
@@ -22,7 +23,7 @@ export const IssueMobile = ({
 	borderColor,
 }: IssueMobileProps) => {
 	return (
-		<IssueWrapper>
+		<IssueWrapper href={`/chamado/${id}`}>
 			{isUpdated && (
 				<IconeSelo>
 					<Selo />
@@ -38,11 +39,11 @@ export const IssueMobile = ({
 				</IssueContent>
 				<IssueState>
 					<IssueStatus>
-						Aberto em:
+						<InfoLabel>Aberto em:</InfoLabel>
 						<OpeningText>{date}</OpeningText>
 					</IssueStatus>
 					<IssueStatus>
-						Status
+						<InfoLabel>Status</InfoLabel>
 						<StatusText>{$status}</StatusText>
 					</IssueStatus>
 				</IssueState>

@@ -36,8 +36,8 @@ type IconProps = {
 
 type OptionMenuStyleProps = {
 	$isClicked?: boolean;
-	backgroundColor?: string;
-	highlightTextColor?: string;
+	$backgroundColor?: string;
+	$highlightTextColor?: string;
 };
 
 type OptionMenuProps = {
@@ -49,7 +49,7 @@ type OptionMenuProps = {
 	onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 	$isSelected?: boolean;
 	color?: string;
-	highlightTextColor?: string;
+	$highlightTextColor?: string;
 };
 
 type IconButtonProps = {
