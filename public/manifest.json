@@ -1,37 +1,26 @@
 {
-  "name": "FC Services",
+  "name": "Services",
   "background_color": "#ffffff",
-  "description": "Novo sistema da Ferreira Costa",
+  "description": "Desburocratizador de processos de gerenciamento de chamados, bem vindo ao Services.",
   "dir": "ltr",
   "display": "standalone",
   "orientation": "any",
   "scope": "/",
-  "short_name": "FC Services - FC",
+  "short_name": "Services",
   "start_url": "/",
   "theme_color": "#000000",
   "categories": [],
   "screenshots": [],
   "icons": [
     {
-      "src": "https://fercos-s3-ecommerce.s3.amazonaws.com/favicon/apple-touch-icon.png",
-      "type": "image/png",
-      "sizes": "180x180"
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "/assets/icons/16.png",
-      "type": "image/png",
-      "sizes": "16x16",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/icons/512.png",
-      "type": "image/png",
+      "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/favicon.ico",
-      "type": "image/x-icon"
+      "type": "image/png"
     }
   ],
   "shortcuts": [],
