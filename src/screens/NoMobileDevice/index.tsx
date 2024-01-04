@@ -13,7 +13,6 @@ import { TextTheme } from "@/types";
 import { getTextTheme } from "./themeTitle";
 import { useEffectOnce } from "usehooks-ts";
 import qrCode from "@/assets/Images/qrcode_fcservices.pixelsquad.tech.png";
-import Image from "next/image";
 
 const NoMobileDevice = () => {
 	const [theme, setTheme] = useState<TextTheme>({} as TextTheme);
@@ -24,7 +23,7 @@ const NoMobileDevice = () => {
 
 	return (
 		<NoMobileContainer>
-       <Image width={100} height={100} alt="Services logo" src="/android-chrome-512x512.png" priority/>
+       <NoMobileLogo width={100} height={100} alt="Services logo" src="/android-chrome-512x512.png" priority/>
 			<NoMobileContent>
 				<NoMobileTitle>{theme?.titulo}</NoMobileTitle>
 				<NoMobileText>{theme?.texto}</NoMobileText>

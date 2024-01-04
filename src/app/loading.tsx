@@ -1,4 +1,3 @@
-import { FcLogoMobile } from "@/assets";
 import { LoginMobile, Logo } from "@/screens/login/styles";
 import Image from "next/image";
 
