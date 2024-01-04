@@ -19,6 +19,7 @@ export const NoMobileContent = styled.section`
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
+  margin-top: 2rem;
 `;
 
 export const NoMobileLogo = styled(Image)`

@@ -43,9 +43,6 @@ export const ButtonImage = styled.img`
 export const FirstSection = styled(Column)`
 	width: 100%;
 	height: fit-content;
-	display: flex;
-	flex-direction: column;
-	gap: 0rem;
 `;
 
 export const SecondSection = styled(Row)``;

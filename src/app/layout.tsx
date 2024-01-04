@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import StyledComponentsRegistry from "@/utils/providers/registry";
 import { AppProviders } from "../utils/providers/providers";
-import { Suspense } from "react";
-import Loading from "./loading";
 import { Analytics } from "@vercel/analytics/react";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -23,8 +21,7 @@ export const metadata: Metadata = {
 		{ name: "Cleyton Cabral" },
 	],
 	category: "Helpdesk",
-	icons:
-		"https://fercos-s3-ecommerce.s3.amazonaws.com/favicon/apple-touch-icon.png",
+	icons:["/favicon.ico","/favicon-16x16.png","/favicon-32x32.png","/android-chrome-192x192.png","/android-chrome-512x512.png"],
 	manifest: "/manifest.json",
 };
 
@@ -38,9 +35,7 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<SpeedInsights />
 				<AppProviders>
-					<Suspense fallback={<Loading />}>
 						<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-					</Suspense>
 						<Analytics />
 				</AppProviders>
 			</body>
