@@ -12,8 +12,8 @@ import {
 import { TextTheme } from "@/types";
 import { getTextTheme } from "./themeTitle";
 import { useEffectOnce } from "usehooks-ts";
-import fcRedLogo from "@/assets/Images/fcLogoRed.svg";
 import qrCode from "@/assets/Images/qrcode_fcservices.pixelsquad.tech.png";
+import Image from "next/image";
 
 const NoMobileDevice = () => {
 	const [theme, setTheme] = useState<TextTheme>({} as TextTheme);
@@ -24,19 +24,13 @@ const NoMobileDevice = () => {
 
 	return (
 		<NoMobileContainer>
-			<NoMobileLogo
-				src={fcRedLogo}
-				alt="FC Logo"
-				width={80}
-				height={80}
-        priority
-			/>
+       <Image width={100} height={100} alt="Services logo" src="/android-chrome-512x512.png" priority/>
 			<NoMobileContent>
 				<NoMobileTitle>{theme?.titulo}</NoMobileTitle>
 				<NoMobileText>{theme?.texto}</NoMobileText>
 			</NoMobileContent>
 			<NoMobileQRCodeSection>
-				<QRCodeText>Escaneie o QR Code para acessar o FC Services pelo seu celular</QRCodeText>
+				<QRCodeText>Escaneie o QR Code para acessar o Services pelo seu celular</QRCodeText>
 				<QRCodeImage
 					src={qrCode}
 					alt="QR Code"

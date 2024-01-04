@@ -23,8 +23,7 @@ export const metadata: Metadata = {
 		{ name: "Cleyton Cabral" },
 	],
 	category: "Helpdesk",
-	icons:
-		"https://fercos-s3-ecommerce.s3.amazonaws.com/favicon/apple-touch-icon.png",
+	icons:["/favicon.ico","/favicon-16x16.png","/favicon-32x32.png","/android-chrome-192x192.png","/android-chrome-512x512.png"],
 	manifest: "/manifest.json",
 };
 
@@ -38,9 +37,9 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<SpeedInsights />
 				<AppProviders>
-					<Suspense fallback={<Loading />}>
+					{/* <Suspense fallback={<Loading />}> */}
 						<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-					</Suspense>
+					{/* </Suspense> */}
 				</AppProviders>
 			</body>
 		</html>
