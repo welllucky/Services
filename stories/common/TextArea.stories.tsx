@@ -4,7 +4,6 @@ import { StoryObj, Meta } from "@storybook/react";
 export default {
 	component: CustomTextArea,
 	title: "Common/Inputs/CustomTextArea",
-	id: "TextArea",
 	tags: ["fildset", "common", "input"],
 	argTypes: {
 		labelText: {

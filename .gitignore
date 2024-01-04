@@ -62,3 +62,4 @@ settings.json
 
 *.log
 storybook-static
+coverage/*
