@@ -1,18 +1,16 @@
-import { LogoFC } from "@/assets/Icons";
 import addButtonAlt from "@/assets/Images/AddButtonAlt.png";
 import {
 	UserName,
-	UserText,
 	PageTitle,
-	TittleText,
 	HeaderHome,
 	FirstSection,
 	SecondSection,
 } from "./styles";
 import { IconButton } from "@/components";
 import { useMemo } from "react";
-import { Row } from "@/styles";
+import { Row, SubTitleComponent, TitleComponent } from "@/styles";
 import { useApp } from "@/utils";
+import Image from "next/image";
 
 export type HeaderMobileProps = {
 	userName?: string;
@@ -39,24 +37,24 @@ export const Header = ({
 
 	return (
 		<HeaderHome>
-			<FirstSection>
+			<FirstSection $gap="1.2rem">
 				<Row isSmallClientMobile={isClientSmallMobile}>
-					<LogoFC />
+					<Image width={40} height={40} alt="Services logo" src="/android-chrome-512x512.png"/>
 				</Row>
 				<Row isSmallClientMobile={isClientSmallMobile}>
 					<UserName isSmallClientMobile={isClientSmallMobile}>
-						<UserText isSmallClientMobile={isClientSmallMobile}>
+						<TitleComponent isSmallClientMobile={isClientSmallMobile}>
 							{greetingMessage}, {userName}!
-						</UserText>
+						</TitleComponent>
 					</UserName>
 				</Row>
 			</FirstSection>
 			{pageTittle && (
 				<SecondSection>
 					<PageTitle isSmallClientMobile={isClientSmallMobile}>
-						<TittleText isSmallClientMobile={isClientSmallMobile}>
+						<SubTitleComponent isSmallClientMobile={isClientSmallMobile}>
 							{pageTittle}
-						</TittleText>
+						</SubTitleComponent>
 						{issueQuantify && issueQuantify > 4 ? (
 							<IconButton
 								path={"/abrir-chamado"}

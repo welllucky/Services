@@ -1,6 +1,6 @@
 "use client";
 
-import { AddNewIssueButton } from "@/components/Buttons";
+import { AddNewIssueButton } from "@/components/common/Buttons";
 import { IssueMobile } from "@/components/CalledMobile";
 import { Header } from "@/components";
 import { NavigationBar } from "@/components/NavBar";
@@ -14,13 +14,13 @@ import { useTheme } from "styled-components";
 import navigationOptions from "@/components/NavBar/data";
 import { PageContainer } from "@/styles";
 
-const Homepage = () => {
+const MyCallsPage = () => {
 	const theme = useTheme();
 	const issuesNumber = issueMobileData.length;
 	const isLoading = false;
 	const listaChamados = issueMobileData;
 	return (
-		<FlexContainer>
+		<>
 			<Header
 				userName={"Colaborador"}
 				pageTittle="Meus chamados"
@@ -61,9 +61,8 @@ const Homepage = () => {
 					</>
 				)}
 			</PageContainer>
-			<NavigationBar options={navigationOptions} />
-		</FlexContainer>
+		</>
 	);
 };
 
-export default Homepage;
+export { MyCallsPage };
