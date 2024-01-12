@@ -1,108 +1,109 @@
 {
-	"name": "services",
-	"version": "0.1.0",
-	"private": true,
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/welllucky/services.git"
-	},
-	"author": {
-		"name": "Wellington Braga",
-		"email": "wellingtonbat.wl@gmail.com"
-	},
-	"license": "LGPL-3.0-only",
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"lint": "next lint",
-		"e2e:open": "playwright test --ui",
-		"e2e:run": "playwright test",
-		"e2e:debug": "playwright test --debug",
-		"e2e:gen": "playwright codegen",
-		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build",
-		"chromatic": "npx chromatic --project-token=chpt_79aa966e7eb4a6e --auto-accept-changes",
-		"test-storybook": "test-storybook"
-	},
-	"dependencies": {
-		"@vercel/analytics": "^1.1.1",
-		"@vercel/speed-insights": "^1.0.2",
-		"axios": "^1.4.0",
-		"next": "14.0.1",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-hook-form": "^7.49.2",
-		"sharp": "^0.32.6",
-		"styled-components": "^6.1.0",
-		"swr": "^2.2.4",
-		"usehooks-ts": "^2.9.1"
-	},
-	"devDependencies": {
-		"@babel/eslint-parser": "^7.23.3",
-		"@babel/preset-react": "^7.23.3",
-		"@next/eslint-plugin-next": "^14.0.3",
-		"@playwright/test": "^1.39.0",
-		"@storybook/addon-coverage": "^1.0.0",
-		"@storybook/addon-essentials": "^7.6.7",
-		"@storybook/addon-interactions": "^7.6.7",
-		"@storybook/addon-links": "^7.6.7",
-		"@storybook/addon-mdx-gfm": "^7.6.7",
-		"@storybook/addon-onboarding": "^1.0.10",
-		"@storybook/addon-themes": "^7.6.7",
-		"@storybook/blocks": "^7.6.7",
-		"@storybook/nextjs": "^7.6.7",
-		"@storybook/react": "^7.6.7",
-		"@storybook/test": "^8.0.0-alpha.7",
-		"@types/node": "^20",
-		"@types/react": "^18",
-		"@types/react-dom": "^18",
-		"@typescript-eslint/eslint-plugin": "^6.4.0",
-		"@typescript-eslint/parser": "^6.11.0",
-		"chromatic": "^10.2.0",
-		"dotenv": "^16.3.1",
-		"eslint": "^8.0.1",
-		"eslint-config-airbnb": "^19.0.4",
-		"eslint-config-next": "14.0.1",
-		"eslint-config-prettier": "^9.0.0",
-		"eslint-config-standard-with-typescript": "^43.0.0",
-		"eslint-plugin-import": "^2.25.2",
-		"eslint-plugin-jest": "^27.0.1",
-		"eslint-plugin-jsx-a11y": "^6.6.1",
-		"eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
-		"eslint-plugin-prettier": "^4.2.1",
-		"eslint-plugin-promise": "^6.0.0",
-		"eslint-plugin-react": "^7.33.2",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"eslint-plugin-security": "^1.5.0",
-		"eslint-plugin-simple-import-sort": "^7.0.0",
-		"eslint-plugin-sonarjs": "^0.15.0",
-		"eslint-plugin-storybook": "^0.6.15",
-		"eslint-plugin-tsdoc": "^0.2.17",
-		"postcss-styled-syntax": "^0.5.0",
-		"prettier": "^3.1.1",
-		"storybook": "^7.6.7",
-		"storybook-addon-mock": "^4.3.0",
-		"typescript": "*"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"resolutions": {
-		"jackspeak": "2.1.1"
-	},
-	"bugs": {
-		"url": "https://github.com/welllucky/services/issues"
-	},
-	"readme": "ERROR: No README data found!",
-	"homepage": "https://github.com/welllucky/services#readme",
-	"_id": "services@0.1.0"
+  "name": "services",
+  "version": "0.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/welllucky/services.git"
+  },
+  "author": {
+    "name": "Wellington Braga",
+    "email": "wellingtonbat.wl@gmail.com"
+  },
+  "license": "LGPL-3.0-only",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "next lint",
+    "e2e:open": "playwright test --ui",
+    "e2e:run": "playwright test",
+    "e2e:debug": "playwright test --debug",
+    "e2e:gen": "playwright codegen",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_79aa966e7eb4a6e --auto-accept-changes",
+    "test-storybook": "test-storybook"
+  },
+  "dependencies": {
+    "@uidotdev/usehooks": "^2.4.1",
+    "@vercel/analytics": "^1.1.1",
+    "@vercel/speed-insights": "^1.0.2",
+    "axios": "^1.4.0",
+    "next": "14.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.49.2",
+    "react-hot-toast": "^2.4.1",
+    "sharp": "^0.32.6",
+    "styled-components": "^6.1.0",
+    "swr": "^2.2.4"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@next/eslint-plugin-next": "^14.0.3",
+    "@playwright/test": "^1.39.0",
+    "@storybook/addon-coverage": "^1.0.0",
+    "@storybook/addon-essentials": "^7.6.7",
+    "@storybook/addon-interactions": "^7.6.7",
+    "@storybook/addon-links": "^7.6.7",
+    "@storybook/addon-mdx-gfm": "^7.6.7",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/addon-themes": "^7.6.7",
+    "@storybook/blocks": "^7.6.7",
+    "@storybook/nextjs": "^7.6.7",
+    "@storybook/react": "^7.6.7",
+    "@storybook/test": "^8.0.0-alpha.7",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "chromatic": "^10.2.0",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.0.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "14.0.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^43.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest": "^27.0.1",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-security": "^1.5.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sonarjs": "^0.15.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "postcss-styled-syntax": "^0.5.0",
+    "prettier": "^3.1.1",
+    "storybook": "^7.6.7",
+    "storybook-addon-mock": "^4.3.0",
+    "typescript": "*"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "resolutions": {
+    "jackspeak": "2.1.1"
+  },
+  "bugs": {
+    "url": "https://github.com/welllucky/services/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/welllucky/services#readme",
+  "_id": "services@0.1.0"
 }
