@@ -5,8 +5,6 @@ import { MainContainer } from "../pesquisa/styles";
 import { PageContainer } from "@/styles";
 import { useTheme } from "styled-components";
 import { issueMobileData } from "../home/data";
-import { usePathname } from "next/navigation";
-import { useMemo } from "react";
 
 const RequestsPage = () => {
 	const theme = useTheme();

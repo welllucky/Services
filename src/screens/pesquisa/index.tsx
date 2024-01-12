@@ -8,7 +8,6 @@ import { BoxEmpty, Header, IssueMobile } from "@/components";
 import { IssueMobileProps } from "@/types";
 import { useTheme } from "styled-components";
 import { PageContainer } from "@/styles";
-import { issueMobileData } from "../home/data";
 
 const SearchPage = ({
 	searchResults,
@@ -17,33 +16,7 @@ const SearchPage = ({
 }) => {
 	const theme = useTheme();
 	const [isLoading, setIsLoading] = useState(false);
-	// const [searchResults, setSearchResults] = useState<IssueMobileProps[]>([]);
 	const [search, setSearch] = useState("");
-
-	// const searchUserIssue = (issueString: string) => {
-	// 	api
-	// 		.get(
-	// 			`FiltroChamado?matricula=${usuarioLogado.matricula}&nome=${issueString}`,
-	// 			{
-	// 				headers: {
-	// 					"Content-Type": "application/json",
-	// 					"Access-Control-Allow-Origin": "*",
-	// 					Authorization: `Bearer ${usuarioLogado.token}`,
-	// 				},
-	// 			}
-	// 		)
-	// 		.then((response) => {
-	// 			setSearchResults(response.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(error);
-	// 		});
-	// };
-
-	// useEffect(() => {
-	// 	search && searchUserIssue(search);
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [search]);
 
 	return (
 		<>
