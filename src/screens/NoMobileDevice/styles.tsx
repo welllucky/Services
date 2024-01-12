@@ -7,8 +7,8 @@ export const NoMobileContainer = styled.main`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	padding: 3rem;
 	overflow: hidden;
 `;

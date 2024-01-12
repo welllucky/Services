@@ -55,7 +55,7 @@ interface InputComponentsProps {
   $status: "valid" | "invalid" | "warning" | "none";
   errorText?: string;
   warnText?: string;
-  labelText: string;
+  labelText?: string;
   style?: InputStylesProps;
   width?: string;
   height?: string;
