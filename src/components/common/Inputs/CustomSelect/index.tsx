@@ -42,7 +42,10 @@ export const CustomSelect = ({
 }: SelectProps) => {
   return (
     <SelectContainer $status={$status}>
-      <CustomFieldset width={width} height={height} labelText={labelText}>
+      <CustomFieldset
+        width={width}
+        height={height}
+        labelText={labelText as unknown as string}>
         <SelectComponent
           {...register(id, {
             ...registerOptions,
