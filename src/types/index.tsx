@@ -72,9 +72,9 @@ type BoxEmptyProps = {
 };
 
 type TextTheme = {
-	tema?: string;
-	titulo: string;
-	texto: string;
+	theme?: string;
+	title: string;
+	text: string;
 };
 
 export type * from "./Themes";

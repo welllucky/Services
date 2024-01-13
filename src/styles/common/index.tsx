@@ -3,9 +3,11 @@ import styled, { css } from "styled-components";
 export const Row = styled.section<{
   isSmallClientMobile?: boolean;
   $gap?: string;
+  width?: string;
+  height?: string;
 }>`
-  width: 100%;
-  height: fit-content;
+  width: ${({ width }) => width || "100%"};
+  height: ${({ height }) => height || "fit-content"};
   display: flex;
   flex-direction: row;
   gap: ${({ $gap }) => $gap};
@@ -44,12 +46,11 @@ export const PageContainer = styled.main`
 export const TitleComponent = styled.h1<{ isSmallClientMobile?: boolean }>`
   font-style: normal;
   font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 1.9rem;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
   display: flex;
   align-items: center;
   letter-spacing: 0.01em;
-  margin: 0.6rem 0;
   color: ${({ theme }) => theme.colors.green.default};
 
   ${({ isSmallClientMobile }) =>
@@ -59,7 +60,6 @@ export const TitleComponent = styled.h1<{ isSmallClientMobile?: boolean }>`
       line-height: 1.5rem;
       margin-top: 4rem;
       text-align: center;
-      margin-bottom: 0.6rem;
     `}
 `;
 

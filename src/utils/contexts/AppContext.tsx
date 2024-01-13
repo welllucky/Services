@@ -1,60 +1,62 @@
 import { ReactNode, createContext, useContext, useMemo } from "react";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 interface AppContextProps {
-	isClientSmallMobile: boolean;
-	isClientMediumMobile: boolean;
-	isClientMobile: boolean;
-	isClientDesktop: boolean;
-	isClientTablet: boolean;
-	isClientLaptop: boolean;
-	isClientTV: boolean;
+  isSmallMobile: boolean;
+  isMediumMobile: boolean;
+  isMobile: boolean;
+  isDesktop: boolean;
+  isTablet: boolean;
+  isLaptop: boolean;
+  isTV: boolean;
 }
 
 interface AppProviderProps {
-	children: ReactNode;
+  children: ReactNode;
 }
 
-export const AppContext = createContext({} as AppContextProps);
+export const AppContext = createContext({} as unknown as AppContextProps);
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-	const isClientSmallMobile = useMediaQuery("(max-width: 320px)");
-	const isClientMediumMobile = useMediaQuery("(max-width: 375px)");
-	const isClientMobile = useMediaQuery("(max-width: 430px) ");
-	const isClientTablet = useMediaQuery("(max-width: 768px)");
-	const isClientLaptop = useMediaQuery("(max-width: 1024px)");
-	const isClientDesktop = useMediaQuery("(max-width: 1440px)");
-	const isClientTV = useMediaQuery("(max-width: 2560px)");
+  const isSmallMobile = useMediaQuery("only screen and (max-width: 320px)");
+  const isMediumMobile = useMediaQuery("only screen and (max-width: 375px)");
+  const isMobile = useMediaQuery("only screen and (max-width: 430px) ");
+  const isTablet = useMediaQuery("only screen and (max-width: 768px)");
+  const isLaptop = useMediaQuery("only screen and (max-width: 1024px)");
+  const isDesktop = useMediaQuery("only screen and (max-width: 1440px)");
+  const isTV = useMediaQuery("only screen and (max-width: 2560px)");
 
-	const AppContextValue = useMemo(() => {
-		return {
-			isClientSmallMobile,
-			isClientMediumMobile,
-			isClientMobile,
-			isClientDesktop,
-			isClientTablet,
-			isClientLaptop,
-			isClientTV,
-		};
-	}, [
-		isClientSmallMobile,
-		isClientMediumMobile,
-		isClientMobile,
-		isClientDesktop,
-		isClientTablet,
-		isClientLaptop,
-		isClientTV,
-	]);
+  const AppContextValue = useMemo(() => {
+    if (window !== undefined) {
+      return {
+        isSmallMobile,
+        isMediumMobile,
+        isMobile,
+        isDesktop,
+        isTablet,
+        isLaptop,
+        isTV
+      };
+    }
+  }, [
+    isSmallMobile,
+    isMediumMobile,
+    isMobile,
+    isDesktop,
+    isTablet,
+    isLaptop,
+    isTV
+  ]);
 
-	return (
-		<AppContext.Provider value={AppContextValue}>
-			{children}
-		</AppContext.Provider>
-	);
+  return (
+    <AppContext.Provider value={AppContextValue as unknown as AppContextProps}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 export const useApp = (): AppContextProps => {
-	const context = useContext(AppContext);
-	if (!context) throw new Error("useApp must be used within an AppProvider");
-	return context;
+  const context = useContext(AppContext);
+  if (!context) throw new Error("useApp must be used within an AppProvider");
+  return context;
 };

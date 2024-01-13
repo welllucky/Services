@@ -4,8 +4,12 @@ import { CustomSelect, CustomTextArea, OutlinedInput } from "@/components";
 import { IssuePageContent } from "./styles";
 import { useFormContext } from "react-hook-form";
 import { useEffect } from "react";
-import { IOpenTicketForm } from "@/app/(main)/abrir-chamado/template";
-import { useEffectOnce } from "usehooks-ts";
+import toast from "react-hot-toast";
+import {
+  LS_KEY_1_TICKET_RECORD,
+  SS_KEY_DATA_WAS_RECOVERY
+} from "@/utils/alias";
+import { IOpenTicketForm } from "@/app/(app)/(form)/template";
 
 const CreateTicketPage = () => {
   const {
@@ -16,21 +20,27 @@ const CreateTicketPage = () => {
     setValue
   } = useFormContext<IOpenTicketForm>();
 
-  useEffectOnce(() => {
-    const data = localStorage.getItem("ticket-part-1");
+  useEffect(() => {
+    const data = localStorage.getItem(LS_KEY_1_TICKET_RECORD);
+    const isDataRecovered =
+      sessionStorage.getItem(SS_KEY_DATA_WAS_RECOVERY) === "true";
     if (data) {
       const parsedData: IOpenTicketForm = JSON.parse(data);
       setValue("resumo", parsedData.resumo, { shouldValidate: true });
       setValue("descricao", parsedData.descricao, { shouldValidate: true });
       setValue("data", parsedData.data, { shouldValidate: true });
       setValue("tipo", parsedData.tipo, { shouldValidate: true });
+      !isDataRecovered && toast.success("Dados recuperados com sucesso!");
+      sessionStorage.setItem(SS_KEY_DATA_WAS_RECOVERY, "true");
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (isValid && !isValidating) {
-      localStorage.setItem("ticket-part-1", JSON.stringify({ ...getValues() }));
-      console.log("well: ", localStorage.getItem("ticket"));
+      localStorage.setItem(
+        LS_KEY_1_TICKET_RECORD,
+        JSON.stringify({ ...getValues() })
+      );
     }
   }, [isValid, isValidating]);
 
@@ -144,7 +154,7 @@ const CreateTicketPage = () => {
           validate: (value) => {
             const date = new Date(value);
             const today = new Date();
-            return date >= today || "A data não pode ser no passado";
+            return date < today || "A data não pode ser no futuro";
           }
         }}
       />

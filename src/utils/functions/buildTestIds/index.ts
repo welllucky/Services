@@ -4,5 +4,5 @@ interface ITestIds {
 }
 
 export const buildTestIds = (id: string): ITestIds => {
-	return { "data-testid": id, "data-cy": `'[data-cy="${id}"]'` };
+	return { "data-testid": id, "data-cy": `[data-cy='${id}']` };
 };
