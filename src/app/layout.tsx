@@ -8,11 +8,12 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: { default: "Services", template: "%s | Services" },
   description:
-    "Desburocratizador de processos de gerenciamento de chamados, bem vindo ao Services.",
+    "Desburocratizador do gerenciamento de chamados, bem vindo ao Services.",
   applicationName: "Services",
-  creator: "SQUAD1 X L3",
+  creator: "Wellington Braga",
+  publisher: "L3",
   authors: [
     { name: "Wellington Braga" },
     { name: "Larissa Ferreira" },

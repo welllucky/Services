@@ -4,16 +4,11 @@ import { BackButton } from "@/components";
 import { IssuePageContainer } from "@/screens/chamado/styles";
 import { Column, Row, TitleComponent } from "@/styles";
 import { FormButtons } from "@/components/Form";
-import { ReactNode, useCallback, useMemo } from "react";
+import { ReactNode, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
-import { buildTestIds } from "@/utils/functions";
-import {
-  LS_KEY_1_TICKET_RECORD,
-  LS_KEY_2_TICKET_RECORD,
-  LS_KEY_3_TICKET_RECORD,
-  SS_KEY_DATA_WAS_RECOVERY
-} from "@/utils/alias";
+import { buildTestIds, resetForm } from "@/utils/functions";
+import { useModalStore } from "@/utils";
 
 interface PageRouterData {
   page: string;
@@ -24,6 +19,7 @@ interface PageRouterData {
 export interface IOpenTicketForm {
   resumo: string;
   descricao: string;
+  prioridade: "baixa" | "media" | "alta";
   data: string;
   tipo: string;
 }
@@ -31,17 +27,18 @@ export interface IOpenTicketForm {
 export default function Template({ children }: { children: ReactNode }) {
   const pathName = usePathname();
   const { push, back } = useRouter();
+  const shouldOpenModal = useModalStore((state) => state.open);
   const pagesTitles: PageRouterData[] = [
     {
       page: "/abrir-chamado",
       title: "O que aconteceu?",
       hasBackButton: false
     },
-    {
-      page: "/anexar-midia",
-      title: "Anexar mídia",
-      hasBackButton: true
-    },
+    // {
+    //   page: "/anexar-midia",
+    //   title: "Anexar mídia",
+    //   hasBackButton: true
+    // },
     {
       page: "/confirmar-chamado",
       title: "Confirmar informações",
@@ -49,10 +46,11 @@ export default function Template({ children }: { children: ReactNode }) {
     }
   ];
 
-  const actualPage = useMemo(
-    () => pagesTitles.find((page) => page.page === pathName),
-    [pathName, pagesTitles]
-  );
+  const idChamado = 2400;
+
+  const actualPage = useMemo(() => {
+    return pagesTitles.find((page) => page.page === pathName);
+  }, [pathName, pagesTitles]);
 
   const indexPageFinder = useMemo(() => {
     return pagesTitles.indexOf(actualPage as PageRouterData);
@@ -62,24 +60,30 @@ export default function Template({ children }: { children: ReactNode }) {
     return indexPageFinder === -1
       ? "/"
       : indexPageFinder + 1 >= pagesTitles.length
-        ? "/"
+        ? `/chamado/${idChamado}`
         : pagesTitles[indexPageFinder + 1].page;
+  }, [pagesTitles]);
+
+  const previousPageUrl = useMemo(() => {
+    return indexPageFinder === 0 ? "" : pagesTitles[indexPageFinder - 1].title;
   }, [pagesTitles]);
 
   const methods = useForm<IOpenTicketForm>({
     mode: "onChange",
-    defaultValues: { resumo: "", descricao: "", data: "", tipo: "" },
+    defaultValues: {
+      resumo: "",
+      descricao: "",
+      data: "",
+      tipo: "",
+      prioridade: "baixa"
+    },
     reValidateMode: "onChange",
     shouldFocusError: true,
     progressive: true
   });
 
-  const resetForm = useCallback(() => {
-    localStorage.removeItem(LS_KEY_1_TICKET_RECORD);
-    localStorage.removeItem(LS_KEY_2_TICKET_RECORD);
-    localStorage.removeItem(LS_KEY_3_TICKET_RECORD);
-    sessionStorage.removeItem(SS_KEY_DATA_WAS_RECOVERY);
-  }, [localStorage]);
+  const setModalCallback = useModalStore((state) => state.setModalCallback);
+  setModalCallback(() => push(nextPageUrl));
 
   return (
     <FormProvider
@@ -100,7 +104,11 @@ export default function Template({ children }: { children: ReactNode }) {
                 back();
               }
             }}
-            actionText="voltar"
+            actionText={
+              actualPage?.page === pagesTitles[0].page
+                ? "voltar"
+                : previousPageUrl
+            }
           />
         </Row>
         <Column {...buildTestIds("content-column")} height="100%" $gap="12px">
@@ -113,6 +121,11 @@ export default function Template({ children }: { children: ReactNode }) {
             canNext={methods.formState.isValid}
             nextPage={nextPageUrl}
             hasBackButton={actualPage?.hasBackButton}
+            onClickNextButton={
+              actualPage?.page === pagesTitles[pagesTitles.length - 1].page
+                ? shouldOpenModal
+                : undefined
+            }
           />
         </Column>
       </IssuePageContainer>

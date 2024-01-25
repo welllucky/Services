@@ -30,6 +30,7 @@ const CreateTicketPage = () => {
       setValue("descricao", parsedData.descricao, { shouldValidate: true });
       setValue("data", parsedData.data, { shouldValidate: true });
       setValue("tipo", parsedData.tipo, { shouldValidate: true });
+      setValue("prioridade", parsedData.prioridade, { shouldValidate: true });
       !isDataRecovered && toast.success("Dados recuperados com sucesso!");
       sessionStorage.setItem(SS_KEY_DATA_WAS_RECOVERY, "true");
     }
@@ -48,6 +49,7 @@ const CreateTicketPage = () => {
   const dataWatch = watch("data", "");
   const descriptionWatch = watch("descricao", "");
   const typeWatch = watch("tipo", "");
+  const priorityWatch = watch("prioridade", "baixa");
 
   return (
     <IssuePageContent id="first-step-form" as="form">
@@ -157,6 +159,31 @@ const CreateTicketPage = () => {
             return date < today || "A data não pode ser no futuro";
           }
         }}
+      />
+      <CustomSelect
+        id="prioridade"
+        isRequired
+        placeholder="O quão urgente é esse chamado ?"
+        labelText="Prioridade"
+        height=""
+        options={[
+          { key: "baixa", value: "baixa", text: "pouco urgente" },
+          { key: "media", value: "media", text: "mais ou menos" },
+          { key: "alta", value: "alta", text: "muito urgente" }
+        ]}
+        register={register}
+        registerOptions={{
+          required: "É necessário escolher a prioridade do chamado",
+          validate: (value) =>
+            value !== "" || "É necessário escolher a prioridade do chamado"
+        }}
+        $status={
+          !!errors?.prioridade
+            ? "invalid"
+            : !errors?.prioridade && priorityWatch.length
+              ? "valid"
+              : "none"
+        }
       />
     </IssuePageContent>
   );

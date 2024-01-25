@@ -1,2 +1,2 @@
-export * from "./TypeCall";
 export * from "./AppContext";
+export * from "./useModal";

@@ -53,8 +53,11 @@ const FormButtons = ({
           height="40px"
           disabled={!canNext}
           onClick={() => {
-            if (onClickNextButton) onClickNextButton();
-            push(nextPage);
+            if (onClickNextButton) {
+              onClickNextButton();
+            } else {
+              push(nextPage);
+            }
           }}
           {...buildTestIds("next-button-form-buttons")}
         />
