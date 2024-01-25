@@ -7,7 +7,7 @@ export * from "./SearchBar";
 export * from "./CallInformation";
 export * from "./PageStruct";
 export * from "./LoadingScreen";
-// export * from "./Modal";
+export * from "./Modals";
 export * from "./SideBarLeft";
 export * from "./common";
 export * from "./SuportText";

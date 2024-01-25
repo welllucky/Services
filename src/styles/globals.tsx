@@ -76,6 +76,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+textarea {
+  font-family: Inter, Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 a{
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

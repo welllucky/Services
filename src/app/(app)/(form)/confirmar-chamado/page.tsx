@@ -1,7 +1,5 @@
-export default function ConfirmDetailsPage() {
-	return (
-		<div>
-			<h1>ConfirmDetailsPage</h1>
-		</div>
-	);
+import { ConfirmDetailsPage } from "@/screens/abrir-chamado/confirmar-chamado";
+
+export default function ConfirmDetails() {
+  return <ConfirmDetailsPage />;
 }

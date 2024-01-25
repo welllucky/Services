@@ -23,7 +23,7 @@ export const BackIcon = styled(Image)`
 export const TextBack = styled.span<BackButtonProps>`
 	font-style: normal;
 	font-weight: ${({ fontWeight }) => fontWeight || 500};
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	display: flex;
 	line-height: 36px;
 	align-items: center;

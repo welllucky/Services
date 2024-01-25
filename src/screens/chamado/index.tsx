@@ -1,20 +1,25 @@
 "use client";
 
-import {
-  BackButton,
-  CustomSelect,
-  CustomTextArea,
-  OutlinedInput
-} from "@/components";
+import { BackButton } from "@/components";
 import { IssuePageContainer } from "./styles";
 import { Row } from "@/styles";
+import { useEffect } from "react";
+import { resetForm } from "@/utils/functions";
 
-const IssuePage = () => {
+export interface IssuePageProps {
+  id: string;
+}
+
+const IssuePage = ({ id }: IssuePageProps) => {
+  useEffect(() => {
+    resetForm();
+  }, []);
   return (
     <IssuePageContainer $full>
       <Row>
         <BackButton actionText="voltar" />
       </Row>
+      <div>{id}</div>
     </IssuePageContainer>
   );
 };

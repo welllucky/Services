@@ -46,7 +46,7 @@ export const PageContainer = styled.main`
 export const TitleComponent = styled.h1<{ isSmallClientMobile?: boolean }>`
   font-style: normal;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   line-height: 1.5rem;
   display: flex;
   align-items: center;
