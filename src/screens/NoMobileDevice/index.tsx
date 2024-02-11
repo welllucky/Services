@@ -13,7 +13,7 @@ import { getTextTheme } from "./themeTitle";
 import { useEffect, useState } from "react";
 import { TextTheme } from "@/assets";
 
-const NoMobileDevice = () => {
+const NoMobileDevicePage = () => {
   const [theme, setTheme] = useState<TextTheme>({} as unknown as TextTheme);
   const { title, text } = theme;
   useEffect(() => {
@@ -49,4 +49,4 @@ const NoMobileDevice = () => {
   );
 };
 
-export { NoMobileDevice };
+export { NoMobileDevicePage };

@@ -14,13 +14,7 @@ export const metadata: Metadata = {
   applicationName: "Services",
   creator: "Wellington Braga",
   publisher: "L3",
-  authors: [
-    { name: "Wellington Braga" },
-    { name: "Larissa Ferreira" },
-    { name: "Alisson Assunção" },
-    { name: "Pedro Mendonça" },
-    { name: "Cleyton Cabral" }
-  ],
+  authors: { name: "Wellington Braga" },
   category: "Helpdesk",
   icons: [
     "/favicon.ico",
@@ -34,9 +28,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="pt-br">
       <body className={inter.className}>
@@ -49,3 +43,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export const runtime = "edge";

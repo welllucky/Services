@@ -15,6 +15,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
+    "test": "yarn e2e:run",
     "e2e:open": "playwright test --ui",
     "e2e:run": "playwright test",
     "e2e:debug": "playwright test --debug",
@@ -22,7 +23,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_79aa966e7eb4a6e --auto-accept-changes",
-    "test-storybook": "test-storybook"
+    "test-storybook": "test-storybook",
+    "prepare": "husky"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
@@ -30,6 +32,7 @@
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
     "axios": "^1.4.0",
+    "immer": "^10.0.3",
     "next": "14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -44,7 +47,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
-    "@next/eslint-plugin-next": "^14.0.3",
+    "@next/eslint-plugin-next": "^14.1.0",
     "@playwright/test": "^1.39.0",
     "@storybook/addon-coverage": "^1.0.0",
     "@storybook/addon-essentials": "^7.6.7",
@@ -61,14 +64,14 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-modal": "^3.16.3",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "chromatic": "^10.2.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.0.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "14.0.1",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard-with-typescript": "^43.0.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jest": "^27.0.1",
@@ -83,8 +86,10 @@
     "eslint-plugin-sonarjs": "^0.15.0",
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-tsdoc": "^0.2.17",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
     "postcss-styled-syntax": "^0.5.0",
-    "prettier": "^3.1.1",
+    "prettier": "3.2.5",
     "storybook": "^7.6.7",
     "storybook-addon-mock": "^4.3.0",
     "typescript": "*"
@@ -109,5 +114,8 @@
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/welllucky/services#readme",
-  "_id": "services@0.1.0"
+  "_id": "services@0.1.0",
+  "hooks": {
+    "pre-commit": "yarn prettier --write --ignore-unknown && yarn lint && yarn test  && yarn build && yarn build-storybook && yarn chromatic"
+  }
 }

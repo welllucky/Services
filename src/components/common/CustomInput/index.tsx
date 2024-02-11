@@ -15,7 +15,7 @@ export interface InputStylesProps {
   textColor?: string;
   rightIcon?: string;
   leftIcon?: string;
-  borderColor?: string;
+  $borderColor?: string;
   width?: string;
   height?: string;
   mode?: "filled" | "outlined";

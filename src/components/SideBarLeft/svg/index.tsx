@@ -5,8 +5,7 @@ export const FCLogo = () => {
       height="62"
       viewBox="0 0 62 62"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <path
         d="M12.9014 17.2576H14.3417C15.1273 17.2576 15.3893 17.5196 15.3893 18.3052V37.2936H21.0205V27.603H29.1396V23.0197H21.0205V17.2576H30.8402V12.5435H12.9014V17.2576Z"
         fill="#E71C35"

@@ -8,27 +8,27 @@ export const HeaderHome = styled.div`
   gap: 1.5rem;
 `;
 
-export const UserName = styled.div<{ isSmallClientMobile?: boolean }>`
+export const UserName = styled.div<{ $isSmallClientMobile?: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.6rem;
 
-  ${({ isSmallClientMobile }) =>
-    isSmallClientMobile &&
+  ${({ $isSmallClientMobile }) =>
+    $isSmallClientMobile &&
     css`
       padding: 0;
       justify-content: center;
     `}
 `;
 
-export const PageTitle = styled.div<{ isSmallClientMobile?: boolean }>`
+export const PageTitle = styled.div<{ $isSmallClientMobile?: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-bottom: 0.5rem;
-  ${({ isSmallClientMobile }) =>
-    isSmallClientMobile &&
+  ${({ $isSmallClientMobile }) =>
+    $isSmallClientMobile &&
     css`
       padding: 0;
       justify-content: center;

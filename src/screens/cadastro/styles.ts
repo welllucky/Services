@@ -10,7 +10,7 @@
 // 	background-color: #f8fcf6;
 // `;
 
-// export const HeaderRegister = styled.text`
+// export const HeaderRegister = styled.p`
 
 // 	margin-top: -20px;
 // 	font-size: 16px;
@@ -28,8 +28,8 @@
 
 // export const InputImg = styled.div``;
 
-// export const TitleInputArea = styled.text`
-	
+// export const TitleInputArea = styled.p`
+
 // 	font-style: normal;
 // 	font-size: 16px;
 // 	font-weight: 600;

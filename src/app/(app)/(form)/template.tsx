@@ -24,7 +24,9 @@ export interface IOpenTicketForm {
   tipo: string;
 }
 
-export default function Template({ children }: { children: ReactNode }) {
+export default function Template({
+  children
+}: Readonly<{ children: ReactNode }>) {
   const pathName = usePathname();
   const { push, back } = useRouter();
   const shouldOpenModal = useModalStore((state) => state.open);
@@ -111,7 +113,10 @@ export default function Template({ children }: { children: ReactNode }) {
             }
           />
         </Row>
-        <Column {...buildTestIds("content-column")} height="100%" $gap="12px">
+        <Column
+          {...buildTestIds("content-column")}
+          height="100%"
+          $gap="12px">
           <TitleComponent {...buildTestIds("page-step-form-title")}>
             {actualPage?.title}
           </TitleComponent>
