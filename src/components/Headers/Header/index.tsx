@@ -9,7 +9,6 @@ import {
 import { IconButton } from "@/components";
 import { useMemo } from "react";
 import { Row, SubTitleComponent, TitleComponent } from "@/styles";
-import { useApp } from "@/utils";
 import Image from "next/image";
 import { buildTestIds } from "@/utils/functions";
 
@@ -24,7 +23,6 @@ export const Header = ({
   pageTittle,
   issueQuantify
 }: HeaderMobileProps) => {
-  const { isSmallMobile } = useApp();
   const greetingMessage = useMemo(() => {
     const hour = new Date().getHours();
     return hour > 5 && hour < 12
@@ -38,12 +36,14 @@ export const Header = ({
 
   return (
     <HeaderHome {...buildTestIds("header-home-container")}>
-      <FirstSection {...buildTestIds("header-first-section")} $gap="1.2rem">
+      <FirstSection
+        {...buildTestIds("header-first-section")}
+        $gap="1.2rem">
         <Row
           {...buildTestIds("header-corp-logo-container")}
           width="fit-content"
           height="fit-content"
-          isSmallClientMobile={isSmallMobile}>
+          $isSmallClientMobile={false}>
           <Image
             {...buildTestIds("header-corp-logo-image")}
             width={42}
@@ -52,9 +52,9 @@ export const Header = ({
             src="/android-chrome-512x512.png"
           />
         </Row>
-        <Row isSmallClientMobile={isSmallMobile}>
-          <UserName isSmallClientMobile={isSmallMobile}>
-            <TitleComponent isSmallClientMobile={isSmallMobile}>
+        <Row $isSmallClientMobile={false}>
+          <UserName $isSmallClientMobile={false}>
+            <TitleComponent $isSmallClientMobile={false}>
               {greetingMessage}, {userName}!
             </TitleComponent>
           </UserName>
@@ -62,12 +62,15 @@ export const Header = ({
       </FirstSection>
       {pageTittle && (
         <SecondSection>
-          <PageTitle isSmallClientMobile={isSmallMobile}>
-            <SubTitleComponent isSmallClientMobile={isSmallMobile}>
+          <PageTitle $isSmallClientMobile={false}>
+            <SubTitleComponent $isSmallClientMobile={false}>
               {pageTittle}
             </SubTitleComponent>
             {issueQuantify && issueQuantify > 4 ? (
-              <IconButton path={"/abrir-chamado"} icon={addButtonAlt} />
+              <IconButton
+                path={"/abrir-chamado"}
+                icon={addButtonAlt}
+              />
             ) : null}
           </PageTitle>
         </SecondSection>

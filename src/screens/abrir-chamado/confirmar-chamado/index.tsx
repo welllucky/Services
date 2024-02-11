@@ -27,7 +27,7 @@ export const ConfirmDetailsPage = () => {
         o chamado?"
         hasBackButton
         confirmCallBack={modalCallback}
-        />
+      />
       <ConfirmDetailsContainer $gap="16px">
         <SectionInfoForm>
           <CustomFieldset
@@ -73,7 +73,6 @@ export const ConfirmDetailsPage = () => {
           </CustomFieldset>
         </SectionInfoForm>
       </ConfirmDetailsContainer>
-      
     </>
   );
 };

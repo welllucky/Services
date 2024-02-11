@@ -1,4 +1,4 @@
-module.exports = {
+{
   "bracketSameLine": true,
   "htmlWhitespaceSensitivity": "css",
   "arrowParens": "always",
@@ -16,5 +16,6 @@ module.exports = {
   "tabWidth": 2,
   "trailingComma": "none",
   "useTabs": false,
-  "vueIndentScriptAndStyle": false
+  "vueIndentScriptAndStyle": false,
+  "singleAttributePerLine": true
 }

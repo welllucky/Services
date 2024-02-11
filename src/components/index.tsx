@@ -4,6 +4,7 @@ export * from "./BoxEmpty";
 export * from "./CalledMobile";
 export * from "./NavBar";
 export * from "./SearchBar";
+export * from "./SearchBar";
 export * from "./CallInformation";
 export * from "./PageStruct";
 export * from "./LoadingScreen";

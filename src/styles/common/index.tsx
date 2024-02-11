@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const Row = styled.section<{
-  isSmallClientMobile?: boolean;
+  $isSmallClientMobile?: boolean;
   $gap?: string;
   width?: string;
   height?: string;
@@ -12,8 +12,8 @@ export const Row = styled.section<{
   flex-direction: row;
   gap: ${({ $gap }) => $gap};
 
-  ${({ isSmallClientMobile }) =>
-    isSmallClientMobile &&
+  ${({ $isSmallClientMobile }) =>
+    $isSmallClientMobile &&
     css`
       justify-content: center;
     `}
@@ -43,7 +43,7 @@ export const PageContainer = styled.main`
   /* padding-bottom: 5rem; */
 `;
 
-export const TitleComponent = styled.h1<{ isSmallClientMobile?: boolean }>`
+export const TitleComponent = styled.h1<{ $isSmallClientMobile?: boolean }>`
   font-style: normal;
   font-weight: 600;
   font-size: 1.4rem;
@@ -53,8 +53,8 @@ export const TitleComponent = styled.h1<{ isSmallClientMobile?: boolean }>`
   letter-spacing: 0.01em;
   color: ${({ theme }) => theme.colors.green.default};
 
-  ${({ isSmallClientMobile }) =>
-    isSmallClientMobile &&
+  ${({ $isSmallClientMobile }) =>
+    $isSmallClientMobile &&
     css`
       font-size: 1.2rem;
       line-height: 1.5rem;
@@ -63,7 +63,7 @@ export const TitleComponent = styled.h1<{ isSmallClientMobile?: boolean }>`
     `}
 `;
 
-export const SubTitleComponent = styled.h2<{ isSmallClientMobile?: boolean }>`
+export const SubTitleComponent = styled.h2<{ $isSmallClientMobile?: boolean }>`
   font-style: normal;
   font-weight: 600;
   font-size: 1.25rem;
@@ -71,8 +71,8 @@ export const SubTitleComponent = styled.h2<{ isSmallClientMobile?: boolean }>`
   letter-spacing: 0.0125rem;
   display: flex;
 
-  ${({ isSmallClientMobile }) =>
-    isSmallClientMobile &&
+  ${({ $isSmallClientMobile }) =>
+    $isSmallClientMobile &&
     css`
       font-size: 1.5rem;
       line-height: 1.6rem;

@@ -1,13 +1,15 @@
 "use client";
 
-import { AddNewIssueButton } from "@/components/common/Buttons";
-import { IssueMobile } from "@/components/CalledMobile";
-import { Header } from "@/components";
+import {
+  AddNewIssueButton,
+  IssueMobile,
+  LoadingScreen,
+  Header,
+  BoxEmpty
+} from "@/components";
 import { ButtonWrapper } from "./styles";
 import { PageContainer } from "@/styles";
-import { LoadingScreen } from "@/components/LoadingScreen";
 import { MainContainer } from "../pesquisa/styles";
-import { BoxEmpty } from "@/components";
 import { issueMobileData } from "../home/data";
 
 const MyCallsPage = () => {
@@ -26,7 +28,7 @@ const MyCallsPage = () => {
           <LoadingScreen overlayOn={false} />
         ) : (
           <>
-            <MainContainer hasContent={!!listaChamados}>
+            <MainContainer $hasContent={!!listaChamados}>
               {listaChamados && listaChamados?.length ? (
                 listaChamados.map((issue) => {
                   return (

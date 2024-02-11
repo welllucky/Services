@@ -52,7 +52,9 @@ const ConfirmModal = ({
       backgroundColor="transparent"
       {...props}
       testId="modal-success">
-      <ConfirmModalWrapper $wasConfirmed={changeToVitrine} $shouldHavePaddingBottom={changeToVitrine}>
+      <ConfirmModalWrapper
+        $wasConfirmed={changeToVitrine}
+        $shouldHavePaddingBottom={changeToVitrine}>
         {changeToVitrine
           ? successIcon ?? (
               <Check
@@ -80,7 +82,7 @@ const ConfirmModal = ({
                 $backgroundColor="transparent"
                 height="40px"
                 mode="outlined"
-                $borderColor={theme.colors.neutral.default}
+                $$borderColor={theme.colors.neutral.default}
                 onClick={shouldCloseModal}
               />
             )}
@@ -91,7 +93,7 @@ const ConfirmModal = ({
               height="40px"
               mode="filled"
               onClick={modalCallBack}
-              $borderColor={theme.colors.neutral.default}
+              $$borderColor={theme.colors.neutral.default}
             />
           </ConfirmModalButtons>
         )}
