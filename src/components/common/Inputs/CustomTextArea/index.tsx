@@ -20,12 +20,13 @@ export const CustomTextArea = ({
   registerOptions,
   $status = "none",
   errorText,
-  warnText,
-  style
+  warnText
 }: TextAreaProps) => {
   return (
     <TextAreaContainer $status={$status}>
-      <CustomFieldset width={width as string} labelText={labelText as string}>
+      <CustomFieldset
+        width={width as string}
+        labelText={labelText as string}>
         <TextArea
           {...register(id, {
             ...registerOptions,

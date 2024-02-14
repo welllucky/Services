@@ -33,14 +33,12 @@ export const IssueWrapper = styled(Link)`
 
 export const IssueContainer = styled(Row)<ContainerStyleProps>`
   display: flex;
-  /* width: 360px; */
-  align-items: center;
-  padding: 1rem;
-  min-height: 6.5rem;
+  padding: 0.8rem;
+  gap: 1.5rem;
   background-color: ${({ color }) => color ?? "#D9F5C5"};
   border-radius: 0.5rem;
   justify-content: space-around;
-  transition: 0.4s ease-in-out;
+  transition: 0.3s ease-in-out;
 
   &:hover {
     box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.28);
@@ -53,38 +51,40 @@ export const IssueContainer = styled(Row)<ContainerStyleProps>`
   }
 `;
 
-export const IssueContent = styled.div`
+export const IssueContent = styled.div<{ $hasUpdate?: boolean }>`
   display: flex;
   flex-direction: column;
   width: max-content;
-  height: 100%;
+  gap: 0.8rem;
   justify-content: space-between;
+
+  ${({ $hasUpdate }) =>
+    $hasUpdate &&
+    css`
+      padding-top: 8px;
+    `}
 `;
 
 export const IssueState = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
-  gap: 0.5rem;
-  margin-left: 1rem;
+  gap: 1rem;
 `;
 
 export const IssueNumber = styled.p`
   font-weight: 500;
   font-size: 0.9rem;
   display: flex;
-  margin-bottom: 0.5rem;
   width: max-content;
   letter-spacing: 0.01em;
   color: ${({ theme }) => theme.colors.neutral.inverted};
 `;
 
 export const IssueDescription = styled.p`
-  font-weight: 600;
-  font-size: 1.2rem;
-  max-width: 172px;
-  max-height: 56px;
-  line-height: 1.4rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 120%;
   color: ${({ theme }) => theme.colors.neutral.inverted};
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -104,6 +104,7 @@ export const IssueStatus = styled.div`
   font-weight: 500;
   font-size: 0.8rem;
   line-height: 1rem;
+  overflow-x: hidden;
 `;
 
 export const OpeningText = styled.p`
@@ -115,7 +116,7 @@ export const OpeningText = styled.p`
 
 export const StatusText = styled.p`
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.25rem;
   letter-spacing: 0.06em;
   color: ${({ theme }) => theme.colors.neutral.inverted};
@@ -123,4 +124,5 @@ export const StatusText = styled.p`
 
 export const InfoLabel = styled.label`
   color: ${({ theme }) => theme.colors.neutral.inverted};
+  overflow-x: hidden;
 `;

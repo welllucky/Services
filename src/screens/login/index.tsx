@@ -18,7 +18,7 @@ import EyeClosedIcon from "@/assets/Icons/eyeClosed.svg";
 import Lock from "@/assets/Icons/png/Lock.png";
 import LoginIcon from "@/assets/Icons/login.svg";
 import LoginDisabledIcon from "@/assets/Icons/loginDisabled.svg";
-import { LoadingScreen } from "../../components/LoadingScreen";
+import { Loading } from "../../components/Loading";
 import Link from "next/link";
 import { CustomInput } from "@/components";
 import EmailIcon from "@/assets/Icons/png/MailIcon.png";
@@ -62,7 +62,7 @@ const LoginPage = () => {
   return (
     <>
       <ScreenContainer>
-        {isLoading && <LoadingScreen />}
+        {isLoading && <Loading overlayOn />}
         <LoginMobile>
           <Logo>
             <FcLogoMobile />

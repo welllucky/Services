@@ -1,6 +1,5 @@
 import { buildTestIds } from "@/utils/functions";
 import { Fieldset, Legend, LegendText } from "./styles";
-import { Suspense } from "react";
 
 export type FieldsetProps = {
   children: React.ReactNode;
