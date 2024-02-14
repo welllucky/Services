@@ -8,11 +8,10 @@ interface BackButtonProps {
 }
 
 export const Container = styled.div`
-  display: flex;
-  width: fit-content;
-  width: fit-content;
-  gap: 10px;
-  align-items: center;
+	display: flex;
+	width: fit-content;
+	gap: 4px;
+	align-items: center;
 `;
 
 export const BackIcon = styled(Image)`

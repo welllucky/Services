@@ -5,9 +5,8 @@ import { ConfirmDetailsContainer, SectionInfoForm } from "./styles";
 import { useTheme } from "styled-components";
 import { LS_KEY_1_TICKET_RECORD, useModalStore } from "@/utils";
 import { IOpenTicketForm } from "@/app/(app)/(form)/template";
-import { dataFormatter } from "@/utils/functions";
+import { buildTestIds, dataFormatter } from "@/utils/functions";
 import { ConfirmModal } from "@/components";
-import { Check } from "@phosphor-icons/react";
 
 export const ConfirmDetailsPage = () => {
   const theme = useTheme();
@@ -28,8 +27,10 @@ export const ConfirmDetailsPage = () => {
         hasBackButton
         confirmCallBack={modalCallback}
       />
-      <ConfirmDetailsContainer $gap="16px">
-        <SectionInfoForm>
+      <ConfirmDetailsContainer
+        {...buildTestIds("confirm-details-container")}
+        $gap="16px">
+        <SectionInfoForm {...buildTestIds("section-info-form")}>
           <CustomFieldset
             color={theme.colors.green.default}
             labelText="Resumo"

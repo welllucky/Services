@@ -4,7 +4,7 @@ import { BackButton } from "@/components";
 import { IssuePageContainer } from "@/screens/chamado/styles";
 import { Column, Row, TitleComponent } from "@/styles";
 import { FormButtons } from "@/components/Form";
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { buildTestIds, resetForm } from "@/utils/functions";
@@ -30,6 +30,7 @@ export default function Template({
   const pathName = usePathname();
   const { push, back } = useRouter();
   const shouldOpenModal = useModalStore((state) => state.open);
+  const setModalCallback = useModalStore((state) => state.setModalCallback);
   const pagesTitles: PageRouterData[] = [
     {
       page: "/abrir-chamado",
@@ -84,8 +85,11 @@ export default function Template({
     progressive: true
   });
 
-  const setModalCallback = useModalStore((state) => state.setModalCallback);
-  setModalCallback(() => push(nextPageUrl));
+  useEffect(() => {
+    setModalCallback(() => push(`/chamado/${idChamado}`));
+  }, []);
+
+  console.log("well actualPage", actualPage);  
 
   return (
     <FormProvider
