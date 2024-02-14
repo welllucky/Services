@@ -1,5 +1,5 @@
 // import { BackButton } from "../../../Components/BackButton";
-// import { BoxEmpty } from "../../../Components/BoxEmpty";
+// import { NoContent } from "../../../Components/NoContent";
 // import { Button } from "../../../components/Buttons/Button";
 // import UserFound from "../../../Assets/Images/UserFound.png";
 // import EyeIcon from "../../Login/svg/eye.svg";
@@ -16,7 +16,7 @@
 // import { Modal } from "../../../Components/Modal";
 // import { ContainerButton } from "../recuperar-senha/styles";
 // import { api } from "../../../Services";
-// import { LoadingScreen } from "../../../components/LoadingScreen";
+// import { Loading } from "../../../components/Loading
 
 // export const NewPassword = () => {
 // 	const [passwordVisible, setPasswordVisible] = useState(false);
@@ -64,7 +64,7 @@
 
 // 	return (
 // 		<NewPasswordContainer>
-// 			{isLoading && <LoadingScreen />}
+// 			{isLoading && <Loading />}
 // 			<Link to="/login">
 // 				<BackButton
 // 					actionText={"Login"}
@@ -72,7 +72,7 @@
 // 					fontWeight={"600"}
 // 				/>
 // 			</Link>
-// 			<BoxEmpty
+// 			<NoContent
 // 				// alt=""
 // 				// src=""
 // 				title="Identidade Confirmada!"

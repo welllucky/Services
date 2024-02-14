@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 
 import { NavigationBar } from "@/components";
 import navigationOptions from "@/components/NavBar/data";

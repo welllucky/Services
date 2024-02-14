@@ -3,55 +3,59 @@
 import {
   AddNewIssueButton,
   IssueMobile,
-  LoadingScreen,
+  Loading,
   Header,
-  BoxEmpty
+  NoContent
 } from "@/components";
 import { ButtonWrapper } from "./styles";
 import { PageContainer } from "@/styles";
 import { MainContainer } from "../pesquisa/styles";
-import { issueMobileData } from "../home/data";
+import { useRouter } from "next/navigation";
+import { chamado } from "@/utils";
 
 const MyCallsPage = () => {
-  const issuesNumber = issueMobileData.length;
-  const isLoading = false;
-  const listaChamados = issueMobileData;
+  const { push } = useRouter();
+  const { data, isLoading } = chamado.getChamados();
+  const issuesQuantity = data?.length || 0;
   return (
     <>
       <Header
         userName={"Colaborador"}
         pageTittle="Meus chamados"
-        issueQuantify={issuesNumber}
+        issueQuantify={issuesQuantity}
       />
       <PageContainer>
         {isLoading ? (
-          <LoadingScreen overlayOn={false} />
+          <Loading overlayOn={false} />
         ) : (
           <>
-            <MainContainer $hasContent={!!listaChamados}>
-              {listaChamados && listaChamados?.length ? (
-                listaChamados.map((issue) => {
+            <MainContainer $hasContent={!!issuesQuantity}>
+              {data?.length ? (
+                data.map((issue) => {
                   return (
                     <IssueMobile
                       key={issue.id}
                       id={issue.id}
-                      nome={issue.nome}
+                      nome={issue.resume}
                       date={issue.date}
-                      $status={issue.$status}
-                      isUpdated={issue.isUpdated}
+                      $status={"Registrado"}
+                      isUpdated={true}
                     />
                   );
                 })
               ) : (
-                <BoxEmpty
+                <NoContent
                   alt="caixa vazia"
                   title="Não há chamados no momento."
                 />
               )}
             </MainContainer>
             <ButtonWrapper>
-              {issuesNumber < 5 ? (
-                <AddNewIssueButton styles={{ hasShadow: true }} />
+              {issuesQuantity < 5 ? (
+                <AddNewIssueButton
+                  onClick={() => push("/abrir-chamado")}
+                  styles={{ hasShadow: true }}
+                />
               ) : null}
             </ButtonWrapper>
           </>

@@ -7,7 +7,6 @@ import {
 } from "./styles";
 import { Loading, NoContent } from "..";
 import { useTheme } from "styled-components";
-import Skeleton from "react-loading-skeleton";
 
 interface InfoHistoryPainelProps {
   data: InfoUnityProps[];

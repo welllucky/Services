@@ -1,6 +1,5 @@
 import { ChangeEventHandler } from "react";
 import { Fildset, Image, Input, Legend, LegendText } from "./styles";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export interface ILegendProps {
   legendText?: string;
@@ -38,8 +37,7 @@ export const InputLegend = ({
   minLength,
   pattern,
   id,
-  required,
-  onClickImage
+  required
 }: ILegendProps) => {
   const isMaxDate = inputType === "date" ? "2023-12-31" : "";
   return (

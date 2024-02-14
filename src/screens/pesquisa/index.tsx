@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { SearchBar } from "../../components/SearchBar";
 import { MainContainer, SearchContainer } from "./styles";
-import { LoadingScreen } from "../../components/LoadingScreen";
-import { BoxEmpty, Header, IssueMobile } from "@/components";
+import { Loading } from "../../components/Loading";
+import { NoContent, Header, IssueMobile } from "@/components";
 import { IssueMobileProps } from "@/types";
 import { useTheme } from "styled-components";
 import { PageContainer } from "@/styles";
@@ -26,7 +26,7 @@ const SearchPage = ({
       </SearchContainer>
       <PageContainer>
         {isLoading ? (
-          <LoadingScreen overlayOn={false} />
+          <Loading overlayOn={false} />
         ) : (
           <>
             <MainContainer $hasContent={!!searchResults}>
@@ -44,7 +44,7 @@ const SearchPage = ({
                   );
                 })
               ) : (
-                <BoxEmpty
+                <NoContent
                   alt="caixa vazia"
                   title="Pesquise pelo seu chamado"
                   color={theme.colors.neutral["55"]}

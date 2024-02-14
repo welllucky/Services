@@ -1,6 +1,4 @@
-import { CustomFieldset } from "@/components/Fieldset";
 import styled from "styled-components";
-import css from "styled-jsx/css";
 
 export const TextAreaContainer = styled.div<{ $status: string }>`
   width: inherit;

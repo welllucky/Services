@@ -35,6 +35,11 @@ export const IconArea = styled.div<OptionMenuStyleProps>`
   justify-content: center;
   background-color: ${({ $isClicked, $backgroundColor }) =>
     $isClicked ? "#7AC143" : $backgroundColor || "#F5F5F5"};
+
+  &:active {
+    background-color: #c1f599;
+  }
+  transition: 0.2s ease-in-out;
 `;
 
 export const TextMenu = styled.p<OptionMenuStyleProps>`

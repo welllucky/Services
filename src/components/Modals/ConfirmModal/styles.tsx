@@ -64,7 +64,7 @@ export const ConfirmModalButtons = styled(Row)`
   }
 
   div {
-    height: 2rem;
+    height: 2.5rem;
     width: 10rem;
   }
 `;

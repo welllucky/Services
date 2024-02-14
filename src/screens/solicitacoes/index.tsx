@@ -1,6 +1,6 @@
 "use client";
 
-import { BoxEmpty, Header, IssueMobile, LoadingScreen } from "@/components";
+import { NoContent, Header, IssueMobile, Loading } from "@/components";
 import { MainContainer } from "../pesquisa/styles";
 import { PageContainer } from "@/styles";
 import { useTheme } from "styled-components";
@@ -19,7 +19,7 @@ const RequestsPage = () => {
       />
       <PageContainer>
         {isLoading ? (
-          <LoadingScreen overlayOn={false} />
+          <Loading overlayOn={false} />
         ) : (
           <MainContainer $hasContent={!!listaChamados}>
             {listaChamados?.length ? (
@@ -38,7 +38,7 @@ const RequestsPage = () => {
                 );
               })
             ) : (
-              <BoxEmpty
+              <NoContent
                 alt="caixa vazia"
                 title="Não há solicitações no momento."
                 color={theme.colors.neutral["55"]}

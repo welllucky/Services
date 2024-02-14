@@ -12,7 +12,7 @@
 // import { useState } from "react";
 // // import RegisterIcon from "@/assets/Icons/png/Register.png";
 // // import RegisterIconGray from "@/assets/Icons/RegisterGray.png";
-// import { LoadingScreen } from "@/components/LoadingScreen";
+// import { Loading } from "@/components/Loading";
 // import { EyeIcon, EyeClosedIcon, ClearIcon, ClearDisabledIcon } from "@/assets";
 // import { InputLegend } from "@/components/FildestInput";
 // import { Modal } from "@/components/Modal";
@@ -109,7 +109,7 @@
 // 	return (
 // 		<>
 // 			{isLoading === true ? (
-// 				<LoadingScreen />
+// 				<Loading />
 // 			) : (
 // 				<RegisterContainer>
 // 					<Link href={"/login"}>
