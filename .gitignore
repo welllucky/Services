@@ -9,6 +9,7 @@ yarn.lock
 
 # testing
 /coverage
+tests/playwright/report/index.html
 
 # next.js
 /.next/
@@ -20,6 +21,7 @@ yarn.lock
 # misc
 .DS_Store
 *.pem
+.dccache
 
 # debug
 npm-debug.log*
@@ -27,12 +29,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+.env*
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # vercel
 .vercel
@@ -63,3 +61,6 @@ settings.json
 *.log
 storybook-static
 coverage/*
+
+# Snyk
+snyk-linux

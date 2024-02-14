@@ -69,7 +69,7 @@
 // 					text="Cancelar"
 // 					$backgroundColor="transparent"
 // 					color="#635F60;"
-// 					borderColor={theme.colors.neutral[205]}
+// 					$borderColor={theme.colors.neutral[205]}
 // 					onClick={() => router.push("/Home")}
 // 				/>
 // 			</ContainerButton>

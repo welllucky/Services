@@ -33,7 +33,7 @@ export const CustomSelect = ({
   onChange,
   isRequired = false,
   multiple = false,
-  form,
+  form
 }: SelectProps) => {
   return (
     <CustomFieldset width={width} height={height} labelText={labelText}>
@@ -43,8 +43,7 @@ export const CustomSelect = ({
         name={placeholder}
         multiple={multiple}
         form={form}
-        defaultValue={placeholder}
-      >
+        defaultValue={placeholder}>
         <CustomOption value="">
           {placeholder ?? "selecione uma opção abaixo"}
         </CustomOption>
@@ -53,8 +52,7 @@ export const CustomSelect = ({
             key={option?.key}
             value={option?.value}
             selected={option?.isSelected as boolean}
-            disabled={option?.isDisabled as boolean}
-          >
+            disabled={option?.isDisabled as boolean}>
             {option?.text}
           </CustomOption>
         ))}

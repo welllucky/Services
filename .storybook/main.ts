@@ -3,7 +3,7 @@ import { StorybookConfig } from "@storybook/nextjs";
 const config: StorybookConfig = {
   stories: [
     "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   addons: [
     "@storybook/addon-links",
@@ -17,8 +17,8 @@ const config: StorybookConfig = {
       name: "@storybook/addon-coverage",
       options: {
         extension: [".tsx", ".mdx"],
-        debug: true,
-      },
+        debug: true
+      }
     },
     "@storybook/addon-mdx-gfm"
   ],
@@ -26,28 +26,27 @@ const config: StorybookConfig = {
     name: "@storybook/nextjs",
     options: {
       builder: {
-        useSWC: true,
+        useSWC: true
       },
       strictMode: true,
       fastRefresh: true,
-      nextConfigPath: "../next.config.js",
-    },
+      nextConfigPath: "../next.config.js"
+    }
   },
   docs: {
-    autodocs: true,
+    autodocs: true
   },
   typescript: {
-    reactDocgen: 'react-docgen', // or false if you don't need docgen at all
+    reactDocgen: "react-docgen" // or false if you don't need docgen at all
   },
   build: {
     test: {
       disabledAddons: [
         "@storybook/addon-docs",
-        "@storybook/addon-essentials/docs",
-      ],
-    },
-  },
-  
+        "@storybook/addon-essentials/docs"
+      ]
+    }
+  }
 };
 
 export default config;

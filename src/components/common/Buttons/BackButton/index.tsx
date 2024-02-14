@@ -1,37 +1,33 @@
 import { Container, BackIcon, TextBack } from "./styles";
 import { useRouter } from "next/navigation";
-import arrowLeft from "@/assets/Icons/png/arrowLeft.png";
-import arrowLeftRed from "@/assets/Icons/png/arrowLeftRed.png";
+import { CaretLeft} from "@phosphor-icons/react";
+import { buildTestIds } from "@/utils/functions";
 export interface BackButtonProps {
-	actionText?: string;
-	color?: string;
-	fontWeight?: string;
+  actionText?: string;
+  color?: string;
+  fontWeight?: string;
+  onClick?: () => void;
 }
 
 export const BackButton = ({
-	actionText,
-	color,
-	fontWeight,
+  actionText,
+  color,
+  fontWeight,
+  onClick
 }: BackButtonProps) => {
-	const router = useRouter();
-	return (
-		<Container onClick={() => router.back()}>
-			{actionText !== "Login" ? (
-				<BackIcon
-					src={arrowLeft}
-					alt="voltar"
-				/>
-			) : (
-				<BackIcon
-					src={arrowLeftRed}
-					alt="voltar"
-				/>
-			)}
-			<TextBack
-				fontWeight={fontWeight}
-				color={color}>
-				{actionText}
-			</TextBack>
-		</Container>
-	);
+  const { back } = useRouter();
+  return (
+    <Container
+    {...buildTestIds("back-button")}
+      onClick={() => {
+        onClick ? onClick() : back();
+      }}>
+      <CaretLeft size={20} color={color || "black"} alt="voltar" />
+      <TextBack
+      {...buildTestIds("back-button-text")}
+      fontWeight={fontWeight} color={color}>
+        {actionText}
+      </TextBack>
+    </Container>
+  );
 };
