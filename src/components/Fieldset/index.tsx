@@ -1,3 +1,4 @@
+import { buildTestIds } from "@/utils/functions";
 import { Fieldset, Legend, LegendText } from "./styles";
 
 export type FieldsetProps = {
@@ -16,9 +17,15 @@ const CustomFieldset = ({
   color
 }: FieldsetProps) => {
   return (
-    <Fieldset width={width} height={height} color={color}>
-      <Legend>
-        <LegendText>{labelText}</LegendText>
+    <Fieldset
+      {...buildTestIds(`fieldset-container-${labelText}`)}
+      width={width}
+      height={height}
+      color={color}>
+      <Legend {...buildTestIds(`legend-container-${labelText}`)}>
+        <LegendText {...buildTestIds(`legend-text-${labelText}`)}>
+          {labelText}
+        </LegendText>
       </Legend>
       {children}
     </Fieldset>

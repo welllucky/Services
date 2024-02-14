@@ -8,7 +8,7 @@ export const Fieldset = styled.fieldset<{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 12px;
   width: ${({ width }) => width || "fit-content"};
   height: ${({ height }) => height || "fit-content"};

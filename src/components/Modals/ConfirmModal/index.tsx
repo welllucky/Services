@@ -9,6 +9,7 @@ import {
 import { useTheme } from "styled-components";
 import { CustomButton } from "@/components";
 import { useModalStore } from "@/utils";
+import { buildTestIds } from "@/utils/functions";
 
 interface ConfirmModalProps extends ModalProps {
   successIcon?: ReactElement;
@@ -70,13 +71,14 @@ const ConfirmModal = ({
                 alt="sinal de confirmação"
               />
             )}
-        <ConfirmModalText>
+        <ConfirmModalText {...buildTestIds("confirm-modal-text")}>
           {changeToVitrine ? successText : confirmationText}
         </ConfirmModalText>
         {!changeToVitrine && (
           <ConfirmModalButtons $gap="1rem">
             {hasBackButton && (
               <CustomButton
+                {...buildTestIds("confirm-modal-back-button")}
                 text="Voltar"
                 color={theme.colors.neutral.default}
                 $backgroundColor="transparent"
@@ -87,6 +89,7 @@ const ConfirmModal = ({
               />
             )}
             <CustomButton
+              {...buildTestIds("confirm-modal-confirm-button")}
               text="Confirmar"
               color={theme.colors.neutral.default}
               $backgroundColor={theme.colors.green.default}
