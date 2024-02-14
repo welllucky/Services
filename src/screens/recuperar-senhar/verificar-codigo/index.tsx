@@ -8,14 +8,14 @@
 // 	ErrorText,
 // 	MainCointainer,
 // } from "./styles";
-// import { BoxEmpty } from "../../../Components/BoxEmpty";
+// import { NoContent } from "../../../Components/NoContent";
 // import VerificationIcon from "../../../Assets/verification.svg";
 // import { InputBoxValidation } from "../../../components/InputCodeValidation";
 // import { Button } from "../../../components/Buttons/Button";
 // import { ContainerButton } from "../recuperar-senha/styles";
 // import { api } from "../../../Services";
 // import { useState } from "react";
-// import { LoadingScreen } from "../../../components/LoadingScreen";
+// import { Loading } from "../../../components/Loading";
 
 // // interface VerifyCodeProps {
 // // 	matricula: string;
@@ -56,7 +56,7 @@
 
 // 	return (
 // 		<MainCointainer>
-// 			{isLoading && <LoadingScreen />}
+// 			{isLoading && <Loading />}
 // 			<Link to="/login">
 // 				<BackButton
 // 					actionText={"Login"}
@@ -66,7 +66,7 @@
 // 			</Link>
 // 			<CodeVerificationContainer>
 // 				<CodeWrraper>
-// 					<BoxEmpty
+// 					<NoContent
 // 						title="Dados confirmados!"
 // 						icon={VerificationIcon}
 // 						color="#68A439"

@@ -13,6 +13,7 @@ import {
 } from "./styles";
 import { Selo } from "@/assets/Icons";
 import { IssueMobileProps } from "@/assets";
+
 export const IssueMobile = ({
   id,
   nome,
@@ -33,7 +34,7 @@ export const IssueMobile = ({
         color={color}
         $borderColor={$borderColor}
         $hasUpdate={isUpdated}>
-        <IssueContent>
+        <IssueContent $hasUpdate={isUpdated}>
           <IssueNumber>{`Chamado Nº ${id}`}</IssueNumber>
           <IssueDescription>{nome}</IssueDescription>
         </IssueContent>
