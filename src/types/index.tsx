@@ -1,6 +1,6 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { StaticImageData } from "next/image";
-import React from "react";
+import React, { ReactNode } from "react";
 
 type IssueMobileProps = {
   id: string;
@@ -63,9 +63,9 @@ type IconButtonProps = {
   onHover?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
-type BoxEmptyProps = {
+type NoContentProps = {
   title?: string;
-  icon?: string;
+  icon?: string | ReactNode;
   alt?: string;
   color?: string;
   fontSize?: string;
@@ -85,7 +85,7 @@ export type {
   OptionMenuStyleProps,
   OptionMenuProps,
   IconButtonProps,
-  BoxEmptyProps,
+  NoContentProps,
   IssueDto,
   TextTheme
 };

@@ -109,7 +109,7 @@ export default defineConfig({
     // Toggles bypassing Content-Security-Policy.
     bypassCSP: true,
 
-    userAgent: "tester-worker-user-agent"
+    userAgent: "L3/1.0 tester worker ua (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36"
   },
 
   expect: {
@@ -132,24 +132,24 @@ export default defineConfig({
   projects: [
     // { name: "setup", testMatch: "./tests/setup/*.setup.ts" },
     {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] }
+      name: "Android Mid Level",
+      use: { ...devices["Galaxy S9+"] }
       // dependencies: ["setup"],
     },
     {
-      name: "Mobile Chrome",
-      use: { ...devices["Pixel 5"] }
+      name: "Android High Level",
+      use: { ...devices["Pixel 7"] }
       // dependencies: ["setup"],
     },
     {
-      name: "Microsoft Edge",
-      use: { ...devices["Desktop Edge"], channel: "msedge" }
+      name: "Iphone low level",
+      use: { ...devices["iPhone 8 Plus"]}
       // dependencies: ["setup"],
-    },
+    }, 
     {
-      name: "Google Chrome",
-      use: { ...devices["Desktop Chrome"], channel: "chrome" }
-      // dependencies: ["setup"],
+      name: "Iphone High level",
+      use: {...devices["iPhone XR"] }
+      // dependencies: ["setup"],   
     }
   ],
 

@@ -13,11 +13,11 @@ export default function middleware(request: NextRequest) {
   const { device, isBot } = userAgent(request);
   const clientDevice = device.type ?? "desktop";
 
-  console.log("clientDevice: ", clientDevice);
-
   if (
     !request.cookies.get(CS_KEY_USER_DEVICE_TYPE) ||
-    clientDevice !== "mobile"
+    clientDevice !== "mobile" ||
+    (clientDevice === "mobile" &&
+      request.cookies.get(CS_KEY_USER_DEVICE_TYPE)?.value !== "mobile")
   ) {
     response.cookies.set(CS_KEY_USER_DEVICE_TYPE, clientDevice);
   }
@@ -28,15 +28,7 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/", url));
   }
 
-  if (
-    clientDevice !== "mobile" &&
-    !url.pathname.startsWith("/noMobileDevice")
-  ) {
-    url.pathname = "/noMobileDevice";
-    return NextResponse.redirect(url, 307);
-  }
-
-  if (isBot || device.type === "console" || device.type === "embed") {
+  if (isBot || device.type === "embed") {
     response.headers.set(HD_KEY_USER_RELIABLE_AGENT, "false");
     response.cookies.set(CS_KEY_USER_RELIABLE_AGENT, "false");
   } else {
@@ -44,9 +36,24 @@ export default function middleware(request: NextRequest) {
     response.cookies.set(CS_KEY_USER_RELIABLE_AGENT, "true");
   }
 
+  if (
+    (clientDevice !== "mobile" || isBot) &&
+    !url.pathname.startsWith("/noMobileDevice")
+  ) {
+    return NextResponse.redirect(new URL("/noMobileDevice", url));
+  }
+
   return response;
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"]
+  matcher: [
+    {
+      source: "/((?!api|_next/static|_next/image|favicon.ico).*)",
+      missing: [
+        { type: "header", key: "next-router-prefetch" },
+        { type: "header", key: "purpose", value: "prefetch" }
+      ]
+    }
+  ]
 };
