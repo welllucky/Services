@@ -1,7 +1,6 @@
-import { ChangeEventHandler, ReactNode } from "react";
+import { ChangeEventHandler } from "react";
 import { SelectComponent, CustomOption, SelectContainer } from "./styles";
 import { CustomFieldset } from "@/components/Fieldset";
-import { RegisterOptions, UseFormRegister } from "react-hook-form";
 import { InputComponentsProps } from "@/assets";
 import { ErrorText, WarningText } from "@/components";
 
@@ -32,7 +31,6 @@ export const CustomSelect = ({
   onChange,
   isRequired = false,
   multiple = false,
-  form,
   register,
   registerOptions,
   $status = "none",
