@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { BoxEmptyProps } from "@/assets";
+import { NoContentProps } from "@/assets";
 
-export const RequestsEmpty = styled.div`
+export const NoContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,11 +13,12 @@ export const RequestsEmpty = styled.div`
   }
 `;
 
-export const RequestsTitle = styled.h1<BoxEmptyProps>`
-  font-size: 24px;
+export const NoContentTitle = styled.h1<NoContentProps>`
+  font-size: ${({ fontSize }) => fontSize || "24px"};
   font-weight: 600;
   line-height: 29px;
   letter-spacing: -0.005em;
+  line-height: 132%;
   text-align: center;
   word-wrap: break-word;
   color: ${({ color }) => color ?? "#494949"};

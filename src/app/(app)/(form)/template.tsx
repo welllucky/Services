@@ -87,9 +87,7 @@ export default function Template({
 
   useEffect(() => {
     setModalCallback(() => push(`/chamado/${idChamado}`));
-  }, []);
-
-  console.log("well actualPage", actualPage);  
+  }, []); 
 
   return (
     <FormProvider

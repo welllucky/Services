@@ -3,19 +3,13 @@ import styled from "styled-components";
 
 export const IssuePageContainer = styled(Column)`
   align-items: center;
-  gap: 1.5rem;
+  gap: 16px;
+  height: 100%;
 `;
 
 export const IssuePageContent = styled(Column)`
   height: 100%;
-  flex: 1;
-  display: flex;
+  gap: 8px;
   overflow-x: hidden;
   overflow-y: auto;
-  align-items: center;
-  justify-content: flex-start;
-  padding-bottom: 72px;
-  gap: 16px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.red.default};
 `;
