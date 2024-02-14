@@ -6,7 +6,7 @@ const nextConfig = {
   },
   compiler: {
     styledComponents: true,
-    removeConsole: true
+    removeConsole: process.env.NODE_ENV === "production"
   },
   pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
   experimental: {
@@ -17,16 +17,22 @@ const nextConfig = {
       fullUrl: true
     }
   },
-  optimizeFonts: true
-  // redirects: async () => {
-  // 	return [
-  // 		{
-  // 			source: "/",
-  // 			destination: "/chamados",
-  // 			permanent: false,
-  // 		},
-  // 	];
-  // },
+  optimizeFonts: true,
+  env: {
+    NEXT_PUBLIC_APIS_BASE_URL: process.env.NEXT_PUBLIC_APIS_BASE_URL,
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL
+  }
 };
 
+const withPWA = require("next-pwa")({
+  dest: "public",
+  disable: false,
+  // disable: process.env.NODE_ENV === "development",
+  register: true,
+  scope: "/app",
+  sw: "service-worker.js",
+  reloadOnOnline: true
+});
+
+// module.exports = withPWA(nextConfig);
 module.exports = nextConfig;
