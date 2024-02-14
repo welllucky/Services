@@ -1,5 +1,5 @@
 // import { BackButton } from "../../Components/BackButton";
-// import { BoxEmpty } from "../../Components/BoxEmpty";
+// import { NoContent } from "../../Components/NoContent";
 // import { Button } from "../../Components/Button";
 // import {
 // 	HeaderText,
@@ -18,7 +18,7 @@
 // import { Link } from "react-router-dom";
 // import { ChangeEvent, useEffect, useState } from "react";
 // import { api } from "../../../Services";
-// import { LoadingScreen } from "../../../components/LoadingScreen";
+// import { Loading } from "../../../components/Loading";
 
 // export const RecoverPassword = () => {
 // 	const [matricula, setMatricula] = useState("");
@@ -100,7 +100,7 @@
 // 				</HeaderText>
 // 			</HeaderContainer>
 // 			{matriculaExists && !emailExists ? (
-// 				<BoxEmpty
+// 				<NoContent
 // 					title="Usuário localizado!"
 // 					color="#53565A"
 // 					fontSize="16px"
@@ -108,7 +108,7 @@
 // 					alt="Usuário foi localizado"
 // 				/>
 // 			) : matriculaExists && emailExists ? (
-// 				<BoxEmpty
+// 				<NoContent
 // 					alt="Dados confirmados"
 // 					title="Dados confirmados!"
 // 					color="#68A439"
@@ -116,7 +116,7 @@
 // 					icon={ValidData}
 // 				/>
 // 			) : (
-// 				<BoxEmpty
+// 				<NoContent
 // 					alt="Usuário não foi identificado"
 // 					title="Usuário não identificado!"
 // 					color="#E8273F"

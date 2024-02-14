@@ -9,34 +9,34 @@ import searchBlack from "@/assets/Images/SearchBlack.png";
 import searchWhite from "@/assets/Images/SearchWhite.png";
 
 const navigationOptions: OptionMenuProps[] = [
-	{
-		name: "Iniciar",
-		path: "/",
-		alt: "inicio",
-		iconUnselect: homeBlack,
-		iconSelect: homeWhite,
-	},
-	{
-		name: "Pesquisa",
-		path: "/pesquisa",
-		alt: "pesquisa",
-		iconUnselect: searchBlack,
-		iconSelect: searchWhite,
-	},
-	{
-		name: "Chamados",
-		path: "/chamados",
-		alt: "chamados",
-		iconUnselect: callsBlack,
-		iconSelect: callsWhite,
-	},
-	{
-		name: "Solicitações",
-		path: "/solicitacoes",
-		alt: "solicitações",
-		iconUnselect: requestBlack,
-		iconSelect: requestWhite,
-	},
+  {
+    name: "Iniciar",
+    path: "/",
+    alt: "inicio",
+    iconUnselect: homeBlack,
+    iconSelect: homeWhite
+  },
+  {
+    name: "Pesquisa",
+    path: "/pesquisa",
+    alt: "pesquisa",
+    iconUnselect: searchBlack,
+    iconSelect: searchWhite
+  },
+  {
+    name: "Chamados",
+    path: "/chamados",
+    alt: "chamados",
+    iconUnselect: callsBlack,
+    iconSelect: callsWhite
+  },
+  {
+    name: "Solicitações",
+    path: "/solicitacoes",
+    alt: "solicitações",
+    iconUnselect: requestBlack,
+    iconSelect: requestWhite
+  }
 ];
 
 export default navigationOptions;
