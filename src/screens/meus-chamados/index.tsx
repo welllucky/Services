@@ -10,8 +10,6 @@ import {
 import { ButtonWrapper } from "./styles";
 import { PageContainer } from "@/styles";
 import { MainContainer } from "../pesquisa/styles";
-import { issueMobileData } from "../home/data";
-import { useTheme } from "styled-components";
 import { useRouter } from "next/navigation";
 import { chamado } from "@/utils";
 

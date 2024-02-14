@@ -1,7 +1,6 @@
 "use client";
 
 import { CustomButton } from "@/components";
-import { Column, Row } from "@/styles";
 import { buildTestIds } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 import { ButtonsContainer, FormButtonsContainer } from "./styles";
