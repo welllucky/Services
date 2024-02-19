@@ -27,7 +27,7 @@ export const ButtonNewCalled = styled.button<AddNewIssueButtonProps>`
     box-shadow:
       rgba(0, 0, 0, 0.3) 0px 19px 38px,
       rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    background-color: ${({ theme }) => theme.colors.green["25"]};
+    background-color: ${({ theme }) => theme.colors.primary["25"]};
 
     & > svg {
       fill: ${({ theme }) => theme.colors.neutral.default};

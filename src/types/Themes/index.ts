@@ -33,10 +33,6 @@ type ThemeProps = {
       inverted: string;
       opacity: string;
     };
-    red: {
-      [key: string]: string;
-      default: string;
-    };
     green: {
       [key: string]: string;
       default: string;

@@ -10,6 +10,7 @@ import { IconButton } from "@/components";
 import { useMemo } from "react";
 import { Row, SubTitleComponent, TitleComponent } from "@/styles";
 import Image from "next/image";
+import Logo from "../../../../public/android/android-launchericon-512-512.png";
 import { buildTestIds } from "@/utils/functions";
 
 export type HeaderMobileProps = {
@@ -46,10 +47,10 @@ export const Header = ({
           $isSmallClientMobile={false}>
           <Image
             {...buildTestIds("header-corp-logo-image")}
-            width={42}
-            height={42}
+            width={48}
+            height={48}
             alt="Services logo"
-            src="/android-chrome-512x512.png"
+            src={Logo}
           />
         </Row>
         <Row $isSmallClientMobile={false}>
