@@ -29,7 +29,7 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
   background-color: ${({ $backgroundColor, mode, theme }) =>
     $backgroundColor && mode === "filled"
       ? $backgroundColor
-      : theme.colors.green[185]};
+      : theme.colors.primary[185]};
 
   ${({ disabled, mode }) =>
     disabled &&

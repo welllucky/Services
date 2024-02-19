@@ -11,7 +11,7 @@ interface ImageMapProps {
 export const ImageMapContainer = styled.section`
   width: calc(100%);
   height: 8rem;
-  background-color: ${({ theme }) => theme.colors.green["085"]};
+  background-color: ${({ theme }) => theme.colors.primary["085"]};
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(1fr, 3fr);
@@ -20,7 +20,7 @@ export const ImageMapContainer = styled.section`
 `;
 
 export const FileContainer = styled.section<ImageMapProps>`
-  background-color: ${({ theme }) => theme.colors.green["185"]};
+  background-color: ${({ theme }) => theme.colors.primary["185"]};
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -86,7 +86,7 @@ export const ButtonActionContainer = styled.section`
 `;
 
 export const ButtonAction = styled.section<ImageMapProps>`
-  background-color: ${({ theme }) => theme.colors.green["195"]};
+  background-color: ${({ theme }) => theme.colors.primary["195"]};
   width: 6rem;
   height: 4rem;
   display: flex;

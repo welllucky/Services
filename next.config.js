@@ -12,11 +12,11 @@ const nextConfig = {
   experimental: {
     webVitalsAttribution: ["CLS", "LCP", "FCP", "FID", "TTFB", "INP"]
   },
-  logging: {
-    fetches: {
-      fullUrl: true
-    }
-  },
+  // logging: {
+  //   fetches: {
+  //     fullUrl: true
+  //   }
+  // },
   optimizeFonts: true,
   env: {
     NEXT_PUBLIC_APIS_BASE_URL: process.env.NEXT_PUBLIC_APIS_BASE_URL,
@@ -26,13 +26,12 @@ const nextConfig = {
 
 const withPWA = require("next-pwa")({
   dest: "public",
-  disable: false,
-  // disable: process.env.NODE_ENV === "development",
+  // disable: false,
+  disable: process.env.NODE_ENV === "development",
   register: true,
-  scope: "/app",
-  sw: "service-worker.js",
+  scope: "/",
+  sw: "sw.js",
   reloadOnOnline: true
 });
 
-// module.exports = withPWA(nextConfig);
-module.exports = nextConfig;
+module.exports = withPWA(nextConfig);

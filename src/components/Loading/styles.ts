@@ -17,7 +17,7 @@ export const Container = styled.div<{ color?: string; size?: string }>`
     width: ${({ size }) => size || "7px"};
     height: ${({ size }) => size || "7px"};
     border-radius: 50%;
-    background: ${({ color, theme }) => color || theme.colors.green.default};
+    background: ${({ color, theme }) => color || theme.colors.primary.default};
     margin: -4px 0 0 -4px;
   }
   & div:nth-child(1) {

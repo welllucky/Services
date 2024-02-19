@@ -92,7 +92,7 @@ const ConfirmModal = ({
               {...buildTestIds("confirm-modal-confirm-button")}
               text="Confirmar"
               color={theme.colors.neutral.default}
-              $backgroundColor={theme.colors.green.default}
+              $backgroundColor={theme.colors.primary.default}
               height="40px"
               mode="filled"
               onClick={modalCallBack}
