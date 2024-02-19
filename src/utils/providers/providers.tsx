@@ -1,17 +1,15 @@
 "use client";
 
-import { lightTheme, darkTheme, GlobalStyle } from "@/styles";
-import { ReactNode, useDebugValue } from "react";
+import { theme, GlobalStyle } from "@/styles";
+import { ReactNode } from "react";
 import { ThemeProvider } from "styled-components";
 import { SWRConfig } from "swr";
 import { Toaster } from "react-hot-toast";
 import { CookiesProvider } from "react-cookie";
 import { AppProvider } from "../stores/useAppContext";
+import StyledComponentsRegistry from "./registry";
 // skipcq: JS-0323
 const AppProviders = ({ children }: any & ReactNode) => {
-  const isDarkMode = false;
-
-  useDebugValue(isDarkMode ? "Dark Mode" : "Light Mode");
   return (
     <SWRConfig>
       <CookiesProvider
@@ -24,19 +22,21 @@ const AppProviders = ({ children }: any & ReactNode) => {
           partitioned: false
         }}>
         <AppProvider>
-          <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-            <GlobalStyle />
-            {children}
-            <Toaster
-              position="top-center"
-              toastOptions={{
-                ariaProps: {
-                  role: "status",
-                  "aria-live": "polite"
-                }
-              }}
-            />
-          </ThemeProvider>
+          <StyledComponentsRegistry>
+            <ThemeProvider theme={theme}>
+              <GlobalStyle />
+              {children}
+              <Toaster
+                position="top-center"
+                toastOptions={{
+                  ariaProps: {
+                    role: "status",
+                    "aria-live": "polite"
+                  }
+                }}
+              />
+            </ThemeProvider>
+          </StyledComponentsRegistry>
         </AppProvider>
       </CookiesProvider>
     </SWRConfig>

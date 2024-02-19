@@ -21,7 +21,7 @@
 // `;
 
 // export const InformationToAttach = styled.h2`
-// 	color: ${({ theme }) => theme.colors.green[185]};
+// 	color: ${({ theme }) => theme.colors.primary[185]};
 // 	font-weight: 600;
 // 	display: flex;
 // 	align-items: center;

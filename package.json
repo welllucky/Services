@@ -27,6 +27,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.2.1",
     "@phosphor-icons/react": "^2.0.15",
     "@react-spring/web": "^9.7.3",
     "@uidotdev/usehooks": "^2.4.1",
@@ -38,8 +39,8 @@
     "next": "13.5.6",
     "next-pwa": "^5.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-cookie": "^7.0.2",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
     "react-hot-toast": "^2.4.1",
     "react-loading-skeleton": "^3.4.0",
@@ -112,16 +113,8 @@
       "last 1 safari version"
     ]
   },
-  "resolutions": {
-    "jackspeak": "2.1.1"
-  },
   "bugs": {
     "url": "https://github.com/welllucky/services/issues"
   },
-  "readme": "ERROR: No README data found!",
-  "homepage": "https://github.com/welllucky/services#readme",
-  "_id": "services@0.1.0",
-  "hooks": {
-    "pre-commit": "yarn prettier --write --ignore-unknown && yarn lint && yarn test  && yarn build && yarn build-storybook && yarn chromatic"
-  }
+  "homepage": "https://github.com/welllucky/services#readme"
 }

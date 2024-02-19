@@ -20,7 +20,7 @@ const InfoHistoryPainel = ({ data, isLoading }: InfoHistoryPainelProps) => {
       <InfoHistoryPainelTitle>Histórico</InfoHistoryPainelTitle>
       <InfoHistoryPainelContent>
         {isLoading ? (
-          <Loading color={theme.colors.green["35"]} />
+          <Loading color={theme.colors.primary["35"]} />
         ) : data?.length ? (
           data?.map((info) => <InfoUnity {...info} />)
         ) : (
