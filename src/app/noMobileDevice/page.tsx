@@ -1,6 +1,4 @@
-"use client";
-
-import { NoMobileDevicePage } from "@/screens/NoMobileDevice";
+import { NoMobileDevicePage } from "@/screens";
 
 export default function NoDeviceMobile() {
   return <NoMobileDevicePage />;

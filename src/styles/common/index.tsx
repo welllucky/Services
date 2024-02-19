@@ -51,7 +51,7 @@ export const TitleComponent = styled.h1<{ $isSmallClientMobile?: boolean }>`
   display: flex;
   align-items: center;
   letter-spacing: 0.01em;
-  color: ${({ theme }) => theme.colors.green.default};
+  color: ${({ theme }) => theme.colors.primary.default};
 
   ${({ $isSmallClientMobile }) =>
     $isSmallClientMobile &&

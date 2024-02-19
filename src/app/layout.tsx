@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import StyledComponentsRegistry from "@/utils/providers/registry";
 import { AppProviders } from "../utils/providers/providers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -20,8 +19,8 @@ export const metadata: Metadata = {
     "/favicon.ico",
     "/favicon-16x16.png",
     "/favicon-32x32.png",
-    "/android-chrome-192x192.png",
-    "/android-chrome-512x512.png"
+    "/android/android-launchericon-192-192.png",
+    "/android/android-launchericon-512-512.png"
   ],
   manifest: "/manifest.json"
 };
@@ -36,7 +35,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SpeedInsights />
         <AppProviders>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          {children}
           <Analytics />
         </AppProviders>
       </body>

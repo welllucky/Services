@@ -45,7 +45,7 @@ const IssuePage = ({ id }: IssuePageProps) => {
         {...buildTestIds("content-column")}
         height="100%">
         <CustomFieldset
-          color={theme.colors.green.default}
+          color={theme.colors.primary.default}
           labelText="Resumo"
           width="100%"
           height="64px"
@@ -53,7 +53,7 @@ const IssuePage = ({ id }: IssuePageProps) => {
           {data?.resume}
         </CustomFieldset>
         <CustomFieldset
-          color={theme.colors.green.default}
+          color={theme.colors.primary.default}
           labelText="Descrição"
           width="100%"
           height="160px"
@@ -63,14 +63,14 @@ const IssuePage = ({ id }: IssuePageProps) => {
         </CustomFieldset>
         <SectionInfoForm $gap="16px">
           <CustomFieldset
-            color={theme.colors.green.default}
+            color={theme.colors.primary.default}
             labelText="Tipo"
             width="59%"
             height="64px">
             {data?.priority}
           </CustomFieldset>
           <CustomFieldset
-            color={theme.colors.green.default}
+            color={theme.colors.primary.default}
             labelText="Prioridade"
             width="36%"
             height="64px">
@@ -78,7 +78,7 @@ const IssuePage = ({ id }: IssuePageProps) => {
           </CustomFieldset>
         </SectionInfoForm>
         <CustomFieldset
-          color={theme.colors.green.default}
+          color={theme.colors.primary.default}
           labelText="Data do ocorrido"
           width="100%"
           height="64px">

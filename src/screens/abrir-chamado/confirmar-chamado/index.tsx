@@ -32,7 +32,7 @@ export const ConfirmDetailsPage = () => {
         $gap="16px">
         <SectionInfoForm {...buildTestIds("section-info-form")}>
           <CustomFieldset
-            color={theme.colors.green.default}
+            color={theme.colors.primary.default}
             labelText="Resumo"
             width="100%"
             height="64px">
@@ -41,14 +41,14 @@ export const ConfirmDetailsPage = () => {
         </SectionInfoForm>
         <SectionInfoForm $gap="16px">
           <CustomFieldset
-            color={theme.colors.green.default}
+            color={theme.colors.primary.default}
             labelText="Tipo"
             width="48%"
             height="64px">
             {ticketData?.tipo}
           </CustomFieldset>
           <CustomFieldset
-            color={theme.colors.green.default}
+            color={theme.colors.primary.default}
             labelText="Prioridade"
             width="48%"
             height="64px">
@@ -57,7 +57,7 @@ export const ConfirmDetailsPage = () => {
         </SectionInfoForm>
         <SectionInfoForm>
           <CustomFieldset
-            color={theme.colors.green.default}
+            color={theme.colors.primary.default}
             labelText="Data do ocorrido"
             width="100%"
             height="64px">
@@ -66,7 +66,7 @@ export const ConfirmDetailsPage = () => {
         </SectionInfoForm>
         <SectionInfoForm>
           <CustomFieldset
-            color={theme.colors.green.default}
+            color={theme.colors.primary.default}
             labelText="Descrição"
             width="100%"
             height="160px">

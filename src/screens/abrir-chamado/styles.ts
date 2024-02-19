@@ -14,5 +14,5 @@ export const IssuePageContent = styled(Column)`
   align-items: center;
   gap: 16px;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.red.default};
+  color: ${({ theme }) => theme.colors.primary.default};
 `;
