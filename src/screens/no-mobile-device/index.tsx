@@ -10,19 +10,12 @@ import {
   QRCodeImage,
   QRCodeText
 } from "./styles";
-import qrCode from "@/assets/Images/qrcode_fcservices.pixelsquad.tech.png";
+import qrCode from "../../../public/qr-code.png";
 import Logo from "../../../public/android/android-launchericon-512-512.png";
-import { getTextTheme } from "./themeTitle";
-import { useLayoutEffect, useState } from "react";
 import { TextTheme } from "@/assets";
 
-const NoMobileDevicePage = () => {
-  const [theme, setTheme] = useState<TextTheme>({} as unknown as TextTheme);
+const NoMobileDevicePage = ({ theme }: { theme: TextTheme }) => {
   const { title, text } = theme;
-  useLayoutEffect(() => {
-    setTheme({ ...getTextTheme() });
-  }, []);
-
   return (
     <NoMobileContainer>
       <NoMobileLogo
