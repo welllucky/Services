@@ -69,7 +69,9 @@ export const ConfirmDetailsPage = () => {
             color={theme.colors.primary.default}
             labelText="Descrição"
             width="100%"
-            height="160px">
+            height="240px"
+            $hasOverflow
+            >
             {ticketData?.descricao}
           </CustomFieldset>
         </SectionInfoForm>

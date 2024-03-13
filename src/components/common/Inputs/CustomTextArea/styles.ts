@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const TextAreaContainer = styled.div<{ $status: string }>`
   width: inherit;
   display: flex;
+  flex-direction: column;
 
-  & > fieldset {
+  & > div > div {
     border: ${({ $status }) =>
       $status === "invalid"
         ? "1px solid red"

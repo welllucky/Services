@@ -4,8 +4,7 @@ export const SelectContainer = styled.div<{ $status: string }>`
   width: inherit;
   display: flex;
 
-  & > fieldset {
-    padding: 11px 12px;
+  & > div > div {
     border: ${({ $status }) =>
       $status === "invalid"
         ? "1px solid red"
@@ -26,11 +25,9 @@ export const SelectComponent = styled.select`
   line-height: 24px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 7px;
   letter-spacing: 0.5px;
   resize: none;
   background: transparent;
-  color: #77757b;
 `;
 
 export const CustomOption = styled.option`

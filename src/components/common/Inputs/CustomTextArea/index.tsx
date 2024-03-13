@@ -25,8 +25,10 @@ export const CustomTextArea = ({
   return (
     <TextAreaContainer $status={$status}>
       <CustomFieldset
-        width={width as string}
-        labelText={labelText as string}>
+        width={width}
+        height={height}
+        $hasOverflow
+        labelText={labelText || ""}>
         <TextArea
           {...register(id, {
             ...registerOptions,
@@ -40,8 +42,8 @@ export const CustomTextArea = ({
               if (registerOptions?.onChange) registerOptions.onChange(e);
             }
           })}
-          height={height as string}
-          width={width as string}
+          height="100%"
+          width="100%"
           placeholder={placeholder}
           value={value}
         />

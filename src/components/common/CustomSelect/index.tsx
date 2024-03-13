@@ -36,7 +36,10 @@ export const CustomSelect = ({
   form
 }: SelectProps) => {
   return (
-    <CustomFieldset width={width} height={height} labelText={labelText}>
+    <CustomFieldset
+      width={width}
+      height={height}
+      labelText={labelText}>
       <SelectComponent
         onChange={onChange}
         required={isRequired}
