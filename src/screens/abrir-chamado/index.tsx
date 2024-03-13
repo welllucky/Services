@@ -132,7 +132,7 @@ const CreateTicketPage = () => {
             message: "O resumo deve ter no mínimo 20 caracteres"
           },
           maxLength: {
-            value: 280,
+            value: 460,
             message: "O resumo deve ter no máximo 280 caracteres"
           }
         }}
@@ -165,7 +165,6 @@ const CreateTicketPage = () => {
         isRequired
         placeholder="O quão urgente é esse chamado ?"
         labelText="Prioridade"
-        height=""
         options={[
           { key: "baixa", value: "baixa", text: "pouco urgente" },
           { key: "media", value: "media", text: "mais ou menos" },

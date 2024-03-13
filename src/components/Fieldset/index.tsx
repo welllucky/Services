@@ -1,5 +1,5 @@
 import { buildTestIds } from "@/utils/functions";
-import { Fieldset, Legend, LegendText } from "./styles";
+import { FieldSetContent, Fieldset, FieldsetContainer, Legend } from "./styles";
 
 export type FieldsetProps = {
   children: React.ReactNode;
@@ -21,20 +21,19 @@ const CustomFieldset = ({
   $justifyContent = "end"
 }: FieldsetProps) => {
   return (
-    <Fieldset
-      {...buildTestIds(`fieldset-container-${labelText}`)}
+    <FieldsetContainer
       width={width}
       height={height}
-      color={color}
-      $hasOverflow={$hasOverflow}
-      $justifyContent={$justifyContent}>
-      <Legend {...buildTestIds(`legend-container-${labelText}`)}>
-        <LegendText {...buildTestIds(`legend-text-${labelText}`)}>
-          {labelText}
-        </LegendText>
-      </Legend>
-      {children}
-    </Fieldset>
+      $hasOverflow={$hasOverflow}>
+      <Legend {...buildTestIds(`legend-text-${labelText}`)}>{labelText}</Legend>
+      <Fieldset
+        {...buildTestIds(`fieldset-container-${labelText}`)}
+        color={color}
+        $hasOverflow={$hasOverflow}
+        $justifyContent={$justifyContent}>
+        <FieldSetContent>{children}</FieldSetContent>
+      </Fieldset>
+    </FieldsetContainer>
   );
 };
 

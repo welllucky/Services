@@ -43,7 +43,7 @@ export const CustomSelect = ({
       <CustomFieldset
         width={width}
         height={height}
-        labelText={labelText as unknown as string}>
+        labelText={labelText || ""}>
         <SelectComponent
           {...register(id, {
             ...registerOptions,
@@ -58,7 +58,9 @@ export const CustomSelect = ({
             }
           })}
           multiple={multiple}>
-          <CustomOption disabled={isRequired} value="">
+          <CustomOption
+            disabled={isRequired}
+            value="">
             {placeholder ?? "selecione uma opção abaixo"}
           </CustomOption>
           {options?.map((option) => (

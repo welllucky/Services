@@ -1,44 +1,73 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Fieldset = styled.fieldset<{
-  width?: string;
-  height?: string;
+export const FieldSetContent = styled.div`
+  overflow: scroll;
+  width: 100%;
+  word-wrap: break-word;
+`;
+
+export const Fieldset = styled.div<{
   color?: string;
   $hasOverflow?: boolean;
   $justifyContent?: "start" | "center" | "end";
 }>`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: ${({ $justifyContent }) => $justifyContent || "center"};
-  padding: 16px;
-  width: ${({ width }) => width || "fit-content"};
-  height: ${({ height }) => height || "fit-content"};
   border-radius: 4px;
-  border: 1px solid ${({ theme, color }) => color || theme.colors.neutral["15"]};
-  text-overflow: ellipsis;
-  line-height: 112%;
-  overflow: ${({ $hasOverflow }) => ($hasOverflow ? "scroll" : "hidden")};
+  border: 1px solid ${({ theme, color }) => color ?? theme.colors.neutral["15"]};
+  line-height: 132%;
   color: ${({ theme }) => theme.colors.neutral["100"]};
+  padding: 1rem;
+  width: 100%;
+  overflow: hidden;
+
+  ${({ $hasOverflow }) =>
+    !$hasOverflow &&
+    css`
+      ${FieldSetContent} {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    `};
 `;
 
-export const Legend = styled.legend`
-  padding: 0px 4px 0px 4px;
-`;
-
-export const LegendText = styled.span`
+export const Legend = styled.span`
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 1rem;
   line-height: 16px;
   letter-spacing: 0.4px;
   color: #2b4417;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  background-color: #f8fcf6;
+  display: inline-flex;
+  left: 16px;
+  padding: 0px 4px;
+  top: 8px;
+  position: relative;
 `;
 
 export const FieldsetTextContent = styled.p`
   width: 100%;
   height: fit-content;
+`;
+
+export const FieldsetContainer = styled.div<{
+  width?: string;
+  height?: string;
+  $hasOverflow?: boolean;
+}>`
+  width: ${({ width }) => width ?? "fit-content"};
+  height: fit-content;
+
+  ${Fieldset} {
+    max-height: ${({ height }) => height ?? "51px"};
+  }
+
+  ${FieldSetContent} {
+    ${({ $hasOverflow, height }) =>
+      $hasOverflow &&
+      height &&
+      css`
+        height: ${height};
+      `}
+  }
 `;
