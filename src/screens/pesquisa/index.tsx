@@ -4,15 +4,15 @@ import { useState } from "react";
 import { SearchBar } from "../../components/SearchBar";
 import { MainContainer, SearchContainer } from "./styles";
 import { Loading } from "../../components/Loading";
-import { NoContent, Header, IssueMobile } from "@/components";
-import { IssueMobileProps } from "@/types";
+import { NoContent, Header, IssueDisplay } from "@/components";
+import { IssueDisplayProps } from "@/types";
 import { useTheme } from "styled-components";
 import { PageContainer } from "@/styles";
 
 const SearchPage = ({
   searchResults
 }: {
-  searchResults: IssueMobileProps[];
+  searchResults: IssueDisplayProps[];
 }) => {
   const theme = useTheme();
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +33,7 @@ const SearchPage = ({
               {searchResults?.length ? (
                 searchResults.map((issue) => {
                   return (
-                    <IssueMobile
+                    <IssueDisplay
                       key={issue.id}
                       id={issue.id}
                       nome={issue.nome}
