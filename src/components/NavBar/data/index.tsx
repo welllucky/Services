@@ -1,41 +1,55 @@
 import { OptionMenuProps } from "@/assets";
-import homeBlack from "@/assets/Images/HomeBlack.png";
-import homeWhite from "@/assets/Images/HomeWhite.png";
-import callsBlack from "@/assets/Images/CallsBlack.png";
-import callsWhite from "@/assets/Images/CallsWhite.png";
-import requestBlack from "@/assets/Images/RequestsBlack.png";
-import requestWhite from "@/assets/Images/RequestsWhite.png";
-import searchBlack from "@/assets/Images/SearchBlack.png";
-import searchWhite from "@/assets/Images/SearchWhite.png";
+import {
+  ClipboardText,
+  House,
+  ListDashes,
+  MagnifyingGlass
+} from "@phosphor-icons/react/dist/ssr";
 
 const navigationOptions: OptionMenuProps[] = [
   {
     name: "Iniciar",
     path: "/",
     alt: "inicio",
-    iconUnselect: homeBlack,
-    iconSelect: homeWhite
+    icon: (
+      <House
+        size={24}
+        color="#352F2F"
+      />
+    )
   },
   {
     name: "Pesquisa",
     path: "/pesquisa",
     alt: "pesquisa",
-    iconUnselect: searchBlack,
-    iconSelect: searchWhite
+    icon: (
+      <MagnifyingGlass
+        size={24}
+        color="#352F2F"
+      />
+    )
   },
   {
     name: "Chamados",
     path: "/chamados",
     alt: "chamados",
-    iconUnselect: callsBlack,
-    iconSelect: callsWhite
+    icon: (
+      <ListDashes
+        size={24}
+        color="#352F2F"
+      />
+    )
   },
   {
     name: "Solicitações",
     path: "/solicitacoes",
     alt: "solicitações",
-    iconUnselect: requestBlack,
-    iconSelect: requestWhite
+    icon: (
+      <ClipboardText
+        size={24}
+        color="#352F2F"
+      />
+    )
   }
 ];
 

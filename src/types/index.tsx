@@ -10,7 +10,7 @@ type IssueDisplayProps = {
   isUpdated?: boolean;
   color?: string;
   $borderColor?: string;
-  isClicked?: boolean;
+  isSelected?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
@@ -35,7 +35,7 @@ type IconProps = {
 };
 
 type OptionMenuStyleProps = {
-  $isClicked?: boolean;
+  $isSelected?: boolean;
   $backgroundColor?: string;
   $highlightTextColor?: string;
 };
@@ -44,8 +44,7 @@ type OptionMenuProps = {
   name: string;
   path: string;
   alt: string;
-  iconUnselect: StaticImageData;
-  iconSelect: StaticImageData;
+  icon: ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   $isSelected?: boolean;
   color?: string;
