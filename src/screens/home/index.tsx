@@ -44,7 +44,7 @@ const Homepage = () => {
                 <NoContent
                   alt="caixa vazia"
                   title="Não há chamados no momento."
-                  color={theme.colors.neutral["55"]}
+                  color={theme.colors.neutral["5"]}
                 />
               )}
             </MainContainer>

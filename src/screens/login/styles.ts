@@ -118,7 +118,7 @@ export const LoginMobile = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #f8fcf6;
+  background-color: #f5f5f5;
 `;
 
 export const TextMobile = styled.h1`
