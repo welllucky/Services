@@ -1,10 +1,11 @@
 "use client";
 
 import { NoContentProps } from "@/types";
-import EmptyBox from "@/assets/Images/EmptyBox.png";
+
 import { NoContentContainer, NoContentTitle } from "./styles";
 import Image from "next/image";
 import { useTheme } from "styled-components";
+import { EmptyBox } from "@/assets";
 
 export const NoContent = ({
   title,
@@ -16,11 +17,13 @@ export const NoContent = ({
   const theme = useTheme();
   return (
     <NoContentContainer>
-      {typeof icon === "string" || typeof icon === "undefined" ? (
+      {typeof icon === "string" ? (
         <Image
-          src={icon || EmptyBox}
+          src={icon}
           alt={alt || "caixa vazia"}
         />
+      ) : typeof icon === "undefined" ? (
+        <EmptyBox size={92} />
       ) : (
         icon
       )}

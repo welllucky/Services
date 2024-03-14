@@ -29,8 +29,9 @@ type IssueDto = {
 };
 
 type IconProps = {
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
+  size?: string | number;
   color?: string;
 };
 

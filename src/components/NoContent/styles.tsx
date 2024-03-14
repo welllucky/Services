@@ -14,11 +14,10 @@ export const NoContentContainer = styled.div`
 `;
 
 export const NoContentTitle = styled.h1<NoContentProps>`
-  font-size: ${({ fontSize }) => fontSize || "24px"};
+  font-size: ${({ fontSize }) => fontSize || "1.5rem"};
   font-weight: 600;
-  line-height: 29px;
   letter-spacing: -0.005em;
-  line-height: 132%;
+  line-height: 108%;
   text-align: center;
   word-wrap: break-word;
   color: ${({ color }) => color ?? "#494949"};
