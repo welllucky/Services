@@ -12,9 +12,9 @@ import {
   InfoLabel
 } from "./styles";
 import { Selo } from "@/assets/Icons";
-import { IssueMobileProps } from "@/assets";
+import { IssueDisplayProps } from "@/assets";
 
-export const IssueMobile = ({
+export const IssueDisplay = ({
   id,
   nome,
   date,
@@ -22,7 +22,7 @@ export const IssueMobile = ({
   isUpdated,
   color,
   $borderColor
-}: IssueMobileProps) => {
+}: IssueDisplayProps) => {
   return (
     <IssueWrapper href={`/chamado/${id}`}>
       {isUpdated && (

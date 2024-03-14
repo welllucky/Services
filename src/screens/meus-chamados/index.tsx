@@ -2,7 +2,7 @@
 
 import {
   AddNewIssueButton,
-  IssueMobile,
+  IssueDisplay,
   Loading,
   Header,
   NoContent
@@ -33,7 +33,7 @@ const MyCallsPage = () => {
               {data?.length ? (
                 data.map((issue) => {
                   return (
-                    <IssueMobile
+                    <IssueDisplay
                       key={issue.id}
                       id={issue.id}
                       nome={issue.resume}

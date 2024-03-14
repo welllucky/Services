@@ -1,13 +1,10 @@
 "use client";
 
 import { AddNewIssueButton } from "@/components/common/Buttons";
-import { IssueMobile } from "@/components/CalledMobile";
-import { Header } from "@/components";
+import { IssueDisplay, Loading, Header, NoContent } from "@/components/";
 import { ButtonWrapper } from "./styles";
 import { PageContainer } from "@/styles";
-import { Loading } from "@/components/Loading";
 import { MainContainer } from "../pesquisa/styles";
-import { NoContent } from "@/components";
 import { useTheme } from "styled-components";
 import { chamado, dataFormatter } from "@/utils";
 import { useRouter } from "next/navigation";
@@ -17,8 +14,6 @@ const Homepage = () => {
   const { push } = useRouter();
   const { data, isLoading } = chamado.getChamados();
   const issuesQuantity = data?.length || 0;
-  
-  console.log(data);
   return (
     <>
       <Header
@@ -35,7 +30,7 @@ const Homepage = () => {
               {data?.length ? (
                 data.map((issue) => {
                   return (
-                    <IssueMobile
+                    <IssueDisplay
                       key={issue?.id}
                       id={issue?.id}
                       nome={issue?.description}

@@ -1,4 +1,4 @@
-import { issueMobileData } from "@/screens/home/data";
+import { issues } from "@/screens/data/index";
 import { SearchPage } from "@/screens/pesquisa";
 import { Metadata } from "next";
 
@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Search() {
-  return <SearchPage searchResults={issueMobileData} />;
+  return <SearchPage searchResults={issues} />;
 }

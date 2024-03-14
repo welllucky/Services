@@ -2,7 +2,7 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { StaticImageData } from "next/image";
 import React, { ReactNode } from "react";
 
-type IssueMobileProps = {
+type IssueDisplayProps = {
   id: string;
   nome: string;
   date: string;
@@ -80,7 +80,7 @@ type TextTheme = {
 export type * from "./Themes";
 
 export type {
-  IssueMobileProps,
+  IssueDisplayProps,
   IconProps,
   OptionMenuStyleProps,
   OptionMenuProps,

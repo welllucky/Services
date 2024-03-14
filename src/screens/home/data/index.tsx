@@ -1,6 +1,6 @@
-import { IssueMobileProps } from "@/types";
+import { IssueDisplayProps } from "@/types";
 
-const issueMobileData: IssueMobileProps[] = [
+const IssueDisplayData: IssueDisplayProps[] = [
   {
     id: "0000000-1",
     nome: "Acabou o papel na máquina de ponto",
@@ -66,4 +66,4 @@ const issueMobileData: IssueMobileProps[] = [
   }
 ];
 
-export { issueMobileData };
+export { IssueDisplayData };

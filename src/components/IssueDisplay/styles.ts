@@ -75,16 +75,21 @@ export const IssueState = styled.div`
 export const IssueNumber = styled.p`
   font-weight: 500;
   font-size: 0.9rem;
+  width: 213px;
   display: flex;
-  width: max-content;
   letter-spacing: 0.01em;
   color: ${({ theme }) => theme.colors.neutral.inverted};
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: break-spaces;
+  overflow: hidden;
 `;
 
 export const IssueDescription = styled.p`
   font-weight: 500;
   font-size: 1.1rem;
   line-height: 120%;
+  width: 213px;
   color: ${({ theme }) => theme.colors.neutral.inverted};
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -104,7 +109,7 @@ export const IssueStatus = styled.div`
   font-weight: 500;
   font-size: 0.8rem;
   line-height: 1rem;
-  overflow-x: hidden;
+  overflow: hidden;
 `;
 
 export const OpeningText = styled.p`
@@ -112,12 +117,19 @@ export const OpeningText = styled.p`
   font-size: 1rem;
   line-height: 1.25rem;
   color: ${({ theme }) => theme.colors.neutral.inverted};
+  height: 20px;
+  width: 70px;
+  word-break: break-all;
+  line-break: anywhere;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 export const StatusText = styled.p`
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
+  height: 20px;
   letter-spacing: 0.06em;
   color: ${({ theme }) => theme.colors.neutral.inverted};
 `;

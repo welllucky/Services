@@ -1,15 +1,15 @@
 "use client";
 
-import { NoContent, Header, IssueMobile, Loading } from "@/components";
+import { NoContent, Header, IssueDisplay, Loading } from "@/components";
 import { MainContainer } from "../pesquisa/styles";
 import { PageContainer } from "@/styles";
 import { useTheme } from "styled-components";
-import { issueMobileData } from "../home/data";
+import { IssueDisplayData } from "../home/data";
 
 const RequestsPage = () => {
   const theme = useTheme();
   const isLoading = false;
-  const listaChamados = issueMobileData;
+  const listaChamados = IssueDisplayData;
 
   return (
     <>
@@ -25,7 +25,7 @@ const RequestsPage = () => {
             {listaChamados?.length ? (
               listaChamados.map((issue) => {
                 return (
-                  <IssueMobile
+                  <IssueDisplay
                     color="#9EDC72"
                     $borderColor="#61A12F"
                     key={issue.id}
