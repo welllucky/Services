@@ -27,8 +27,7 @@ export const NavigationBar = ({
               name={option.name}
               path={option.path}
               alt={option.alt}
-              iconUnselect={option.iconUnselect}
-              iconSelect={option.iconSelect}
+              icon={option.icon}
               $isSelected={option.path === actualRoute}
             />
           );

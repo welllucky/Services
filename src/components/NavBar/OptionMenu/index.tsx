@@ -1,14 +1,11 @@
-import Image from "next/image";
 import { IconArea, TextMenu } from "../styles";
 import { OptionMenuProps } from "@/assets";
 import { CustomLink } from "@/components";
 
 const OptionMenu = ({
   name,
-  iconUnselect,
-  iconSelect,
+  icon,
   path,
-  alt,
   $isSelected,
   color,
   $highlightTextColor
@@ -19,15 +16,12 @@ const OptionMenu = ({
       href={path}>
       <IconArea
         $backgroundColor={color}
-        $isClicked={$isSelected}>
-        <Image
-          src={$isSelected ? iconSelect : iconUnselect}
-          alt={alt}
-        />
+        $isSelected={$isSelected}>
+        {icon}
       </IconArea>
       <TextMenu
         $highlightTextColor={$highlightTextColor}
-        $isClicked={$isSelected}>
+        $isSelected={$isSelected}>
         {name}
       </TextMenu>
     </CustomLink>

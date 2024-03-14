@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { OptionMenuStyleProps } from "@/assets";
+import Link from "next/link";
 
 export const ContainerMenu = styled.div<{ color?: string }>`
   position: absolute;
@@ -16,14 +17,15 @@ export const MenuList = styled.div<OptionMenuStyleProps>`
   padding: 1rem;
 `;
 
-export const OptionMenuStyle = styled.a<OptionMenuStyleProps>`
+export const OptionMenuStyle = styled(Link)<OptionMenuStyleProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  background-color: ${({ $isClicked }) =>
-    $isClicked === true ? "#7AC143" : "#F5F5F5"};
+  background-color: ${({ $isSelected }) =>
+    $isSelected === true ? "#7AC143" : "#F5F5F5"};
+  /* F8F5F5 */
 `;
 
 export const IconArea = styled.div<OptionMenuStyleProps>`
@@ -33,11 +35,15 @@ export const IconArea = styled.div<OptionMenuStyleProps>`
   border-radius: 16px;
   align-items: center;
   justify-content: center;
-  background-color: ${({ $isClicked, $backgroundColor }) =>
-    $isClicked ? "#7AC143" : $backgroundColor || "#F5F5F5"};
+  background-color: ${({ $isSelected, $backgroundColor }) =>
+    $isSelected ? "#7AC143" : $backgroundColor || "#F5F5F5"};
 
   &:active {
     background-color: #c1f599;
+  }
+
+  & > svg {
+    fill: ${({ $isSelected }) => ($isSelected ? "#F5F5F5" : "#352F2F")};
   }
   transition: 0.2s ease-in-out;
 `;
@@ -48,7 +54,7 @@ export const TextMenu = styled.p<OptionMenuStyleProps>`
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
-  color: ${({ $isClicked, $highlightTextColor }) =>
-    $isClicked ? $highlightTextColor || "#7AC143" : "#252728"};
+  color: ${({ $isSelected, $highlightTextColor }) =>
+    $isSelected ? $highlightTextColor || "#7AC143" : "#252728"};
   list-style: none;
 `;
