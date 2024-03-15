@@ -9,7 +9,8 @@ import { CookiesProvider } from "react-cookie";
 import { AppProvider } from "../stores/useAppContext";
 import StyledComponentsRegistry from "./registry";
 // skipcq: JS-0323
-const AppProviders = ({ children }: any & ReactNode) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function AppProviders({ children }: any & ReactNode) {
   return (
     <SWRConfig>
       <CookiesProvider
@@ -19,8 +20,9 @@ const AppProviders = ({ children }: any & ReactNode) => {
           secure: true,
           domain: process.env.BASE_URL,
           expires: new Date(Date.now() + 60 * 60 * 24 * 15),
-          partitioned: false
-        }}>
+          partitioned: false,
+        }}
+      >
         <AppProvider>
           <StyledComponentsRegistry>
             <ThemeProvider theme={theme}>
@@ -31,8 +33,8 @@ const AppProviders = ({ children }: any & ReactNode) => {
                 toastOptions={{
                   ariaProps: {
                     role: "status",
-                    "aria-live": "polite"
-                  }
+                    "aria-live": "polite",
+                  },
                 }}
               />
             </ThemeProvider>
@@ -41,6 +43,6 @@ const AppProviders = ({ children }: any & ReactNode) => {
       </CookiesProvider>
     </SWRConfig>
   );
-};
+}
 
 export { AppProviders };

@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
 export default function Template({
-  children
+  children,
 }: Readonly<{ children: ReactNode }>) {
   // const isClient = useIsClient();
   // const { isMobile } = useAppStore.use;
@@ -24,11 +24,10 @@ export default function Template({
   return (
     <FlexContainer
       $backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}
-      $full={true}>
+      $full
+    >
       {children}
-      {!["/abrir-chamado", "/anexar-midia", "confirmar-chamado"].some((page) =>
-        pathName.includes(page)
-      ) && (
+      {!["/abrir-chamado", "/anexar-midia", "confirmar-chamado"].some((page) => pathName.includes(page)) && (
         <NavigationBar
           color={isRequestsPage ? "#D8FFB9" : "#F8FCF6"}
           $highlightTextColor={isRequestsPage ? "#4D7D28" : "#7AC143"}

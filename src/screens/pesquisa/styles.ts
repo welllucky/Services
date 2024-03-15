@@ -20,8 +20,7 @@ export const MainContainer = styled.main<{ $hasContent?: boolean }>`
   overflow-y: scroll;
   overflow-x: visible;
   gap: 1rem;
-  justify-content: ${({ $hasContent }) =>
-    $hasContent ? "flex-start" : "center"};
+  justify-content: ${({ $hasContent }) => ($hasContent ? "flex-start" : "center")};
 `;
 
 export const SearchContainer = styled.div`

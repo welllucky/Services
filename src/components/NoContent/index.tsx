@@ -2,18 +2,18 @@
 
 import { NoContentProps } from "@/types";
 
-import { NoContentContainer, NoContentTitle } from "./styles";
 import Image from "next/image";
 import { useTheme } from "styled-components";
 import { EmptyBox } from "@/assets";
+import { NoContentContainer, NoContentTitle } from "./styles";
 
-export const NoContent = ({
+export function NoContent({
   title,
   icon,
   alt,
   color,
-  fontSize
-}: NoContentProps) => {
+  fontSize,
+}: NoContentProps) {
   const theme = useTheme();
   return (
     <NoContentContainer>
@@ -29,9 +29,10 @@ export const NoContent = ({
       )}
       <NoContentTitle
         color={color || theme.colors.neutral["55"]}
-        fontSize={fontSize}>
+        fontSize={fontSize}
+      >
         {title}
       </NoContentTitle>
     </NoContentContainer>
   );
-};
+}

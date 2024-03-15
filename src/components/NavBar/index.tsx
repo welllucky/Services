@@ -1,7 +1,7 @@
-import { ContainerMenu, MenuList } from "./styles";
-import OptionMenu from "./OptionMenu";
 import { OptionMenuProps } from "@/types";
 import { usePathname } from "next/navigation";
+import { ContainerMenu, MenuList } from "./styles";
+import OptionMenu from "./OptionMenu";
 
 interface NavigationBarProps {
   color?: string;
@@ -9,30 +9,28 @@ interface NavigationBarProps {
   options: OptionMenuProps[];
 }
 
-export const NavigationBar = ({
+export function NavigationBar({
   color,
   $highlightTextColor,
-  options
-}: NavigationBarProps) => {
+  options,
+}: NavigationBarProps) {
   const actualRoute = usePathname();
   return (
     <ContainerMenu color={color}>
       <MenuList>
-        {options.map((option) => {
-          return (
-            <OptionMenu
-              $highlightTextColor={$highlightTextColor}
-              color={color}
-              key={option.name}
-              name={option.name}
-              path={option.path}
-              alt={option.alt}
-              icon={option.icon}
-              $isSelected={option.path === actualRoute}
-            />
-          );
-        })}
+        {options.map((option) => (
+          <OptionMenu
+            $highlightTextColor={$highlightTextColor}
+            color={color}
+            key={option.name}
+            name={option.name}
+            path={option.path}
+            alt={option.alt}
+            icon={option.icon}
+            $isSelected={option.path === actualRoute}
+          />
+        ))}
       </MenuList>
     </ContainerMenu>
   );
-};
+}

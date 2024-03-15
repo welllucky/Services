@@ -3,7 +3,7 @@ import { Comentario } from "./components/Comentario";
 import { Reticencias } from "./components/Reticencias";
 import { IconeDeStatusContainer } from "./styles";
 
-export const IconeDeStatus = () => {
+export function IconeDeStatus() {
   return (
     <IconeDeStatusContainer>
       <CheckedVermelho />
@@ -11,4 +11,4 @@ export const IconeDeStatus = () => {
       <Reticencias />
     </IconeDeStatusContainer>
   );
-};
+}

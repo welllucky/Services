@@ -1,29 +1,28 @@
 "use client";
 
 import { CustomSelect, CustomTextArea, OutlinedInput } from "@/components";
-import { IssuePageContent } from "./styles";
 import { useFormContext } from "react-hook-form";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import {
   LS_KEY_1_TICKET_RECORD,
-  SS_KEY_DATA_WAS_RECOVERY
+  SS_KEY_DATA_WAS_RECOVERY,
 } from "@/utils/alias";
 import { IOpenTicketForm } from "@/app/(app)/(form)/template";
+import { IssuePageContent } from "./styles";
 
-const CreateTicketPage = () => {
+function CreateTicketPage() {
   const {
     register,
     formState: { errors, isValid, isValidating },
     watch,
     getValues,
-    setValue
+    setValue,
   } = useFormContext<IOpenTicketForm>();
 
   useEffect(() => {
     const data = localStorage.getItem(LS_KEY_1_TICKET_RECORD);
-    const isDataRecovered =
-      sessionStorage.getItem(SS_KEY_DATA_WAS_RECOVERY) === "true";
+    const isDataRecovered = sessionStorage.getItem(SS_KEY_DATA_WAS_RECOVERY) === "true";
     if (data) {
       const parsedData: IOpenTicketForm = JSON.parse(data);
       setValue("resumo", parsedData.resumo, { shouldValidate: true });
@@ -31,6 +30,7 @@ const CreateTicketPage = () => {
       setValue("data", parsedData.data, { shouldValidate: true });
       setValue("tipo", parsedData.tipo, { shouldValidate: true });
       setValue("prioridade", parsedData.prioridade, { shouldValidate: true });
+      // eslint-disable-next-line no-unused-expressions
       !isDataRecovered && toast.success("Dados recuperados com sucesso!");
       sessionStorage.setItem(SS_KEY_DATA_WAS_RECOVERY, "true");
     }
@@ -40,7 +40,7 @@ const CreateTicketPage = () => {
     if (isValid && !isValidating) {
       localStorage.setItem(
         LS_KEY_1_TICKET_RECORD,
-        JSON.stringify({ ...getValues() })
+        JSON.stringify({ ...getValues() }),
       );
     }
   }, [isValid, isValidating]);
@@ -58,7 +58,7 @@ const CreateTicketPage = () => {
         type="text"
         placeholder="Do que se trata o chamado?"
         $status={
-          !!errors?.resumo
+          errors?.resumo
             ? "invalid"
             : !errors?.resumo && resumeWatch.length
               ? "valid"
@@ -71,17 +71,17 @@ const CreateTicketPage = () => {
           required: "É necessário adicionar o resumo do chamado",
           minLength: {
             value: 5,
-            message: "O resumo deve ter no mínimo 5 caracteres"
+            message: "O resumo deve ter no mínimo 5 caracteres",
           },
           maxLength: {
             value: 40,
-            message: "O resumo deve ter no máximo 40 caracteres"
+            message: "O resumo deve ter no máximo 40 caracteres",
           },
           pattern: {
             value:
               /^[a-zA-Z0-9áéíóúâêîôûãõàèìòùäëïöüçÁÉÍÓÚÂÊÎÔÛÃÕÀÈÌÒÙÄËÏÖÜÇ\s]*$/,
-            message: "O resumo deve conter apenas letras e números"
-          }
+            message: "O resumo deve conter apenas letras e números",
+          },
         }}
       />
       <CustomSelect
@@ -93,16 +93,15 @@ const CreateTicketPage = () => {
         options={[
           { key: "1", value: "1", text: "1" },
           { key: "2", value: "2", text: "2" },
-          { key: "3", value: "3", text: "3" }
+          { key: "3", value: "3", text: "3" },
         ]}
         register={register}
         registerOptions={{
           required: "É necessário escolher o tipo do chamado",
-          validate: (value) =>
-            value !== "" || "É necessário escolher o tipo do chamado"
+          validate: (value) => value !== "" || "É necessário escolher o tipo do chamado",
         }}
         $status={
-          !!errors?.tipo
+          errors?.tipo
             ? "invalid"
             : !errors?.tipo && typeWatch.length
               ? "valid"
@@ -114,7 +113,7 @@ const CreateTicketPage = () => {
         placeholder="Nos conte mais detalhes sobre o ocorrido..."
         labelText="Descrição"
         $status={
-          !!errors?.descricao
+          errors?.descricao
             ? "invalid"
             : !errors?.descricao && descriptionWatch.length
               ? "valid"
@@ -129,12 +128,12 @@ const CreateTicketPage = () => {
           required: "É necessário escrever mais detalhes sobre o seu chamado",
           minLength: {
             value: 20,
-            message: "O resumo deve ter no mínimo 20 caracteres"
+            message: "O resumo deve ter no mínimo 20 caracteres",
           },
           maxLength: {
             value: 460,
-            message: "O resumo deve ter no máximo 280 caracteres"
-          }
+            message: "O resumo deve ter no máximo 280 caracteres",
+          },
         }}
       />
       <OutlinedInput
@@ -142,7 +141,7 @@ const CreateTicketPage = () => {
         type="date"
         placeholder="dd/mm/aaaa"
         $status={
-          !!errors?.data
+          errors?.data
             ? "invalid"
             : !errors?.data && dataWatch.length
               ? "valid"
@@ -157,7 +156,7 @@ const CreateTicketPage = () => {
             const date = new Date(value);
             const today = new Date();
             return date < today || "A data não pode ser no futuro";
-          }
+          },
         }}
       />
       <CustomSelect
@@ -168,16 +167,15 @@ const CreateTicketPage = () => {
         options={[
           { key: "baixa", value: "baixa", text: "pouco urgente" },
           { key: "media", value: "media", text: "mais ou menos" },
-          { key: "alta", value: "alta", text: "muito urgente" }
+          { key: "alta", value: "alta", text: "muito urgente" },
         ]}
         register={register}
         registerOptions={{
           required: "É necessário escolher a prioridade do chamado",
-          validate: (value) =>
-            value !== "" || "É necessário escolher a prioridade do chamado"
+          validate: (value) => value !== "" || "É necessário escolher a prioridade do chamado",
         }}
         $status={
-          !!errors?.prioridade
+          errors?.prioridade
             ? "invalid"
             : !errors?.prioridade && priorityWatch.length
               ? "valid"
@@ -186,6 +184,6 @@ const CreateTicketPage = () => {
       />
     </IssuePageContent>
   );
-};
+}
 
 export { CreateTicketPage };

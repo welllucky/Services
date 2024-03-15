@@ -1,15 +1,15 @@
 import { ReactElement, useCallback, useState } from "react";
-import { CustomModal, ModalProps } from "..";
 import { Check, Question } from "@phosphor-icons/react";
-import {
-  ConfirmModalWrapper,
-  ConfirmModalText,
-  ConfirmModalButtons
-} from "./styles";
 import { useTheme } from "styled-components";
 import { CustomButton } from "@/components";
 import { useModalStore } from "@/utils";
 import { buildTestIds } from "@/utils/functions";
+import {
+  ConfirmModalWrapper,
+  ConfirmModalText,
+  ConfirmModalButtons,
+} from "./styles";
+import { CustomModal, ModalProps } from "..";
 
 interface ConfirmModalProps extends ModalProps {
   successIcon?: ReactElement;
@@ -21,7 +21,7 @@ interface ConfirmModalProps extends ModalProps {
   confirmCallBack?: () => void;
 }
 
-const ConfirmModal = ({
+function ConfirmModal({
   successIcon,
   successText,
   confirmationIcon,
@@ -30,11 +30,11 @@ const ConfirmModal = ({
   mode = "confirm",
   confirmCallBack,
   ...props
-}: ConfirmModalProps) => {
+}: ConfirmModalProps) {
   const theme = useTheme();
   const shouldCloseModal = useModalStore((state) => state.close);
   const [changeToVitrine, setChangeToVitrine] = useState<boolean>(
-    mode === "vitrine"
+    mode === "vitrine",
   );
 
   const modalCallBack = useCallback(() => {
@@ -52,25 +52,27 @@ const ConfirmModal = ({
       shouldCloseOnEsc
       backgroundColor="transparent"
       {...props}
-      testId="modal-success">
+      testId="modal-success"
+    >
       <ConfirmModalWrapper
         $wasConfirmed={changeToVitrine}
-        $shouldHavePaddingBottom={changeToVitrine}>
+        $shouldHavePaddingBottom={changeToVitrine}
+      >
         {changeToVitrine
           ? successIcon ?? (
-              <Check
-                color={theme.colors.neutral.default}
-                size={"6rem"}
-                alt="sinal de confirmação"
-              />
-            )
+          <Check
+            color={theme.colors.neutral.default}
+            size="6rem"
+            alt="sinal de confirmação"
+          />
+          )
           : confirmationIcon ?? (
-              <Question
-                color={theme.colors.neutral.default}
-                size={"6rem"}
-                alt="sinal de confirmação"
-              />
-            )}
+          <Question
+            color={theme.colors.neutral.default}
+            size="6rem"
+            alt="sinal de confirmação"
+          />
+          )}
         <ConfirmModalText {...buildTestIds("confirm-modal-text")}>
           {changeToVitrine ? successText : confirmationText}
         </ConfirmModalText>
@@ -103,6 +105,6 @@ const ConfirmModal = ({
       </ConfirmModalWrapper>
     </CustomModal>
   );
-};
+}
 
 export { ConfirmModal };

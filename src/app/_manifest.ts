@@ -17,295 +17,295 @@ export default function manifest(): MetadataRoute.Manifest {
     icons: [
       {
         src: "../../public/windows11/SmallTile.scale-100.png",
-        sizes: "71x71"
+        sizes: "71x71",
       },
       {
         src: "../../public/windows11/SmallTile.scale-125.png",
-        sizes: "89x89"
+        sizes: "89x89",
       },
       {
         src: "../../public/windows11/SmallTile.scale-150.png",
-        sizes: "107x107"
+        sizes: "107x107",
       },
       {
         src: "../../public/windows11/SmallTile.scale-200.png",
-        sizes: "142x142"
+        sizes: "142x142",
       },
       {
         src: "../../public/windows11/SmallTile.scale-400.png",
-        sizes: "284x284"
+        sizes: "284x284",
       },
       {
         src: "../../public/windows11/Square150x150Logo.scale-100.png",
-        sizes: "150x150"
+        sizes: "150x150",
       },
       {
         src: "../../public/windows11/Square150x150Logo.scale-125.png",
-        sizes: "188x188"
+        sizes: "188x188",
       },
       {
         src: "../../public/windows11/Square150x150Logo.scale-150.png",
-        sizes: "225x225"
+        sizes: "225x225",
       },
       {
         src: "../../public/windows11/Square150x150Logo.scale-200.png",
-        sizes: "300x300"
+        sizes: "300x300",
       },
       {
         src: "../../public/windows11/Square150x150Logo.scale-400.png",
-        sizes: "600x600"
+        sizes: "600x600",
       },
       {
         src: "../../public/windows11/Wide310x150Logo.scale-100.png",
-        sizes: "310x150"
+        sizes: "310x150",
       },
       {
         src: "../../public/windows11/Wide310x150Logo.scale-125.png",
-        sizes: "388x188"
+        sizes: "388x188",
       },
       {
         src: "../../public/windows11/Wide310x150Logo.scale-150.png",
-        sizes: "465x225"
+        sizes: "465x225",
       },
       {
         src: "../../public/windows11/Wide310x150Logo.scale-200.png",
-        sizes: "620x300"
+        sizes: "620x300",
       },
       {
         src: "../../public/windows11/Wide310x150Logo.scale-400.png",
-        sizes: "1240x600"
+        sizes: "1240x600",
       },
       {
         src: "../../public/windows11/LargeTile.scale-100.png",
-        sizes: "310x310"
+        sizes: "310x310",
       },
       {
         src: "../../public/windows11/LargeTile.scale-125.png",
-        sizes: "388x388"
+        sizes: "388x388",
       },
       {
         src: "../../public/windows11/LargeTile.scale-150.png",
-        sizes: "465x465"
+        sizes: "465x465",
       },
       {
         src: "../../public/windows11/LargeTile.scale-200.png",
-        sizes: "620x620"
+        sizes: "620x620",
       },
       {
         src: "../../public/windows11/LargeTile.scale-400.png",
-        sizes: "1240x1240"
+        sizes: "1240x1240",
       },
       {
         src: "../../public/windows11/Square44x44Logo.scale-100.png",
-        sizes: "44x44"
+        sizes: "44x44",
       },
       {
         src: "../../public/windows11/Square44x44Logo.scale-125.png",
-        sizes: "55x55"
+        sizes: "55x55",
       },
       {
         src: "../../public/windows11/Square44x44Logo.scale-150.png",
-        sizes: "66x66"
+        sizes: "66x66",
       },
       {
         src: "../../public/windows11/Square44x44Logo.scale-200.png",
-        sizes: "88x88"
+        sizes: "88x88",
       },
       {
         src: "../../public/windows11/Square44x44Logo.scale-400.png",
-        sizes: "176x176"
+        sizes: "176x176",
       },
       {
         src: "../../public/windows11/StoreLogo.scale-100.png",
-        sizes: "50x50"
+        sizes: "50x50",
       },
       {
         src: "../../public/windows11/StoreLogo.scale-125.png",
-        sizes: "63x63"
+        sizes: "63x63",
       },
       {
         src: "../../public/windows11/StoreLogo.scale-150.png",
-        sizes: "75x75"
+        sizes: "75x75",
       },
       {
         src: "../../public/windows11/StoreLogo.scale-200.png",
-        sizes: "100x100"
+        sizes: "100x100",
       },
       {
         src: "../../public/windows11/StoreLogo.scale-400.png",
-        sizes: "200x200"
+        sizes: "200x200",
       },
       {
         src: "../../public/windows11/SplashScreen.scale-100.png",
-        sizes: "620x300"
+        sizes: "620x300",
       },
       {
         src: "../../public/windows11/SplashScreen.scale-125.png",
-        sizes: "775x375"
+        sizes: "775x375",
       },
       {
         src: "../../public/windows11/SplashScreen.scale-150.png",
-        sizes: "930x450"
+        sizes: "930x450",
       },
       {
         src: "../../public/windows11/SplashScreen.scale-200.png",
-        sizes: "1240x600"
+        sizes: "1240x600",
       },
       {
         src: "../../public/windows11/SplashScreen.scale-400.png",
-        sizes: "2480x1200"
+        sizes: "2480x1200",
       },
       {
         src: "../../public/windows11/Square44x44Logo.targetsize-16.png",
-        sizes: "16x16"
+        sizes: "16x16",
       },
       {
         src: "../../public/windows11/Square44x44Logo.targetsize-20.png",
-        sizes: "20x20"
+        sizes: "20x20",
       },
       {
         src: "../../public/windows11/Square44x44Logo.targetsize-24.png",
-        sizes: "24x24"
+        sizes: "24x24",
       },
       {
         src: "../../public/windows11/Square44x44Logo.targetsize-30.png",
-        sizes: "30x30"
+        sizes: "30x30",
       },
       {
         src: "../../public/windows11/Square44x44Logo.targetsize-32.png",
-        sizes: "32x32"
+        sizes: "32x32",
       },
       {
         src: "../../public/windows11/Square44x44Logo.targetsize-36.png",
-        sizes: "36x36"
+        sizes: "36x36",
       },
       {
         src: "../../public/windows11/Square44x44Logo.targetsize-40.png",
-        sizes: "40x40"
+        sizes: "40x40",
       },
       {
         src: "../../public/windows11/Square44x44Logo.targetsize-44.png",
-        sizes: "44x44"
+        sizes: "44x44",
       },
       {
         src: "../../public/windows11/Square44x44Logo.targetsize-48.png",
-        sizes: "48x48"
+        sizes: "48x48",
       },
       {
         src: "../../public/ios/16.png",
-        sizes: "16x16"
+        sizes: "16x16",
       },
       {
         src: "../../public/ios/20.png",
-        sizes: "20x20"
+        sizes: "20x20",
       },
       {
         src: "../../public/ios/29.png",
-        sizes: "29x29"
+        sizes: "29x29",
       },
       {
         src: "../../public/ios/32.png",
-        sizes: "32x32"
+        sizes: "32x32",
       },
       {
         src: "../../public/ios/40.png",
-        sizes: "40x40"
+        sizes: "40x40",
       },
       {
         src: "../../public/ios/50.png",
-        sizes: "50x50"
+        sizes: "50x50",
       },
       {
         src: "../../public/ios/57.png",
-        sizes: "57x57"
+        sizes: "57x57",
       },
       {
         src: "../../public/ios/58.png",
-        sizes: "58x58"
+        sizes: "58x58",
       },
       {
         src: "../../public/ios/60.png",
-        sizes: "60x60"
+        sizes: "60x60",
       },
       {
         src: "../../public/ios/64.png",
-        sizes: "64x64"
+        sizes: "64x64",
       },
       {
         src: "../../public/ios/72.png",
-        sizes: "72x72"
+        sizes: "72x72",
       },
       {
         src: "../../public/ios/76.png",
-        sizes: "76x76"
+        sizes: "76x76",
       },
       {
         src: "../../public/ios/80.png",
-        sizes: "80x80"
+        sizes: "80x80",
       },
       {
         src: "../../public/ios/87.png",
-        sizes: "87x87"
+        sizes: "87x87",
       },
       {
         src: "../../public/ios/100.png",
-        sizes: "100x100"
+        sizes: "100x100",
       },
       {
         src: "../../public/ios/114.png",
-        sizes: "114x114"
+        sizes: "114x114",
       },
       {
         src: "../../public/ios/120.png",
-        sizes: "120x120"
+        sizes: "120x120",
       },
       {
         src: "../../public/ios/128.png",
-        sizes: "128x128"
+        sizes: "128x128",
       },
       {
         src: "../../public/ios/144.png",
         sizes: "144x144",
-        purpose: "any"
+        purpose: "any",
       },
       {
         src: "../../public/ios/152.png",
-        sizes: "152x152"
+        sizes: "152x152",
       },
       {
         src: "../../public/ios/167.png",
-        sizes: "167x167"
+        sizes: "167x167",
       },
       {
         src: "../../public/ios/180.png",
-        sizes: "180x180"
+        sizes: "180x180",
       },
       {
         src: "../../public/ios/192.png",
-        sizes: "192x192"
+        sizes: "192x192",
       },
       {
         src: "../../public/ios/256.png",
-        sizes: "256x256"
+        sizes: "256x256",
       },
       {
         src: "../../public/ios/512.png",
-        sizes: "512x512"
+        sizes: "512x512",
       },
       {
         src: "../../public/ios/1024.png",
-        sizes: "1024x1024"
+        sizes: "1024x1024",
       },
       {
-        src: "../../public/favicon-16x16.png"
+        src: "../../public/favicon-16x16.png",
       },
       {
-        src: "../../public/favicon-32x32.png"
+        src: "../../public/favicon-32x32.png",
       },
       {
         src: "../../public/favicon.ico",
-        type: "image/x-icon"
-      }
+        type: "image/x-icon",
+      },
     ],
     id: "l3-services",
     display_override: ["window-controls-overlay", "standalone", "fullscreen"],
@@ -316,18 +316,18 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         protocol: "web+chamado",
         title: "Chamado",
-        url: "/chamado/%s"
+        url: "/chamado/%s",
       },
       {
         protocol: "web+solicitacao",
         title: "Solicitação",
-        url: "/solicitação/%s"
+        url: "/solicitação/%s",
       },
       {
         protocol: "web+abrirChamado",
         title: "Abrir Chamado",
-        url: "/abrir-chamado?resumo=%s?descricao=%s?categoria=%s?prioridade=%s?data=%s"
-      }
-    ]
+        url: "/abrir-chamado?resumo=%s?descricao=%s?categoria=%s?prioridade=%s?data=%s",
+      },
+    ],
   };
 }

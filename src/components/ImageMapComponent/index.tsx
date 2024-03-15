@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   ButtonAction,
   ButtonActionContainer,
@@ -7,7 +9,7 @@ import {
   ImageMapContainer,
   ImageTypeFileContent,
   Title,
-  TypeFile
+  TypeFile,
 } from "./styles";
 // import iconFileImage from "./svg/background.svg";
 import iconRestart from "./svg/Restart.svg";
@@ -15,13 +17,12 @@ import iconTrash from "./svg/Trash.svg";
 import close from "./svg/Close.svg";
 import iconTypeImage from "./svg/image.png";
 import iconTypeVideo from "./svg/video.png";
-import Image from "next/image";
 
 interface ImageMapComponentProps {
   img: File;
 }
 
-export const ImageMapComponent = ({ img }: ImageMapComponentProps) => {
+export function ImageMapComponent({ img }: ImageMapComponentProps) {
   const [openImage, setOpenImage] = useState<boolean>(false);
 
   useEffect(() => {
@@ -70,10 +71,11 @@ export const ImageMapComponent = ({ img }: ImageMapComponentProps) => {
           radiusRightBottom="10px"
           borderTop="#000"
           alignItems="flex-end"
-          onClick={() => img.slice()}>
+          onClick={() => img.slice()}
+        >
           <Image src={iconTrash} alt="Botão para Excluir" />
         </ButtonAction>
       </ButtonActionContainer>
     </ImageMapContainer>
   );
-};
+}

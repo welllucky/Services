@@ -1,5 +1,6 @@
 "use client";
 
+import { TextTheme } from "@/assets";
 import {
   NoMobileContainer,
   NoMobileContent,
@@ -8,13 +9,12 @@ import {
   NoMobileText,
   NoMobileTitle,
   QRCodeImage,
-  QRCodeText
+  QRCodeText,
 } from "./styles";
 import qrCode from "../../../public/qr-code.png";
 import Logo from "../../../public/android/android-launchericon-512-512.png";
-import { TextTheme } from "@/assets";
 
-const NoMobileDevicePage = ({ theme }: { theme: TextTheme }) => {
+function NoMobileDevicePage({ theme }: { theme: TextTheme }) {
   const { title, text } = theme;
   return (
     <NoMobileContainer>
@@ -43,6 +43,6 @@ const NoMobileDevicePage = ({ theme }: { theme: TextTheme }) => {
       </NoMobileQRCodeSection>
     </NoMobileContainer>
   );
-};
+}
 
 export { NoMobileDevicePage };

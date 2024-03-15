@@ -1,15 +1,17 @@
 "use client";
 
 import { AddNewIssueButton } from "@/components/common/Buttons";
-import { IssueDisplay, Loading, Header, NoContent } from "@/components/";
-import { ButtonWrapper } from "./styles";
+import {
+  IssueDisplay, Loading, Header, NoContent,
+} from "@/components/";
 import { PageContainer } from "@/styles";
-import { MainContainer } from "../pesquisa/styles";
 import { useTheme } from "styled-components";
 import { chamado, dataFormatter } from "@/utils";
 import { useRouter } from "next/navigation";
+import { MainContainer } from "../pesquisa/styles";
+import { ButtonWrapper } from "./styles";
 
-const Homepage = () => {
+function Homepage() {
   const theme = useTheme();
   const { push } = useRouter();
   const { data, isLoading } = chamado.getChamados();
@@ -17,7 +19,7 @@ const Homepage = () => {
   return (
     <>
       <Header
-        userName={"Colaborador"}
+        userName="Colaborador"
         pageTittle="Meus chamados"
         issueQuantify={issuesQuantity}
       />
@@ -28,18 +30,16 @@ const Homepage = () => {
           <>
             <MainContainer $hasContent={issuesQuantity !== 0}>
               {data?.length ? (
-                data.map((issue) => {
-                  return (
-                    <IssueDisplay
-                      key={issue?.id}
-                      id={issue?.id}
-                      nome={issue?.description}
-                      date={dataFormatter(issue?.date)}
-                      $status={"Registrado"}
-                      isUpdated={false}
-                    />
-                  );
-                })
+                data.map((issue) => (
+                  <IssueDisplay
+                    key={issue?.id}
+                    id={issue?.id}
+                    nome={issue?.description}
+                    date={dataFormatter(issue?.date)}
+                    $status="Registrado"
+                    isUpdated={false}
+                  />
+                ))
               ) : (
                 <NoContent
                   alt="caixa vazia"
@@ -61,6 +61,6 @@ const Homepage = () => {
       </PageContainer>
     </>
   );
-};
+}
 
 export { Homepage };

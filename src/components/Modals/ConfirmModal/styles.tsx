@@ -18,9 +18,8 @@ export const ConfirmModalWrapper = styled.div<{
   animation-name: modalConfirmTransition;
   animation-duration: 2s;
 
-  ${({ $wasConfirmed }) =>
-    $wasConfirmed &&
-    css`
+  ${({ $wasConfirmed }) => $wasConfirmed
+    && css`
       @keyframes modalConfirmTransition {
         from {
           background-color: ${({ theme }) => theme.colors.primary["25"]};
@@ -31,16 +30,15 @@ export const ConfirmModalWrapper = styled.div<{
       }
     `}
 
-  ${({ $shouldHavePaddingBottom }) =>
-    $shouldHavePaddingBottom
-      ? css`
+  ${({ $shouldHavePaddingBottom }) => ($shouldHavePaddingBottom
+    ? css`
           padding-bottom: 3rem;
         `
-      : css`
+    : css`
           p {
             margin-bottom: 0.6rem;
           }
-        `};
+        `)};
 `;
 
 export const ConfirmModalText = styled.p`

@@ -9,7 +9,7 @@ const darkTheme = {
     laptop: "1024px",
     laptopL: "1440px",
     desktopS: "1980px",
-    desktop: "2560px"
+    desktop: "2560px",
   },
 
   colors: {
@@ -26,7 +26,7 @@ const darkTheme = {
 
       default: "#040405",
       inverted: "#F6F7F7",
-      opacity: "rgba(0,0,0, 0.8)"
+      opacity: "rgba(0,0,0, 0.8)",
     },
     primary: {
       5: "#74B740",
@@ -40,7 +40,7 @@ const darkTheme = {
       85: "#121D0A",
       95: "#060A03",
 
-      default: "#7AC143"
+      default: "#7AC143",
     },
     secondary: {
       5: "#B7CD2D",
@@ -54,9 +54,9 @@ const darkTheme = {
       85: "#1D2007",
       95: "#0A0B02",
 
-      default: "#C1D82F"
-    }
-  }
+      default: "#C1D82F",
+    },
+  },
 };
 
 export { darkTheme };

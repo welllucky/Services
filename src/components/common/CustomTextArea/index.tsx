@@ -9,18 +9,19 @@ interface TextAreaProps {
   placeholder: string;
   value?: string;
   isRequired?: boolean;
+  // eslint-disable-next-line no-unused-vars
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export const CustomTextArea = ({
+export function CustomTextArea({
   labelText,
   placeholder,
   width = "100%",
   height = "240px",
   value,
   onChange,
-  isRequired = false
-}: TextAreaProps) => {
+  isRequired = false,
+}: TextAreaProps) {
   return (
     <CustomFieldset width={width as string} labelText={labelText as string}>
       <TextArea
@@ -33,4 +34,4 @@ export const CustomTextArea = ({
       />
     </CustomFieldset>
   );
-};
+}

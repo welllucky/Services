@@ -1,4 +1,3 @@
-import { CustomFieldset } from "@/components/Fieldset";
 import { Column, Row } from "@/styles";
 import styled from "styled-components";
 

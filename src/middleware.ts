@@ -3,7 +3,7 @@ import {
   CS_KEY_USER_DEVICE_TYPE,
   CS_KEY_USER_RELIABLE_AGENT,
   HD_KEY_USER_DEVICE_TYPE,
-  HD_KEY_USER_RELIABLE_AGENT
+  HD_KEY_USER_RELIABLE_AGENT,
 } from "./utils";
 
 export default function middleware(request: NextRequest) {
@@ -14,10 +14,10 @@ export default function middleware(request: NextRequest) {
   const clientDevice = device.type ?? "desktop";
 
   if (
-    !request.cookies.get(CS_KEY_USER_DEVICE_TYPE) ||
-    clientDevice !== "mobile" ||
-    (clientDevice === "mobile" &&
-      request.cookies.get(CS_KEY_USER_DEVICE_TYPE)?.value !== "mobile")
+    !request.cookies.get(CS_KEY_USER_DEVICE_TYPE)
+    || clientDevice !== "mobile"
+    || (clientDevice === "mobile"
+      && request.cookies.get(CS_KEY_USER_DEVICE_TYPE)?.value !== "mobile")
   ) {
     response.cookies.set(CS_KEY_USER_DEVICE_TYPE, clientDevice);
   }
@@ -37,8 +37,8 @@ export default function middleware(request: NextRequest) {
   }
 
   if (
-    (clientDevice !== "mobile" || isBot) &&
-    !url.pathname.startsWith("/noMobileDevice")
+    (clientDevice !== "mobile" || isBot)
+    && !url.pathname.startsWith("/noMobileDevice")
   ) {
     return NextResponse.redirect(new URL("/noMobileDevice", url));
   }
@@ -52,8 +52,8 @@ export const config = {
       source: "/((?!api|_next/static|_next/image|favicon.ico).*)",
       missing: [
         { type: "header", key: "next-router-prefetch" },
-        { type: "header", key: "purpose", value: "prefetch" }
-      ]
-    }
-  ]
+        { type: "header", key: "purpose", value: "prefetch" },
+      ],
+    },
+  ],
 };

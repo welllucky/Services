@@ -1,14 +1,15 @@
 "use client";
 
+import { StaticImageData } from "next/image";
+import { InputComponentsProps } from "@/assets";
+import { ChangeEvent } from "react";
 import {
   InputContainer,
   InputComponent,
   ContentContainer,
-  Label
+  Label,
 } from "./styles";
 import { ErrorText, Icon, WarningText } from "../..";
-import { StaticImageData } from "next/image";
-import { InputComponentsProps } from "@/assets";
 
 export interface InputStylesProps {
   $backgroundColor?: string;
@@ -32,7 +33,8 @@ export interface ActionButton {
 }
 
 interface InputProps extends InputComponentsProps {
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  // eslint-disable-next-line no-unused-vars
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   trailingButton?: ActionButton;
   leadingButton?: ActionButton;
   type?:
@@ -47,7 +49,7 @@ interface InputProps extends InputComponentsProps {
   mode?: "filled" | "outlined";
 }
 
-const CustomInput = ({
+function CustomInput({
   id,
   type = "text",
   placeholder = "Digite aqui",
@@ -65,8 +67,8 @@ const CustomInput = ({
   height,
   register,
   registerOptions = {},
-  isRequired = false
-}: InputProps) => {
+  isRequired = false,
+}: InputProps) {
   return (
     <InputContainer width={width}>
       {labelText && <Label mode={mode}>{labelText}</Label>}
@@ -82,7 +84,6 @@ const CustomInput = ({
             onClick={leadingButton?.onClick}
             size={leadingButton?.size}
             $hasPadding
-            alternate={leadingButton?.secondIcon}
           />
         )}
 
@@ -97,7 +98,7 @@ const CustomInput = ({
             onChange: (e) => {
               if (onChange) onChange(e);
               if (registerOptions.onChange) registerOptions.onChange(e);
-            }
+            },
           })}
           placeholder={placeholder}
           type={type}
@@ -117,19 +118,20 @@ const CustomInput = ({
       {$status === "warning" && <WarningText>{warnText}</WarningText>}
     </InputContainer>
   );
-};
+}
 
-const OutlinedInput = (props: InputProps) => {
+function OutlinedInput(props: InputProps) {
+  const { height, labelText, type, placeholder } = props;
   return (
     <CustomInput
       {...props}
       mode="outlined"
-      height={props.height || "56px"}
-      labelText={props.labelText || "Label"}
-      type={props.type || "text"}
-      placeholder={props.placeholder || "Placeholder"}
+      height={height || "56px"}
+      labelText={labelText || "Label"}
+      type={type || "text"}
+      placeholder={placeholder || "Placeholder"}
     />
   );
-};
+}
 
 export { CustomInput, OutlinedInput };

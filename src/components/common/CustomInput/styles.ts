@@ -1,6 +1,6 @@
 import { css, styled } from "styled-components";
-import { InputStylesProps } from ".";
 import { Row } from "@/styles";
+import { InputStylesProps } from ".";
 
 interface ContentContainerProps {
   height?: string;
@@ -22,33 +22,30 @@ export const ContentContainer = styled(Row)<ContentContainerProps>`
   height: ${({ height }) => height || "100%"};
   background-color: ${({ backgroundColor }) => backgroundColor};
 
-  ${({ mode }) =>
-    mode === "filled" &&
-    css`
+  ${({ mode }) => mode === "filled"
+    && css`
       border-radius: 4px 4px 0px 0px;
       margin: 0.5rem 0rem 0.1rem 0rem;
     `}
 
-  ${({ mode, $status }) =>
-    mode === "filled" && $status === "invalid"
-      ? css`
+  ${({ mode, $status }) => (mode === "filled" && $status === "invalid"
+    ? css`
           background-color: #fbdde1;
           border-bottom: 0.2rem red solid;
         `
-      : mode === "filled" && $status === "valid"
-        ? css`
+    : mode === "filled" && $status === "valid"
+      ? css`
             background-color: #ebf6e3;
             border-bottom: 0.2rem #7ac143 solid;
           `
-        : mode === "filled"
-          ? css`
+      : mode === "filled"
+        ? css`
               background-color: #e5e6e6;
             `
-          : css``};
+        : css``)};
 
-  ${({ mode }) =>
-    mode === "outlined" &&
-    css`
+  ${({ mode }) => mode === "outlined"
+    && css`
       background-color: transparent;
       margin: 0.5rem 0rem 0.1rem 0rem;
       border-radius: 4px;
@@ -56,20 +53,19 @@ export const ContentContainer = styled(Row)<ContentContainerProps>`
       color: #1c1b1f;
     `}
 
-  ${({ mode, $status }) =>
-    mode === "outlined" && $status === "invalid"
-      ? css`
+  ${({ mode, $status }) => (mode === "outlined" && $status === "invalid"
+    ? css`
           border: 1px solid red;
         `
-      : mode === "outlined" && $status === "valid"
-        ? css`
+    : mode === "outlined" && $status === "valid"
+      ? css`
             border: 1px solid #7ac143;
           `
-        : mode === "outlined"
-          ? css`
+      : mode === "outlined"
+        ? css`
               border: 1px solid #79747e;
             `
-          : css``};
+        : css``)};
 `;
 
 export const InputComponent = styled.input`
@@ -84,9 +80,8 @@ export const InputComponent = styled.input`
   outline: none;
   padding: 1rem;
   background-color: transparent;
-  ${({ type }) =>
-    type === "date" &&
-    css`
+  ${({ type }) => type === "date"
+    && css`
       padding-top: 1.2rem;
     `};
 `;
@@ -96,9 +91,8 @@ export const Label = styled.label<{ mode: "filled" | "outlined" }>`
   font-weight: 400;
   color: #49454f;
 
-  ${({ mode }) =>
-    mode === "outlined" &&
-    css`
+  ${({ mode }) => mode === "outlined"
+    && css`
       margin-left: 0.4rem;
       background-color: #f5f5f5;
       padding: 0 0.4rem;

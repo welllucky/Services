@@ -1,8 +1,8 @@
 import { ChangeEventHandler } from "react";
-import { SelectComponent, CustomOption, SelectContainer } from "./styles";
 import { CustomFieldset } from "@/components/Fieldset";
 import { InputComponentsProps } from "@/assets";
 import { ErrorText, WarningText } from "@/components";
+import { SelectComponent, CustomOption, SelectContainer } from "./styles";
 
 interface OptionProps {
   key: string;
@@ -21,7 +21,7 @@ interface SelectProps extends InputComponentsProps {
   value?: string;
 }
 
-export const CustomSelect = ({
+export function CustomSelect({
   id,
   labelText,
   placeholder = "selecione uma opção",
@@ -36,8 +36,7 @@ export const CustomSelect = ({
   $status = "none",
   errorText,
   warnText,
-  ...props
-}: SelectProps) => {
+}: SelectProps) {
   return (
     <SelectContainer $status={$status}>
       <CustomFieldset
@@ -55,7 +54,7 @@ export const CustomSelect = ({
             onChange: (e) => {
               if (onChange) onChange(e);
               if (registerOptions?.onChange) registerOptions.onChange(e);
-            }
+            },
           })}
           multiple={multiple}>
           <CustomOption
@@ -78,4 +77,4 @@ export const CustomSelect = ({
       </CustomFieldset>
     </SelectContainer>
   );
-};
+}

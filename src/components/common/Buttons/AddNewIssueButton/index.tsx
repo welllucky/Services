@@ -1,7 +1,7 @@
-import { ButtonNewCalled } from "./styles";
 import { Plus } from "@phosphor-icons/react";
 
 import { useDebounce } from "@uidotdev/usehooks";
+import { ButtonNewCalled } from "./styles";
 
 interface AddNewIssueButtonStyleProps {
   iconColor?: string;
@@ -13,26 +13,27 @@ interface AddNewIssueButtonStyleProps {
 
 export interface AddNewIssueButtonProps {
   size?: number;
-  icon?: string;
+  // icon?: string;
   styles?: AddNewIssueButtonStyleProps;
   onClick: () => void;
 }
 
-export const AddNewIssueButton = ({
+export function AddNewIssueButton({
   size,
   styles,
-  onClick
-}: AddNewIssueButtonProps) => {
+  onClick,
+}: AddNewIssueButtonProps) {
   const debouncedClick = useDebounce(() => onClick, 400);
   return (
     <ButtonNewCalled
       styles={styles}
       size={size}
-      onClick={debouncedClick}>
+      onClick={debouncedClick}
+    >
       <Plus
         size={26}
         color="#7AC143"
       />
     </ButtonNewCalled>
   );
-};
+}

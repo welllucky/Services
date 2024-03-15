@@ -58,9 +58,8 @@ export const IssueContent = styled.div<{ $hasUpdate?: boolean }>`
   gap: 0.8rem;
   justify-content: space-between;
 
-  ${({ $hasUpdate }) =>
-    $hasUpdate &&
-    css`
+  ${({ $hasUpdate }) => $hasUpdate
+    && css`
       padding-top: 8px;
     `}
 `;

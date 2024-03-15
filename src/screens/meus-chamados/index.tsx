@@ -5,22 +5,22 @@ import {
   IssueDisplay,
   Loading,
   Header,
-  NoContent
+  NoContent,
 } from "@/components";
-import { ButtonWrapper } from "./styles";
 import { PageContainer } from "@/styles";
-import { MainContainer } from "../pesquisa/styles";
 import { useRouter } from "next/navigation";
 import { chamado } from "@/utils";
+import { MainContainer } from "../pesquisa/styles";
+import { ButtonWrapper } from "./styles";
 
-const MyCallsPage = () => {
+function MyCallsPage() {
   const { push } = useRouter();
   const { data, isLoading } = chamado.getChamados();
   const issuesQuantity = data?.length || 0;
   return (
     <>
       <Header
-        userName={"Colaborador"}
+        userName="Colaborador"
         pageTittle="Meus chamados"
         issueQuantify={issuesQuantity}
       />
@@ -31,18 +31,16 @@ const MyCallsPage = () => {
           <>
             <MainContainer $hasContent={!!issuesQuantity}>
               {data?.length ? (
-                data.map((issue) => {
-                  return (
-                    <IssueDisplay
-                      key={issue.id}
-                      id={issue.id}
-                      nome={issue.resume}
-                      date={issue.date}
-                      $status={"Registrado"}
-                      isUpdated={true}
-                    />
-                  );
-                })
+                data.map((issue) => (
+                  <IssueDisplay
+                    key={issue.id}
+                    id={issue.id}
+                    nome={issue.resume}
+                    date={issue.date}
+                    $status="Registrado"
+                    isUpdated
+                  />
+                ))
               ) : (
                 <NoContent
                   alt="caixa vazia"
@@ -63,6 +61,6 @@ const MyCallsPage = () => {
       </PageContainer>
     </>
   );
-};
+}
 
 export { MyCallsPage };

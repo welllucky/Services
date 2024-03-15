@@ -5,12 +5,11 @@ export const SelectContainer = styled.div<{ $status: string }>`
   display: flex;
 
   & > div > div {
-    border: ${({ $status }) =>
-      $status === "invalid"
-        ? "1px solid red"
-        : $status === "valid"
-          ? "1px solid #7ac143"
-          : "1px solid #79747e"};
+    border: ${({ $status }) => ($status === "invalid"
+    ? "1px solid red"
+    : $status === "valid"
+      ? "1px solid #7ac143"
+      : "1px solid #79747e")};
   }
 `;
 

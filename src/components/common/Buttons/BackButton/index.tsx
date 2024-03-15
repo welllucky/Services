@@ -1,7 +1,8 @@
-import { Container, BackIcon, TextBack } from "./styles";
 import { useRouter } from "next/navigation";
-import { CaretLeft} from "@phosphor-icons/react";
+import { CaretLeft } from "@phosphor-icons/react";
 import { buildTestIds } from "@/utils/functions";
+import { Container, TextBack } from "./styles";
+
 export interface BackButtonProps {
   actionText?: string;
   color?: string;
@@ -9,25 +10,33 @@ export interface BackButtonProps {
   onClick?: () => void;
 }
 
-export const BackButton = ({
+export function BackButton({
   actionText,
   color,
   fontWeight,
-  onClick
-}: BackButtonProps) => {
+  onClick,
+}: BackButtonProps) {
   const { back } = useRouter();
   return (
     <Container
-    {...buildTestIds("back-button")}
+      {...buildTestIds("back-button")}
       onClick={() => {
+        // eslint-disable-next-line no-unused-expressions
         onClick ? onClick() : back();
-      }}>
-      <CaretLeft size={20} color={color || "black"} alt="voltar" />
+      }}
+    >
+      <CaretLeft
+        size={20}
+        color={color || "black"}
+        alt="voltar"
+      />
       <TextBack
-      {...buildTestIds("back-button-text")}
-      fontWeight={fontWeight} color={color}>
+        {...buildTestIds("back-button-text")}
+        fontWeight={fontWeight}
+        color={color}
+      >
         {actionText}
       </TextBack>
     </Container>
   );
-};
+}

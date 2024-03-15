@@ -8,7 +8,7 @@
     "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
+    // "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "airbnb"
@@ -20,10 +20,27 @@
   },
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
-    "indent": ["error", "tab"],
-    "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
-    "no-unused-vars": "error"
+    "no-unused-vars": "error",
+    "linebreak-style": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": ["warn", { "target": "single" }],
+    "react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/no-cycle": "off",
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-curly-newline": "off",
+    "no-nested-ternary": "warn",
+    "no-tabs": "off",
+    "object-curly-newline": "off",
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
+    "function-paren-newline": "off",
+    "no-extra-boolean-cast": "off"
+    // "import/no-cycle": [2, { "ignoreExternal": true }]
   }
 }

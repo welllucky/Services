@@ -1,9 +1,10 @@
 import Image, { StaticImageData } from "next/image";
-import { ButtonComponent, ButtonContainer } from "./styles";
 import { buildTestIds } from "@/utils/functions";
+import { ButtonHTMLAttributes } from "react";
+import { ButtonComponent, ButtonContainer } from "./styles";
 
 export interface CustomButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   color?: string;
   $backgroundColor?: string;
@@ -34,7 +35,7 @@ export interface CustomButtonProps
  *@param mode - Modo do botão
  *
  */
-export const CustomButton = ({
+export function CustomButton({
   text = "button",
   $backgroundColor = "grey",
   color = "black",
@@ -48,7 +49,7 @@ export const CustomButton = ({
   height,
   mode = "filled",
   ...props
-}: CustomButtonProps) => {
+}: CustomButtonProps) {
   return (
     <ButtonContainer
       {...buildTestIds(`button-container-${text}`)}
@@ -79,4 +80,4 @@ export const CustomButton = ({
       </ButtonComponent>
     </ButtonContainer>
   );
-};
+}

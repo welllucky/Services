@@ -1,17 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { SearchIcon } from "@/assets";
-import filter from "@/assets/Images/Filter.png";
-import { Divider, StyledSearchBar, StyledSearchBarContainer } from "./styles";
-
-import Image from "next/image";
+import { StyledSearchBar, StyledSearchBarContainer } from "./styles";
 
 interface SearchBarProps {
+  // eslint-disable-next-line no-unused-vars
   getInputValue: (value: string) => void;
 }
 
-const SearchBar = ({ getInputValue }: SearchBarProps) => {
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+function SearchBar({ getInputValue }: SearchBarProps) {
   const [search, setSearch] = useState("");
 
   return (
@@ -24,7 +23,7 @@ const SearchBar = ({ getInputValue }: SearchBarProps) => {
         width="1.4rem"
       />
       <StyledSearchBar
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
           setSearch(event.target.value)
         }
         value={search}
@@ -44,6 +43,6 @@ const SearchBar = ({ getInputValue }: SearchBarProps) => {
 			/> */}
     </StyledSearchBarContainer>
   );
-};
+}
 
 export { SearchBar };

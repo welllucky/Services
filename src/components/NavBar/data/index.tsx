@@ -3,7 +3,7 @@ import {
   ClipboardText,
   House,
   ListDashes,
-  MagnifyingGlass
+  MagnifyingGlass,
 } from "@phosphor-icons/react/dist/ssr";
 
 const navigationOptions: OptionMenuProps[] = [
@@ -16,7 +16,7 @@ const navigationOptions: OptionMenuProps[] = [
         size={24}
         color="#352F2F"
       />
-    )
+    ),
   },
   {
     name: "Pesquisa",
@@ -27,7 +27,7 @@ const navigationOptions: OptionMenuProps[] = [
         size={24}
         color="#352F2F"
       />
-    )
+    ),
   },
   {
     name: "Chamados",
@@ -38,7 +38,7 @@ const navigationOptions: OptionMenuProps[] = [
         size={24}
         color="#352F2F"
       />
-    )
+    ),
   },
   {
     name: "Solicitações",
@@ -49,8 +49,8 @@ const navigationOptions: OptionMenuProps[] = [
         size={24}
         color="#352F2F"
       />
-    )
-  }
+    ),
+  },
 ];
 
 export default navigationOptions;

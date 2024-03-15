@@ -1,17 +1,17 @@
 "use client";
 
 import { CustomFieldset } from "@/components/Fieldset";
-import { ConfirmDetailsContainer, SectionInfoForm } from "./styles";
 import { useTheme } from "styled-components";
 import { LS_KEY_1_TICKET_RECORD, useModalStore } from "@/utils";
 import { IOpenTicketForm } from "@/app/(app)/(form)/template";
 import { buildTestIds, dataFormatter } from "@/utils/functions";
 import { ConfirmModal } from "@/components";
+import { ConfirmDetailsContainer, SectionInfoForm } from "./styles";
 
-export const ConfirmDetailsPage = () => {
+export function ConfirmDetailsPage() {
   const theme = useTheme();
   const ticketData: IOpenTicketForm = JSON.parse(
-    localStorage.getItem(LS_KEY_1_TICKET_RECORD) as unknown as string
+    localStorage.getItem(LS_KEY_1_TICKET_RECORD) as unknown as string,
   );
   const isModalOpen = useModalStore((state) => state.isOpen);
   const modalCallback = useModalStore((state) => state.modalCallback);
@@ -29,13 +29,15 @@ export const ConfirmDetailsPage = () => {
       />
       <ConfirmDetailsContainer
         {...buildTestIds("confirm-details-container")}
-        $gap="16px">
+        $gap="16px"
+      >
         <SectionInfoForm {...buildTestIds("section-info-form")}>
           <CustomFieldset
             color={theme.colors.primary.default}
             labelText="Resumo"
             width="100%"
-            height="64px">
+            height="64px"
+          >
             {ticketData?.resumo}
           </CustomFieldset>
         </SectionInfoForm>
@@ -44,14 +46,16 @@ export const ConfirmDetailsPage = () => {
             color={theme.colors.primary.default}
             labelText="Tipo"
             width="48%"
-            height="64px">
+            height="64px"
+          >
             {ticketData?.tipo}
           </CustomFieldset>
           <CustomFieldset
             color={theme.colors.primary.default}
             labelText="Prioridade"
             width="48%"
-            height="64px">
+            height="64px"
+          >
             {ticketData?.prioridade}
           </CustomFieldset>
         </SectionInfoForm>
@@ -60,7 +64,8 @@ export const ConfirmDetailsPage = () => {
             color={theme.colors.primary.default}
             labelText="Data do ocorrido"
             width="100%"
-            height="64px">
+            height="64px"
+          >
             {dataFormatter(ticketData?.data)}
           </CustomFieldset>
         </SectionInfoForm>
@@ -71,11 +76,11 @@ export const ConfirmDetailsPage = () => {
             width="100%"
             height="240px"
             $hasOverflow
-            >
+          >
             {ticketData?.descricao}
           </CustomFieldset>
         </SectionInfoForm>
       </ConfirmDetailsContainer>
     </>
   );
-};
+}

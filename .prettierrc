@@ -4,7 +4,7 @@
   "arrowParens": "always",
   "bracketSpacing": true,
   "embeddedLanguageFormatting": "auto",
-  "endOfLine": "lf",
+  "endOfLine": "crlf",
   "insertPragma": false,
   "jsxSingleQuote": false,
   "printWidth": 80,
@@ -14,7 +14,7 @@
   "semi": true,
   "singleQuote": false,
   "tabWidth": 2,
-  "trailingComma": "none",
+  "trailingComma": "all",
   "useTabs": false,
   "vueIndentScriptAndStyle": false,
   "singleAttributePerLine": true

@@ -5,6 +5,7 @@ type ModalState = {
   modalCallback?: () => void;
   open: () => void;
   close: () => void;
+  // eslint-disable-next-line no-unused-vars
   setModalCallback: (callback: () => void) => void;
 };
 
@@ -13,5 +14,5 @@ export const useModalStore = create<ModalState>((set) => ({
   modalCallback: undefined,
   open: () => set({ isOpen: true }),
   close: () => set({ isOpen: false }),
-  setModalCallback: (callback) => set({ modalCallback: callback })
+  setModalCallback: (callback) => set({ modalCallback: callback }),
 }));

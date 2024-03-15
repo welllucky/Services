@@ -1,11 +1,13 @@
 "use client";
 
 // import { useMediaQuery } from "@uidotdev/usehooks";
-import { ReactNode, createContext, useContext, useMemo } from "react";
+import {
+  ReactNode, createContext, useContext, useMemo,
+} from "react";
 import {
   CS_KEY_USER_DEVICE_TYPE,
   CS_KEY_USER_RELIABLE_AGENT,
-  cookie
+  cookie,
 } from "@/utils";
 
 interface AppContextProps {
@@ -73,7 +75,7 @@ interface AppProviderProps {
 // };
 
 export const AppContext = createContext({} as unknown as AppContextProps);
-export const AppProvider = ({ children }: AppProviderProps) => {
+export function AppProvider({ children }: AppProviderProps) {
   const deviceType: string = cookie.get(CS_KEY_USER_DEVICE_TYPE);
   const reliableAgent: string = cookie.get(CS_KEY_USER_RELIABLE_AGENT);
 
@@ -86,18 +88,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const isEmbedded = deviceType === "embedded";
   const isReliableAgent = Boolean(reliableAgent);
 
-  const AppContextValue = useMemo(() => {
-    return {
-      isMobile,
-      isDesktop,
-      isTablet,
-      isTV,
-      isConsole,
-      isWearable,
-      isEmbedded,
-      isReliableAgent
-    };
-  }, [
+  const AppContextValue = useMemo(() => ({
     isMobile,
     isDesktop,
     isTablet,
@@ -105,7 +96,16 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     isConsole,
     isWearable,
     isEmbedded,
-    isReliableAgent
+    isReliableAgent,
+  }), [
+    isMobile,
+    isDesktop,
+    isTablet,
+    isTV,
+    isConsole,
+    isWearable,
+    isEmbedded,
+    isReliableAgent,
   ]);
 
   return (
@@ -113,7 +113,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       {children}
     </AppContext.Provider>
   );
-};
+}
 
 export const useApp = (): AppContextProps => {
   const context = useContext(AppContext);

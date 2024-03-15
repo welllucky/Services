@@ -25,7 +25,7 @@ export interface IOpenTicketForm {
 }
 
 export default function Template({
-  children
+  children,
 }: Readonly<{ children: ReactNode }>) {
   const pathName = usePathname();
   const { push, back } = useRouter();
@@ -35,7 +35,7 @@ export default function Template({
     {
       page: "/abrir-chamado",
       title: "O que aconteceu?",
-      hasBackButton: false
+      hasBackButton: false,
     },
     // {
     //   page: "/anexar-midia",
@@ -45,31 +45,37 @@ export default function Template({
     {
       page: "/confirmar-chamado",
       title: "Confirmar informações",
-      hasBackButton: true
-    }
+      hasBackButton: true,
+    },
   ];
 
   const idChamado = 2400;
 
-  const actualPage = useMemo(() => {
-    return pagesTitles.find((page) => page.page === pathName);
-  }, [pathName, pagesTitles]);
+  const actualPage = useMemo(
+    () => pagesTitles.find((page) => page.page === pathName),
+    [pathName, pagesTitles],
+  );
 
-  const indexPageFinder = useMemo(() => {
-    return pagesTitles.indexOf(actualPage as PageRouterData);
-  }, [actualPage, pagesTitles]);
+  const indexPageFinder = useMemo(
+    () => pagesTitles.indexOf(actualPage as PageRouterData),
+    [actualPage, pagesTitles],
+  );
 
-  const nextPageUrl = useMemo(() => {
-    return indexPageFinder === -1
-      ? "/"
-      : indexPageFinder + 1 >= pagesTitles.length
-        ? `/chamado/${idChamado}`
-        : pagesTitles[indexPageFinder + 1].page;
-  }, [pagesTitles]);
+  const nextPageUrl = useMemo(
+    // eslint-disable-next-line no-confusing-arrow
+    () =>
+      indexPageFinder === -1
+        ? "/"
+        : indexPageFinder + 1 >= pagesTitles.length
+          ? `/chamado/${idChamado}`
+          : pagesTitles[indexPageFinder + 1].page,
+    [pagesTitles],
+  );
 
-  const previousPageUrl = useMemo(() => {
-    return indexPageFinder === 0 ? "" : pagesTitles[indexPageFinder - 1].title;
-  }, [pagesTitles]);
+  const previousPageUrl = useMemo(
+    () => (indexPageFinder === 0 ? "" : pagesTitles[indexPageFinder - 1].title),
+    [pagesTitles],
+  );
 
   const methods = useForm<IOpenTicketForm>({
     mode: "onChange",
@@ -78,16 +84,16 @@ export default function Template({
       descricao: "",
       data: "",
       tipo: "",
-      prioridade: "baixa"
+      prioridade: "baixa",
     },
     reValidateMode: "onChange",
     shouldFocusError: true,
-    progressive: true
+    progressive: true,
   });
 
   useEffect(() => {
     setModalCallback(() => push(`/chamado/${idChamado}`));
-  }, []); 
+  }, []);
 
   return (
     <FormProvider

@@ -10,9 +10,8 @@ export const ButtonNewCalled = styled.button<AddNewIssueButtonProps>`
   width: ${({ size }) => size || "3.5rem"};
   height: ${({ size }) => size || "3.5rem"};
   background-color: ${({ styles }) => styles?.$backgroundColor || "#ebf6e3"};
-  ${({ styles }) =>
-    styles?.hasShadow &&
-    css`
+  ${({ styles }) => styles?.hasShadow
+    && css`
       box-shadow:
         rgba(0, 0, 0, 0.19) 0px 2px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;

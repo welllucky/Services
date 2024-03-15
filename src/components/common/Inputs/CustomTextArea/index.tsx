@@ -1,13 +1,15 @@
-import { TextArea, TextAreaContainer } from "./styles";
-import { CustomFieldset } from "../../../Fieldset";
 import { InputComponentsProps } from "@/types";
 import { ErrorText, WarningText } from "@/components";
+import { ChangeEvent } from "react";
+import { TextArea, TextAreaContainer } from "./styles";
+import { CustomFieldset } from "../../../Fieldset";
 
 interface TextAreaProps extends InputComponentsProps {
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  // eslint-disable-next-line no-unused-vars
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export const CustomTextArea = ({
+export function CustomTextArea({
   id,
   labelText,
   placeholder,
@@ -20,8 +22,8 @@ export const CustomTextArea = ({
   registerOptions,
   $status = "none",
   errorText,
-  warnText
-}: TextAreaProps) => {
+  warnText,
+}: TextAreaProps) {
   return (
     <TextAreaContainer $status={$status}>
       <CustomFieldset
@@ -40,7 +42,7 @@ export const CustomTextArea = ({
             onChange: (e) => {
               if (onChange) onChange(e);
               if (registerOptions?.onChange) registerOptions.onChange(e);
-            }
+            },
           })}
           height="100%"
           width="100%"
@@ -52,4 +54,4 @@ export const CustomTextArea = ({
       {$status === "warning" && <WarningText>{warnText}</WarningText>}
     </TextAreaContainer>
   );
-};
+}

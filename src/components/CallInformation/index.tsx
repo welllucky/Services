@@ -1,29 +1,30 @@
 import { ReactNode } from "react";
-import { Fildset, Content, Legend, LegendText } from "./styles";
+import {
+  Fildset, Content, Legend, LegendText,
+} from "./styles";
 
 export interface ILegendProps {
   legendText?: string;
   width?: string;
-  inputType?: string;
-  placeholder?: string;
+  // inputType?: string;
+  // placeholder?: string;
   height?: string;
-  maxLength?: number;
+  // maxLength?: number;
   children: ReactNode;
 }
 
-export const CallInformation = ({
+export function CallInformation({
   legendText,
   width,
   height,
-  children
-}: ILegendProps) => {
+  children,
+}: ILegendProps) {
   return (
     <Fildset height={height} width={width}>
       <Legend>
         <LegendText>{legendText}</LegendText>
       </Legend>
-
       <Content>{children}</Content>
     </Fildset>
   );
-};
+}
