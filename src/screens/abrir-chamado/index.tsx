@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import {
   LS_KEY_1_TICKET_RECORD,
-  SS_KEY_DATA_WAS_RECOVERY,
+  SS_KEY_USER_PREVIOUS_PAGE,
 } from "@/utils/alias";
 import { IOpenTicketForm } from "@/app/(app)/(form)/template";
 import { IssuePageContent } from "./styles";
@@ -22,7 +22,9 @@ function CreateTicketPage() {
 
   useEffect(() => {
     const data = localStorage.getItem(LS_KEY_1_TICKET_RECORD);
-    const isDataRecovered = sessionStorage.getItem(SS_KEY_DATA_WAS_RECOVERY) === "true";
+    const isFromOutsideForm =
+      (sessionStorage.getItem(SS_KEY_USER_PREVIOUS_PAGE) as string) !== "form";
+
     if (data) {
       const parsedData: IOpenTicketForm = JSON.parse(data);
       setValue("resumo", parsedData.resumo, { shouldValidate: true });
@@ -31,8 +33,7 @@ function CreateTicketPage() {
       setValue("tipo", parsedData.tipo, { shouldValidate: true });
       setValue("prioridade", parsedData.prioridade, { shouldValidate: true });
       // eslint-disable-next-line no-unused-expressions
-      !isDataRecovered && toast.success("Dados recuperados com sucesso!");
-      sessionStorage.setItem(SS_KEY_DATA_WAS_RECOVERY, "true");
+      isFromOutsideForm && toast.success("Dados recuperados com sucesso!");
     }
   }, []);
 
@@ -43,7 +44,7 @@ function CreateTicketPage() {
         JSON.stringify({ ...getValues() }),
       );
     }
-  }, [isValid, isValidating]);
+  }, [getValues, isValid, isValidating]);
 
   const resumeWatch = watch("resumo", "");
   const dataWatch = watch("data", "");
@@ -52,7 +53,9 @@ function CreateTicketPage() {
   const priorityWatch = watch("prioridade", "baixa");
 
   return (
-    <IssuePageContent id="first-step-form" as="form">
+    <IssuePageContent
+      id="first-step-form"
+      as="form">
       <OutlinedInput
         id="resumo"
         type="text"
@@ -98,7 +101,8 @@ function CreateTicketPage() {
         register={register}
         registerOptions={{
           required: "É necessário escolher o tipo do chamado",
-          validate: (value) => value !== "" || "É necessário escolher o tipo do chamado",
+          validate: (value) =>
+            value !== "" || "É necessário escolher o tipo do chamado",
         }}
         $status={
           errors?.tipo
@@ -172,7 +176,8 @@ function CreateTicketPage() {
         register={register}
         registerOptions={{
           required: "É necessário escolher a prioridade do chamado",
-          validate: (value) => value !== "" || "É necessário escolher a prioridade do chamado",
+          validate: (value) =>
+            value !== "" || "É necessário escolher a prioridade do chamado",
         }}
         $status={
           errors?.prioridade

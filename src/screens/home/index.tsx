@@ -1,12 +1,10 @@
 "use client";
 
 import { AddNewIssueButton } from "@/components/common/Buttons";
-import {
-  IssueDisplay, Loading, Header, NoContent,
-} from "@/components/";
+import { IssueDisplay, Loading, Header, NoContent } from "@/components/";
 import { PageContainer } from "@/styles";
 import { useTheme } from "styled-components";
-import { chamado, dataFormatter } from "@/utils";
+import { SS_KEY_USER_PREVIOUS_PAGE, chamado, dataFormatter } from "@/utils";
 import { useRouter } from "next/navigation";
 import { MainContainer } from "../pesquisa/styles";
 import { ButtonWrapper } from "./styles";
@@ -52,7 +50,10 @@ function Homepage() {
               {issuesQuantity < 5 ? (
                 <AddNewIssueButton
                   styles={{ hasShadow: true }}
-                  onClick={() => push("/abrir-chamado")}
+                  onClick={() => {
+                    sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, "home");
+                    push("/abrir-chamado");
+                  }}
                 />
               ) : null}
             </ButtonWrapper>
