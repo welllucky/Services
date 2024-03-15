@@ -2,7 +2,7 @@ import {
   InfoUnityContainer,
   InfoUnityDescription,
   InfoUnityIcon,
-  InfoUnityId
+  InfoUnityId,
 } from "./styles";
 
 export interface InfoUnityProps {
@@ -11,7 +11,7 @@ export interface InfoUnityProps {
   icon?: string;
 }
 
-export const InfoUnity = ({ icon, description, id }: InfoUnityProps) => {
+export function InfoUnity({ icon, description, id }: InfoUnityProps) {
   return (
     description && (
       <InfoUnityContainer>
@@ -21,4 +21,4 @@ export const InfoUnity = ({ icon, description, id }: InfoUnityProps) => {
       </InfoUnityContainer>
     )
   );
-};
+}

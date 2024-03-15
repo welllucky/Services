@@ -1,17 +1,17 @@
 import addButtonAlt from "@/assets/Images/AddButtonAlt.png";
+import { IconButton } from "@/components";
+import { useMemo } from "react";
+import { Row, SubTitleComponent, TitleComponent } from "@/styles";
+import Image from "next/image";
+import { buildTestIds } from "@/utils/functions";
+import Logo from "../../../../public/android/android-launchericon-512-512.png";
 import {
   UserName,
   PageTitle,
   HeaderHome,
   FirstSection,
-  SecondSection
+  SecondSection,
 } from "./styles";
-import { IconButton } from "@/components";
-import { useMemo } from "react";
-import { Row, SubTitleComponent, TitleComponent } from "@/styles";
-import Image from "next/image";
-import Logo from "../../../../public/android/android-launchericon-512-512.png";
-import { buildTestIds } from "@/utils/functions";
 
 export type HeaderMobileProps = {
   userName?: string;
@@ -19,11 +19,11 @@ export type HeaderMobileProps = {
   issueQuantify?: number;
 };
 
-export const Header = ({
+export function Header({
   userName,
   pageTittle,
-  issueQuantify
-}: HeaderMobileProps) => {
+  issueQuantify,
+}: HeaderMobileProps) {
   const greetingMessage = useMemo(() => {
     const hour = new Date().getHours();
     return hour > 5 && hour < 12
@@ -39,12 +39,14 @@ export const Header = ({
     <HeaderHome {...buildTestIds("header-home-container")}>
       <FirstSection
         {...buildTestIds("header-first-section")}
-        $gap="1.2rem">
+        $gap="1.2rem"
+      >
         <Row
           {...buildTestIds("header-corp-logo-container")}
           width="fit-content"
           height="fit-content"
-          $isSmallClientMobile={false}>
+          $isSmallClientMobile={false}
+        >
           <Image
             {...buildTestIds("header-corp-logo-image")}
             width={48}
@@ -56,7 +58,10 @@ export const Header = ({
         <Row $isSmallClientMobile={false}>
           <UserName $isSmallClientMobile={false}>
             <TitleComponent $isSmallClientMobile={false}>
-              {greetingMessage}, {userName}!
+              {greetingMessage}
+              ,
+              {userName}
+              !
             </TitleComponent>
           </UserName>
         </Row>
@@ -69,7 +74,7 @@ export const Header = ({
             </SubTitleComponent>
             {issueQuantify && issueQuantify > 4 ? (
               <IconButton
-                path={"/abrir-chamado"}
+                path="/abrir-chamado"
                 icon={addButtonAlt}
               />
             ) : null}
@@ -78,4 +83,4 @@ export const Header = ({
       )}
     </HeaderHome>
   );
-};
+}

@@ -1,12 +1,14 @@
 "use client";
 
-import { NoContent, Header, IssueDisplay, Loading } from "@/components";
-import { MainContainer } from "../pesquisa/styles";
+import {
+  NoContent, Header, IssueDisplay, Loading,
+} from "@/components";
 import { PageContainer } from "@/styles";
 import { useTheme } from "styled-components";
+import { MainContainer } from "../pesquisa/styles";
 import { IssueDisplayData } from "../home/data";
 
-const RequestsPage = () => {
+function RequestsPage() {
   const theme = useTheme();
   const isLoading = false;
   const listaChamados = IssueDisplayData;
@@ -14,7 +16,7 @@ const RequestsPage = () => {
   return (
     <>
       <Header
-        userName={"Colaborador"}
+        userName="Colaborador"
         pageTittle="Chamados solicitados"
       />
       <PageContainer>
@@ -23,20 +25,18 @@ const RequestsPage = () => {
         ) : (
           <MainContainer $hasContent={!!listaChamados}>
             {listaChamados?.length ? (
-              listaChamados.map((issue) => {
-                return (
-                  <IssueDisplay
-                    color="#9EDC72"
-                    $borderColor="#61A12F"
-                    key={issue.id}
-                    id={issue.id}
-                    nome={issue.nome}
-                    date={issue.date}
-                    $status={issue.$status}
-                    isUpdated={issue.isUpdated}
-                  />
-                );
-              })
+              listaChamados.map((issue) => (
+                <IssueDisplay
+                  color="#9EDC72"
+                  $borderColor="#61A12F"
+                  key={issue.id}
+                  id={issue.id}
+                  nome={issue.nome}
+                  date={issue.date}
+                  $status={issue.$status}
+                  isUpdated={issue.isUpdated}
+                />
+              ))
             ) : (
               <NoContent
                 alt="caixa vazia"
@@ -49,6 +49,6 @@ const RequestsPage = () => {
       </PageContainer>
     </>
   );
-};
+}
 
 export { RequestsPage };

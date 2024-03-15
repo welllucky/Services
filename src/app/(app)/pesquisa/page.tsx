@@ -3,7 +3,7 @@ import { SearchPage } from "@/screens/pesquisa";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pesquisa"
+  title: "Pesquisa",
 };
 
 export default function Search() {

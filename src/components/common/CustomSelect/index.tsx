@@ -1,6 +1,6 @@
-import { ChangeEventHandler, ReactNode } from "react";
-import { SelectComponent, CustomOption } from "./styles";
+import { ChangeEventHandler } from "react";
 import { CustomFieldset } from "@/components/Fieldset";
+import { SelectComponent, CustomOption } from "./styles";
 
 interface OptionProps {
   key: string;
@@ -20,11 +20,11 @@ interface SelectProps {
   isRequired?: boolean;
   multiple?: boolean;
   form?: string;
-  name?: string;
-  value?: string;
+  // name?: string;
+  // value?: string;
 }
 
-export const CustomSelect = ({
+export function CustomSelect({
   labelText,
   placeholder = "selecione uma opção",
   width = "100%",
@@ -33,8 +33,8 @@ export const CustomSelect = ({
   onChange,
   isRequired = false,
   multiple = false,
-  form
-}: SelectProps) => {
+  form,
+}: SelectProps) {
   return (
     <CustomFieldset
       width={width}
@@ -62,4 +62,4 @@ export const CustomSelect = ({
       </SelectComponent>
     </CustomFieldset>
   );
-};
+}

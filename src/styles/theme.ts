@@ -13,10 +13,10 @@ const theme = {
     laptop: "1024px",
     laptopL: "1440px",
     desktopS: "1980px",
-    desktop: "2560px"
+    desktop: "2560px",
   },
 
-  ...colorTheme
+  ...colorTheme,
 };
 
 export type ThemeProps = typeof theme;

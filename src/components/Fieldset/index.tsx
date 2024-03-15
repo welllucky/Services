@@ -1,8 +1,9 @@
 import { buildTestIds } from "@/utils/functions";
+import { ReactNode } from "react";
 import { FieldSetContent, Fieldset, FieldsetContainer, Legend } from "./styles";
 
 export type FieldsetProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   labelText: string;
   width?: string;
   height?: string;
@@ -11,15 +12,15 @@ export type FieldsetProps = {
   $justifyContent?: "start" | "center" | "end";
 };
 
-const CustomFieldset = ({
+function CustomFieldset({
   children,
   labelText,
   height,
   width,
   color,
   $hasOverflow = false,
-  $justifyContent = "end"
-}: FieldsetProps) => {
+  $justifyContent = "end",
+}: FieldsetProps) {
   return (
     <FieldsetContainer
       width={width}
@@ -35,6 +36,6 @@ const CustomFieldset = ({
       </Fieldset>
     </FieldsetContainer>
   );
-};
+}
 
 export { CustomFieldset };

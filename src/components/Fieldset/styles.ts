@@ -19,9 +19,8 @@ export const Fieldset = styled.div<{
   width: 100%;
   overflow: hidden;
 
-  ${({ $hasOverflow }) =>
-    !$hasOverflow &&
-    css`
+  ${({ $hasOverflow }) => !$hasOverflow
+    && css`
       ${FieldSetContent} {
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -63,10 +62,9 @@ export const FieldsetContainer = styled.div<{
   }
 
   ${FieldSetContent} {
-    ${({ $hasOverflow, height }) =>
-      $hasOverflow &&
-      height &&
-      css`
+    ${({ $hasOverflow, height }) => $hasOverflow
+      && height
+      && css`
         height: ${height};
       `}
   }

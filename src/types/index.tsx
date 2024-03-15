@@ -1,5 +1,4 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { StaticImageData } from "next/image";
 import React, { ReactNode } from "react";
 
 type IssueDisplayProps = {
@@ -87,5 +86,5 @@ export type {
   IconButtonProps,
   NoContentProps,
   IssueDto,
-  TextTheme
+  TextTheme,
 };

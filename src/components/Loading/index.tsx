@@ -6,7 +6,7 @@ type LoadingProps = {
   size?: string;
 };
 
-export const Loading = ({ overlayOn = false, color, size }: LoadingProps) => {
+export function Loading({ overlayOn = false, color, size }: LoadingProps) {
   return overlayOn ? (
     <LoadingContainer>
       <Container {...{ color, size }}>
@@ -32,4 +32,4 @@ export const Loading = ({ overlayOn = false, color, size }: LoadingProps) => {
       <div />
     </Container>
   );
-};
+}

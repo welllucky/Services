@@ -1,14 +1,14 @@
 import { Header } from "@/components";
-import { FlexContainer, PageStructContainer } from "./style";
 import { ReactNode } from "react";
+import { FlexContainer, PageStructContainer } from "./style";
 
-const PageStruct = (children: ReactNode) => {
+function PageStruct(children: ReactNode) {
   return (
     <FlexContainer>
-      <Header userName={"Usuário não autenticado"} />
+      <Header userName="Usuário não autenticado" />
       <PageStructContainer>{children}</PageStructContainer>
     </FlexContainer>
   );
-};
+}
 
 export default PageStruct;

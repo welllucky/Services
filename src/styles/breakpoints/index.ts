@@ -8,7 +8,7 @@ const breakpoints = {
   laptop: "1024px",
   laptopL: "1440px",
   desktopS: "1980px",
-  desktop: "2560px"
+  desktop: "2560px",
 };
 
 export type Breakpoints = typeof breakpoints;

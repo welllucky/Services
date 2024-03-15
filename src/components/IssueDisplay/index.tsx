@@ -1,3 +1,5 @@
+import { Selo } from "@/assets/Icons";
+import { IssueDisplayProps } from "@/assets";
 import {
   IssueContainer,
   IssueContent,
@@ -9,20 +11,18 @@ import {
   StatusText,
   IconeSelo,
   IssueWrapper,
-  InfoLabel
+  InfoLabel,
 } from "./styles";
-import { Selo } from "@/assets/Icons";
-import { IssueDisplayProps } from "@/assets";
 
-export const IssueDisplay = ({
+export function IssueDisplay({
   id,
   nome,
   date,
   $status,
   isUpdated,
   color,
-  $borderColor
-}: IssueDisplayProps) => {
+  $borderColor,
+}: IssueDisplayProps) {
   return (
     <IssueWrapper href={`/chamado/${id}`}>
       {isUpdated && (
@@ -33,7 +33,8 @@ export const IssueDisplay = ({
       <IssueContainer
         color={color}
         $borderColor={$borderColor}
-        $hasUpdate={isUpdated}>
+        $hasUpdate={isUpdated}
+      >
         <IssueContent $hasUpdate={isUpdated}>
           <IssueNumber>{`Chamado Nº ${id}`}</IssueNumber>
           <IssueDescription>{nome}</IssueDescription>
@@ -51,4 +52,4 @@ export const IssueDisplay = ({
       </IssueContainer>
     </IssueWrapper>
   );
-};
+}

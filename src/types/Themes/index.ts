@@ -1,17 +1,17 @@
 import { InputStylesProps } from "@/components";
 import { RegisterOptions, UseFormRegister } from "react-hook-form";
 
-type ThemeKey = {
-  [key: string]: string;
-};
+// type ThemeKey = {
+//   [key: string]: string;
+// };
 
-type ThemeModule = {
-  [key: string]: ThemeKey[];
-};
+// type ThemeModule = {
+//   [key: string]: ThemeKey[];
+// };
 
-type ThemeSection = {
-  [key: string]: ThemeModule[];
-};
+// type ThemeSection = {
+//   [key: string]: ThemeModule[];
+// };
 
 type ThemeProps = {
   media: {
@@ -55,6 +55,7 @@ interface InputComponentsProps {
   style?: InputStylesProps;
   width?: string;
   height?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: UseFormRegister<any>;
   registerOptions?: RegisterOptions;
   isRequired?: boolean;

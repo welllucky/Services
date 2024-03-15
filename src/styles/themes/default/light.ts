@@ -14,9 +14,9 @@ const lightTheme = {
 
       default: "#F6F7F7",
       inverted: "#040405",
-      opacity: "rgba(0,0,0, 0.8)"
+      opacity: "rgba(0,0,0, 0.8)",
     },
-    
+
     primary: {
       5: "#81C44C",
       15: "#8ECA5F",
@@ -29,7 +29,7 @@ const lightTheme = {
       85: "#EBF6E3",
       95: "#F8FCF6",
 
-      default: "#7AC143"
+      default: "#7AC143",
     },
 
     secondary: {
@@ -44,9 +44,9 @@ const lightTheme = {
       85: "#F6F9E0",
       95: "#FCFDF5",
 
-      default: "#C1D82F"
-    }
-  }
+      default: "#C1D82F",
+    },
+  },
 };
 
 export { lightTheme };

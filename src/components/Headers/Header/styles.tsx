@@ -1,4 +1,4 @@
-import { Column, Row } from "@/styles";
+import { Row } from "@/styles";
 import styled, { css } from "styled-components";
 
 export const HeaderHome = styled.div`
@@ -13,9 +13,8 @@ export const UserName = styled.div<{ $isSmallClientMobile?: boolean }>`
   align-items: center;
   gap: 0.6rem;
 
-  ${({ $isSmallClientMobile }) =>
-    $isSmallClientMobile &&
-    css`
+  ${({ $isSmallClientMobile }) => $isSmallClientMobile
+    && css`
       padding: 0;
       justify-content: center;
     `}
@@ -27,9 +26,8 @@ export const PageTitle = styled.div<{ $isSmallClientMobile?: boolean }>`
   align-items: center;
   width: 100%;
   margin-bottom: 0.5rem;
-  ${({ $isSmallClientMobile }) =>
-    $isSmallClientMobile &&
-    css`
+  ${({ $isSmallClientMobile }) => $isSmallClientMobile
+    && css`
       padding: 0;
       justify-content: center;
     `}

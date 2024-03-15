@@ -1,2 +1,4 @@
-export * from "./registry";
+import StyledComponentsRegistry from "./registry";
+
 export * from "./providers";
+export { StyledComponentsRegistry };

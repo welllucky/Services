@@ -1,19 +1,19 @@
 import { FileDashed } from "@phosphor-icons/react";
+import { useTheme } from "styled-components";
 import { InfoUnity, InfoUnityProps } from "./InfoUnity";
 import {
   InfoHistoryPainelContainer,
   InfoHistoryPainelContent,
-  InfoHistoryPainelTitle
+  InfoHistoryPainelTitle,
 } from "./styles";
 import { Loading, NoContent } from "..";
-import { useTheme } from "styled-components";
 
 interface InfoHistoryPainelProps {
   data: InfoUnityProps[];
   isLoading?: boolean;
 }
 
-const InfoHistoryPainel = ({ data, isLoading }: InfoHistoryPainelProps) => {
+function InfoHistoryPainel({ data, isLoading }: InfoHistoryPainelProps) {
   const theme = useTheme();
   return (
     <InfoHistoryPainelContainer $hasContent={data.length !== 0}>
@@ -25,12 +25,12 @@ const InfoHistoryPainel = ({ data, isLoading }: InfoHistoryPainelProps) => {
           data?.map((info) => <InfoUnity {...info} />)
         ) : (
           <NoContent
-            icon={
+            icon={(
               <FileDashed
                 size={64}
                 color={theme.colors.neutral["45"]}
               />
-            }
+            )}
             title="Ops! Esse chamado ainda não possui movimentações"
             fontSize="16px"
             color={theme.colors.neutral["45"]}
@@ -39,6 +39,6 @@ const InfoHistoryPainel = ({ data, isLoading }: InfoHistoryPainelProps) => {
       </InfoHistoryPainelContent>
     </InfoHistoryPainelContainer>
   );
-};
+}
 
 export { InfoHistoryPainel };

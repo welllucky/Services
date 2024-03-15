@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { MouseEventHandler } from "react";
 
 interface CustomButtonProps {
   path?: string;
@@ -7,7 +8,7 @@ interface CustomButtonProps {
   color?: string;
   width?: string;
   height?: string;
-  onHover?: React.MouseEventHandler<HTMLButtonElement>;
+  onHover?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const IconButtonWrapper = styled.div``;

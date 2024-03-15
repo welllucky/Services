@@ -212,16 +212,15 @@ export const AccessButton = styled.button<AccessButtonProps>`
   gap: 8px;
   align-self: center;
 
-  ${({ $isInactive }) =>
-    $isInactive
-      ? css`
+  ${({ $isInactive }) => ($isInactive
+    ? css`
           background-color: #dee0dd;
           color: #919793;
         `
-      : css`
+    : css`
           background: #ea374d;
           color: #fff;
-        `}
+        `)}
 `;
 
 export const FormContainer = styled.form``;

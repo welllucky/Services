@@ -12,9 +12,8 @@ export const Row = styled.section<{
   flex-direction: row;
   gap: ${({ $gap }) => $gap};
 
-  ${({ $isSmallClientMobile }) =>
-    $isSmallClientMobile &&
-    css`
+  ${({ $isSmallClientMobile }) => $isSmallClientMobile
+    && css`
       justify-content: center;
     `}
 `;
@@ -26,8 +25,7 @@ export const Column = styled.section<{
   height?: string;
 }>`
   width: ${({ width }) => width || "100%"};
-  height: ${({ $full, height }) =>
-    $full ? "100dvh" : height || "fit-content"};
+  height: ${({ $full, height }) => ($full ? "100dvh" : height || "fit-content")};
   display: flex;
   flex-direction: column;
   gap: ${({ $gap }) => $gap};
@@ -53,9 +51,8 @@ export const TitleComponent = styled.h1<{ $isSmallClientMobile?: boolean }>`
   letter-spacing: 0.01em;
   color: ${({ theme }) => theme.colors.primary.default};
 
-  ${({ $isSmallClientMobile }) =>
-    $isSmallClientMobile &&
-    css`
+  ${({ $isSmallClientMobile }) => $isSmallClientMobile
+    && css`
       font-size: 1.2rem;
       line-height: 1.5rem;
       margin-top: 4rem;
@@ -71,9 +68,8 @@ export const SubTitleComponent = styled.h2<{ $isSmallClientMobile?: boolean }>`
   letter-spacing: 0.0125rem;
   display: flex;
 
-  ${({ $isSmallClientMobile }) =>
-    $isSmallClientMobile &&
-    css`
+  ${({ $isSmallClientMobile }) => $isSmallClientMobile
+    && css`
       font-size: 1.5rem;
       line-height: 1.6rem;
       text-align: center;

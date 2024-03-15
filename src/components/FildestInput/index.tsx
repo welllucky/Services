@@ -1,5 +1,7 @@
 import { ChangeEventHandler } from "react";
-import { Fildset, Image, Input, Legend, LegendText } from "./styles";
+import {
+  Fildset, Image, Input, Legend, LegendText,
+} from "./styles";
 
 export interface ILegendProps {
   legendText?: string;
@@ -16,12 +18,12 @@ export interface ILegendProps {
   hasImage?: boolean;
   border?: string;
   pattern?: string;
-  onClickImage?: () => void;
+  // onClickImage?: () => void;
   id?: string;
   required?: boolean;
 }
 
-export const InputLegend = ({
+export function InputLegend({
   legendText,
   inputType,
   placeholder,
@@ -37,8 +39,8 @@ export const InputLegend = ({
   minLength,
   pattern,
   id,
-  required
-}: ILegendProps) => {
+  required,
+}: ILegendProps) {
   const isMaxDate = inputType === "date" ? "2023-12-31" : "";
   return (
     <Fildset border={border} height={height} width={width}>
@@ -61,4 +63,4 @@ export const InputLegend = ({
       {hasImage && <Image src={source} alt={imgDescription} />}
     </Fildset>
   );
-};
+}

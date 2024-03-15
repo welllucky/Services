@@ -1,3 +1,7 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-confusing-arrow */
+/* eslint-disable react/jsx-no-useless-fragment */
+
 "use client";
 
 import React, { useState } from "react";
@@ -6,7 +10,7 @@ import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 import isPropValid from "@emotion/is-prop-valid";
 
 export default function StyledComponentsRegistry({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
@@ -24,11 +28,9 @@ export default function StyledComponentsRegistry({
 
   return (
     <StyleSheetManager
-      shouldForwardProp={(propName, elementToBeRendered) => {
-        return typeof elementToBeRendered === "string"
-          ? isPropValid(propName)
-          : true;
-      }}
+      shouldForwardProp={(propName, elementToBeRendered) =>
+        typeof elementToBeRendered === "string" ? isPropValid(propName) : true
+      }
       sheet={styledComponentsStyleSheet.instance}>
       {children}
     </StyleSheetManager>

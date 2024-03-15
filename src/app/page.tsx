@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { NavigationBar } from "@/components";
 import navigationOptions from "@/components/NavBar/data";
@@ -8,12 +8,13 @@ import { Homepage } from "@/screens/home";
 export default function Home() {
   return (
     <FlexContainer
-      $backgroundColor={"#F5F5F5"}
-      $full={true}>
+      $backgroundColor="#F5F5F5"
+      $full
+    >
       <Homepage />
       <NavigationBar
-        color={"#F8FCF6"}
-        $highlightTextColor={"#7AC143"}
+        color="#F8FCF6"
+        $highlightTextColor="#7AC143"
         options={navigationOptions}
       />
     </FlexContainer>

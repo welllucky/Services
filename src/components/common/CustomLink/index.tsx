@@ -12,6 +12,6 @@ export const CustomLink = styled(Link)<CustomLinkProps>`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: ${({ color }) => (color ? color : "#252728")};
+  color: ${({ color }) => (color || "#252728")};
   
 `;

@@ -1,7 +1,7 @@
 import { type IconProps } from "@/types";
 import Filter from "./filter.svg";
 
-export const PlusIcon = () => {
+export function PlusIcon() {
   return (
     <svg
       width="26"
@@ -9,7 +9,8 @@ export const PlusIcon = () => {
       viewBox="0 0 26 26"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink">
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <mask
         id="mask0_84_36559"
         style={{ maskType: "alpha" }}
@@ -17,7 +18,8 @@ export const PlusIcon = () => {
         x="0"
         y="0"
         width="26"
-        height="26">
+        height="26"
+      >
         <rect
           width="26"
           height="26"
@@ -36,7 +38,8 @@ export const PlusIcon = () => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <use
             xlinkHref="#image0_84_36559"
             transform="scale(0.0104167)"
@@ -51,16 +54,17 @@ export const PlusIcon = () => {
       </defs>
     </svg>
   );
-};
+}
 
-export const Selo = () => {
+export function Selo() {
   return (
     <svg
       width="26"
       height="30"
       viewBox="0 0 26 30"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g filter="url(#filter0_d_1530_30528)">
         <path
           d="M9.16106 3.43901C10.1526 1.5572 12.8474 1.5572 13.8389 3.43901C14.4324 4.56531 15.7443 5.10871 16.9603 4.73193C18.9921 4.10241 20.8976 6.00793 20.2681 8.03968C19.8913 9.25573 20.4347 10.5676 21.561 11.1611C23.4428 12.1526 23.4428 14.8474 21.561 15.8389C20.4347 16.4324 19.8913 17.7443 20.2681 18.9603C20.8976 20.9921 18.9921 22.8976 16.9603 22.2681C15.7443 21.8913 14.4324 22.4347 13.8389 23.561C12.8474 25.4428 10.1526 25.4428 9.16106 23.561C8.56761 22.4347 7.25573 21.8913 6.03968 22.2681C4.00793 22.8976 2.10241 20.9921 2.73193 18.9603C3.10871 17.7443 2.56531 16.4324 1.43901 15.8389C-0.442797 14.8474 -0.442797 12.1526 1.43901 11.1611C2.56531 10.5676 3.10871 9.25573 2.73193 8.03968C2.10241 6.00793 4.00792 4.10241 6.03968 4.73193C7.25573 5.10871 8.56761 4.56531 9.16106 3.43901Z"
@@ -75,7 +79,8 @@ export const Selo = () => {
           width="35"
           height="35"
           filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB">
+          colorInterpolationFilters="sRGB"
+        >
           <feFlood
             floodOpacity="0"
             result="BackgroundImageFix"
@@ -114,7 +119,8 @@ export const Selo = () => {
           y1="22.2"
           x2="6.18333"
           y2="6.73333"
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#960C23" />
           <stop
             offset="1"
@@ -124,9 +130,9 @@ export const Selo = () => {
       </defs>
     </svg>
   );
-};
+}
 
-export const EmailIcon = ({ width, height, color }: IconProps) => {
+export function EmailIcon({ width, height, color }: IconProps) {
   return (
     <svg
       width={width || "40"}
@@ -134,7 +140,8 @@ export const EmailIcon = ({ width, height, color }: IconProps) => {
       viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink">
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <mask
         id="mask0_27_64"
         // mask-type="alpha"
@@ -142,7 +149,8 @@ export const EmailIcon = ({ width, height, color }: IconProps) => {
         x="8"
         y="8"
         width="24"
-        height="24">
+        height="24"
+      >
         <rect
           x="8.92308"
           y="8.92308"
@@ -165,7 +173,8 @@ export const EmailIcon = ({ width, height, color }: IconProps) => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <use
             xlinkHref="#image0_27_64"
             transform="scale(0.0104167)"
@@ -180,9 +189,9 @@ export const EmailIcon = ({ width, height, color }: IconProps) => {
       </defs>
     </svg>
   );
-};
+}
 
-export const CallsIcon = ({ width, height, color }: IconProps) => {
+export function CallsIcon({ width, height, color }: IconProps) {
   return (
     <svg
       width={width}
@@ -190,7 +199,8 @@ export const CallsIcon = ({ width, height, color }: IconProps) => {
       viewBox="0 0 26 26"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink">
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <mask
         id="mask0_84_36168"
         style={{ maskType: "alpha" }}
@@ -198,7 +208,8 @@ export const CallsIcon = ({ width, height, color }: IconProps) => {
         x="0"
         y="0"
         width="26"
-        height="26">
+        height="26"
+      >
         <rect
           width="26"
           height="26"
@@ -217,7 +228,8 @@ export const CallsIcon = ({ width, height, color }: IconProps) => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <use
             xlinkHref="#image0_84_36168"
             transform="scale(0.0104167)"
@@ -232,8 +244,8 @@ export const CallsIcon = ({ width, height, color }: IconProps) => {
       </defs>
     </svg>
   );
-};
-export const HomeIcon = ({ width, height, color }: IconProps) => {
+}
+export function HomeIcon({ width, height, color }: IconProps) {
   return (
     <svg
       width={width}
@@ -241,7 +253,8 @@ export const HomeIcon = ({ width, height, color }: IconProps) => {
       viewBox="0 0 26 26"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink">
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <mask
         id="mask0_84_36159"
         style={{ maskType: "alpha" }}
@@ -249,7 +262,8 @@ export const HomeIcon = ({ width, height, color }: IconProps) => {
         x="0"
         y="0"
         width="26"
-        height="26">
+        height="26"
+      >
         <rect
           width="26"
           height="26"
@@ -269,7 +283,8 @@ export const HomeIcon = ({ width, height, color }: IconProps) => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <use
             xlinkHref="#image0_84_36159"
             transform="scale(0.0104167)"
@@ -284,9 +299,9 @@ export const HomeIcon = ({ width, height, color }: IconProps) => {
       </defs>
     </svg>
   );
-};
+}
 
-export const SettingsIcon = ({ width, height, color }: IconProps) => {
+export function SettingsIcon({ width, height, color }: IconProps) {
   return (
     <svg
       width={width}
@@ -294,7 +309,8 @@ export const SettingsIcon = ({ width, height, color }: IconProps) => {
       viewBox="0 0 26 26"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink">
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <mask
         id="mask0_84_36520"
         style={{ maskType: "alpha" }}
@@ -302,7 +318,8 @@ export const SettingsIcon = ({ width, height, color }: IconProps) => {
         x="0"
         y="0"
         width="26"
-        height="26">
+        height="26"
+      >
         <rect
           width="26"
           height="26"
@@ -321,7 +338,8 @@ export const SettingsIcon = ({ width, height, color }: IconProps) => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <use
             xlinkHref="#image0_84_36520"
             transform="scale(0.0104167)"
@@ -336,9 +354,9 @@ export const SettingsIcon = ({ width, height, color }: IconProps) => {
       </defs>
     </svg>
   );
-};
+}
 
-export const UserExists = () => {
+export function UserExists() {
   return (
     <svg
       width="64"
@@ -346,7 +364,8 @@ export const UserExists = () => {
       viewBox="0 0 64 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink">
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <mask
         id="mask0_1143_41205"
         style={{ maskType: "alpha" }}
@@ -354,7 +373,8 @@ export const UserExists = () => {
         x="0"
         y="0"
         width="64"
-        height="64">
+        height="64"
+      >
         <rect
           width="64"
           height="64"
@@ -373,7 +393,8 @@ export const UserExists = () => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <use
             xlinkHref="#image0_1143_41205"
             transform="scale(0.0104167)"
@@ -388,66 +409,46 @@ export const UserExists = () => {
       </defs>
     </svg>
   );
-};
+}
 
-export const FilterIcon = () => {
+export function FilterIcon() {
   return <Filter />;
-};
+}
 
-export const SearchIcon = ({
+export function SearchIcon({
   width = "40px",
   height = "40px",
-  color = "black"
-}: IconProps) => {
+  color = "black",
+}: IconProps) {
   return (
     <svg
       width={width}
       height={height}
       viewBox="0 0 80 80"
       fill={color}
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M28 0C12.5834 0 0 12.5834 0 28C0 43.4166 12.5834 56 28 56C34.992 56 41.38 53.3921 46.2969 49.125L48 50.8281V56L72 80L80 72L56 48H50.8281L49.125 46.2969C53.3921 41.38 56 34.992 56 28C56 12.5834 43.4166 0 28 0ZM28 8C39.0931 8 48 16.9069 48 28C48 39.0931 39.0931 48 28 48C16.9069 48 8 39.0931 8 28C8 16.9069 16.9069 8 28 8Z"
         fill={color}
       />
     </svg>
   );
-};
+}
 
-export const ClearIcon = ({
+export function ClearIcon({
   width = "40px",
   height = "40px",
-  color = "black"
-}: IconProps) => {
+  color = "black",
+}: IconProps) {
   return (
     <svg
       width={width}
       height={height}
       viewBox="0 0 40 40"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M20 10C14.47 10 10 14.47 10 20C10 25.53 14.47 30 20 30C25.53 30 30 25.53 30 20C30 14.47 25.53 10 20 10ZM20 28C15.59 28 12 24.41 12 20C12 15.59 15.59 12 20 12C24.41 12 28 15.59 28 20C28 24.41 24.41 28 20 28ZM20 18.59L23.59 15L25 16.41L21.41 20L25 23.59L23.59 25L20 21.41L16.41 25L15 23.59L18.59 20L15 16.41L16.41 15L20 18.59Z"
-        fill={color}
-      />
-    </svg>
-  );
-};
-
-export const ClearDisabledIcon = ({
-  width = "40px",
-  height = "40px",
-  color = "black"
-}: IconProps) => {
-  return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -456,126 +457,29 @@ export const ClearDisabledIcon = ({
       />
     </svg>
   );
-};
+}
 
-// export const EyeIcon = ({
-// 	width = "40px",
-// 	height = "40px",
-// 	color = "black",
-// }: IconProps) => {
-// 	return (
-// 		<svg
-// 			width={width}
-// 			height={height}
-// 			viewBox="0 0 40 40"
-// 			fill="none"
-// 			xmlns="http://www.w3.org/2000/svg"
-// 			xmlns:xlink="http://www.w3.org/1999/xlink">
-// 			<mask
-// 				id="mask0_52_217"
-// 				style="mask-type:alpha"
-// 				maskUnits="userSpaceOnUse"
-// 				x="8"
-// 				y="8"
-// 				width="24"
-// 				height="24">
-// 				<rect
-// 					x="8"
-// 					y="8"
-// 					width="24"
-// 					height="24"
-// 					fill="url(#pattern0)"
-// 				/>
-// 			</mask>
-// 			<g mask="url(#mask0_52_217)">
-// 				<rect
-// 					x="8"
-// 					y="8"
-// 					width="24"
-// 					height="24"
-// 					fill={color}
-// 				/>
-// 			</g>
-// 			<defs>
-// 				<pattern
-// 					id="pattern0"
-// 					patternContentUnits="objectBoundingBox"
-// 					width="1"
-// 					height="1">
-// 					<use
-// 						xlink:href="#image0_52_217"
-// 						transform="scale(0.0104167)"
-// 					/>
-// 				</pattern>
-// 				<image
-// 					id="image0_52_217"
-// 					width="96"
-// 					height="96"
-// 					xlink:href="data:image/png;base64,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"
-// 				/>
-// 			</defs>
-// 		</svg>
-// 	);
-// };
-
-// export const EyeClosedIcon = ({
-// 	width = "40px",
-// 	height = "40px",
-// 	color = "black",
-// }: IconProps) => {
-// 	return (
-// 		<svg
-// 			width={width}
-// 			height={width}
-// 			viewBox="0 0 40 40"
-// 			fill="none"
-// 			xmlns="http://www.w3.org/2000/svg"
-// 			xmlns:xlink="http://www.w3.org/1999/xlink">
-// 			<mask
-// 				id="mask0_52_301"
-// 				style="mask-type:alpha"
-// 				maskUnits="userSpaceOnUse"
-// 				x="8"
-// 				y="8"
-// 				width="24"
-// 				height="24">
-// 				<rect
-// 					x="8"
-// 					y="8"
-// 					width="24"
-// 					height="24"
-// 					fill="url(#pattern0)"
-// 				/>
-// 			</mask>
-// 			<g mask="url(#mask0_52_301)">
-// 				<rect
-// 					x="8"
-// 					y="8"
-// 					width="24"
-// 					height="24"
-// 					fill={color}
-// 				/>
-// 			</g>
-// 			<defs>
-// 				<pattern
-// 					id="pattern0"
-// 					patternContentUnits="objectBoundingBox"
-// 					width="1"
-// 					height="1">
-// 					<use
-// 						xlink:href="#image0_52_301"
-// 						transform="scale(0.0104167)"
-// 					/>
-// 				</pattern>
-// 				<image
-// 					id="image0_52_301"
-// 					width="96"
-// 					height="96"
-// 					xlink:href="data:image/png;base64,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"
-// 				/>
-// 			</defs>
-// 		</svg>
-// 	);
-// };
+export function ClearDisabledIcon({
+  width = "40px",
+  height = "40px",
+  color = "black",
+}: IconProps) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 40 40"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M20 10C14.47 10 10 14.47 10 20C10 25.53 14.47 30 20 30C25.53 30 30 25.53 30 20C30 14.47 25.53 10 20 10ZM20 28C15.59 28 12 24.41 12 20C12 15.59 15.59 12 20 12C24.41 12 28 15.59 28 20C28 24.41 24.41 28 20 28ZM20 18.59L23.59 15L25 16.41L21.41 20L25 23.59L23.59 25L20 21.41L16.41 25L15 23.59L18.59 20L15 16.41L16.41 15L20 18.59Z"
+        fill={color}
+      />
+    </svg>
+  );
+}
 
 export * from "./EmptyBox";
