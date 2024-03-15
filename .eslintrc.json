@@ -40,7 +40,8 @@
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
     "function-paren-newline": "off",
-    "no-extra-boolean-cast": "off"
+    "no-extra-boolean-cast": "off",
+    "react/jsx-one-expression-per-line": "off"
     // "import/no-cycle": [2, { "ignoreExternal": true }]
   }
 }

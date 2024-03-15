@@ -4,6 +4,9 @@ import { useMemo } from "react";
 import { Row, SubTitleComponent, TitleComponent } from "@/styles";
 import Image from "next/image";
 import { buildTestIds } from "@/utils/functions";
+import { SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
+import { usePathname, useRouter } from "next/navigation";
+
 import Logo from "../../../../public/android/android-launchericon-512-512.png";
 import {
   UserName,
@@ -35,18 +38,19 @@ export function Header({
           : "Boa madrugada";
   }, []);
 
+  const { push } = useRouter();
+  const actualPage = usePathname();
+
   return (
     <HeaderHome {...buildTestIds("header-home-container")}>
       <FirstSection
         {...buildTestIds("header-first-section")}
-        $gap="1.2rem"
-      >
+        $gap="1.2rem">
         <Row
           {...buildTestIds("header-corp-logo-container")}
           width="fit-content"
           height="fit-content"
-          $isSmallClientMobile={false}
-        >
+          $isSmallClientMobile={false}>
           <Image
             {...buildTestIds("header-corp-logo-image")}
             width={48}
@@ -58,10 +62,7 @@ export function Header({
         <Row $isSmallClientMobile={false}>
           <UserName $isSmallClientMobile={false}>
             <TitleComponent $isSmallClientMobile={false}>
-              {greetingMessage}
-              ,
-              {userName}
-              !
+              {greetingMessage},{userName}!
             </TitleComponent>
           </UserName>
         </Row>
@@ -74,7 +75,10 @@ export function Header({
             </SubTitleComponent>
             {issueQuantify && issueQuantify > 4 ? (
               <IconButton
-                path="/abrir-chamado"
+                onClick={() => {
+                  sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, actualPage);
+                  push("/abrir-chamado");
+                }}
                 icon={addButtonAlt}
               />
             ) : null}

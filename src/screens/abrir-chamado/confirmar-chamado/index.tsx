@@ -2,10 +2,15 @@
 
 import { CustomFieldset } from "@/components/Fieldset";
 import { useTheme } from "styled-components";
-import { LS_KEY_1_TICKET_RECORD, useModalStore } from "@/utils";
+import {
+  LS_KEY_1_TICKET_RECORD,
+  SS_KEY_USER_PREVIOUS_PAGE,
+  useModalStore,
+} from "@/utils";
 import { IOpenTicketForm } from "@/app/(app)/(form)/template";
 import { buildTestIds, dataFormatter } from "@/utils/functions";
 import { ConfirmModal } from "@/components";
+import { useEffect } from "react";
 import { ConfirmDetailsContainer, SectionInfoForm } from "./styles";
 
 export function ConfirmDetailsPage() {
@@ -15,6 +20,13 @@ export function ConfirmDetailsPage() {
   );
   const isModalOpen = useModalStore((state) => state.isOpen);
   const modalCallback = useModalStore((state) => state.modalCallback);
+
+  useEffect(
+    () => () => {
+      sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, "form");
+    },
+    [],
+  );
 
   return (
     <>
@@ -29,15 +41,13 @@ export function ConfirmDetailsPage() {
       />
       <ConfirmDetailsContainer
         {...buildTestIds("confirm-details-container")}
-        $gap="16px"
-      >
+        $gap="16px">
         <SectionInfoForm {...buildTestIds("section-info-form")}>
           <CustomFieldset
             color={theme.colors.primary.default}
             labelText="Resumo"
             width="100%"
-            height="64px"
-          >
+            height="64px">
             {ticketData?.resumo}
           </CustomFieldset>
         </SectionInfoForm>
@@ -46,16 +56,14 @@ export function ConfirmDetailsPage() {
             color={theme.colors.primary.default}
             labelText="Tipo"
             width="48%"
-            height="64px"
-          >
+            height="64px">
             {ticketData?.tipo}
           </CustomFieldset>
           <CustomFieldset
             color={theme.colors.primary.default}
             labelText="Prioridade"
             width="48%"
-            height="64px"
-          >
+            height="64px">
             {ticketData?.prioridade}
           </CustomFieldset>
         </SectionInfoForm>
@@ -64,8 +72,7 @@ export function ConfirmDetailsPage() {
             color={theme.colors.primary.default}
             labelText="Data do ocorrido"
             width="100%"
-            height="64px"
-          >
+            height="64px">
             {dataFormatter(ticketData?.data)}
           </CustomFieldset>
         </SectionInfoForm>
@@ -75,8 +82,7 @@ export function ConfirmDetailsPage() {
             labelText="Descrição"
             width="100%"
             height="240px"
-            $hasOverflow
-          >
+            $hasOverflow>
             {ticketData?.descricao}
           </CustomFieldset>
         </SectionInfoForm>
