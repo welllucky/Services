@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
-import {
-  Fildset, Content, Legend, LegendText,
-} from "./styles";
+import { buildTestIds } from "@/utils";
+import { Fieldset, Content, Legend, LegendText } from "./styles";
 
 export interface ILegendProps {
   legendText?: string;
@@ -13,18 +12,21 @@ export interface ILegendProps {
   children: ReactNode;
 }
 
-export function CallInformation({
+export const CallInformation = ({
   legendText,
   width,
   height,
   children,
-}: ILegendProps) {
+}: Readonly<ILegendProps>) => {
   return (
-    <Fildset height={height} width={width}>
-      <Legend>
-        <LegendText>{legendText}</LegendText>
+    <Fieldset
+      {...buildTestIds("field-set-container")}
+      height={height}
+      width={width}>
+      <Legend {...buildTestIds("legend-container")}>
+        <LegendText {...buildTestIds("legend-text")}>{legendText}</LegendText>
       </Legend>
-      <Content>{children}</Content>
-    </Fildset>
+      <Content {...buildTestIds("content-container")}>{children}</Content>
+    </Fieldset>
   );
-}
+};

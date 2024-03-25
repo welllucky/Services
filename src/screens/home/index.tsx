@@ -9,11 +9,11 @@ import { useRouter } from "next/navigation";
 import { MainContainer } from "../pesquisa/styles";
 import { ButtonWrapper } from "./styles";
 
-function Homepage() {
+const Homepage = () => {
   const theme = useTheme();
   const { push } = useRouter();
   const { data, isLoading } = chamado.getChamados();
-  const issuesQuantity = data?.length || 0;
+  const issuesQuantity = data?.length ?? 0;
   return (
     <>
       <Header
@@ -49,7 +49,7 @@ function Homepage() {
             <ButtonWrapper>
               {issuesQuantity < 5 ? (
                 <AddNewIssueButton
-                  styles={{ hasShadow: true }}
+                  $styles={{ hasShadow: true }}
                   onClick={() => {
                     sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, "home");
                     push("/abrir-chamado");
@@ -62,6 +62,6 @@ function Homepage() {
       </PageContainer>
     </>
   );
-}
+};
 
 export { Homepage };

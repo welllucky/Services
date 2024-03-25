@@ -14,26 +14,25 @@ interface AddNewIssueButtonStyleProps {
 export interface AddNewIssueButtonProps {
   size?: number;
   // icon?: string;
-  styles?: AddNewIssueButtonStyleProps;
+  $styles?: AddNewIssueButtonStyleProps;
   onClick: () => void;
 }
 
-export function AddNewIssueButton({
+export const AddNewIssueButton = ({
   size,
-  styles,
+  $styles,
   onClick,
-}: AddNewIssueButtonProps) {
+}: AddNewIssueButtonProps) => {
   const debouncedClick = useDebounce(() => onClick, 400);
   return (
     <ButtonNewCalled
-      styles={styles}
+      $styles={$styles}
       size={size}
-      onClick={debouncedClick}
-    >
+      onClick={debouncedClick}>
       <Plus
         size={26}
         color="#7AC143"
       />
     </ButtonNewCalled>
   );
-}
+};

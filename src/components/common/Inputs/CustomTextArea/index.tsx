@@ -9,7 +9,7 @@ interface TextAreaProps extends InputComponentsProps {
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export function CustomTextArea({
+export const CustomTextArea = ({
   id,
   labelText,
   placeholder,
@@ -23,7 +23,7 @@ export function CustomTextArea({
   $status = "none",
   errorText,
   warnText,
-}: TextAreaProps) {
+}: TextAreaProps) => {
   return (
     <TextAreaContainer $status={$status}>
       <CustomFieldset
@@ -44,7 +44,7 @@ export function CustomTextArea({
               if (registerOptions?.onChange) registerOptions.onChange(e);
             },
           })}
-          height="100%"
+          height={height || "100%"}
           width="100%"
           placeholder={placeholder}
           value={value}
@@ -54,4 +54,4 @@ export function CustomTextArea({
       {$status === "warning" && <WarningText>{warnText}</WarningText>}
     </TextAreaContainer>
   );
-}
+};

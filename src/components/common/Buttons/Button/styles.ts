@@ -8,29 +8,31 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
   font-size: 1rem;
   border-radius: 10rem;
   padding: 10px 24px;
-  width: ${({ width }) => (width || "100%")};
-  height: ${({ height }) => (height || "100%")};
+  width: ${({ width }) => width || "100%"};
+  height: ${({ height }) => height || "100%"};
 
-  color: ${({ color, theme }) => (color || theme.colors.neutral.white)};
+  color: ${({ color, theme }) => color || theme.colors.neutral.white};
 
-  border: ${({ $$borderColor, mode }) => ($$borderColor && mode === "outlined"
-    ? `1px solid ${$$borderColor}`
-    : "none")};
+  border: ${({ $borderColor, mode }) =>
+    $borderColor && mode === "outlined" ? `1px solid ${$borderColor}` : "none"};
 
-  ${({ disabled, mode }) => disabled
-    && mode === "outlined"
-    && css`
+  ${({ disabled, mode }) =>
+    disabled &&
+    mode === "outlined" &&
+    css`
       border: 1px solid #bfbfbf;
       pointer-events: none;
     `};
 
-  background-color: ${({ $backgroundColor, mode, theme }) => ($backgroundColor && mode === "filled"
-    ? $backgroundColor
-    : theme.colors.primary[185])};
+  background-color: ${({ $backgroundColor, mode, theme }) =>
+    $backgroundColor && mode === "filled"
+      ? $backgroundColor
+      : theme.colors.primary[185]};
 
-  ${({ disabled, mode }) => disabled
-    && mode === "filled"
-    && css`
+  ${({ disabled, mode }) =>
+    disabled &&
+    mode === "filled" &&
+    css`
       background-color: #e5e6e6;
       pointer-events: none;
     `};
@@ -38,7 +40,7 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
 
 export const ButtonComponent = styled.button<{ color?: string }>`
   background-color: transparent;
-  color: ${({ color, theme }) => (color || theme.colors.neutral.white)};
+  color: ${({ color, theme }) => color || theme.colors.neutral.white};
   width: 100%;
   height: 100%;
   display: flex;

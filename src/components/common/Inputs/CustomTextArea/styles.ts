@@ -19,7 +19,6 @@ export const TextArea = styled.textarea<{ width?: string; height?: string }>`
   height: ${({ height }) => height};
   outline: 0;
   border: none;
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

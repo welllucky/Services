@@ -11,7 +11,7 @@ import {
 import { IOpenTicketForm } from "@/app/(app)/(form)/template";
 import { IssuePageContent } from "./styles";
 
-function CreateTicketPage() {
+const CreateTicketPage = () => {
   const {
     register,
     formState: { errors, isValid, isValidating },
@@ -116,6 +116,7 @@ function CreateTicketPage() {
         id="descricao"
         placeholder="Nos conte mais detalhes sobre o ocorrido..."
         labelText="Descrição"
+        height="160px"
         $status={
           errors?.descricao
             ? "invalid"
@@ -189,6 +190,6 @@ function CreateTicketPage() {
       />
     </IssuePageContent>
   );
-}
+};
 
 export { CreateTicketPage };

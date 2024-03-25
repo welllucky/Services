@@ -1,9 +1,10 @@
 import PageStruct from "./PageStruct";
+import IssueDisplay from "./IssueDisplay";
+import IssueActionButton from "./IssueActionButton";
 
 export * from "./Headers";
 export * from "./CallInformation";
 export * from "./NoContent";
-export * from "./IssueDisplay";
 export * from "./NavBar";
 export * from "./SearchBar";
 export * from "./Loading";
@@ -12,4 +13,4 @@ export * from "./common";
 export * from "./SupportText";
 export * from "./InformationHistory";
 
-export { PageStruct };
+export { PageStruct, IssueDisplay, IssueActionButton };

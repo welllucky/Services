@@ -49,4 +49,4 @@ const lightTheme = {
   },
 };
 
-export { lightTheme };
+export default lightTheme;
