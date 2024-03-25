@@ -13,7 +13,7 @@ interface TextAreaProps {
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export function CustomTextArea({
+export const CustomTextArea = ({
   labelText,
   placeholder,
   width = "100%",
@@ -21,9 +21,11 @@ export function CustomTextArea({
   value,
   onChange,
   isRequired = false,
-}: TextAreaProps) {
+}: TextAreaProps) => {
   return (
-    <CustomFieldset width={width as string} labelText={labelText as string}>
+    <CustomFieldset
+      width={width as string}
+      labelText={labelText as string}>
       <TextArea
         height={height as string}
         width={width as string}
@@ -34,4 +36,4 @@ export function CustomTextArea({
       />
     </CustomFieldset>
   );
-}
+};

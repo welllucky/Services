@@ -5,12 +5,11 @@ import navigationOptions from "@/components/NavBar/data";
 import { FlexContainer } from "@/components/PageStruct/style";
 import { Homepage } from "@/screens/home";
 
-export default function Home() {
+const Home = () => {
   return (
     <FlexContainer
       $backgroundColor="#F5F5F5"
-      $full
-    >
+      $full>
       <Homepage />
       <NavigationBar
         color="#F8FCF6"
@@ -19,4 +18,6 @@ export default function Home() {
       />
     </FlexContainer>
   );
-}
+};
+
+export default Home;

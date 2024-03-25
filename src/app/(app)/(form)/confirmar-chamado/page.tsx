@@ -1,5 +1,7 @@
 import { ConfirmDetailsPage } from "@/screens/abrir-chamado/confirmar-chamado";
 
-export default function ConfirmDetails() {
+const ConfirmDetails = () => {
   return <ConfirmDetailsPage />;
-}
+};
+
+export default ConfirmDetails;

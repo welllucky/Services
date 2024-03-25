@@ -24,9 +24,7 @@ export interface IOpenTicketForm {
   tipo: string;
 }
 
-export default function Template({
-  children,
-}: Readonly<{ children: ReactNode }>) {
+const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
   const pathName = usePathname();
   const { push, back } = useRouter();
   const shouldOpenModal = useModalStore((state) => state.open);
@@ -144,4 +142,6 @@ export default function Template({
       </IssuePageContainer>
     </FormProvider>
   );
-}
+};
+
+export default Template;

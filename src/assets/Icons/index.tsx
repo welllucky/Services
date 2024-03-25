@@ -1,7 +1,7 @@
 import { type IconProps } from "@/types";
 import Filter from "./filter.svg";
 
-export function PlusIcon() {
+export const PlusIcon = () => {
   return (
     <svg
       width="26"
@@ -54,9 +54,9 @@ export function PlusIcon() {
       </defs>
     </svg>
   );
-}
+};
 
-export function Selo() {
+export const Selo = () => {
   return (
     <svg
       width="26"
@@ -130,9 +130,9 @@ export function Selo() {
       </defs>
     </svg>
   );
-}
+};
 
-export function EmailIcon({ width, height, color }: IconProps) {
+export const EmailIcon = ({ width, height, color }: IconProps) => {
   return (
     <svg
       width={width || "40"}
@@ -189,9 +189,9 @@ export function EmailIcon({ width, height, color }: IconProps) {
       </defs>
     </svg>
   );
-}
+};
 
-export function CallsIcon({ width, height, color }: IconProps) {
+export const CallsIcon = ({ width, height, color }: IconProps) => {
   return (
     <svg
       width={width}
@@ -244,8 +244,8 @@ export function CallsIcon({ width, height, color }: IconProps) {
       </defs>
     </svg>
   );
-}
-export function HomeIcon({ width, height, color }: IconProps) {
+};
+export const HomeIcon = ({ width, height, color }: IconProps) => {
   return (
     <svg
       width={width}
@@ -299,9 +299,9 @@ export function HomeIcon({ width, height, color }: IconProps) {
       </defs>
     </svg>
   );
-}
+};
 
-export function SettingsIcon({ width, height, color }: IconProps) {
+export const SettingsIcon = ({ width, height, color }: IconProps) => {
   return (
     <svg
       width={width}
@@ -354,9 +354,9 @@ export function SettingsIcon({ width, height, color }: IconProps) {
       </defs>
     </svg>
   );
-}
+};
 
-export function UserExists() {
+export const UserExists = () => {
   return (
     <svg
       width="64"
@@ -409,17 +409,17 @@ export function UserExists() {
       </defs>
     </svg>
   );
-}
+};
 
-export function FilterIcon() {
+export const FilterIcon = () => {
   return <Filter />;
-}
+};
 
-export function SearchIcon({
+export const SearchIcon = ({
   width = "40px",
   height = "40px",
   color = "black",
-}: IconProps) {
+}: IconProps) => {
   return (
     <svg
       width={width}
@@ -434,13 +434,13 @@ export function SearchIcon({
       />
     </svg>
   );
-}
+};
 
-export function ClearIcon({
+export const ClearIcon = ({
   width = "40px",
   height = "40px",
   color = "black",
-}: IconProps) {
+}: IconProps) => {
   return (
     <svg
       width={width}
@@ -457,13 +457,13 @@ export function ClearIcon({
       />
     </svg>
   );
-}
+};
 
-export function ClearDisabledIcon({
+export const ClearDisabledIcon = ({
   width = "40px",
   height = "40px",
   color = "black",
-}: IconProps) {
+}: IconProps) => {
   return (
     <svg
       width={width}
@@ -480,6 +480,6 @@ export function ClearDisabledIcon({
       />
     </svg>
   );
-}
+};
 
 export * from "./EmptyBox";

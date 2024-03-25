@@ -24,7 +24,7 @@ interface SelectProps {
   // value?: string;
 }
 
-export function CustomSelect({
+export const CustomSelect = ({
   labelText,
   placeholder = "selecione uma opção",
   width = "100%",
@@ -34,7 +34,7 @@ export function CustomSelect({
   isRequired = false,
   multiple = false,
   form,
-}: SelectProps) {
+}: SelectProps) => {
   return (
     <CustomFieldset
       width={width}
@@ -62,4 +62,4 @@ export function CustomSelect({
       </SelectComponent>
     </CustomFieldset>
   );
-}
+};

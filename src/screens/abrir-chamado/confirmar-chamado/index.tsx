@@ -13,7 +13,7 @@ import { ConfirmModal } from "@/components";
 import { useEffect } from "react";
 import { ConfirmDetailsContainer, SectionInfoForm } from "./styles";
 
-export function ConfirmDetailsPage() {
+export const ConfirmDetailsPage = () => {
   const theme = useTheme();
   const ticketData: IOpenTicketForm = JSON.parse(
     localStorage.getItem(LS_KEY_1_TICKET_RECORD) as unknown as string,
@@ -89,4 +89,4 @@ export function ConfirmDetailsPage() {
       </ConfirmDetailsContainer>
     </>
   );
-}
+};

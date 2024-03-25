@@ -1,14 +1,12 @@
 "use client";
 
-import {
-  NoContent, Header, IssueDisplay, Loading,
-} from "@/components";
+import { NoContent, Header, IssueDisplay, Loading } from "@/components";
 import { PageContainer } from "@/styles";
 import { useTheme } from "styled-components";
 import { MainContainer } from "../pesquisa/styles";
 import { IssueDisplayData } from "../home/data";
 
-function RequestsPage() {
+const RequestsPage = () => {
   const theme = useTheme();
   const isLoading = false;
   const listaChamados = IssueDisplayData;
@@ -49,6 +47,6 @@ function RequestsPage() {
       </PageContainer>
     </>
   );
-}
+};
 
 export { RequestsPage };

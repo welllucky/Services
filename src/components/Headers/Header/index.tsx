@@ -22,11 +22,11 @@ export type HeaderMobileProps = {
   issueQuantify?: number;
 };
 
-export function Header({
+export const Header = ({
   userName,
   pageTittle,
   issueQuantify,
-}: HeaderMobileProps) {
+}: HeaderMobileProps) => {
   const greetingMessage = useMemo(() => {
     const hour = new Date().getHours();
     return hour > 5 && hour < 12
@@ -87,4 +87,4 @@ export function Header({
       )}
     </HeaderHome>
   );
-}
+};

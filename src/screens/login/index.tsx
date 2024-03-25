@@ -30,7 +30,7 @@ interface UserLoginProps {
   password: string;
 }
 
-function LoginPage() {
+const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const isInactiveButton = false;
@@ -139,6 +139,6 @@ function LoginPage() {
       </LoginMobile>
     </ScreenContainer>
   );
-}
+};
 
 export { LoginPage };

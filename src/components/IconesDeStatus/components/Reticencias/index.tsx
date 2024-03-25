@@ -1,7 +1,7 @@
 import { ReticenciasContainer } from "./styles";
 import reticencias from "../svg/reticencias.svg";
 
-export function Reticencias() {
+export const Reticencias = () => {
   return (
     <ReticenciasContainer>
       <img
@@ -12,4 +12,4 @@ export function Reticencias() {
       />
     </ReticenciasContainer>
   );
-}
+};

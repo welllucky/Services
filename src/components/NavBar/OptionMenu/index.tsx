@@ -2,33 +2,30 @@ import { OptionMenuProps } from "@/assets";
 import { CustomLink } from "@/components";
 import { IconArea, TextMenu } from "../styles";
 
-function OptionMenu({
+const OptionMenu = ({
   name,
   icon,
   path,
   $isSelected,
   color,
   $highlightTextColor,
-}: OptionMenuProps) {
+}: OptionMenuProps) => {
   return (
     <CustomLink
       $flexDirection="column"
-      href={path}
-    >
+      href={path}>
       <IconArea
         $backgroundColor={color}
-        $isSelected={$isSelected}
-      >
+        $isSelected={$isSelected}>
         {icon}
       </IconArea>
       <TextMenu
         $highlightTextColor={$highlightTextColor}
-        $isSelected={$isSelected}
-      >
+        $isSelected={$isSelected}>
         {name}
       </TextMenu>
     </CustomLink>
   );
-}
+};
 
 export default OptionMenu;

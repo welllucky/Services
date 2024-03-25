@@ -13,7 +13,7 @@ interface InfoHistoryPainelProps {
   isLoading?: boolean;
 }
 
-function InfoHistoryPainel({ data, isLoading }: InfoHistoryPainelProps) {
+const InfoHistoryPainel = ({ data, isLoading }: InfoHistoryPainelProps) => {
   const theme = useTheme();
   return (
     <InfoHistoryPainelContainer $hasContent={data.length !== 0}>
@@ -21,16 +21,16 @@ function InfoHistoryPainel({ data, isLoading }: InfoHistoryPainelProps) {
       <InfoHistoryPainelContent>
         {isLoading ? (
           <Loading color={theme.colors.primary["35"]} />
-        ) : data?.length ? (
-          data?.map((info) => <InfoUnity {...info} />)
+        ) : data.length ? (
+          data.map((info) => <InfoUnity {...info} />)
         ) : (
           <NoContent
-            icon={(
+            icon={
               <FileDashed
                 size={64}
                 color={theme.colors.neutral["45"]}
               />
-            )}
+            }
             title="Ops! Esse chamado ainda não possui movimentações"
             fontSize="16px"
             color={theme.colors.neutral["45"]}
@@ -39,6 +39,6 @@ function InfoHistoryPainel({ data, isLoading }: InfoHistoryPainelProps) {
       </InfoHistoryPainelContent>
     </InfoHistoryPainelContainer>
   );
-}
+};
 
 export { InfoHistoryPainel };

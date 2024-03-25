@@ -2,7 +2,7 @@ import { IconButtonProps } from "@/types";
 import Image from "next/image";
 import { CustomButton, CustomButtonAsLink, IconButtonWrapper } from "./styles";
 
-function IconButton({
+const IconButton = ({
   icon,
   path,
   onClick,
@@ -11,7 +11,7 @@ function IconButton({
   color = "#000000",
   width = "16",
   height = "16",
-}: IconButtonProps) {
+}: IconButtonProps) => {
   return (
     <IconButtonWrapper>
       {path && !onClick ? (
@@ -20,9 +20,11 @@ function IconButton({
           href={path}
           width={width}
           height={height}
-          onHover={onHover}
-        >
-          <Image src={icon} alt={alt} />
+          onHover={onHover}>
+          <Image
+            src={icon}
+            alt={alt}
+          />
         </CustomButtonAsLink>
       ) : (
         <CustomButton
@@ -30,13 +32,15 @@ function IconButton({
           width={width}
           height={height}
           onHover={onHover}
-          onClick={onClick}
-        >
-          <Image src={icon} alt={alt} />
+          onClick={onClick}>
+          <Image
+            src={icon}
+            alt={alt}
+          />
         </CustomButton>
       )}
     </IconButtonWrapper>
   );
-}
+};
 
 export { IconButton };

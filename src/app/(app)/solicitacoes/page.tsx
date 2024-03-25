@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: "Solicitações",
 };
 
-export default function Requests() {
+const Requests = () => {
   return <RequestsPage />;
-}
+};
+
+export default Requests;

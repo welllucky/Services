@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: { default: "Abrir chamado", template: "%s | Services" },
 };
 
-export default function Issue() {
+const Issue = () => {
   return <CreateTicketPage />;
-}
+};
+
+export default Issue;

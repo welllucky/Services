@@ -64,7 +64,7 @@ interface ModalProps {
   preventScroll?: boolean;
 }
 
-export function CustomModal({
+export const CustomModal = ({
   children,
   testId,
   isOpen,
@@ -80,7 +80,7 @@ export function CustomModal({
   shouldCloseOnOverlayClick = true,
   style = { overlay: { show: true } },
   backgroundColor,
-}: ModalProps) {
+}: ModalProps) => {
   ReactModal.setAppElement("body");
   return (
     <ReactModal
@@ -120,11 +120,10 @@ export function CustomModal({
       shouldReturnFocusAfterClose={shouldReturnFocusAfterClose}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
       contentLabel={contentLabel}
-      preventScroll={preventScroll}
-    >
+      preventScroll={preventScroll}>
       {children}
     </ReactModal>
   );
-}
+};
 
 export type { ModalProps };

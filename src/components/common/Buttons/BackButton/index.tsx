@@ -10,12 +10,12 @@ export interface BackButtonProps {
   onClick?: () => void;
 }
 
-export function BackButton({
+export const BackButton = ({
   actionText,
   color,
   fontWeight,
   onClick,
-}: BackButtonProps) {
+}: BackButtonProps) => {
   const { back } = useRouter();
   return (
     <Container
@@ -23,8 +23,7 @@ export function BackButton({
       onClick={() => {
         // eslint-disable-next-line no-unused-expressions
         onClick ? onClick() : back();
-      }}
-    >
+      }}>
       <CaretLeft
         size={20}
         color={color || "black"}
@@ -33,10 +32,9 @@ export function BackButton({
       <TextBack
         {...buildTestIds("back-button-text")}
         fontWeight={fontWeight}
-        color={color}
-      >
+        color={color}>
         {actionText}
       </TextBack>
     </Container>
   );
-}
+};

@@ -8,7 +8,11 @@ import { Loading } from "../../components/Loading";
 import { MainContainer, SearchContainer } from "./styles";
 import { SearchBar } from "../../components/SearchBar";
 
-function SearchPage({ searchResults }: { searchResults: IssueDisplayProps[] }) {
+const SearchPage = ({
+  searchResults,
+}: {
+  searchResults: IssueDisplayProps[];
+}) => {
   const theme = useTheme();
   const isLoading = false;
   const setSearch = (value: string) => value;
@@ -47,6 +51,6 @@ function SearchPage({ searchResults }: { searchResults: IssueDisplayProps[] }) {
       </PageContainer>
     </>
   );
-}
+};
 
 export { SearchPage };

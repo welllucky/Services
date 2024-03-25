@@ -10,7 +10,7 @@ import { AppProvider } from "../stores/useAppContext";
 import StyledComponentsRegistry from "./registry";
 // skipcq: JS-0323
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function AppProviders({ children }: any & ReactNode) {
+export const AppProviders = ({ children }: any & ReactNode) => {
   return (
     <SWRConfig>
       <CookiesProvider
@@ -43,6 +43,4 @@ function AppProviders({ children }: any & ReactNode) {
       </CookiesProvider>
     </SWRConfig>
   );
-}
-
-export { AppProviders };
+};
