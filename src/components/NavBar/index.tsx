@@ -9,11 +9,11 @@ interface NavigationBarProps {
   options: OptionMenuProps[];
 }
 
-export function NavigationBar({
+export const NavigationBar = ({
   color,
   $highlightTextColor,
   options,
-}: NavigationBarProps) {
+}: NavigationBarProps) => {
   const actualRoute = usePathname();
   return (
     <ContainerMenu color={color}>
@@ -33,4 +33,4 @@ export function NavigationBar({
       </MenuList>
     </ContainerMenu>
   );
-}
+};

@@ -11,7 +11,7 @@ interface IconProps {
   $hasPadding?: boolean;
 }
 
-function Icon({ src, alt, onClick, size, $hasPadding = false }: IconProps) {
+const Icon = ({ src, alt, onClick, size, $hasPadding = false }: IconProps) => {
   return (
     <IconContainer
       $hasPadding={$hasPadding}
@@ -24,6 +24,6 @@ function Icon({ src, alt, onClick, size, $hasPadding = false }: IconProps) {
       />
     </IconContainer>
   );
-}
+};
 
 export { Icon };

@@ -14,7 +14,7 @@ import {
 import qrCode from "../../../public/qr-code.png";
 import Logo from "../../../public/android/android-launchericon-512-512.png";
 
-function NoMobileDevicePage({ theme }: { theme: TextTheme }) {
+const NoMobileDevicePage = ({ theme }: { theme: TextTheme }) => {
   const { title, text } = theme;
   return (
     <NoMobileContainer>
@@ -43,6 +43,6 @@ function NoMobileDevicePage({ theme }: { theme: TextTheme }) {
       </NoMobileQRCodeSection>
     </NoMobileContainer>
   );
-}
+};
 
 export { NoMobileDevicePage };

@@ -10,7 +10,7 @@ interface SearchBarProps {
 }
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-function SearchBar({ getInputValue }: SearchBarProps) {
+const SearchBar = ({ getInputValue }: SearchBarProps) => {
   const [search, setSearch] = useState("");
 
   return (
@@ -43,6 +43,6 @@ function SearchBar({ getInputValue }: SearchBarProps) {
 			/> */}
     </StyledSearchBarContainer>
   );
-}
+};
 
 export { SearchBar };

@@ -11,7 +11,7 @@ export interface InfoUnityProps {
   icon?: string;
 }
 
-export function InfoUnity({ icon, description, id }: InfoUnityProps) {
+export const InfoUnity = ({ icon, description, id }: InfoUnityProps) => {
   return (
     description && (
       <InfoUnityContainer>
@@ -21,4 +21,4 @@ export function InfoUnity({ icon, description, id }: InfoUnityProps) {
       </InfoUnityContainer>
     )
   );
-}
+};

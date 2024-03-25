@@ -7,13 +7,13 @@ import { useTheme } from "styled-components";
 import { EmptyBox } from "@/assets";
 import { NoContentContainer, NoContentTitle } from "./styles";
 
-export function NoContent({
+export const NoContent = ({
   title,
   icon,
   alt,
   color,
   fontSize,
-}: NoContentProps) {
+}: NoContentProps) => {
   const theme = useTheme();
   return (
     <NoContentContainer>
@@ -29,10 +29,9 @@ export function NoContent({
       )}
       <NoContentTitle
         color={color || theme.colors.neutral["55"]}
-        fontSize={fontSize}
-      >
+        fontSize={fontSize}>
         {title}
       </NoContentTitle>
     </NoContentContainer>
   );
-}
+};

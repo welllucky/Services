@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "Meus chamados",
 };
 
-export default function Tickets() {
-  return (
-    <MyCallsPage />
-  );
-}
+const Tickets = () => {
+  return <MyCallsPage />;
+};
+
+export default Tickets;

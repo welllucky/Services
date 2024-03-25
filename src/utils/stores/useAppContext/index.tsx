@@ -1,6 +1,6 @@
 "use client";
 
-import { useMediaQuery } from "@uidotdev/usehooks";
+// import { useMediaQuery } from "@uidotdev/usehooks";
 import { ReactNode, createContext, useContext, useMemo } from "react";
 import {
   CS_KEY_USER_DEVICE_TYPE,
@@ -24,37 +24,35 @@ interface AppProviderProps {
 }
 
 export const AppContext = createContext({} as unknown as AppContextProps);
-export function AppProvider({ children }: Readonly<AppProviderProps>) {
+export const AppProvider = ({ children }: Readonly<AppProviderProps>) => {
   const deviceType: string = cookie.get(CS_KEY_USER_DEVICE_TYPE);
   const reliableAgent: string = cookie.get(CS_KEY_USER_RELIABLE_AGENT);
 
-  const isClientSmallMobile = useMediaQuery(
-    "only screen and (max-width: 320px)",
-  );
+  // const isClientSmallMobile = useMediaQuery(
+  //   "only screen and (max-width: 320px)",
+  // );
 
-  const isClientMediumMobile = useMediaQuery(
-    "only screen and (max-width: 375px)",
-  );
+  // const isClientMediumMobile = useMediaQuery(
+  //   "only screen and (max-width: 375px)",
+  // );
 
-  const isClientMobile = useMediaQuery("only screen and (max-width: 430px)");
+  // const isClientMobile = useMediaQuery("only screen and (max-width: 430px)");
 
-  const isClientTablet = useMediaQuery("only screen and (max-width: 768px)");
+  // const isClientTablet = useMediaQuery("only screen and (max-width: 768px)");
 
-  const isClientLaptop = useMediaQuery("only screen and (max-width: 1024px)");
+  // const isClientLaptop = useMediaQuery("only screen and (max-width: 1024px)");
 
-  const isClientDesktop = useMediaQuery("only screen and (max-width: 1440px)");
+  // const isClientDesktop = useMediaQuery("only screen and (max-width: 1440px)");
 
-  const isClientTV = useMediaQuery("only screen and (max-width: 2560px)");
+  // const isClientTV = useMediaQuery("only screen and (max-width: 2560px)");
 
-  const isMobile =
-    deviceType === "mobile" ||
-    isClientSmallMobile ||
-    isClientMediumMobile ||
-    isClientMobile;
-  const isDesktop =
-    deviceType === "desktop" || isClientLaptop || isClientDesktop;
-  const isTablet = deviceType === "tablet" || isClientTablet;
-  const isTV = deviceType === "tv" || isClientTV;
+  const isMobile = deviceType === "mobile";
+  // isClientSmallMobile ||
+  // isClientMediumMobile ||
+  // isClientMobile;
+  const isDesktop = deviceType === "desktop"; // || isClientLaptop || isClientDesktop;
+  const isTablet = deviceType === "tablet"; // || isClientTablet;
+  const isTV = deviceType === "tv"; /// || isClientTV;
   const isConsole = deviceType === "console";
   const isWearable = deviceType === "wearable";
   const isEmbedded = deviceType === "embedded";
@@ -88,7 +86,7 @@ export function AppProvider({ children }: Readonly<AppProviderProps>) {
       {children}
     </AppContext.Provider>
   );
-}
+};
 
 export const useApp = (): AppContextProps => {
   const context = useContext(AppContext);

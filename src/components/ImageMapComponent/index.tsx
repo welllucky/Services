@@ -22,7 +22,7 @@ interface ImageMapComponentProps {
   img: File;
 }
 
-export function ImageMapComponent({ img }: ImageMapComponentProps) {
+export const ImageMapComponent = ({ img }: ImageMapComponentProps) => {
   const [openImage, setOpenImage] = useState<boolean>(false);
 
   useEffect(() => {
@@ -44,14 +44,32 @@ export function ImageMapComponent({ img }: ImageMapComponentProps) {
       <FileContainer onClick={() => setOpenImage(true)}>
         <TypeFile showImage={openImage}>
           <IconCloseContent onClick={() => setOpenImage(false)}>
-            <Image src={close} alt="Fechar imagem" />
+            <Image
+              src={close}
+              alt="Fechar imagem"
+            />
           </IconCloseContent>
           {img.type === "image" ? (
-            <Image src={image} width={350} height={170} alt="Pegar arquivo" />
+            <Image
+              src={image}
+              width={350}
+              height={170}
+              alt="Pegar arquivo"
+            />
           ) : (
-            <video width={350} height={170} controls>
-              <source src={image} type="video/mp4" />
-              <track kind="subtitles" srcLang="pt-br" label="Português" />
+            <video
+              width={350}
+              height={170}
+              controls>
+              <source
+                src={image}
+                type="video/mp4"
+              />
+              <track
+                kind="subtitles"
+                srcLang="pt-br"
+                label="Português"
+              />
             </video>
           )}
         </TypeFile>
@@ -65,17 +83,22 @@ export function ImageMapComponent({ img }: ImageMapComponentProps) {
       <Title>{img.name}</Title>
       <ButtonActionContainer>
         <ButtonAction radiusRightTop="10px">
-          <Image src={iconRestart} alt="Botão para atualizar" />
+          <Image
+            src={iconRestart}
+            alt="Botão para atualizar"
+          />
         </ButtonAction>
         <ButtonAction
           radiusRightBottom="10px"
           borderTop="#000"
           alignItems="flex-end"
-          onClick={() => img.slice()}
-        >
-          <Image src={iconTrash} alt="Botão para Excluir" />
+          onClick={() => img.slice()}>
+          <Image
+            src={iconTrash}
+            alt="Botão para Excluir"
+          />
         </ButtonAction>
       </ButtonActionContainer>
     </ImageMapContainer>
   );
-}
+};

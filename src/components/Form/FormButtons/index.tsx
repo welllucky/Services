@@ -15,7 +15,7 @@ interface FormButtonsProps {
   onClickBackButton?: () => void;
 }
 
-function FormButtons({
+const FormButtons = ({
   canBack = true,
   canNext = true,
   hasBackButton = true,
@@ -23,14 +23,15 @@ function FormButtons({
   $hasSeparator = true,
   onClickNextButton,
   onClickBackButton,
-}: FormButtonsProps) {
+}: FormButtonsProps) => {
   const { back, push } = useRouter();
   return (
     <FormButtonsContainer
       $hasSeparator={$hasSeparator}
-      {...buildTestIds("form-buttons-container")}
-    >
-      <ButtonsContainer $gap="8px" {...buildTestIds("form-buttons")}>
+      {...buildTestIds("form-buttons-container")}>
+      <ButtonsContainer
+        $gap="8px"
+        {...buildTestIds("form-buttons")}>
         {hasBackButton && (
           <CustomButton
             disabled={!canBack}
@@ -64,6 +65,6 @@ function FormButtons({
       </ButtonsContainer>
     </FormButtonsContainer>
   );
-}
+};
 
 export { FormButtons };

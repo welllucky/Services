@@ -21,7 +21,7 @@ interface ConfirmModalProps extends ModalProps {
   confirmCallBack?: () => void;
 }
 
-function ConfirmModal({
+const ConfirmModal = ({
   successIcon,
   successText,
   confirmationIcon,
@@ -30,7 +30,7 @@ function ConfirmModal({
   mode = "confirm",
   confirmCallBack,
   ...props
-}: ConfirmModalProps) {
+}: ConfirmModalProps) => {
   const theme = useTheme();
   const shouldCloseModal = useModalStore((state) => state.close);
   const [changeToVitrine, setChangeToVitrine] = useState<boolean>(
@@ -52,26 +52,24 @@ function ConfirmModal({
       shouldCloseOnEsc
       backgroundColor="transparent"
       {...props}
-      testId="modal-success"
-    >
+      testId="modal-success">
       <ConfirmModalWrapper
         $wasConfirmed={changeToVitrine}
-        $shouldHavePaddingBottom={changeToVitrine}
-      >
+        $shouldHavePaddingBottom={changeToVitrine}>
         {changeToVitrine
           ? successIcon ?? (
           <Check
             color={theme.colors.neutral.default}
             size="6rem"
             alt="sinal de confirmação"
-          />
+              />
           )
           : confirmationIcon ?? (
           <Question
             color={theme.colors.neutral.default}
             size="6rem"
             alt="sinal de confirmação"
-          />
+              />
           )}
         <ConfirmModalText {...buildTestIds("confirm-modal-text")}>
           {changeToVitrine ? successText : confirmationText}
@@ -86,7 +84,7 @@ function ConfirmModal({
                 $backgroundColor="transparent"
                 height="60px"
                 mode="outlined"
-                $$borderColor={theme.colors.neutral.default}
+                $borderColor={theme.colors.neutral.default}
                 onClick={shouldCloseModal}
               />
             )}
@@ -98,13 +96,13 @@ function ConfirmModal({
               height="40px"
               mode="filled"
               onClick={modalCallBack}
-              $$borderColor={theme.colors.neutral.default}
+              $borderColor={theme.colors.neutral.default}
             />
           </ConfirmModalButtons>
         )}
       </ConfirmModalWrapper>
     </CustomModal>
   );
-}
+};
 
 export { ConfirmModal };

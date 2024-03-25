@@ -46,7 +46,8 @@
       2,
       { "namedComponents": "arrow-function" }
     ],
-    "arrow-body-style": ["off", "always"]
+    "arrow-body-style": ["off", "always"],
+    "react/jsx-wrap-multilines": "off"
     // "import/no-cycle": [2, { "ignoreExternal": true }]
   }
 }
