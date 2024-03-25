@@ -8,7 +8,7 @@ export interface CustomButtonProps
   text?: string;
   color?: string;
   $backgroundColor?: string;
-  $$borderColor?: string;
+  $borderColor?: string;
   onClick?: () => void;
   disabled?: boolean;
   icon?: StaticImageData;
@@ -24,7 +24,7 @@ export interface CustomButtonProps
  *@param text - Texto do botão
  *@param color - Cor do texto
  *@param $backgroundColor - Cor do fundo
- *@param $$borderColor - Cor da borda
+ *@param $borderColor - Cor da borda
  *@param onClick - Funcao de click
  *@param disabled - Desabilita o botão
  *@param icon - ícone do botão
@@ -35,11 +35,11 @@ export interface CustomButtonProps
  *@param mode - Modo do botão
  *
  */
-export function CustomButton({
+export const CustomButton = ({
   text = "button",
   $backgroundColor = "grey",
   color = "black",
-  $$borderColor = "black",
+  $borderColor = "black",
   disabled = false,
   onClick,
   icon,
@@ -49,12 +49,12 @@ export function CustomButton({
   height,
   mode = "filled",
   ...props
-}: CustomButtonProps) {
+}: CustomButtonProps) => {
   return (
     <ButtonContainer
       {...buildTestIds(`button-container-${text}`)}
       $backgroundColor={$backgroundColor}
-      $$borderColor={$$borderColor}
+      $borderColor={$borderColor}
       disabled={disabled}
       width={width}
       height={height}
@@ -80,4 +80,4 @@ export function CustomButton({
       </ButtonComponent>
     </ButtonContainer>
   );
-}
+};

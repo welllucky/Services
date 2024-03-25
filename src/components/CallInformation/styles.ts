@@ -20,7 +20,7 @@ export const Content = styled.div`
   flex-wrap: wrap;
   color: #2b4417;
 `;
-export const Fildset = styled.fieldset<ILegendProps>`
+export const Fieldset = styled.fieldset<ILegendProps>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

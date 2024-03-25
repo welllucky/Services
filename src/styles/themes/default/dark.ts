@@ -59,4 +59,4 @@ const darkTheme = {
   },
 };
 
-export { darkTheme };
+export default darkTheme;

@@ -1,9 +1,7 @@
-import { lightTheme } from "./light";
-// import { darkTheme } from "./dark";
+import lightTheme from "./light";
+import darkTheme from "./dark";
 
 type ThemeProps = typeof lightTheme;
 
-lightTheme satisfies ThemeProps;
-// darkTheme satisfies ThemeProps;
-
-export { lightTheme };
+export { lightTheme, darkTheme };
+export type { ThemeProps };

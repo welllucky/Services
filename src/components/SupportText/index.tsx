@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const SupportText = styled.span<{ color?: string }>`
+  margin-top: 0.3rem;
   font-size: 0.8rem;
-  color: ${({ color }) => color || "#1c1b1f"};
+  color: ${({ color }) => color ?? "#1c1b1f"};
   font-weight: 500;
 `;
 

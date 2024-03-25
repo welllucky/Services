@@ -13,10 +13,10 @@ import { chamado } from "@/utils";
 import { MainContainer } from "../pesquisa/styles";
 import { ButtonWrapper } from "./styles";
 
-function MyCallsPage() {
+const MyCallsPage = () => {
   const { push } = useRouter();
   const { data, isLoading } = chamado.getChamados();
-  const issuesQuantity = data?.length || 0;
+  const issuesQuantity = data?.length ?? 0;
   return (
     <>
       <Header
@@ -52,7 +52,7 @@ function MyCallsPage() {
               {issuesQuantity < 5 ? (
                 <AddNewIssueButton
                   onClick={() => push("/abrir-chamado")}
-                  styles={{ hasShadow: true }}
+                  $styles={{ hasShadow: true }}
                 />
               ) : null}
             </ButtonWrapper>
@@ -61,6 +61,6 @@ function MyCallsPage() {
       </PageContainer>
     </>
   );
-}
+};
 
 export { MyCallsPage };

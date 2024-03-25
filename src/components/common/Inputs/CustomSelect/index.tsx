@@ -21,7 +21,7 @@ interface SelectProps extends InputComponentsProps {
   value?: string;
 }
 
-export function CustomSelect({
+export const CustomSelect = ({
   id,
   labelText,
   placeholder = "selecione uma opção",
@@ -36,7 +36,7 @@ export function CustomSelect({
   $status = "none",
   errorText,
   warnText,
-}: SelectProps) {
+}: SelectProps) => {
   return (
     <SelectContainer $status={$status}>
       <CustomFieldset
@@ -77,4 +77,4 @@ export function CustomSelect({
       </CustomFieldset>
     </SelectContainer>
   );
-}
+};

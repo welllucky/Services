@@ -21,13 +21,13 @@ function AppProviders({ children }: any & ReactNode) {
           domain: process.env.BASE_URL,
           expires: new Date(Date.now() + 60 * 60 * 24 * 15),
           partitioned: false,
-        }}
-      >
-        <AppProvider>
-          <StyledComponentsRegistry>
-            <ThemeProvider theme={theme}>
+        }}>
+        <StyledComponentsRegistry>
+          <ThemeProvider theme={theme}>
+            <AppProvider>
               <GlobalStyle />
               {children}
+
               <Toaster
                 position="top-center"
                 toastOptions={{
@@ -37,9 +37,9 @@ function AppProviders({ children }: any & ReactNode) {
                   },
                 }}
               />
-            </ThemeProvider>
-          </StyledComponentsRegistry>
-        </AppProvider>
+            </AppProvider>
+          </ThemeProvider>
+        </StyledComponentsRegistry>
       </CookiesProvider>
     </SWRConfig>
   );

@@ -49,7 +49,7 @@ interface InputProps extends InputComponentsProps {
   mode?: "filled" | "outlined";
 }
 
-function CustomInput({
+const CustomInput = ({
   id,
   type = "text",
   placeholder = "Digite aqui",
@@ -68,7 +68,7 @@ function CustomInput({
   register,
   registerOptions = {},
   isRequired = false,
-}: InputProps) {
+}: InputProps) => {
   return (
     <InputContainer width={width}>
       {labelText && <Label mode={mode}>{labelText}</Label>}
@@ -118,9 +118,9 @@ function CustomInput({
       {$status === "warning" && <WarningText>{warnText}</WarningText>}
     </InputContainer>
   );
-}
+};
 
-function OutlinedInput(props: InputProps) {
+const OutlinedInput = (props: InputProps) => {
   const { height, labelText, type, placeholder } = props;
   return (
     <CustomInput
@@ -132,6 +132,6 @@ function OutlinedInput(props: InputProps) {
       placeholder={placeholder || "Placeholder"}
     />
   );
-}
+};
 
 export { CustomInput, OutlinedInput };

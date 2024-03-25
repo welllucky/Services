@@ -1,5 +1,6 @@
 import { Selo } from "@/assets/Icons";
 import { IssueDisplayProps } from "@/assets";
+import { buildTestIds } from "@/utils";
 import {
   IssueContainer,
   IssueContent,
@@ -14,7 +15,7 @@ import {
   InfoLabel,
 } from "./styles";
 
-export function IssueDisplay({
+const IssueDisplay = ({
   id,
   nome,
   date,
@@ -22,34 +23,44 @@ export function IssueDisplay({
   isUpdated,
   color,
   $borderColor,
-}: IssueDisplayProps) {
+}: Readonly<IssueDisplayProps>) => {
   return (
-    <IssueWrapper href={`/chamado/${id}`}>
+    <IssueWrapper
+      {...buildTestIds("issue-wrapper")}
+      href={`/chamado/${id}`}>
       {isUpdated && (
-        <IconeSelo>
+        <IconeSelo {...buildTestIds("icone-selo")}>
           <Selo />
         </IconeSelo>
       )}
       <IssueContainer
+        {...buildTestIds("issue-container")}
         color={color}
         $borderColor={$borderColor}
-        $hasUpdate={isUpdated}
-      >
-        <IssueContent $hasUpdate={isUpdated}>
-          <IssueNumber>{`Chamado Nº ${id}`}</IssueNumber>
-          <IssueDescription>{nome}</IssueDescription>
+        $hasUpdate={isUpdated}>
+        <IssueContent
+          {...buildTestIds("issue-content")}
+          $hasUpdate={isUpdated}>
+          <IssueNumber {...buildTestIds("issue-number")}>
+            {`Chamado Nº ${id}`}
+          </IssueNumber>
+          <IssueDescription {...buildTestIds("issue-description")}>
+            {nome}
+          </IssueDescription>
         </IssueContent>
-        <IssueState>
-          <IssueStatus>
-            <InfoLabel>Aberto em:</InfoLabel>
-            <OpeningText>{date}</OpeningText>
+        <IssueState {...buildTestIds("issue-state")}>
+          <IssueStatus {...buildTestIds("issue-status")}>
+            <InfoLabel {...buildTestIds("info-label")}>Aberto em:</InfoLabel>
+            <OpeningText {...buildTestIds("opening-text")}>{date}</OpeningText>
           </IssueStatus>
-          <IssueStatus>
-            <InfoLabel>Status</InfoLabel>
-            <StatusText>{$status}</StatusText>
+          <IssueStatus {...buildTestIds("issue-status")}>
+            <InfoLabel {...buildTestIds("info-label")}>Status</InfoLabel>
+            <StatusText {...buildTestIds("status-text")}>{$status}</StatusText>
           </IssueStatus>
         </IssueState>
       </IssueContainer>
     </IssueWrapper>
   );
-}
+};
+
+export default IssueDisplay;

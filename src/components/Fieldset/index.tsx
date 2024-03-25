@@ -12,7 +12,7 @@ export type FieldsetProps = {
   $justifyContent?: "start" | "center" | "end";
 };
 
-function CustomFieldset({
+const CustomFieldset = ({
   children,
   labelText,
   height,
@@ -20,7 +20,7 @@ function CustomFieldset({
   color,
   $hasOverflow = false,
   $justifyContent = "end",
-}: FieldsetProps) {
+}: FieldsetProps) => {
   return (
     <FieldsetContainer
       width={width}
@@ -36,6 +36,6 @@ function CustomFieldset({
       </Fieldset>
     </FieldsetContainer>
   );
-}
+};
 
 export { CustomFieldset };

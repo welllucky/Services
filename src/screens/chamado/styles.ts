@@ -13,3 +13,9 @@ export const IssuePageContent = styled(Column)`
   overflow-x: hidden;
   overflow-y: auto;
 `;
+
+export const UserActionContainer = styled.div`
+position: absolute;
+top: 60vh;
+right: 8vw;
+`;

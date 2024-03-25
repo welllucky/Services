@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 export const FieldSetContent = styled.div`
   overflow: scroll;
   width: 100%;
+  height: fit-content;
   word-wrap: break-word;
 `;
 
@@ -17,10 +18,11 @@ export const Fieldset = styled.div<{
   color: ${({ theme }) => theme.colors.neutral["100"]};
   padding: 1rem;
   width: 100%;
-  overflow: hidden;
+  overflow: scroll;
 
-  ${({ $hasOverflow }) => !$hasOverflow
-    && css`
+  ${({ $hasOverflow }) =>
+    !$hasOverflow &&
+    css`
       ${FieldSetContent} {
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -32,7 +34,7 @@ export const Fieldset = styled.div<{
 export const Legend = styled.span`
   font-style: normal;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.4px;
   color: #2b4417;
@@ -54,18 +56,11 @@ export const FieldsetContainer = styled.div<{
   height?: string;
   $hasOverflow?: boolean;
 }>`
-  width: ${({ width }) => width ?? "fit-content"};
+  width: ${({ width }) => width ?? "100%"};
   height: fit-content;
 
   ${Fieldset} {
-    max-height: ${({ height }) => height ?? "51px"};
-  }
-
-  ${FieldSetContent} {
-    ${({ $hasOverflow, height }) => $hasOverflow
-      && height
-      && css`
-        height: ${height};
-      `}
+    min-height: 55px;
+    max-height: ${({ height }) => height ?? "55px"};
   }
 `;
