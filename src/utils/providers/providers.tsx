@@ -35,6 +35,8 @@ export const AppProviders = ({ children }: any & ReactNode) => {
                     role: "status",
                     "aria-live": "polite",
                   },
+                  className: "services-message-toast",
+                  position: "top-center",
                 }}
               />
             </AppProvider>

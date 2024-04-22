@@ -39,9 +39,6 @@ const IssuePage = ({ id }: IssuePageProps) => {
 
   return (
     <IssuePageContainer $full>
-      <UserActionContainer>
-        <IssueActionButton />
-      </UserActionContainer>
       <Row>
         <BackButton
           onClick={() => router.push("/")}
@@ -100,6 +97,9 @@ const IssuePage = ({ id }: IssuePageProps) => {
           isLoading={isLoading}
         />
       </IssuePageContent>
+      <UserActionContainer>
+        <IssueActionButton />
+      </UserActionContainer>
     </IssuePageContainer>
   );
 };

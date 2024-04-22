@@ -1,12 +1,14 @@
-import addButtonAlt from "@/assets/Images/AddButtonAlt.png";
-import { IconButton } from "@/components";
 import { useMemo } from "react";
-import { Row, SubTitleComponent, TitleComponent } from "@/styles";
 import Image from "next/image";
-import { buildTestIds } from "@/utils/functions";
-import { SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
+import { IconButton } from "@/components";
+import addButtonAlt from "@/assets/Images/AddButtonAlt.png";
+import { Row, SubTitleComponent, TitleComponent } from "@/styles";
+import {
+  buildTestIds,
+  getGreetingMessage,
+  SS_KEY_USER_PREVIOUS_PAGE,
+} from "@/utils";
 import { usePathname, useRouter } from "next/navigation";
-
 import Logo from "../../../../public/android/android-launchericon-512-512.png";
 import {
   UserName,
@@ -27,25 +29,17 @@ export const Header = ({
   pageTittle,
   issueQuantify,
 }: HeaderMobileProps) => {
-  const greetingMessage = useMemo(() => {
-    const hour = new Date().getHours();
-    return hour > 5 && hour < 12
-      ? "Bom dia"
-      : hour >= 12 && hour < 18
-        ? "Boa tarde"
-        : hour >= 18 && hour < 24
-          ? "Boa noite"
-          : "Boa madrugada";
-  }, []);
-
   const { push } = useRouter();
   const actualPage = usePathname();
+  const greetingMessage = useMemo(() => {
+    return getGreetingMessage();
+  }, []);
 
   return (
     <HeaderHome {...buildTestIds("header-home-container")}>
       <FirstSection
         {...buildTestIds("header-first-section")}
-        $gap="1.2rem">
+        $gap="0.7rem">
         <Row
           {...buildTestIds("header-corp-logo-container")}
           width="fit-content"
@@ -62,7 +56,7 @@ export const Header = ({
         <Row $isSmallClientMobile={false}>
           <UserName $isSmallClientMobile={false}>
             <TitleComponent $isSmallClientMobile={false}>
-              {greetingMessage},{userName}!
+              {greetingMessage}, {userName}!
             </TitleComponent>
           </UserName>
         </Row>

@@ -1,15 +1,15 @@
 "use client";
 
-import { CustomFieldset } from "@/components/Fieldset";
 import { useTheme } from "styled-components";
+import { IOpenTicketForm } from "@/app/(app)/(form)/template";
 import {
+  buildTestIds,
+  dataFormatter,
   LS_KEY_1_TICKET_RECORD,
   SS_KEY_USER_PREVIOUS_PAGE,
   useModalStore,
 } from "@/utils";
-import { IOpenTicketForm } from "@/app/(app)/(form)/template";
-import { buildTestIds, dataFormatter } from "@/utils/functions";
-import { ConfirmModal } from "@/components";
+import { ConfirmModal, CustomFieldset } from "@/components";
 import { useEffect } from "react";
 import { ConfirmDetailsContainer, SectionInfoForm } from "./styles";
 
