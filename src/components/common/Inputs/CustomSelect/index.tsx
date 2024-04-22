@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { CustomFieldset } from "@/components/Fieldset";
 import { InputComponentsProps } from "@/assets";
 import { ErrorText, WarningText } from "@/components";
@@ -37,6 +37,7 @@ export const CustomSelect = ({
   errorText,
   warnText,
 }: SelectProps) => {
+  const [selectedValue, setSelectedValue] = useState<string>("");
   return (
     <SelectContainer $status={$status}>
       <CustomFieldset
@@ -44,6 +45,7 @@ export const CustomSelect = ({
         height={height}
         labelText={labelText || ""}>
         <SelectComponent
+          isPlaceholder={selectedValue === ""}
           {...register(id, {
             ...registerOptions,
             required: isRequired
@@ -52,13 +54,14 @@ export const CustomSelect = ({
                 ? registerOptions?.required
                 : false,
             onChange: (e) => {
+              setSelectedValue(e.target.value);
               if (onChange) onChange(e);
               if (registerOptions?.onChange) registerOptions.onChange(e);
             },
           })}
           multiple={multiple}>
           <CustomOption
-            disabled={isRequired}
+            // disabled={isRequired}
             value="">
             {placeholder ?? "selecione uma opção abaixo"}
           </CustomOption>
@@ -66,8 +69,8 @@ export const CustomSelect = ({
             <CustomOption
               key={option?.key}
               value={option.value}
-              // selected={option?.isSelected as boolean}
-              disabled={option?.isDisabled as boolean}>
+              selected={!!option?.isSelected}
+              disabled={!!option?.isDisabled}>
               {option?.text}
             </CustomOption>
           ))}

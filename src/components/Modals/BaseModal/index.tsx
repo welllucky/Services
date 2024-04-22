@@ -94,7 +94,7 @@ export const CustomModal = ({
         content: {
           zIndex: 101,
           position: "absolute",
-          top: "30vh",
+          top: "30svh",
           maxWidth: style?.content?.maxWidth ?? "360px",
           maxHeight: style?.content?.maxHeight ?? "280px",
           padding: style?.content?.padding ?? "0px",

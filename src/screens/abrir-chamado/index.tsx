@@ -4,10 +4,7 @@ import { CustomSelect, CustomTextArea, OutlinedInput } from "@/components";
 import { useFormContext } from "react-hook-form";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import {
-  LS_KEY_1_TICKET_RECORD,
-  SS_KEY_USER_PREVIOUS_PAGE,
-} from "@/utils/alias";
+import { LS_KEY_1_TICKET_RECORD, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
 import { IOpenTicketForm } from "@/app/(app)/(form)/template";
 import { IssuePageContent } from "./styles";
 
@@ -35,7 +32,7 @@ const CreateTicketPage = () => {
       // eslint-disable-next-line no-unused-expressions
       isFromOutsideForm && toast.success("Dados recuperados com sucesso!");
     }
-  }, []);
+  }, [setValue]);
 
   useEffect(() => {
     if (isValid && !isValidating) {
@@ -167,7 +164,7 @@ const CreateTicketPage = () => {
       <CustomSelect
         id="prioridade"
         isRequired
-        placeholder="O quão urgente é esse chamado ?"
+        placeholder="Quão urgente é o chamado?"
         labelText="Prioridade"
         options={[
           { key: "baixa", value: "baixa", text: "pouco urgente" },

@@ -14,7 +14,7 @@ export const ConfirmModalWrapper = styled.div<{
   gap: 1rem;
   padding: 1rem;
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.primary["25"]};
+  background-color: ${({ theme }) => theme.colors.primary["35"]};
   animation-name: modalConfirmTransition;
   animation-duration: 2s;
 
@@ -22,7 +22,7 @@ export const ConfirmModalWrapper = styled.div<{
     && css`
       @keyframes modalConfirmTransition {
         from {
-          background-color: ${({ theme }) => theme.colors.primary["25"]};
+          background-color: ${({ theme }) => theme.colors.primary["35"]};
         }
         to {
           background-color: ${({ theme }) => theme.colors.primary.default};

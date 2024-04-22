@@ -37,8 +37,8 @@ export const Legend = styled.span`
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.4px;
-  color: #2b4417;
-  background-color: #f8fcf6;
+  color: ${({ theme }) => theme.colors.primary[195]};
+  background-color: ${({ theme }) => theme.colors.neutral.default};
   display: inline-flex;
   left: 16px;
   padding: 0px 4px;

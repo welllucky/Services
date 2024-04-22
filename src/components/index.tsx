@@ -12,5 +12,6 @@ export * from "./Modals";
 export * from "./common";
 export * from "./SupportText";
 export * from "./InformationHistory";
+export * from "./Fieldset";
 
 export { PageStruct, IssueDisplay, IssueActionButton };

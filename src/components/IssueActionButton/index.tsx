@@ -7,6 +7,7 @@ import {
 } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useTheme } from "styled-components";
+import toast from "react-hot-toast";
 import { RoundedButton } from "..";
 import { ActionButtonsContainer, IssueActionButtonContainer } from "./styles";
 import { IssueActionOptionsData } from "./data";
@@ -71,6 +72,7 @@ const IssueActionButton = () => {
 
   const startIssueExecution = () => {
     setIsIssueOpen(true);
+    toast.success("Chamado iniciado!");
   };
 
   return (

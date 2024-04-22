@@ -15,7 +15,7 @@ export const IssuePageContent = styled(Column)`
 `;
 
 export const UserActionContainer = styled.div`
-position: absolute;
-top: 60vh;
-right: 8vw;
+  position: absolute;
+  bottom: 13svh;
+  right: 8vw;
 `;
