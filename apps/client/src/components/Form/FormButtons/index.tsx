@@ -5,7 +5,7 @@ import { buildTestIds } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 import { ButtonsContainer, FormButtonsContainer } from "./styles";
 
-interface FormButtonsProps {
+export interface FormButtonsProps {
   canBack?: boolean;
   canNext?: boolean;
   nextPage: string;
