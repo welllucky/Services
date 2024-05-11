@@ -122,4 +122,3 @@ export const getTextTheme = (): TextTheme => {
   const randomIndex = Math.floor(Math.random() * textThemes.length);
   return textThemes[randomIndex];
 };
-

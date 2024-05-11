@@ -6,11 +6,12 @@ export const TextAreaContainer = styled.div<{ $status: string }>`
   flex-direction: column;
 
   & > div > div {
-    border: ${({ $status }) => ($status === "invalid"
-    ? "1px solid red"
-    : $status === "valid"
-      ? "1px solid #7ac143"
-      : "1px solid #79747e")};
+    border: ${({ $status }) =>
+      $status === "invalid"
+        ? "1px solid red"
+        : $status === "valid"
+          ? "1px solid #7ac143"
+          : "1px solid #79747e"};
   }
 `;
 
