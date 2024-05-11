@@ -1,0 +1,41 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "outputs": [".next/**", "!.next/cache/**"],
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["build", "lint"],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
+    },
+    "lint": {
+      "dependsOn": ["type-check"]
+    },
+    "type-check": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "deploy": {
+      "dependsOn": ["build", "test", "lint"]
+    }
+  },
+  "globalDependencies": [".env", "tsconfig.json", ".eslintrc.json"],
+
+  "globalEnv": [
+    "CI",
+    "NEXT_PUBLIC_NODE_ENV",
+    "BASE_URL",
+    "APIS_BASE_URL",
+    "SENTRY_PROJECT",
+    "SENTRY_ORG",
+    "SENTRY_AUTH_TOKEN",
+    "NEXT_PUBLIC_SENTRY_DSN",
+    "CHROMATIC_PROJECT_TOKEN",
+    "NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT"
+  ],
+  "globalDotEnv": [".env.local", ".env"]
+}

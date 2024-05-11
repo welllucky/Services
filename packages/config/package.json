@@ -1,0 +1,55 @@
+{
+  "name": "custom-config",
+  "version": "0.1.0",
+  "scripts": {
+    "lint": "yarn lint"
+  },
+  "files": [
+    "eslint/index.ts",
+    "jest/jest-common.ts",
+    "jest/jest-next.ts",
+    "jest/jest-react-setup.ts",
+    "jest/jest-react.ts",
+    "jest/jest-setup.ts",
+    "tsconfig/base.json",
+    "tsconfig/nextjs.json",
+    "tsconfig/react-library.json"
+  ],
+  "dependencies": {
+    "@babel/eslint-parser": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@next/eslint-plugin-next": "^14.1.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-modal": "^3.16.3",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.0.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "14.0.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard-with-typescript": "^43.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest": "^27.0.1",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-security": "^1.5.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sonarjs": "^0.15.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "@testing-library/jest-dom": "5.17.0"
+  },
+  "devDependencies": {
+    "typescript": "*",
+    "esbuild": "^0.15.15",
+    "esbuild-jest": "^0.5.0"
+  }
+}
+
