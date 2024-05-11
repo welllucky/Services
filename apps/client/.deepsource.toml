@@ -1,0 +1,34 @@
+version = 1
+
+test_patterns = [
+  "test/**",
+  "**.spec.tsx",
+  "**.spec.ts"
+]
+
+exclude_patterns = [
+  "/.next",
+  "node_modules",
+  "static",
+  "public"
+]
+
+[[analyzers]]
+name = "javascript"
+
+  [analyzers.meta]
+  plugins = ["react"]
+  environment = [
+    "jest",
+    "nodejs",
+    "browser"
+  ]
+
+[[analyzers]]
+name = "test-coverage"
+
+[[transformers]]
+name = "standardjs"
+
+[[transformers]]
+name = "prettier"
