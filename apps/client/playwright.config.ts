@@ -40,9 +40,9 @@ export default defineConfig({
       {
         outputFolder: "./tests/playwright/report",
         host: "localhost",
-        port: 4100
-      }
-    ]
+        port: 4100,
+      },
+    ],
   ],
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -109,7 +109,8 @@ export default defineConfig({
     // Toggles bypassing Content-Security-Policy.
     bypassCSP: true,
 
-    userAgent: "L3/1.0 tester worker ua (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36"
+    userAgent:
+      "L3/1.0 tester worker ua (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36",
   },
 
   expect: {
@@ -118,14 +119,14 @@ export default defineConfig({
 
     toHaveScreenshot: {
       // An acceptable amount of pixels that could be different, unset by default.
-      maxDiffPixels: 10
+      maxDiffPixels: 10,
     },
 
     toMatchSnapshot: {
       // An acceptable ratio of pixels that are different to the
       // total amount of pixels, between 0 and 1.
-      maxDiffPixelRatio: 0.1
-    }
+      maxDiffPixelRatio: 0.1,
+    },
   },
 
   /* Configure projects for major browsers */
@@ -133,31 +134,31 @@ export default defineConfig({
     // { name: "setup", testMatch: "./tests/setup/*.setup.ts" },
     {
       name: "Android Mid Level",
-      use: { ...devices["Galaxy S9+"] }
+      use: { ...devices["Galaxy S9+"] },
       // dependencies: ["setup"],
     },
     {
       name: "Android High Level",
-      use: { ...devices["Pixel 7"] }
+      use: { ...devices["Pixel 7"] },
       // dependencies: ["setup"],
     },
     {
       name: "Iphone low level",
-      use: { ...devices["iPhone 8 Plus"]}
+      use: { ...devices["iPhone 8 Plus"] },
       // dependencies: ["setup"],
-    }, 
+    },
     {
       name: "Iphone High level",
-      use: {...devices["iPhone XR"] }
-      // dependencies: ["setup"],   
-    }
+      use: { ...devices["iPhone XR"] },
+      // dependencies: ["setup"],
+    },
   ],
 
   /* Run your local dev server before starting the tests */
   webServer: {
     command: "yarn dev",
     url: "http://localhost:3000",
-    reuseExistingServer: !process.env.CI
+    reuseExistingServer: !process.env.CI,
     // reuseExistingServer: true
-  }
+  },
 });

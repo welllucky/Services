@@ -22,4 +22,3 @@ export const PageStructContainer = styled(Column)`
   align-items: center;
   padding-bottom: 5rem;
 `;
-
