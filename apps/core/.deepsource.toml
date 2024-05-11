@@ -1,0 +1,35 @@
+version = 1
+
+test_patterns = [
+  "test/**",
+  "**.spec.ts",
+  "**.e2e.ts"
+]
+
+exclude_patterns = [
+  "/dist",
+  "build",
+  "public",
+  "node_modules"
+]
+
+[[analyzers]]
+name = "test-coverage"
+
+[[analyzers]]
+name = "secrets"
+
+[[analyzers]]
+name = "javascript"
+
+  [analyzers.meta]
+  environment = [
+    "nodejs",
+    "jest"
+  ]
+
+[[transformers]]
+name = "prettier"
+
+[[transformers]]
+name = "standardjs"
