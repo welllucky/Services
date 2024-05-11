@@ -4,7 +4,7 @@ import { ChangeEvent } from "react";
 import { TextArea, TextAreaContainer } from "./styles";
 import { CustomFieldset } from "../../../Fieldset";
 
-interface TextAreaProps extends InputComponentsProps {
+export interface TextAreaProps extends InputComponentsProps {
   // eslint-disable-next-line no-unused-vars
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }

@@ -1,4 +1,4 @@
-import { FormButtons } from "@/components/Form/FormButtons";
+import { FormButtons, FormButtonsProps } from "@/components/Form/FormButtons";
 import { Meta, StoryObj } from "@storybook/react";
 
 export default {
@@ -68,7 +68,7 @@ export default {
   },
 } satisfies Meta;
 
-export const DefaultFormButtons: StoryObj<typeof FormButtons> = {
+export const DefaultFormButtons: StoryObj<FormButtonsProps> = {
   args: {
     canBack: true,
     canNext: true,
@@ -78,56 +78,53 @@ export const DefaultFormButtons: StoryObj<typeof FormButtons> = {
   },
 };
 
-export const WithoutSeparator: StoryObj<typeof FormButtons> = {
+export const WithoutSeparator: StoryObj<FormButtonsProps> = {
   args: {
     $hasSeparator: false,
     nextPage: "/home",
   },
 };
 
-export const WithBackButtonDeactivatedAndNextActivated: StoryObj<
-  typeof FormButtons
-> = {
+export const WithBackButtonDeactivatedAndNextActivated: StoryObj<FormButtonsProps> =
+  {
+    args: {
+      hasBackButton: true,
+      canBack: false,
+      canNext: true,
+      nextPage: "/home",
+    },
+  };
+
+export const WithBackButtonActivatedAndNextDeactivated: StoryObj<FormButtonsProps> =
+  {
+    args: {
+      hasBackButton: true,
+      canBack: true,
+      canNext: false,
+      nextPage: "/home",
+    },
+  };
+
+export const FormButtonsDeactivates: StoryObj<FormButtonsProps> = {
   args: {
     hasBackButton: true,
     canBack: false,
-    canNext: true,
-    nextPage: "/home",
-  },
-};
-
-export const WithBackButtonActivatedAndNextDeactivated: StoryObj<
-  typeof FormButtons
-> = {
-  args: {
-    hasBackButton: true,
-    canBack: true,
     canNext: false,
     nextPage: "/home",
   },
 };
 
-export const FormButtonsDeactivates: StoryObj<typeof FormButtons> = {
-  args: {
-    hasBackButton: true,
-    canBack: false,
-    canNext: false,
-    nextPage: "/home",
-  },
-};
-
-export const WithoutBackButton: StoryObj<typeof FormButtons> = {
+export const WithoutBackButton: StoryObj<FormButtonsProps> = {
   args: {
     hasBackButton: false,
     nextPage: "/home",
   },
 };
 
-export const WithoutBackButtonAndDeactivated: StoryObj<typeof FormButtons> = {
+export const WithoutBackButtonAndDeactivated: StoryObj<FormButtonsProps> = {
   args: {
     hasBackButton: false,
     canNext: false,
     nextPage: "/home",
   },
 };
-

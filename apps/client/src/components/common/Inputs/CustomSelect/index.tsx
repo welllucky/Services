@@ -12,7 +12,7 @@ interface OptionProps {
   isSelected?: boolean;
 }
 
-interface SelectProps extends InputComponentsProps {
+export interface SelectProps extends InputComponentsProps {
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   options?: OptionProps[];
   multiple?: boolean;

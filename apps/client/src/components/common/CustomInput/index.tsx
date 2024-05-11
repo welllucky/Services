@@ -32,7 +32,7 @@ export interface ActionButton {
   alt?: string;
 }
 
-interface InputProps extends InputComponentsProps {
+export interface InputProps extends InputComponentsProps {
   // eslint-disable-next-line no-unused-vars
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   trailingButton?: ActionButton;
