@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const nextJest = require("next/jest");
+const nextJest = require('next/jest')
 
 const createJestConfig = nextJest({
-  dir: "./",
-});
+  dir: './'
+})
 
 const {
   transformIgnorePatterns,
   ...customJestConfig
-} = require("test-config/jest-next");
+} = require('test-config/jest-next')
 
 module.exports = async () => ({
   ...(await createJestConfig(customJestConfig)()),
   transformIgnorePatterns,
-  displayName: "Base App Tests",
-});
+  displayName: 'Base App Tests'
+})

@@ -1,4 +1,4 @@
 module.exports = {
   root: true,
-  extends: ["custom-config"],
-};
+  extends: ['custom-config']
+}
