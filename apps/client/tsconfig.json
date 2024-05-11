@@ -1,0 +1,25 @@
+{
+  "extends": "custom-config/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strict": true,
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "baseUrl": "./"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "jest.config.js",
+    ".next/types/**/*.ts",
+    "docs/**.tsx"
+  ],
+  "exclude": ["node_modules"]
+}
+
