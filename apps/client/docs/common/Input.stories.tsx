@@ -225,4 +225,3 @@ export const OutLinedWithValidValue: StoryObj<typeof CustomInput> = {
   },
   name: "Input Outlined com valor válido",
 };
-

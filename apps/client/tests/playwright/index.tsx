@@ -14,4 +14,3 @@ const App = (children: ReactElement) => {
 };
 
 export default App;
-

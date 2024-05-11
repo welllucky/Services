@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "",
+  basePath: '',
   generateBuildId: async () => {
-    return `build-id-${new Date()}`;
+    return `build-id-${new Date()}`
   },
   compiler: {
     styledComponents: true,
-    removeConsole: process.env.NODE_ENV === "production"
+    removeConsole: process.env.NODE_ENV === 'production'
   },
-  pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
+  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
   experimental: {
-    webVitalsAttribution: ["CLS", "LCP", "FCP", "FID", "TTFB", "INP"]
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB', 'INP']
   },
   // logging: {
   //   fetches: {
@@ -22,16 +22,16 @@ const nextConfig = {
     NEXT_PUBLIC_APIS_BASE_URL: process.env.NEXT_PUBLIC_APIS_BASE_URL,
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL
   }
-};
+}
 
-const withPWA = require("next-pwa")({
-  dest: "public",
+const withPWA = require('next-pwa')({
+  dest: 'public',
   // disable: false,
-  disable: process.env.NODE_ENV === "development",
+  disable: process.env.NODE_ENV === 'development',
   register: true,
-  scope: "/",
-  sw: "sw.js",
+  scope: '/',
+  sw: 'sw.js',
   reloadOnOnline: true
-});
+})
 
-module.exports = withPWA(nextConfig);
+module.exports = withPWA(nextConfig)

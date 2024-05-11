@@ -15,4 +15,3 @@ export const FormButtonsContainer = styled(Column)<{ $hasSeparator?: boolean }>`
 export const ButtonsContainer = styled(Row)`
   width: fit-content;
 `;
-

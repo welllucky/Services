@@ -1,6 +1,11 @@
 import { IconProps } from "..";
 
-export const EmptyBox = ({ color, height = 32, width = 32, size }: IconProps) => {
+export const EmptyBox = ({
+  color,
+  height = 32,
+  width = 32,
+  size,
+}: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
