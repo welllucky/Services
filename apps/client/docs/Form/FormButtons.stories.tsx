@@ -130,4 +130,3 @@ export const WithoutBackButtonAndDeactivated: StoryObj<typeof FormButtons> = {
     nextPage: "/home",
   },
 };
-

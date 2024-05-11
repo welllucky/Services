@@ -14,10 +14,10 @@ export default function middleware(request: NextRequest) {
   const clientDevice = device.type ?? "desktop";
 
   if (
-    !request.cookies.get(CS_KEY_USER_DEVICE_TYPE)
-    || clientDevice !== "mobile"
-    || (clientDevice === "mobile"
-      && request.cookies.get(CS_KEY_USER_DEVICE_TYPE)?.value !== "mobile")
+    !request.cookies.get(CS_KEY_USER_DEVICE_TYPE) ||
+    clientDevice !== "mobile" ||
+    (clientDevice === "mobile" &&
+      request.cookies.get(CS_KEY_USER_DEVICE_TYPE)?.value !== "mobile")
   ) {
     response.cookies.set(CS_KEY_USER_DEVICE_TYPE, clientDevice);
   }
@@ -37,8 +37,8 @@ export default function middleware(request: NextRequest) {
   }
 
   if (
-    (clientDevice !== "mobile" || isBot)
-    && !url.pathname.startsWith("/noMobileDevice")
+    (clientDevice !== "mobile" || isBot) &&
+    !url.pathname.startsWith("/noMobileDevice")
   ) {
     return NextResponse.redirect(new URL("/noMobileDevice", url));
   }

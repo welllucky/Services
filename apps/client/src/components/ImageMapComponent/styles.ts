@@ -92,7 +92,8 @@ export const ButtonAction = styled.section<ImageMapProps>`
   display: flex;
   align-items: ${({ alignItems }) => alignItems || "start"};
   border-top-right-radius: ${({ radiusRightTop }) => radiusRightTop || "none"};
-  border-bottom-right-radius: ${({ radiusRightBottom }) => radiusRightBottom || "none"};
+  border-bottom-right-radius: ${({ radiusRightBottom }) =>
+    radiusRightBottom || "none"};
   border-top: ${({ borderTop }) => `1px solid ${borderTop}` || "none"};
 
   & > img {

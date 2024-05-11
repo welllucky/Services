@@ -104,4 +104,3 @@ export const Label = styled.label<{ mode: "filled" | "outlined" }>`
       padding: 0 0.4rem;
     `}
 `;
-

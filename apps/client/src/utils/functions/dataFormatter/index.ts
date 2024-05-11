@@ -1,1 +1,2 @@
-export const dataFormatter = (data: string) => data?.split("-").reverse().join("/");
+export const dataFormatter = (data: string) =>
+  data?.split("-").reverse().join("/");
