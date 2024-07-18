@@ -1,6 +1,8 @@
 "use client";
 
 import { TextTheme } from "@/assets";
+import Logo from "public/Icon.png";
+import qrCode from "public/qr-code.png";
 import {
   NoMobileContainer,
   NoMobileContent,
@@ -11,8 +13,6 @@ import {
   QRCodeImage,
   QRCodeText,
 } from "./styles";
-import qrCode from "../../../public/qr-code.png";
-import Logo from "../../../public/android/android-launchericon-512-512.png";
 
 const NoMobileDevicePage = ({ theme }: { theme: TextTheme }) => {
   const { title, text } = theme;

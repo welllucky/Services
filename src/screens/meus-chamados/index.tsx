@@ -1,21 +1,16 @@
 "use client";
 
-import {
-  AddNewIssueButton,
-  IssueDisplay,
-  Loading,
-  Header,
-  NoContent,
-} from "@/components";
+import { AddNewIssueButton, Header, Loading, NoContent } from "@/components";
+import { InfoDisplay } from "@/components/InfoDisplay";
 import { PageContainer } from "@/styles";
+import { issueApi } from "@/utils";
 import { useRouter } from "next/navigation";
-import { chamado } from "@/utils";
 import { MainContainer } from "../pesquisa/styles";
 import { ButtonWrapper } from "./styles";
 
 const MyCallsPage = () => {
   const { push } = useRouter();
-  const { data, isLoading } = chamado.getChamados();
+  const { data, isLoading } = issueApi.getIssues();
   const issuesQuantity = data?.length ?? 0;
   return (
     <>
@@ -32,7 +27,7 @@ const MyCallsPage = () => {
             <MainContainer $hasContent={!!issuesQuantity}>
               {data?.length ? (
                 data.map((issue) => (
-                  <IssueDisplay
+                  <InfoDisplay
                     key={issue.id}
                     id={issue.id}
                     nome={issue.resume}

@@ -1,8 +1,5 @@
-import RoundedButton from "./RoundedButton";
-
-export * from "./BackButton";
 export * from "./AddNewIssueButton";
-export * from "./IconButton";
+export * from "./BackButton";
 export * from "./Button";
-
-export { RoundedButton };
+export * from "./IconButton";
+export * from "./RoundedButton";

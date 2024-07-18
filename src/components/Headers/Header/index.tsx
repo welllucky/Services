@@ -9,7 +9,7 @@ import {
   SS_KEY_USER_PREVIOUS_PAGE,
 } from "@/utils";
 import { usePathname, useRouter } from "next/navigation";
-import Logo from "../../../../public/android/android-launchericon-512-512.png";
+import Logo from "public/Icon.png";
 import {
   UserName,
   PageTitle,

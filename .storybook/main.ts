@@ -11,7 +11,6 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     "@storybook/addon-themes",
-    "@storybook/test",
     "storybook-addon-mock",
     {
       name: "@storybook/addon-coverage",
@@ -39,14 +38,14 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: "react-docgen" // or false if you don't need docgen at all
   },
-  build: {
-    test: {
-      disabledAddons: [
-        "@storybook/addon-docs",
-        "@storybook/addon-essentials/docs"
-      ]
-    }
-  }
+  // build: {
+  //   test: {
+  //     disabledAddons: [
+  //       "@storybook/addon-docs",
+  //       "@storybook/addon-essentials/docs"
+  //     ]
+  //   }
+  // }
 };
 
 export default config;

@@ -1,11 +1,11 @@
 "use client";
 
+import { IOpenTicketForm } from "@/app/(protected)/(form)/template";
 import { CustomSelect, CustomTextArea, OutlinedInput } from "@/components";
-import { useFormContext } from "react-hook-form";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
 import { LS_KEY_1_TICKET_RECORD, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
-import { IOpenTicketForm } from "@/app/(app)/(form)/template";
+import { useEffect } from "react";
+import { useFormContext } from "react-hook-form";
+import toast from "react-hot-toast";
 import { IssuePageContent } from "./styles";
 
 const CreateTicketPage = () => {

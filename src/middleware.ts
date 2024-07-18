@@ -2,6 +2,7 @@ import { NextRequest, NextResponse, userAgent } from "next/server";
 import {
   CS_KEY_USER_DEVICE_TYPE,
   CS_KEY_USER_RELIABLE_AGENT,
+  HD_KEY_COMPANY_ID,
   HD_KEY_USER_DEVICE_TYPE,
   HD_KEY_USER_RELIABLE_AGENT,
 } from "./utils";
@@ -9,15 +10,16 @@ import {
 export default function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const response = NextResponse.next();
+  const companyId = process.env.SERVICES_COMPANY_ID ?? "";
 
   const { device, isBot } = userAgent(request);
   const clientDevice = device.type ?? "desktop";
 
   if (
-    !request.cookies.get(CS_KEY_USER_DEVICE_TYPE)
-    || clientDevice !== "mobile"
-    || (clientDevice === "mobile"
-      && request.cookies.get(CS_KEY_USER_DEVICE_TYPE)?.value !== "mobile")
+    !request.cookies.get(CS_KEY_USER_DEVICE_TYPE) ||
+    clientDevice !== "mobile" ||
+    (clientDevice === "mobile" &&
+      request.cookies.get(CS_KEY_USER_DEVICE_TYPE)?.value !== "mobile")
   ) {
     response.cookies.set(CS_KEY_USER_DEVICE_TYPE, clientDevice);
   }
@@ -37,11 +39,13 @@ export default function middleware(request: NextRequest) {
   }
 
   if (
-    (clientDevice !== "mobile" || isBot)
-    && !url.pathname.startsWith("/noMobileDevice")
+    (clientDevice !== "mobile" || isBot) &&
+    !url.pathname.startsWith("/noMobileDevice")
   ) {
     return NextResponse.redirect(new URL("/noMobileDevice", url));
   }
+
+  if (companyId) response.headers.set(HD_KEY_COMPANY_ID, companyId);
 
   return response;
 }

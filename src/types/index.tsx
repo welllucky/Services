@@ -1,7 +1,15 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import React, { ReactNode } from "react";
 
-type IssueDisplayProps = {
+type IssueStatus = "inProgress" | "notStarted" | "closed" | "blocked";
+
+type InfoUnityProps = {
+  id: string;
+  description: string;
+  icon?: string;
+};
+
+type InfoDisplayProps = {
   id: string;
   nome: string;
   date: string;
@@ -12,6 +20,25 @@ type IssueDisplayProps = {
   isSelected?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
+
+interface ITicket {
+  id: string;
+  resume: string;
+  description: string;
+  date: string;
+  historic?: InfoUnityProps[];
+  priority: "baixa" | "média" | "alta";
+  type: string;
+  status: IssueStatus;
+  createdAt?: Date;
+  updatedAt?: Date;
+  closedAt?: Date;
+  createdBy?: string;
+  updatedBy?: string;
+  closedBy?: string;
+  unity: string;
+  sector: string;
+}
 
 type IssueDto = {
   idChamado: number;
@@ -76,15 +103,19 @@ type TextTheme = {
   text: string;
 };
 
+export type * from "./DataTag";
 export type * from "./Themes";
 
 export type {
-  IssueDisplayProps,
-  IconProps,
-  OptionMenuStyleProps,
-  OptionMenuProps,
   IconButtonProps,
-  NoContentProps,
+  IconProps,
+  InfoDisplayProps,
+  InfoUnityProps,
   IssueDto,
+  IssueStatus,
+  ITicket,
+  NoContentProps,
+  OptionMenuProps,
+  OptionMenuStyleProps,
   TextTheme,
 };

@@ -1,107 +1,54 @@
 "use client";
 
-import {
-  BackButton,
-  InfoHistoryPainel,
-  Loading,
-  IssueActionButton,
-} from "@/components";
-import { Row, TitleComponent } from "@/styles";
-import { useEffect } from "react";
-import { buildTestIds, dataFormatter, resetForm } from "@/utils/functions";
-import { useRouter } from "next/navigation";
-import { CustomFieldset } from "@/components/Fieldset";
-import { useTheme } from "styled-components";
-import { chamado } from "@/utils";
-import { SectionInfoForm } from "../abrir-chamado/confirmar-chamado/styles";
-import {
-  IssuePageContainer,
-  IssuePageContent,
-  UserActionContainer,
-} from "./styles";
+import { Loading } from "@/components";
 
-export interface IssuePageProps {
-  id: string;
+import { ITicket } from "@/types";
+import { TicketProvider } from "@/utils";
+import { buildTestIds, resetForm } from "@/utils/functions";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import {
+  FormDisplay,
+  InfoHistoryPainel,
+  IssueActionButton,
+  TicketPageBackButton,
+  TicketPageTitle,
+} from "./components";
+import { TicketPageContainer, TicketPageContent } from "./styles";
+
+export interface TicketPageProps {
+  data: ITicket;
 }
 
-const IssuePage = ({ id }: IssuePageProps) => {
+const TicketPage = ({ data }: TicketPageProps) => {
   useEffect(() => {
     resetForm();
   }, []);
 
   const router = useRouter();
-  const theme = useTheme();
-  const { data, isLoading } = chamado.getChamado(id);
 
-  if (isLoading) {
+  if (!data) {
     return <Loading overlayOn />;
   }
 
   return (
-    <IssuePageContainer $full>
-      <Row>
-        <BackButton
-          onClick={() => router.push("/")}
-          actionText="chamados"
-        />
-      </Row>
-      <Row>
-        <TitleComponent>{`Chamado n° ${data?.id}`}</TitleComponent>
-      </Row>
-      <IssuePageContent
-        {...buildTestIds("content-column")}
-        height="100%">
-        <CustomFieldset
-          color={theme.colors.primary.default}
-          labelText="Resumo"
-          width="100%"
-          height="64px"
-          $justifyContent="center"
-          $hasOverflow>
-          {data?.resume}
-        </CustomFieldset>
-        <CustomFieldset
-          color={theme.colors.primary.default}
-          labelText="Descrição"
-          width="100%"
-          height="160px"
-          $hasOverflow
-          $justifyContent="start">
-          {data?.description}
-        </CustomFieldset>
-        <SectionInfoForm $gap="16px">
-          <CustomFieldset
-            color={theme.colors.primary.default}
-            labelText="Tipo"
-            width="59%"
-            height="64px">
-            {data?.priority}
-          </CustomFieldset>
-          <CustomFieldset
-            color={theme.colors.primary.default}
-            labelText="Prioridade"
-            width="36%"
-            height="64px">
-            {data?.priority}
-          </CustomFieldset>
-        </SectionInfoForm>
-        <CustomFieldset
-          color={theme.colors.primary.default}
-          labelText="Data do ocorrido"
-          width="100%"
-          height="64px">
-          {dataFormatter(data?.date as string)}
-        </CustomFieldset>
-        <InfoHistoryPainel
-          data={data?.historic || []}
-          isLoading={isLoading}
-        />
-      </IssuePageContent>
-      <UserActionContainer>
+    <TicketProvider data={data}>
+      <TicketPageContainer $full>
+        <TicketPageBackButton router={router} />
+        <TicketPageTitle text={`Chamado n° ${data?.id}`} />
+        <TicketPageContent
+          {...buildTestIds("content-column")}
+          height="100%">
+          <FormDisplay data={data} />
+          <InfoHistoryPainel
+            data={data?.historic}
+            isLoading={!data}
+          />
+        </TicketPageContent>
         <IssueActionButton />
-      </UserActionContainer>
-    </IssuePageContainer>
+      </TicketPageContainer>
+    </TicketProvider>
   );
 };
 
-export { IssuePage };
+export { TicketPage };

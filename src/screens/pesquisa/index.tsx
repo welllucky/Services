@@ -1,17 +1,18 @@
 "use client";
 
-import { NoContent, Header, IssueDisplay } from "@/components";
-import { IssueDisplayProps } from "@/types";
-import { useTheme } from "styled-components";
+import { Header, NoContent } from "@/components";
+import { InfoDisplay } from "@/components/InfoDisplay";
 import { PageContainer } from "@/styles";
+import { InfoDisplayProps } from "@/types";
+import { useTheme } from "styled-components";
 import { Loading } from "../../components/Loading";
-import { MainContainer, SearchContainer } from "./styles";
 import { SearchBar } from "../../components/SearchBar";
+import { MainContainer, SearchContainer } from "./styles";
 
 const SearchPage = ({
   searchResults,
 }: {
-  searchResults: IssueDisplayProps[];
+  searchResults: InfoDisplayProps[];
 }) => {
   const theme = useTheme();
   const isLoading = false;
@@ -30,7 +31,7 @@ const SearchPage = ({
           <MainContainer $hasContent={!!searchResults}>
             {searchResults?.length ? (
               searchResults.map((issue) => (
-                <IssueDisplay
+                <InfoDisplay
                   key={issue.id}
                   id={issue.id}
                   nome={issue.nome}

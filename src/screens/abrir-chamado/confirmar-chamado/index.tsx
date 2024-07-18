@@ -1,7 +1,7 @@
 "use client";
 
-import { useTheme } from "styled-components";
-import { IOpenTicketForm } from "@/app/(app)/(form)/template";
+import { IOpenTicketForm } from "@/app/(protected)/(form)/template";
+import { ConfirmModal, CustomFieldset } from "@/components";
 import {
   buildTestIds,
   dataFormatter,
@@ -9,8 +9,8 @@ import {
   SS_KEY_USER_PREVIOUS_PAGE,
   useModalStore,
 } from "@/utils";
-import { ConfirmModal, CustomFieldset } from "@/components";
 import { useEffect } from "react";
+import { useTheme } from "styled-components";
 import { ConfirmDetailsContainer, SectionInfoForm } from "./styles";
 
 export const ConfirmDetailsPage = () => {

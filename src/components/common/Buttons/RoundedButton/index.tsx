@@ -27,4 +27,4 @@ const RoundedButton = ({
   );
 };
 
-export default RoundedButton;
+export { RoundedButton };

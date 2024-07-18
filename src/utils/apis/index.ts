@@ -1,3 +1,5 @@
-import { ChamadoAPI } from "./Chamado";
+import { IssueApi } from "./Issue";
+import { TicketApi } from "./Ticket";
 
-export const chamado = new ChamadoAPI();
+export const issueApi = new IssueApi();
+export const ticketApi = new TicketApi();
