@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { SWRConfig } from "swr";
 import { Toaster } from "react-hot-toast";
 import { CookiesProvider } from "react-cookie";
-import { AppProvider } from "../stores/useAppContext";
+import { AppProvider } from "../stores/AppStore";
 import StyledComponentsRegistry from "./registry";
 // skipcq: JS-0323
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

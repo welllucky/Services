@@ -1,15 +1,17 @@
 "use client";
 
-import { NoContent, Header, IssueDisplay, Loading } from "@/components";
+import { ITicket } from "@/assets";
+import { Header, Loading, NoContent } from "@/components";
+import { InfoDisplay } from "@/components/InfoDisplay";
 import { PageContainer } from "@/styles";
 import { useTheme } from "styled-components";
 import { MainContainer } from "../pesquisa/styles";
-import { IssueDisplayData } from "../home/data";
 
 const RequestsPage = () => {
   const theme = useTheme();
   const isLoading = false;
-  const listaChamados = IssueDisplayData;
+
+  const listaChamados = [] as ITicket[];
 
   return (
     <>
@@ -24,15 +26,15 @@ const RequestsPage = () => {
           <MainContainer $hasContent={!!listaChamados}>
             {listaChamados?.length ? (
               listaChamados.map((issue) => (
-                <IssueDisplay
+                <InfoDisplay
                   color="#9EDC72"
                   $borderColor="#61A12F"
                   key={issue.id}
                   id={issue.id}
-                  nome={issue.nome}
+                  nome={issue.resume}
                   date={issue.date}
-                  $status={issue.$status}
-                  isUpdated={issue.isUpdated}
+                  $status={issue.status}
+                  isUpdated
                 />
               ))
             ) : (

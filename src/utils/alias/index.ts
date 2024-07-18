@@ -6,3 +6,4 @@ export const CS_KEY_USER_DEVICE_TYPE = "@services:user:device:type";
 export const CS_KEY_USER_RELIABLE_AGENT = "@services:user:reliable:agent";
 export const HD_KEY_USER_RELIABLE_AGENT = "x-reliable-agent";
 export const HD_KEY_USER_DEVICE_TYPE = "x-user-device-type";
+export const HD_KEY_COMPANY_ID = "x-company-id";

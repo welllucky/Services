@@ -1,8 +1,8 @@
-import { ChangeEventHandler, useState } from "react";
-import { CustomFieldset } from "@/components/Fieldset";
 import { InputComponentsProps } from "@/assets";
 import { ErrorText, WarningText } from "@/components";
-import { SelectComponent, CustomOption, SelectContainer } from "./styles";
+import { CustomFieldset } from "@/components/Fieldset";
+import { ChangeEventHandler, useState } from "react";
+import { CustomOption, SelectComponent, SelectContainer } from "./styles";
 
 interface OptionProps {
   key: string;
@@ -11,7 +11,6 @@ interface OptionProps {
   isDisabled?: boolean;
   isSelected?: boolean;
 }
-
 interface SelectProps extends InputComponentsProps {
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   options?: OptionProps[];
@@ -20,7 +19,6 @@ interface SelectProps extends InputComponentsProps {
   name?: string;
   value?: string;
 }
-
 export const CustomSelect = ({
   id,
   labelText,

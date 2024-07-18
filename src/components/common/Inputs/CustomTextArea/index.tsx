@@ -1,14 +1,13 @@
-import { InputComponentsProps } from "@/types";
 import { ErrorText, WarningText } from "@/components";
+import { InputComponentsProps } from "@/types";
 import { ChangeEvent } from "react";
-import { TextArea, TextAreaContainer } from "./styles";
 import { CustomFieldset } from "../../../Fieldset";
+import { TextArea, TextAreaContainer } from "./styles";
 
 interface TextAreaProps extends InputComponentsProps {
   // eslint-disable-next-line no-unused-vars
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
-
 export const CustomTextArea = ({
   id,
   labelText,

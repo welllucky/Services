@@ -1,6 +1,6 @@
 export * from "./providers";
 export * from "./stores";
 export * from "./alias";
-export * from "./abstrations";
+export * from "./abstractions";
 export * from "./functions";
 export * from "./apis";

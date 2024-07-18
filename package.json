@@ -1,6 +1,6 @@
 {
   "name": "services",
-  "version": "0.1.0",
+  "version": "0.1.15",
   "private": true,
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_79aa966e7eb4a6e --auto-accept-changes",
     "test-storybook": "test-storybook",
-    "prepare": "husky"
+    "json-server": "json-server --watch db.json --port 4000"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
@@ -36,7 +36,7 @@
     "@vercel/speed-insights": "^1.0.2",
     "axios": "^1.4.0",
     "immer": "^10.0.3",
-    "next": "13.5.6",
+    "next": "~14.2.5",
     "next-pwa": "^5.6.0",
     "react": "^18.2.0",
     "react-cookie": "^7.0.2",
@@ -66,7 +66,6 @@
     "@storybook/blocks": "^7.6.7",
     "@storybook/nextjs": "^7.6.7",
     "@storybook/react": "^7.6.7",
-    "@storybook/test": "^8.0.0-alpha.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -93,13 +92,13 @@
     "eslint-plugin-sonarjs": "^0.15.0",
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-tsdoc": "^0.2.17",
-    "husky": "^9.0.10",
+    "json-server": "^1.0.0-beta.1",
     "lint-staged": "^15.2.2",
     "postcss-styled-syntax": "^0.5.0",
     "prettier": "3.2.5",
     "storybook": "^7.6.7",
     "storybook-addon-mock": "^4.3.0",
-    "typescript": "*"
+    "typescript": "5.5.3"
   },
   "browserslist": {
     "production": [

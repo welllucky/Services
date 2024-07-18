@@ -1,0 +1,681 @@
+{
+  "issues": [
+    {
+      "id": "1",
+      "user_id": "1",
+      "issue_category_id": "1",
+      "resolver_id": "2",
+      "resume": "Problema de Rede",
+      "description": "A conexão com a internet está instável desde a manhã.",
+      "date": "2022-01-01",
+      "priority": "Alta",
+      "type": "Problema com a internet",
+      "unity": "Sede",
+      "sector": "TI",
+      "status": "Em Progresso",
+      "created_at": "2022-01-01T08:00:00Z",
+      "updated_at": "2022-01-01T09:00:00Z",
+      "closed_at": null,
+      "created_by": "João Silva",
+      "updated_by": "Maria Souza",
+      "closed_by": null
+    },
+    {
+      "id": "2",
+      "user_id": "2",
+      "issue_category_id": "2",
+      "resolver_id": "3",
+      "resume": "Computador Lento",
+      "description": "O computador está demorando para iniciar e abrir programas.",
+      "date": "2022-02-01",
+      "priority": "Média",
+      "type": "Problema com a computador pessoal",
+      "unity": "Filial 1",
+      "sector": "Financeiro",
+      "status": "Aberto",
+      "created_at": "2022-02-01T10:00:00Z",
+      "updated_at": "2022-02-01T11:00:00Z",
+      "closed_at": null,
+      "created_by": "Ana Pereira",
+      "updated_by": "Carlos Lima",
+      "closed_by": null
+    },
+    {
+      "id": "3",
+      "user_id": "3",
+      "issue_category_id": "3",
+      "resolver_id": "4",
+      "type": "Problema com a internet",
+      "resume": "Impressora Quebrada",
+      "description": "A impressora do escritório parou de funcionar.",
+      "date": "2022-03-01",
+      "priority": "Baixa",
+      "unity": "Filial 2",
+      "sector": "Administração",
+      "status": "Fechado",
+      "created_at": "2022-03-01T12:00:00Z",
+      "updated_at": "2022-03-01T13:00:00Z",
+      "closed_at": "2022-03-02T14:00:00Z",
+      "created_by": "Pedro Costa",
+      "updated_by": "Juliana Oliveira",
+      "closed_by": "Pedro Costa"
+    },
+    {
+      "id": "4",
+      "user_id": "4",
+      "issue_category_id": "4",
+      "resolver_id": "5",
+      "resume": "Erro no Sistema",
+      "description": "O sistema de gestão está apresentando erros ao salvar registros.",
+      "date": "2022-04-01",
+      "priority": "Alta",
+      "unity": "Sede",
+      "sector": "Operações",
+      "status": "Em Progresso",
+      "created_at": "2022-04-01T15:00:00Z",
+      "updated_at": "2022-04-01T16:00:00Z",
+      "closed_at": null,
+      "created_by": "Mariana Souza",
+      "updated_by": "Bruno Silva",
+      "closed_by": null,
+      "type": "Problema do sistema"
+    },
+    {
+      "id": "5",
+      "user_id": "5",
+      "issue_category_id": "5",
+      "resolver_id": "1",
+      "resume": "Solicitação de Acesso",
+      "description": "Solicitação de acesso ao servidor de arquivos.",
+      "date": "2022-05-01",
+      "priority": "Média",
+      "unity": "Filial 3",
+      "sector": "RH",
+      "status": "Aberto",
+      "created_at": "2022-05-01T08:00:00Z",
+      "updated_at": "2022-05-01T09:00:00Z",
+      "closed_at": null,
+      "created_by": "Felipe Almeida",
+      "updated_by": "Vanessa Gomes",
+      "closed_by": null,
+      "type": "Solicitação de acesso"
+    }
+  ],
+  "tickets": [
+    {
+      "id": "1",
+      "user_id": "1",
+      "issue_category_id": "1",
+      "resolver_id": "2",
+      "resume": "Problema de Rede",
+      "description": "A conexão com a internet está instável desde a manhã.",
+      "date": "2022-01-01",
+      "priority": "Alta",
+      "unity": "Sede",
+      "sector": "TI",
+      "type": "Problema com a internet",
+      "status": "notStarted",
+      "created_at": "2022-01-01T08:00:00Z",
+      "updated_at": "2022-01-01T09:00:00Z",
+      "closed_at": null,
+      "created_by": "João Silva",
+      "updated_by": "Maria Souza",
+      "closed_by": null
+    },
+    {
+      "id": "2",
+      "user_id": "2",
+      "issue_category_id": "2",
+      "resolver_id": "3",
+      "resume": "Computador Lento",
+      "description": "O computador está demorando para iniciar e abrir programas.",
+      "date": "2022-02-01",
+      "priority": "Média",
+      "type": "Problema com a computador pessoal",
+      "unity": "Filial 1",
+      "sector": "Financeiro",
+      "status": "Aberto",
+      "created_at": "2022-02-01T10:00:00Z",
+      "updated_at": "2022-02-01T11:00:00Z",
+      "closed_at": null,
+      "created_by": "Ana Pereira",
+      "updated_by": "Carlos Lima",
+      "closed_by": null
+    },
+    {
+      "id": "3",
+      "user_id": "3",
+      "issue_category_id": "3",
+      "resolver_id": "4",
+      "resume": "Impressora Quebrada",
+      "description": "A impressora do escritório parou de funcionar.",
+      "date": "2022-03-01",
+      "priority": "Baixa",
+      "unity": "Filial 2",
+      "sector": "Administração",
+      "status": "Fechado",
+      "type": "Problema com a internet",
+      "created_at": "2022-03-01T12:00:00Z",
+      "updated_at": "2022-03-01T13:00:00Z",
+      "closed_at": "2022-03-02T14:00:00Z",
+      "created_by": "Pedro Costa",
+      "updated_by": "Juliana Oliveira",
+      "closed_by": "Pedro Costa"
+    },
+    {
+      "id": "4",
+      "user_id": "4",
+      "issue_category_id": "4",
+      "resolver_id": "5",
+      "resume": "Erro no Sistema",
+      "description": "O sistema de gestão está apresentando erros ao salvar registros.",
+      "date": "2022-04-01",
+      "priority": "Alta",
+      "unity": "Sede",
+      "type": "Problema do sistema",
+      "sector": "Operações",
+      "status": "Em Progresso",
+      "created_at": "2022-04-01T15:00:00Z",
+      "updated_at": "2022-04-01T16:00:00Z",
+      "closed_at": null,
+      "created_by": "Mariana Souza",
+      "updated_by": "Bruno Silva",
+      "closed_by": null
+    },
+    {
+      "id": "5",
+      "user_id": "5",
+      "issue_category_id": "5",
+      "resolver_id": "1",
+      "resume": "Solicitação de Acesso",
+      "description": "Solicitação de acesso ao servidor de arquivos.",
+      "type": "Solicitação de acesso",
+      "date": "2022-05-01",
+      "priority": "Média",
+      "unity": "Filial 3",
+      "sector": "RH",
+      "status": "Aberto",
+      "created_at": "2022-05-01T08:00:00Z",
+      "updated_at": "2022-05-01T09:00:00Z",
+      "closed_at": null,
+      "created_by": "Felipe Almeida",
+      "updated_by": "Vanessa Gomes",
+      "closed_by": null
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "register": "123456",
+      "name": "João Silva",
+      "email": "joao.silva@empresa.com",
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z",
+      "last_connection": "2022-01-01T00:00:00Z",
+      "is_banned": false,
+      "can_create_issue": true,
+      "is_resolver": true,
+      "role_id": "1",
+      "sector_id": "1",
+      "unity_id": "1",
+      "hash": "1234567890"
+    },
+    {
+      "id": "2",
+      "register": "654321",
+      "name": "Ana Pereira",
+      "email": "ana.pereira@empresa.com",
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z",
+      "last_connection": "2022-02-01T00:00:00Z",
+      "is_banned": false,
+      "can_create_issue": true,
+      "is_resolver": true,
+      "role_id": "2",
+      "sector_id": "2",
+      "unity_id": "2",
+      "hash": "0987654321"
+    },
+    {
+      "id": "3",
+      "register": "112233",
+      "name": "Pedro Costa",
+      "email": "pedro.costa@empresa.com",
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z",
+      "last_connection": "2022-03-01T00:00:00Z",
+      "is_banned": false,
+      "can_create_issue": true,
+      "is_resolver": true,
+      "role_id": "3",
+      "sector_id": "3",
+      "unity_id": "3",
+      "hash": "1122334455"
+    },
+    {
+      "id": "4",
+      "register": "445566",
+      "name": "Mariana Souza",
+      "email": "mariana.souza@empresa.com",
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z",
+      "last_connection": "2022-04-01T00:00:00Z",
+      "is_banned": false,
+      "can_create_issue": true,
+      "is_resolver": true,
+      "role_id": "4",
+      "sector_id": "4",
+      "unity_id": "4",
+      "hash": "2233445566"
+    },
+    {
+      "id": "5",
+      "register": "778899",
+      "name": "Felipe Almeida",
+      "email": "felipe.almeida@empresa.com",
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z",
+      "last_connection": "2022-05-01T00:00:00Z",
+      "is_banned": false,
+      "can_create_issue": true,
+      "is_resolver": true,
+      "role_id": "5",
+      "sector_id": "5",
+      "unity_id": "5",
+      "hash": "3344556677"
+    }
+  ],
+  "scores": [
+    {
+      "id": "1",
+      "owner_id": "1",
+      "score": 5,
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "owner_id": "2",
+      "score": 4,
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "owner_id": "3",
+      "score": 3,
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "owner_id": "4",
+      "score": 2,
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "owner_id": "5",
+      "score": 1,
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z"
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "name": "Administrador",
+      "description": "Pode criar, atualizar e excluir problemas.",
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Gerente",
+      "description": "Pode gerenciar usuários e visualizar relatórios.",
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Usuário",
+      "description": "Pode criar e visualizar problemas.",
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Convidado",
+      "description": "Pode visualizar problemas.",
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Moderador",
+      "description": "Pode moderar conteúdo.",
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z"
+    }
+  ],
+  "medias": [
+    {
+      "id": "1",
+      "issue_id": "1",
+      "was_deleted": false,
+      "type": "imagem",
+      "url": "https://www.exemplo.com/media1.png",
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "issue_id": "2",
+      "was_deleted": false,
+      "type": "vídeo",
+      "url": "https://www.exemplo.com/media2.mp4",
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "issue_id": "3",
+      "was_deleted": false,
+      "type": "áudio",
+      "url": "https://www.exemplo.com/media3.mp3",
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "issue_id": "4",
+      "was_deleted": false,
+      "type": "documento",
+      "url": "https://www.exemplo.com/media4.pdf",
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "issue_id": "5",
+      "was_deleted": false,
+      "type": "imagem",
+      "url": "https://www.exemplo.com/media5.png",
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z"
+    }
+  ],
+  "issue_categories": [
+    {
+      "id": "1",
+      "name": "Rede",
+      "description": "Problemas relacionados à conexão de rede.",
+      "base_point": 5,
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Hardware",
+      "description": "Problemas relacionados a equipamentos de hardware.",
+      "base_point": 3,
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Software",
+      "description": "Problemas relacionados a software e aplicativos.",
+      "base_point": 4,
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Sistema",
+      "description": "Erros ou falhas em sistemas corporativos.",
+      "base_point": 5,
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Acesso",
+      "description": "Solicitações de acesso a sistemas ou arquivos.",
+      "base_point": 2,
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z"
+    }
+  ],
+  "events": [
+    {
+      "id": "1",
+      "emitter_id": "1",
+      "description": "Atualização de Sistema",
+      "type": "info",
+      "visibility": "public",
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "emitter_id": "2",
+      "description": "Manutenção Programada",
+      "type": "warning",
+      "visibility": "private",
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "emitter_id": "3",
+      "description": "Falha no Servidor",
+      "type": "error",
+      "visibility": "public",
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "emitter_id": "4",
+      "description": "Novo Funcionário",
+      "type": "info",
+      "visibility": "private",
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "emitter_id": "5",
+      "description": "Política de Segurança Atualizada",
+      "type": "warning",
+      "visibility": "public",
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z"
+    }
+  ],
+  "company": {
+    "id": "1",
+    "name": "L3 Tecnologia",
+    "description": "Empresa especializada em soluções tecnológicas.",
+    "nationality": "Brasil",
+    "logo": "https://www.exemplo.com/logo.png",
+    "type": "Tecnologia",
+    "created_at": "2022-01-01T00:00:00Z",
+    "updated_at": "2022-01-01T00:00:00Z"
+  },
+  "theme": [
+    {
+      "id": "1",
+      "name": "Tema Claro",
+      "primary_color": "#FFFFFF",
+      "secondary_color": "#000000",
+      "tertiary_color": "#CCCCCC",
+      "description": "Tema com cores claras para melhor visualização.",
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Tema Escuro",
+      "primary_color": "#000000",
+      "secondary_color": "#FFFFFF",
+      "tertiary_color": "#333333",
+      "description": "Tema com cores escuras para reduzir o cansaço visual.",
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Tema Azul",
+      "primary_color": "#0000FF",
+      "secondary_color": "#FFFFFF",
+      "tertiary_color": "#ADD8E6",
+      "description": "Tema com predominância de azul para tranquilidade.",
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Tema Verde",
+      "primary_color": "#008000",
+      "secondary_color": "#FFFFFF",
+      "tertiary_color": "#00FF00",
+      "description": "Tema com predominância de verde para harmonia.",
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Tema Vermelho",
+      "primary_color": "#FF0000",
+      "secondary_color": "#FFFFFF",
+      "tertiary_color": "#FFA07A",
+      "description": "Tema com predominância de vermelho para energia.",
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z"
+    }
+  ],
+  "departments": [
+    {
+      "id": "1",
+      "name": "TI",
+      "description": "Departamento de Tecnologia da Informação.",
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Financeiro",
+      "description": "Departamento Financeiro.",
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Administração",
+      "description": "Departamento Administrativo.",
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Operações",
+      "description": "Departamento de Operações.",
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "RH",
+      "description": "Departamento de Recursos Humanos.",
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z"
+    }
+  ],
+  "sectors": [
+    {
+      "id": "1",
+      "name": "Infraestrutura",
+      "description": "Setor responsável pela infraestrutura de TI.",
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Desenvolvimento",
+      "description": "Setor de desenvolvimento de software.",
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Suporte",
+      "description": "Setor de suporte técnico.",
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Comercial",
+      "description": "Setor comercial e de vendas.",
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Marketing",
+      "description": "Setor de marketing e comunicação.",
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z"
+    }
+  ],
+  "unities": [
+    {
+      "id": "1",
+      "name": "Sede",
+      "description": "Unidade sede da empresa.",
+      "nationality": "Brasil",
+      "isBase": true,
+      "created_at": "2022-01-01T00:00:00Z",
+      "updated_at": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Filial 1",
+      "description": "Primeira filial da empresa.",
+      "nationality": "Brasil",
+      "isBase": false,
+      "created_at": "2022-02-01T00:00:00Z",
+      "updated_at": "2022-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Filial 2",
+      "description": "Segunda filial da empresa.",
+      "nationality": "Brasil",
+      "isBase": false,
+      "created_at": "2022-03-01T00:00:00Z",
+      "updated_at": "2022-03-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Filial 3",
+      "description": "Terceira filial da empresa.",
+      "nationality": "Brasil",
+      "isBase": false,
+      "created_at": "2022-04-01T00:00:00Z",
+      "updated_at": "2022-04-01T00:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Filial 4",
+      "description": "Quarta filial da empresa.",
+      "nationality": "Brasil",
+      "isBase": false,
+      "created_at": "2022-05-01T00:00:00Z",
+      "updated_at": "2022-05-01T00:00:00Z"
+    }
+  ]
+}

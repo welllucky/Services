@@ -48,11 +48,12 @@ export const TitleComponent = styled.h1<{ $isSmallClientMobile?: boolean }>`
   line-height: 1.5rem;
   display: flex;
   align-items: center;
-  letter-spacing: 0.01em;
+  letter-spacing: 2px;
   color: ${({ theme }) => theme.colors.primary.default};
 
-  ${({ $isSmallClientMobile }) => $isSmallClientMobile
-    && css`
+  ${({ $isSmallClientMobile }) =>
+    $isSmallClientMobile &&
+    css`
       font-size: 1.2rem;
       line-height: 1.5rem;
       margin-top: 4rem;
