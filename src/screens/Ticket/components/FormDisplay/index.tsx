@@ -1,5 +1,5 @@
 import { CustomFieldset } from "@/components/Fieldset";
-import { SectionInfoForm } from "@/screens/abrir-chamado/confirmar-chamado/styles";
+import { SectionInfoForm } from "@/screens/OpenTicket/confirmar-chamado/styles";
 import { theme } from "@/styles";
 import { ITicket } from "@/types";
 import { dataFormatter } from "@/utils";

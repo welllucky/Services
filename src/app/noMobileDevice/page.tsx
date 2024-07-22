@@ -1,5 +1,5 @@
 import { NoMobileDevicePage } from "@/screens";
-import { getTextTheme } from "@/screens/no-mobile-device/themeTitle";
+import { getTextTheme } from "@/screens/NoMobileDevice/themeTitle";
 
 const NoDeviceMobile = () => {
   return <NoMobileDevicePage theme={getTextTheme()} />;

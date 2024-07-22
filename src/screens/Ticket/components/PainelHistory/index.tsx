@@ -32,7 +32,7 @@ const InfoHistoryPainel = ({ data, isLoading }: InfoHistoryPainelProps) => {
 
   const events = historic || data;
 
-  if (!events) {
+  if (!events?.length) {
     return (
       <NoContent
         icon={

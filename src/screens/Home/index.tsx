@@ -4,16 +4,17 @@ import { Header, Loading, NoContent } from "@/components/";
 import { AddNewIssueButton } from "@/components/common/Buttons";
 import { InfoDisplay } from "@/components/InfoDisplay";
 import { PageContainer } from "@/styles";
-import { SS_KEY_USER_PREVIOUS_PAGE, dataFormatter, issueApi } from "@/utils";
+import { SS_KEY_USER_PREVIOUS_PAGE, dataFormatter, ticketApi } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useTheme } from "styled-components";
-import { MainContainer } from "../pesquisa/styles";
+import { MainContainer } from "../Search/styles";
 import { ButtonWrapper } from "./styles";
 
 const Homepage = () => {
   const theme = useTheme();
   const { push } = useRouter();
-  const { data, isLoading } = issueApi.getIssues();
+  const { data, isLoading } = ticketApi.getTickets();
+
   const issuesQuantity = data?.length ?? 0;
 
   if (isLoading) {
@@ -36,7 +37,7 @@ const Homepage = () => {
                 id={issue?.id}
                 nome={issue?.description}
                 date={dataFormatter(issue.date)}
-                $status="Registrado"
+                $status={issue.status}
                 isUpdated={false}
               />
             ))

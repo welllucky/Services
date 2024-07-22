@@ -5,7 +5,7 @@ import { Header, Loading, NoContent } from "@/components";
 import { InfoDisplay } from "@/components/InfoDisplay";
 import { PageContainer } from "@/styles";
 import { useTheme } from "styled-components";
-import { MainContainer } from "../pesquisa/styles";
+import { MainContainer } from "../Search/styles";
 
 const RequestsPage = () => {
   const theme = useTheme();

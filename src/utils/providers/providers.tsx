@@ -1,16 +1,15 @@
 "use client";
 
-import { theme, GlobalStyle } from "@/styles";
+import { GlobalStyle, theme } from "@/styles";
 import { ReactNode } from "react";
+import { CookiesProvider } from "react-cookie";
+import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "styled-components";
 import { SWRConfig } from "swr";
-import { Toaster } from "react-hot-toast";
-import { CookiesProvider } from "react-cookie";
 import { AppProvider } from "../stores/AppStore";
 import StyledComponentsRegistry from "./registry";
-// skipcq: JS-0323
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AppProviders = ({ children }: any & ReactNode) => {
+
+export const AppProviders = ({ children }: { children: ReactNode }) => {
   return (
     <SWRConfig>
       <CookiesProvider
@@ -18,7 +17,7 @@ export const AppProviders = ({ children }: any & ReactNode) => {
           path: "/",
           sameSite: true,
           secure: true,
-          domain: process.env.BASE_URL,
+          domain: process.env.NEXT_PUBLIC_BASE_URL,
           expires: new Date(Date.now() + 60 * 60 * 24 * 15),
           partitioned: false,
         }}>
@@ -27,7 +26,6 @@ export const AppProviders = ({ children }: any & ReactNode) => {
             <AppProvider>
               <GlobalStyle />
               {children}
-
               <Toaster
                 position="top-center"
                 toastOptions={{

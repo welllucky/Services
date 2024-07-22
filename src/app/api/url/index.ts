@@ -1,4 +1,6 @@
-const baseUrl = process.env.APIS_BASE_URL ?? "";
+const baseUrl = process.env.BASE_URL ?? "";
 
-export const issueUrl = `${baseUrl}issues/`;
-export const ticketUrl = `${baseUrl}tickets/`;
+const apiBaseUrl = `${baseUrl}api/`;
+
+export const issueUrl = `${apiBaseUrl}issues/`;
+export const ticketUrl = `${apiBaseUrl}tickets/`;

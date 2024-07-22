@@ -17,8 +17,8 @@ body {
 ::before,
 ::after {
 	box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
-  -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+  -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
   outline: none !important;
 }
 
@@ -32,8 +32,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -44,7 +44,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
   text-decoration: none;
   border-color: transparent;
-  font-family: Inter, Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: Inter, Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 button {
@@ -54,7 +54,7 @@ button {
   background-color: transparent;
 }
 
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -76,9 +76,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-textarea {
+/* textarea {
   font-family: Inter, Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+} */
 
 a{
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

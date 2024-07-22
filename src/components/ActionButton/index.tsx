@@ -1,4 +1,4 @@
-import { IssueActionOptionsType } from "@/screens/chamado/components";
+import { IssueActionOptionsType } from "@/screens/Ticket/components";
 import {
   ArrowCounterClockwise,
   DotsThreeOutlineVertical,

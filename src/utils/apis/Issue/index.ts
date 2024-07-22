@@ -36,6 +36,7 @@ export class IssueApi {
    */
   getIssues = () => {
     const { data, error, isLoading } = httpClient<ITicket[]>(`${this.api_url}`);
+
     return { data, error, isLoading };
   };
 

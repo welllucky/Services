@@ -17,7 +17,7 @@ import {
 import { TicketPageContainer, TicketPageContent } from "./styles";
 
 export interface TicketPageProps {
-  data: ITicket;
+  data?: ITicket;
 }
 
 const TicketPage = ({ data }: TicketPageProps) => {
