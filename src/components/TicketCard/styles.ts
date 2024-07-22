@@ -24,7 +24,7 @@ export const IconeSelo = styled.section`
   }
 `;
 
-export const IssueWrapper = styled(Link)<ContainerStyleProps>`
+export const TicketWrapper = styled(Link)<ContainerStyleProps>`
   width: 100%;
   height: fit-content;
   position: relative;
@@ -45,7 +45,7 @@ export const IssueWrapper = styled(Link)<ContainerStyleProps>`
   transition: 0.3s ease-in-out;
 `;
 
-export const IssueContainer = styled(Row)<ContainerStyleProps>`
+export const TicketContainer = styled(Row)<ContainerStyleProps>`
   display: flex;
   padding: 0.8rem;
   border-radius: 1rem;
@@ -53,7 +53,7 @@ export const IssueContainer = styled(Row)<ContainerStyleProps>`
   transition: 0.3s ease-in-out;
 `;
 
-export const IssueContent = styled.div<{ $hasUpdate?: boolean }>`
+export const TicketContent = styled.div<{ $hasUpdate?: boolean }>`
   display: flex;
   flex-direction: column;
   max-height: 80px;
@@ -73,7 +73,7 @@ export const IssueContent = styled.div<{ $hasUpdate?: boolean }>`
   }
 `;
 
-export const IssueState = styled.div`
+export const TicketState = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -81,7 +81,7 @@ export const IssueState = styled.div`
   flex: 2;
 `;
 
-export const IssueNumber = styled.p`
+export const TicketNumber = styled.p`
   font-weight: 500;
   font-size: 1rem;
   width: 100%;
@@ -94,7 +94,7 @@ export const IssueNumber = styled.p`
   overflow: hidden;
 `;
 
-export const IssueDescription = styled.p`
+export const TicketDescription = styled.p`
   font-weight: 500;
   font-size: 1.1rem;
   line-height: 120%;
@@ -112,7 +112,7 @@ export const IssueDescription = styled.p`
   }
 `;
 
-export const IssueStatus = styled.div`
+export const TicketStatus = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

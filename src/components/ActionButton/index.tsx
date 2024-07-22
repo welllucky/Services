@@ -104,21 +104,19 @@ const ActionButton = ({
         {actionOptions
           .toReversed()
           .filter((option) => option.isActive)
-          .map((option) => {
-            return (
-              <RoundedButton
-                $hasShadow
-                key={option.title}
-                icon={option.icon}
-                action={option.action}
-                color={
+          .map((option) => (
+            <RoundedButton
+              $hasShadow
+              key={option.title}
+              icon={option.icon}
+              action={option.action}
+              color={
                   option.title.toLowerCase() === "finalizar"
                     ? theme.colors.secondary["75"]
                     : theme.colors.primary["85"]
                 }
               />
-            );
-          })}
+            ))}
       </ActionButtonsContainer>
 
       <PrincipalIssueButton

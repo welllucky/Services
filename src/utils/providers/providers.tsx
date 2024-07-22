@@ -9,11 +9,10 @@ import { SWRConfig } from "swr";
 import { AppProvider } from "../stores/AppStore";
 import StyledComponentsRegistry from "./registry";
 
-export const AppProviders = ({ children }: { children: ReactNode }) => {
-  return (
-    <SWRConfig>
-      <CookiesProvider
-        defaultSetOptions={{
+export const AppProviders = ({ children }: { children: ReactNode }) => (
+  <SWRConfig>
+    <CookiesProvider
+      defaultSetOptions={{
           path: "/",
           sameSite: true,
           secure: true,
@@ -21,14 +20,14 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
           expires: new Date(Date.now() + 60 * 60 * 24 * 15),
           partitioned: false,
         }}>
-        <StyledComponentsRegistry>
-          <ThemeProvider theme={theme}>
-            <AppProvider>
-              <GlobalStyle />
-              {children}
-              <Toaster
-                position="top-center"
-                toastOptions={{
+      <StyledComponentsRegistry>
+        <ThemeProvider theme={theme}>
+          <AppProvider>
+            <GlobalStyle />
+            {children}
+            <Toaster
+              position="top-center"
+              toastOptions={{
                   ariaProps: {
                     role: "status",
                     "aria-live": "polite",
@@ -37,10 +36,9 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
                   position: "top-center",
                 }}
               />
-            </AppProvider>
-          </ThemeProvider>
-        </StyledComponentsRegistry>
-      </CookiesProvider>
-    </SWRConfig>
+          </AppProvider>
+        </ThemeProvider>
+      </StyledComponentsRegistry>
+    </CookiesProvider>
+  </SWRConfig>
   );
-};

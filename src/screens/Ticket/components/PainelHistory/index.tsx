@@ -1,7 +1,7 @@
-import { InfoUnityProps } from "@/types";
 import { useTicket } from "@/utils";
 import { FileDashed } from "@phosphor-icons/react";
 import { useTheme } from "styled-components";
+import { TicketEventDto } from "@/assets";
 import { Loading, NoContent } from "../../../../components";
 import { InfoUnity } from "./InfoUnity";
 import {
@@ -11,7 +11,7 @@ import {
 } from "./styles";
 
 interface InfoHistoryPainelProps {
-  data?: InfoUnityProps[];
+  data?: TicketEventDto[];
   isLoading?: boolean;
 }
 
@@ -35,12 +35,12 @@ const InfoHistoryPainel = ({ data, isLoading }: InfoHistoryPainelProps) => {
   if (!events?.length) {
     return (
       <NoContent
-        icon={
+        icon={(
           <FileDashed
             size={64}
             color={theme.colors.neutral["45"]}
           />
-        }
+        )}
         title="Ops! Esse chamado ainda não possui movimentações"
         fontSize="16px"
         color={theme.colors.neutral["45"]}

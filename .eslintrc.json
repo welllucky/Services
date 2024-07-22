@@ -44,6 +44,8 @@
     "react/function-component-definition": [
       2,
       { "namedComponents": "arrow-function" }
-    ]
+    ],
+    "class-methods-use-this": "off",
+    "indent": "off"
   }
 }

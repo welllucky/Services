@@ -11,19 +11,17 @@ interface IconProps {
   $hasPadding?: boolean;
 }
 
-const Icon = ({ src, alt, onClick, size, $hasPadding = false }: IconProps) => {
-  return (
-    <IconContainer
-      $hasPadding={$hasPadding}
-      onClick={onClick}>
-      <IconImage
-        src={src}
-        alt={alt || "ícone"}
-        width={size}
-        height={size}
+const Icon = ({ src, alt, onClick, size, $hasPadding = false }: IconProps) => (
+  <IconContainer
+    $hasPadding={$hasPadding}
+    onClick={onClick}>
+    <IconImage
+      src={src}
+      alt={alt || "ícone"}
+      width={size}
+      height={size}
       />
-    </IconContainer>
+  </IconContainer>
   );
-};
 
 export { Icon };

@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
-import { ITicket } from "@/assets";
+import { TicketDto } from "@/assets";
 import { createStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 // skipcq: JS-0322
-interface TicketProps extends ITicket {}
+interface TicketProps extends TicketDto {}
 
 interface TicketState extends TicketProps {
   initialize: () => void;
@@ -27,13 +27,19 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
   const DEFAULT_PROPS: TicketProps = {
     description: "",
     id: "0",
-    priority: "baixa",
+    priority: "low",
     resume: "",
     status: "notStarted",
-    type: "",
+    type: "problem",
     historic: [],
-    sector: "",
-    unity: "",
+    closedBy: null,
+    createdBy: 0,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    closedAt: null,
+    updatedBy: 0,
+    // sector: "",
+    // unity: "",
     date: "",
   };
   return createStore<TicketState>()(

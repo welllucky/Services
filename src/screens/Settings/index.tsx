@@ -1,4 +1,4 @@
-export const Settings = () => {
+export const Settings = () =>
   // const usuarioLogado = JSON.parse(localStorage.getItem("userData") ?? "null");
   // function verificarLogin() {
   // 	if (!usuarioLogado) {
@@ -6,5 +6,4 @@ export const Settings = () => {
   // 	}
   // }
   // verificarLogin();
-  return <h1>Componente de configurações</h1>;
-};
+  <h1>Componente de configurações</h1>;

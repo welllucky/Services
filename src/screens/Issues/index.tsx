@@ -2,7 +2,7 @@
 
 import { ITicket } from "@/assets";
 import { Header, Loading, NoContent } from "@/components";
-import { InfoDisplay } from "@/components/InfoDisplay";
+import { TicketCard } from "@/components/TicketCard";
 import { PageContainer } from "@/styles";
 import { useTheme } from "styled-components";
 import { MainContainer } from "../Search/styles";
@@ -26,7 +26,7 @@ const RequestsPage = () => {
           <MainContainer $hasContent={!!listaChamados}>
             {listaChamados?.length ? (
               listaChamados.map((issue) => (
-                <InfoDisplay
+                <TicketCard
                   color="#9EDC72"
                   $borderColor="#61A12F"
                   key={issue.id}

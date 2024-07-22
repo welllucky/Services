@@ -20,22 +20,20 @@ const CustomFieldset = ({
   color,
   $hasOverflow = false,
   $justifyContent = "end",
-}: FieldsetProps) => {
-  return (
-    <FieldsetContainer
-      width={width}
-      height={height}
-      $hasOverflow={$hasOverflow}>
-      <Legend {...buildTestIds(`legend-text-${labelText}`)}>{labelText}</Legend>
-      <Fieldset
-        {...buildTestIds(`fieldset-container-${labelText}`)}
-        color={color}
-        $hasOverflow={$hasOverflow}
-        $justifyContent={$justifyContent}>
-        <FieldSetContent>{children}</FieldSetContent>
-      </Fieldset>
-    </FieldsetContainer>
+}: FieldsetProps) => (
+  <FieldsetContainer
+    width={width}
+    height={height}
+    $hasOverflow={$hasOverflow}>
+    <Legend {...buildTestIds(`legend-text-${labelText}`)}>{labelText}</Legend>
+    <Fieldset
+      {...buildTestIds(`fieldset-container-${labelText}`)}
+      color={color}
+      $hasOverflow={$hasOverflow}
+      $justifyContent={$justifyContent}>
+      <FieldSetContent>{children}</FieldSetContent>
+    </Fieldset>
+  </FieldsetContainer>
   );
-};
 
 export { CustomFieldset };

@@ -1,7 +1,5 @@
 import { ConfirmDetailsPage } from "@/screens/OpenTicket/confirmar-chamado";
 
-const ConfirmDetails = () => {
-  return <ConfirmDetailsPage />;
-};
+const ConfirmDetails = () => <ConfirmDetailsPage />;
 
 export default ConfirmDetails;

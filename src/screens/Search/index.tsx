@@ -1,9 +1,8 @@
 "use client";
 
 import { Header, NoContent } from "@/components";
-import { InfoDisplay } from "@/components/InfoDisplay";
+import { TicketCard, TicketCardProps } from "@/components/TicketCard";
 import { PageContainer } from "@/styles";
-import { InfoDisplayProps } from "@/types";
 import { useTheme } from "styled-components";
 import { Loading } from "../../components/Loading";
 import { SearchBar } from "../../components/SearchBar";
@@ -12,7 +11,7 @@ import { MainContainer, SearchContainer } from "./styles";
 const SearchPage = ({
   searchResults,
 }: {
-  searchResults: InfoDisplayProps[];
+  searchResults: TicketCardProps[];
 }) => {
   const theme = useTheme();
   const isLoading = false;
@@ -31,7 +30,7 @@ const SearchPage = ({
           <MainContainer $hasContent={!!searchResults}>
             {searchResults?.length ? (
               searchResults.map((issue) => (
-                <InfoDisplay
+                <TicketCard
                   key={issue.id}
                   id={issue.id}
                   nome={issue.nome}

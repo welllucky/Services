@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
-import { ITicket } from "@/types";
+import { TicketDto } from "@/types";
 import { createTicketStore, TicketStore } from "@/utils/stores";
 import React, { createContext, useContext, useRef } from "react";
 import { useStore } from "zustand";
 
 interface TicketProviderProps {
   children: React.ReactNode;
-  data: ITicket;
+  data: TicketDto
+;
 }
 
 const TicketContext = createContext<TicketStore | null>(null);

@@ -22,16 +22,15 @@ export const CustomTextArea = ({
   $status = "none",
   errorText,
   warnText,
-}: TextAreaProps) => {
-  return (
-    <TextAreaContainer $status={$status}>
-      <CustomFieldset
-        width={width}
-        height={height}
-        $hasOverflow
-        labelText={labelText || ""}>
-        <TextArea
-          {...register(id, {
+}: TextAreaProps) => (
+  <TextAreaContainer $status={$status}>
+    <CustomFieldset
+      width={width}
+      height={height}
+      $hasOverflow
+      labelText={labelText || ""}>
+      <TextArea
+        {...register(id, {
             ...registerOptions,
             required: isRequired
               ? "Este campo é obrigatório"
@@ -43,14 +42,13 @@ export const CustomTextArea = ({
               if (registerOptions?.onChange) registerOptions.onChange(e);
             },
           })}
-          height={height || "100%"}
-          width="100%"
-          placeholder={placeholder}
-          value={value}
+        height={height || "100%"}
+        width="100%"
+        placeholder={placeholder}
+        value={value}
         />
-      </CustomFieldset>
-      {$status === "invalid" && <ErrorText>{errorText}</ErrorText>}
-      {$status === "warning" && <WarningText>{warnText}</WarningText>}
-    </TextAreaContainer>
+    </CustomFieldset>
+    {$status === "invalid" && <ErrorText>{errorText}</ErrorText>}
+    {$status === "warning" && <WarningText>{warnText}</WarningText>}
+  </TextAreaContainer>
   );
-};
