@@ -15,16 +15,14 @@ const RoundedButton = ({
   color,
   $isClicked,
   $hasShadow,
-}: RoundedButtonProps) => {
-  return (
-    <RoundedButtonContainer
-      color={color}
-      onClick={action}
-      $isClicked={$isClicked}
-      $hasShadow={$hasShadow}>
-      {icon}
-    </RoundedButtonContainer>
+}: RoundedButtonProps) => (
+  <RoundedButtonContainer
+    color={color}
+    onClick={action}
+    $isClicked={$isClicked}
+    $hasShadow={$hasShadow}>
+    {icon}
+  </RoundedButtonContainer>
   );
-};
 
 export { RoundedButton };

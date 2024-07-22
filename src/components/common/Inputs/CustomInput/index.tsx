@@ -69,27 +69,26 @@ const CustomInput = ({
   register,
   registerOptions = {},
   isRequired = false,
-}: InputProps) => {
-  return (
-    <InputContainer width={width}>
-      {labelText && <Label mode={mode}>{labelText}</Label>}
-      <ContentContainer
-        backgroundColor={style?.$backgroundColor}
-        mode={mode}
-        $status={$status}
-        height={height}>
-        {leadingButton && (
-          <Icon
-            src={leadingButton?.icon}
-            alt={leadingButton?.alt}
-            onClick={leadingButton?.onClick}
-            size={leadingButton?.size}
-            $hasPadding
+}: InputProps) => (
+  <InputContainer width={width}>
+    {labelText && <Label mode={mode}>{labelText}</Label>}
+    <ContentContainer
+      backgroundColor={style?.$backgroundColor}
+      mode={mode}
+      $status={$status}
+      height={height}>
+      {leadingButton && (
+      <Icon
+        src={leadingButton?.icon}
+        alt={leadingButton?.alt}
+        onClick={leadingButton?.onClick}
+        size={leadingButton?.size}
+        $hasPadding
           />
         )}
 
-        <InputComponent
-          {...register(id, {
+      <InputComponent
+        {...register(id, {
             ...registerOptions,
             required: isRequired
               ? "Este campo é obrigatório"
@@ -101,25 +100,24 @@ const CustomInput = ({
               if (registerOptions.onChange) registerOptions.onChange(e);
             },
           })}
-          placeholder={placeholder}
-          type={type}
-          value={value}
+        placeholder={placeholder}
+        type={type}
+        value={value}
         />
-        {trailingButton && (
-          <Icon
-            src={trailingButton?.icon}
-            alt={trailingButton?.alt}
-            onClick={trailingButton?.onClick}
-            $hasPadding
+      {trailingButton && (
+      <Icon
+        src={trailingButton?.icon}
+        alt={trailingButton?.alt}
+        onClick={trailingButton?.onClick}
+        $hasPadding
             // alternate={trailingButton?.secondIcon}
           />
         )}
-      </ContentContainer>
-      {$status === "invalid" && <ErrorText>{errorText}</ErrorText>}
-      {$status === "warning" && <WarningText>{warnText}</WarningText>}
-    </InputContainer>
+    </ContentContainer>
+    {$status === "invalid" && <ErrorText>{errorText}</ErrorText>}
+    {$status === "warning" && <WarningText>{warnText}</WarningText>}
+  </InputContainer>
   );
-};
 
 const OutlinedInput = (props: InputProps) => {
   const { height, labelText, type, placeholder } = props;

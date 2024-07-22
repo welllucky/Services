@@ -30,19 +30,17 @@ const RootLayout = ({
   children,
 }: Readonly<{
   children: ReactNode;
-}>) => {
-  return (
-    <html lang="pt-br">
-      <body className={inter.className}>
-        <SpeedInsights />
-        <AppProviders>
-          {children}
-          <Analytics />
-        </AppProviders>
-      </body>
-    </html>
+}>) => (
+  <html lang="pt-br">
+    <body className={inter.className}>
+      <SpeedInsights />
+      <AppProviders>
+        {children}
+        <Analytics />
+      </AppProviders>
+    </body>
+  </html>
   );
-};
 
 export default RootLayout;
 

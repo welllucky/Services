@@ -5,8 +5,6 @@ export const metadata: Metadata = {
   title: { default: "Abrir chamado", template: "%s | Services" },
 };
 
-const Issue = () => {
-  return <CreateTicketPage />;
-};
+const Issue = () => <CreateTicketPage />;
 
 export default Issue;

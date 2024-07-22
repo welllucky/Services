@@ -1,3 +1,4 @@
+import { TicketController } from "@/server/controllers";
 import { Ticket } from "@/server/models";
 import { NextRequest, NextResponse } from "next/server";
 import { ticketUrl } from "../../url";
@@ -10,17 +11,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: TicketParamProps },
 ) {
-  try {
-    const { id } = params;
-
-    const data = await Ticket.findByPk(id);
-
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json({
-      error,
-    });
-  }
+  return TicketController.getTicketById(req, params);
 }
 
 export async function POST(req: NextRequest) {

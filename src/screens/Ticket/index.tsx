@@ -2,7 +2,7 @@
 
 import { Loading } from "@/components";
 
-import { ITicket } from "@/types";
+import { TicketDto } from "@/types";
 import { TicketProvider } from "@/utils";
 import { buildTestIds, resetForm } from "@/utils/functions";
 import { useRouter } from "next/navigation";
@@ -17,7 +17,7 @@ import {
 import { TicketPageContainer, TicketPageContent } from "./styles";
 
 export interface TicketPageProps {
-  data?: ITicket;
+  data?: TicketDto;
 }
 
 const TicketPage = ({ data }: TicketPageProps) => {

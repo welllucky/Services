@@ -45,9 +45,7 @@ export class IssueApi {
    * @param {InitializeIssueType} IssueData The data to initialize the issue with.
    * @returns A promise resolving with the result of the initialization request.
    */
-  initializeIssue = async (IssueData: InitializeIssueType) => {
-    return httpClient(`${this.api_url}`, "PUT", {
+  initializeIssue = async (IssueData: InitializeIssueType) => httpClient(`${this.api_url}`, "PUT", {
       ...IssueData,
     });
-  };
 }

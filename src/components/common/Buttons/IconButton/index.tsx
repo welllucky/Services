@@ -11,21 +11,20 @@ const IconButton = ({
   color = "#000000",
   width = "16",
   height = "16",
-}: IconButtonProps) => {
-  return (
-    <IconButtonWrapper>
-      {path && !onClick ? (
-        <CustomButtonAsLink
-          color={color}
-          href={path}
-          width={width}
-          height={height}
-          onHover={onHover}>
-          <Image
-            src={icon}
-            alt={alt}
+}: IconButtonProps) => (
+  <IconButtonWrapper>
+    {path && !onClick ? (
+      <CustomButtonAsLink
+        color={color}
+        href={path}
+        width={width}
+        height={height}
+        onHover={onHover}>
+        <Image
+          src={icon}
+          alt={alt}
           />
-        </CustomButtonAsLink>
+      </CustomButtonAsLink>
       ) : (
         <CustomButton
           color={color}
@@ -39,8 +38,7 @@ const IconButton = ({
           />
         </CustomButton>
       )}
-    </IconButtonWrapper>
+  </IconButtonWrapper>
   );
-};
 
 export { IconButton };

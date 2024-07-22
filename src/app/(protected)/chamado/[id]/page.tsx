@@ -1,5 +1,5 @@
 import { ticketUrl } from "@/app/api/url";
-import { ITicket } from "@/assets";
+import { IHttpResponse, TicketDto } from "@/assets";
 import { TicketPage } from "@/screens";
 
 const Ticket = async ({
@@ -16,7 +16,16 @@ const Ticket = async ({
     },
   });
 
-  const data = (await response.json()) as ITicket;
+  const { data, error } = (await response.json()) as IHttpResponse<
+    TicketDto,
+    string
+  >;
+
+  console.log({ data, error });
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return <TicketPage data={data} />;
 };

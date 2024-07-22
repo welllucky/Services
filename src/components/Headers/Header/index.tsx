@@ -31,9 +31,7 @@ export const Header = ({
 }: HeaderMobileProps) => {
   const { push } = useRouter();
   const actualPage = usePathname();
-  const greetingMessage = useMemo(() => {
-    return getGreetingMessage();
-  }, []);
+  const greetingMessage = useMemo(() => getGreetingMessage(), []);
 
   return (
     <HeaderHome {...buildTestIds("header-home-container")}>

@@ -2,10 +2,16 @@
 
 import { Header, Loading, NoContent } from "@/components/";
 import { AddNewIssueButton } from "@/components/common/Buttons";
-import { InfoDisplay } from "@/components/InfoDisplay";
+import { TicketCard } from "@/components/TicketCard";
 import { PageContainer } from "@/styles";
-import { SS_KEY_USER_PREVIOUS_PAGE, dataFormatter, ticketApi } from "@/utils";
+import {
+  SS_KEY_USER_PREVIOUS_PAGE,
+  cookie,
+  dataFormatter,
+  ticketApi,
+} from "@/utils";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useTheme } from "styled-components";
 import { MainContainer } from "../Search/styles";
 import { ButtonWrapper } from "./styles";
@@ -14,8 +20,14 @@ const Homepage = () => {
   const theme = useTheme();
   const { push } = useRouter();
   const { data, isLoading } = ticketApi.getTickets();
-
   const issuesQuantity = data?.length ?? 0;
+  const token = cookie.get("token");
+
+  useEffect(() => {
+    cookie.set("token", "2");
+  });
+
+  console.log({ token });
 
   if (isLoading) {
     return <Loading overlayOn={false} />;
@@ -32,9 +44,9 @@ const Homepage = () => {
         <MainContainer $hasContent={issuesQuantity !== 0}>
           {data?.length ? (
             data.map((issue) => (
-              <InfoDisplay
+              <TicketCard
                 key={issue?.id}
-                id={issue?.id}
+                id={String(issue?.id)}
                 nome={issue?.description}
                 date={dataFormatter(issue.date)}
                 $status={issue.status}

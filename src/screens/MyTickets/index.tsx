@@ -1,7 +1,7 @@
 "use client";
 
 import { AddNewIssueButton, Header, Loading, NoContent } from "@/components";
-import { InfoDisplay } from "@/components/InfoDisplay";
+import { TicketCard } from "@/components/TicketCard";
 import { PageContainer } from "@/styles";
 import { issueApi } from "@/utils";
 import { useRouter } from "next/navigation";
@@ -27,7 +27,7 @@ const MyCallsPage = () => {
             <MainContainer $hasContent={!!issuesQuantity}>
               {data?.length ? (
                 data.map((issue) => (
-                  <InfoDisplay
+                  <TicketCard
                     key={issue.id}
                     id={issue.id}
                     nome={issue.resume}

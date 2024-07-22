@@ -9,23 +9,21 @@ const OptionMenu = ({
   $isSelected,
   color,
   $highlightTextColor,
-}: OptionMenuProps) => {
-  return (
-    <CustomLink
-      $flexDirection="column"
-      href={path}>
-      <IconArea
-        $backgroundColor={color}
-        $isSelected={$isSelected}>
-        {icon}
-      </IconArea>
-      <TextMenu
-        $highlightTextColor={$highlightTextColor}
-        $isSelected={$isSelected}>
-        {name}
-      </TextMenu>
-    </CustomLink>
+}: OptionMenuProps) => (
+  <CustomLink
+    $flexDirection="column"
+    href={path}>
+    <IconArea
+      $backgroundColor={color}
+      $isSelected={$isSelected}>
+      {icon}
+    </IconArea>
+    <TextMenu
+      $highlightTextColor={$highlightTextColor}
+      $isSelected={$isSelected}>
+      {name}
+    </TextMenu>
+  </CustomLink>
   );
-};
 
 export default OptionMenu;

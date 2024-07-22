@@ -6,13 +6,11 @@ type TicketPageBackButtonProps = {
   router: AppRouterInstance;
 };
 
-export const TicketPageBackButton = ({ router }: TicketPageBackButtonProps) => {
-  return (
-    <Row>
-      <BackButton
-        onClick={() => router.back()}
-        actionText="chamados"
+export const TicketPageBackButton = ({ router }: TicketPageBackButtonProps) => (
+  <Row>
+    <BackButton
+      onClick={() => router.back()}
+      actionText="chamados"
       />
-    </Row>
+  </Row>
   );
-};

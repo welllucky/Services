@@ -49,35 +49,33 @@ export const CustomButton = ({
   height,
   mode = "filled",
   ...props
-}: CustomButtonProps) => {
-  return (
-    <ButtonContainer
-      {...buildTestIds(`button-container-${text}`)}
-      $backgroundColor={$backgroundColor}
-      $borderColor={$borderColor}
+}: CustomButtonProps) => (
+  <ButtonContainer
+    {...buildTestIds(`button-container-${text}`)}
+    $backgroundColor={$backgroundColor}
+    $borderColor={$borderColor}
+    disabled={disabled}
+    width={width}
+    height={height}
+    mode={mode}
+    {...props}>
+    <ButtonComponent
+      {...buildTestIds(`button-component-${text}`)}
+      form=""
+      type={props.type ?? "button"}
+      onClick={onClick}
       disabled={disabled}
-      width={width}
-      height={height}
-      mode={mode}
+      color={color}
       {...props}>
-      <ButtonComponent
-        {...buildTestIds(`button-component-${text}`)}
-        form=""
-        type={props.type ?? "button"}
-        onClick={onClick}
-        disabled={disabled}
-        color={color}
-        {...props}>
-        {icon && (
-          <Image
-            src={icon}
-            alt={alt as string}
-            width={iconSize}
-            height={iconSize}
+      {icon && (
+      <Image
+        src={icon}
+        alt={alt as string}
+        width={iconSize}
+        height={iconSize}
           />
         )}
-        {text}
-      </ButtonComponent>
-    </ButtonContainer>
+      {text}
+    </ButtonComponent>
+  </ButtonContainer>
   );
-};

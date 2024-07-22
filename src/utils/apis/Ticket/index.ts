@@ -33,7 +33,14 @@ export class TicketApi {
    * @returns An object containing an array of ticket data, any error that occurred, and a loading state.
    */
   getTickets = () => {
-    const { data, error, isLoading } = httpClient<ITicket[]>(`${this.api_url}`);
+    const { data, error, isLoading } = httpClient<ITicket[]>(
+      `${this.api_url}`,
+      "GET",
+      {},
+      {},
+      { refreshInterval: true },
+    );
+    console.log({ data, error, isLoading });
 
     return { data, error, isLoading };
   };

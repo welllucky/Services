@@ -17,16 +17,14 @@ export const CallInformation = ({
   width,
   height,
   children,
-}: Readonly<ILegendProps>) => {
-  return (
-    <Fieldset
-      {...buildTestIds("field-set-container")}
-      height={height}
-      width={width}>
-      <Legend {...buildTestIds("legend-container")}>
-        <LegendText {...buildTestIds("legend-text")}>{legendText}</LegendText>
-      </Legend>
-      <Content {...buildTestIds("content-container")}>{children}</Content>
-    </Fieldset>
+}: Readonly<ILegendProps>) => (
+  <Fieldset
+    {...buildTestIds("field-set-container")}
+    height={height}
+    width={width}>
+    <Legend {...buildTestIds("legend-container")}>
+      <LegendText {...buildTestIds("legend-text")}>{legendText}</LegendText>
+    </Legend>
+    <Content {...buildTestIds("content-container")}>{children}</Content>
+  </Fieldset>
   );
-};
