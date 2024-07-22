@@ -1,45 +1,26 @@
-import { Ticket } from "@/server/models";
 import { NextRequest, NextResponse } from "next/server";
-import { ticketUrl } from "../../url";
+import { ticketUrl } from "../../../url";
 
-type TicketParamProps = {
+type Ticket = {
   id: string;
 };
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: TicketParamProps },
-) {
+export async function POST(req: NextRequest, { params }: { params: Ticket }) {
   try {
     const { id } = params;
-
-    const data = await Ticket.findByPk(id);
-
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json({
-      error,
-    });
-  }
-}
-
-export async function POST(req: NextRequest) {
-  try {
-    const ticketIdUrl = `${ticketUrl}`;
+    const ticketIdUrl = `${ticketUrl}${id}`;
+    const { body } = req;
 
     const response = await fetch(ticketIdUrl, {
-      method: "POST",
-      body: JSON.stringify(req.body),
+      method: "PUT",
+      body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
-        ...req.headers,
       },
       mode: "cors",
     });
 
-    const data = await response.json();
-
-    return NextResponse.json(data);
+    return NextResponse.json(response);
   } catch (error) {
     return NextResponse.json({
       error,
@@ -71,5 +52,3 @@ export async function PUT(req: NextRequest, { params }: { params: Ticket }) {
     });
   }
 }
-
-export const runtime = "nodejs";

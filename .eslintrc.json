@@ -44,8 +44,6 @@
     "react/function-component-definition": [
       2,
       { "namedComponents": "arrow-function" }
-    ],
-    "arrow-body-style": ["off", "always"],
-    "react/jsx-wrap-multilines": "off"
+    ]
   }
 }

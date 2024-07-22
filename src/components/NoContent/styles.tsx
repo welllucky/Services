@@ -7,6 +7,7 @@ export const NoContentContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  padding-top: 2rem;
   gap: 0.6rem;
 
   & > img {

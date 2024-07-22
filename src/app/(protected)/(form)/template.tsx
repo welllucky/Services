@@ -1,14 +1,14 @@
 "use client";
 
 import { BackButton } from "@/components";
-import { TicketPageContainer } from "@/screens/chamado/styles";
-import { Column, Row, TitleComponent } from "@/styles";
 import { FormButtons } from "@/components/Form";
-import { ReactNode, useEffect, useMemo } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { FormProvider, useForm } from "react-hook-form";
-import { buildTestIds, resetForm } from "@/utils/functions";
+import { TicketPageContainer } from "@/screens/Ticket/styles";
+import { Column, Row, TitleComponent } from "@/styles";
 import { useModalStore } from "@/utils";
+import { buildTestIds, resetForm } from "@/utils/functions";
+import { usePathname, useRouter } from "next/navigation";
+import { ReactNode, useEffect, useMemo } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 
 interface PageRouterData {
   page: string;

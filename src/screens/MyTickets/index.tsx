@@ -5,7 +5,7 @@ import { InfoDisplay } from "@/components/InfoDisplay";
 import { PageContainer } from "@/styles";
 import { issueApi } from "@/utils";
 import { useRouter } from "next/navigation";
-import { MainContainer } from "../pesquisa/styles";
+import { MainContainer } from "../Search/styles";
 import { ButtonWrapper } from "./styles";
 
 const MyCallsPage = () => {

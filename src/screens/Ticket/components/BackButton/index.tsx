@@ -10,7 +10,7 @@ export const TicketPageBackButton = ({ router }: TicketPageBackButtonProps) => {
   return (
     <Row>
       <BackButton
-        onClick={() => router.push("/")}
+        onClick={() => router.back()}
         actionText="chamados"
       />
     </Row>

@@ -1,19 +1,11 @@
+import { Ticket } from "@/server/models";
 import { NextRequest, NextResponse } from "next/server";
 import { ticketUrl } from "../url";
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 export async function GET(req: NextRequest) {
   try {
-    // const { nextUrl } = req;
-    // const {} = nextUrl;
-    const response = await fetch(ticketUrl, {
-      next: {
-        revalidate: 60 * 3,
-        tags: ["ticket"],
-      },
-    });
-
-    const data = await response.json();
+    const data = await Ticket.findAll();
 
     return NextResponse.json(data);
   } catch (error) {
@@ -44,3 +36,5 @@ export async function POST(req: NextRequest) {
     });
   }
 }
+
+export const runtime = "nodejs";
