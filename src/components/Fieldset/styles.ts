@@ -5,6 +5,7 @@ export const FieldSetContent = styled.div`
   width: 100%;
   height: fit-content;
   word-wrap: break-word;
+  font-size: 1rem;
 `;
 
 export const Fieldset = styled.div<{
@@ -53,14 +54,16 @@ export const FieldsetTextContent = styled.p`
 
 export const FieldsetContainer = styled.div<{
   width?: string;
-  height?: string;
+  minHeight?: string;
+  maxHeight?: string;
   $hasOverflow?: boolean;
 }>`
   width: ${({ width }) => width ?? "100%"};
-  height: fit-content;
+  height: 100%;
 
   ${Fieldset} {
-    min-height: 55px;
-    max-height: ${({ height }) => height ?? "55px"};
+    min-height: ${({ minHeight }) => minHeight ?? "55px"};
+    max-height: ${({ maxHeight }) => maxHeight ?? "55px"};
+    height: 80%;
   }
 `;

@@ -1,4 +1,4 @@
-import { MyCallsPage } from "@/screens/MyTickets";
+import { MyCallsPage } from "@/screens/Tickets";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

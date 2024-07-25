@@ -40,7 +40,7 @@ export const CustomSelect = ({
     <SelectContainer $status={$status}>
       <CustomFieldset
         width={width}
-        height={height}
+        minHeight={height}
         labelText={labelText || ""}>
         <SelectComponent
           isPlaceholder={selectedValue === ""}

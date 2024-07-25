@@ -1,78 +1,28 @@
 "use client";
 
-import { Header, Loading, NoContent } from "@/components/";
-import { AddNewIssueButton } from "@/components/common/Buttons";
-import { TicketCard } from "@/components/TicketCard";
-import { PageContainer } from "@/styles";
-import {
-  SS_KEY_USER_PREVIOUS_PAGE,
-  cookie,
-  dataFormatter,
-  ticketApi,
-} from "@/utils";
+import { cookie, ticketApi } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useTheme } from "styled-components";
-import { MainContainer } from "../Search/styles";
-import { ButtonWrapper } from "./styles";
+import { HomePageUI } from "./UI";
 
 const Homepage = () => {
   const theme = useTheme();
-  const { push } = useRouter();
+  const router = useRouter();
   const { data, isLoading } = ticketApi.getTickets();
-
-  const issuesQuantity = data?.length ?? 0;
   const token = cookie.get("token");
 
   useEffect(() => {
     if (!token) cookie.set("token", "2");
   });
 
-  if (isLoading) {
-    return <Loading overlayOn={false} />;
-  }
-
   return (
-    <>
-      <Header
-        userName="Colaborador"
-        pageTittle="Meus chamados"
-        issueQuantify={issuesQuantity}
-      />
-      <PageContainer>
-        <MainContainer $hasContent={issuesQuantity !== 0}>
-          {data?.length ? (
-            data.map((issue) => (
-              <TicketCard
-                key={issue?.id}
-                id={String(issue?.id)}
-                nome={issue?.description}
-                date={dataFormatter(issue.date)}
-                $status={issue.status}
-                isUpdated={false}
-              />
-            ))
-          ) : (
-            <NoContent
-              alt="caixa vazia"
-              title="Não há chamados no momento."
-              color={theme.colors.neutral["5"]}
-            />
-          )}
-        </MainContainer>
-        <ButtonWrapper>
-          {issuesQuantity < 5 ? (
-            <AddNewIssueButton
-              $styles={{ hasShadow: true }}
-              onClick={() => {
-                sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, "home");
-                push("/abrir-chamado");
-              }}
-            />
-          ) : null}
-        </ButtonWrapper>
-      </PageContainer>
-    </>
+    <HomePageUI
+      data={data}
+      isLoading={isLoading}
+      router={router}
+      theme={theme}
+    />
   );
 };
 

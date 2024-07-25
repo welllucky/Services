@@ -22,7 +22,7 @@ export const TicketSchema = z.object({
   id: z.string(),
   resume: z.string(),
   description: z.string(),
-  date: z.string().or(z.date()),
+  date: z.string(),
   historic: z.array(TicketEventSchema),
   priority: PriorityLevelsSchema,
   type: TicketTypeSchema,

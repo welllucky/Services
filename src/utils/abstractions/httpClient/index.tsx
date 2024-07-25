@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable react-hooks/rules-of-hooks */
 import axios, { AxiosResponse } from "axios";
 import useSWR from "swr";

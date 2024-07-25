@@ -1,9 +1,11 @@
 import { Selo } from "@/assets/Icons";
-import { buildTestIds, dataFormatter } from "@/utils";
+import { buildTestIds } from "@/utils";
 import { MouseEventHandler } from "react";
 import {
   IconeSelo,
   InfoLabel,
+  OpeningText,
+  StatusText,
   TicketContainer,
   TicketContent,
   TicketDescription,
@@ -11,14 +13,12 @@ import {
   TicketState,
   TicketStatus,
   TicketWrapper,
-  OpeningText,
-  StatusText,
 } from "./styles";
 
 export type TicketCardProps = {
   id: string | number;
   nome: string;
-  date: string | Date;
+  date: string;
   $status: string;
   isUpdated?: boolean;
   color?: string;
@@ -61,7 +61,7 @@ const TicketCard = ({
       <TicketState {...buildTestIds("issue-state")}>
         <TicketStatus {...buildTestIds("issue-status")}>
           <InfoLabel {...buildTestIds("info-label")}>Aberto em:</InfoLabel>
-          <OpeningText {...buildTestIds("opening-text")}>{dataFormatter(date)}</OpeningText>
+          <OpeningText {...buildTestIds("opening-text")}>{date}</OpeningText>
         </TicketStatus>
         <TicketStatus {...buildTestIds("issue-status")}>
           <InfoLabel {...buildTestIds("info-label")}>Status</InfoLabel>

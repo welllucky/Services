@@ -3,13 +3,18 @@ import styled from "styled-components";
 
 export const TicketPageContainer = styled(Column)`
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
   height: 100%;
+  overflow-y: auto;
 `;
 
 export const TicketPageContent = styled(Column)`
   height: 100%;
-  gap: 16px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  gap: 0.4rem;
+`;
+
+export const TicketPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 `;
