@@ -1,25 +1,29 @@
 "use client";
 
-import { IOpenTicketForm } from "@/app/(protected)/(form)/template";
 import { ConfirmModal, CustomFieldset } from "@/components";
+import { IOpenTicketForm } from "@/types";
 import {
   buildTestIds,
   dataFormatter,
   LS_KEY_1_TICKET_RECORD,
   SS_KEY_USER_PREVIOUS_PAGE,
+  ticketApi,
   useModalStore,
 } from "@/utils";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useTheme } from "styled-components";
 import { ConfirmDetailsContainer, SectionInfoForm } from "./styles";
 
 export const ConfirmDetailsPage = () => {
-  const theme = useTheme();
   const ticketData: IOpenTicketForm = JSON.parse(
     localStorage.getItem(LS_KEY_1_TICKET_RECORD) as unknown as string,
   );
+  const [canRegisterTicket, setCanRegisterTicket] = useState<boolean>(false);
   const isModalOpen = useModalStore((state) => state.isOpen);
-  const modalCallback = useModalStore((state) => state.modalCallback);
+  const { push } = useRouter();
+  const theme = useTheme();
 
   useEffect(
     () => () => {
@@ -27,6 +31,28 @@ export const ConfirmDetailsPage = () => {
     },
     [],
   );
+
+  const { data, error } = ticketApi.createTicket(ticketData, canRegisterTicket);
+
+  console.log({ data });
+  useEffect(() => {
+    if (error) {
+      toast.error("Erro ao registrar chamado. Tente novamente.");
+      push("/");
+    }
+
+    if (data?.id) {
+      setCanRegisterTicket(false);
+      setTimeout(() => {
+        console.log("Redirecionou para o chamado");
+        push(`/chamado/${data?.id}`);
+      }, 3000);
+    }
+
+    return () => {
+      setCanRegisterTicket(false);
+    };
+  }, [data?.id, error, push]);
 
   return (
     <>
@@ -37,7 +63,7 @@ export const ConfirmDetailsPage = () => {
         confirmationText="Deseja realmente abrir
         o chamado?"
         hasBackButton
-        confirmCallBack={modalCallback}
+        confirmCallBack={() => setCanRegisterTicket(true)}
       />
       <ConfirmDetailsContainer
         {...buildTestIds("confirm-details-container")}
@@ -48,7 +74,7 @@ export const ConfirmDetailsPage = () => {
             labelText="Resumo"
             width="100%"
             height="64px">
-            {ticketData?.resumo}
+            {ticketData?.resume}
           </CustomFieldset>
         </SectionInfoForm>
         <SectionInfoForm $gap="16px">
@@ -57,14 +83,14 @@ export const ConfirmDetailsPage = () => {
             labelText="Tipo"
             width="48%"
             height="64px">
-            {ticketData?.tipo}
+            {ticketData?.type}
           </CustomFieldset>
           <CustomFieldset
             color={theme.colors.primary.default}
             labelText="Prioridade"
             width="48%"
             height="64px">
-            {ticketData?.prioridade}
+            {ticketData?.priority}
           </CustomFieldset>
         </SectionInfoForm>
         <SectionInfoForm>
@@ -73,7 +99,7 @@ export const ConfirmDetailsPage = () => {
             labelText="Data do ocorrido"
             width="100%"
             height="64px">
-            {dataFormatter(ticketData?.data)}
+            {dataFormatter(ticketData?.date)}
           </CustomFieldset>
         </SectionInfoForm>
         <SectionInfoForm>
@@ -83,7 +109,7 @@ export const ConfirmDetailsPage = () => {
             width="100%"
             height="240px"
             $hasOverflow>
-            {ticketData?.descricao}
+            {ticketData?.description}
           </CustomFieldset>
         </SectionInfoForm>
       </ConfirmDetailsContainer>

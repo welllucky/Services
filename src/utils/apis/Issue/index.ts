@@ -15,7 +15,7 @@ export class IssueApi {
 
   constructor() {
     this.base_url = process.env.NEXT_PUBLIC_BASE_URL;
-    this.api_url = `${this.base_url}api/issues/`;
+    this.api_url = `${this.base_url}api/issues`;
   }
 
   /**
@@ -24,9 +24,9 @@ export class IssueApi {
    * @returns An object containing the issue data, any error, and loading state.
    */
   getIssue = (id: string) => {
-    const { data, error, isLoading } = httpClient<ITicket>(
-      `${this.api_url}${id}`,
-    );
+    const { data, error, isLoading } = httpClient.get<ITicket>({
+      url: `${this.api_url}/${id}`,
+    });
     return { data, error, isLoading };
   };
 
@@ -35,7 +35,9 @@ export class IssueApi {
    * @returns An object containing an array of issue data, any error, and loading state.
    */
   getIssues = () => {
-    const { data, error, isLoading } = httpClient<ITicket[]>(`${this.api_url}`);
+    const { data, error, isLoading } = httpClient.get<ITicket[]>({
+      url: `${this.api_url}`,
+    });
 
     return { data, error, isLoading };
   };
@@ -45,7 +47,11 @@ export class IssueApi {
    * @param {InitializeIssueType} IssueData The data to initialize the issue with.
    * @returns A promise resolving with the result of the initialization request.
    */
-  initializeIssue = async (IssueData: InitializeIssueType) => httpClient(`${this.api_url}`, "PUT", {
-      ...IssueData,
+  initializeIssue = (IssueData: InitializeIssueType) =>
+    httpClient.put({
+      url: `${this.api_url}`,
+      body: {
+        ...IssueData,
+      },
     });
 }

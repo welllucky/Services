@@ -53,18 +53,6 @@ module.exports = {
       //   onUpdate: "CASCADE",
       //   onDelete: "CASCADE",
       // },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      },
-      deletedAt: { type: Sequelize.DATE, allowNull: true },
-      closedAt: { type: Sequelize.DATE, allowNull: true },
       createdBy: {
         type: Sequelize.INTEGER,
         allowNull: false,

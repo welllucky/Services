@@ -1,6 +1,6 @@
 "use client";
 
-import { ITicket } from "@/assets";
+import { ITicket } from "@/types";
 import { Header, Loading, NoContent } from "@/components";
 import { TicketCard } from "@/components/TicketCard";
 import { PageContainer } from "@/styles";

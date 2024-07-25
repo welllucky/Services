@@ -1,5 +1,5 @@
 import { CustomTextArea } from "@/components";
-import { StoryObj, Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   component: CustomTextArea,
@@ -12,9 +12,9 @@ export default {
       table: {
         category: "Conteúdo",
         type: {
-          summary: "string"
-        }
-      }
+          summary: "string",
+        },
+      },
     },
     placeholder: {
       control: "text",
@@ -22,9 +22,9 @@ export default {
       table: {
         category: "Conteúdo",
         type: {
-          summary: "string"
-        }
-      }
+          summary: "string",
+        },
+      },
     },
     value: {
       control: "text",
@@ -32,9 +32,9 @@ export default {
       table: {
         category: "Valor",
         type: {
-          summary: "string"
-        }
-      }
+          summary: "string",
+        },
+      },
     },
     width: {
       control: "text",
@@ -42,9 +42,9 @@ export default {
       table: {
         category: "Aparência",
         type: {
-          summary: "string"
-        }
-      }
+          summary: "string",
+        },
+      },
     },
     height: {
       control: "text",
@@ -52,9 +52,9 @@ export default {
       table: {
         category: "Aparência",
         type: {
-          summary: "string"
-        }
-      }
+          summary: "string",
+        },
+      },
     },
     isRequired: {
       control: "boolean",
@@ -62,9 +62,9 @@ export default {
       table: {
         category: "Estado",
         type: {
-          summary: "boolean"
-        }
-      }
+          summary: "boolean",
+        },
+      },
     },
     onChange: {
       control: "function",
@@ -72,22 +72,22 @@ export default {
       table: {
         category: "Eventos",
         type: {
-          summary: "function"
-        }
-      }
-    }
+          summary: "function",
+        },
+      },
+    },
   },
   args: {
     labelText: "Descrição",
     placeholder: "Nos conte mais detalhes sobre o ocorrido...",
-    width: "320px"
-  }
+    width: "320px",
+  },
 } satisfies Meta;
 
 export const TextArea: StoryObj<typeof CustomTextArea> = {
   args: {
     labelText: "Descrição",
     placeholder: "Nos conte mais detalhes sobre o ocorrido...",
-    value: ""
-  }
+    value: "",
+  },
 };

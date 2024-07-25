@@ -1,6 +1,6 @@
 "use client";
 
-import { TextTheme } from "@/assets";
+import { TextTheme } from "@/types";
 import Logo from "public/Icon.png";
 import qrCode from "public/qr-code.png";
 import {

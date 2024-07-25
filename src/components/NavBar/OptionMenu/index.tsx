@@ -1,4 +1,4 @@
-import { OptionMenuProps } from "@/assets";
+import { OptionMenuProps } from "@/types";
 import { CustomLink } from "@/components";
 import { IconArea, TextMenu } from "../styles";
 

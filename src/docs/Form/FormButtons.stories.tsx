@@ -8,64 +8,64 @@ export default {
   argTypes: {
     canBack: {
       control: {
-        type: "boolean"
+        type: "boolean",
       },
       table: {
-        category: "Estado"
+        category: "Estado",
       },
       if: {
         arg: "hasBackButton",
-        eq: true
+        eq: true,
       },
-      description: "Habilita que o usuário possa voltar para a página anterior"
+      description: "Habilita que o usuário possa voltar para a página anterior",
     },
     canNext: {
       control: {
-        type: "boolean"
+        type: "boolean",
       },
       table: {
-        category: "Estado"
+        category: "Estado",
       },
-      description: "Habilita que o usuário possa avançar para a próxima página"
+      description: "Habilita que o usuário possa avançar para a próxima página",
     },
     hasBackButton: {
       control: {
-        type: "boolean"
+        type: "boolean",
       },
       table: {
-        category: "Estado"
+        category: "Estado",
       },
-      description: "Mostra o botão de voltar"
+      description: "Mostra o botão de voltar",
     },
     $hasSeparator: {
       name: "hasSeparator",
       control: {
-        type: "boolean"
+        type: "boolean",
       },
       table: {
-        category: "Estado"
+        category: "Estado",
       },
-      description: "Mostra o separador"
+      description: "Mostra o separador",
     },
     nextPage: {
       control: {
-        type: "text"
+        type: "text",
       },
       table: {
-        category: "Valor"
+        category: "Valor",
       },
-      description: "Define a próxima página a ser acessada"
-    }
+      description: "Define a próxima página a ser acessada",
+    },
   },
   args: {
-    nextPage: "/home"
+    nextPage: "/home",
   },
   parameters: {
     nextjs: {
-      appDirectory: true
+      appDirectory: true,
     },
-    layout: "padded"
-  }
+    layout: "padded",
+  },
 } satisfies Meta;
 
 export const DefaultFormButtons: StoryObj<typeof FormButtons> = {
@@ -74,15 +74,15 @@ export const DefaultFormButtons: StoryObj<typeof FormButtons> = {
     canNext: true,
     hasBackButton: true,
     $hasSeparator: true,
-    nextPage: "/home"
-  }
+    nextPage: "/home",
+  },
 };
 
 export const WithoutSeparator: StoryObj<typeof FormButtons> = {
   args: {
     $hasSeparator: false,
-    nextPage: "/home"
-  }
+    nextPage: "/home",
+  },
 };
 
 export const WithBackButtonDeactivatedAndNextActivated: StoryObj<
@@ -92,8 +92,8 @@ export const WithBackButtonDeactivatedAndNextActivated: StoryObj<
     hasBackButton: true,
     canBack: false,
     canNext: true,
-    nextPage: "/home"
-  }
+    nextPage: "/home",
+  },
 };
 
 export const WithBackButtonActivatedAndNextDeactivated: StoryObj<
@@ -103,8 +103,8 @@ export const WithBackButtonActivatedAndNextDeactivated: StoryObj<
     hasBackButton: true,
     canBack: true,
     canNext: false,
-    nextPage: "/home"
-  }
+    nextPage: "/home",
+  },
 };
 
 export const FormButtonsDeactivates: StoryObj<typeof FormButtons> = {
@@ -112,21 +112,21 @@ export const FormButtonsDeactivates: StoryObj<typeof FormButtons> = {
     hasBackButton: true,
     canBack: false,
     canNext: false,
-    nextPage: "/home"
-  }
+    nextPage: "/home",
+  },
 };
 
 export const WithoutBackButton: StoryObj<typeof FormButtons> = {
   args: {
     hasBackButton: false,
-    nextPage: "/home"
-  }
+    nextPage: "/home",
+  },
 };
 
 export const WithoutBackButtonAndDeactivated: StoryObj<typeof FormButtons> = {
   args: {
     hasBackButton: false,
     canNext: false,
-    nextPage: "/home"
-  }
+    nextPage: "/home",
+  },
 };

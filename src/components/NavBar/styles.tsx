@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { OptionMenuStyleProps } from "@/assets";
+import { OptionMenuStyleProps } from "@/types";
 import Link from "next/link";
 
 export const ContainerMenu = styled.div<{ color?: string }>`

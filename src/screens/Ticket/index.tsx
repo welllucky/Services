@@ -2,8 +2,7 @@
 
 import { Loading } from "@/components";
 
-import { TicketDto } from "@/types";
-import { TicketProvider } from "@/utils";
+import { ticketApi, TicketProvider } from "@/utils";
 import { buildTestIds, resetForm } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -17,17 +16,20 @@ import {
 import { TicketPageContainer, TicketPageContent } from "./styles";
 
 export interface TicketPageProps {
-  data?: TicketDto;
+  // data?: TicketDto;
+  id: string;
 }
 
-const TicketPage = ({ data }: TicketPageProps) => {
+const TicketPage = ({ id }: TicketPageProps) => {
+  const { data, isLoading } = ticketApi.getTicket(id);
+
+  const router = useRouter();
+
   useEffect(() => {
     resetForm();
   }, []);
 
-  const router = useRouter();
-
-  if (!data) {
+  if (isLoading) {
     return <Loading overlayOn />;
   }
 
@@ -42,7 +44,7 @@ const TicketPage = ({ data }: TicketPageProps) => {
           <FormDisplay data={data} />
           <InfoHistoryPainel
             data={data?.historic}
-            isLoading={!data}
+            isLoading={isLoading}
           />
         </TicketPageContent>
         <IssueActionButton />

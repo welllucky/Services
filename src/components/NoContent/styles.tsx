@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NoContentProps } from "@/assets";
+import { NoContentProps } from "@/types";
 
 export const NoContentContainer = styled.div`
   display: flex;
