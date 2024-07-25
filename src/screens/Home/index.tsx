@@ -20,14 +20,13 @@ const Homepage = () => {
   const theme = useTheme();
   const { push } = useRouter();
   const { data, isLoading } = ticketApi.getTickets();
+
   const issuesQuantity = data?.length ?? 0;
   const token = cookie.get("token");
 
   useEffect(() => {
-    cookie.set("token", "2");
+    if (!token) cookie.set("token", "2");
   });
-
-  console.log({ token });
 
   if (isLoading) {
     return <Loading overlayOn={false} />;

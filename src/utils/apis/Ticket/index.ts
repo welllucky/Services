@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
-import { IOpenTicketForm } from "@/app/(protected)/(form)/template";
-import { ITicket } from "@/types";
+import { IOpenTicketForm, TicketDto } from "@/types";
 import { httpClient } from "@/utils/abstractions";
 
 /**
@@ -13,7 +12,7 @@ export class TicketApi {
 
   constructor() {
     this.base_url = process.env.NEXT_PUBLIC_BASE_URL;
-    this.api_url = `${this.base_url}api/tickets/`;
+    this.api_url = `${this.base_url}api/tickets`;
   }
 
   /**
@@ -22,10 +21,17 @@ export class TicketApi {
    * @returns An object containing the ticket data, any error that occurred, and a loading state.
    */
   getTicket = (id: string) => {
-    const { data, error, isLoading } = httpClient<ITicket>(
-      `${this.api_url}${id}`,
-    );
-    return { data, error, isLoading };
+    if (!id) {
+      return {
+        data: undefined,
+        error: { message: "ID is required" },
+        isLoading: false,
+      };
+    }
+
+    return httpClient.get<TicketDto>({
+      url: `${this.api_url}/${id}`,
+    });
   };
 
   /**
@@ -33,16 +39,11 @@ export class TicketApi {
    * @returns An object containing an array of ticket data, any error that occurred, and a loading state.
    */
   getTickets = () => {
-    const { data, error, isLoading } = httpClient<ITicket[]>(
-      `${this.api_url}`,
-      "GET",
-      {},
-      {},
-      { refreshInterval: true },
-    );
-    console.log({ data, error, isLoading });
-
-    return { data, error, isLoading };
+    const response = httpClient.get<TicketDto[]>({
+      url: `${this.api_url}`,
+      options: { refreshInterval: true },
+    });
+    return response;
   };
 
   /**
@@ -50,12 +51,12 @@ export class TicketApi {
    * @param {IOpenTicketForm} ticketData The data for the ticket to be created.
    * @returns An object containing any error that occurred and a loading state.
    */
-  createTicket = (ticketData: IOpenTicketForm) => {
-    const { error, isLoading } = httpClient(
-      `${this.api_url}?Ticket_id`,
-      "POST",
-      { ...ticketData },
-    );
-    return { error, isLoading };
-  };
+  createTicket = (ticketData: IOpenTicketForm, shouldFetch = false) =>
+    httpClient.post<{ id: string | number }>({
+      url: `${this.api_url}/create`,
+      body: {
+        ...ticketData,
+      },
+      shouldFetch,
+    });
 }

@@ -1,7 +1,6 @@
 import { IconContainer, IconImage } from "./styles";
 
 interface IconProps {
-  // skipcq: JS-0323
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   src?: any;
   alt?: string;
@@ -20,8 +19,8 @@ const Icon = ({ src, alt, onClick, size, $hasPadding = false }: IconProps) => (
       alt={alt || "ícone"}
       width={size}
       height={size}
-      />
+    />
   </IconContainer>
-  );
+);
 
 export { Icon };

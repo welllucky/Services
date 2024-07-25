@@ -27,18 +27,6 @@ module.exports = {
         // unique: true,
         allowNull: false,
       },
-      createdAt: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      },
-      deletedAt: {
-        type: Sequelize.DATE,
-        defaultValue: null,
-      },
       lastConnection: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

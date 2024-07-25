@@ -55,16 +55,15 @@
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.3",
     "sequelize-typescript": "^2.1.6",
+    "sharp": "^0.33.2",
     "sqlite3": "^5.1.7",
     "styled-components": "^6.1.0",
     "swr": "^2.2.4",
     "usehooks-ts": "^2.14.0",
-    "zustand": "^4.5.0",
-    "sharp": "^0.33.2"
+    "zod": "^3.23.8",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "dotenv-cli": "^7.4.2",
-    "sequelize-cli": "^6.6.2",
     "@babel/eslint-parser": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@next/eslint-plugin-next": "^14.1.0",
@@ -88,6 +87,7 @@
     "@typescript-eslint/parser": "^6.21.0",
     "chromatic": "^10.2.0",
     "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^8.0.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "14.0.1",
@@ -109,6 +109,7 @@
     "lint-staged": "^15.2.2",
     "postcss-styled-syntax": "^0.5.0",
     "prettier": "3.2.5",
+    "sequelize-cli": "^6.6.2",
     "storybook": "^7.6.7",
     "storybook-addon-mock": "^4.3.0",
     "typescript": "^5.5.3"

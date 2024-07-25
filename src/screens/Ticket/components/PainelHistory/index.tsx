@@ -1,7 +1,7 @@
 import { useTicket } from "@/utils";
 import { FileDashed } from "@phosphor-icons/react";
 import { useTheme } from "styled-components";
-import { TicketEventDto } from "@/assets";
+import { TicketEventDto } from "@/types";
 import { Loading, NoContent } from "../../../../components";
 import { InfoUnity } from "./InfoUnity";
 import {

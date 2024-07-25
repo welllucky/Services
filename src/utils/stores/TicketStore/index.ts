@@ -1,10 +1,8 @@
-/* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
-import { TicketDto } from "@/assets";
+import { TicketDto } from "@/types";
 import { createStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-// skipcq: JS-0322
 interface TicketProps extends TicketDto {}
 
 interface TicketState extends TicketProps {
@@ -53,6 +51,9 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
           state.historic?.push({
             id: `${state.historic.length + 1}`,
             description: "O chamado foi aberto",
+            date: new Date(),
+            eventOrder: state.historic.length + 1,
+            icon: "🚀",
           });
         }),
       block: () =>
@@ -62,6 +63,9 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
           state.historic?.push({
             id: `${state.historic.length + 1}`,
             description: "O chamado foi bloqueado",
+            date: new Date(),
+            eventOrder: state.historic.length + 1,
+            icon: "🚫",
           });
         }),
       reOpen: () =>
@@ -71,6 +75,9 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
           state.historic?.push({
             id: `${state.historic.length + 1}`,
             description: "O chamado foi reaberto",
+            date: new Date(),
+            eventOrder: state.historic.length + 1,
+            icon: "🔄",
           });
         }),
       close: () =>
@@ -80,6 +87,9 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
           state.historic?.push({
             id: `${state.historic.length + 1}`,
             description: "O chamado foi fechado",
+            date: new Date(),
+            eventOrder: state.historic.length + 1,
+            icon: "🔒",
           });
         }),
       update: (data) =>
@@ -88,6 +98,9 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
           state.historic?.push({
             id: `${state.historic.length + 1}`,
             description: "O chamado foi atualizado",
+            date: new Date(),
+            eventOrder: state.historic.length + 1,
+            icon: "🔄",
           });
           Object.assign(state, data);
         }),

@@ -1,4 +1,4 @@
-import { InputComponentsProps } from "@/assets";
+import { InputComponentsProps } from "@/types";
 import { ErrorText, WarningText } from "@/components";
 import { CustomFieldset } from "@/components/Fieldset";
 import { ChangeEventHandler, useState } from "react";

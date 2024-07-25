@@ -46,6 +46,8 @@
       { "namedComponents": "arrow-function" }
     ],
     "class-methods-use-this": "off",
-    "indent": "off"
+    "indent": "off",
+    "max-len": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   }
 }

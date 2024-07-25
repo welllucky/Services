@@ -1,4 +1,4 @@
-import { TicketEventDto } from "@/assets";
+import { TicketEventDto } from "@/types";
 import {
   InfoUnityContainer,
   InfoUnityDescription,
@@ -6,12 +6,11 @@ import {
   InfoUnityId,
 } from "./styles";
 
-export const InfoUnity = ({ icon, description, id }: TicketEventDto) => (
-    description && (
-      <InfoUnityContainer>
-        {icon && <InfoUnityIcon />}
-        <InfoUnityId>{`#${id || 0}`}</InfoUnityId>
-        <InfoUnityDescription>{description}</InfoUnityDescription>
-      </InfoUnityContainer>
-    )
+export const InfoUnity = ({ icon, description, id }: TicketEventDto) =>
+  description && (
+    <InfoUnityContainer>
+      {icon && <InfoUnityIcon />}
+      <InfoUnityId>{`#${id || 0}`}</InfoUnityId>
+      <InfoUnityDescription>{description}</InfoUnityDescription>
+    </InfoUnityContainer>
   );

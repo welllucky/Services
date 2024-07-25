@@ -1,5 +1,5 @@
-import { ITicket } from "@/assets";
 import { Ticket } from "@/server/models";
+import { IOpenTicketForm, ITicket } from "@/types";
 
 class TicketRepository {
   static findAll(userId: string) {
@@ -7,10 +7,12 @@ class TicketRepository {
   }
 
   static findById(userId: string, ticketId: string) {
-    return Ticket.findAll({ where: { createdBy: userId, id: ticketId } });
+    return Ticket.findAll({
+      where: { createdBy: userId, id: ticketId },
+    });
   }
 
-  static create(userId: string, data: ITicket) {
+  static create(userId: string, data: IOpenTicketForm) {
     return Ticket.create({
       ...data,
       createdBy: userId,

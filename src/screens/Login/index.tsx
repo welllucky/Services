@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import EyeIcon from "@/assets/Icons/eye.svg";
 import EyeClosedIcon from "@/assets/Icons/eyeClosed.svg";
 import Lock from "@/assets/Icons/png/Lock.png";

@@ -1,10 +1,10 @@
 import { CustomSelect } from "@/components";
-import { StoryObj, Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Common/Select",
   component: CustomSelect,
-  tags: ["select", "common"]
+  tags: ["select", "common"],
 } satisfies Meta;
 
 export const DefaultSelect: StoryObj<typeof CustomSelect> = {
@@ -16,20 +16,20 @@ export const DefaultSelect: StoryObj<typeof CustomSelect> = {
       {
         key: "1",
         value: "1",
-        text: "Option 1"
+        text: "Option 1",
       },
       {
         key: "2",
         value: "2",
-        text: "Option 2"
+        text: "Option 2",
       },
       {
         key: "3",
         value: "3",
-        text: "Option 3"
-      }
-    ]
-  }
+        text: "Option 3",
+      },
+    ],
+  },
   // parameters: {
   //   mockData: {
   //     url: "https://jsonplaceholder.typicode.com/todos/1",

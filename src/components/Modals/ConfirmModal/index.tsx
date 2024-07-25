@@ -1,15 +1,15 @@
-import { ReactElement, useCallback, useState } from "react";
-import { Check, Question } from "@phosphor-icons/react";
-import { useTheme } from "styled-components";
 import { CustomButton } from "@/components";
 import { useModalStore } from "@/utils";
 import { buildTestIds } from "@/utils/functions";
-import {
-  ConfirmModalWrapper,
-  ConfirmModalText,
-  ConfirmModalButtons,
-} from "./styles";
+import { Check, Question } from "@phosphor-icons/react";
+import { ReactElement, useCallback, useState } from "react";
+import { useTheme } from "styled-components";
 import { CustomModal, ModalProps } from "..";
+import {
+  ConfirmModalButtons,
+  ConfirmModalText,
+  ConfirmModalWrapper,
+} from "./styles";
 
 interface ConfirmModalProps extends ModalProps {
   successIcon?: ReactElement;
@@ -19,6 +19,7 @@ interface ConfirmModalProps extends ModalProps {
   hasBackButton?: boolean;
   mode?: "confirm" | "vitrine";
   confirmCallBack?: () => void;
+  canCloseModal?: boolean;
 }
 
 const ConfirmModal = ({
@@ -40,11 +41,13 @@ const ConfirmModal = ({
   const modalCallBack = useCallback(() => {
     if (!changeToVitrine) setChangeToVitrine(true);
 
+    if (confirmCallBack) confirmCallBack();
+
     setTimeout(() => {
-      if (confirmCallBack) confirmCallBack();
       shouldCloseModal();
-    }, 2000);
-  }, []);
+      setChangeToVitrine(false);
+    }, 4000);
+  }, [changeToVitrine, confirmCallBack, shouldCloseModal]);
 
   return (
     <CustomModal
@@ -63,14 +66,14 @@ const ConfirmModal = ({
             size="6rem"
             alt="sinal de confirmação"
               />
-          )
+            )
           : confirmationIcon ?? (
           <Question
             color={theme.colors.neutral.default}
             size="6rem"
             alt="sinal de confirmação"
               />
-          )}
+            )}
         <ConfirmModalText {...buildTestIds("confirm-modal-text")}>
           {changeToVitrine ? successText : confirmationText}
         </ConfirmModalText>

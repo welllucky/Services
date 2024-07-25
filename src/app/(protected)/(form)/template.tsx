@@ -1,13 +1,12 @@
 "use client";
 
-import { BackButton } from "@/components";
-import { FormButtons } from "@/components/Form";
+import { BackButton, FormButtons } from "@/components";
 import { TicketPageContainer } from "@/screens/Ticket/styles";
 import { Column, Row, TitleComponent } from "@/styles";
-import { useModalStore } from "@/utils";
-import { buildTestIds, resetForm } from "@/utils/functions";
+import { IOpenTicketForm } from "@/types";
+import { buildTestIds, resetForm, useModalStore } from "@/utils";
 import { usePathname, useRouter } from "next/navigation";
-import { ReactNode, useEffect, useMemo } from "react";
+import { ReactNode, useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 interface PageRouterData {
@@ -16,36 +15,31 @@ interface PageRouterData {
   hasBackButton?: boolean;
 }
 
-export interface IOpenTicketForm {
-  resumo: string;
-  descricao: string;
-  prioridade: "baixa" | "media" | "alta";
-  data: string;
-  tipo: string;
-}
-
 const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
   const pathName = usePathname();
   const { push, back } = useRouter();
   const shouldOpenModal = useModalStore((state) => state.open);
-  const setModalCallback = useModalStore((state) => state.setModalCallback);
-  const pagesTitles: PageRouterData[] = [
-    {
-      page: "/abrir-chamado",
-      title: "O que aconteceu?",
-      hasBackButton: false,
-    },
-    // {
-    //   page: "/anexar-midia",
-    //   title: "Anexar mídia",
-    //   hasBackButton: true
-    // },
-    {
-      page: "/confirmar-chamado",
-      title: "Confirmar informações",
-      hasBackButton: true,
-    },
-  ];
+  const pagesTitles = useMemo(
+    () =>
+      [
+        {
+          page: "/abrir-chamado",
+          title: "O que aconteceu?",
+          hasBackButton: false,
+        },
+        // {
+        //   page: "/anexar-midia",
+        //   title: "Anexar mídia",
+        //   hasBackButton: true
+        // },
+        {
+          page: "/confirmar-chamado",
+          title: "Confirmar informações",
+          hasBackButton: true,
+        },
+      ] as PageRouterData[],
+    [],
+  );
 
   const idChamado = 2400;
 
@@ -55,7 +49,7 @@ const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
   );
 
   const indexPageFinder = useMemo(
-    () => pagesTitles.indexOf(actualPage as PageRouterData),
+    () => pagesTitles.indexOf(actualPage as unknown as PageRouterData),
     [actualPage, pagesTitles],
   );
 
@@ -67,31 +61,27 @@ const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
         : indexPageFinder + 1 >= pagesTitles.length
           ? `/chamado/${idChamado}`
           : pagesTitles[indexPageFinder + 1].page,
-    [pagesTitles],
+    [indexPageFinder, pagesTitles],
   );
 
   const previousPageUrl = useMemo(
     () => (indexPageFinder === 0 ? "" : pagesTitles[indexPageFinder - 1].title),
-    [pagesTitles],
+    [indexPageFinder, pagesTitles],
   );
 
   const methods = useForm<IOpenTicketForm>({
     mode: "onChange",
     defaultValues: {
-      resumo: "",
-      descricao: "",
-      data: "",
-      tipo: "",
-      prioridade: "baixa",
+      resume: "",
+      description: "",
+      date: "",
+      type: "problem",
+      priority: "low",
     },
     reValidateMode: "onChange",
     shouldFocusError: true,
     progressive: true,
   });
-
-  useEffect(() => {
-    setModalCallback(() => push(`/chamado/${idChamado}`));
-  }, []);
 
   return (
     <FormProvider

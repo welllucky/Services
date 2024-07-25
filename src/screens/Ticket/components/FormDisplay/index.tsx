@@ -1,12 +1,12 @@
 import { CustomFieldset } from "@/components/Fieldset";
-import { SectionInfoForm } from "@/screens/OpenTicket/confirmar-chamado/styles";
+import { SectionInfoForm } from "@/screens/OpenTicket/ConfirmMedia/styles";
 import { theme } from "@/styles";
 import { TicketDto } from "@/types";
 import { dataFormatter } from "@/utils";
 import { FormDisplayContainer } from "./styles";
 
 type FormDisplayProps = {
-  data: TicketDto;
+  data: TicketDto | undefined;
 };
 
 export const FormDisplay = ({ data }: FormDisplayProps) => (
@@ -50,7 +50,7 @@ export const FormDisplay = ({ data }: FormDisplayProps) => (
       labelText="Data do ocorrido"
       width="100%"
       height="64px">
-      {dataFormatter(data?.date as string)}
+      {dataFormatter(data?.date ?? "")}
     </CustomFieldset>
   </FormDisplayContainer>
-  );
+);

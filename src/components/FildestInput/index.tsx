@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from "react";
 import { Fildset, Image, Input, Legend, LegendText } from "./styles";
 
-export interface ILegendProps {
+export interface IInputLegendProps {
   legendText?: string;
   width?: string;
   inputType?: string;
@@ -38,7 +38,7 @@ export const InputLegend = ({
   pattern,
   id,
   required,
-}: ILegendProps) => {
+}: IInputLegendProps) => {
   const isMaxDate = inputType === "date" ? "2023-12-31" : "";
   return (
     <Fildset

@@ -50,10 +50,10 @@ export default function manifest(): MetadataRoute.Manifest {
         src: "/public/ios/services-ios-logo-96.png",
         sizes: "96x96",
       },
-      {
-        src: "/public/ios/services-ios-logo-144.png",
-        sizes: "144x144",
-      },
+      // {
+      //   src: "/public/ios/services-ios-logo-144.png",
+      //   sizes: "144x144",
+      // },
       {
         src: "/public/ios/services-ios-logo-192.png",
         sizes: "192x192",
