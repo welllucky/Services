@@ -12,8 +12,9 @@ export const Row = styled.section<{
   flex-direction: row;
   gap: ${({ $gap }) => $gap};
 
-  ${({ $isSmallClientMobile }) => $isSmallClientMobile
-    && css`
+  ${({ $isSmallClientMobile }) =>
+    $isSmallClientMobile &&
+    css`
       justify-content: center;
     `}
 `;
@@ -24,8 +25,9 @@ export const Column = styled.section<{
   width?: string;
   height?: string;
 }>`
-  width: ${({ width }) => width || "100%"};
-  height: ${({ $full, height }) => ($full ? "100dvh" : height || "fit-content")};
+  width: ${({ width }) => width ?? "100%"};
+  height: ${({ $full, height }) =>
+    ($full ? "100dvh" : height ?? "fit-content")};
   display: flex;
   flex-direction: column;
   gap: ${({ $gap }) => $gap};
@@ -69,8 +71,9 @@ export const SubTitleComponent = styled.h2<{ $isSmallClientMobile?: boolean }>`
   letter-spacing: 0.0125rem;
   display: flex;
 
-  ${({ $isSmallClientMobile }) => $isSmallClientMobile
-    && css`
+  ${({ $isSmallClientMobile }) =>
+    $isSmallClientMobile &&
+    css`
       font-size: 1.5rem;
       line-height: 1.6rem;
       text-align: center;

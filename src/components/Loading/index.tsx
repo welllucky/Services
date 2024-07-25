@@ -2,12 +2,20 @@ import { Container, LoadingContainer } from "./styles";
 
 type LoadingProps = {
   overlayOn?: boolean;
+  fullScreen?: boolean;
   color?: string;
   size?: string;
 };
 
-export const Loading = ({ overlayOn = false, color, size }: LoadingProps) => (overlayOn ? (
-  <LoadingContainer>
+export const Loading = ({
+  overlayOn = false,
+  fullScreen = true,
+  color,
+  size,
+}: LoadingProps) => (
+  <LoadingContainer
+    overlayOn={overlayOn}
+    fullyScreen={fullScreen}>
     <Container {...{ color, size }}>
       <div />
       <div />
@@ -19,15 +27,4 @@ export const Loading = ({ overlayOn = false, color, size }: LoadingProps) => (ov
       <div />
     </Container>
   </LoadingContainer>
-  ) : (
-    <Container {...{ color, size }}>
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-    </Container>
-  ));
+);

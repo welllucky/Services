@@ -1,4 +1,4 @@
-import { ITicket } from "@/types";
+import { ITicket, TicketDto } from "@/types";
 import { httpClient } from "@/utils/abstractions";
 
 type InitializeIssueType = {
@@ -35,7 +35,7 @@ export class IssueApi {
    * @returns An object containing an array of issue data, any error, and loading state.
    */
   getIssues = () => {
-    const { data, error, isLoading } = httpClient.get<ITicket[]>({
+    const { data, error, isLoading } = httpClient.get<TicketDto[]>({
       url: `${this.api_url}`,
     });
 

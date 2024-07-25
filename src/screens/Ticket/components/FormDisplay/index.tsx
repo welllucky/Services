@@ -1,7 +1,8 @@
-import { CustomFieldset } from "@/components/Fieldset";
 import { SectionInfoForm } from "@/screens/OpenTicket/ConfirmMedia/styles";
-import { theme } from "@/styles";
 import { TicketDto } from "@/types";
+
+import { LargeFieldset } from "@/components/Fieldset/LargeFieldset";
+import { SmallFieldset } from "@/components/Fieldset/SmallFieldset";
 import { dataFormatter } from "@/utils";
 import { FormDisplayContainer } from "./styles";
 
@@ -11,46 +12,14 @@ type FormDisplayProps = {
 
 export const FormDisplay = ({ data }: FormDisplayProps) => (
   <FormDisplayContainer>
-    <CustomFieldset
-      color={theme.colors.primary.default}
-      labelText="Resumo"
-      width="100%"
-      height="64px"
-      $justifyContent="center"
-      $hasOverflow>
-      {data?.resume}
-    </CustomFieldset>
-    <CustomFieldset
-      color={theme.colors.primary.default}
-      labelText="Descrição"
-      width="100%"
-      height="160px"
-      $hasOverflow
-      $justifyContent="start">
-      {data?.description}
-    </CustomFieldset>
+    <SmallFieldset title="Resumo">{data?.resume}</SmallFieldset>
+    <LargeFieldset title="Descrição">{data?.description}</LargeFieldset>
     <SectionInfoForm $gap="16px">
-      <CustomFieldset
-        color={theme.colors.primary.default}
-        labelText="Tipo"
-        width="59%"
-        height="64px">
-        {data?.type}
-      </CustomFieldset>
-      <CustomFieldset
-        color={theme.colors.primary.default}
-        labelText="Prioridade"
-        width="36%"
-        height="64px">
-        {data?.priority}
-      </CustomFieldset>
+      <SmallFieldset title="Tipo">{data?.type}</SmallFieldset>
+      <SmallFieldset title="Prioridade">{data?.priority}</SmallFieldset>
     </SectionInfoForm>
-    <CustomFieldset
-      color={theme.colors.primary.default}
-      labelText="Data do ocorrido"
-      width="100%"
-      height="64px">
+    <SmallFieldset title="Data do ocorrido">
       {dataFormatter(data?.date ?? "")}
-    </CustomFieldset>
+    </SmallFieldset>
   </FormDisplayContainer>
 );

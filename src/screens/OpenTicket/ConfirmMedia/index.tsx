@@ -73,7 +73,7 @@ export const ConfirmDetailsPage = () => {
             color={theme.colors.primary.default}
             labelText="Resumo"
             width="100%"
-            height="64px">
+            minHeight="64px">
             {ticketData?.resume}
           </CustomFieldset>
         </SectionInfoForm>
@@ -82,14 +82,14 @@ export const ConfirmDetailsPage = () => {
             color={theme.colors.primary.default}
             labelText="Tipo"
             width="48%"
-            height="64px">
+            minHeight="64px">
             {ticketData?.type}
           </CustomFieldset>
           <CustomFieldset
             color={theme.colors.primary.default}
             labelText="Prioridade"
             width="48%"
-            height="64px">
+            minHeight="64px">
             {ticketData?.priority}
           </CustomFieldset>
         </SectionInfoForm>
@@ -98,7 +98,7 @@ export const ConfirmDetailsPage = () => {
             color={theme.colors.primary.default}
             labelText="Data do ocorrido"
             width="100%"
-            height="64px">
+            minHeight="64px">
             {dataFormatter(ticketData?.date)}
           </CustomFieldset>
         </SectionInfoForm>
@@ -107,7 +107,7 @@ export const ConfirmDetailsPage = () => {
             color={theme.colors.primary.default}
             labelText="Descrição"
             width="100%"
-            height="240px"
+            minHeight="240px"
             $hasOverflow>
             {ticketData?.description}
           </CustomFieldset>
