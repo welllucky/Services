@@ -13,7 +13,11 @@ import {
   TicketPageBackButton,
   TicketPageTitle,
 } from "./components";
-import { TicketPageContainer, TicketPageContent } from "./styles";
+import {
+  TicketPageContainer,
+  TicketPageContent,
+  TicketPageWrapper,
+} from "./styles";
 
 export interface TicketPageProps {
   // data?: TicketDto;
@@ -37,16 +41,18 @@ const TicketPage = ({ id }: TicketPageProps) => {
     <TicketProvider data={data}>
       <TicketPageContainer $full>
         <TicketPageBackButton router={router} />
-        <TicketPageTitle text={`Chamado n° ${data?.id}`} />
-        <TicketPageContent
-          {...buildTestIds("content-column")}
-          height="100%">
-          <FormDisplay data={data} />
-          <InfoHistoryPainel
-            data={data?.historic}
-            isLoading={isLoading}
-          />
-        </TicketPageContent>
+        <TicketPageWrapper>
+          <TicketPageTitle text={`Chamado n° ${data?.id}`} />
+          <TicketPageContent
+            {...buildTestIds("content-column")}
+            height="100%">
+            <FormDisplay data={data} />
+            <InfoHistoryPainel
+              data={data?.historic}
+              isLoading={isLoading}
+            />
+          </TicketPageContent>
+        </TicketPageWrapper>
         <IssueActionButton />
       </TicketPageContainer>
     </TicketProvider>
