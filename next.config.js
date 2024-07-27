@@ -3,18 +3,18 @@ const nextConfig = {
   basePath: "",
   webpack: (config) => {
     // eslint-disable-next-line no-param-reassign
-    config.ignoreWarnings = [{
-      module: /sequelize/,
-    }];
+    config.ignoreWarnings = [
+      {
+        module: /sequelize/,
+      },
+    ];
     return config;
   },
   compiler: {
     styledComponents: true,
     removeConsole: process.env.NODE_ENV === "production",
   },
-  generateBuildId: () => {
-    return Promise.resolve(`build-id-${new Date()}`);
-  },
+  generateBuildId: () => Promise.resolve(`build-id-${new Date()}`),
   reactStrictMode: process.env.NODE_ENV === "development",
   pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
   experimental: {
