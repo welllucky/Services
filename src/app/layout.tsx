@@ -33,16 +33,15 @@ const RootLayout = ({
 }>) => (
   <html lang="pt-br">
     <head>
-      {(process.env.NODE_ENV === "development" ||
-        process.env.VERCEL_ENV === "preview") && (
-        // eslint-disable-next-line @next/next/no-sync-scripts
-        <script
-          data-project-id="WfTqP43E0gdOt1orJkAjWq1d92P8Fo0Yn3iMHQtz"
-          data-is-production-environment="false"
-          src="https://snippet.meticulous.ai/v1/meticulous.js"
-        />
-      )}
-    </head>
+  {(process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview") && (
+    // eslint-disable-next-line @next/next/no-sync-scripts
+    <script
+      data-project-id="WfTqP43E0gdOt1orJkAjWq1d92P8Fo0Yn3iMHQtz"
+      data-is-production-environment="false"
+      src="https://snippet.meticulous.ai/v1/meticulous.js"
+    />
+  )}
+</head>
     <body className={inter.className}>
       <SpeedInsights />
       <AppProviders>
