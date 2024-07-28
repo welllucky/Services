@@ -2,13 +2,14 @@
 import { z } from "zod";
 import { TicketEventSchema } from "./TicketEvent";
 
-export const PriorityLevelsSchema = z.enum(["low", "medium", "high"]);
+export const PriorityLevelsSchema = z.enum(["low", "medium", "high", ""]);
 
 export const TicketTypeSchema = z.enum([
   "task",
   "incident",
   "problem",
   "change",
+  "",
 ]);
 
 export const IssueStatusSchema = z.enum([

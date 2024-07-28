@@ -18,7 +18,7 @@ import { ConfirmDetailsContainer, SectionInfoForm } from "./styles";
 
 export const ConfirmDetailsPage = () => {
   const ticketData: IOpenTicketForm = JSON.parse(
-    localStorage.getItem(LS_KEY_1_TICKET_RECORD) as unknown as string,
+    localStorage?.getItem(LS_KEY_1_TICKET_RECORD) as unknown as string,
   );
   const [canRegisterTicket, setCanRegisterTicket] = useState<boolean>(false);
   const isModalOpen = useModalStore((state) => state.isOpen);

@@ -5,7 +5,6 @@ export const TicketPageContainer = styled(Column)`
   align-items: center;
   gap: 1rem;
   height: 100%;
-  overflow-y: auto;
 `;
 
 export const TicketPageContent = styled(Column)`

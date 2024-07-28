@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { ErrorText, WarningText } from "@/components";
 import { InputComponentsProps } from "@/types";
 import { ChangeEvent } from "react";
@@ -28,7 +29,7 @@ export const CustomTextArea = ({
       width={width}
       minHeight={height}
       $hasOverflow
-      labelText={labelText || ""}>
+      labelText={labelText ?? ""}>
       <TextArea
         {...register(id, {
           ...registerOptions,

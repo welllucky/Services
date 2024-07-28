@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { IssueActionOptionsType } from "@/screens/Ticket/components";
 import {
   ArrowCounterClockwise,
