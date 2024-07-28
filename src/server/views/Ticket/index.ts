@@ -1,9 +1,9 @@
 import { Ticket } from "@/server/models";
-import { ITicket, ITicketEvent, TicketDto } from "@/types";
+import { ITicket, TicketDto } from "@/types";
 import { dataFormatter } from "@/utils/functions/dataFormatter";
 
 export class TicketView {
-  static getTickets(ticketData: ITicket[], eventsList?: ITicketEvent[]) {
+  static getTickets(ticketData: ITicket[]) {
     try {
       const newData = ticketData.map((ticket) => ({
         ...ticket,
@@ -12,7 +12,6 @@ export class TicketView {
         createdAt: dataFormatter(ticket.createdAt as string),
         updatedAt: ticket.updatedAt,
         closedAt: ticket.closedAt ? ticket.closedAt : null,
-        ...(eventsList && { historic: eventsList }),
       })) as TicketDto[];
 
       return newData;
@@ -23,7 +22,7 @@ export class TicketView {
     }
   }
 
-  static getTicket(ticketData: ITicket, eventsList?: ITicketEvent[]) {
+  static getTicket(ticketData: TicketDto) {
     try {
       const data = {
         ...ticketData,
@@ -32,7 +31,6 @@ export class TicketView {
         createdAt: ticketData.createdAt,
         updatedAt: ticketData.updatedAt,
         closedAt: ticketData.closedAt ? ticketData.closedAt : null,
-        ...(eventsList && { historic: eventsList }),
       } as TicketDto;
 
       return data;

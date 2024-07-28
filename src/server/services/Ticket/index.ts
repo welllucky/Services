@@ -1,5 +1,5 @@
 import { TicketRepository } from "@/server/repository";
-import { IOpenTicketForm, ITicket } from "@/types";
+import { IOpenTicketForm, ITicket, TicketFilters } from "@/types";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { z } from "zod";
 
@@ -28,8 +28,10 @@ const IOpenTicketFormSchema = z.object({
 });
 
 class TicketServices {
-  static async getAllTickets(userId: string) {
-    return TicketRepository.findAll(userId);
+  static async getAllTickets(userId: string, filters?: TicketFilters) {
+    return TicketRepository.findAll(userId, {
+      status: filters?.status,
+    });
   }
 
   static async getTicketById(userId: string, ticketId: string) {
@@ -42,8 +44,33 @@ class TicketServices {
 
       const newTicket = await TicketRepository.create(userId, data);
 
+      if (!newTicket) {
+        throw new Error("Houve um erro ao criar o chamado");
+      }
+
+      // const createdEvent = await EventServices.createEvent(
+      //   userId,
+      //   newTicket.id as string,
+      //   {
+      //     title: "Chamado criado com sucesso!",
+      //     description:
+      //       "Em alguns momentos seu chamado será atendido. Fique atento caso o resolutor necessite de mais informações.",
+      //     type: "open",
+      //   },
+      // );
+
+      // return {
+      //   ...newTicket,
+      //   historic: [
+      //     // {
+      //     //   ...createdEvent,
+      //     // },
+      //   ],
+      // } as unknown as TicketDto;
+
       return newTicket;
     } catch (error) {
+      console.log(error);
       throw new Error(`Houve um erro ao criar o chamado: ${error}`);
     }
   }
@@ -56,8 +83,43 @@ class TicketServices {
     return TicketRepository.update(userId, ticketId, data);
   }
 
-  static async deleteTicket(userId: string, ticketId: string) {
-    return TicketRepository.delete(userId, ticketId);
+  static async closeTicket(userId: string, ticketId: string) {
+    try {
+      const updatedTickets = await TicketRepository.update(userId, ticketId, {
+        closedAt: new Date(),
+        status: "closed",
+        closedBy: userId,
+      });
+
+      if (!updatedTickets) {
+        console.log("Chamado não encontrado");
+        throw new Error("Chamado não encontrado");
+      }
+
+      // await EventServices.createEvent(userId, ticketId, {
+      //   title: "O chamado foi fechado",
+      //   description:
+      //     "Caso sua questão não tenha sido resolvida, por favor, reabra o chamado. Depois de 3 tentativas sem sucesso, o chamado será fechado automaticamente e o supervisor notificado.",
+      //   type: "close",
+      // });
+
+      return updatedTickets;
+    } catch (error) {
+      console.log(error);
+      throw new Error(`Houve um erro ao fechar o chamado: ${error}`);
+    }
+  }
+
+  static async getInProgressTickets(userId: string) {
+    try {
+      console.log("Entrou no getInProgressTickets");
+      return TicketRepository.findInProgressTickets(userId);
+    } catch (error) {
+      console.log(error);
+      throw new Error(
+        `Houve um erro ao buscar os chamados em andamento: ${error}`,
+      );
+    }
   }
 }
 

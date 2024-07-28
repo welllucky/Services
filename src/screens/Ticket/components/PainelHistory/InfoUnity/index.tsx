@@ -6,10 +6,10 @@ import {
   InfoUnityId,
 } from "./styles";
 
-export const InfoUnity = ({ icon, description, id }: TicketEventDto) =>
+export const InfoUnity = ({ description, id }: TicketEventDto) =>
   description && (
     <InfoUnityContainer>
-      {icon && <InfoUnityIcon />}
+      <InfoUnityIcon />
       <InfoUnityId>{`#${id || 0}`}</InfoUnityId>
       <InfoUnityDescription>{description}</InfoUnityDescription>
     </InfoUnityContainer>
