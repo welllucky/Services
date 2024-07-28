@@ -36,6 +36,8 @@ export interface ActionButton {
 interface InputProps extends InputComponentsProps {
   // eslint-disable-next-line no-unused-vars
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  // eslint-disable-next-line no-unused-vars
+  onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
   trailingButton?: ActionButton;
   leadingButton?: ActionButton;
   type?:
@@ -52,23 +54,21 @@ interface InputProps extends InputComponentsProps {
 
 const CustomInput = ({
   id,
-  type = "text",
-  placeholder = "Digite aqui",
-  $status = "none",
   labelText,
-  errorText = "Houve um erro, tente novamente!",
-  onChange,
   style,
   value,
   warnText,
-  mode = "filled",
   leadingButton,
   trailingButton,
   width,
   height,
   register,
-  registerOptions = {},
-  isRequired = false,
+  registerOptions,
+  type = "text",
+  placeholder = "Digite aqui",
+  $status = "none",
+  errorText = "Houve um erro, tente novamente!",
+  mode = "filled",
 }: InputProps) => (
   <InputContainer width={width}>
     {labelText && <Label mode={mode}>{labelText}</Label>}
@@ -88,18 +88,7 @@ const CustomInput = ({
       )}
 
       <InputComponent
-        {...register(id, {
-          ...registerOptions,
-          required: isRequired
-            ? "Este campo é obrigatório"
-            : registerOptions.required
-              ? registerOptions.required
-              : false,
-          onChange: (e) => {
-            if (onChange) onChange(e);
-            if (registerOptions.onChange) registerOptions.onChange(e);
-          },
-        })}
+        {...register(id, { ...registerOptions })}
         placeholder={placeholder}
         type={type}
         value={value}
@@ -125,9 +114,9 @@ const OutlinedInput = (props: InputProps) => {
     <CustomInput
       {...props}
       mode="outlined"
-      height={height || "56px"}
-      labelText={labelText || "Label"}
-      type={type || "text"}
+      height={height ?? "56px"}
+      labelText={labelText ?? "Label"}
+      type={type ?? "text"}
       placeholder={placeholder || "Placeholder"}
     />
   );

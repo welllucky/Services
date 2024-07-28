@@ -2,8 +2,6 @@ import styled, { css } from "styled-components";
 
 export const FieldSetContent = styled.div`
   overflow: scroll;
-  width: 100%;
-  height: fit-content;
   word-wrap: break-word;
   font-size: 1rem;
 `;
@@ -18,7 +16,6 @@ export const Fieldset = styled.div<{
   line-height: 132%;
   color: ${({ theme }) => theme.colors.neutral["100"]};
   padding: 1rem;
-  width: 100%;
   overflow: scroll;
 
   ${({ $hasOverflow }) =>
@@ -47,11 +44,6 @@ export const Legend = styled.span`
   position: relative;
 `;
 
-export const FieldsetTextContent = styled.p`
-  width: 100%;
-  height: fit-content;
-`;
-
 export const FieldsetContainer = styled.div<{
   width?: string;
   minHeight?: string;
@@ -59,11 +51,8 @@ export const FieldsetContainer = styled.div<{
   $hasOverflow?: boolean;
 }>`
   width: ${({ width }) => width ?? "100%"};
-  height: 100%;
 
   ${Fieldset} {
-    min-height: ${({ minHeight }) => minHeight ?? "55px"};
-    max-height: ${({ maxHeight }) => maxHeight ?? "55px"};
-    height: 80%;
+    min-height: ${({ minHeight }) => minHeight ?? "50px"};
   }
 `;

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { css, styled } from "styled-components";
 import { Row } from "@/styles";
 import { InputStylesProps } from ".";
@@ -10,7 +11,7 @@ interface ContentContainerProps {
 }
 
 export const InputContainer = styled.div<InputStylesProps>`
-  width: ${({ width }) => width || "100%"};
+  width: ${({ width }) => width ?? "100%"};
   height: fit-content;
   margin-top: 0.3rem;
 `;
@@ -19,7 +20,7 @@ export const ContentContainer = styled(Row)<ContentContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: ${({ height }) => height || "100%"};
+  height: ${({ height }) => height ?? "100%"};
   background-color: ${({ backgroundColor }) => backgroundColor};
 
   ${({ mode }) => mode === "filled"
