@@ -59,4 +59,14 @@ export class TicketApi {
       },
       shouldFetch,
     });
+
+  getInProgressTickets = () =>
+    httpClient.get<TicketDto[]>({
+      url: `${this.api_url}/inProgress`,
+    });
+
+  closeTicket = (id: string) =>
+    httpClient.delete<{ id: string }>({
+      url: `${this.api_url}/${id}`,
+    });
 }

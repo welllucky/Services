@@ -19,6 +19,12 @@ class User extends Model {
   public canCreateTicket!: boolean;
 
   public canResolveTicket!: boolean;
+
+  public readonly createdAt!: Date;
+
+  public readonly updatedAt!: Date;
+
+  public readonly deletedAt!: Date | null;
 }
 
 User.init(
@@ -48,6 +54,12 @@ User.init(
       allowNull: false,
       defaultValue: false,
     },
+
+    createdAt: { type: DataTypes.DATE, allowNull: false, defaultValue: new Date() },
+
+    updatedAt: { type: DataTypes.DATE, allowNull: false, defaultValue: new Date() },
+
+    deletedAt: { type: DataTypes.DATE, allowNull: true },
   },
   {
     tableName: "Users",

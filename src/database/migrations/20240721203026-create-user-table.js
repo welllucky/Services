@@ -43,6 +43,19 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+        defaultValue: null,
+      },
       // roleId: {
       //   type: Sequelize.INTEGER,
       //   allowNull: false,

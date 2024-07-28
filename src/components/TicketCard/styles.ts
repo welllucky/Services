@@ -1,4 +1,5 @@
 import { Row } from "@/styles";
+import { IssueStatus } from "@/types";
 import Link from "next/link";
 import styled, { css } from "styled-components";
 
@@ -7,6 +8,7 @@ type ContainerStyleProps = {
   $borderColor?: string;
   hoverColor?: string;
   $hasUpdate?: boolean;
+  $status?: IssueStatus;
 };
 
 export const IconeSelo = styled.section`
@@ -41,6 +43,12 @@ export const TicketWrapper = styled(Link)<ContainerStyleProps>`
     box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.28);
     border: 0.2rem solid ${({ $borderColor }) => $borderColor ?? "#38a914"};
   }
+
+  ${({ $status }) =>
+    $status === "closed" &&
+    css`
+      opacity: 0.5;
+    `}
 
   transition: 0.3s ease-in-out;
 `;

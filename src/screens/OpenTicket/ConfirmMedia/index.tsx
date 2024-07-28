@@ -36,17 +36,17 @@ export const ConfirmDetailsPage = () => {
 
   console.log({ data });
   useEffect(() => {
-    if (error) {
-      toast.error("Erro ao registrar chamado. Tente novamente.");
-      push("/");
-    }
-
     if (data?.id) {
       setCanRegisterTicket(false);
       setTimeout(() => {
         console.log("Redirecionou para o chamado");
         push(`/chamado/${data?.id}`);
       }, 3000);
+    }
+
+    if (error) {
+      toast.error("Erro ao registrar chamado. Tente novamente.");
+      push("/");
     }
 
     return () => {
