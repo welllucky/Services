@@ -1,9 +1,16 @@
 import { Ticket } from "@/server/models";
-import { IOpenTicketForm, ITicket } from "@/types";
+import { IOpenTicketForm, ITicket, TicketFilters } from "@/types";
+import { Op } from "sequelize";
 
 class TicketRepository {
-  static findAll(userId: string) {
-    return Ticket.findAll({ where: { createdBy: userId } });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+  static findAll(userId: string, filters?: TicketFilters) {
+    return Ticket.findAll({
+      where: {
+        createdBy: userId,
+        // ...(filters?.status?.length && { status: filters.status[0] }),
+      },
+    });
   }
 
   static findById(userId: string, ticketId: string) {
@@ -29,11 +36,13 @@ class TicketRepository {
   ) {
     const ticket = await TicketRepository.findById(userId, ticketId);
     if (ticket) {
+      console.log("Ticket encontrado");
       return Ticket.update(
         { ...data },
         { where: { id: ticketId, createdBy: userId } },
       );
     }
+    console.log("Ticket não encontrado");
     return null;
   }
 
@@ -43,6 +52,18 @@ class TicketRepository {
       return Ticket.destroy({ where: { id: ticketId, createdBy: userId } });
     }
     return null;
+  }
+
+  static async findInProgressTickets(userId: string) {
+    try {
+      console.log("Entrou no findInProgressTickets");
+      return Ticket.findAll({
+        where: { createdBy: userId, status: { [Op.not]: "closed" } },
+      });
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 }
 

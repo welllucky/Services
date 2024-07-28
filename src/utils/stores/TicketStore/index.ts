@@ -1,5 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { TicketDto } from "@/types";
+import { ticketApi } from "@/utils/apis";
+import toast from "react-hot-toast";
 import { createStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
@@ -52,8 +54,13 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
             id: `${state.historic.length + 1}`,
             description: "O chamado foi aberto",
             date: new Date(),
-            eventOrder: state.historic.length + 1,
+            order: state.historic.length + 1,
             icon: "🚀",
+            type: "message",
+            emitterId: "",
+            createdBy: "",
+            title: "",
+            visibility: "public",
           });
         }),
       block: () =>
@@ -64,8 +71,13 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
             id: `${state.historic.length + 1}`,
             description: "O chamado foi bloqueado",
             date: new Date(),
-            eventOrder: state.historic.length + 1,
+            order: state.historic.length + 1,
             icon: "🚫",
+            type: "message",
+            emitterId: "",
+            createdBy: "",
+            title: "",
+            visibility: "public",
           });
         }),
       reOpen: () =>
@@ -76,22 +88,47 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
             id: `${state.historic.length + 1}`,
             description: "O chamado foi reaberto",
             date: new Date(),
-            eventOrder: state.historic.length + 1,
+            order: state.historic.length + 1,
             icon: "🔄",
+            type: "reopen",
+            emitterId: "",
+            createdBy: "",
+            title: "",
+            visibility: "public",
           });
         }),
-      close: () =>
+      close: () => {
         set((state) => {
-          state.status = "closed";
-          state.updatedAt = new Date();
-          state.historic?.push({
-            id: `${state.historic.length + 1}`,
-            description: "O chamado foi fechado",
-            date: new Date(),
-            eventOrder: state.historic.length + 1,
-            icon: "🔒",
-          });
-        }),
+          const { data, error } = ticketApi.closeTicket(state.id);
+          if (error) {
+            toast.error(
+              "Erro ao fechar o chamado, tente novamente mais tarde!",
+            );
+            return;
+          }
+
+          if (data) {
+            toast.success(
+              "Chamado fechado com sucesso! Você pode visualizá-lo na tela de chamados meus chamados.",
+            );
+
+            state.status = "closed";
+            state.updatedAt = new Date();
+            state.historic?.push({
+              id: `${state.historic.length + 1}`,
+              description: "O chamado foi fechado",
+              date: new Date(),
+              order: state.historic.length + 1,
+              icon: "🔒",
+              type: "close",
+              emitterId: "",
+              createdBy: "",
+              title: "",
+              visibility: "public",
+            });
+          }
+        });
+      },
       update: (data) =>
         set((state) => {
           state.updatedAt = new Date();
@@ -99,8 +136,13 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
             id: `${state.historic.length + 1}`,
             description: "O chamado foi atualizado",
             date: new Date(),
-            eventOrder: state.historic.length + 1,
+            order: state.historic.length + 1,
             icon: "🔄",
+            type: "message",
+            emitterId: "",
+            createdBy: "",
+            title: "",
+            visibility: "public",
           });
           Object.assign(state, data);
         }),

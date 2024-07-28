@@ -11,6 +11,8 @@ module.exports = {
           hash: "123456789",
           canCreateTicket: true,
           canResolveTicket: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           register: "1111111",
@@ -20,6 +22,8 @@ module.exports = {
           canCreateTicket: true,
           canResolveTicket: true,
           isBanned: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           register: "242424242",
@@ -28,6 +32,8 @@ module.exports = {
           hash: "123456789",
           canCreateTicket: true,
           canResolveTicket: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           register: "9999992",
@@ -36,6 +42,8 @@ module.exports = {
           hash: "123456789",
           canCreateTicket: false,
           canResolveTicket: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ],
       {},

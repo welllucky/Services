@@ -10,9 +10,9 @@ class Ticket extends Model {
 
   public date!: Date;
 
-  public type!: "task" | "incident" | "problem" | "change";
-
   public priority!: "low" | "medium" | "high";
+
+  public type!: "task" | "incident" | "problem" | "change";
 
   public status!: "notStarted" | "inProgress" | "blocked" | "closed";
 
@@ -22,11 +22,11 @@ class Ticket extends Model {
 
   // public sectorId!: number;
 
-  // public readonly createdAt!: Date;
+  public readonly createdAt!: Date;
 
-  // public readonly updatedAt!: Date;
+  public readonly updatedAt!: Date;
 
-  // public readonly closedAt!: Date;
+  public readonly closedAt!: Date;
 
   public createdBy!: number | string;
 
@@ -85,16 +85,16 @@ Ticket.init(
     //   onUpdate: "CASCADE",
     //   onDelete: "CASCADE",
     // },
-    // createdAt: {
-    //   type: DataTypes.DATE,
-    //   allowNull: false,
-    // },
-    // updatedAt: {
-    //   type: DataTypes.DATE,
-    //   allowNull: false,
-    //   defaultValue: new Date(),
-    // },
-    // closedAt: { type: DataTypes.DATE, allowNull: true },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date(),
+    },
+    closedAt: { type: DataTypes.DATE, allowNull: true },
     createdBy: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -130,7 +130,7 @@ Ticket.init(
     sequelize,
     tableName: "Tickets",
     paranoid: true,
-    deletedAt: "closedAt",
+    deletedAt: true,
   },
 );
 

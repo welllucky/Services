@@ -9,7 +9,7 @@ import { HomePageUI } from "./UI";
 const Homepage = () => {
   const theme = useTheme();
   const router = useRouter();
-  const { data, isLoading } = ticketApi.getTickets();
+  const { data, isLoading } = ticketApi.getInProgressTickets();
   const token = cookie.get("token");
 
   useEffect(() => {

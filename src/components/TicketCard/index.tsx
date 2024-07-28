@@ -1,4 +1,5 @@
 import { Selo } from "@/assets/Icons";
+import { IssueStatus } from "@/types";
 import { buildTestIds } from "@/utils";
 import { MouseEventHandler } from "react";
 import {
@@ -16,10 +17,10 @@ import {
 } from "./styles";
 
 export type TicketCardProps = {
-  id: string | number;
+  id: string;
   nome: string;
   date: string;
-  $status: string;
+  $status: IssueStatus;
   isUpdated?: boolean;
   color?: string;
   $borderColor?: string;
@@ -39,6 +40,7 @@ const TicketCard = ({
   <TicketWrapper
     {...buildTestIds("issue-wrapper")}
     color={color}
+    $status={$status}
     $borderColor={$borderColor}
     $hasUpdate={isUpdated}
     href={`/chamado/${id}`}>
