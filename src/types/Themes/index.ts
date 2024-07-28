@@ -44,11 +44,13 @@ type ThemeProps = {
   };
 };
 
+type InputStatus = "valid" | "invalid" | "warning" | "none";
+
 interface InputComponentsProps {
   id: string;
   value?: string;
-  placeholder?: string;
-  $status: "valid" | "invalid" | "warning" | "none";
+  placeholder: string;
+  $status: InputStatus;
   errorText?: string;
   warnText?: string;
   labelText?: string;
@@ -61,4 +63,4 @@ interface InputComponentsProps {
   isRequired?: boolean;
 }
 
-export type { ThemeProps, InputComponentsProps };
+export type { InputComponentsProps, InputStatus, ThemeProps };

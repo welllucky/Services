@@ -1,13 +1,14 @@
-import { CheckedVermelhoContainer } from "./styles";
+import Image from "next/image";
 import checkedVermelho from "../svg/checkedVermelho.svg";
+import { CheckedVermelhoContainer } from "./styles";
 
 export const CheckedVermelho = () => (
   <CheckedVermelhoContainer>
-    <img
+    <Image
       src={checkedVermelho}
       alt="Icone Checked"
       width={40}
       height={40}
-      />
+    />
   </CheckedVermelhoContainer>
-  );
+);

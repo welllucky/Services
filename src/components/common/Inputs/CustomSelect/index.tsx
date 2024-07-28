@@ -1,7 +1,6 @@
+import { CustomFieldset, ErrorText, WarningText } from "@/components";
 import { InputComponentsProps } from "@/types";
-import { ErrorText, WarningText } from "@/components";
-import { CustomFieldset } from "@/components/Fieldset";
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler } from "react";
 import { CustomOption, SelectComponent, SelectContainer } from "./styles";
 
 interface OptionProps {
@@ -13,69 +12,62 @@ interface OptionProps {
 }
 interface SelectProps extends InputComponentsProps {
   onChange?: ChangeEventHandler<HTMLSelectElement>;
+  onBlur?: ChangeEventHandler<HTMLSelectElement>;
   options?: OptionProps[];
   multiple?: boolean;
   form?: string;
-  name?: string;
+  id: string;
   value?: string;
+  isDisabled?: boolean;
 }
 export const CustomSelect = ({
-  id,
+  options,
   labelText,
+  errorText,
+  warnText,
+  id,
+  registerOptions,
   placeholder = "selecione uma opção",
   width = "100%",
   height = "56px",
-  options,
-  onChange,
+  $status = "none",
   isRequired = false,
   multiple = false,
+  isDisabled = false,
   register,
-  registerOptions,
-  $status = "none",
-  errorText,
-  warnText,
-}: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState<string>("");
-  return (
-    <SelectContainer $status={$status}>
-      <CustomFieldset
-        width={width}
-        minHeight={height}
-        labelText={labelText || ""}>
-        <SelectComponent
-          isPlaceholder={selectedValue === ""}
-          {...register(id, {
-            ...registerOptions,
-            required: isRequired
-              ? "É necessário escolher uma opção"
-              : registerOptions?.required
-                ? registerOptions?.required
-                : false,
-            onChange: (e) => {
-              setSelectedValue(e.target.value);
-              if (onChange) onChange(e);
-              if (registerOptions?.onChange) registerOptions.onChange(e);
-            },
-          })}
-          multiple={multiple}>
+}: SelectProps) => (
+  <SelectContainer $status={$status}>
+    <CustomFieldset
+      width={width}
+      minHeight={height}
+      labelText={labelText ?? ""}>
+      <SelectComponent
+        // isPlaceholder={field.value === ""}
+        {...register(id, {
+          ...registerOptions,
+          required: isRequired,
+          disabled: isDisabled,
+        })}
+        multiple={multiple}>
+        <CustomOption
+          // disabled={isRequired}
+          value="">
+          {placeholder}
+        </CustomOption>
+        {options?.map((option) => (
           <CustomOption
-            // disabled={isRequired}
-            value="">
-            {placeholder ?? "selecione uma opção abaixo"}
+            key={option?.key}
+            value={option.value}
+            selected={!!option?.isSelected}
+            disabled={!!option?.isDisabled}>
+            {option?.text}
           </CustomOption>
-          {options?.map((option) => (
-            <CustomOption
-              key={option?.key}
-              value={option.value}
-              selected={!!option?.isSelected}
-              disabled={!!option?.isDisabled}>
-              {option?.text}
-            </CustomOption>
-          ))}
-        </SelectComponent>
-        {$status === "invalid" && <ErrorText>{errorText}</ErrorText>}
-        {$status === "warning" && <WarningText>{warnText}</WarningText>}
-      </CustomFieldset>
-    </SelectContainer>
-  );
-};
+        ))}
+      </SelectComponent>
+      {($status === "invalid") && (
+        <ErrorText>{errorText}</ErrorText>
+      )}
+      {$status === "warning" && <WarningText>{warnText}</WarningText>}
+    </CustomFieldset>
+  </SelectContainer>
+);
