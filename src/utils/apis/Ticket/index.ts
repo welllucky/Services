@@ -65,8 +65,21 @@ export class TicketApi {
       url: `${this.api_url}/inProgress`,
     });
 
-  closeTicket = (id: string) =>
-    httpClient.delete<{ id: string }>({
-      url: `${this.api_url}/${id}`,
+  closeTicket = (id: string, shouldFetcher = false) =>
+    httpClient.post<{ id: string }>({
+      url: `${this.api_url}/${id}/close`,
+      shouldFetch: shouldFetcher,
+    });
+
+  reopenTicket = (id: string, shouldFetcher = false) =>
+    httpClient.post<{ id: string }>({
+      url: `${this.api_url}/${id}/reopen`,
+      shouldFetch: shouldFetcher,
+    });
+
+  startTicket = (id: string, shouldFetcher = false) =>
+    httpClient.post<{ id: string }>({
+      url: `${this.api_url}/${id}/start`,
+      shouldFetch: shouldFetcher,
     });
 }

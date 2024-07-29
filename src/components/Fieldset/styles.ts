@@ -16,7 +16,7 @@ export const Fieldset = styled.div<{
   line-height: 132%;
   color: ${({ theme }) => theme.colors.neutral["100"]};
   padding: 1rem;
-  overflow: scroll;
+  overflow: auto;
 
   ${({ $hasOverflow }) =>
     !$hasOverflow &&
@@ -46,13 +46,14 @@ export const Legend = styled.span`
 
 export const FieldsetContainer = styled.div<{
   width?: string;
-  minHeight?: string;
-  maxHeight?: string;
+  $minHeight?: string;
+  $maxHeight?: string;
   $hasOverflow?: boolean;
 }>`
   width: ${({ width }) => width ?? "100%"};
 
   ${Fieldset} {
-    min-height: ${({ minHeight }) => minHeight ?? "50px"};
+    min-height: ${({ $minHeight }) => $minHeight ?? "50px"};
+    max-height: ${({ $maxHeight }) => $maxHeight ?? "50px"};
   }
 `;

@@ -7,13 +7,15 @@ import { FieldError, UseFormRegister } from "react-hook-form";
 type DescriptionInputProps = {
   register: UseFormRegister<IOpenTicketForm>;
   error: FieldError | undefined;
+  defaultValue?: string;
 };
 
 export const DescriptionInput = ({
   register,
   error,
+  defaultValue,
 }: DescriptionInputProps) => {
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
 
   return (
     <CustomTextArea

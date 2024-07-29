@@ -12,16 +12,12 @@ import { ButtonWrapper } from "../styles";
 type HomePageUIProps = {
   data?: TicketDto[];
   isLoading: boolean;
-  theme: DefaultTheme;
+  // eslint-disable-next-line react/no-unused-prop-types
+  theme?: DefaultTheme;
   router: AppRouterInstance;
 };
 
-export const HomePageUI = ({
-  data,
-  isLoading,
-  theme,
-  router,
-}: HomePageUIProps) => {
+export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
   const dataLength = data?.length ?? 0;
 
   const { push } = router;
@@ -42,7 +38,6 @@ export const HomePageUI = ({
             <NoContent
               alt="caixa vazia"
               title="Não há chamados no momento."
-              color={theme.colors.neutral["5"]}
             />
           ) : (
             data?.map((issue) => (

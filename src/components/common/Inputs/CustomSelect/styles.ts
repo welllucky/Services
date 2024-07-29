@@ -6,14 +6,14 @@ export const SelectContainer = styled.div<{ $status: string }>`
   display: flex;
   & > div > div {
     border: ${({ $status }) =>
-    ($status === "invalid"
-      ? "1px solid red"
-      : $status === "valid"
-        ? "1px solid #7ac143"
-        : "1px solid #79747e")};
+      ($status === "invalid"
+        ? "1px solid red"
+        : $status === "valid"
+          ? "1px solid #7ac143"
+          : "1px solid #79747e")};
   }
 `;
-export const SelectComponent = styled.select<{ isPlaceholder?: boolean }>`
+export const SelectComponent = styled.select<{ $isPlaceholder?: boolean }>`
   display: flex;
   width: 100%;
   height: 100%;
@@ -27,7 +27,7 @@ export const SelectComponent = styled.select<{ isPlaceholder?: boolean }>`
   letter-spacing: 0.5px;
   resize: none;
   background: transparent;
-  color: ${({ isPlaceholder }) => (isPlaceholder ? "#79747e" : "#000")};
+  color: ${({ $isPlaceholder }) => ($isPlaceholder ? "#79747e" : "#000")};
 `;
 export const CustomOption = styled.option`
   display: flex;

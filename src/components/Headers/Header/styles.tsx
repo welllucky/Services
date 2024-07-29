@@ -25,7 +25,6 @@ export const PageTitle = styled.div<{ $isSmallClientMobile?: boolean }>`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 0.5rem;
   ${({ $isSmallClientMobile }) => $isSmallClientMobile
     && css`
       padding: 0;

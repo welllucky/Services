@@ -14,7 +14,7 @@ export const CustomTextArea = ({
   labelText,
   placeholder,
   width = "100%",
-  height = "240px",
+  height = "160px",
   value,
   onChange,
   isRequired = false,
@@ -27,7 +27,8 @@ export const CustomTextArea = ({
   <TextAreaContainer $status={$status}>
     <CustomFieldset
       width={width}
-      minHeight={height}
+      $minHeight={height}
+      $maxHeight=""
       $hasOverflow
       labelText={labelText ?? ""}>
       <TextArea
@@ -43,7 +44,7 @@ export const CustomTextArea = ({
             if (registerOptions?.onChange) registerOptions.onChange(e);
           },
         })}
-        height={height || "100%"}
+        height={height}
         width="100%"
         placeholder={placeholder}
         value={value}

@@ -64,3 +64,5 @@ coverage/*
 
 # Snyk
 snyk-linux
+
+services.sqlite

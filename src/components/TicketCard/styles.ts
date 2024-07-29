@@ -106,7 +106,7 @@ export const TicketDescription = styled.p`
   font-weight: 500;
   font-size: 1.1rem;
   line-height: 120%;
-  width: 100%;
+  width: 95%;
   color: ${({ theme }) => theme.colors.neutral.inverted};
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -126,8 +126,7 @@ export const TicketStatus = styled.div`
   align-items: flex-start;
   padding: 0;
   height: 50%;
-  width: max-content;
-  width: 100%;
+  width: 110%;
   font-weight: 500;
   font-size: 0.8rem;
   line-height: 1rem;

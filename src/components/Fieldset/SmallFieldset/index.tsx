@@ -12,6 +12,7 @@ export const SmallFieldset = ({ children, title }: SmallFieldsetProps) => (
     color={theme.colors.primary.default}
     labelText={title}
     width="100%"
+    $maxHeight=""
     $justifyContent="center"
     $hasOverflow>
     {children}

@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { TicketDto } from "@/types";
-import { ticketApi } from "@/utils/apis";
 import toast from "react-hot-toast";
 import { createStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
@@ -48,6 +47,10 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
       ...initProps,
       initialize: () =>
         set((state) => {
+          toast.success(
+            "Chamado iniciado com sucesso! Caso tenha alguma dúvida, entre em contato com o solicitante.",
+          );
+
           state.status = "inProgress";
           state.updatedAt = new Date();
           state.historic?.push({
@@ -65,6 +68,10 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
         }),
       block: () =>
         set((state) => {
+          toast.success(
+            "Chamado bloqueado com sucesso! As partes interessadas foram notificadas.",
+          );
+
           state.status = "blocked";
           state.updatedAt = new Date();
           state.historic?.push({
@@ -80,8 +87,12 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
             visibility: "public",
           });
         }),
-      reOpen: () =>
+      reOpen: () => {
         set((state) => {
+          toast.success(
+            "Chamado reaberto com sucesso! As partes interessadas foram notificadas.",
+          );
+
           state.status = "inProgress";
           state.updatedAt = new Date();
           state.historic?.push({
@@ -96,37 +107,28 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
             title: "",
             visibility: "public",
           });
-        }),
+        });
+      },
       close: () => {
         set((state) => {
-          const { data, error } = ticketApi.closeTicket(state.id);
-          if (error) {
-            toast.error(
-              "Erro ao fechar o chamado, tente novamente mais tarde!",
-            );
-            return;
-          }
+          toast.success(
+            "Chamado fechado com sucesso! Você pode visualizá-lo na tela de chamados meus chamados.",
+          );
 
-          if (data) {
-            toast.success(
-              "Chamado fechado com sucesso! Você pode visualizá-lo na tela de chamados meus chamados.",
-            );
-
-            state.status = "closed";
-            state.updatedAt = new Date();
-            state.historic?.push({
-              id: `${state.historic.length + 1}`,
-              description: "O chamado foi fechado",
-              date: new Date(),
-              order: state.historic.length + 1,
-              icon: "🔒",
-              type: "close",
-              emitterId: "",
-              createdBy: "",
-              title: "",
-              visibility: "public",
-            });
-          }
+          state.status = "closed";
+          state.updatedAt = new Date();
+          state.historic?.push({
+            id: `${state.historic.length + 1}`,
+            description: "O chamado foi fechado",
+            date: new Date(),
+            order: state.historic.length + 1,
+            icon: "🔒",
+            type: "close",
+            emitterId: "",
+            createdBy: "",
+            title: "",
+            visibility: "public",
+          });
         });
       },
       update: (data) =>
