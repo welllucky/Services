@@ -12,7 +12,7 @@ export const IssuePageContent = styled(Column)`
   overflow-x: hidden;
   overflow-y: scroll;
   align-items: center;
-  gap: 16px;
+  gap: 4px;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.default};
   padding-bottom: 1rem;

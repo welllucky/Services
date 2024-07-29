@@ -83,6 +83,56 @@ class TicketServices {
     return TicketRepository.update(userId, ticketId, data);
   }
 
+  static async startTicket(userId: string, ticketId: string) {
+    try {
+      const updatedTickets = await TicketRepository.update(userId, ticketId, {
+        updatedAt: new Date(),
+        updatedBy: userId,
+        status: "inProgress",
+      });
+
+      if (!updatedTickets) {
+        throw new Error("Chamado não encontrado");
+      }
+
+      // await EventServices.createEvent(userId, ticketId, {
+      //   title: "O chamado foi fechado",
+      //   description:
+      //     "Caso sua questão não tenha sido resolvida, por favor, reabra o chamado. Depois de 3 tentativas sem sucesso, o chamado será fechado automaticamente e o supervisor notificado.",
+      //   type: "close",
+      // });
+
+      return updatedTickets;
+    } catch (error) {
+      throw new Error(`Houve um erro ao atualizar o chamado: ${error}`);
+    }
+  }
+
+  static async reopenTicket(userId: string, ticketId: string) {
+    try {
+      const updatedTickets = await TicketRepository.update(userId, ticketId, {
+        updatedAt: new Date(),
+        updatedBy: userId,
+        status: "inProgress",
+      });
+
+      if (!updatedTickets) {
+        throw new Error("Chamado não encontrado");
+      }
+
+      // await EventServices.createEvent(userId, ticketId, {
+      //   title: "O chamado foi fechado",
+      //   description:
+      //     "Caso sua questão não tenha sido resolvida, por favor, reabra o chamado. Depois de 3 tentativas sem sucesso, o chamado será fechado automaticamente e o supervisor notificado.",
+      //   type: "close",
+      // });
+
+      return updatedTickets;
+    } catch (error) {
+      throw new Error(`Houve um erro ao reabrir o chamado: ${error}`);
+    }
+  }
+
   static async closeTicket(userId: string, ticketId: string) {
     try {
       const updatedTickets = await TicketRepository.update(userId, ticketId, {

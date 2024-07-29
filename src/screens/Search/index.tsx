@@ -13,6 +13,7 @@ const SearchPage = ({
 }: {
   searchResults: TicketCardProps[];
 }) => {
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const theme = useTheme();
   const isLoading = false;
   const setSearch = (value: string) => value;
@@ -27,7 +28,7 @@ const SearchPage = ({
         {isLoading ? (
           <Loading overlayOn={false} />
         ) : (
-          <MainContainer $hasContent={!!searchResults}>
+          <MainContainer $hasContent={searchResults.length !== 0}>
             {searchResults?.length ? (
               searchResults.map((issue) => (
                 <TicketCard
@@ -43,7 +44,6 @@ const SearchPage = ({
               <NoContent
                 alt="caixa vazia"
                 title="Pesquise pelo seu chamado"
-                color={theme.colors.neutral["55"]}
               />
             )}
           </MainContainer>

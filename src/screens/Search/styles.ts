@@ -14,7 +14,7 @@ export const FlexContainer = styled.div`
 export const MainContainer = styled.main<{ $hasContent?: boolean }>`
   display: flex;
   flex-direction: column;
-  padding: 0.5rem 0 1rem 0;
+  padding: 0.7rem 0 1rem 0;
   width: 100%;
   height: inherit;
   overflow-y: scroll;

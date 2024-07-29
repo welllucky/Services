@@ -7,10 +7,11 @@ import { FieldError, UseFormRegister } from "react-hook-form";
 type PriorityInputProps = {
   register: UseFormRegister<IOpenTicketForm>;
   error: FieldError | undefined;
+  defaultValue?: string;
 };
 
-export const PriorityInput = ({ register, error }: PriorityInputProps) => {
-  const [selectValue, setSelectValue] = useState<string>("");
+export const PriorityInput = ({ register, error, defaultValue }: PriorityInputProps) => {
+  const [selectValue, setSelectValue] = useState<string>(defaultValue ?? "");
 
   return (
     <CustomSelect
@@ -18,6 +19,7 @@ export const PriorityInput = ({ register, error }: PriorityInputProps) => {
       isRequired
       placeholder="Quão urgente é o chamado?"
       labelText="Prioridade"
+      value={selectValue}
       options={[
         { key: "1", value: "low", text: "pouco urgente" },
         { key: "2", value: "medium", text: "mais ou menos" },

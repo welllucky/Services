@@ -7,10 +7,15 @@ import { FieldError, UseFormRegister } from "react-hook-form";
 type TypeSelectProps = {
   register: UseFormRegister<IOpenTicketForm>;
   error: FieldError | undefined;
+  defaultValue?: string;
 };
 
-export const TypeSelect = ({ register, error }: TypeSelectProps) => {
-  const [selectValue, setSelectValue] = useState<string>("");
+export const TypeSelect = ({
+  register,
+  error,
+  defaultValue,
+}: TypeSelectProps) => {
+  const [selectValue, setSelectValue] = useState<string>(defaultValue ?? "");
 
   return (
     <CustomSelect
@@ -20,6 +25,7 @@ export const TypeSelect = ({ register, error }: TypeSelectProps) => {
       placeholder="Qual o tipo do chamado?"
       labelText="Tipo"
       errorText={error?.message}
+      value={selectValue}
       registerOptions={{
         required: "É necessário adicionar o tipo do chamado",
         onChange(event) {

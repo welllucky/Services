@@ -8,7 +8,7 @@ export class TicketView {
       const newData = ticketData.map((ticket) => ({
         ...ticket,
         id: String(ticket.id),
-        date: dataFormatter(ticket.date as string),
+        date: dataFormatter(ticket.date as string, true),
         createdAt: dataFormatter(ticket.createdAt as string),
         updatedAt: ticket.updatedAt,
         closedAt: ticket.closedAt ? ticket.closedAt : null,

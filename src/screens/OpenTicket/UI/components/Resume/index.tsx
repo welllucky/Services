@@ -6,10 +6,15 @@ import { FieldError, UseFormRegister } from "react-hook-form";
 type ResumeInputProps = {
   register: UseFormRegister<IOpenTicketForm>;
   error: FieldError | undefined;
+  defaultValue?: string;
 };
 
-export const ResumeInput = ({ register, error }: ResumeInputProps) => {
-  const [inputValue, setInputValue] = useState<string>("");
+export const ResumeInput = ({
+  register,
+  error,
+  defaultValue,
+}: ResumeInputProps) => {
+  const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
 
   return (
     <OutlinedInput

@@ -5,11 +5,11 @@ type TicketParamProps = {
   id: string;
 };
 
-export async function GET(
+export async function POST(
   req: NextRequest,
   { params }: { params: TicketParamProps },
 ) {
-  return TicketController.getTicketById(req, params);
+  return TicketController.closeTicket(req, params);
 }
 
 export const runtime = "nodejs";

@@ -6,8 +6,8 @@ export type FieldsetProps = {
   children: ReactNode;
   labelText: string;
   width?: string;
-  maxHeight?: string;
-  minHeight?: string;
+  $maxHeight?: string;
+  $minHeight?: string;
   color?: string;
   $hasOverflow?: boolean;
   $justifyContent?: "start" | "center" | "end";
@@ -16,8 +16,8 @@ export type FieldsetProps = {
 const CustomFieldset = ({
   children,
   labelText,
-  maxHeight,
-  minHeight,
+  $maxHeight,
+  $minHeight,
   width,
   color,
   $hasOverflow = false,
@@ -25,8 +25,8 @@ const CustomFieldset = ({
 }: FieldsetProps) => (
   <FieldsetContainer
     width={width}
-    maxHeight={maxHeight}
-    minHeight={minHeight}
+    $maxHeight={$maxHeight}
+    $minHeight={$minHeight}
     $hasOverflow={$hasOverflow}>
     <Legend {...buildTestIds(`legend-text-${labelText}`)}>{labelText}</Legend>
     <Fieldset

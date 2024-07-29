@@ -12,7 +12,7 @@ export const LargeFieldset = ({ children, title }: LargeFieldsetProps) => (
     color={theme.colors.primary.default}
     labelText={title}
     width="100%"
-    minHeight="10rem"
+    $minHeight="10rem"
     $hasOverflow
     $justifyContent="start">
     {children}
