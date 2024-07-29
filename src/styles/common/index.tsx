@@ -24,6 +24,7 @@ export const Column = styled.section<{
   $gap?: string;
   width?: string;
   height?: string;
+  overflow?: boolean;
 }>`
   width: ${({ width }) => width ?? "100%"};
   height: ${({ $full, height }) =>
@@ -31,6 +32,12 @@ export const Column = styled.section<{
   display: flex;
   flex-direction: column;
   gap: ${({ $gap }) => $gap};
+
+  ${({ overflow }) =>
+    overflow &&
+    css`
+      overflow-y: auto;
+    `};
 `;
 
 export const PageContainer = styled.main`

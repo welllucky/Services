@@ -16,14 +16,14 @@ import { ButtonWrapper } from "../styles";
 type TicketsPageUIProps = {
   data?: TicketDto[];
   isLoading: boolean;
-  theme: DefaultTheme;
+  // eslint-disable-next-line react/no-unused-prop-types
+  theme?: DefaultTheme;
   router: AppRouterInstance;
 };
 
 export const TicketsPageUI = ({
   data,
   isLoading,
-  theme,
   router,
 }: TicketsPageUIProps) => {
   const dataLength = data?.length ?? 0;
@@ -46,7 +46,6 @@ export const TicketsPageUI = ({
             <NoContent
               alt="caixa vazia"
               title="Não há chamados no momento."
-              color={theme.colors.neutral["5"]}
             />
           ) : (
             data?.map((issue) => (

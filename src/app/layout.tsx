@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -42,6 +43,19 @@ const RootLayout = ({
           src="https://snippet.meticulous.ai/v1/meticulous.js"
         />
       )}
+      <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+      />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="use-credentials"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+        rel="stylesheet"
+      />
     </head>
     <body className={inter.className}>
       <SpeedInsights />

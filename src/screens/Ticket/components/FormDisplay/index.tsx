@@ -3,7 +3,6 @@ import { TicketDto } from "@/types";
 
 import { LargeFieldset } from "@/components/Fieldset/LargeFieldset";
 import { SmallFieldset } from "@/components/Fieldset/SmallFieldset";
-import { dataFormatter } from "@/utils";
 import { FormDisplayContainer } from "./styles";
 
 type FormDisplayProps = {
@@ -18,8 +17,6 @@ export const FormDisplay = ({ data }: FormDisplayProps) => (
       <SmallFieldset title="Tipo">{data?.type}</SmallFieldset>
       <SmallFieldset title="Prioridade">{data?.priority}</SmallFieldset>
     </SectionInfoForm>
-    <SmallFieldset title="Data do ocorrido">
-      {dataFormatter(data?.date ?? "")}
-    </SmallFieldset>
+    <SmallFieldset title="Data do ocorrido">{data?.date ?? ""}</SmallFieldset>
   </FormDisplayContainer>
 );

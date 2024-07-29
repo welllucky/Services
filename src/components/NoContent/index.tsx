@@ -25,7 +25,7 @@ export const NoContent = ({
           alt={alt ?? "caixa vazia"}
         />
       ) : typeof icon === "undefined" ? (
-        <EmptyBox size={92} />
+        <EmptyBox color={color} size={92} />
       ) : (
         icon
       )}

@@ -35,7 +35,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, textarea, span, input {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -44,7 +44,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
   text-decoration: none;
   border-color: transparent;
-  /* font-family: Inter, Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: Inter, Roboto !important;
 }
 
 button {
@@ -76,9 +76,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/* textarea {
-  font-family: Inter, Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-} */
+
 
 a{
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

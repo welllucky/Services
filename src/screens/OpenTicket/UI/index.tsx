@@ -1,10 +1,10 @@
 "use client";
 
 import { IOpenTicketForm } from "@/types";
+import { LS_KEY_1_TICKET_RECORD, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
+import { useEffect, useMemo } from "react";
 import { useFormContext } from "react-hook-form";
 import toast from "react-hot-toast";
-import { LS_KEY_1_TICKET_RECORD, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
-import { useEffect } from "react";
 import { IssuePageContent } from "../styles";
 import {
   DateInput,
@@ -22,13 +22,16 @@ export const OpenTicketPageUI = () => {
     formState: { errors, isValid, isValidating },
   } = useFormContext<IOpenTicketForm>();
 
+  const parsedData = useMemo(
+    () => JSON.parse(localStorage.getItem(LS_KEY_1_TICKET_RECORD) ?? ""),
+    [],
+  );
+
   useEffect(() => {
-    const date = localStorage.getItem(LS_KEY_1_TICKET_RECORD);
     const isFromOutsideForm =
       (sessionStorage.getItem(SS_KEY_USER_PREVIOUS_PAGE) as string) !== "form";
 
-    if (date) {
-      const parsedData: IOpenTicketForm = JSON.parse(date);
+    if (parsedData) {
       setValue("resume", parsedData.resume, { shouldValidate: true });
       setValue("description", parsedData.description, { shouldValidate: true });
       setValue("date", parsedData.date, { shouldValidate: true });
@@ -37,7 +40,7 @@ export const OpenTicketPageUI = () => {
       // eslint-disable-next-line no-unused-expressions
       isFromOutsideForm && toast.success("Dados recuperados com sucesso!");
     }
-  }, [setValue]);
+  }, [parsedData, setValue]);
 
   useEffect(() => {
     if (isValid && !isValidating) {
@@ -55,23 +58,31 @@ export const OpenTicketPageUI = () => {
       <ResumeInput
         register={register}
         error={errors?.resume}
+        defaultValue={parsedData?.resume}
       />
+
       <TypeSelect
         error={errors?.type}
         register={register}
+        defaultValue={parsedData?.type}
       />
 
       <DescriptionInput
         error={errors.description}
         register={register}
+        defaultValue={parsedData?.description}
       />
+
       <DateInput
         error={errors?.date}
         register={register}
+        defaultValue={parsedData?.date}
       />
+
       <PriorityInput
         error={errors?.priority}
         register={register}
+        defaultValue={parsedData?.priority}
       />
     </IssuePageContent>
   );
