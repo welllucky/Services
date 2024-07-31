@@ -23,7 +23,7 @@ export const OpenTicketPageUI = () => {
   } = useFormContext<IOpenTicketForm>();
 
   const parsedData = useMemo(
-    () => JSON.parse(localStorage.getItem(LS_KEY_1_TICKET_RECORD) ?? ""),
+    () => JSON.parse(localStorage.getItem(LS_KEY_1_TICKET_RECORD) ?? "{}"),
     [],
   );
 
@@ -31,7 +31,7 @@ export const OpenTicketPageUI = () => {
     const isFromOutsideForm =
       (sessionStorage.getItem(SS_KEY_USER_PREVIOUS_PAGE) as string) !== "form";
 
-    if (parsedData) {
+    if (parsedData.resume) {
       setValue("resume", parsedData.resume, { shouldValidate: true });
       setValue("description", parsedData.description, { shouldValidate: true });
       setValue("date", parsedData.date, { shouldValidate: true });

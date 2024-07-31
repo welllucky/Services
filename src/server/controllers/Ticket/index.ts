@@ -12,7 +12,7 @@ export class TicketController {
 
       if (!isAuthenticated) {
         return NextResponse.json(
-          { error: "User not authenticated" },
+          { error: { message: "User not authenticated" } },
           {
             status: 401,
           },
@@ -26,7 +26,7 @@ export class TicketController {
 
       if (!tickets.length) {
         return NextResponse.json(
-          { error: "No tickets found" },
+          { error: { message: "No tickets found" } },
           {
             status: 204,
           },
@@ -48,7 +48,7 @@ export class TicketController {
 
       if (!isAuthenticated) {
         return NextResponse.json(
-          { error: "User not authenticated" },
+          { error: { message: "User not authenticated" } },
           {
             status: 401,
           },
@@ -59,7 +59,7 @@ export class TicketController {
 
       if (!ticket.length) {
         return NextResponse.json(
-          { error: "Ticket not found" },
+          { error: { message: "Ticket not found" } },
           {
             status: 204,
           },
@@ -81,7 +81,7 @@ export class TicketController {
 
       if (!isAuthenticated) {
         return NextResponse.json(
-          { error: "User not authenticated" },
+          { error: { message: "User not authenticated" } },
           {
             status: 401,
           },
@@ -109,7 +109,7 @@ export class TicketController {
 
       if (!isAuthenticated) {
         return NextResponse.json(
-          { error: "User not authenticated" },
+          { error: { message: "User not authenticated" } },
           {
             status: 401,
           },
@@ -120,9 +120,9 @@ export class TicketController {
 
       if (!tickets?.length) {
         return NextResponse.json(
-          { error: "No tickets found" },
+          { error: { message: "No tickets found" } },
           {
-            status: 404,
+            status: 200,
           },
         );
       }
@@ -147,7 +147,7 @@ export class TicketController {
 
       if (!isAuthenticated) {
         return NextResponse.json(
-          { error: "User not authenticated" },
+          { error: { message: "User not authenticated" } },
           {
             status: 401,
           },
@@ -156,7 +156,7 @@ export class TicketController {
 
       if (!ticketId) {
         return NextResponse.json(
-          { error: "Ticket ID not provided" },
+          { error: { message: "Ticket ID not provided" } },
           {
             status: 400,
           },
@@ -167,7 +167,7 @@ export class TicketController {
 
       if (!ticket) {
         return NextResponse.json(
-          { error: "Ticket not found" },
+          { error: { message: "Ticket not found" } },
           {
             status: 204,
           },
@@ -196,7 +196,7 @@ export class TicketController {
 
       if (!isAuthenticated) {
         return NextResponse.json(
-          { error: "User not authenticated" },
+          { error: { message: "User not authenticated" } },
           {
             status: 401,
           },
@@ -205,7 +205,7 @@ export class TicketController {
 
       if (!ticketId) {
         return NextResponse.json(
-          { error: "Ticket ID not provided" },
+          { error: { message: "Ticket ID not provided" } },
           {
             status: 400,
           },
@@ -216,7 +216,7 @@ export class TicketController {
 
       if (!ticket) {
         return NextResponse.json(
-          { error: "Ticket not found" },
+          { error: { message: "Ticket not found" } },
           {
             status: 204,
           },
@@ -245,7 +245,7 @@ export class TicketController {
 
       if (!isAuthenticated) {
         return NextResponse.json(
-          { error: "User not authenticated" },
+          { error: { message: "User not authenticated" } },
           {
             status: 401,
           },
@@ -254,7 +254,7 @@ export class TicketController {
 
       if (!ticketId) {
         return NextResponse.json(
-          { error: "Ticket ID not provided" },
+          { error: { message: "Ticket ID not provided" } },
           {
             status: 400,
           },
@@ -265,7 +265,7 @@ export class TicketController {
 
       if (!ticket) {
         return NextResponse.json(
-          { error: "Ticket not found" },
+          { error: { message: "Ticket not found" } },
           {
             status: 204,
           },
