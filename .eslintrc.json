@@ -48,6 +48,6 @@
     "class-methods-use-this": "off",
     "indent": "off",
     "max-len": "off",
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+    "import/no-extraneous-dependencies": ["off"]
   }
 }

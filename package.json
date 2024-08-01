@@ -1,6 +1,6 @@
 {
   "name": "services",
-  "version": "0.1.15",
+  "version": "0.1.19",
   "private": true,
   "repository": {
     "type": "git",
@@ -36,6 +36,8 @@
     "@emotion/is-prop-valid": "^1.2.1",
     "@phosphor-icons/react": "^2.0.15",
     "@react-spring/web": "^9.7.3",
+    "@sentry/nextjs": "^8",
+    "@spotlightjs/spotlight": "^2.2.2",
     "@uidotdev/usehooks": "^2.4.1",
     "@use-gesture/react": "^10.3.0",
     "@vercel/analytics": "^1.1.1",
@@ -67,7 +69,7 @@
     "@babel/eslint-parser": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@next/eslint-plugin-next": "^14.1.0",
-    "@playwright/test": "^1.39.0",
+    "@playwright/test": "^1.46.0",
     "@storybook/addon-coverage": "^1.0.0",
     "@storybook/addon-essentials": "^7.6.7",
     "@storybook/addon-interactions": "^7.6.7",
