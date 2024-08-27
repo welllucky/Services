@@ -150,15 +150,9 @@ export default defineConfig({
     },
     {
       name: "Iphone High level",
-      use: { ...devices["iPhone XR"] },
+      use: {...devices["iPhone XR"] }
       // dependencies: ["setup"],
-    },
-    {
-      name: "Desktop",
-      testMatch: "**/noMobileDevice/**",
-      use: { ...devices["Desktop Chrome"] },
-      // dependencies
-    },
+    }
   ],
 
   /* Run your local dev server before starting the tests */
