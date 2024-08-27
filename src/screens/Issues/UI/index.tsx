@@ -1,19 +1,17 @@
 import { Header, Loading, NoContent } from "@/components";
 import { TicketCard } from "@/components/TicketCard";
 import { PageContainer } from "@/styles";
-import { TicketDto } from "@/types";
-import { dataFormatter } from "@/utils";
+import { dataFormatter, issueApi } from "@/utils";
 import { DefaultTheme } from "styled-components";
 import { MainContainer } from "../../Search/styles";
 
 type IssuesPageUIProps = {
-  isLoading: boolean;
-  data: TicketDto[];
   theme: DefaultTheme;
 };
 
-export const IssuesPageUI = ({ isLoading, data, theme }: IssuesPageUIProps) => {
-  const dataLength = data?.length ?? 0;
+export const IssuesPageUI = async ({ theme }: IssuesPageUIProps) => {
+  const { data, isLoading } = issueApi.getIssues();
+
   if (isLoading) {
     return <Loading fullScreen />;
   }
@@ -25,7 +23,7 @@ export const IssuesPageUI = ({ isLoading, data, theme }: IssuesPageUIProps) => {
         pageTittle="Chamados solicitados"
       />
       <PageContainer>
-        <MainContainer $hasContent={dataLength !== 0}>
+        <MainContainer $hasContent={data.length !== 0}>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent
               alt="caixa vazia"
