@@ -1,38 +1,46 @@
 import { IssueRepository } from "@/server/repository";
-import { ITicket } from "@/types";
+import { IIssue } from "@/types";
 
 class IssueServices {
-  static async getAllIssues(resolutorId: string) {
-    return IssueRepository.findAll(resolutorId);
+  static async getAllIssues(resolverId: string) {
+    return IssueRepository.findAll(resolverId);
   }
 
-  static async getIssueById(resolutorId: string, ticketId: string) {
-    return IssueRepository.findById(resolutorId, ticketId);
+  static async getIssueById(resolverId: string, ticketId: string) {
+    return IssueRepository.findById(resolverId, ticketId);
   }
 
   static async updateIssue(
-    resolutorId: string,
+    resolverId: string,
     ticketId: string,
-    data: Partial<ITicket>,
+    data: Partial<IIssue>,
   ) {
-    return IssueRepository.update(resolutorId, ticketId, data);
+    return IssueRepository.update(resolverId, ticketId, data);
   }
 
-  static async deleteIssue(resolutorId: string, ticketId: string) {
-    return IssueRepository.delete(resolutorId, ticketId);
+  static async deleteIssue(resolverId: string, ticketId: string) {
+    return IssueRepository.delete(resolverId, ticketId);
   }
 
-  static async findInProgressIssues(resolutorId: string) {
-    return IssueRepository.findAll(resolutorId, {
+  static async findInProgressIssues(resolverId: string) {
+    return IssueRepository.findAll(resolverId, {
       status: "inProgress",
     });
   }
 
-  static async resolveIssue(resolutorId: string, ticketId: string) {
-    return IssueRepository.update(resolutorId, ticketId, {
+  static async startIssue(resolverId: string, ticketId: string) {
+    return IssueRepository.update(resolverId, ticketId, {
+      status: "inProgress",
+      updatedAt: new Date(),
+      updatedBy: resolverId,
+    });
+  }
+
+  static async resolveIssue(resolverId: string, ticketId: string) {
+    return IssueRepository.update(resolverId, ticketId, {
       status: "closed",
       closedAt: new Date(),
-      closedBy: resolutorId,
+      closedBy: resolverId,
     });
   }
 }

@@ -2,8 +2,8 @@
 import { z } from "zod";
 import {
   IssueStatusSchema,
-  PriorityLevelsSchema,
   TicketTypeSchema,
+  PriorityLevelsSchema,
 } from "../Dto";
 
 export const ITicketSchema = z.object({

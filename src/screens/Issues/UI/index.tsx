@@ -1,16 +1,31 @@
-import { Header, Loading, NoContent } from "@/components";
-import { TicketCard } from "@/components/TicketCard";
+import {
+  AddNewIssueButton,
+  Header,
+  Loading,
+  NoContent,
+  TicketCard,
+} from "@/components";
+import { MainContainer } from "@/screens/Search/styles";
 import { PageContainer } from "@/styles";
-import { dataFormatter, issueApi } from "@/utils";
+import { TicketDto } from "@/types";
+import { dataFormatter } from "@/utils";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { DefaultTheme } from "styled-components";
-import { MainContainer } from "../../Search/styles";
+import { ButtonWrapper } from "../styles";
 
 type IssuesPageUIProps = {
-  theme: DefaultTheme;
+  data: TicketDto[] | undefined;
+  isLoading: boolean;
+  router: AppRouterInstance;
 };
 
-export const IssuesPageUI = async ({ theme }: IssuesPageUIProps) => {
-  const { data, isLoading } = issueApi.getIssues();
+export const IssuesPageUI = ({
+  data,
+  isLoading,
+  router,
+}: IssuesPageUIProps) => {
+  const dataLength = data?.length ?? 0;
+  const { push } = router;
 
   if (isLoading) {
     return <Loading fullScreen />;
@@ -20,31 +35,38 @@ export const IssuesPageUI = async ({ theme }: IssuesPageUIProps) => {
     <>
       <Header
         userName="Colaborador"
-        pageTittle="Chamados solicitados"
+        pageTittle="Meus chamados"
+        issueQuantify={dataLength}
       />
       <PageContainer>
-        <MainContainer $hasContent={data.length !== 0}>
+        <MainContainer $hasContent={dataLength !== 0}>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent
               alt="caixa vazia"
               title="Não há chamados no momento."
-              color={theme.colors.neutral["5"]}
             />
           ) : (
-            data.map((issue) => (
+            data?.map((issue) => (
               <TicketCard
-                color="#9EDC72"
-                $borderColor="#61A12F"
-                key={issue.id}
-                id={issue.id}
-                nome={issue.resume}
-                date={dataFormatter(issue.date ?? "")}
+                key={issue?.id}
+                id={String(issue?.id)}
+                nome={issue?.description}
+                date={dataFormatter(issue.date)}
                 $status={issue.status}
-                isUpdated
+                isUpdated={false}
+                href={`/chamado/${issue.id}`}
               />
             ))
           )}
         </MainContainer>
+        <ButtonWrapper>
+          {dataLength < 5 ? (
+            <AddNewIssueButton
+              onClick={() => push("/abrir-chamado")}
+              $styles={{ hasShadow: true }}
+            />
+          ) : null}
+        </ButtonWrapper>
       </PageContainer>
     </>
   );

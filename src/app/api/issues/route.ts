@@ -1,5 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { IssueController } from "@/server/controllers/Issue";
+import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-  return 
+  return IssueController.getAllIssues(req);
 }
+
+export const runtime = "nodejs";

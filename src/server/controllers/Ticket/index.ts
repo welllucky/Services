@@ -189,54 +189,54 @@ export class TicketController {
     }
   }
 
-  // static async startTicket(req: NextRequest, params: { id: string }) {
-  //   try {
-  //     const ticketId = params.id;
-  //     const { userToken, isAuthenticated } = await getAuthToken(req);
+  static async startTicket(req: NextRequest, params: { id: string }) {
+    try {
+      const ticketId = params.id;
+      const { userToken, isAuthenticated } = await getAuthToken(req);
 
-  //     if (!isAuthenticated) {
-  //       return NextResponse.json(
-  //         { error: { message: "User not authenticated" } },
-  //         {
-  //           status: 401,
-  //         },
-  //       );
-  //     }
+      if (!isAuthenticated) {
+        return NextResponse.json(
+          { error: { message: "User not authenticated" } },
+          {
+            status: 401,
+          },
+        );
+      }
 
-  //     if (!ticketId) {
-  //       return NextResponse.json(
-  //         { error: { message: "Ticket ID not provided" } },
-  //         {
-  //           status: 400,
-  //         },
-  //       );
-  //     }
+      if (!ticketId) {
+        return NextResponse.json(
+          { error: { message: "Ticket ID not provided" } },
+          {
+            status: 400,
+          },
+        );
+      }
 
-  //     const ticket = await TicketServices.startTicket(userToken, ticketId);
+      const ticket = await TicketServices.startTicket(userToken, ticketId);
 
-  //     if (!ticket) {
-  //       return NextResponse.json(
-  //         { error: { message: "Ticket not found" } },
-  //         {
-  //           status: 204,
-  //         },
-  //       );
-  //     }
+      if (!ticket) {
+        return NextResponse.json(
+          { error: { message: "Ticket not found" } },
+          {
+            status: 204,
+          },
+        );
+      }
 
-  //     return NextResponse.json("", {
-  //       status: 200,
-  //     });
-  //   } catch (error) {
-  //     return NextResponse.json(
-  //       {
-  //         error,
-  //       },
-  //       {
-  //         status: 500,
-  //       },
-  //     );
-  //   }
-  // }
+      return NextResponse.json("", {
+        status: 200,
+      });
+    } catch (error) {
+      return NextResponse.json(
+        {
+          error,
+        },
+        {
+          status: 500,
+        },
+      );
+    }
+  }
 
   static async reopenTicket(req: NextRequest, params: { id: string }) {
     try {

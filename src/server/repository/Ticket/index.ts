@@ -54,7 +54,6 @@ class TicketRepository {
 
   static async findInProgressTickets(userId: string) {
     try {
-      console.log("Entrou no findInProgressTickets");
       return Ticket.findAll({
         where: { createdBy: userId, status: { [Op.not]: "closed" } },
       });

@@ -48,6 +48,7 @@ export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
                 date={dataFormatter(issue.date)}
                 $status={issue.status}
                 isUpdated={false}
+                href={`/chamado/${issue.id}`}
               />
             ))
           )}

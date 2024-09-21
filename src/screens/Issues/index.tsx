@@ -1,12 +1,20 @@
 "use client";
 
-import { useTheme } from "styled-components";
+import { issueApi } from "@/utils";
+import { useRouter } from "next/navigation";
 import { IssuesPageUI } from "./UI";
 
-const RequestsPage = () => {
-  const theme = useTheme();
+const MyIssuesPage = () => {
+  const router = useRouter();
+  const { data, isLoading } = issueApi.getIssues();
 
-  return <IssuesPageUI theme={theme} />;
+  return (
+    <IssuesPageUI
+      isLoading={isLoading}
+      data={data}
+      router={router}
+    />
+  );
 };
 
-export { RequestsPage };
+export { MyIssuesPage };
