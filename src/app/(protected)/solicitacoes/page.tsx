@@ -1,10 +1,10 @@
-import { RequestsPage } from "@/screens/Issues";
+import { MyIssuesPage } from "@/screens";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Solicitações",
 };
 
-const Requests = () => <RequestsPage />;
+const Issues = () => <MyIssuesPage />;
 
-export default Requests;
+export default Issues;

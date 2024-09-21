@@ -1,21 +1,20 @@
 "use client";
 
-import { TicketDto } from "@/types";
-import { useTheme } from "styled-components";
+import { issueApi } from "@/utils";
+import { useRouter } from "next/navigation";
 import { IssuesPageUI } from "./UI";
 
-const RequestsPage = () => {
-  const theme = useTheme();
-  const isLoading = false;
-  const listaChamados = [] as TicketDto[];
+const MyIssuesPage = () => {
+  const router = useRouter();
+  const { data, isLoading } = issueApi.getIssues();
 
   return (
     <IssuesPageUI
-      data={listaChamados}
       isLoading={isLoading}
-      theme={theme}
+      data={data}
+      router={router}
     />
   );
 };
 
-export { RequestsPage };
+export { MyIssuesPage };

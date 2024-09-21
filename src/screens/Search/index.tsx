@@ -38,6 +38,7 @@ const SearchPage = ({
                   date={issue.date}
                   $status={issue.$status}
                   isUpdated={issue.isUpdated}
+                  href={`/chamado/${issue.id}`}
                 />
               ))
             ) : (

@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { IssueActionOptionsType } from "@/screens/Ticket/components";
+import { IssueActionOptionsType } from "@/screens/Issue/components";
 import {
   ArrowCounterClockwise,
   DotsThreeOutlineVertical,
@@ -18,8 +18,7 @@ interface ActionButtonProps {
   reopenAction: () => void;
 }
 
-interface PrincipalIssueButtonProps
-  extends Pick<ActionButtonProps, "isIssueOpen" | "canReopenIssue"> {
+interface PrincipalIssueButtonProps extends Pick<ActionButtonProps, "isIssueOpen" | "canReopenIssue">{
   action: () => void;
   $isClicked: boolean;
 }
@@ -112,12 +111,12 @@ const ActionButton = ({
               icon={option.icon}
               action={option.action}
               color={
-                  option.title.toLowerCase() === "finalizar"
-                    ? theme.colors.secondary["75"]
-                    : theme.colors.primary["85"]
-                }
-              />
-            ))}
+                option.title.toLowerCase() === "finalizar"
+                  ? theme.colors.secondary["75"]
+                  : theme.colors.primary["85"]
+              }
+            />
+          ))}
       </ActionButtonsContainer>
 
       <PrincipalIssueButton

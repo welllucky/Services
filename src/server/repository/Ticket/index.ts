@@ -8,7 +8,6 @@ class TicketRepository {
     return Ticket.findAll({
       where: {
         createdBy: userId,
-        // ...(filters?.status?.length && { status: filters.status[0] }),
       },
     });
   }
@@ -36,13 +35,12 @@ class TicketRepository {
   ) {
     const ticket = await TicketRepository.findById(userId, ticketId);
     if (ticket) {
-      console.log("Ticket encontrado");
       return Ticket.update(
         { ...data },
         { where: { id: ticketId, createdBy: userId } },
       );
     }
-    console.log("Ticket não encontrado");
+
     return null;
   }
 
@@ -56,7 +54,6 @@ class TicketRepository {
 
   static async findInProgressTickets(userId: string) {
     try {
-      console.log("Entrou no findInProgressTickets");
       return Ticket.findAll({
         where: { createdBy: userId, status: { [Op.not]: "closed" } },
       });

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { z } from "zod";
 
-export const ITicketEventSchema = z.object({
+export const IEventSchema = z.object({
   id: z.number(),
   order: z.number(),
   emitterId: z.number(),
@@ -13,4 +13,4 @@ export const ITicketEventSchema = z.object({
   // createdBy: z.number(),
 });
 
-export type ITicketEvent = z.infer<typeof ITicketEventSchema>;
+export type ITicketEvent = z.infer<typeof IEventSchema>;

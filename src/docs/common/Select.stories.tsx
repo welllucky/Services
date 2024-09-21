@@ -7,7 +7,7 @@ export default {
   tags: ["select", "common"],
 } satisfies Meta;
 
-export const DefaultSelect: StoryObj<typeof CustomSelect> = {
+export const DefaultSelect: StoryObj = {
   args: {
     labelText: "Select",
     placeholder: "Select",
@@ -29,6 +29,7 @@ export const DefaultSelect: StoryObj<typeof CustomSelect> = {
         text: "Option 3",
       },
     ],
+    register: () => {},
   },
   // parameters: {
   //   mockData: {
