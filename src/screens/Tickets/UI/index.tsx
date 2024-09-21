@@ -1,33 +1,16 @@
-import {
-  AddNewIssueButton,
-  Header,
-  Loading,
-  NoContent,
-  TicketCard,
-} from "@/components";
-import { MainContainer } from "@/screens/Search/styles";
+import { Header, Loading, NoContent } from "@/components";
+import { TicketCard } from "@/components/TicketCard";
 import { PageContainer } from "@/styles";
-import { TicketDto } from "@/types";
-import { dataFormatter } from "@/utils";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { dataFormatter, ticketApi } from "@/utils";
 import { DefaultTheme } from "styled-components";
-import { ButtonWrapper } from "../styles";
+import { MainContainer } from "../../Search/styles";
 
 type TicketsPageUIProps = {
-  data?: TicketDto[];
-  isLoading: boolean;
-  // eslint-disable-next-line react/no-unused-prop-types
-  theme?: DefaultTheme;
-  router: AppRouterInstance;
+  theme: DefaultTheme;
 };
 
-export const TicketsPageUI = ({
-  data,
-  isLoading,
-  router,
-}: TicketsPageUIProps) => {
-  const dataLength = data?.length ?? 0;
-  const { push } = router;
+export const TicketsPageUI = async ({ theme }: TicketsPageUIProps) => {
+  const { data, isLoading } = ticketApi.getTickets();
 
   if (isLoading) {
     return <Loading fullScreen />;
@@ -37,37 +20,32 @@ export const TicketsPageUI = ({
     <>
       <Header
         userName="Colaborador"
-        pageTittle="Meus chamados"
-        issueQuantify={dataLength}
+        pageTittle="Solicitações"
       />
       <PageContainer>
-        <MainContainer $hasContent={dataLength !== 0}>
+        <MainContainer $hasContent={data.length !== 0}>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent
               alt="caixa vazia"
               title="Não há chamados no momento."
+              color={theme.colors.neutral["5"]}
             />
           ) : (
-            data?.map((issue) => (
+            data.map((ticket) => (
               <TicketCard
-                key={issue?.id}
-                id={String(issue?.id)}
-                nome={issue?.description}
-                date={dataFormatter(issue.date)}
-                $status={issue.status}
-                isUpdated={false}
+                color="#9EDC72"
+                $borderColor="#61A12F"
+                key={ticket.id}
+                id={ticket.id}
+                nome={ticket.resume}
+                date={dataFormatter(ticket.date ?? "")}
+                $status={ticket.status}
+                isUpdated
+                href={`/solicitacao/${ticket.id}`}
               />
             ))
           )}
         </MainContainer>
-        <ButtonWrapper>
-          {dataLength < 5 ? (
-            <AddNewIssueButton
-              onClick={() => push("/abrir-chamado")}
-              $styles={{ hasShadow: true }}
-            />
-          ) : null}
-        </ButtonWrapper>
       </PageContainer>
     </>
   );

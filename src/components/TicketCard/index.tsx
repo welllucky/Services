@@ -1,20 +1,13 @@
-import { Selo } from "@/assets/Icons";
 import { IssueStatus } from "@/types";
 import { buildTestIds } from "@/utils";
 import { MouseEventHandler } from "react";
 import {
-  IconeSelo,
-  InfoLabel,
-  OpeningText,
-  StatusText,
   TicketContainer,
   TicketContent,
-  TicketDescription,
-  TicketNumber,
   TicketState,
-  TicketStatus,
   TicketWrapper,
 } from "./styles";
+import { Description, Id, Info, Signal } from "./subComponents";
 
 export type TicketCardProps = {
   id: string;
@@ -25,7 +18,7 @@ export type TicketCardProps = {
   color?: string;
   $borderColor?: string;
   isSelected?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  href: string;
 };
 
 const TicketCard = ({
@@ -36,39 +29,32 @@ const TicketCard = ({
   isUpdated,
   color,
   $borderColor,
-}: Readonly<TicketCardProps>) => (
+  href,
+}: TicketCardProps) => (
   <TicketWrapper
     {...buildTestIds("issue-wrapper")}
     color={color}
     $status={$status}
     $borderColor={$borderColor}
     $hasUpdate={isUpdated}
-    href={`/chamado/${id}`}>
-    {isUpdated && (
-      <IconeSelo {...buildTestIds("icone-selo")}>
-        <Selo />
-      </IconeSelo>
-    )}
+    href={href}>
+    {isUpdated && <Signal />}
     <TicketContainer {...buildTestIds("issue-container")}>
       <TicketContent
         {...buildTestIds("issue-content")}
         $hasUpdate={isUpdated}>
-        <TicketNumber {...buildTestIds("issue-number")}>
-          {`Chamado Nº ${id}`}
-        </TicketNumber>
-        <TicketDescription {...buildTestIds("issue-description")}>
-          {nome}
-        </TicketDescription>
+        <Id id={id} />
+        <Description description={nome} />
       </TicketContent>
       <TicketState {...buildTestIds("issue-state")}>
-        <TicketStatus {...buildTestIds("issue-status")}>
-          <InfoLabel {...buildTestIds("info-label")}>Aberto em:</InfoLabel>
-          <OpeningText {...buildTestIds("opening-text")}>{date}</OpeningText>
-        </TicketStatus>
-        <TicketStatus {...buildTestIds("issue-status")}>
-          <InfoLabel {...buildTestIds("info-label")}>Status</InfoLabel>
-          <StatusText {...buildTestIds("status-text")}>{$status}</StatusText>
-        </TicketStatus>
+        <Info
+          label="Aberto em:"
+          text={date}
+        />
+        <Info
+          label="Status"
+          text={$status}
+        />
       </TicketState>
     </TicketContainer>
   </TicketWrapper>

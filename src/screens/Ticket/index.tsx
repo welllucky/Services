@@ -1,37 +1,31 @@
 "use client";
 
 import { Loading } from "@/components";
-
 import { ticketApi, TicketProvider } from "@/utils";
-import { buildTestIds, resetForm } from "@/utils/functions";
+import { buildTestIds } from "@/utils/functions";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import {
   FormDisplay,
   InfoHistoryPainel,
   IssueActionButton,
-  TicketPageBackButton,
-  TicketPageTitle,
+  IssuePageBackButton,
+  IssuePageTitle,
 } from "./components";
 import {
-  TicketPageContainer,
-  TicketPageContent,
-  TicketPageWrapper,
+  IssuePageContainer,
+  IssuePageContent,
+  IssuePageWrapper,
 } from "./styles";
 
-export interface TicketPageProps {
+export interface IssuePageProps {
   // data?: TicketDto;
   id: string;
 }
 
-const TicketPage = ({ id }: TicketPageProps) => {
+const IssuePage = ({ id }: IssuePageProps) => {
   const { data, isLoading } = ticketApi.getTicket(id);
 
   const router = useRouter();
-
-  useEffect(() => {
-    resetForm();
-  }, []);
 
   if (isLoading) {
     return <Loading overlayOn />;
@@ -39,11 +33,11 @@ const TicketPage = ({ id }: TicketPageProps) => {
 
   return (
     <TicketProvider data={data}>
-      <TicketPageContainer $full>
-        <TicketPageBackButton router={router} />
-        <TicketPageWrapper>
-          <TicketPageTitle text={`Chamado n° ${data?.id}`} />
-          <TicketPageContent
+      <IssuePageContainer $full>
+        <IssuePageBackButton router={router} />
+        <IssuePageWrapper>
+          <IssuePageTitle text={`Solicitação n° ${data?.id}`} />
+          <IssuePageContent
             {...buildTestIds("content-column")}
             height="100%">
             <FormDisplay data={data} />
@@ -51,12 +45,12 @@ const TicketPage = ({ id }: TicketPageProps) => {
               data={data?.historic}
               isLoading={isLoading}
             />
-          </TicketPageContent>
-        </TicketPageWrapper>
+          </IssuePageContent>
+        </IssuePageWrapper>
         <IssueActionButton />
-      </TicketPageContainer>
+      </IssuePageContainer>
     </TicketProvider>
   );
 };
 
-export { TicketPage };
+export { IssuePage };

@@ -91,7 +91,7 @@ class IssueController {
         );
       }
 
-      const ticket = await TicketServices.startTicket(userToken, issueId);
+      const ticket = await IssueServices.startIssue(userToken, issueId);
 
       if (!ticket) {
         return NextResponse.json(

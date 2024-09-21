@@ -1,10 +1,9 @@
-import { ticketApi, useTicket } from "@/utils";
+// import { issueApi, useIssue } from "@/utils";
 
 import { ActionButton } from "@/components/ActionButton";
 import { theme } from "@/styles";
 import { ChatCircleText, Check } from "@phosphor-icons/react";
-import { ReactNode, useEffect, useReducer } from "react";
-import toast from "react-hot-toast";
+import { ReactNode, useReducer } from "react";
 import { UserActionContainer } from "./styles";
 
 type UserList = "resolver" | "creator" | "viewer";
@@ -37,73 +36,73 @@ export const IssueActionButton = () => {
     },
   );
 
-  const { status, id, close, initialize, reOpen } = useTicket();
-  const {
-    isLoading: isLoadingStart,
-    data: dataStart,
-    error: errorStart,
-  } = ticketApi.startTicket(id, actionsState.shouldStart);
-  const {
-    isLoading: isLoadingClose,
-    data: dataClose,
-    error: errorClose,
-  } = ticketApi.closeTicket(id, actionsState.shouldClose);
-  const {
-    isLoading: isLoadingReopen,
-    data: dataReopen,
-    error: errorReopen,
-  } = ticketApi.reopenTicket(id, actionsState.shouldReopen);
+  // const { status, id, close, initialize, reOpen } = useIssue();
+  // const {
+  //   isLoading: isLoadingStart,
+  //   data: dataStart,
+  //   error: errorStart,
+  // } = issueApi.startIssue(id, actionsState.shouldStart);
+  // const {
+  //   isLoading: isLoadingClose,
+  //   data: dataClose,
+  //   error: errorClose,
+  // } = issueApi.closeIssue(id, actionsState.shouldClose);
+  // const {
+  //   isLoading: isLoadingReopen,
+  //   data: dataReopen,
+  //   error: errorReopen,
+  // } = issueApi.reopenIssue(id, actionsState.shouldReopen);
 
-  useEffect(() => {
-    if (actionsState.shouldStart && !isLoadingStart) {
-      setActionsState({
-        shouldStart: false,
-      });
-      initialize();
-    }
+  // useEffect(() => {
+  //   if (actionsState.shouldStart && !isLoadingStart) {
+  //     setActionsState({
+  //       shouldStart: false,
+  //     });
+  //     initialize();
+  //   }
 
-    if (errorStart) {
-      toast.error("Erro ao iniciar chamado");
-    }
+  //   if (errorStart) {
+  //     toast.error("Erro ao iniciar chamado");
+  //   }
 
-    if (actionsState.shouldClose && !isLoadingClose) {
-      setActionsState({
-        shouldClose: false,
-      });
-      close();
-    }
+  //   if (actionsState.shouldClose && !isLoadingClose) {
+  //     setActionsState({
+  //       shouldClose: false,
+  //     });
+  //     close();
+  //   }
 
-    if (errorClose) {
-      toast.error("Erro ao finalizar chamado");
-    }
+  //   if (errorClose) {
+  //     toast.error("Erro ao finalizar chamado");
+  //   }
 
-    if (actionsState.shouldReopen && !isLoadingReopen) {
-      toast.success("Chamado reaberto com sucesso!");
-      setActionsState({
-        shouldReopen: false,
-      });
-      reOpen();
-    }
+  //   if (actionsState.shouldReopen && !isLoadingReopen) {
+  //     toast.success("Chamado reaberto com sucesso!");
+  //     setActionsState({
+  //       shouldReopen: false,
+  //     });
+  //     reOpen();
+  //   }
 
-    if (errorReopen) {
-      toast.error("Erro ao reabrir chamado");
-    }
-  }, [
-    close,
-    dataClose,
-    dataReopen,
-    dataStart,
-    errorClose,
-    errorReopen,
-    errorStart,
-    initialize,
-    isLoadingClose,
-    isLoadingReopen,
-    isLoadingStart,
-    reOpen,
-  ]);
+  //   if (errorReopen) {
+  //     toast.error("Erro ao reabrir chamado");
+  //   }
+  // }, [
+  //   close,
+  //   dataClose,
+  //   dataReopen,
+  //   dataStart,
+  //   errorClose,
+  //   errorReopen,
+  //   errorStart,
+  //   initialize,
+  //   isLoadingClose,
+  //   isLoadingReopen,
+  //   isLoadingStart,
+  //   reOpen,
+  // ]);
 
-  const ticketOptions = [
+  const IssueOptions = [
     {
       index: 1,
       icon: (
@@ -138,14 +137,12 @@ export const IssueActionButton = () => {
     },
   ] satisfies IssueActionOptionsType[];
 
-  console.log({ status });
-
   return (
     <UserActionContainer>
       <ActionButton
         isIssueOpen={status === "inProgress"}
         canReopenIssue={status === "closed" || status === "blocked"}
-        actionOptions={ticketOptions}
+        actionOptions={IssueOptions}
         openAction={() =>
           setActionsState({
             shouldStart: true,

@@ -1,11 +1,9 @@
 import { CustomInput } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 export default {
   title: "Common/Inputs/CustomInput",
   component: CustomInput,
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     placeholder: {
       description: "Texto do placeholder",
@@ -148,11 +146,12 @@ export default {
     type: "text",
     mode: "outlined",
     errorText: "Houve um erro, tente novamente!",
+    register: () => {},
   },
 } satisfies Meta;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Filled: StoryObj<typeof CustomInput> = {
+export const Filled: StoryObj = {
   args: {
     placeholder: "Digite um texto",
     labelText: "Texto",
@@ -163,7 +162,7 @@ export const Filled: StoryObj<typeof CustomInput> = {
   },
 };
 
-export const FilledWithError: StoryObj<typeof CustomInput> = {
+export const FilledWithError: StoryObj = {
   args: {
     placeholder: "Digite um texto",
     labelText: "Texto",
@@ -176,7 +175,7 @@ export const FilledWithError: StoryObj<typeof CustomInput> = {
   name: "Input Filled com erro",
 };
 
-export const FilledWithValidValue: StoryObj<typeof CustomInput> = {
+export const FilledWithValidValue: StoryObj = {
   args: {
     placeholder: "Digite um texto",
     labelText: "Texto",
@@ -189,7 +188,7 @@ export const FilledWithValidValue: StoryObj<typeof CustomInput> = {
   name: "Input Filled com valor válido",
 };
 
-export const OutLined: StoryObj<typeof CustomInput> = {
+export const OutLined: StoryObj = {
   args: {
     placeholder: "Digite um texto",
     labelText: "Texto",
@@ -200,7 +199,7 @@ export const OutLined: StoryObj<typeof CustomInput> = {
   },
 };
 
-export const OutLinedWithError: StoryObj<typeof CustomInput> = {
+export const OutLinedWithError: StoryObj = {
   args: {
     placeholder: "Digite um texto",
     labelText: "Texto",
@@ -213,7 +212,7 @@ export const OutLinedWithError: StoryObj<typeof CustomInput> = {
   name: "Input Outlined com erro",
 };
 
-export const OutLinedWithValidValue: StoryObj<typeof CustomInput> = {
+export const OutLinedWithValidValue: StoryObj = {
   args: {
     placeholder: "Digite um texto",
     labelText: "Texto",

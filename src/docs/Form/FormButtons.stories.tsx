@@ -2,7 +2,7 @@ import { FormButtons } from "@/components/Form/FormButtons";
 import { Meta, StoryObj } from "@storybook/react";
 
 export default {
-  title: "Form/FormButtons",
+  title: "Common/Form/FormButtons",
   component: FormButtons,
   tags: ["form", "buttons"],
   argTypes: {

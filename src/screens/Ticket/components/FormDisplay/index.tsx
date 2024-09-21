@@ -1,12 +1,12 @@
-import { SectionInfoForm } from "@/screens/OpenTicket/ConfirmMedia/styles";
-import { TicketDto } from "@/types";
+import { IssueDto } from "@/types";
 
 import { LargeFieldset } from "@/components/Fieldset/LargeFieldset";
 import { SmallFieldset } from "@/components/Fieldset/SmallFieldset";
 import { FormDisplayContainer } from "./styles";
+import { SectionInfoForm } from "@/screens/OpenTicket/ConfirmMedia/styles";
 
 type FormDisplayProps = {
-  data: TicketDto | undefined;
+  data: IssueDto | undefined;
 };
 
 export const FormDisplay = ({ data }: FormDisplayProps) => (
