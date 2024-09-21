@@ -67,7 +67,6 @@ export default {
       },
     },
     onChange: {
-      control: "function",
       description: "Função que é chamada quando o input é alterado",
       table: {
         category: "Eventos",
@@ -81,10 +80,11 @@ export default {
     labelText: "Descrição",
     placeholder: "Nos conte mais detalhes sobre o ocorrido...",
     width: "320px",
+    register: () => {},
   },
 } satisfies Meta;
 
-export const TextArea: StoryObj<typeof CustomTextArea> = {
+export const TextArea: StoryObj = {
   args: {
     labelText: "Descrição",
     placeholder: "Nos conte mais detalhes sobre o ocorrido...",

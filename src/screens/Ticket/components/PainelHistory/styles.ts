@@ -11,11 +11,11 @@ export const InfoHistoryPainelContainer = styled.section<{
   padding: 12px 0px;
 `;
 
-export const InfoHistoryPainelTitle = styled.h2`
+export const InfoHistoryPanelTitle = styled.h2`
   font-size: 1.2rem;
 `;
 
-export const InfoHistoryPainelContent = styled.div`
+export const InfoHistoryPanelContent = styled.div`
 flex-direction: column;
   max-height: 258px;
   gap: 16px;

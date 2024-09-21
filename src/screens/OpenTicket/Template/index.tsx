@@ -1,7 +1,7 @@
 "use client";
 
 import { BackButton, FormButtons } from "@/components";
-import { TicketPageContainer } from "@/screens/Ticket/styles";
+import { TicketPageContainer } from "@/screens/Issue/styles";
 import { Column, Row, TitleComponent } from "@/styles";
 import { IOpenTicketForm } from "@/types";
 import { buildTestIds, resetForm, useModalStore } from "@/utils";

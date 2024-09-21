@@ -11,8 +11,7 @@ test.describe(
     ],
   },
   () => {
-      test("Access the home page", async ({ page, context }) => {
-        context.
+    test("Access the home page", async ({ page }) => {
       await page.goto("/");
     });
   },

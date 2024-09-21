@@ -10,6 +10,12 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended",
+    "plugin:sonarjs/recommended-legacy",
+    "plugin:security/recommended-legacy",
+    "promise",
+    "plugin:prettier/recommended",
+    "plugin:eslint-config-love",
     "airbnb"
   ],
   "parser": "@typescript-eslint/parser",
@@ -17,7 +23,13 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "sonarjs",
+    "simple-import-sort",
+    "import"
+  ],
   "rules": {
     "quotes": ["warn", "double"],
     "semi": ["warn", "always"],
@@ -48,6 +60,19 @@
     "class-methods-use-this": "off",
     "indent": "off",
     "max-len": "off",
-    "import/no-extraneous-dependencies": ["off"]
+    "import/no-extraneous-dependencies": ["off"],
+    "promise/always-return": "error",
+    "promise/no-return-wrap": "error",
+    "promise/param-names": "error",
+    "promise/catch-or-return": "error",
+    "promise/no-native": "off",
+    "promise/no-nesting": "warn",
+    "promise/no-promise-in-callback": "warn",
+    "promise/no-callback-in-promise": "warn",
+    "promise/avoid-new": "warn",
+    "promise/no-new-statics": "error",
+    "promise/no-return-in-finally": "warn",
+    "promise/valid-params": "warn",
+    "promise/no-multiple-resolved": "error"
   }
 }

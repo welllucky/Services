@@ -6,8 +6,8 @@ import { Loading, NoContent } from "../../../../components";
 import { InfoUnity } from "./InfoUnity";
 import {
   InfoHistoryPainelContainer,
-  InfoHistoryPainelContent,
-  InfoHistoryPainelTitle,
+  InfoHistoryPanelContent,
+  InfoHistoryPanelTitle,
 } from "./styles";
 
 interface InfoHistoryPainelProps {
@@ -50,12 +50,12 @@ const InfoHistoryPainel = ({ data, isLoading }: InfoHistoryPainelProps) => {
 
   return (
     <InfoHistoryPainelContainer $hasContent={events.length !== 0}>
-      <InfoHistoryPainelTitle>Histórico</InfoHistoryPainelTitle>
-      <InfoHistoryPainelContent>
+      <InfoHistoryPanelTitle>Histórico</InfoHistoryPanelTitle>
+      <InfoHistoryPanelContent>
         {events.map((info) => (
           <InfoUnity {...info} />
         ))}
-      </InfoHistoryPainelContent>
+      </InfoHistoryPanelContent>
     </InfoHistoryPainelContainer>
   );
 };

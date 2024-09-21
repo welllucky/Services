@@ -11,22 +11,9 @@ type ContainerStyleProps = {
   $status?: IssueStatus;
 };
 
-export const IconeSelo = styled.section`
-  position: relative;
-  width: 1rem;
-  z-index: 2;
-  top: 10px;
-  left: 2px;
-
-  & > svg {
-    position: absolute;
-    top: -10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-`;
-
-export const TicketWrapper = styled(Link)<ContainerStyleProps>`
+export const TicketWrapper =
+  styled(Link)<
+  ContainerStyleProps>`
   width: 100%;
   height: fit-content;
   position: relative;
@@ -53,7 +40,7 @@ export const TicketWrapper = styled(Link)<ContainerStyleProps>`
   transition: 0.3s ease-in-out;
 `;
 
-export const TicketContainer = styled(Row)<ContainerStyleProps>`
+export const TicketContainer = styled(Row)`
   display: flex;
   padding: 0.8rem;
   border-radius: 1rem;
@@ -61,7 +48,9 @@ export const TicketContainer = styled(Row)<ContainerStyleProps>`
   transition: 0.3s ease-in-out;
 `;
 
-export const TicketContent = styled.div<{ $hasUpdate?: boolean }>`
+export const TicketContent =
+  styled.div<
+  ContainerStyleProps>`
   display: flex;
   flex-direction: column;
   max-height: 80px;
@@ -89,63 +78,6 @@ export const TicketState = styled.div`
   flex: 2;
 `;
 
-export const TicketNumber = styled.p`
-  font-weight: 500;
-  font-size: 1rem;
-  width: 100%;
-  display: flex;
-  letter-spacing: 0.01em;
-  color: ${({ theme }) => theme.colors.neutral.inverted};
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  white-space: break-spaces;
-  overflow: hidden;
-`;
-
-export const TicketDescription = styled.p`
-  font-weight: 500;
-  font-size: 1.1rem;
-  line-height: 120%;
-  width: 95%;
-  color: ${({ theme }) => theme.colors.neutral.inverted};
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-
-  @media (max-width: 320px) {
-    font-size: 1rem;
-  }
-`;
-
-export const TicketStatus = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0;
-  height: 50%;
-  width: 110%;
-  font-weight: 500;
-  font-size: 0.8rem;
-  line-height: 1rem;
-`;
-
-export const OpeningText = styled.p`
-  font-weight: 400;
-  font-size: 0.9rem;
-  line-height: 1.25rem;
-  color: ${({ theme }) => theme.colors.neutral.inverted};
-  width: 100%;
-  word-break: break-all;
-  line-break: anywhere;
-
-  @media (max-width: 320px) {
-    font-size: 0.8rem;
-  }
-`;
-
 export const StatusText = styled.p`
   font-weight: 600;
   font-size: 1rem;
@@ -158,8 +90,4 @@ export const StatusText = styled.p`
   @media (max-width: 320px) {
     font-size: 0.8rem;
   }
-`;
-
-export const InfoLabel = styled.label`
-  color: ${({ theme }) => theme.colors.neutral.inverted};
 `;

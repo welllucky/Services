@@ -14,7 +14,10 @@ const nextConfig = {
     styledComponents: true,
     removeConsole: process.env.NODE_ENV === "production",
   },
-  generateBuildId: () => Promise.resolve(`build-id-${new Date()}`),
+  generateBuildId: () =>
+    Promise.resolve(
+      `build-id-${process.env.NEXT_PUBLIC_RELEASE}-${new Date()}`,
+    ),
   reactStrictMode: process.env.NODE_ENV === "development",
   pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
   experimental: {
