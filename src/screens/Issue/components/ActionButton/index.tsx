@@ -89,6 +89,9 @@ export const IssueActionButton = () => {
       toast.error("Erro ao reabrir chamado");
     }
   }, [
+    actionsState.shouldClose,
+    actionsState.shouldReopen,
+    actionsState.shouldStart,
     close,
     dataClose,
     dataReopen,
@@ -137,8 +140,6 @@ export const IssueActionButton = () => {
       },
     },
   ] satisfies IssueActionOptionsType[];
-
-  console.log({ status });
 
   return (
     <UserActionContainer>

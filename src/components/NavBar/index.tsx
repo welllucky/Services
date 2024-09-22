@@ -1,7 +1,7 @@
 import { OptionMenuProps } from "@/types";
 import { usePathname } from "next/navigation";
-import { ContainerMenu, MenuList } from "./styles";
 import OptionMenu from "./OptionMenu";
+import { ContainerMenu, MenuList } from "./styles";
 
 interface NavigationBarProps {
   color?: string;

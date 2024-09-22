@@ -52,6 +52,7 @@ package-lock.json
 /tests/report/*
 /tests/report/index.html
 /tests/output/*
+/tests/playwright/report/**
 
 settings.json
 
@@ -67,3 +68,4 @@ snyk-linux
 services.sqlite
 # Sentry Config File
 .env.sentry-build-plugin
+node_modules/

@@ -22,6 +22,7 @@ export const ResumeInput = ({
       id="resume"
       type="text"
       placeholder="Do que se trata o chamado?"
+      // eslint-disable-next-line no-nested-ternary
       $status={inputValue.length === 0 ? "none" : error ? "invalid" : "valid"}
       labelText="Resumo"
       errorText={error?.message as string}

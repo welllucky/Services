@@ -35,6 +35,8 @@ Sentry.init({
   release: process.env.NEXT_PUBLIC_RELEASE,
 
   spotlight: process.env.NEXT_PUBLIC_NODE_ENV === "development",
+
+  enabled: process.env.NEXT_PUBLIC_HOST_ENV !== "local",
 });
 
 // if (process.env.NEXT_PUBLIC_NODE_ENV === "development") {
