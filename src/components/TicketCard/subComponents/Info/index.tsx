@@ -1,16 +1,14 @@
 import { buildTestIds } from "@/utils";
-import { InfoLabel, InfoText, InfoContainer } from "./styles";
+import { InfoContainer, InfoLabel, InfoText } from "./styles";
 
 interface StatusProps {
-    label: string;
-    text: string;
+  label: string;
+  text: string;
 }
 
-export const Info = ({ label, text }: StatusProps) => {
-  return (
-    <InfoContainer {...buildTestIds("issue-status")}>
-      <InfoLabel {...buildTestIds("info-label")}>{label}</InfoLabel>
-      <InfoText {...buildTestIds("opening-text")}>{text}</InfoText>
-    </InfoContainer>
-  );
-};
+export const Info = ({ label, text }: StatusProps) => (
+  <InfoContainer {...buildTestIds("issue-status")}>
+    <InfoLabel {...buildTestIds("info-label")}>{label}</InfoLabel>
+    <InfoText {...buildTestIds("opening-text")}>{text}</InfoText>
+  </InfoContainer>
+);

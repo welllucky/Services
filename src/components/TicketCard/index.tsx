@@ -1,6 +1,5 @@
 import { IssueStatus } from "@/types";
 import { buildTestIds } from "@/utils";
-import { MouseEventHandler } from "react";
 import {
   TicketContainer,
   TicketContent,

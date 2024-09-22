@@ -54,7 +54,6 @@ class TicketServices {
 
       return newTicket;
     } catch (error) {
-      console.log(error);
       throw new Error(`Houve um erro ao criar o chamado: ${error}`);
     }
   }

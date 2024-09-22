@@ -9,7 +9,7 @@ import {
 const navigationOptions: OptionMenuProps[] = [
   {
     name: "Iniciar",
-    path: "/",
+    path: "/home",
     alt: "inicio",
     icon: (
       <House

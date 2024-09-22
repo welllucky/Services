@@ -57,8 +57,7 @@ class TicketRepository {
       return Ticket.findAll({
         where: { createdBy: userId, status: { [Op.not]: "closed" } },
       });
-    } catch (error) {
-      console.log(error);
+    } catch {
       return null;
     }
   }

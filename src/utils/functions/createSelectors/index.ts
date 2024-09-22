@@ -9,7 +9,7 @@ const createSelectors = <S extends StoreApi<object>>(_store: S) => {
   store.use = {};
   // eslint-disable-next-line no-restricted-syntax
   for (const k of Object.keys(store.getState())) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/rules-of-hooks
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/rules-of-hooks, security/detect-object-injection
     (store.use as any)[k] = () => useStore(_store, (s) => s[k as keyof typeof s]);
   }
 

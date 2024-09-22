@@ -1,9 +1,8 @@
 import { IssueDto } from "@/types";
-
 import { LargeFieldset } from "@/components/Fieldset/LargeFieldset";
 import { SmallFieldset } from "@/components/Fieldset/SmallFieldset";
-import { FormDisplayContainer } from "./styles";
 import { SectionInfoForm } from "@/screens/OpenTicket/ConfirmMedia/styles";
+import { FormDisplayContainer } from "./styles";
 
 type FormDisplayProps = {
   data: IssueDto | undefined;
