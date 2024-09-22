@@ -1,4 +1,5 @@
 import { Event } from "@/server/models";
+
 import { ITicketEvent } from "@/types";
 
 class EventRepository {

@@ -7,7 +7,6 @@ export class EventServices {
     ticketId: string,
     eventData: Omit<ITicketEvent, "id" | "order" | "emitterId" | "createdBy">,
   ) {
-    console.log("Entrou em createEvent");
     const eventsQuantity =
       await EventRepository.countEventsByTicketId(ticketId);
     return EventRepository.createEvent({

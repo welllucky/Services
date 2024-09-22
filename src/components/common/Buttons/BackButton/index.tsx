@@ -21,7 +21,7 @@ export const BackButton = ({
     <Container
       {...buildTestIds("back-button")}
       onClick={() => {
-        // eslint-disable-next-line no-unused-expressions
+        // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
         onClick ? onClick() : back();
       }}>
       <CaretLeft
