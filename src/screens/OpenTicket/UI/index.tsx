@@ -37,7 +37,7 @@ export const OpenTicketPageUI = () => {
       setValue("date", parsedData.date, { shouldValidate: true });
       setValue("type", parsedData.type, { shouldValidate: true });
       setValue("priority", parsedData.priority, { shouldValidate: true });
-      // eslint-disable-next-line no-unused-expressions
+      // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
       isFromOutsideForm && toast.success("Dados recuperados com sucesso!");
     }
   }, [parsedData, setValue]);

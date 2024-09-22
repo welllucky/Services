@@ -75,6 +75,7 @@ const LoginPage = () => {
               type="email"
               placeholder="Digite o seu email"
               $status={
+                // eslint-disable-next-line no-nested-ternary
                 errors.email
                   ? "invalid"
                   : emailWatcher.length
@@ -103,6 +104,7 @@ const LoginPage = () => {
               }}
               height="58px"
               $status={
+                // eslint-disable-next-line no-nested-ternary
                 errors.password
                   ? "invalid"
                   : passwordWatcher.length
@@ -120,6 +122,7 @@ const LoginPage = () => {
           <CustomButton
             $backgroundColor="#EA374D"
             color="#fff"
+            // eslint-disable-next-line no-alert
             onClick={() => alert("Logado!")}
             type="submit"
             text="Entrar"

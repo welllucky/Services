@@ -10,7 +10,6 @@ import { PageContainer } from "@/styles";
 import { TicketDto } from "@/types";
 import { dataFormatter } from "@/utils";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { DefaultTheme } from "styled-components";
 import { ButtonWrapper } from "../styles";
 
 type IssuesPageUIProps = {

@@ -4,15 +4,13 @@ import { defineConfig, devices } from "@playwright/test";
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
 require("dotenv").config();
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  // Glob patterns or regular expressions that match test files.
-  testMatch: "**/?(*.)+(e2e|integration).[tj]s?(x)",
 
   // Folder for test artifacts such as screenshots, videos, traces, etc.
   outputDir: "./tests/playwright/output/",
@@ -20,7 +18,8 @@ export default defineConfig({
   // path to the global setup files.
   // globalSetup: require.resolve('./global-setup'),
 
-  testDir: "./tests/",
+  testDir: "./tests/e2e/",
+  testMatch: "**/?(*.)+(e2e|integration).[tj]s?(x)",
 
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -150,15 +149,15 @@ export default defineConfig({
     },
     {
       name: "Iphone High level",
-      use: {...devices["iPhone XR"] }
+      use: { ...devices["iPhone XR"] },
       // dependencies: ["setup"],
-    }
+    },
   ],
 
   /* Run your local dev server before starting the tests */
   webServer: {
     command: "yarn dev",
-    url: process.env.BASE_URL || "http://localhost:3000",
+    url: process.env.BASE_URL ?? "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
     timeout: 5000,
     // reuseExistingServer: true

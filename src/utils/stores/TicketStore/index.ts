@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { createStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-interface TicketProps extends TicketDto {}
+type TicketProps = TicketDto
 
 interface TicketState extends TicketProps {
   initialize: () => void;
