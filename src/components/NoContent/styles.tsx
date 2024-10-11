@@ -19,7 +19,7 @@ export const NoContentTitle = styled.h1<NoContentProps>`
   font-size: ${({ fontSize }) => fontSize || "1.5rem"};
   font-weight: 600;
   letter-spacing: -0.005em;
-  line-height: 108%;
+  line-height: 140%;
   text-align: center;
   word-wrap: break-word;
   color: ${({ color }) => color ?? "#494949"};

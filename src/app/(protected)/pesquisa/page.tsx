@@ -5,6 +5,6 @@ export const metadata: Metadata = {
   title: "Pesquisa",
 };
 
-const Search = () => <SearchPage searchResults={[]} />;
+const Search = () => <SearchPage />;
 
 export default Search;

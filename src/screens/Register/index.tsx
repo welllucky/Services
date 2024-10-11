@@ -19,7 +19,7 @@
 
 // interface UserRegisterProps {
 // 	matricula: string;
-// 	nome: string;
+// 	name: string;
 // 	funcao: string;
 // 	email: string;
 // 	senha: string;
@@ -29,13 +29,13 @@
 // }
 
 // export const UserRegister = () => {
-// 	const [cargos, setCargos] = useState<{ nome: string }[]>([]);
+// 	const [cargos, setCargos] = useState<{ name: string }[]>([]);
 // 	const [isLoading, setIsLoading] = useState(false);
 // 	const [responseMessage, setResponseMessage] = useState("");
 
 // 	const [formState, setFormState] = useState<UserRegisterProps>({
 // 		matricula: "",
-// 		nome: "",
+// 		name: "",
 // 		funcao: "",
 // 		email: "",
 // 		senha: "",
@@ -71,7 +71,7 @@
 // 		formFilialIdFilial: number
 // 	) {
 // 		const matricula = formMatricula;
-// 		const nome = formNome;
+// 		const name = formNome;
 // 		const funcao = formFuncao;
 // 		const email = formEmail;
 // 		const senha = formSenha;
@@ -84,7 +84,7 @@
 // 	// 	api
 // 	// 		.post("/CadastrarUsuario/", {
 // 	// 			matricula,
-// 	// 			nome,
+// 	// 			name,
 // 	// 			funcao,
 // 	// 			email,
 // 	// 			senha,
@@ -156,21 +156,21 @@
 // 						legendText="Nome"
 // 						maxLength={80}
 // 						inputType="text"
-// 						value={formState.nome}
+// 						value={formState.name}
 // 						onChange={(e) => {
 // 							setFormState({
 // 								...formState,
-// 								nome: e.target?.value,
+// 								name: e.target?.value,
 // 							});
 // 						}}
 // 						placeholder="Ex: João de Barros"
 // 						border="1px solid #49454f"
 // 						width="auto"
 // 						hasImage
-// 						source={formState.nome.length === 0 ? ClearDisabledIcon : ClearIcon}
+// 						source={formState.name.length === 0 ? ClearDisabledIcon : ClearIcon}
 // 						imgDescription="icone de limpar"
 // 						onClickImage={() => {
-// 							setFormState({ ...formState, nome: "" });
+// 							setFormState({ ...formState, name: "" });
 // 						}}
 // 					/>
 // 					<TitleInputArea>Qual sua filial?</TitleInputArea>
@@ -250,9 +250,9 @@
 // 						</option>
 // 						{cargos?.map((cargo) => (
 // 							<option
-// 								key={cargo.nome}
-// 								value={cargo.nome}>
-// 								{cargo.nome}
+// 								key={cargo.name}
+// 								value={cargo.name}>
+// 								{cargo.name}
 // 							</option>
 // 						))}
 // 					</SelectOption>
@@ -316,7 +316,7 @@
 // 						onClick={() => {
 // 							PostRegister(
 // 								Number(formState.matricula),
-// 								formState.nome,
+// 								formState.name,
 // 								formState.funcao,
 // 								formState.email,
 // 								formState.senha,
