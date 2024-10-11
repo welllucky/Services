@@ -1,9 +1,9 @@
 import { Header, Loading, NoContent } from "@/components";
 import { TicketCard } from "@/components/TicketCard";
+import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { dataFormatter, ticketApi } from "@/utils";
 import { DefaultTheme } from "styled-components";
-import { MainContainer } from "../../Search/styles";
 
 type TicketsPageUIProps = {
   theme: DefaultTheme;
@@ -37,7 +37,7 @@ export const TicketsPageUI = async ({ theme }: TicketsPageUIProps) => {
                 $borderColor="#61A12F"
                 key={ticket.id}
                 id={ticket.id}
-                nome={ticket.resume}
+                name={ticket.resume}
                 date={dataFormatter(ticket.date ?? "")}
                 $status={ticket.status}
                 isUpdated

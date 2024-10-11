@@ -8,6 +8,7 @@ class TicketRepository {
     return Ticket.findAll({
       where: {
         createdBy: userId,
+        ...(filters?.status && { status: filters.status }),
       },
     });
   }
@@ -53,13 +54,9 @@ class TicketRepository {
   }
 
   static async findInProgressTickets(userId: string) {
-    try {
-      return Ticket.findAll({
-        where: { createdBy: userId, status: { [Op.not]: "closed" } },
-      });
-    } catch {
-      return null;
-    }
+    return Ticket.findAll({
+      where: { createdBy: userId, status: { [Op.not]: "closed" } },
+    });
   }
 }
 

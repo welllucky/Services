@@ -1,12 +1,12 @@
 import { Header, Loading, NoContent } from "@/components";
 import { AddNewIssueButton } from "@/components/common/Buttons";
 import { TicketCard } from "@/components/TicketCard";
+import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { TicketDto } from "@/types";
 import { SS_KEY_USER_PREVIOUS_PAGE, dataFormatter } from "@/utils";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { DefaultTheme } from "styled-components";
-import { MainContainer } from "../../Search/styles";
 import { ButtonWrapper } from "../styles";
 
 type HomePageUIProps = {
@@ -44,7 +44,7 @@ export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
               <TicketCard
                 key={issue?.id}
                 id={String(issue?.id)}
-                nome={issue?.description}
+                name={issue?.description}
                 date={dataFormatter(issue.date)}
                 $status={issue.status}
                 isUpdated={false}

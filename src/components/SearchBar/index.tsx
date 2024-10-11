@@ -1,7 +1,7 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
 import { SearchIcon } from "@/assets";
+import { ChangeEvent, useState } from "react";
 import { StyledSearchBar, StyledSearchBarContainer } from "./styles";
 
 interface SearchBarProps {
@@ -23,9 +23,10 @@ const SearchBar = ({ getInputValue }: SearchBarProps) => {
         width="1.4rem"
       />
       <StyledSearchBar
-        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          setSearch(event.target.value)
-        }
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
+          setSearch(event.target?.value);
+          getInputValue(event.target?.value);
+        }}
         value={search}
         type="text"
         placeholder="Pesquise o nome ou id do chamado "

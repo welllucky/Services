@@ -10,7 +10,7 @@ import { Description, Id, Info, Signal } from "./subComponents";
 
 export type TicketCardProps = {
   id: string;
-  nome: string;
+  name: string;
   date: string;
   $status: IssueStatus;
   isUpdated?: boolean;
@@ -22,7 +22,7 @@ export type TicketCardProps = {
 
 const TicketCard = ({
   id,
-  nome,
+  name,
   date,
   $status,
   isUpdated,
@@ -43,7 +43,7 @@ const TicketCard = ({
         {...buildTestIds("issue-content")}
         $hasUpdate={isUpdated}>
         <Id id={id} />
-        <Description description={nome} />
+        <Description description={name} />
       </TicketContent>
       <TicketState {...buildTestIds("issue-state")}>
         <Info

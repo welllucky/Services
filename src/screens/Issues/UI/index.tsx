@@ -5,7 +5,7 @@ import {
   NoContent,
   TicketCard,
 } from "@/components";
-import { MainContainer } from "@/screens/Search/styles";
+import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { TicketDto } from "@/types";
 import { dataFormatter } from "@/utils";
@@ -49,7 +49,7 @@ export const IssuesPageUI = ({
               <TicketCard
                 key={issue?.id}
                 id={String(issue?.id)}
-                nome={issue?.description}
+                name={issue?.description}
                 date={dataFormatter(issue.date)}
                 $status={issue.status}
                 isUpdated={false}

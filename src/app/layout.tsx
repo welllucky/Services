@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable @next/next/no-page-custom-font */
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -34,18 +35,14 @@ const RootLayout = ({
 }>) => (
   <html lang="pt-br">
     <head>
-      {(process.env.NODE_ENV === "development" ||
-        process.env.VERCEL_ENV === "preview" ||
-        process.env.HOST_ENV !== "local") && (
-        // eslint-disable-next-line @next/next/no-sync-scripts
-        <script
-          data-project-id="WfTqP43E0gdOt1orJkAjWq1d92P8Fo0Yn3iMHQtz"
-          data-is-production-environment={
-            process.env.NODE_ENV === "production" ? "true" : "false"
-          }
-          src="https://snippet.meticulous.ai/v1/meticulous.js"
-        />
-      )}
+      <script
+        data-project-id="WfTqP43E0gdOt1orJkAjWq1d92P8Fo0Yn3iMHQtz"
+        data-is-production-environment={
+          process.env.NODE_ENV === "production" ||
+          process.env.VERCEL_ENV === "production"
+        }
+        src="https://snippet.meticulous.ai/v1/meticulous.js"
+      />
       <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
