@@ -5,12 +5,22 @@ export const Row = styled.section<{
   $gap?: string;
   width?: string;
   height?: string;
+  $justifyContent?:
+    | "start"
+    | "center"
+    | "end"
+    | "space-around"
+    | "space-between"
+    | "space-evelyn";
+  $alignItems?: "start" | "center" | "end";
 }>`
   width: ${({ width }) => width || "100%"};
   height: ${({ height }) => height || "fit-content"};
   display: flex;
   flex-direction: row;
   gap: ${({ $gap }) => $gap};
+  justify-content: ${({ $justifyContent }) => $justifyContent};
+  align-items: ${({ $alignItems }) => $alignItems};
 
   ${({ $isSmallClientMobile }) =>
     $isSmallClientMobile &&
@@ -52,19 +62,17 @@ export const PageContainer = styled.main`
 
 export const TitleComponent = styled.h1<{ $isSmallClientMobile?: boolean }>`
   font-style: normal;
-  font-weight: 500;
-  font-size: 1.4rem;
-  line-height: 1.5rem;
+  font-weight:600;
+  font-size: 1rem;
   display: flex;
   align-items: center;
-  letter-spacing: 2px;
+  letter-spacing: 1.2px;
   color: ${({ theme }) => theme.colors.primary.default};
 
   ${({ $isSmallClientMobile }) =>
     $isSmallClientMobile &&
     css`
-      font-size: 1.2rem;
-      line-height: 1.5rem;
+      font-size: .8rem;
       margin-top: 4rem;
       text-align: center;
     `}

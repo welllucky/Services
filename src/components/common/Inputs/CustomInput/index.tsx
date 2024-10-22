@@ -3,14 +3,8 @@
 import { ErrorText, WarningText } from "@/components/SupportText";
 import { InputComponentsProps } from "@/types";
 import { StaticImageData } from "next/image";
-import { ChangeEvent } from "react";
-import { Icon } from "../..";
-import {
-  ContentContainer,
-  InputComponent,
-  InputContainer,
-  Label,
-} from "./styles";
+import { ChangeEvent, ReactNode } from "react";
+import { ContentContainer, InputComponent, InputContainer, Label } from "./styles";
 
 export interface InputStylesProps {
   $backgroundColor?: string;
@@ -26,7 +20,7 @@ export interface InputStylesProps {
 
 export interface ActionButton {
   onClick?: () => void;
-  icon?: StaticImageData;
+  icon?: ReactNode;
   secondIcon?: StaticImageData;
   size?: number;
   color?: string;
@@ -38,8 +32,8 @@ interface InputProps extends InputComponentsProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   // eslint-disable-next-line no-unused-vars
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void;
-  trailingButton?: ActionButton;
-  leadingButton?: ActionButton;
+  trailingButton?: ReactNode;
+  leadingButton?: ReactNode;
   type?:
     | "text"
     | "password"
@@ -77,15 +71,7 @@ const CustomInput = ({
       mode={mode}
       $status={$status}
       height={height}>
-      {leadingButton && (
-        <Icon
-          src={leadingButton?.icon}
-          alt={leadingButton?.alt}
-          onClick={leadingButton?.onClick}
-          size={leadingButton?.size}
-          $hasPadding
-        />
-      )}
+      {leadingButton}
 
       <InputComponent
         {...register(id, { ...registerOptions })}
@@ -93,15 +79,7 @@ const CustomInput = ({
         type={type}
         value={value}
       />
-      {trailingButton && (
-        <Icon
-          src={trailingButton?.icon}
-          alt={trailingButton?.alt}
-          onClick={trailingButton?.onClick}
-          $hasPadding
-          // alternate={trailingButton?.secondIcon}
-        />
-      )}
+      {trailingButton}
     </ContentContainer>
     {$status === "invalid" && <ErrorText>{errorText}</ErrorText>}
     {$status === "warning" && <WarningText>{warnText}</WarningText>}

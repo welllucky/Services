@@ -1,19 +1,17 @@
-import Image, { StaticImageData } from "next/image";
 import { buildTestIds } from "@/utils/functions";
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 import { ButtonComponent, ButtonContainer } from "./styles";
 
 export interface CustomButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
+  textSize?: string | number;
   color?: string;
   $backgroundColor?: string;
   $borderColor?: string;
   onClick?: () => void;
   disabled?: boolean;
-  icon?: StaticImageData;
-  iconSize?: number;
-  alt?: string;
+  icon?: ReactNode;
   width?: string | number;
   height?: string | number;
   mode?: "filled" | "outlined";
@@ -28,8 +26,6 @@ export interface CustomButtonProps
  *@param onClick - Funcao de click
  *@param disabled - Desabilita o botão
  *@param icon - ícone do botão
- *@param iconSize - Tamanho do ícone
- *@param alt - Texto alternativo do ícone
  *@param width - Largura do botão
  *@param height - Altura do botão
  *@param mode - Modo do botão
@@ -43,8 +39,6 @@ export const CustomButton = ({
   disabled = false,
   onClick,
   icon,
-  iconSize = 20,
-  alt,
   width,
   height,
   mode = "filled",
@@ -59,23 +53,16 @@ export const CustomButton = ({
     height={height}
     mode={mode}
     {...props}>
+    {icon}
     <ButtonComponent
       {...buildTestIds(`button-component-${text}`)}
-      form=""
+      form={props.form}
       type={props.type ?? "button"}
       onClick={onClick}
       disabled={disabled}
       color={color}
       {...props}>
-      {icon && (
-      <Image
-        src={icon}
-        alt={alt as string}
-        width={iconSize}
-        height={iconSize}
-          />
-        )}
       {text}
     </ButtonComponent>
   </ButtonContainer>
-  );
+);

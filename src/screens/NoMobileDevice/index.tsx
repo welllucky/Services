@@ -1,8 +1,9 @@
 "use client";
 
-import { TextTheme } from "@/types";
 import Logo from "public/Icon.png";
+
 import qrCode from "public/qr-code.png";
+import { useMemo } from "react";
 import {
   NoMobileContainer,
   NoMobileContent,
@@ -13,9 +14,13 @@ import {
   QRCodeImage,
   QRCodeText,
 } from "./styles";
+import { getTextTheme } from "./themeTitle";
 
-const NoMobileDevicePage = ({ theme }: { theme: TextTheme }) => {
-  const { title, text } = theme;
+const NoMobileDevicePage = () => {
+  const theme = useMemo(() => getTextTheme(), []);
+
+  const { text, title } = theme;
+
   return (
     <NoMobileContainer>
       <NoMobileLogo

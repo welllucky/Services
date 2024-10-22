@@ -1,14 +1,27 @@
 "use client";
 
 import { NavigationBar } from "@/components";
-import navigationOptions from "@/components/NavBar/data";
+import { getNavigationOptions } from "@/components/NavBar/data";
 import { FlexContainer } from "@/components/PageStruct/style";
-import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
+import { useSession } from "next-auth/react";
+import { redirect, usePathname } from "next/navigation";
+import { ReactNode, useMemo } from "react";
 
 const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
+  const { data, status } = useSession();
+
+  if (status === "unauthenticated") {
+    redirect("/login");
+  }
+
   const pathName = usePathname();
+  const user = useMemo(() => data?.user, [data?.user]);
   const isRequestsPage = pathName === "/solicitacoes";
+
+  const navigationOptions = getNavigationOptions(
+    user?.canResolveTicket,
+    user?.canCreateTicket,
+  );
 
   return (
     <FlexContainer

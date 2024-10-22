@@ -9,4 +9,10 @@ dbOptions.dialectModule = require("sqlite3");
 
 const sequelize = new Sequelize(dbOptions);
 
+const initORM = async () => {
+  await sequelize.sync({ alter: true });
+};
+
+initORM();
+
 export default sequelize;

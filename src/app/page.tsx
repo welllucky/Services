@@ -1,13 +1,16 @@
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
-const EntryPoint = () => {
-	async function leadUser() {
-		"use server";
+const EntryPoint = async () => {
+  const session = await auth();
 
-		redirect("/home");
-	}
+  async function leadUser(isAuthenticated: boolean) {
+    "use server";
 
-	return leadUser();
+    redirect(isAuthenticated ? "/home" : "/login");
+  }
+
+  return leadUser(Boolean(session?.user));
 };
 
 export default EntryPoint;

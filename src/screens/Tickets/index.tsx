@@ -3,7 +3,7 @@
 import { useTheme } from "styled-components";
 import { TicketsPageUI } from "./UI";
 
-const TicketsPage = () => {
+const TicketsPage = async () => {
   const theme = useTheme();
 
   return <TicketsPageUI theme={theme} />;

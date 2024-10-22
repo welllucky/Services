@@ -34,7 +34,7 @@ const TicketPage = ({ id }: TicketPageProps) => {
   }, []);
 
   if (isLoading) {
-    return <Loading overlayOn />;
+    return <Loading $overlayOn />;
   }
 
   return (
