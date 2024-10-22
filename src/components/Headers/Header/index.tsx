@@ -1,33 +1,36 @@
-import { useMemo } from "react";
-import Image from "next/image";
 import { IconButton } from "@/components";
-import addButtonAlt from "@/assets/Images/AddButtonAlt.png";
 import { Row, SubTitleComponent, TitleComponent } from "@/styles";
 import {
   buildTestIds,
   getGreetingMessage,
   SS_KEY_USER_PREVIOUS_PAGE,
 } from "@/utils";
+import { PlusSquare, SignOut } from "@phosphor-icons/react";
+import { signOut } from "next-auth/react";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import Logo from "public/Icon.png";
+import { useMemo } from "react";
 import {
-  UserName,
-  PageTitle,
-  HeaderHome,
   FirstSection,
+  HeaderHome,
+  PageTitle,
   SecondSection,
+  UserName,
 } from "./styles";
 
 export type HeaderMobileProps = {
   userName?: string;
   pageTittle?: string;
   issueQuantify?: number;
+  canCreateTicket?: boolean;
 };
 
 export const Header = ({
   userName,
   pageTittle,
   issueQuantify,
+  canCreateTicket,
 }: HeaderMobileProps) => {
   const { push } = useRouter();
   const actualPage = usePathname();
@@ -51,12 +54,26 @@ export const Header = ({
             src={Logo}
           />
         </Row>
-        <Row $isSmallClientMobile={false}>
+        <Row
+          $isSmallClientMobile={false}
+          $justifyContent="space-between"
+          $alignItems="center">
           <UserName $isSmallClientMobile={false}>
             <TitleComponent $isSmallClientMobile={false}>
-              {greetingMessage}, {userName}!
+              {`${greetingMessage},`}
+            </TitleComponent>
+            <TitleComponent $isSmallClientMobile={false}>
+              {userName ?? "Colaborador"}!
             </TitleComponent>
           </UserName>
+          <IconButton
+            onClick={() =>
+              signOut({
+                redirectTo: "/login",
+              })
+            }
+            icon={<SignOut size={24} />}
+          />
         </Row>
       </FirstSection>
       {pageTittle && (
@@ -65,13 +82,13 @@ export const Header = ({
             <SubTitleComponent $isSmallClientMobile={false}>
               {pageTittle}
             </SubTitleComponent>
-            {issueQuantify && issueQuantify > 4 ? (
+            {canCreateTicket && issueQuantify && issueQuantify > 4 ? (
               <IconButton
                 onClick={() => {
                   sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, actualPage);
                   push("/abrir-chamado");
                 }}
-                icon={addButtonAlt}
+                icon={<PlusSquare />}
               />
             ) : null}
           </PageTitle>

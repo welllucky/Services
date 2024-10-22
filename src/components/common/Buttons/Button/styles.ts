@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components";
 import { CustomButtonProps } from ".";
 
+interface ButtonComponentProps {
+  textSize?: string | number;
+  color?: string;
+}
+
 export const ButtonContainer = styled.div<CustomButtonProps>`
   display: flex;
   justify-content: center;
@@ -38,15 +43,16 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
     `};
 `;
 
-export const ButtonComponent = styled.button<{ color?: string }>`
+export const ButtonComponent = styled.button<ButtonComponentProps>`
   background-color: transparent;
-  color: ${({ color, theme }) => color || theme.colors.neutral.white};
+  color: ${({ color, theme }) => color ?? theme.colors.neutral.white};
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
+  font-size: ${({ textSize }) => textSize ?? "1rem"};
   font-weight: 600;
 
   &:disabled {

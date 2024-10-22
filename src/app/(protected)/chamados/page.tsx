@@ -1,10 +1,18 @@
-import { MyIssuesPage } from "@/screens/";
+import { auth } from "@/auth";
+import { MyIssuesPage, NoMobileDevicePage } from "@/screens/";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Meus chamados",
 };
 
-const Issues = () => <MyIssuesPage />;
+const MyIssues = async () => {
+  const session = await auth();
+  if (!session?.user.canCreateTicket) {
+    return <NoMobileDevicePage />;
+  }
 
-export default Issues;
+  return <MyIssuesPage />;
+};
+
+export default MyIssues;

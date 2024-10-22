@@ -1,4 +1,3 @@
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { MouseEventHandler, ReactNode } from "react";
 
 type IconProps = {
@@ -6,6 +5,8 @@ type IconProps = {
   height?: string | number;
   size?: string | number;
   color?: string;
+  alt?: string;
+  onClick?: () => void;
 };
 
 type OptionMenuStyleProps = {
@@ -21,14 +22,14 @@ type OptionMenuProps = {
   icon: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   $isSelected?: boolean;
+  $isVisibled?: boolean;
   color?: string;
   $highlightTextColor?: string;
 };
 
 type IconButtonProps = {
   path?: string;
-  alt?: string;
-  icon: string | StaticImport;
+  icon: ReactNode;
   color?: string;
   width?: string;
   height?: string;

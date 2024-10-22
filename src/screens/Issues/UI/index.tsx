@@ -8,8 +8,10 @@ import {
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { TicketDto } from "@/types";
-import { dataFormatter } from "@/utils";
+import { dataFormatter, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
+import { useSession } from "next-auth/react";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useMemo } from "react";
 import { ButtonWrapper } from "../styles";
 
 type IssuesPageUIProps = {
@@ -24,8 +26,12 @@ export const IssuesPageUI = ({
   router,
 }: IssuesPageUIProps) => {
   const dataLength = data?.length ?? 0;
-  const { push } = router;
 
+  const { data: session } = useSession();
+
+  const user = useMemo(() => session?.user, [session?.user]);
+
+  const { push } = router;
   if (isLoading) {
     return <Loading fullScreen />;
   }
@@ -33,9 +39,10 @@ export const IssuesPageUI = ({
   return (
     <>
       <Header
-        userName="Colaborador"
+        userName={user?.name ?? ""}
         pageTittle="Meus chamados"
         issueQuantify={dataLength}
+        canCreateTicket={user?.canCreateTicket}
       />
       <PageContainer>
         <MainContainer $hasContent={dataLength !== 0}>
@@ -59,10 +66,13 @@ export const IssuesPageUI = ({
           )}
         </MainContainer>
         <ButtonWrapper>
-          {dataLength < 5 ? (
+          {user?.canCreateTicket && dataLength < 5 ? (
             <AddNewIssueButton
-              onClick={() => push("/abrir-chamado")}
               $styles={{ hasShadow: true }}
+              onClick={() => {
+                sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, "home");
+                push("/abrir-chamado");
+              }}
             />
           ) : null}
         </ButtonWrapper>

@@ -55,11 +55,25 @@ User.init(
       defaultValue: false,
     },
 
-    createdAt: { type: DataTypes.DATE, allowNull: false, defaultValue: new Date() },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date(),
+    },
 
-    updatedAt: { type: DataTypes.DATE, allowNull: false, defaultValue: new Date() },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: new Date(),
+    },
 
     deletedAt: { type: DataTypes.DATE, allowNull: true },
+    sessionId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    },
   },
   {
     tableName: "Users",

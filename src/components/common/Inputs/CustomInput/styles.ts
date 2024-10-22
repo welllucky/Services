@@ -13,7 +13,6 @@ interface ContentContainerProps {
 export const InputContainer = styled.div<InputStylesProps>`
   width: ${({ width }) => width ?? "100%"};
   height: fit-content;
-  margin-top: 0.3rem;
 `;
 
 export const ContentContainer = styled(Row)<ContentContainerProps>`
@@ -22,12 +21,14 @@ export const ContentContainer = styled(Row)<ContentContainerProps>`
   align-items: center;
   height: ${({ height }) => height ?? "100%"};
   background-color: ${({ backgroundColor }) => backgroundColor};
+  padding: 0.5rem 1rem;
+  gap: 0.8rem;
 
   ${({ mode }) =>
     mode === "filled" &&
     css`
       border-radius: 4px 4px 0px 0px;
-      margin: 0.5rem 0rem 0.1rem 0rem;
+      /* margin: 0.5rem 0rem 0.1rem 0rem; */
     `}
 
   ${({ mode, $status }) =>
@@ -81,7 +82,7 @@ export const InputComponent = styled.input`
   color: #1c1b1f;
   font-weight: 400;
   outline: none;
-  padding: 1rem;
+  /* padding: 1rem; */
   background-color: transparent;
   ${({ type }) =>
     type === "date" &&

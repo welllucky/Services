@@ -10,8 +10,9 @@ export const HeaderHome = styled.div`
 
 export const UserName = styled.div<{ $isSmallClientMobile?: boolean }>`
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  align-items: start;
+  gap: 0.4rem;
+  flex-direction: column;
 
   ${({ $isSmallClientMobile }) => $isSmallClientMobile
     && css`

@@ -5,7 +5,9 @@ import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { TicketDto } from "@/types";
 import { SS_KEY_USER_PREVIOUS_PAGE, dataFormatter } from "@/utils";
+import { useSession } from "next-auth/react";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useMemo } from "react";
 import { DefaultTheme } from "styled-components";
 import { ButtonWrapper } from "../styles";
 
@@ -20,6 +22,10 @@ type HomePageUIProps = {
 export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
   const dataLength = data?.length ?? 0;
 
+  const { data: session } = useSession();
+
+  const user = useMemo(() => session?.user, [session?.user]);
+
   const { push } = router;
   if (isLoading) {
     return <Loading fullScreen />;
@@ -28,9 +34,10 @@ export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
   return (
     <>
       <Header
-        userName="Colaborador"
+        userName={user?.name ?? ""}
         pageTittle="Meus chamados"
         issueQuantify={dataLength}
+        canCreateTicket={user?.canCreateTicket}
       />
       <PageContainer>
         <MainContainer $hasContent={dataLength !== 0}>
@@ -54,7 +61,7 @@ export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
           )}
         </MainContainer>
         <ButtonWrapper>
-          {dataLength < 5 ? (
+          {user?.canCreateTicket && dataLength < 5 ? (
             <AddNewIssueButton
               $styles={{ hasShadow: true }}
               onClick={() => {

@@ -28,7 +28,7 @@ const IssuePage = ({ id }: IssuePageProps) => {
   const router = useRouter();
 
   if (isLoading) {
-    return <Loading overlayOn />;
+    return <Loading $overlayOn />;
   }
 
   return (

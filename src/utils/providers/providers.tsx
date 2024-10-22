@@ -1,6 +1,7 @@
 "use client";
 
 import { GlobalStyle, theme } from "@/styles";
+import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
@@ -13,21 +14,22 @@ export const AppProviders = ({ children }: { children: ReactNode }) => (
   <SWRConfig>
     <CookiesProvider
       defaultSetOptions={{
-          path: "/",
-          sameSite: true,
-          secure: true,
-          domain: process.env.NEXT_PUBLIC_BASE_URL,
-          expires: new Date(Date.now() + 60 * 60 * 24 * 15),
-          partitioned: false,
-        }}>
+        path: "/",
+        sameSite: true,
+        secure: true,
+        domain: process.env.NEXT_PUBLIC_BASE_URL,
+        expires: new Date(Date.now() + 60 * 60 * 24 * 15),
+        partitioned: false,
+      }}>
       <StyledComponentsRegistry>
         <ThemeProvider theme={theme}>
-          <AppProvider>
-            <GlobalStyle />
-            {children}
-            <Toaster
-              position="top-center"
-              toastOptions={{
+          <SessionProvider>
+            <AppProvider>
+              <GlobalStyle />
+              {children}
+              <Toaster
+                position="top-center"
+                toastOptions={{
                   ariaProps: {
                     role: "status",
                     "aria-live": "polite",
@@ -36,9 +38,10 @@ export const AppProviders = ({ children }: { children: ReactNode }) => (
                   position: "top-center",
                 }}
               />
-          </AppProvider>
+            </AppProvider>
+          </SessionProvider>
         </ThemeProvider>
       </StyledComponentsRegistry>
     </CookiesProvider>
   </SWRConfig>
-  );
+);

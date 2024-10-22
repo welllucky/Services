@@ -28,7 +28,7 @@ export const Content = ({
   return (
     <PageContainer>
       {isLoading && searchTerm ? (
-        <Loading overlayOn={false} />
+        <Loading $overlayOn={false} />
       ) : (
         <MainContainer $hasContent={hasContent}>
           <Results result={searchResults?.result} />

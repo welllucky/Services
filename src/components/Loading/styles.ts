@@ -87,11 +87,11 @@ export const Container = styled.div<{ color?: string; size?: string }>`
 `;
 
 export const LoadingContainer = styled.div<{
-  overlayOn?: boolean;
-  fullyScreen?: boolean;
+  $overlayOn?: boolean;
+  $fullyScreen?: boolean;
 }>`
-  ${({ overlayOn }) =>
-    overlayOn &&
+  ${({ $overlayOn }) =>
+    $overlayOn &&
     css`
       position: absolute;
       top: 0;
@@ -102,8 +102,8 @@ export const LoadingContainer = styled.div<{
       background-color: rgb(0, 0, 0, 50%);
     `}
 
-  ${({ fullyScreen, overlayOn }) =>
-    (fullyScreen || overlayOn) &&
+  ${({ $fullyScreen, $overlayOn }) =>
+    ($fullyScreen || $overlayOn) &&
     css`
       display: flex;
       justify-content: center;

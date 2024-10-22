@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: "",
   webpack: (config) => {
+    // eslint-disable-next-line no-param-reassign
+    config.resolve.fallback = { fs: false };
+
     // eslint-disable-next-line no-param-reassign
     config.ignoreWarnings = [
       {

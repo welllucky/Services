@@ -1,5 +1,5 @@
 import { Ticket } from "@/server/models";
-import { IOpenTicketForm, ITicket, TicketFilters } from "@/types";
+import { IOpenTicketForm, ITicket, TicketFilters } from "@/types/Interfaces";
 import { Op } from "sequelize";
 
 class TicketRepository {

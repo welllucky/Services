@@ -1,27 +1,18 @@
 "use client";
 
-import { cookie, ticketApi } from "@/utils";
+import { ticketApi } from "@/utils";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { useTheme } from "styled-components";
-import { HomePageUI } from "./UI";
+import { IssuesPageUI } from "../Issues/UI";
 
 const Homepage = () => {
-  const theme = useTheme();
   const router = useRouter();
   const { data, isLoading } = ticketApi.getInProgressTickets();
-  const token = cookie.get("token");
-
-  useEffect(() => {
-    if (!token) cookie.set("token", "2");
-  });
 
   return (
-    <HomePageUI
+    <IssuesPageUI
       data={data}
       isLoading={isLoading}
       router={router}
-      theme={theme}
     />
   );
 };

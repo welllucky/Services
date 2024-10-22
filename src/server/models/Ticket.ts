@@ -60,7 +60,7 @@ Ticket.init(
       allowNull: true,
       references: {
         model: "users",
-        key: "id",
+        key: "register",
       },
       onUpdate: "CASCADE",
       onDelete: "NO ACTION",
@@ -100,7 +100,7 @@ Ticket.init(
       allowNull: false,
       references: {
         model: "users",
-        key: "id",
+        key: "register",
       },
       onUpdate: "CASCADE",
       onDelete: "NO ACTION",
@@ -110,7 +110,7 @@ Ticket.init(
       allowNull: false,
       references: {
         model: "users",
-        key: "id",
+        key: "register",
       },
       onUpdate: "CASCADE",
       onDelete: "NO ACTION",
@@ -119,7 +119,7 @@ Ticket.init(
       type: DataTypes.INTEGER,
       references: {
         model: "users",
-        key: "id",
+        key: "register",
       },
       onUpdate: "CASCADE",
       onDelete: "NO ACTION",
