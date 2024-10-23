@@ -2,7 +2,7 @@ export * from "./Auth";
 export * from "./Event";
 export * from "./HttpResponse";
 export * from "./Issue";
-export * from "./OpenTicketForm";
+export * from "./OpenIssueForm";
 export * from "./ORMData";
 export * from "./Session";
 export * from "./Ticket";

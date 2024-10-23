@@ -1,29 +1,29 @@
 /* eslint-disable no-param-reassign */
-import { TicketDto } from "@/types";
+import { IssueDto } from "@/types";
 import toast from "react-hot-toast";
 import { createStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-type TicketProps = TicketDto
+type IssueProps = IssueDto
 
-interface TicketState extends TicketProps {
+interface IssueState extends IssueProps {
   initialize: () => void;
   block: () => void;
   reOpen: () => void;
   close: () => void;
   // eslint-disable-next-line no-unused-vars
-  update: (data: Partial<TicketProps>) => void;
+  update: (data: Partial<IssueProps>) => void;
 }
 
 /**
  * Creates and initializes a ticket store with optional initial properties.
  // eslint-disable-next-line
- * @param {Partial<TicketProps>} initProps - Optional initial properties to merge with default ticket properties.
+ * @param {Partial<IssueProps>} initProps - Optional initial properties to merge with default ticket properties.
  // eslint-disable-next-line
- * @returns {TicketStore} An instance of the TicketStore, initialized with provided initial properties or defaults.
+ * @returns {IssueStore} An instance of the IssueStore, initialized with provided initial properties or defaults.
  */
-const createTicketStore = (initProps?: Partial<TicketProps>) => {
-  const DEFAULT_PROPS: TicketProps = {
+const createIssueStore = (initProps?: Partial<IssueProps>) => {
+  const DEFAULT_PROPS: IssueProps = {
     description: "",
     id: "0",
     priority: "low",
@@ -41,7 +41,7 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
     // unity: "",
     date: "",
   };
-  return createStore<TicketState>()(
+  return createStore<IssueState>()(
     immer((set) => ({
       ...DEFAULT_PROPS,
       ...initProps,
@@ -152,6 +152,6 @@ const createTicketStore = (initProps?: Partial<TicketProps>) => {
   );
 };
 
-type TicketStore = ReturnType<typeof createTicketStore>;
+type IssueStore = ReturnType<typeof createIssueStore>;
 
-export { createTicketStore, type TicketStore };
+export { createIssueStore, type IssueStore };

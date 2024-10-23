@@ -1,8 +1,8 @@
-import { TicketController } from "@/server/controllers";
+import { IssueController } from "@/server/controllers";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
-  return TicketController.createTicket(req);
+  return IssueController.createIssue(req);
 }
 
 export const runtime = "nodejs";

@@ -7,7 +7,7 @@ export const FlexContainer = styled(Column)<{ $backgroundColor?: string }>`
   align-items: center;
   justify-content: space-between;
   padding: 8vw;
-  /* padding-top: 16px ; */
+  gap: 8px;
   overflow: hidden;
   padding-bottom: 82px;
   background-color: ${({ $backgroundColor }) => $backgroundColor || "#fff"};

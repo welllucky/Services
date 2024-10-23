@@ -2,15 +2,15 @@
 
 import { useMemo } from "react";
 
-export type ICreateTicketFlowPage = {
+export type ICreateIssueFlowPage = {
   page: string;
   title: string;
   hasBackButton?: boolean;
 };
 
-export const useCreateTicketFlow = (
+export const useCreateIssueFlow = (
   pathName: string,
-  pages: ICreateTicketFlowPage[],
+  pages: ICreateIssueFlowPage[],
 ) => {
   const actualPage = useMemo(
     () => pages.find((page) => page.page === pathName),
@@ -18,7 +18,7 @@ export const useCreateTicketFlow = (
   );
 
   const indexPageFinder = useMemo(
-    () => pages.indexOf(actualPage as unknown as ICreateTicketFlowPage),
+    () => pages.indexOf(actualPage as unknown as ICreateIssueFlowPage),
     [actualPage, pages],
   );
 

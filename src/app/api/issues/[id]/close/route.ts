@@ -5,11 +5,11 @@ type IssueParamProps = {
   id: string;
 };
 
-export async function GET(
+export async function POST(
   req: NextRequest,
   { params }: { params: IssueParamProps },
 ) {
-  return IssueController.getIssueById(req, params);
+  return IssueController.closeIssue(req, params);
 }
 
 export const runtime = "nodejs";

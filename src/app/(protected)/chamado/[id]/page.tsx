@@ -1,6 +1,6 @@
-import { TicketPage, TicketPageProps } from "@/screens";
+import { IssuePage, IssuePageProps } from "@/screens";
 
-const Ticket = async ({ params }: { params: TicketPageProps }) => (
-  <TicketPage id={params.id} />
+const Issue = async ({ params }: { params: IssuePageProps }) => (
+  <IssuePage id={params.id} />
 );
-export default Ticket;
+export default Issue;

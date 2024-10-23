@@ -1,40 +1,19 @@
 import { IconButton } from "@/components";
-import { Row, SubTitleComponent, TitleComponent } from "@/styles";
-import {
-  buildTestIds,
-  getGreetingMessage,
-  SS_KEY_USER_PREVIOUS_PAGE,
-} from "@/utils";
-import { PlusSquare, SignOut } from "@phosphor-icons/react";
-import { signOut } from "next-auth/react";
+import { Row, TitleComponent } from "@/styles";
+import { buildTestIds, getGreetingMessage } from "@/utils";
+import { SignOut as SignOutIcon } from "@phosphor-icons/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
 import Logo from "public/Icon.png";
 import { useMemo } from "react";
-import {
-  FirstSection,
-  HeaderHome,
-  PageTitle,
-  SecondSection,
-  UserName,
-} from "./styles";
+import { FirstSection, HeaderHome, UserName } from "./styles";
 
-export type HeaderMobileProps = {
-  userName?: string;
-  pageTittle?: string;
-  issueQuantify?: number;
-  canCreateTicket?: boolean;
-};
-
-export const Header = ({
-  userName,
-  pageTittle,
-  issueQuantify,
-  canCreateTicket,
-}: HeaderMobileProps) => {
-  const { push } = useRouter();
-  const actualPage = usePathname();
+export const Header = () => {
   const greetingMessage = useMemo(() => getGreetingMessage(), []);
+
+  const { data: session } = useSession();
+
+  const user = useMemo(() => session?.user, [session?.user]);
 
   return (
     <HeaderHome {...buildTestIds("header-home-container")}>
@@ -52,6 +31,7 @@ export const Header = ({
             height={48}
             alt="Services logo"
             src={Logo}
+            priority
           />
         </Row>
         <Row
@@ -63,7 +43,7 @@ export const Header = ({
               {`${greetingMessage},`}
             </TitleComponent>
             <TitleComponent $isSmallClientMobile={false}>
-              {userName ?? "Colaborador"}!
+              {user?.name ?? "Colaborador"}!
             </TitleComponent>
           </UserName>
           <IconButton
@@ -72,28 +52,10 @@ export const Header = ({
                 redirectTo: "/login",
               })
             }
-            icon={<SignOut size={24} />}
+            icon={<SignOutIcon size={24} />}
           />
         </Row>
       </FirstSection>
-      {pageTittle && (
-        <SecondSection>
-          <PageTitle $isSmallClientMobile={false}>
-            <SubTitleComponent $isSmallClientMobile={false}>
-              {pageTittle}
-            </SubTitleComponent>
-            {canCreateTicket && issueQuantify && issueQuantify > 4 ? (
-              <IconButton
-                onClick={() => {
-                  sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, actualPage);
-                  push("/abrir-chamado");
-                }}
-                icon={<PlusSquare />}
-              />
-            ) : null}
-          </PageTitle>
-        </SecondSection>
-      )}
     </HeaderHome>
   );
 };

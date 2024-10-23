@@ -3,7 +3,7 @@ export * from "./Issue";
 export * from "./Issues";
 export * from "./Login";
 export * from "./NoMobileDevice";
-export * from "./OpenTicket";
+export * from "./OpenIssue";
 export * from "./Search";
 export * from "./Ticket";
 export * from "./Tickets";

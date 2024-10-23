@@ -1,8 +1,8 @@
-import { TicketController } from "@/server/controllers";
+import { IssueController } from "@/server/controllers";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-  return TicketController.getInProgressTickets(req);
+  return IssueController.getInProgressIssues(req);
 }
 
 export const runtime = "nodejs";

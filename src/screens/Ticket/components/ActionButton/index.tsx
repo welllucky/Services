@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// import { issueApi, useIssue } from "@/utils";
+// import { issueApi, useTicket } from "@/utils";
 
 import { ActionButton } from "@/components/ActionButton";
 import { theme } from "@/styles";
@@ -9,7 +9,7 @@ import { UserActionContainer } from "./styles";
 
 type UserList = "resolver" | "creator" | "viewer";
 
-export interface IssueActionOptionsType {
+export interface TicketActionOptionsType {
   index: number;
   icon: ReactNode;
   title: string;
@@ -24,8 +24,8 @@ export interface ActionsStateType {
   shouldReopen?: boolean;
 }
 
-export const IssueActionButton = () => {
-  const IssueOptions = [
+export const TicketActionButton = () => {
+  const TicketOptions = [
     {
       index: 1,
       icon: (
@@ -56,16 +56,16 @@ export const IssueActionButton = () => {
         console.log("Finalizar");
       },
     },
-  ] satisfies IssueActionOptionsType[];
+  ] satisfies TicketActionOptionsType[];
 
   const status = "inProgress";
 
   return (
     <UserActionContainer>
       <ActionButton
-        isIssueOpen={status === "inProgress"}
-        canReopenIssue={status !== "inProgress"}
-        actionOptions={IssueOptions}
+        isOpen={status === "inProgress"}
+        canReopen={status !== "inProgress"}
+        actionOptions={TicketOptions}
         openAction={() => console.log("Open")}
         reopenAction={() => console.log("Reopen")}
       />

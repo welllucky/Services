@@ -1,6 +1,6 @@
 "use client";
 
-import { IOpenTicketForm } from "@/types";
+import { IOpenIssueForm } from "@/types";
 import { LS_KEY_1_TICKET_RECORD, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
 import { useEffect, useMemo } from "react";
 import { useFormContext } from "react-hook-form";
@@ -14,13 +14,13 @@ import {
   TypeSelect,
 } from "./components";
 
-export const OpenTicketPageUI = () => {
+export const OpenIssuePageUI = () => {
   const {
     register,
     setValue,
     getValues,
     formState: { errors, isValid, isValidating },
-  } = useFormContext<IOpenTicketForm>();
+  } = useFormContext<IOpenIssueForm>();
 
   const parsedData = useMemo(
     () => JSON.parse(localStorage.getItem(LS_KEY_1_TICKET_RECORD) ?? "{}"),

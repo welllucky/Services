@@ -1,28 +1,29 @@
 "use client";
 
 import { Loading } from "@/components";
+import { TicketDto } from "@/types";
 import { ticketApi, TicketProvider } from "@/utils";
 import { buildTestIds } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 import {
   FormDisplay,
   InfoHistoryPainel,
-  IssueActionButton,
-  IssuePageBackButton,
-  IssuePageTitle,
+  TicketActionButton,
+  TicketPageBackButton,
+  TicketPageTitle,
 } from "./components";
 import {
-  IssuePageContainer,
-  IssuePageContent,
-  IssuePageWrapper,
+  TicketPageContainer,
+  TicketPageContent,
+  TicketPageWrapper,
 } from "./styles";
 
-export interface IssuePageProps {
+export interface TicketPageProps {
   // data?: TicketDto;
   id: string;
 }
 
-const IssuePage = ({ id }: IssuePageProps) => {
+const TicketPage = ({ id }: TicketPageProps) => {
   const { data, isLoading } = ticketApi.getTicket(id);
 
   const router = useRouter();
@@ -32,25 +33,22 @@ const IssuePage = ({ id }: IssuePageProps) => {
   }
 
   return (
-    <TicketProvider data={data}>
-      <IssuePageContainer $full>
-        <IssuePageBackButton router={router} />
-        <IssuePageWrapper>
-          <IssuePageTitle text={`Solicitação n° ${data?.id}`} />
-          <IssuePageContent
+    <TicketProvider>
+      <TicketPageContainer $full>
+        <TicketPageBackButton router={router} />
+        <TicketPageWrapper>
+          <TicketPageTitle text={`Solicitação n° ${data?.id}`} />
+          <TicketPageContent
             {...buildTestIds("content-column")}
             height="100%">
-            <FormDisplay data={data} />
-            <InfoHistoryPainel
-              data={data?.historic}
-              isLoading={isLoading}
-            />
-          </IssuePageContent>
-        </IssuePageWrapper>
-        <IssueActionButton />
-      </IssuePageContainer>
+            <FormDisplay data={data as TicketDto} />
+            <InfoHistoryPainel isLoading={isLoading} />
+          </TicketPageContent>
+        </TicketPageWrapper>
+        <TicketActionButton />
+      </TicketPageContainer>
     </TicketProvider>
   );
 };
 
-export { IssuePage };
+export { TicketPage };

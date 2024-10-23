@@ -14,20 +14,9 @@ export const UserName = styled.div<{ $isSmallClientMobile?: boolean }>`
   gap: 0.4rem;
   flex-direction: column;
 
-  ${({ $isSmallClientMobile }) => $isSmallClientMobile
-    && css`
-      padding: 0;
-      justify-content: center;
-    `}
-`;
-
-export const PageTitle = styled.div<{ $isSmallClientMobile?: boolean }>`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  ${({ $isSmallClientMobile }) => $isSmallClientMobile
-    && css`
+  ${({ $isSmallClientMobile }) =>
+    $isSmallClientMobile &&
+    css`
       padding: 0;
       justify-content: center;
     `}
@@ -45,5 +34,3 @@ export const FirstSection = styled(Row)`
   padding: 0.6rem 0;
   padding-top: 0;
 `;
-
-export const SecondSection = styled(Row)``;

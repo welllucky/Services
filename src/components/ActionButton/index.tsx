@@ -11,21 +11,21 @@ import { RoundedButton } from "..";
 import { ActionButtonContainer, ActionButtonsContainer } from "./styles";
 
 interface ActionButtonProps {
-  isIssueOpen: boolean;
-  canReopenIssue: boolean;
+  isOpen: boolean;
+  canReopen: boolean;
   actionOptions: IssueActionOptionsType[];
   openAction: () => void;
   reopenAction: () => void;
 }
 
-interface PrincipalIssueButtonProps extends Pick<ActionButtonProps, "isIssueOpen" | "canReopenIssue">{
+interface PrincipalIssueButtonProps extends Pick<ActionButtonProps, "isOpen" | "canReopen">{
   action: () => void;
   $isClicked: boolean;
 }
 
 const PrincipalIssueButton = ({
-  isIssueOpen,
-  canReopenIssue,
+  isOpen,
+  canReopen,
   action,
   $isClicked,
 }: PrincipalIssueButtonProps) => {
@@ -34,12 +34,12 @@ const PrincipalIssueButton = ({
     <RoundedButton
       action={action}
       $isClicked={$isClicked}
-      $hasShadow={isIssueOpen}
+      $hasShadow={isOpen}
       color={
-        isIssueOpen ? theme.colors.primary["85"] : theme.colors.primary["15"]
+        isOpen ? theme.colors.primary["85"] : theme.colors.primary["15"]
       }
       icon={
-        isIssueOpen ? (
+        isOpen ? (
           <DotsThreeOutlineVertical
             size={32}
             color={
@@ -48,7 +48,7 @@ const PrincipalIssueButton = ({
                 : theme.colors.primary.default
             }
           />
-        ) : canReopenIssue ? (
+        ) : canReopen ? (
           <ArrowCounterClockwise
             size={32}
             color="#FFFFFF"
@@ -65,34 +65,34 @@ const PrincipalIssueButton = ({
 };
 
 const ActionButton = ({
-  isIssueOpen = false,
-  canReopenIssue = false,
+  isOpen = false,
+  canReopen = false,
   openAction,
   reopenAction,
   actionOptions,
 }: ActionButtonProps) => {
   const theme = useTheme();
-  const [isOptionsOpen, setIsOptionsOpen] = useState(isIssueOpen);
+  const [isOptionsOpen, setIsOptionsOpen] = useState(isOpen);
 
   useEffect(() => {
-    if (canReopenIssue) {
+    if (canReopen) {
       setIsOptionsOpen(false);
     }
-  }, [canReopenIssue]);
+  }, [canReopen]);
 
   const actionCallback = () => {
-    if (isIssueOpen) {
+    if (isOpen) {
       setIsOptionsOpen((state) => !state);
       return;
     }
 
-    if (canReopenIssue) {
+    if (canReopen) {
       reopenAction();
       setIsOptionsOpen(true);
       return;
     }
 
-    if (!isIssueOpen) {
+    if (!isOpen) {
       openAction();
       setIsOptionsOpen(true);
     }
@@ -121,8 +121,8 @@ const ActionButton = ({
 
       <PrincipalIssueButton
         $isClicked={isOptionsOpen}
-        isIssueOpen={isIssueOpen}
-        canReopenIssue={canReopenIssue}
+        isOpen={isOpen}
+        canReopen={canReopen}
         action={actionCallback}
       />
     </ActionButtonContainer>
