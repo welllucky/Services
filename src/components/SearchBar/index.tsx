@@ -16,7 +16,7 @@ const SearchBar = ({ getInputValue }: SearchBarProps) => {
   return (
     <StyledSearchBarContainer
       $borderColor="#7AC143"
-      padding="0 .4rem 0 .8rem ">
+      $padding="0 .4rem 0 .8rem ">
       <SearchIcon
         color="#5A8F19"
         height="1.4rem"

@@ -1,7 +1,7 @@
 "use client";
 
 import { ConfirmModal, CustomFieldset } from "@/components";
-import { IOpenTicketForm } from "@/types";
+import { IOpenIssueForm } from "@/types";
 import { buildTestIds, dataFormatter } from "@/utils";
 import { DefaultTheme } from "styled-components";
 import { ConfirmDetailsContainer, SectionInfoForm } from "../styles";
@@ -10,7 +10,7 @@ type ConfirmMediaPageUiProps = {
   isModalOpen: boolean;
   modalCallback: () => void;
   theme: DefaultTheme;
-  data: IOpenTicketForm;
+  data: IOpenIssueForm;
 };
 
 export const ConfirmMediaPageUI = ({

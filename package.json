@@ -59,7 +59,6 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "react-hot-toast": "^2.4.1",
-    "react-loading-skeleton": "^3.4.0",
     "react-modal": "^3.16.1",
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.3",

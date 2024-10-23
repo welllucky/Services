@@ -1,52 +1,11 @@
+import { IconProps } from "@/types";
+import { Funnel } from "@phosphor-icons/react";
+
 /* eslint-disable react/style-prop-object */
-export const FilterIcon = () => (
-  <svg
-    width="20"
-    height="24"
-    viewBox="0 0 20 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink">
-    <mask
-      id="mask0_1492_16862"
-      style="mask-type:alpha"
-      maskUnits="userSpaceOnUse"
-      x="0"
-      y="0"
-      width="20"
-      height="24">
-      <rect
-        y="0.260864"
-        width="20"
-        height="23.4783"
-        fill="url(#pattern0)"
-      />
-    </mask>
-    <g mask="url(#mask0_1492_16862)">
-      <rect
-        y="0.260864"
-        width="20"
-        height="23.4783"
-        fill="#B2B3B5"
-      />
-    </g>
-    <defs>
-      <pattern
-        id="pattern0"
-        patternContentUnits="objectBoundingBox"
-        width="1"
-        height="1">
-        <use
-          xlinkHref="#image0_1492_16862"
-          transform="matrix(0.0104167 0 0 0.00887346 0 0.0740741)"
-        />
-      </pattern>
-      <image
-        id="image0_1492_16862"
-        width="96"
-        height="96"
-        xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAACAElEQVR4nO3XMUprURDG8S8IwcYmYmmZwtr+Fq7AHVyX4A7iDtxBsgQXYArtU4u26RSrNFoERy7cSjA5oJcz58z/B+kejzOZzHvfJwEAAAAAAAC/Mz7a9R0MjgWIBZjjHwIXIBaQ/VdoXED+L8L4Jyj/l2EZPvwfoMoX8NNdwqMeJY1UlvuEubrZszuVtEl4bKtytAnzbPrZXbhOePC7pBP5N5H0mjBPN7MbB5JWCY+ey795whyrfmZXziVt9zz8S9KF/Gr6N+6aYdvP6tJtwq/nRdKh/BlLekp4fzejW0eS1glDzOTPLOHd635G1y4TBvmUdCY/ppI+Et7dzVaElG7w4KgbLEvJ/DV2g7a0zF9TN5iUmPlr6gbzUjN/Dd2gKT3zl9wNxjVk/pK7wayWzF9iN5jWlvlL6wbL2jJ/Sd2grTXzl9ANJjVn/hK6waL2zO+5GzRRMr/HbjCOlPk9doObaJnfUzeYRs38HrrBKHLm99ANrqJn/pzd4FjSW/TMn7MbLMj8+bpBQ+Yfrhs8J/w93Z8h8w/YDfYh8w/cDfYh8/+RDbwAsADfjAtgAaEZF8ACQjMugAWEZlwACwjNuAAWEJpxASwgNOMCWEBoxgWwgNCMC2ABoRkXwAJCMy6ABYRmA3/AAnwzLoAFhGZcAAsIzbgAFgAAAAAAAADov30DYcjSDoRNoUcAAAAASUVORK5CYII="
-      />
-    </defs>
-  </svg>
+export const FilterIcon = ({ alt, color, size }: IconProps) => (
+  <Funnel
+    size={size}
+    alt={alt}
+    color={color}
+  />
 );

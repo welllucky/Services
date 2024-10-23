@@ -9,7 +9,7 @@ export const ShieldIcon = () => (
     xmlnsXlink="http://www.w3.org/1999/xlink">
     <mask
       id="mask0_1143_41349"
-      style="mask-type:alpha"
+      style={{ maskType: 'alpha' }}
       maskUnits="userSpaceOnUse"
       x="0"
       y="0"

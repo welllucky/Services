@@ -4,9 +4,9 @@ import { FlexContainer, PageStructContainer } from "./style";
 
 const PageStruct = (children: ReactNode) => (
   <FlexContainer>
-    <Header userName="Usuário não autenticado" />
+    <Header />
     <PageStructContainer>{children}</PageStructContainer>
   </FlexContainer>
-  );
+);
 
 export default PageStruct;

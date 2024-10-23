@@ -7,12 +7,14 @@ interface NavigationBarProps {
   color?: string;
   $highlightTextColor?: string;
   options: OptionMenuProps[];
+  // isLoading?: boolean;
 }
 
 export const NavigationBar = ({
   color,
   $highlightTextColor,
   options,
+  // isLoading = false,
 }: NavigationBarProps) => {
   const actualRoute = usePathname();
   return (

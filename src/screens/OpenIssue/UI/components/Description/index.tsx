@@ -1,11 +1,11 @@
 /* eslint-disable no-nested-ternary */
 import { CustomTextArea } from "@/components";
-import { IOpenTicketForm } from "@/types";
+import { IOpenIssueForm } from "@/types";
 import { useState } from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
 type DescriptionInputProps = {
-  register: UseFormRegister<IOpenTicketForm>;
+  register: UseFormRegister<IOpenIssueForm>;
   error: FieldError | undefined;
   defaultValue?: string;
 };

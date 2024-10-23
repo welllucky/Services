@@ -1,10 +1,10 @@
 import { OutlinedInput } from "@/components";
-import { IOpenTicketForm } from "@/types";
+import { IOpenIssueForm } from "@/types";
 import { useState } from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
 type ResumeInputProps = {
-  register: UseFormRegister<IOpenTicketForm>;
+  register: UseFormRegister<IOpenIssueForm>;
   error: FieldError | undefined;
   defaultValue?: string;
 };

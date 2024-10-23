@@ -5,7 +5,6 @@ export * from "./ClearIcon";
 export * from "./ClosedEyeIcon";
 export * from "./EmailIcon";
 export * from "./EmptyBox";
-export * from "./EnterIcon";
 export * from "./EyeIcon";
 export * from "./FilterIcon";
 export * from "./HiddenIcon";

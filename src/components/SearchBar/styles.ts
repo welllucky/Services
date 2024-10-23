@@ -6,7 +6,7 @@ type SearchBarProps = {
   height?: string;
   $borderColor?: string;
   borderRadius?: string;
-  padding?: string;
+  $padding?: string;
   fontColor?: string;
   focusColor?: string;
   fontSize?: string;
@@ -28,7 +28,7 @@ const StyledSearchBarContainer = styled.div<SearchBarProps>`
   align-items: center;
   border: 0.2rem solid ${({ $borderColor }) => $borderColor ?? "#000"};
   border-radius: ${({ borderRadius }) => borderRadius ?? "0.5rem"};
-  padding: ${({ padding }) => padding ?? "0.5rem"};
+  padding: ${({ $padding }) => $padding ?? "0.5rem"};
   gap: 0.4rem;
   gap: 0.4rem;
 `;
