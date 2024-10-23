@@ -55,9 +55,9 @@ export const TicketContent =
   flex-direction: column;
   max-height: 80px;
   gap: 0.8rem;
-  flex: 6;
+  flex: 5;
   justify-content: space-between;
-  margin-right: 1rem;
+  margin-right: 0.4rem;
 
   ${({ $hasUpdate }) =>
     $hasUpdate &&

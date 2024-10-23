@@ -9,7 +9,7 @@ export const LeftIcon = () => (
     xmlnsXlink="http://www.w3.org/1999/xlink">
     <mask
       id="mask0_1422_7115"
-      style="mask-type:alpha"
+      style={{ maskType: "alpha" }}
       maskUnits="userSpaceOnUse"
       x="0"
       y="0"

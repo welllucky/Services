@@ -1,11 +1,11 @@
 /* eslint-disable no-nested-ternary */
 import { OutlinedInput } from "@/components";
-import { IOpenTicketForm } from "@/types";
+import { IOpenIssueForm } from "@/types";
 import { useState } from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
 type DateInputProps = {
-  register: UseFormRegister<IOpenTicketForm>;
+  register: UseFormRegister<IOpenIssueForm>;
   error: FieldError | undefined;
   defaultValue?: string;
 };

@@ -1,3 +1,5 @@
+import { IconProps } from "@/types";
+
 export const SettingsIcon = ({ width, height, color }: IconProps) => (
   <svg
     width={width}

@@ -9,7 +9,7 @@ export const HiddenIcon = () => (
     xmlnsXlink="http://www.w3.org/1999/xlink">
     <mask
       id="mask0_1408_17307"
-      style="mask-type:alpha"
+      style={{ maskType: "alpha" }}
       maskUnits="userSpaceOnUse"
       x="0"
       y="0"

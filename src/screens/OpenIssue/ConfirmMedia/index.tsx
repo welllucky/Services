@@ -1,10 +1,10 @@
 "use client";
 
-import { IOpenTicketForm } from "@/types";
+import { IOpenIssueForm } from "@/types";
 import {
   LS_KEY_1_TICKET_RECORD,
   SS_KEY_USER_PREVIOUS_PAGE,
-  ticketApi,
+  issueApi,
   useModalStore,
 } from "@/utils";
 import { useRouter } from "next/navigation";
@@ -14,10 +14,10 @@ import { useTheme } from "styled-components";
 import { ConfirmMediaPageUI } from "./UI";
 
 export const ConfirmDetailsPage = () => {
-  const ticketData: IOpenTicketForm = JSON.parse(
+  const issueData: IOpenIssueForm = JSON.parse(
     localStorage?.getItem(LS_KEY_1_TICKET_RECORD) as unknown as string,
   );
-  const [canRegisterTicket, setCanRegisterTicket] = useState<boolean>(false);
+  const [canRegisterIssue, setCanRegisterIssue] = useState<boolean>(false);
   const isModalOpen = useModalStore((state) => state.isOpen);
   const { push } = useRouter();
   const theme = useTheme();
@@ -29,11 +29,11 @@ export const ConfirmDetailsPage = () => {
     [],
   );
 
-  const { data, error } = ticketApi.createTicket(ticketData, canRegisterTicket);
+  const { data, error } = issueApi.createIssue(issueData, canRegisterIssue);
 
   useEffect(() => {
     if (data?.id) {
-      setCanRegisterTicket(false);
+      setCanRegisterIssue(false);
       setTimeout(() => {
         push(`/chamado/${data?.id}`);
       }, 3000);
@@ -45,16 +45,16 @@ export const ConfirmDetailsPage = () => {
     }
 
     return () => {
-      setCanRegisterTicket(false);
+      setCanRegisterIssue(false);
     };
   }, [data?.id, error, push]);
 
   return (
     <ConfirmMediaPageUI
       theme={theme}
-      data={ticketData}
+      data={issueData}
       isModalOpen={isModalOpen}
-      modalCallback={() => setCanRegisterTicket(true)}
+      modalCallback={() => setCanRegisterIssue(true)}
     />
   );
 };

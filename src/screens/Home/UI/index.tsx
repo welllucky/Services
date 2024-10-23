@@ -1,4 +1,4 @@
-import { Header, Loading, NoContent } from "@/components";
+import { Loading, NoContent, SubHeader } from "@/components";
 import { AddNewIssueButton } from "@/components/common/Buttons";
 import { TicketCard } from "@/components/TicketCard";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
@@ -33,12 +33,7 @@ export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
 
   return (
     <>
-      <Header
-        userName={user?.name ?? ""}
-        pageTittle="Meus chamados"
-        issueQuantify={dataLength}
-        canCreateTicket={user?.canCreateTicket}
-      />
+      <SubHeader title="Home" />
       <PageContainer>
         <MainContainer $hasContent={dataLength !== 0}>
           {data?.length === 0 || !Array.isArray(data) ? (

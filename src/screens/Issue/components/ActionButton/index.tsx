@@ -144,8 +144,8 @@ export const IssueActionButton = () => {
   return (
     <UserActionContainer>
       <ActionButton
-        isIssueOpen={status === "inProgress"}
-        canReopenIssue={status === "closed" || status === "blocked"}
+        isOpen={status === "inProgress"}
+        canReopen={status === "closed" || status === "blocked"}
         actionOptions={issueOptions}
         openAction={() =>
           setActionsState({

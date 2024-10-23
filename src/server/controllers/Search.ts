@@ -7,7 +7,7 @@ export class SearchController {
     try {
       const searchTerm = req.nextUrl.searchParams.get("searchTerm");
 
-      const { userToken, isAuthenticated } = await getAuthToken(req);
+      const { userId, isAuthenticated } = await getAuthToken(req);
 
       if (!isAuthenticated) {
         return NextResponse.json(
@@ -33,7 +33,7 @@ export class SearchController {
         );
       }
 
-      const tickets = await SearchServices.searchTickets(userToken, searchTerm);
+      const tickets = await SearchServices.searchTickets(userId, searchTerm);
 
       if (!tickets.length) {
         return NextResponse.json(
