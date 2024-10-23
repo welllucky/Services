@@ -1,4 +1,4 @@
-import { Header, Loading, NoContent } from "@/components";
+import { Loading, NoContent, SubHeader } from "@/components";
 import { TicketCard } from "@/components/TicketCard";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
@@ -18,12 +18,9 @@ export const TicketsPageUI = async ({ theme }: TicketsPageUIProps) => {
 
   return (
     <>
-      <Header
-        userName="Colaborador"
-        pageTittle="Solicitações"
-      />
+      <SubHeader title="Solicitações" />
       <PageContainer>
-        <MainContainer $hasContent={data.length !== 0}>
+        <MainContainer $hasContent={Number(data.length) !== 0}>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent
               alt="caixa vazia"

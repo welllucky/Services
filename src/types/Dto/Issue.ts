@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { z } from "zod";
-import { TicketEventSchema } from "./TicketEvent";
+import { IssueEventSchema } from "./IssueEvent";
 import { PriorityLevelsSchema } from "./PriorityLevel";
 
 export const IssueTypeSchema = z.enum([
@@ -23,7 +23,7 @@ export const IssueSchema = z.object({
   resume: z.string(),
   description: z.string(),
   date: z.string(),
-  historic: z.array(TicketEventSchema),
+  historic: z.array(IssueEventSchema),
   priority: PriorityLevelsSchema,
   type: IssueTypeSchema,
   status: IssueStatusSchema,

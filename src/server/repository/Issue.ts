@@ -1,8 +1,8 @@
 import { Ticket } from "@/server/models";
-import { IOpenTicketForm, ITicket, TicketFilters } from "@/types/Interfaces";
+import { IOpenIssueForm, IIssue, TicketFilters } from "@/types/Interfaces";
 import { Op } from "sequelize";
 
-class TicketRepository {
+class IssueRepository {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   static findAll(userId: string, filters?: TicketFilters) {
     return Ticket.findAll({
@@ -19,7 +19,7 @@ class TicketRepository {
     });
   }
 
-  static create(userId: string, data: IOpenTicketForm) {
+  static create(userId: string, data: IOpenIssueForm) {
     return Ticket.create({
       ...data,
       createdBy: userId,
@@ -29,12 +29,8 @@ class TicketRepository {
     });
   }
 
-  static async update(
-    userId: string,
-    ticketId: string,
-    data: Partial<ITicket>,
-  ) {
-    const ticket = await TicketRepository.findById(userId, ticketId);
+  static async update(userId: string, ticketId: string, data: Partial<IIssue>) {
+    const ticket = await IssueRepository.findById(userId, ticketId);
     if (ticket) {
       return Ticket.update(
         { ...data },
@@ -46,18 +42,18 @@ class TicketRepository {
   }
 
   static async delete(userId: string, ticketId: string) {
-    const ticket = await TicketRepository.findById(userId, ticketId);
+    const ticket = await IssueRepository.findById(userId, ticketId);
     if (ticket) {
       return Ticket.destroy({ where: { id: ticketId, createdBy: userId } });
     }
     return null;
   }
 
-  static async findInProgressTickets(userId: string) {
+  static async findInProgressIssues(userId: string) {
     return Ticket.findAll({
       where: { createdBy: userId, status: { [Op.not]: "closed" } },
     });
   }
 }
 
-export { TicketRepository };
+export { IssueRepository };

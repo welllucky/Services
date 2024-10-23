@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { NoMobileDevicePage } from "@/screens";
-import { OpenTicketTemplateUI } from "@/screens/OpenTicket/Template";
-import { ICreateTicketFlowPage } from "@/screens/OpenTicket/Template/data";
+import { OpenIssueTemplateUI } from "@/screens/OpenIssue/Template";
+import { ICreateIssueFlowPage } from "@/screens/OpenIssue/Template/data";
 import { ReactNode } from "react";
 
 const Template = async ({ children }: Readonly<{ children: ReactNode }>) => {
@@ -22,13 +22,13 @@ const Template = async ({ children }: Readonly<{ children: ReactNode }>) => {
       title: "Confirmar informações",
       hasBackButton: true,
     },
-  ] as ICreateTicketFlowPage[];
+  ] as ICreateIssueFlowPage[];
 
   if (!session?.user.canCreateTicket) {
     return <NoMobileDevicePage />;
   }
 
-  return <OpenTicketTemplateUI pages={pages}>{children}</OpenTicketTemplateUI>;
+  return <OpenIssueTemplateUI pages={pages}>{children}</OpenIssueTemplateUI>;
 };
 
 export default Template;

@@ -1,6 +1,6 @@
 "use client";
 
-import { NavigationBar } from "@/components";
+import { Header, NavigationBar } from "@/components";
 import { getNavigationOptions } from "@/components/NavBar/data";
 import { FlexContainer } from "@/components/PageStruct/style";
 import { useSession } from "next-auth/react";
@@ -9,28 +9,57 @@ import { ReactNode, useMemo } from "react";
 
 const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
   const { data, status } = useSession();
-
-  if (status === "unauthenticated") {
-    redirect("/login");
-  }
-
   const pathName = usePathname();
   const user = useMemo(() => data?.user, [data?.user]);
-  const isRequestsPage = pathName === "/solicitacoes";
+  const isRequestsPage = useMemo(
+    () => pathName === "/solicitacoes",
+    [pathName],
+  );
 
   const navigationOptions = getNavigationOptions(
     user?.canResolveTicket,
     user?.canCreateTicket,
   );
 
+  const pagesWithoutFooter = useMemo(
+    () => ["/abrir-chamado", "/anexar-midia", "confirmar-chamado"],
+    [],
+  );
+
+  const pagesWithoutHeader = useMemo(
+    () => [...pagesWithoutFooter, "/chamado", "/solicitacao"],
+    [pagesWithoutFooter],
+  );
+
+  const shouldShowFooter = useMemo(
+    () =>
+      !pagesWithoutFooter.some((page) => {
+        const regex = new RegExp(`^${page}(/.*)?$`);
+        return regex.test(pathName);
+      }),
+    [pagesWithoutFooter, pathName],
+  );
+
+  const shouldShowHeader = useMemo(
+    () =>
+      !pagesWithoutHeader.some((page) => {
+        const regex = new RegExp(`^${page}(/.*)?$`);
+        return regex.test(pathName);
+      }),
+    [pagesWithoutHeader, pathName],
+  );
+
+  if (status === "unauthenticated") {
+    redirect("/login");
+  }
+
   return (
     <FlexContainer
       $backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}
       $full>
+      {shouldShowHeader && <Header />}
       {children}
-      {!["/abrir-chamado", "/anexar-midia", "confirmar-chamado"].some((page) =>
-        pathName.includes(page),
-      ) && (
+      {shouldShowFooter && (
         <NavigationBar
           color={isRequestsPage ? "#D8FFB9" : "#F8FCF6"}
           $highlightTextColor={isRequestsPage ? "#4D7D28" : "#7AC143"}

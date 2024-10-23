@@ -1,31 +1,31 @@
 "use client";
 
 import { BackButton, FormButtons } from "@/components";
-import { TicketPageContainer } from "@/screens/Issue/styles";
+import { IssuePageContainer } from "@/screens/Issue/styles";
 import { Column, Row, TitleComponent } from "@/styles";
-import { IOpenTicketForm } from "@/types";
+import { IOpenIssueForm } from "@/types";
 import { buildTestIds, resetForm, useModalStore } from "@/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { ICreateTicketFlowPage, useCreateTicketFlow } from "./data";
+import { ICreateIssueFlowPage, useCreateIssueFlow } from "./data";
 
-type OpenTicketTemplateUIProps = {
-  pages: ICreateTicketFlowPage[];
+type OpenIssueTemplateUIProps = {
+  pages: ICreateIssueFlowPage[];
   children: ReactNode;
 };
 
-export const OpenTicketTemplateUI = ({
+export const OpenIssueTemplateUI = ({
   children,
   pages,
-}: OpenTicketTemplateUIProps) => {
+}: OpenIssueTemplateUIProps) => {
   const pathName = usePathname();
 
   const { push, back } = useRouter();
 
   const shouldOpenModal = useModalStore((state) => state.open);
 
-  const methods = useForm<IOpenTicketForm>({
+  const methods = useForm<IOpenIssueForm>({
     mode: "onChange",
     defaultValues: {
       resume: "",
@@ -39,7 +39,7 @@ export const OpenTicketTemplateUI = ({
     progressive: true,
   });
 
-  const { actualPage, nextPage, previousPage } = useCreateTicketFlow(
+  const { actualPage, nextPage, previousPage } = useCreateIssueFlow(
     pathName,
     pages,
   );
@@ -49,7 +49,7 @@ export const OpenTicketTemplateUI = ({
       {...buildTestIds("form-provider")}
       {...methods}
       key="open-ticket-form">
-      <TicketPageContainer
+      <IssuePageContainer
         {...buildTestIds("issue-page-container")}
         height="100%">
         <Row {...buildTestIds("back-button-row")}>
@@ -88,7 +88,7 @@ export const OpenTicketTemplateUI = ({
             }
           />
         </Column>
-      </TicketPageContainer>
+      </IssuePageContainer>
     </FormProvider>
   );
 };

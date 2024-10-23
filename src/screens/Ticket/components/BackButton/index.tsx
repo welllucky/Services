@@ -2,11 +2,11 @@ import { BackButton } from "@/components";
 import { Row } from "@/styles";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-type IssuePageBackButtonProps = {
+type TicketPageBackButtonProps = {
   router: AppRouterInstance;
 };
 
-export const IssuePageBackButton = ({ router }: IssuePageBackButtonProps) => (
+export const TicketPageBackButton = ({ router }: TicketPageBackButtonProps) => (
   <Row>
     <BackButton
       onClick={() => router.back()}

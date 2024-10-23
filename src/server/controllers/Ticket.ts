@@ -1,39 +1,33 @@
 import { getAuthToken } from "@/server/functions/getAuthToken";
-import { getFormattedBody } from "@/server/functions/getFormattedBody";
-import { TicketView } from "@/server/views/Ticket";
-import { IOpenTicketForm } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 import { TicketServices } from "../services";
 
-export class TicketController {
+class TicketController {
   static async getAllTickets(req: NextRequest) {
     try {
-      const { isAuthenticated, userId } = await getAuthToken(req);
+       const { userId, isAuthenticated } = await getAuthToken(req);
 
-      if (!isAuthenticated || !userId) {
+       if (!isAuthenticated || !userId) {
+         return NextResponse.json(
+           { error: { message: "User not authenticated" } },
+           {
+             status: 401,
+           },
+         );
+       }
+
+      const issues = await TicketServices.getAllTickets(userId);
+
+      if (!issues?.length) {
         return NextResponse.json(
-          { error: { message: "User not authenticated" } },
-          {
-            status: 401,
-          },
-        );
-      }
-
-      // const params = req.nextUrl.searchParams;
-      // const statuses = params.getAll("status");
-
-      const tickets = await TicketServices.getAllTickets(userId);
-
-      if (!tickets.length) {
-        return NextResponse.json(
-          { error: { message: "No tickets found" } },
+          { error: { message: "No issues found" } },
           {
             status: 204,
           },
         );
       }
 
-      return NextResponse.json(tickets, {
+      return NextResponse.json(issues, {
         status: 200,
       });
     } catch (error) {
@@ -43,30 +37,30 @@ export class TicketController {
 
   static async getTicketById(req: NextRequest, params: { id: string }) {
     try {
-      const ticketId = params.id;
-      const { userId, isAuthenticated } = await getAuthToken(req);
+      const issueId = params.id;
+       const { userId, isAuthenticated } = await getAuthToken(req);
 
-      if (!isAuthenticated || !userId) {
+       if (!isAuthenticated || !userId) {
+         return NextResponse.json(
+           { error: { message: "User not authenticated" } },
+           {
+             status: 401,
+           },
+         );
+       }
+
+      const issue = await TicketServices.getTicketById(userId, issueId);
+
+      if (!issue?.length) {
         return NextResponse.json(
-          { error: { message: "User not authenticated" } },
-          {
-            status: 401,
-          },
-        );
-      }
-
-      const ticket = await TicketServices.getTicketById(userId, ticketId);
-
-      if (!ticket.length) {
-        return NextResponse.json(
-          { error: { message: "Ticket not found" } },
+          { error: { message: "No issue found" } },
           {
             status: 204,
           },
         );
       }
 
-      return NextResponse.json(TicketView.getTicket(ticket[0].dataValues), {
+      return NextResponse.json(issue, {
         status: 200,
       });
     } catch (error) {
@@ -74,87 +68,21 @@ export class TicketController {
     }
   }
 
-  static async createTicket(req: NextRequest) {
+  static async initializeTicket(req: NextRequest, params: { id: string }) {
     try {
-      const body = await getFormattedBody<IOpenTicketForm>(req);
-      const { userId, isAuthenticated } = await getAuthToken(req);
+      const issueId = params.id;
+       const { userId, isAuthenticated } = await getAuthToken(req);
 
-      if (!isAuthenticated || !userId) {
-        return NextResponse.json(
-          { error: { message: "User not authenticated" } },
-          {
-            status: 401,
-          },
-        );
-      }
+       if (!isAuthenticated || !userId) {
+         return NextResponse.json(
+           { error: { message: "User not authenticated" } },
+           {
+             status: 401,
+           },
+         );
+       }
 
-      const tickets = await TicketServices.createTicket(userId, body);
-
-      return NextResponse.json(TicketView.getTicketId(tickets), {
-        status: 201,
-      });
-    } catch (error) {
-      return NextResponse.json(
-        { error },
-        {
-          status: 400,
-        },
-      );
-    }
-  }
-
-  static async getInProgressTickets(req: NextRequest) {
-    try {
-      const { userId, isAuthenticated } = await getAuthToken(req);
-
-      if (!isAuthenticated || !userId) {
-        return NextResponse.json(
-          { error: { message: "User not authenticated" } },
-          {
-            status: 401,
-          },
-        );
-      }
-
-      const tickets = await TicketServices.getInProgressTickets(userId);
-
-      if (!tickets?.length) {
-        return NextResponse.json(
-          { error: { message: "No tickets found" } },
-          {
-            status: 200,
-          },
-        );
-      }
-
-      return NextResponse.json(tickets, {
-        status: 200,
-      });
-    } catch (error) {
-      return NextResponse.json(
-        { error },
-        {
-          status: 500,
-        },
-      );
-    }
-  }
-
-  static async closeTicket(req: NextRequest, params: { id: string }) {
-    try {
-      const ticketId = params.id;
-      const { userId, isAuthenticated } = await getAuthToken(req);
-
-      if (!isAuthenticated || !userId) {
-        return NextResponse.json(
-          { error: { message: "User not authenticated" } },
-          {
-            status: 401,
-          },
-        );
-      }
-
-      if (!ticketId) {
+      if (!issueId) {
         return NextResponse.json(
           { error: { message: "Ticket ID not provided" } },
           {
@@ -163,105 +91,7 @@ export class TicketController {
         );
       }
 
-      const ticket = await TicketServices.closeTicket(userId, ticketId);
-
-      if (!ticket) {
-        return NextResponse.json(
-          { error: { message: "Ticket not found" } },
-          {
-            status: 204,
-          },
-        );
-      }
-
-      return NextResponse.json("", {
-        status: 200,
-      });
-    } catch (error) {
-      return NextResponse.json(
-        {
-          error,
-        },
-        {
-          status: 500,
-        },
-      );
-    }
-  }
-
-  static async startTicket(req: NextRequest, params: { id: string }) {
-    try {
-      const ticketId = params.id;
-      const { userId, isAuthenticated } = await getAuthToken(req);
-
-      if (!isAuthenticated || !userId) {
-        return NextResponse.json(
-          { error: { message: "User not authenticated" } },
-          {
-            status: 401,
-          },
-        );
-      }
-
-      if (!ticketId) {
-        return NextResponse.json(
-          { error: { message: "Ticket ID not provided" } },
-          {
-            status: 400,
-          },
-        );
-      }
-
-      const ticket = await TicketServices.startTicket(userId, ticketId);
-
-      if (!ticket) {
-        return NextResponse.json(
-          { error: { message: "Ticket not found" } },
-          {
-            status: 204,
-          },
-        );
-      }
-
-      return NextResponse.json("", {
-        status: 200,
-      });
-    } catch (error) {
-      return NextResponse.json(
-        {
-          error,
-        },
-        {
-          status: 500,
-        },
-      );
-    }
-  }
-
-  static async reopenTicket(req: NextRequest, params: { id: string }) {
-    try {
-      const ticketId = params.id;
-      const { userId, isAuthenticated } = await getAuthToken(req);
-
-      if (!isAuthenticated || !userId) {
-        return NextResponse.json(
-          { error: { message: "User not authenticated" } },
-          {
-            status: 401,
-          },
-        );
-      }
-
-      if (!ticketId) {
-        return NextResponse.json(
-          { error: { message: "Ticket ID not provided" } },
-          {
-            status: 400,
-          },
-        );
-      }
-
-      const ticket = await TicketServices.reopenTicket(userId, ticketId);
+      const ticket = await TicketServices.startTicket(userId, issueId);
 
       if (!ticket) {
         return NextResponse.json(
@@ -287,3 +117,5 @@ export class TicketController {
     }
   }
 }
+
+export { TicketController };

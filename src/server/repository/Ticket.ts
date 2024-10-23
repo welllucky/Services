@@ -1,7 +1,7 @@
 import { Ticket } from "@/server/models";
 import { ITicket } from "@/types";
 
-class IssueRepository {
+class TicketRepository {
   static findAll(resolutorId: string, filters?: Partial<ITicket>) {
     return Ticket.findAll({
       where: {
@@ -25,7 +25,7 @@ class IssueRepository {
     ticketId: string,
     data: Partial<ITicket>,
   ) {
-    const ticket = await IssueRepository.findById(resolutorId, ticketId);
+    const ticket = await TicketRepository.findById(resolutorId, ticketId);
     if (ticket) {
       return Ticket.update(
         { ...data },
@@ -36,7 +36,7 @@ class IssueRepository {
   }
 
   static async delete(resolutorId: string, ticketId: string) {
-    const ticket = await IssueRepository.findById(resolutorId, ticketId);
+    const ticket = await TicketRepository.findById(resolutorId, ticketId);
     if (ticket) {
       return Ticket.destroy({
         where: { id: ticketId, resolverId: resolutorId },
@@ -45,4 +45,4 @@ class IssueRepository {
     return null;
   }
 }
-export { IssueRepository };
+export { TicketRepository };

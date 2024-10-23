@@ -1,4 +1,4 @@
-import { Header } from "@/components";
+import { SubHeader } from "@/components";
 import { SearchResponse } from "@/utils/apis/Search";
 import { Content, SearchBarComponent } from "./components";
 
@@ -17,7 +17,7 @@ const SearchPageUI = ({
   isLoading,
 }: SearchPageUIProps) => (
   <>
-    <Header userName="Colaborador" />
+    <SubHeader title="Pesquisa" />
     <SearchBarComponent getInputValue={setSearchTerm} />
     <Content
       isLoading={isLoading}

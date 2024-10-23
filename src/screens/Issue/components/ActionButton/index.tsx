@@ -1,4 +1,4 @@
-import { ticketApi, useTicket } from "@/utils";
+import { issueApi, useIssue } from "@/utils";
 
 import { ActionButton } from "@/components/ActionButton";
 import { theme } from "@/styles";
@@ -37,22 +37,22 @@ export const IssueActionButton = () => {
     },
   );
 
-  const { status, id, close, initialize, reOpen } = useTicket();
+  const { status, id, close, initialize, reOpen } = useIssue();
   const {
     isLoading: isLoadingStart,
     data: dataStart,
     error: errorStart,
-  } = ticketApi.startTicket(id, actionsState.shouldStart);
+  } = issueApi.startIssue(id, actionsState.shouldStart);
   const {
     isLoading: isLoadingClose,
     data: dataClose,
     error: errorClose,
-  } = ticketApi.closeTicket(id, actionsState.shouldClose);
+  } = issueApi.closeIssue(id, actionsState.shouldClose);
   const {
     isLoading: isLoadingReopen,
     data: dataReopen,
     error: errorReopen,
-  } = ticketApi.reopenTicket(id, actionsState.shouldReopen);
+  } = issueApi.reopenIssue(id, actionsState.shouldReopen);
 
   useEffect(() => {
     if (actionsState.shouldStart && !isLoadingStart) {
@@ -106,7 +106,7 @@ export const IssueActionButton = () => {
     reOpen,
   ]);
 
-  const ticketOptions = [
+  const issueOptions = [
     {
       index: 1,
       icon: (
@@ -146,7 +146,7 @@ export const IssueActionButton = () => {
       <ActionButton
         isIssueOpen={status === "inProgress"}
         canReopenIssue={status === "closed" || status === "blocked"}
-        actionOptions={ticketOptions}
+        actionOptions={issueOptions}
         openAction={() =>
           setActionsState({
             shouldStart: true,

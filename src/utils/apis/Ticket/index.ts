@@ -1,9 +1,12 @@
-/* eslint-disable max-len */
-import { IOpenTicketForm, TicketDto } from "@/types";
+import { ITicket, TicketDto } from "@/types";
 import { httpClient } from "@/utils/abstractions";
 
+type InitializeTicketType = {
+  issueId: string;
+};
+
 /**
- * The `TicketApi` class provides methods to interact with the tickets API, including fetching and creating tickets.
+ * Represents the API for managing tickets, providing methods to fetch and initialize tickets.
  */
 export class TicketApi {
   private readonly base_url: string | undefined;
@@ -16,70 +19,39 @@ export class TicketApi {
   }
 
   /**
-   * Fetches a single ticket by its ID.
-   * @param {string} id The ID of the ticket to fetch.
-   * @returns An object containing the ticket data, any error that occurred, and a loading state.
+   * Get a specific issue by its ID.
+   * @param {string} id The unique identifier of the issue to fetch.
+   * @returns An object containing the issue data, any error, and loading state.
    */
   getTicket = (id: string) => {
-    if (!id) {
-      return {
-        data: undefined,
-        error: { message: "ID is required" },
-        isLoading: false,
-      };
-    }
-
-    return httpClient.get<TicketDto>({
+    const { data, error, isLoading } = httpClient.get<ITicket>({
       url: `${this.api_url}/${id}`,
     });
+    return { data, error, isLoading };
   };
 
   /**
-   * Fetches all available tickets.
-   * @returns An object containing an array of ticket data, any error that occurred, and a loading state.
+   * Retrieve all tickets.
+   * @returns An object containing an array of issue data, any error, and loading state.
    */
   getTickets = () => {
-    const response = httpClient.get<TicketDto[]>({
+    const { data, error, isLoading } = httpClient.get<TicketDto[]>({
       url: `${this.api_url}`,
-      options: { refreshInterval: true },
     });
-    return response;
+
+    return { data, error, isLoading };
   };
 
   /**
-   * Creates a new ticket with the given data.
-   * @param {IOpenTicketForm} ticketData The data for the ticket to be created.
-   * @returns An object containing any error that occurred and a loading state.
+   * Initialize a new issue with the provided data.
+   * @param {InitializeTicketType} TicketData The data to initialize the issue with.
+   * @returns A promise resolving with the result of the initialization request.
    */
-  createTicket = (ticketData: IOpenTicketForm, shouldFetch = false) =>
-    httpClient.post<{ id: string | number }>({
-      url: `${this.api_url}/create`,
+  initializeTicket = (TicketData: InitializeTicketType) =>
+    httpClient.put({
+      url: `${this.api_url}`,
       body: {
-        ...ticketData,
+        ...TicketData,
       },
-      shouldFetch,
-    });
-
-  getInProgressTickets = () =>
-    httpClient.get<TicketDto[]>({
-      url: `${this.api_url}/inProgress`,
-    });
-
-  closeTicket = (id: string, shouldFetcher = false) =>
-    httpClient.post<{ id: string }>({
-      url: `${this.api_url}/${id}/close`,
-      shouldFetch: shouldFetcher,
-    });
-
-  reopenTicket = (id: string, shouldFetcher = false) =>
-    httpClient.post<{ id: string }>({
-      url: `${this.api_url}/${id}/reopen`,
-      shouldFetch: shouldFetcher,
-    });
-
-  startTicket = (id: string, shouldFetcher = false) =>
-    httpClient.post<{ id: string }>({
-      url: `${this.api_url}/${id}/start`,
-      shouldFetch: shouldFetcher,
     });
 }

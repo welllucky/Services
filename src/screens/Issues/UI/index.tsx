@@ -1,8 +1,8 @@
 import {
   AddNewIssueButton,
-  Header,
   Loading,
   NoContent,
+  SubHeader,
   TicketCard,
 } from "@/components";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
@@ -11,7 +11,7 @@ import { TicketDto } from "@/types";
 import { dataFormatter, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
 import { useSession } from "next-auth/react";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { ButtonWrapper } from "../styles";
 
 type IssuesPageUIProps = {
@@ -20,32 +20,43 @@ type IssuesPageUIProps = {
   router: AppRouterInstance;
 };
 
+const INITIAL_ISSUE_QUANTITY_LIMIT = 5;
+
 export const IssuesPageUI = ({
   data,
   isLoading,
   router,
 }: IssuesPageUIProps) => {
-  const dataLength = data?.length ?? 0;
+  const issuesQuantity = data?.length ?? 0;
 
   const { data: session } = useSession();
 
   const user = useMemo(() => session?.user, [session?.user]);
 
-  const { push } = router;
+  const showAddIssueButton = useMemo(
+    () =>
+      user?.canCreateTicket && issuesQuantity > INITIAL_ISSUE_QUANTITY_LIMIT,
+    [issuesQuantity, user?.canCreateTicket],
+  );
+
+  const addIssueCallback = useCallback(() => {
+    sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, "home");
+    router.push("/abrir-chamado");
+  }, [router]);
+
   if (isLoading) {
     return <Loading fullScreen />;
   }
 
   return (
     <>
-      <Header
-        userName={user?.name ?? ""}
-        pageTittle="Meus chamados"
-        issueQuantify={dataLength}
-        canCreateTicket={user?.canCreateTicket}
+      <SubHeader
+        title="Meus chamados"
+        showAddIssueButton={showAddIssueButton}
+        addButtonCallback={addIssueCallback}
       />
       <PageContainer>
-        <MainContainer $hasContent={dataLength !== 0}>
+        <MainContainer $hasContent={Boolean(issuesQuantity !== 0)}>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent
               alt="caixa vazia"
@@ -56,7 +67,7 @@ export const IssuesPageUI = ({
               <TicketCard
                 key={issue?.id}
                 id={String(issue?.id)}
-                name={issue?.description}
+                name={issue?.resume}
                 date={dataFormatter(issue.date)}
                 $status={issue.status}
                 isUpdated={false}
@@ -66,15 +77,13 @@ export const IssuesPageUI = ({
           )}
         </MainContainer>
         <ButtonWrapper>
-          {user?.canCreateTicket && dataLength < 5 ? (
-            <AddNewIssueButton
-              $styles={{ hasShadow: true }}
-              onClick={() => {
-                sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, "home");
-                push("/abrir-chamado");
-              }}
-            />
-          ) : null}
+          {user?.canCreateTicket &&
+            issuesQuantity < INITIAL_ISSUE_QUANTITY_LIMIT && (
+              <AddNewIssueButton
+                $styles={{ hasShadow: true }}
+                onClick={addIssueCallback}
+              />
+            )}
         </ButtonWrapper>
       </PageContainer>
     </>

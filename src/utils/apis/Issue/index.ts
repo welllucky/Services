@@ -1,12 +1,9 @@
-import { ITicket, TicketDto } from "@/types";
+/* eslint-disable max-len */
+import { IOpenIssueForm, IssueDto } from "@/types";
 import { httpClient } from "@/utils/abstractions";
 
-type InitializeIssueType = {
-  issueId: string;
-};
-
 /**
- * Represents the API for managing issues, providing methods to fetch and initialize issues.
+ * The `IssueApi` class provides methods to interact with the issues API, including fetching and creating issues.
  */
 export class IssueApi {
   private readonly base_url: string | undefined;
@@ -19,39 +16,70 @@ export class IssueApi {
   }
 
   /**
-   * Get a specific issue by its ID.
-   * @param {string} id The unique identifier of the issue to fetch.
-   * @returns An object containing the issue data, any error, and loading state.
+   * Fetches a single issue by its ID.
+   * @param {string} id The ID of the issue to fetch.
+   * @returns An object containing the issue data, any error that occurred, and a loading state.
    */
   getIssue = (id: string) => {
-    const { data, error, isLoading } = httpClient.get<ITicket>({
+    if (!id) {
+      return {
+        data: undefined,
+        error: { message: "ID is required" },
+        isLoading: false,
+      };
+    }
+
+    return httpClient.get<IssueDto>({
       url: `${this.api_url}/${id}`,
     });
-    return { data, error, isLoading };
   };
 
   /**
-   * Retrieve all issues.
-   * @returns An object containing an array of issue data, any error, and loading state.
+   * Fetches all available issues.
+   * @returns An object containing an array of issue data, any error that occurred, and a loading state.
    */
   getIssues = () => {
-    const { data, error, isLoading } = httpClient.get<TicketDto[]>({
+    const response = httpClient.get<IssueDto[]>({
       url: `${this.api_url}`,
+      options: { refreshInterval: true },
     });
-
-    return { data, error, isLoading };
+    return response;
   };
 
   /**
-   * Initialize a new issue with the provided data.
-   * @param {InitializeIssueType} IssueData The data to initialize the issue with.
-   * @returns A promise resolving with the result of the initialization request.
+   * Creates a new issue with the given data.
+   * @param {IOpenIssueForm} issueData The data for the issue to be created.
+   * @returns An object containing any error that occurred and a loading state.
    */
-  initializeIssue = (IssueData: InitializeIssueType) =>
-    httpClient.put({
-      url: `${this.api_url}`,
+  createIssue = (issueData: IOpenIssueForm, shouldFetch = false) =>
+    httpClient.post<{ id: string | number }>({
+      url: `${this.api_url}/create`,
       body: {
-        ...IssueData,
+        ...issueData,
       },
+      shouldFetch,
+    });
+
+  getInProgressIssues = () =>
+    httpClient.get<IssueDto[]>({
+      url: `${this.api_url}/inProgress`,
+    });
+
+  closeIssue = (id: string, shouldFetcher = false) =>
+    httpClient.post<{ id: string }>({
+      url: `${this.api_url}/${id}/close`,
+      shouldFetch: shouldFetcher,
+    });
+
+  reopenIssue = (id: string, shouldFetcher = false) =>
+    httpClient.post<{ id: string }>({
+      url: `${this.api_url}/${id}/reopen`,
+      shouldFetch: shouldFetcher,
+    });
+
+  startIssue = (id: string, shouldFetcher = false) =>
+    httpClient.post<{ id: string }>({
+      url: `${this.api_url}/${id}/start`,
+      shouldFetch: shouldFetcher,
     });
 }
