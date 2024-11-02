@@ -1,4 +1,5 @@
 // import { getAuthToken } from "@/server/functions/getAuthToken";
+import { connectDB } from "@/database";
 import { UserServices } from "@/server/services";
 import { UserView } from "@/server/views";
 import { AuthErrorMessage } from "@/types/Interfaces/Auth";
@@ -7,6 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 export class UserController {
   static async authUser(req: NextRequest) {
     try {
+      await connectDB();
       const email = req.nextUrl.searchParams.get("username") ?? "";
       const password = req.nextUrl.searchParams.get("password") ?? "";
 
@@ -22,6 +24,8 @@ export class UserController {
           },
         );
       }
+
+      console.log("Well Passou aqui");
 
       const userData = await UserServices.findByEmailAndPassword(
         email,

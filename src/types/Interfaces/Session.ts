@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const ISessionSchema = z.object({
-  id: z.string().or(z.number()),
+  id: z.string(),
   userId: z.string().or(z.number()),
   token: z.string(),
   expiresAt: z.string().or(z.date()),

@@ -8,9 +8,6 @@ import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 import { AppProviders } from "../utils/providers/providers";
 
-enableMapSet();
-enablePatches();
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,44 +29,49 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
-const RootLayout = ({
+const RootLayout = async ({
   children,
 }: Readonly<{
   children: ReactNode;
-}>) => (
-  <html lang="pt-br">
-    <head>
-      <script
-        data-project-id="WfTqP43E0gdOt1orJkAjWq1d92P8Fo0Yn3iMHQtz"
-        data-is-production-environment={
-          process.env.NODE_ENV === "production" ||
-          process.env.VERCEL_ENV === "production"
-        }
-        src="https://snippet.meticulous.ai/v1/meticulous.js"
-      />
-      <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-      />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="use-credentials"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-        rel="stylesheet"
-      />
-    </head>
-    <body className={inter.className}>
-      <SpeedInsights />
-      <AppProviders>
-        {children}
-        <Analytics />
-      </AppProviders>
-    </body>
-  </html>
-);
+}>) => {
+  enableMapSet();
+  enablePatches();
+
+  return (
+    <html lang="pt-br">
+      <head>
+        <script
+          data-project-id="WfTqP43E0gdOt1orJkAjWq1d92P8Fo0Yn3iMHQtz"
+          data-is-production-environment={
+            process.env.NODE_ENV === "production" ||
+            process.env.VERCEL_ENV === "production"
+          }
+          src="https://snippet.meticulous.ai/v1/meticulous.js"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="use-credentials"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className={inter.className}>
+        <SpeedInsights />
+        <AppProviders>
+          {children}
+          <Analytics />
+        </AppProviders>
+      </body>
+    </html>
+  );
+};
 
 export default RootLayout;
 

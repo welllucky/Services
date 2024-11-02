@@ -1,48 +1,77 @@
 import { Ticket } from "@/server/models";
 import { ITicket } from "@/types";
+import {
+  DataSource,
+  EntityTarget,
+  FindOptionsWhere,
+  Repository,
+} from "typeorm";
 
 class TicketRepository {
-  static findAll(resolutorId: string, filters?: Partial<ITicket>) {
-    return Ticket.findAll({
+  private source: Repository<Ticket>;
+
+  constructor(db: DataSource, TicketModel: EntityTarget<Ticket>) {
+    this.source = db.getRepository(TicketModel);
+  }
+
+  async findAll(resolverId: string, filters?: Partial<Omit<ITicket, "id">>) {
+    return this.source.find({
       where: {
-        resolverId: resolutorId,
-        ...filters,
+        resolver: {
+          register: resolverId,
+        },
+        ...(filters as FindOptionsWhere<Ticket>),
       },
     });
   }
 
-  static findById(resolutorId: string, ticketId: string) {
-    return Ticket.findAll({
+  async findById(resolverId: string, ticketId: string) {
+    return this.source.find({
       where: {
-        resolverId: resolutorId,
+        resolver: {
+          register: resolverId,
+        },
         id: ticketId,
       },
     });
   }
 
-  static async update(
-    resolutorId: string,
+  async update(
+    resolverId: string,
     ticketId: string,
-    data: Partial<ITicket>,
+    data: Partial<
+      Omit<
+        ITicket,
+        | "closedAt"
+        | "updateAt"
+        | "createdAt"
+        | "createdBy"
+        | "updatedBy"
+        | "closedBy"
+        | "id"
+      >
+    >,
   ) {
-    const ticket = await TicketRepository.findById(resolutorId, ticketId);
-    if (ticket) {
-      return Ticket.update(
-        { ...data },
-        { where: { id: ticketId, resolverId: resolutorId } },
-      );
-    }
-    return null;
-  }
-
-  static async delete(resolutorId: string, ticketId: string) {
-    const ticket = await TicketRepository.findById(resolutorId, ticketId);
-    if (ticket) {
-      return Ticket.destroy({
-        where: { id: ticketId, resolverId: resolutorId },
-      });
-    }
-    return null;
+    return this.source.update(
+      {
+        id: ticketId,
+        resolver: {
+          register: resolverId,
+        },
+      },
+      {
+        ...data,
+        // ...(data.updatedBy && {
+        //   updatedBy: { register: data.updatedBy },
+        //   updatedAt: new Date(),
+        // }),
+        // ...(data.closedBy && {
+        //   closedBy: { register: data.closedBy },
+        //   closedAt: new Date(),
+        // }),
+      },
+    );
   }
 }
+
 export { TicketRepository };

@@ -1,39 +1,26 @@
-import sequelize from "@/database";
-import { DataTypes, Model } from "sequelize";
+import { BaseEntity, Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./User";
 
-class Session extends Model {
-  public id!: number | string;
+class Session extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  public id!: string;
 
+  @Column({
+    type: "varchar",
+    length: 256,
+    nullable: false,
+    unique: true,
+  })
   public token!: string;
 
-  public userId!: string;
+  @ManyToOne(() => User, (user) => user.sessions)
+  public user!: User;
 
+  @Column("datetime")
   public expiresAt!: Date;
-}
 
-Session.init(
-  {
-    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    token: { type: DataTypes.STRING, allowNull: false },
-    userId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: "users",
-        key: "register",
-      },
-    },
-    expiresAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    tableName: "Sessions",
-    paranoid: true,
-    deletedAt: true,
-  },
-);
+  @Column("datetime")
+  public createdAt!: Date;
+}
 
 export { Session };

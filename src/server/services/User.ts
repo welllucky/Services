@@ -1,12 +1,14 @@
-import { UserRepository } from "@/server/repository";
+import { userRepository } from "@/server/repository";
 
 class UserServices {
+  private static readonly UserRepository = userRepository;
+
   static findByEmailAndPassword(email: string, password: string) {
-    return UserRepository.find(email, password);
+    return this.UserRepository.find(email, password);
   }
 
   static findByEmail(email: string) {
-    return UserRepository.findByEmail(email);
+    return this.UserRepository.findByEmail(email);
   }
 }
 

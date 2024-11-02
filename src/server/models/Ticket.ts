@@ -1,137 +1,90 @@
-import sequelize from "@/database";
-import { DataTypes, Model } from "sequelize";
+import type { Relation } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Event } from "./Event";
+import { User } from "./User";
 
-class Ticket extends Model {
-  public id!: number | string;
+@Entity()
+class Ticket extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  public id!: string;
 
+  @Column({
+    length: 80,
+    type: "text",
+  })
   public resume!: string;
 
+  @Column({
+    length: 460,
+    type: "text",
+  })
   public description!: string;
 
+  @Column("datetime")
   public date!: Date;
 
+  @Column({
+    type: "enum",
+    enum: ["low", "medium", "high"],
+    default: "medium",
+  })
   public priority!: "low" | "medium" | "high";
 
+  @Column({
+    type: "enum",
+    enum: ["task", "incident", "problem", "change"],
+    default: "problem",
+  })
   public type!: "task" | "incident" | "problem" | "change";
 
+  @Column({
+    type: "enum",
+    enum: ["notStarted", "inProgress", "blocked", "closed"],
+    default: "notStarted",
+  })
   public status!: "notStarted" | "inProgress" | "blocked" | "closed";
 
-  public resolverId!: number | string;
+  @ManyToOne(() => User, (user) => user.register)
+  @JoinColumn()
+  public resolver!: User | null | undefined;
+
+  @OneToMany(() => Event, (event) => event.ticket, {
+    cascade: true,
+  })
+  public events!: Relation<Event[]> | null | undefined;
 
   // public unityId!: number;
 
   // public sectorId!: number;
 
+  @Column("datetime")
   public readonly createdAt!: Date;
 
+  @Column("datetime")
   public readonly updatedAt!: Date;
 
+  @Column("datetime")
   public readonly closedAt!: Date;
 
-  public createdBy!: number | string;
+  @ManyToOne(() => User, (user) => user.register)
+  @JoinColumn()
+  public createdBy!: Relation<User>;
 
-  public updatedBy!: number | string;
+  @ManyToOne(() => User, (user) => user.register)
+  @JoinColumn()
+  public updatedBy!: Relation<User> | null | undefined;
 
-  public closedBy!: number | string;
+  @ManyToOne(() => User, (user) => user.register)
+  @JoinColumn()
+  public closedBy!: Relation<User> | null | undefined;
 }
-
-Ticket.init(
-  {
-    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    resume: { type: DataTypes.STRING, allowNull: false },
-    description: { type: DataTypes.STRING, allowNull: false },
-    date: { type: DataTypes.DATE, allowNull: false },
-    type: {
-      type: DataTypes.ENUM("task", "incident", "problem", "change"),
-      allowNull: false,
-    },
-    priority: {
-      type: DataTypes.ENUM("low", "medium", "high"),
-      allowNull: false,
-      defaultValue: "low",
-    },
-    status: {
-      type: DataTypes.ENUM("notStarted", "inProgress", "blocked", "closed"),
-      allowNull: false,
-      defaultValue: "notStarted",
-    },
-    resolverId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: "users",
-        key: "register",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "NO ACTION",
-    },
-    // unityId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: "unities",
-    //     key: "id",
-    //   },
-    //   onUpdate: "CASCADE",
-    //   onDelete: "CASCADE",
-    // },
-    // sectorId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: "sectors",
-    //     key: "id",
-    //   },
-    //   onUpdate: "CASCADE",
-    //   onDelete: "CASCADE",
-    // },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: new Date(),
-    },
-    closedAt: { type: DataTypes.DATE, allowNull: true },
-    createdBy: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "users",
-        key: "register",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "NO ACTION",
-    },
-    updatedBy: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "users",
-        key: "register",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "NO ACTION",
-    },
-    closedBy: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "users",
-        key: "register",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "NO ACTION",
-      allowNull: true,
-    },
-  },
-  {
-    sequelize,
-    tableName: "Tickets",
-    paranoid: true,
-    deletedAt: true,
-  },
-);
 
 export { Ticket };
