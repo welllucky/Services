@@ -1,4 +1,4 @@
-import { IssueRepository } from "@/server/repository";
+import { issueRepository } from "@/server/repository";
 import { IIssue, IOpenIssueForm, TicketFilters } from "@/types";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { z } from "zod";
@@ -12,21 +12,23 @@ const IOpenIssueFormSchema = z.object({
 });
 
 class IssueServices {
+  private static readonly repository = issueRepository;
+
   static async getAllIssues(userId: string, filters?: TicketFilters) {
-    return IssueRepository.findAll(userId, {
+    return this.repository.findAll(userId, {
       status: filters?.status,
     });
   }
 
   static async getIssueById(userId: string, ticketId: string) {
-    return IssueRepository.findById(userId, ticketId);
+    return this.repository.findById(userId, ticketId);
   }
 
   static async createIssue(userId: string, data: IOpenIssueForm) {
     try {
       IOpenIssueFormSchema.parse(data);
 
-      const newIssue = await IssueRepository.create(userId, data);
+      const newIssue = await this.repository.create(userId, data);
 
       if (!newIssue) {
         throw new Error("Houve um erro ao criar o chamado");
@@ -63,12 +65,12 @@ class IssueServices {
     ticketId: string,
     data: Partial<IIssue>,
   ) {
-    return IssueRepository.update(userId, ticketId, data);
+    return this.repository.update(userId, ticketId, data);
   }
 
   static async startIssue(userId: string, ticketId: string) {
     try {
-      const updatedIssues = await IssueRepository.update(userId, ticketId, {
+      const updatedIssues = await this.repository.update(userId, ticketId, {
         updatedAt: new Date(),
         updatedBy: userId,
         status: "inProgress",
@@ -93,7 +95,7 @@ class IssueServices {
 
   static async reopenIssue(userId: string, ticketId: string) {
     try {
-      const updatedIssues = await IssueRepository.update(userId, ticketId, {
+      const updatedIssues = await this.repository.update(userId, ticketId, {
         updatedAt: new Date(),
         updatedBy: userId,
         status: "inProgress",
@@ -118,7 +120,7 @@ class IssueServices {
 
   static async closeIssue(userId: string, ticketId: string) {
     try {
-      const updatedIssues = await IssueRepository.update(userId, ticketId, {
+      const updatedIssues = await this.repository.update(userId, ticketId, {
         closedAt: new Date(),
         status: "closed",
         closedBy: userId,
@@ -143,7 +145,7 @@ class IssueServices {
 
   static async getInProgressIssues(userId: string) {
     try {
-      return await IssueRepository.findInProgressIssues(userId);
+      return await this.repository.findInProgressIssues(userId);
     } catch (error) {
       throw new Error(
         `Houve um erro ao buscar os chamados em andamento: ${error}`,

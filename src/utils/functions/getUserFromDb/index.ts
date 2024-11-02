@@ -14,8 +14,6 @@ export const getUserFromDb = async (email: string, password: string) => {
       IHttpError
     >;
 
-    console.log({ error, user, res });
-
     if (error) throw new Error(error?.message);
 
     return { user };

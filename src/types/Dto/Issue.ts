@@ -8,7 +8,6 @@ export const IssueTypeSchema = z.enum([
   "incident",
   "problem",
   "change",
-  "",
 ]);
 
 export const IssueStatusSchema = z.enum([

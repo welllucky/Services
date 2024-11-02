@@ -1,17 +1,21 @@
 import { ISession } from "@/types";
-import { SessionRepository } from "../repository/Session";
+import { sessionRepository } from "../repository";
 
 class SessionService {
-  static createSession(sessionData: Omit<ISession, "createdAt" | "updatedAt" | "id">) {
-    return SessionRepository.create({ ...sessionData });
+  private static readonly repository = sessionRepository;
+
+  static createSession(
+    sessionData: Omit<ISession, "createdAt" | "updatedAt" | "id">,
+  ) {
+    return this.repository.create({ ...sessionData });
   }
 
   static getSession(userId: string) {
-    return SessionRepository.find(userId);
+    return this.repository.find(userId);
   }
 
   static getSessions(userId: string) {
-    return SessionRepository.findAll(userId);
+    return this.repository.findAll(userId);
   }
 }
 

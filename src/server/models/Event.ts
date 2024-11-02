@@ -1,91 +1,52 @@
-import sequelize from "@/database";
-import { DataTypes, Model } from "sequelize";
+import type { Relation } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Ticket } from "./Ticket";
+import { User } from "./User";
 
-export class Event extends Model {
-  public id!: number;
+@Entity()
+export class Event extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  public id!: string;
 
-  public order!: number;
+  @ManyToOne(() => Ticket, (ticket) => ticket.id)
+  @JoinColumn()
+  public ticket!: Relation<Ticket>;
 
-  public emitterId!: number;
-
-  public createdBy!: number;
-
+  @Column({
+    length: 80,
+    type: "text",
+  })
   public title!: string;
 
+  @Column({
+    length: 256,
+    type: "text",
+  })
   public description!: string;
 
+  @Column({
+    type: "enum",
+    enum: ["open", "close", "reopen", "message", "system"],
+  })
   public type!: "open" | "close" | "reopen" | "message" | "system";
 
+  @Column({
+    type: "enum",
+    enum: ["public", "private"],
+  })
   public visibility!: "public" | "private";
 
+  @ManyToOne(() => User, (user) => user.register)
+  @JoinColumn()
+  public createdBy!: Relation<User>;
+
+  @Column("datetime")
   public readonly createdAt!: Date;
-
-  public deletedAt!: Date | null;
 }
-
-Event.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    order: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    emitterId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        key: "id",
-        model: "Tickets",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "NO ACTION",
-    },
-    createdBy: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        key: "id",
-        model: "Users",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "NO ACTION",
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    visibility: {
-      type: DataTypes.ENUM("public", "private"),
-      allowNull: false,
-      defaultValue: "public",
-    },
-    type: {
-      type: DataTypes.ENUM("open", "close", "reopen", "message", "system"),
-      allowNull: false,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: new Date(),
-    },
-    deletedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-  },
-  {
-    sequelize,
-    tableName: "Events",
-    paranoid: true,
-    createdAt: true,
-    deletedAt: true,
-  },
-);

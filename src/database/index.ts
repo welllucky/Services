@@ -1,18 +1,48 @@
-import { Sequelize } from "sequelize";
-import { SequelizeOptions } from "sequelize-typescript";
-import { options } from "./config/config.mjs";
+/* eslint-disable no-console */
+import { Event, Session, Ticket, User } from "@/server/models";
+import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { options } from "./config/config";
 
-const dbOptions = <SequelizeOptions>options;
+console.log({ options });
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-dbOptions.dialectModule = require("sqlite3");
+const sqliteDataSource = new DataSource({
+  type: "sqlite",
+  database: options.storage,
+  migrationsTableName: "migrations",
+  entities: [Event, Ticket, User, Session],
+  synchronize: true,
+  logging: "all",
+});
 
-const sequelize = new Sequelize(dbOptions);
+const mySqlDataSource = new DataSource({
+  type: "mysql",
+  host: options.host,
+  port: options.port,
+  username: options.username,
+  password: options.password,
+  database: options.database,
+  entities: [Event, Ticket, User, Session],
+  synchronize: true,
+  logging: options.logging,
+});
 
-const initORM = async () => {
-  await sequelize.sync({ alter: true });
-};
+const AppDataSource =
+  process.env.HOST_ENV === "production" ||
+  process.env.DB_DIALECT === "mysql" ||
+  (process.env.HOST_ENV === "development" &&
+    process.env.NODE_ENV === "production")
+    ? mySqlDataSource
+    : sqliteDataSource;
 
-initORM();
+const connectDB = () =>
+  AppDataSource.initialize()
+    .then(() => {
+      console.log("Data Source has been initialized!");
+    })
+    .catch((err) => {
+      console.error("Error during Data Source initialization", err);
+    });
 
-export default sequelize;
+export default AppDataSource;
+export { connectDB };

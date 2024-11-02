@@ -1,10 +1,11 @@
+import { connectDB } from "@/database";
 import { AuthErrorMessage } from "@/types/Interfaces/Auth";
 import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
 import * as jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 import { getFormattedBody } from "../functions/getFormattedBody";
-import { SessionRepository } from "../repository/Session";
 import { UserServices } from "../services";
+import { SessionService } from "../services/Session";
 import { UserView } from "../views";
 
 interface SessionProps {
@@ -15,6 +16,7 @@ interface SessionProps {
 export class SessionController {
   static async create(req: NextRequest) {
     try {
+      await connectDB();
       const { email, password } = await getFormattedBody<SessionProps>(req);
 
       if (!email || !password) {
@@ -59,18 +61,28 @@ export class SessionController {
 
       console.log({ user });
 
+      const tokenInfo = {
+        register: user.register,
+        email: user.email,
+        name: user.name,
+        lastConnection: user.lastConnection,
+        isBanned: user.isBanned,
+        canCreateTicket: user.canCreateTicket,
+        canResolveTicket: user.canResolveTicket,
+      };
+
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + 7);
 
       const accessToken = jwt.sign(
-        { ...user.dataValues, exp: expiresAt.getTime() },
+        { ...tokenInfo, exp: expiresAt.getTime() },
         process.env.AUTH_SECRET ?? "",
         {
           algorithm: "HS256",
         },
       );
 
-      await SessionRepository.create({
+      await SessionService.createSession({
         userId: user.register,
         token: accessToken,
         expiresAt,
