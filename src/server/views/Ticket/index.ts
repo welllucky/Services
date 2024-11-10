@@ -1,4 +1,4 @@
-import { Ticket } from "@/server/models";
+import { Ticket } from "@/server/entities";
 import { ITicket, TicketDto } from "@/types";
 import { dataFormatter } from "@/utils/functions/dataFormatter";
 
@@ -22,15 +22,17 @@ export class TicketView {
     }
   }
 
-  static getTicket(ticketData: TicketDto) {
+  static getTicket(ticketData: Ticket) {
     try {
       const data = {
         ...ticketData,
         id: String(ticketData.id),
-        date: dataFormatter(ticketData.date as string),
+        date: dataFormatter(ticketData.date.toISOString()),
         createdAt: ticketData.createdAt,
         updatedAt: ticketData.updatedAt,
         closedAt: ticketData.closedAt ? ticketData.closedAt : null,
+        createdBy: ticketData.createdBy?.name,
+        updatedBy: ticketData.updatedBy?.name,
       } as TicketDto;
 
       return data;

@@ -1,5 +1,5 @@
 import { TicketDto } from "@/types";
-import { httpClient } from "@/utils/abstractions";
+import { httpClient } from "@/utils/abstractions/httpClient";
 
 export type SearchResponse = {
   result?: TicketDto[];

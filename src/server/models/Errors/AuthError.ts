@@ -1,7 +1,5 @@
-/* eslint-disable max-classes-per-file */
 /* eslint-disable no-unused-vars */
-import { CredentialsSignin } from "next-auth";
-
+/* eslint-disable max-classes-per-file */
 export enum AuthError {
   Configuration = "Configuration",
   AccessDenied = "AccessDenied",
@@ -9,10 +7,10 @@ export enum AuthError {
   Default = "Default",
 }
 
-export class InvalidLoginError extends CredentialsSignin {
+export class InvalidLoginError {
   code = "Invalid identifier or password";
 }
 
-export class UserNotExist extends CredentialsSignin {
+export class UserNotExist {
   code = "User not exist, please create a account";
 }

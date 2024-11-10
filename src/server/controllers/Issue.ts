@@ -1,6 +1,7 @@
+import { startDBConnection } from "@/database";
+import { TicketView } from "@/server";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { getFormattedBody } from "@/server/functions/getFormattedBody";
-import { TicketView } from "@/server";
 import { IOpenIssueForm } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 import { IssueServices } from "../services";
@@ -8,6 +9,7 @@ import { IssueServices } from "../services";
 export class IssueController {
   static async getAllIssues(req: NextRequest) {
     try {
+      await startDBConnection();
       const { isAuthenticated, userId } = await getAuthToken(req);
 
       if (!isAuthenticated || !userId) {
@@ -28,7 +30,7 @@ export class IssueController {
         return NextResponse.json(
           { error: { message: "No tickets found" } },
           {
-            status: 204,
+            status: 200,
           },
         );
       }
@@ -37,12 +39,14 @@ export class IssueController {
         status: 200,
       });
     } catch (error) {
+      console.log({ error });
       return NextResponse.json({ error });
     }
   }
 
   static async getIssueById(req: NextRequest, params: { id: string }) {
     try {
+      await startDBConnection();
       const ticketId = params.id;
       const { userId, isAuthenticated } = await getAuthToken(req);
 
@@ -55,27 +59,29 @@ export class IssueController {
         );
       }
 
-      const ticket = await IssueServices.getIssueById(userId, ticketId);
+      const ticket = (await IssueServices.getIssueById(userId, ticketId)).at(0);
 
-      if (!ticket.length) {
+      if (!ticket) {
         return NextResponse.json(
           { error: { message: "Issue not found" } },
           {
-            status: 204,
+            status: 404,
           },
         );
       }
 
-      return NextResponse.json(TicketView.getTicket(ticket[0].dataValues), {
+      return NextResponse.json(TicketView.getTicket(ticket), {
         status: 200,
       });
     } catch (error) {
+      console.log({ error });
       return NextResponse.json({ error });
     }
   }
 
   static async createIssue(req: NextRequest) {
     try {
+      await startDBConnection();
       const body = await getFormattedBody<IOpenIssueForm>(req);
       const { userId, isAuthenticated } = await getAuthToken(req);
 
@@ -88,12 +94,13 @@ export class IssueController {
         );
       }
 
-      const tickets = await IssueServices.createIssue(userId, body);
+      const issue = await IssueServices.createIssue(userId, body);
 
-      return NextResponse.json(TicketView.getTicketId(tickets), {
+      return NextResponse.json(TicketView.getTicketId(issue), {
         status: 201,
       });
     } catch (error) {
+      console.log({ error });
       return NextResponse.json(
         { error },
         {
@@ -105,6 +112,7 @@ export class IssueController {
 
   static async getInProgressIssues(req: NextRequest) {
     try {
+      await startDBConnection();
       const { userId, isAuthenticated } = await getAuthToken(req);
 
       if (!isAuthenticated || !userId) {
@@ -142,6 +150,7 @@ export class IssueController {
 
   static async closeIssue(req: NextRequest, params: { id: string }) {
     try {
+      await startDBConnection();
       const ticketId = params.id;
       const { userId, isAuthenticated } = await getAuthToken(req);
 
@@ -191,6 +200,7 @@ export class IssueController {
 
   static async startIssue(req: NextRequest, params: { id: string }) {
     try {
+      await startDBConnection();
       const ticketId = params.id;
       const { userId, isAuthenticated } = await getAuthToken(req);
 
@@ -240,6 +250,7 @@ export class IssueController {
 
   static async reopenIssue(req: NextRequest, params: { id: string }) {
     try {
+      await startDBConnection();
       const ticketId = params.id;
       const { userId, isAuthenticated } = await getAuthToken(req);
 

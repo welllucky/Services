@@ -1,13 +1,13 @@
 "use client";
 
 import { GlobalStyle, theme } from "@/styles";
-import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "styled-components";
 import { SWRConfig } from "swr";
 import { AppProvider } from "../stores/AppStore";
+import { AuthProvider } from "./AuthProvider";
 import StyledComponentsRegistry from "./registry";
 
 export const AppProviders = ({ children }: { children: ReactNode }) => (
@@ -23,7 +23,7 @@ export const AppProviders = ({ children }: { children: ReactNode }) => (
       }}>
       <StyledComponentsRegistry>
         <ThemeProvider theme={theme}>
-          <SessionProvider>
+          <AuthProvider>
             <AppProvider>
               <GlobalStyle />
               {children}
@@ -39,7 +39,7 @@ export const AppProviders = ({ children }: { children: ReactNode }) => (
                 }}
               />
             </AppProvider>
-          </SessionProvider>
+          </AuthProvider>
         </ThemeProvider>
       </StyledComponentsRegistry>
     </CookiesProvider>

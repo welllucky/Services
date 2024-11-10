@@ -2,16 +2,28 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: "",
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // eslint-disable-next-line no-param-reassign
+      config.resolve = {
+        ...config.resolve,
+        fallback: {
+          ...config.resolve.fallback,
+          fs: false,
+        },
+      };
+    }
     // eslint-disable-next-line no-param-reassign
-    config.resolve.fallback = { fs: false };
-
+    config.module = {
+      ...config.module,
+      exprContextCritical: false,
+    };
     // eslint-disable-next-line no-param-reassign
-    config.ignoreWarnings = [
-      {
-        module: /sequelize/,
-      },
-    ];
+    config.resolve.alias["react-native-sqlite-storage"] = false;
+    // eslint-disable-next-line no-param-reassign
+    config.resolve.alias["@sap/hana-client/extension/Stream"] = false;
+    // eslint-disable-next-line no-param-reassign
+    config.resolve.alias["@sap/hana-client"] = false;
     return config;
   },
   compiler: {
@@ -20,13 +32,10 @@ const nextConfig = {
   },
   generateBuildId: () =>
     Promise.resolve(
-      `build-id-${process.env.NEXT_PUBLIC_RELEASE}-${new Date()}`,
+      `build-id-${process.env.NEXT_PUBLIC_RELEASE}-${new Date().toISOString().replace(" ", "-")}`,
     ),
   reactStrictMode: process.env.NODE_ENV === "development",
   pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
-  experimental: {
-    webVitalsAttribution: ["CLS", "LCP", "FCP", "FID", "TTFB", "INP"],
-  },
   optimizeFonts: true,
   env: {
     NEXT_PUBLIC_NODE_ENV: process.env.NODE_ENV,
@@ -54,8 +63,6 @@ const withPWA = require("next-pwa")({
 });
 
 module.exports = withPWA(nextConfig);
-
-// Injected content via Sentry wizard below
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withSentryConfig } = require("@sentry/nextjs");

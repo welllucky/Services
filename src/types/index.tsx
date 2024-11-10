@@ -52,8 +52,8 @@ type TextTheme = {
 };
 
 export type * from "./DataTag";
-export type * from "./Dto";
-export type * from "./Interfaces";
+export * from "./Dto";
+export * from "./Interfaces";
 export type * from "./Themes";
 
 export type {

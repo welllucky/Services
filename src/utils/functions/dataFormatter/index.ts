@@ -1,4 +1,4 @@
-export const dataFormatter = (data: string, fullDate?: boolean) => {
+export const dataFormatter = (data: string | Date, fullDate?: boolean) => {
   const date = typeof data === "string" ? new Date(data) : data;
   const day = date?.getDate().toString().padStart(2, "0");
   const month = ((date?.getMonth() ?? 0) + 1).toString().padStart(2, "0");

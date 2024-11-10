@@ -1,19 +1,12 @@
-import { Event, User } from "@/server/models";
+import { Event, Ticket, User } from "@/server/entities";
 import { ITicketEvent } from "@/types";
 import { DataSource, EntityTarget, Repository } from "typeorm";
 
 class EventRepository {
-  private source: Repository<Event>;
+  private readonly source: Repository<Event>;
 
-  private userRepository: Repository<User>;
-
-  constructor(
-    db: DataSource,
-    EventModel: EntityTarget<Event>,
-    UserModel: EntityTarget<User>,
-  ) {
+  constructor(db: DataSource, EventModel: EntityTarget<Event>) {
     this.source = db.getRepository(EventModel);
-    this.userRepository = db.getRepository(UserModel);
   }
 
   findEventById(eventId: string) {
@@ -30,15 +23,15 @@ class EventRepository {
     });
   }
 
-  async createEvent(eventData: Omit<ITicketEvent, "id">) {
-    const user = await this.userRepository.findOneBy({
-      register: eventData.createdBy,
-    });
+  async createEvent(
+    eventData: Omit<ITicketEvent, "id" | "createdBy">,
+    user: User,
+    ticket?: Ticket,
+  ) {
     return this.source.create({
       ...eventData,
-      createdBy: {
-        ...user,
-      },
+      ...(ticket && { ticket }),
+      createdBy: user,
       createdAt: new Date(),
     });
   }

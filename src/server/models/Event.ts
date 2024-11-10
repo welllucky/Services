@@ -10,7 +10,9 @@ import {
 import { Ticket } from "./Ticket";
 import { User } from "./User";
 
-@Entity()
+@Entity({
+  name: "Events"
+})
 export class Event extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: string;
@@ -32,13 +34,13 @@ export class Event extends BaseEntity {
   public description!: string;
 
   @Column({
-    type: "enum",
+    type: "text",
     enum: ["open", "close", "reopen", "message", "system"],
   })
   public type!: "open" | "close" | "reopen" | "message" | "system";
 
   @Column({
-    type: "enum",
+    type: "text",
     enum: ["public", "private"],
   })
   public visibility!: "public" | "private";

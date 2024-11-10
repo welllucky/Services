@@ -3,14 +3,16 @@
 import { Header, NavigationBar } from "@/components";
 import { getNavigationOptions } from "@/components/NavBar/data";
 import { FlexContainer } from "@/components/PageStruct/style";
-import { useSession } from "next-auth/react";
-import { redirect, usePathname } from "next/navigation";
+import { useAuth } from "@/utils";
+import { usePathname } from "next/navigation";
 import { ReactNode, useMemo } from "react";
 
 const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
-  const { data, status } = useSession();
   const pathName = usePathname();
-  const user = useMemo(() => data?.user, [data?.user]);
+  const { user } = useAuth();
+
+  console.log({ user });
+
   const isRequestsPage = useMemo(
     () => pathName === "/solicitacoes",
     [pathName],
@@ -49,9 +51,9 @@ const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
     [pagesWithoutHeader, pathName],
   );
 
-  if (status === "unauthenticated") {
-    redirect("/login");
-  }
+  // if (!isAuthenticated) {
+  //   redirect("/login");
+  // }
 
   return (
     <FlexContainer

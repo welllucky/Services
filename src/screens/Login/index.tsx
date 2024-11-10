@@ -1,70 +1,55 @@
 "use client";
 
-import { ISignIn } from "@/types/";
-import { SignInSchema } from "@/types/Interfaces/User";
-import { linkUserSession } from "@/utils";
+import { ISignIn, SignInSchema } from "@/types/";
+import { useAuth } from "@/utils/providers/AuthProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { LoginPageUI } from "./UI";
 
-const LoginPage = () => {
-  const {
-    register,
-    formState,
-    // handleSubmit,
-    watch,
-  } = useForm<ISignIn>({
-    shouldUnregister: true,
+export interface LoginPageProps {
+  error?: string;
+  redirectTo?: string;
+}
+
+const LoginPage = ({ error, redirectTo }: LoginPageProps) => {
+  const { signIn, isLoading } = useAuth();
+  const { register, formState, handleSubmit } = useForm<ISignIn>({
     defaultValues: {
       email: "",
       password: "",
     },
     mode: "onChange",
-    resetOptions: {
-      keepDefaultValues: true,
-      keepSubmitCount: false,
-    },
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: zodResolver(SignInSchema),
   });
 
-  const { errors } = formState;
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        toast.error("Houve um erro ao tentar fazer login, tente novamente");
+      }, 200);
+    }
+  }, [error]);
 
-  const email = watch("email");
-  const password = watch("password");
-
-  const loginCallback = async () => {
-    console.log({
-      email,
-      password,
-      errors,
-    });
-    // handleSubmit(async (data) => {
+  const loginCallback = handleSubmit(async (data) => {
     try {
-      await signIn("credentials", {
-        email,
-        password,
-        redirectTo: "/",
-      });
+      await signIn(data.email, data.password, redirectTo ?? "/");
 
-      await linkUserSession(email, password);
-
-      toast.success("Seja bem vindo!");
-    } catch (error) {
-      console.log({ error });
+      toast.success("Bem-vindo!");
+    } catch {
       toast.error("Email ou senha inválidos");
     }
-    // });
-  };
+  });
 
   return (
     <LoginPageUI
       formState={formState}
       register={register}
       loginAction={loginCallback}
+      pageIsLoading={isLoading}
     />
   );
 };

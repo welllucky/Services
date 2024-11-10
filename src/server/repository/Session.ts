@@ -1,60 +1,85 @@
-import { Session } from "@/server/models/Session";
+import { Session } from "@/server/entities/Session";
 import { ISession } from "@/types";
 import { DataSource, EntityTarget, Repository } from "typeorm";
-import { User } from "../models";
+import { User } from "../entities";
 
 class SessionRepository {
-  private source: Repository<Session>;
+  private readonly source: Repository<Session>;
 
-  private userRepository: Repository<User>;
-
-  constructor(
-    db: DataSource,
-    SessionModel: EntityTarget<Session>,
-    UserModel: EntityTarget<User>,
-  ) {
+  constructor(db: DataSource, SessionModel: EntityTarget<Session>) {
     this.source = db.getRepository(SessionModel);
-    this.userRepository = db.getRepository(UserModel);
   }
 
-  find(userId: string) {
-    return this.source.findOneBy({
-      user: {
-        register: userId,
-      },
-    });
-  }
-
-  findAll(userId: string) {
-    return this.source.findBy({
-      user: {
-        register: userId,
-      },
-    });
-  }
-
-  async update(userId: string, data: Omit<Partial<ISession>, "userId">) {
-    const user = await this.userRepository.findOneBy({ register: userId });
-    return this.source.update(
-      {
+  find(
+    userId: string,
+    sessionId?: string,
+    status: "all" | "active" | "inactive" = "active",
+  ) {
+    return this.source.findOne({
+      where: {
         user: {
           register: userId,
         },
+        ...(sessionId && { id: sessionId }),
+        isActive: status === "all" ? undefined : status === "active",
+      },
+      order: {
+        createdAt: "ASC",
+      },
+      relations: {
+        user: true,
+      },
+    });
+  }
+
+  findAll(userId: string, status: "all" | "active" | "inactive" = "active") {
+    return this.source.find({
+      where: {
+        user: {
+          register: userId,
+        },
+        isActive: status === "all" ? undefined : status === "active",
+      },
+      order: {
+        createdAt: "ASC",
+      },
+      relations: {
+        user: true,
+      },
+    });
+  }
+
+  async update(
+    data: Omit<Partial<ISession>, "userId" | "expiratAt" | "createdAt" | "id">,
+    user: User,
+    sessionId?: string,
+  ) {
+    return this.source.update(
+      {
+        user: {
+          register: user.register,
+        },
+        ...(sessionId && { id: sessionId }),
       },
       {
         ...data,
-        user: {
-          ...user,
-        },
+        user,
       },
     );
   }
 
-  async create(data: Omit<ISession, "createdAt" | "updatedAt" | "id">) {
-    return this.source.create({
+  async create(
+    data: Omit<ISession, "createdAt" | "updatedAt" | "id" | "userId">,
+    user: User,
+  ) {
+    const session = this.source.create({
       ...data,
+      isActive: true,
       createdAt: new Date(),
+      user,
     });
+
+    return this.source.save(session);
   }
 }
 

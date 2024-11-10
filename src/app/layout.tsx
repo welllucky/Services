@@ -6,6 +6,7 @@ import { enableMapSet, enablePatches } from "immer";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
+import "reflect-metadata";
 import { AppProviders } from "../utils/providers/providers";
 
 const inter = Inter({ subsets: ["latin"] });

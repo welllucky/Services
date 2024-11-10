@@ -7,13 +7,10 @@ import {
   HD_KEY_USER_RELIABLE_AGENT,
 } from "./utils";
 
-// export { auth as middleware } from "@/auth";
-
 export default function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const response = NextResponse.next();
   const companyId = process.env.SERVICES_COMPANY_ID ?? "";
-
   const { device, isBot } = userAgent(request);
   const clientDevice = device.type ?? "desktop";
 

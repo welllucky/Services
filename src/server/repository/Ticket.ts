@@ -1,4 +1,4 @@
-import { Ticket } from "@/server/models";
+import { Ticket } from "@/server/entities";
 import { ITicket } from "@/types";
 import {
   DataSource,

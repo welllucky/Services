@@ -1,38 +1,33 @@
 // import { getAuthToken } from "@/server/functions/getAuthToken";
-import { connectDB } from "@/database";
-import { UserServices } from "@/server/services";
+import { startDBConnection } from "@/database";
 import { UserView } from "@/server/views";
+import { IRegisterUser, RegisterUserSchema } from "@/types";
 import { AuthErrorMessage } from "@/types/Interfaces/Auth";
 import { NextRequest, NextResponse } from "next/server";
+import { getAuthToken } from "../functions/getAuthToken";
+import { userModel } from "../models";
+import { UserServices } from "../services";
 
 export class UserController {
   static async authUser(req: NextRequest) {
     try {
-      await connectDB();
-      const email = req.nextUrl.searchParams.get("username") ?? "";
-      const password = req.nextUrl.searchParams.get("password") ?? "";
+      await startDBConnection();
+      const { isAuthenticated, userId } = await getAuthToken(req);
 
-      if (!email || !password) {
+      if (!isAuthenticated || !userId) {
         return NextResponse.json(
+          { error: { message: "User not authenticated" } },
           {
-            error: {
-              message: `${!email ? "Email" : "Password"} is empty. Please insert this information to auth user`,
-            },
-          },
-          {
-            status: 400,
+            status: 401,
           },
         );
       }
 
-      console.log("Well Passou aqui");
+      await userModel.init({
+        register: userId,
+      });
 
-      const userData = await UserServices.findByEmailAndPassword(
-        email,
-        password,
-      );
-
-      if (!userData) {
+      if (!userModel.exists({ safe: true })) {
         return NextResponse.json(
           UserView.getUser({
             user: null,
@@ -45,16 +40,73 @@ export class UserController {
         );
       }
 
+      const userData = userModel.getData();
+
       return NextResponse.json(
         UserView.getUser({ user: userData, status: 200 }),
         {
           status: 200,
         },
       );
-    } catch {
+    } catch (error) {
+      console.log({ error });
       return NextResponse.json(
         UserView.getUser({
           error: { message: AuthErrorMessage.InvalidLoginError },
+          status: 500,
+        }),
+        {
+          status: 500,
+        },
+      );
+    }
+  }
+
+  static async createUser(req: NextRequest) {
+    try {
+      await startDBConnection();
+      const data: IRegisterUser = await req.json();
+      const { email, password, register } = data;
+
+      RegisterUserSchema.parse(data);
+
+      if (!email || !password) {
+        return NextResponse.json(
+          {
+            error: {
+              message: `${!email ? "Email" : "Password"} is empty. Please insert this information to create user`,
+            },
+          },
+          {
+            status: 400,
+          },
+        );
+      }
+
+      const existingUser = await UserServices.exits(register, email);
+
+      if (existingUser) {
+        return NextResponse.json(
+          {
+            error: {
+              message: "User already exists",
+            },
+          },
+          {
+            status: 409,
+          },
+        );
+      }
+
+      const { user } = await userModel.createUser(data);
+
+      return NextResponse.json(UserView.getUser({ user, status: 201 }), {
+        status: 201,
+      });
+    } catch (error) {
+      return NextResponse.json(
+        UserView.getUser({
+          error: { message: error || AuthErrorMessage.InvalidLoginError },
           status: 500,
         }),
         {

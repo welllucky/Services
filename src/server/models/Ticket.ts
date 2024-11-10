@@ -11,7 +11,9 @@ import {
 import { Event } from "./Event";
 import { User } from "./User";
 
-@Entity()
+@Entity({
+  name: "Tickets",
+})
 class Ticket extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: string;
@@ -32,21 +34,21 @@ class Ticket extends BaseEntity {
   public date!: Date;
 
   @Column({
-    type: "enum",
+    type: "text",
     enum: ["low", "medium", "high"],
     default: "medium",
   })
   public priority!: "low" | "medium" | "high";
 
   @Column({
-    type: "enum",
+    type: "text",
     enum: ["task", "incident", "problem", "change"],
     default: "problem",
   })
   public type!: "task" | "incident" | "problem" | "change";
 
   @Column({
-    type: "enum",
+    type: "text",
     enum: ["notStarted", "inProgress", "blocked", "closed"],
     default: "notStarted",
   })

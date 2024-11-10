@@ -128,3 +128,5 @@ export class HTTPClientImplementation {
     });
   }
 }
+
+export const httpClient = new HTTPClientImplementation();

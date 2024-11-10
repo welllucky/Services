@@ -1,10 +1,10 @@
-import { connectDB } from "@/database";
+import { startDBConnection } from "@/database";
 import { AuthErrorMessage } from "@/types/Interfaces/Auth";
 import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
-import * as jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { getFormattedBody } from "../functions/getFormattedBody";
-import { UserServices } from "../services";
+import { SessionModel, userModel } from "../models";
 import { SessionService } from "../services/Session";
 import { UserView } from "../views";
 
@@ -16,7 +16,8 @@ interface SessionProps {
 export class SessionController {
   static async create(req: NextRequest) {
     try {
-      await connectDB();
+      const cookiesStore = await cookies();
+      await startDBConnection();
       const { email, password } = await getFormattedBody<SessionProps>(req);
 
       if (!email || !password) {
@@ -24,7 +25,7 @@ export class SessionController {
           {
             error: {
               message:
-                "Email Password is empty. Please insert this information to auth user",
+                "Email or Password is empty. Please insert this information to auth user",
             },
           },
           {
@@ -33,9 +34,11 @@ export class SessionController {
         );
       }
 
-      const user = await UserServices.findByEmail(email);
+      await userModel.init({
+        email,
+      });
 
-      if (!user) {
+      if (!userModel.exists({ safe: true })) {
         return NextResponse.json(
           UserView.getUser({
             user: null,
@@ -48,56 +51,43 @@ export class SessionController {
         );
       }
 
-      //   const isPasswordValid = await bcrypt.compare(password, user.hash);
+      const sessionModel = new SessionModel({
+        userModel,
+      });
 
-      //   if (!isPasswordValid) {
-      //     return NextResponse.json(
-      //       { error: { message: "Invalid password" } },
-      //       {
-      //         status: 401,
-      //       },
-      //     );
-      //   }
+      const { accessToken, expiresAt } = await sessionModel.createAccessToken({
+        password,
+      });
 
-      console.log({ user });
+      const session = await SessionService.createSession(password, userModel);
 
-      const tokenInfo = {
-        register: user.register,
-        email: user.email,
-        name: user.name,
-        lastConnection: user.lastConnection,
-        isBanned: user.isBanned,
-        canCreateTicket: user.canCreateTicket,
-        canResolveTicket: user.canResolveTicket,
-      };
+      if (!session) throw new Error("Session not created");
 
-      const expiresAt = new Date();
-      expiresAt.setDate(expiresAt.getDate() + 7);
-
-      const accessToken = jwt.sign(
-        { ...tokenInfo, exp: expiresAt.getTime() },
-        process.env.AUTH_SECRET ?? "",
-        {
-          algorithm: "HS256",
-        },
-      );
-
-      await SessionService.createSession({
-        userId: user.register,
-        token: accessToken,
-        expiresAt,
+      cookiesStore.set(CS_KEY_ACCESS_TOKEN, accessToken, {
+        secure: process.env.NODE_ENV !== "development",
+        path: "/",
+        sameSite: "lax",
+        expires: expiresAt,
       });
 
       return NextResponse.json(
-        { accessToken },
+        { accessToken, expiresAt },
         {
-          headers: {
-            "Set-Cookie": `${CS_KEY_ACCESS_TOKEN}=${accessToken}; HttpOnly; Secure; SameSite=Strict; Expires=${expiresAt.toUTCString()}`,
-          },
-          status: 200,
+          status: 201,
         },
       );
-    } catch {
+    } catch (error) {
+      const err = error as Error;
+      console.log({ err });
+      if (err.message.includes("Invalid password")) {
+        return NextResponse.json(
+          { error: { message: err.message } },
+          {
+            status: 401,
+          },
+        );
+      }
+
       return NextResponse.json(
         UserView.getUser({
           error: { message: AuthErrorMessage.InvalidLoginError },

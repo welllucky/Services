@@ -1,8 +1,7 @@
 import { IconButton } from "@/components";
 import { Row, TitleComponent } from "@/styles";
-import { buildTestIds, getGreetingMessage } from "@/utils";
+import { buildTestIds, getGreetingMessage, useAuth } from "@/utils";
 import { SignOut as SignOutIcon } from "@phosphor-icons/react";
-import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Logo from "public/Icon.png";
 import { useMemo } from "react";
@@ -11,9 +10,7 @@ import { FirstSection, HeaderHome, UserName } from "./styles";
 export const Header = () => {
   const greetingMessage = useMemo(() => getGreetingMessage(), []);
 
-  const { data: session } = useSession();
-
-  const user = useMemo(() => session?.user, [session?.user]);
+  const { user, signOut } = useAuth();
 
   return (
     <HeaderHome {...buildTestIds("header-home-container")}>
@@ -47,11 +44,7 @@ export const Header = () => {
             </TitleComponent>
           </UserName>
           <IconButton
-            onClick={() =>
-              signOut({
-                redirectTo: "/login",
-              })
-            }
+            onClick={() => signOut}
             icon={<SignOutIcon size={24} />}
           />
         </Row>
