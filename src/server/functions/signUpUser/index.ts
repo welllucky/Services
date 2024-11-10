@@ -1,4 +1,4 @@
-import { signIn } from "@/auth";
+import { signIn } from "@/_auth";
 
 export const signUpUser = async (email: string, password: string) => {
   "use server";

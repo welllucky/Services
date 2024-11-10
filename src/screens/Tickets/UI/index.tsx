@@ -2,16 +2,21 @@ import { Loading, NoContent, SubHeader } from "@/components";
 import { TicketCard } from "@/components/TicketCard";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
-import { dataFormatter, ticketApi } from "@/utils";
+import { TicketDto } from "@/types";
+import { dataFormatter } from "@/utils/functions/dataFormatter";
 import { DefaultTheme } from "styled-components";
 
-type TicketsPageUIProps = {
-  theme: DefaultTheme;
+export type TicketsPageUIProps = {
+  data?: TicketDto[];
+  isLoading?: boolean;
+  theme?: DefaultTheme;
 };
 
-export const TicketsPageUI = async ({ theme }: TicketsPageUIProps) => {
-  const { data, isLoading } = ticketApi.getTickets();
-
+export const TicketsPageUI = async ({
+  theme,
+  data,
+  isLoading,
+}: TicketsPageUIProps) => {
   if (isLoading) {
     return <Loading fullScreen />;
   }
@@ -20,12 +25,12 @@ export const TicketsPageUI = async ({ theme }: TicketsPageUIProps) => {
     <>
       <SubHeader title="Solicitações" />
       <PageContainer>
-        <MainContainer $hasContent={Number(data.length) !== 0}>
+        <MainContainer $hasContent={Number(data?.length) !== 0}>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent
               alt="caixa vazia"
               title="Não há chamados no momento."
-              color={theme.colors.neutral["5"]}
+              color={theme?.colors.neutral["5"]}
             />
           ) : (
             data.map((ticket) => (

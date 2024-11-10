@@ -1,5 +1,5 @@
 import { ITicket, TicketDto } from "@/types";
-import { httpClient } from "@/utils/abstractions";
+import { httpClient } from "@/utils/abstractions/httpClient";
 
 type InitializeTicketType = {
   issueId: string;
@@ -37,6 +37,7 @@ export class TicketApi {
   getTickets = () => {
     const { data, error, isLoading } = httpClient.get<TicketDto[]>({
       url: `${this.api_url}`,
+      options: { refreshInterval: false },
     });
 
     return { data, error, isLoading };

@@ -1,6 +1,6 @@
 import AppDataSource from "@/database";
-import { User } from "@/server/models";
-import { IUser } from "@/types";
+import { User } from "@/server/entities";
+import { IUser, IUserTable } from "@/types";
 import { DataSource, EntityTarget, Repository } from "typeorm";
 
 class UserRepository {
@@ -10,11 +10,11 @@ class UserRepository {
     this.source = db.getRepository(UserModel);
   }
 
-  async find(email: string, password: string) {
+  async find(email: string, hash: string) {
     return this.source.findOne({
       where: {
         email,
-        hash: password,
+        hash,
       },
     });
   }
@@ -24,7 +24,6 @@ class UserRepository {
   }
 
   async findByEmail(email: string) {
-    console.log("Well - oi");
     return AppDataSource.getRepository(User).findOneBy({
       email,
     });
@@ -36,6 +35,19 @@ class UserRepository {
       .set({ ...data })
       .where("register = :register", { register })
       .execute();
+  }
+
+  async create(data: Partial<IUserTable>) {
+    return this.source.save(data);
+  }
+
+  async exits(register: string, email: string) {
+    return this.source.findOne({
+      where: {
+        register,
+        email,
+      },
+    });
   }
 }
 

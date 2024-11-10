@@ -1,8 +1,8 @@
-import { IssueController } from "@/server/controllers";
+import { SessionController } from "@/server/controllers/Session";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
-  return IssueController.createIssue(req);
+  return SessionController.create(req);
 }
 
 export const runtime = "nodejs";

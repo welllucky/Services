@@ -10,11 +10,14 @@ import { ButtonSection, LoginMobile, ScreenContainer } from "./styles";
 export interface LoginPageProps {
   register: UseFormRegister<ISignIn>;
   formState: FormState<ISignIn>;
+  pageIsLoading?: boolean;
   loginAction: () => void;
 }
 
-const LoginPageUI = ({ formState, register, loginAction }: LoginPageProps) => {
-  const { isLoading, isValid } = formState;
+const LoginPageUI = ({ formState, register, loginAction, pageIsLoading }: LoginPageProps) => {
+  const { isLoading: formIsLoading, isValid } = formState;
+
+  const isLoading = pageIsLoading || formIsLoading;
 
   return (
     <ScreenContainer>

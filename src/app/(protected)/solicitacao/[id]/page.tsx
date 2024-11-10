@@ -1,13 +1,14 @@
-import { auth } from "@/auth";
-import { IssuePage, IssuePageProps, NoMobileDevicePage } from "@/screens";
+import { IssuePage, IssuePageProps } from "@/screens";
 
-const Issue = async ({ params }: { params: IssuePageProps }) => {
-  const session = await auth();
-  if (!session?.user.canResolveTicket) {
-    return <NoMobileDevicePage />;
-  }
+const Issue = async ({ params }: { params: IssuePageProps }) => (
+  // const cookiesStore = cookies();
+  // const accessToken = cookiesStore.get(CS_KEY_ACCESS_TOKEN)?.value || "";
+  // const session = await auth(accessToken);
 
-  return <IssuePage id={params.id} />;
-};
+  // if (!session?.user.canResolveTicket) {
+  //   return <NoMobileDevicePage />;
+  // }
 
+  <IssuePage id={params.id} />
+);
 export default Issue;

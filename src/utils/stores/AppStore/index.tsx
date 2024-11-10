@@ -25,8 +25,8 @@ interface AppProviderProps {
 
 export const AppContext = createContext({} as unknown as AppContextProps);
 export const AppProvider = ({ children }: Readonly<AppProviderProps>) => {
-  const deviceType: string = cookie.get(CS_KEY_USER_DEVICE_TYPE);
-  const reliableAgent: string = cookie.get(CS_KEY_USER_RELIABLE_AGENT);
+  const deviceType: string = cookie.get(CS_KEY_USER_DEVICE_TYPE) || "";
+  const reliableAgent: string = cookie.get(CS_KEY_USER_RELIABLE_AGENT) || "";
 
   // const isClientSmallMobile = useMediaQuery(
   //   "only screen and (max-width: 320px)",

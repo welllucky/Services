@@ -8,8 +8,7 @@ import {
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { TicketDto } from "@/types";
-import { dataFormatter, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
-import { useSession } from "next-auth/react";
+import { dataFormatter, SS_KEY_USER_PREVIOUS_PAGE, useAuth } from "@/utils";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useCallback, useMemo } from "react";
 import { ButtonWrapper } from "../styles";
@@ -29,9 +28,7 @@ export const IssuesPageUI = ({
 }: IssuesPageUIProps) => {
   const issuesQuantity = data?.length ?? 0;
 
-  const { data: session } = useSession();
-
-  const user = useMemo(() => session?.user, [session?.user]);
+  const { user } = useAuth();
 
   const showAddIssueButton = useMemo(
     () =>

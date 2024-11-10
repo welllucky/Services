@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-import { Event, Session, Ticket, User } from "@/server/models";
+import { Event, Session, Ticket, User } from "@/server/entities";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { options } from "./config/config";
 
-console.log({ options });
+// [`${path.resolve(__dirname, "../")}server/entities/*.ts`],
 
 const sqliteDataSource = new DataSource({
   type: "sqlite",
@@ -12,7 +12,6 @@ const sqliteDataSource = new DataSource({
   migrationsTableName: "migrations",
   entities: [Event, Ticket, User, Session],
   synchronize: true,
-  logging: "all",
 });
 
 const mySqlDataSource = new DataSource({
@@ -23,7 +22,7 @@ const mySqlDataSource = new DataSource({
   password: options.password,
   database: options.database,
   entities: [Event, Ticket, User, Session],
-  synchronize: true,
+  synchronize: process.env.HOST_ENV !== "production",
   logging: options.logging,
 });
 
@@ -35,14 +34,20 @@ const AppDataSource =
     ? mySqlDataSource
     : sqliteDataSource;
 
-const connectDB = () =>
-  AppDataSource.initialize()
-    .then(() => {
+// eslint-disable-next-line consistent-return
+const startDBConnection = async () => {
+  "use server";
+
+  try {
+    if (!AppDataSource.isInitialized) {
+      await AppDataSource.initialize();
       console.log("Data Source has been initialized!");
-    })
-    .catch((err) => {
-      console.error("Error during Data Source initialization", err);
-    });
+    }
+    return AppDataSource;
+  } catch (err) {
+    console.error("Error during Data Source initialization", err);
+  }
+};
 
 export default AppDataSource;
-export { connectDB };
+export { startDBConnection };

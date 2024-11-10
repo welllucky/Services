@@ -1,6 +1,5 @@
-/* eslint-disable max-len */
 import { IOpenIssueForm, IssueDto } from "@/types";
-import { httpClient } from "@/utils/abstractions";
+import { httpClient } from "@/utils/abstractions/httpClient";
 
 /**
  * The `IssueApi` class provides methods to interact with the issues API, including fetching and creating issues.

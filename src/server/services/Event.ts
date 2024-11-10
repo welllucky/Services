@@ -1,9 +1,12 @@
-import { eventRepository } from "@/server/repository";
+import { eventRepository, userRepository } from "@/server/repository";
 import { EventRepository } from "@/server/repository/Event";
 import { ITicketEvent } from "@/types";
+import { userModel } from "../models";
 
 export class EventServices {
   private static readonly repository: EventRepository = eventRepository;
+
+  private static readonly userRepository = userRepository;
 
   static async createEvent(
     userId: string,
@@ -12,11 +15,20 @@ export class EventServices {
   ) {
     const eventsQuantity =
       await this.repository.countEventsByTicketId(ticketId);
-    return this.repository.createEvent({
-      ...eventData,
-      createdBy: userId,
-      order: eventsQuantity + 1,
+
+    await userModel.init({
+      register: userId,
     });
+
+    userModel.exists();
+
+    return this.repository.createEvent(
+      {
+        ...eventData,
+        order: eventsQuantity + 1,
+      },
+      userModel.getEntity(),
+    );
   }
 
   static async getEventById(eventId: string) {

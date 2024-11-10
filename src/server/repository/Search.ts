@@ -1,4 +1,4 @@
-import { Ticket } from "@/server/models";
+import { Ticket } from "@/server/entities";
 import { DataSource, EntityTarget, Like, Repository } from "typeorm";
 
 class SearchRepository {
