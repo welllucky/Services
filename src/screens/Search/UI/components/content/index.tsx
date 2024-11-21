@@ -23,7 +23,7 @@ export const Content = ({
     [searchResults],
   );
 
-  const showNoResults = useMemo(() => searchTerm.length === 0, [searchTerm]);
+  const isEmpty = useMemo(() => searchTerm.length === 0, [searchTerm]);
 
   return (
     <PageContainer>
@@ -32,8 +32,8 @@ export const Content = ({
       ) : (
         <MainContainer $hasContent={hasContent}>
           <Results result={searchResults?.result} />
-          <NoResults showNoResults={!hasContent && !showNoResults} />
-          <EmptyContent isEmpty={showNoResults} />
+          <NoResults showNoResults={!hasContent && !isEmpty} />
+          <EmptyContent isEmpty={isEmpty && !hasContent} />
         </MainContainer>
       )}
     </PageContainer>

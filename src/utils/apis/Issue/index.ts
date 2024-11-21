@@ -1,5 +1,5 @@
+import { httpClient } from "@/implementations/client";
 import { IOpenIssueForm, IssueDto } from "@/types";
-import { httpClient } from "@/utils/abstractions/httpClient";
 
 /**
  * The `IssueApi` class provides methods to interact with the issues API, including fetching and creating issues.
@@ -37,22 +37,21 @@ export class IssueApi {
    * Fetches all available issues.
    * @returns An object containing an array of issue data, any error that occurred, and a loading state.
    */
-  getIssues = () => {
-    const response = httpClient.get<IssueDto[]>({
+  getIssues = () =>
+    httpClient.get<IssueDto[]>({
       url: `${this.api_url}`,
       options: { refreshInterval: true },
     });
-    return response;
-  };
 
   /**
    * Creates a new issue with the given data.
    * @param {IOpenIssueForm} issueData The data for the issue to be created.
+   * @param shouldFetch
    * @returns An object containing any error that occurred and a loading state.
    */
   createIssue = (issueData: IOpenIssueForm, shouldFetch = false) =>
     httpClient.post<{ id: string | number }>({
-      url: `${this.api_url}/create`,
+      url: `${this.api_url}`,
       body: {
         ...issueData,
       },

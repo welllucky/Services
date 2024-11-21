@@ -12,5 +12,4 @@ const breakpoints = {
 };
 
 export type Breakpoints = typeof breakpoints;
-breakpoints satisfies Breakpoints;
 export { breakpoints };

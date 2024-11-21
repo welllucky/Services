@@ -2,11 +2,11 @@
 
 "use client";
 
+import { cookie } from "@/implementations/client";
 import { InvalidLoginError, UserNotExist } from "@/server/models/Errors";
 import { AuthErrorMessage, IHttpError, IUser } from "@/types";
-import { cookie } from "@/utils/abstractions";
-import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
-import { createSession, getUser } from "@/utils/functions";
+import { CS_KEY_ACCESS_TOKEN, LS_KEY_USER_DATA } from "@/utils/alias";
+import { closeSession, createSession, getUser } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 import {
   createContext,
@@ -50,75 +50,32 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [accessToken, setAccessToken] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
-    const verifyUser = async () => {
-      const token = cookie.get(CS_KEY_ACCESS_TOKEN);
-      if (token) {
-        setAccessToken(token);
-        // const rawUser = JSON.parse(atob(accessToken)) as unknown as IUser;
-
-        const { user: rawUser } = await getUser(token ?? "");
-
-        if (rawUser) {
-          setUser({
-            register: rawUser?.register ?? "",
-            name: rawUser?.name ?? "",
-            email: rawUser?.email ?? "",
-            isBanned: rawUser?.isBanned ?? false,
-            canCreateTicket: rawUser?.canCreateTicket ?? false,
-            canResolveTicket: rawUser?.canResolveTicket ?? false,
-            role: rawUser?.role ?? "",
-            sector: rawUser?.sector ?? "",
-            lastConnection: rawUser?.lastConnection ?? null,
-          });
-          setIsAuthenticated(true);
-        }
-
-        if (rawUser?.isBanned) {
-          setUser(null);
-          setIsAuthenticated(false);
-          cookie.remove(CS_KEY_ACCESS_TOKEN);
-        }
-
-        if (rawUser?.lastConnection) {
-          const lastConnectionDate = new Date(rawUser.lastConnection);
-          const currentDate = new Date();
-          const diffTime = Math.abs(
-            currentDate.getTime() - lastConnectionDate.getTime(),
-          );
-          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-          if (diffDays > 4) {
-            setUser(null);
-            setIsAuthenticated(false);
-            cookie.remove(CS_KEY_ACCESS_TOKEN);
-            router.push("/login");
-          }
-        }
-      }
-    };
-    verifyUser();
-  }, [accessToken, router]);
+    const storedAccessToken = cookie.get(CS_KEY_ACCESS_TOKEN) ?? "";
+    if (!storedAccessToken) {
+      router.push("/login");
+    }
+  }, [router]);
 
   const signIn = useCallback(
     async (email: string, password: string, redirectTo?: string) => {
       try {
-        setLoading(true);
-        const { accessToken: token, error: sessionError } = await createSession(
-          email,
-          password,
-        );
+        setIsLoading(true);
+        const { accessToken: newToken, error: sessionError } =
+          await createSession(email, password);
 
-        const { error: userError, user: rawUser } = await getUser(token ?? "");
+        const { error: userError, user: rawUser } = await getUser(
+          newToken ?? "",
+        );
 
         const signInError = sessionError || userError;
 
-        if (!token || signInError) {
-          setLoading(false);
+        if (!newToken || signInError) {
+          setIsLoading(false);
           const errorMessage =
             (signInError as IHttpError).message ??
             AuthErrorMessage.UserNotExist;
@@ -132,9 +89,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           throw new InvalidLoginError();
         }
 
-        setAccessToken(token);
+        setAccessToken(newToken);
 
-        setUser({
+        const savedUserData = {
           register: rawUser?.register ?? "",
           name: rawUser?.name ?? "",
           email: rawUser?.email ?? "",
@@ -144,7 +101,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           role: rawUser?.role ?? "",
           sector: rawUser?.sector ?? "",
           lastConnection: rawUser?.lastConnection ?? null,
-        });
+        };
+
+        setUser(savedUserData);
+        localStorage.setItem(LS_KEY_USER_DATA, JSON.stringify(savedUserData));
 
         setIsAuthenticated(true);
 
@@ -152,26 +112,75 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       } catch {
         setUser(null);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     },
     [router],
   );
 
-  const signOut = useCallback(() => {
-    try {
-      cookie.remove(CS_KEY_ACCESS_TOKEN);
-      setLoading(true);
-      setUser(null);
-      setIsAuthenticated(false);
-      router.push("/login");
-    } finally {
-      setLoading(false);
-    }
+  const signOut = useCallback(async () => {
+    setIsLoading(true);
+    setUser(null);
+    setIsAuthenticated(false);
+    cookie.remove(CS_KEY_ACCESS_TOKEN);
+    localStorage.removeItem(LS_KEY_USER_DATA);
+    await closeSession();
+    router.push("/login");
   }, [router]);
 
   // const updateUserData = async () => {
   // };
+
+  useEffect(() => {
+    try {
+      const storedAccessToken = cookie.get(CS_KEY_ACCESS_TOKEN) ?? "";
+      const storedUserDataString =
+        localStorage?.getItem(LS_KEY_USER_DATA) ?? "";
+      const storedUserData = storedUserDataString
+        ? JSON.parse(storedUserDataString)
+        : {};
+
+      setIsLoading(true);
+
+      if (storedUserData) {
+        setUser({
+          register: storedUserData?.register ?? "",
+          name: storedUserData?.name ?? "",
+          email: storedUserData?.email ?? "",
+          isBanned: storedUserData?.isBanned ?? false,
+          canCreateTicket: storedUserData?.canCreateTicket ?? false,
+          canResolveTicket: storedUserData?.canResolveTicket ?? false,
+          role: storedUserData?.role ?? "",
+          sector: storedUserData?.sector ?? "",
+          lastConnection: storedUserData?.lastConnection ?? null,
+        });
+
+        if (storedUserData.isBanned) {
+          signOut();
+        }
+
+        if (storedUserData.lastConnection) {
+          const lastConnectionDate = new Date(storedUserData.lastConnection);
+          const currentDate = new Date();
+          const diffTime = Math.abs(
+            currentDate.getTime() - lastConnectionDate.getTime(),
+          );
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+          if (diffDays > 4) {
+            signOut();
+          }
+        }
+      }
+
+      if (storedAccessToken) {
+        setIsAuthenticated(true);
+        setAccessToken(storedAccessToken);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [accessToken, isLoading, router, signOut]);
 
   const memoizedValue = useMemo(
     (): AuthContextProps => ({
@@ -179,11 +188,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       user,
       signOut,
       signIn,
-      isLoading: loading,
+      isLoading,
       accessToken,
       error,
     }),
-    [accessToken, error, isAuthenticated, loading, signIn, signOut, user],
+    [accessToken, error, isAuthenticated, isLoading, signIn, signOut, user],
   );
 
   return (

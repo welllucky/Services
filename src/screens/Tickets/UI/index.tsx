@@ -15,7 +15,7 @@ export type TicketsPageUIProps = {
 export const TicketsPageUI = async ({
   theme,
   data,
-  isLoading,
+  isLoading = false,
 }: TicketsPageUIProps) => {
   if (isLoading) {
     return <Loading fullScreen />;

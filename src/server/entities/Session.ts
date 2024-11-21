@@ -16,14 +16,6 @@ class Session extends BaseEntity {
   @PrimaryGeneratedColumn()
   public readonly id!: string;
 
-  @Column({
-    type: "varchar",
-    length: 256,
-    nullable: false,
-    unique: true,
-  })
-  public readonly token!: string;
-
   @ManyToOne(() => User)
   @JoinColumn()
   public readonly user!: Relation<User>;

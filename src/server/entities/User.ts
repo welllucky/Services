@@ -78,10 +78,16 @@ class User extends BaseEntity {
   })
   public readonly deletedAt!: Date | null;
 
-  @Column({ type: "varchar", length: 80 })
+  @Column({
+    type: "varchar",
+    length: 80,
+  })
   public role!: string;
 
-  @Column({ type: "varchar", length: 80 })
+  @Column({
+    type: "varchar",
+    length: 80,
+  })
   public sector!: string;
 
   @OneToMany(() => Ticket, (ticket) => ticket.createdBy, {
