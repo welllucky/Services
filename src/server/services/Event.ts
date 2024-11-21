@@ -20,7 +20,9 @@ export class EventServices {
       register: userId,
     });
 
-    userModel.exists();
+    userModel.exists({
+      safe: false,
+    });
 
     return this.repository.createEvent(
       {

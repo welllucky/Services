@@ -23,25 +23,25 @@ export class Event extends BaseEntity {
 
   @Column({
     length: 80,
-    type: "text",
+    type: "varchar",
   })
   public title!: string;
 
   @Column({
     length: 256,
-    type: "text",
+    type: "varchar",
   })
   public description!: string;
 
   @Column({
-    type: "text",
-    enum: ["open", "close", "reopen", "message", "system"],
+    type: "varchar",
+    length: 10, // Limite para valores como 'open', 'close', etc.
   })
   public type!: "open" | "close" | "reopen" | "message" | "system";
 
   @Column({
-    type: "text",
-    enum: ["public", "private"],
+    type: "varchar",
+    length: 10, // Limite para valores como 'public', 'private'.
   })
   public visibility!: "public" | "private";
 

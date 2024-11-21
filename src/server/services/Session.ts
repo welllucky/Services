@@ -4,7 +4,11 @@ import { sessionRepository } from "../repository";
 class SessionService {
   private static readonly session = sessionRepository;
 
-  static async createSession(password: string, userModel: UserModel) {
+  static async createSession(
+    password: string,
+    userModel: UserModel,
+    expiresAt: Date,
+  ) {
     try {
       const sessionModel = new SessionModel({
         userModel,
@@ -12,12 +16,8 @@ class SessionService {
 
       await sessionModel.closeOldSessions();
 
-      const { accessToken, expiresAt } = await sessionModel.createAccessToken({
-        password,
-      });
-
       return this.session.create(
-        { expiresAt, token: accessToken, isActive: true },
+        { expiresAt, isActive: true },
         userModel.getEntity(),
       );
     } catch (error) {

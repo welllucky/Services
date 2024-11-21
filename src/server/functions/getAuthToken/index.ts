@@ -1,4 +1,3 @@
-// import { SessionService } from "@/server/services/Session";
 import { SessionService } from "@/server/services/Session";
 import { IUser } from "@/types";
 import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
@@ -36,6 +35,7 @@ const getAuthToken = async (req: NextRequest) => {
       accessToken,
       isAuthenticated,
       userId: String(userData.register),
+      sessionId: String(session.id),
     };
   } catch {
     return {

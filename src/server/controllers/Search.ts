@@ -1,15 +1,17 @@
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { SearchServices } from "@/server/services";
 import { NextRequest, NextResponse } from "next/server";
+import { startDBConnection } from "@/database";
 
 export class SearchController {
   static async searchTickets(req: NextRequest) {
     try {
+      await startDBConnection();
       const searchTerm = req.nextUrl.searchParams.get("searchTerm");
 
       const { userId, isAuthenticated } = await getAuthToken(req);
 
-      if (!isAuthenticated) {
+      if (!isAuthenticated || !userId) {
         return NextResponse.json(
           { error: { message: "User not authenticated" } },
           {

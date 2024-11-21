@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
-import { Event, Session, Ticket, User } from "@/server/entities";
+import fs from "fs";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import { Event, Session, Ticket, User } from "../server/entities";
 import { options } from "./config/config";
 
 // [`${path.resolve(__dirname, "../")}server/entities/*.ts`],
@@ -23,6 +24,9 @@ const mySqlDataSource = new DataSource({
   database: options.database,
   entities: [Event, Ticket, User, Session],
   synchronize: process.env.HOST_ENV !== "production",
+  ssl: {
+    ca: fs.readFileSync("src/database/config/isrgrootx1.pem").toString(),
+  },
   logging: options.logging,
 });
 
@@ -33,6 +37,8 @@ const AppDataSource =
     process.env.NODE_ENV === "production")
     ? mySqlDataSource
     : sqliteDataSource;
+
+// const AppDataSource = mySqlDataSource;
 
 // eslint-disable-next-line consistent-return
 const startDBConnection = async () => {

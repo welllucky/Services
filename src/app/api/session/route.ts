@@ -5,4 +5,8 @@ export async function POST(req: NextRequest) {
   return SessionController.create(req);
 }
 
+export async function DELETE(req: NextRequest) {
+  return SessionController.close(req);
+}
+
 export const runtime = "nodejs";

@@ -1,5 +1,5 @@
+import { httpClient } from "@/implementations/client";
 import { ITicket, TicketDto } from "@/types";
-import { httpClient } from "@/utils/abstractions/httpClient";
 
 type InitializeTicketType = {
   issueId: string;
@@ -34,14 +34,11 @@ export class TicketApi {
    * Retrieve all tickets.
    * @returns An object containing an array of issue data, any error, and loading state.
    */
-  getTickets = () => {
-    const { data, error, isLoading } = httpClient.get<TicketDto[]>({
+  getTickets = (shouldFetch: boolean) =>
+    httpClient.get<TicketDto[]>({
       url: `${this.api_url}`,
-      options: { refreshInterval: false },
+      shouldFetch,
     });
-
-    return { data, error, isLoading };
-  };
 
   /**
    * Initialize a new issue with the provided data.

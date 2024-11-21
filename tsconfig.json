@@ -33,6 +33,6 @@
         ".next/types/**/*.ts",
         "playwright.config.ts",
         "tests/**/*"
-    ],
+, "src/database/migrations/1732508276864-InitDB.js"    ],
     "exclude": ["node_modules"]
 }

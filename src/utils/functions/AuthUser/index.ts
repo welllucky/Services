@@ -1,10 +1,12 @@
-import { IUser } from "@/types";
-import { verify } from "jsonwebtoken";
+"use server";
 
-export const auth = async (accessToken: string) => {
-  const userData = verify(accessToken, process.env.AUTH_SECRET ?? "", {
-    algorithms: ["HS256"],
-  }) as unknown as IUser;
+import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
+import { cookies } from "next/headers";
 
-  return { isAuthenticated: !!userData, user: userData };
+export const auth = async () => {
+  const cookieStore = cookies();
+
+  const accessToken = cookieStore.get(CS_KEY_ACCESS_TOKEN)?.value ?? "";
+
+  return { isAuthenticated: !!accessToken, accessToken };
 };

@@ -1,12 +1,9 @@
 "use client";
 
 // import { useMediaQuery } from "@uidotdev/usehooks";
-import { ReactNode, createContext, useContext, useMemo } from "react";
-import {
-  CS_KEY_USER_DEVICE_TYPE,
-  CS_KEY_USER_RELIABLE_AGENT,
-  cookie,
-} from "@/utils";
+import { cookie } from "@/implementations/client";
+import { CS_KEY_USER_DEVICE_TYPE, CS_KEY_USER_RELIABLE_AGENT } from "@/utils";
+import { createContext, ReactNode, useContext, useMemo } from "react";
 
 interface AppContextProps {
   isMobile: boolean;

@@ -1,5 +1,5 @@
+import { httpClient } from "@/implementations/client";
 import { TicketDto } from "@/types";
-import { httpClient } from "@/utils/abstractions/httpClient";
 
 export type SearchResponse = {
   result?: TicketDto[];
@@ -19,12 +19,9 @@ export class SearchApi {
     this.api_url = `${this.base_url}api/search`;
   }
 
-  getSearch = (searchTerm: string, shouldFetch: boolean) => {
-    const response = httpClient.get<SearchResponse>({
+  getSearch = (searchTerm: string, shouldFetch: boolean) =>
+    httpClient.get<SearchResponse>({
       url: `${this.api_url}?searchTerm=${searchTerm}`,
       shouldFetch,
     });
-
-    return response;
-  };
 }

@@ -6,6 +6,9 @@
 .pnp.js
 .yarn
 
+.fleet
+.vscode
+
 # testing
 /coverage
 tests/playwright/report/index.html
@@ -65,7 +68,7 @@ coverage/*
 # Snyk
 snyk-linux
 
-services.sqlite
+*.sqlite
 # Sentry Config File
 .env.sentry-build-plugin
 node_modules/

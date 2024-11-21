@@ -11,8 +11,6 @@ const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
   const pathName = usePathname();
   const { user } = useAuth();
 
-  console.log({ user });
-
   const isRequestsPage = useMemo(
     () => pathName === "/solicitacoes",
     [pathName],
@@ -24,7 +22,7 @@ const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
   );
 
   const pagesWithoutFooter = useMemo(
-    () => ["/abrir-chamado", "/anexar-midia", "confirmar-chamado"],
+    () => ["/abrir-chamado", "/anexar-midia", "/confirmar-chamado"],
     [],
   );
 

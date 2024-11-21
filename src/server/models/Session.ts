@@ -9,6 +9,16 @@ interface SessionModelConstructorModel {
 }
 
 class SessionModel {
+  public id!: string;
+
+  public token!: string;
+
+  public user!: UserModel;
+
+  public expiresAt!: Date;
+
+  public createdAt!: Date;
+
   private session: Session | null;
 
   private readonly repository = sessionRepository;
@@ -79,7 +89,7 @@ class SessionModel {
       }
 
       session.isActive = false;
-      session.save();
+      await session.save();
     } catch (error) {
       throw new Error(`Session not closed: ${error}`);
     }
@@ -119,16 +129,6 @@ class SessionModel {
       throw new Error(`Session not found: ${error}`);
     }
   }
-
-  public id!: string;
-
-  public token!: string;
-
-  public user!: UserModel;
-
-  public expiresAt!: Date;
-
-  public createdAt!: Date;
 }
 
 export { SessionModel };

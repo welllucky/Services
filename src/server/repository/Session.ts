@@ -69,7 +69,7 @@ class SessionRepository {
   }
 
   async create(
-    data: Omit<ISession, "createdAt" | "updatedAt" | "id" | "userId">,
+    data: Omit<ISession, "createdAt" | "updatedAt" | "id" | "userId" | "token">,
     user: User,
   ) {
     const session = this.source.create({

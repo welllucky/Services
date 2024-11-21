@@ -20,13 +20,13 @@ class Ticket extends BaseEntity {
 
   @Column({
     length: 80,
-    type: "text",
+    type: "varchar",
   })
   public resume!: string;
 
   @Column({
     length: 460,
-    type: "text",
+    type: "varchar",
   })
   public description!: string;
 
@@ -34,22 +34,22 @@ class Ticket extends BaseEntity {
   public date!: Date;
 
   @Column({
-    type: "text",
-    enum: ["low", "medium", "high"],
+    type: "varchar",
+    length: 10, // Limite suficiente para valores como 'low', 'medium', etc.
     default: "medium",
   })
   public priority!: "low" | "medium" | "high";
 
   @Column({
-    type: "text",
-    enum: ["task", "incident", "problem", "change"],
+    type: "varchar",
+    length: 10, // Limite para valores como 'task', 'incident', etc.
     default: "problem",
   })
   public type!: "task" | "incident" | "problem" | "change";
 
   @Column({
-    type: "text",
-    enum: ["notStarted", "inProgress", "blocked", "closed"],
+    type: "varchar",
+    length: 15, // Limite para valores como 'notStarted', etc.
     default: "notStarted",
   })
   public status!: "notStarted" | "inProgress" | "blocked" | "closed";
@@ -62,10 +62,6 @@ class Ticket extends BaseEntity {
     cascade: true,
   })
   public events!: Relation<Event[]> | null | undefined;
-
-  // public unityId!: number;
-
-  // public sectorId!: number;
 
   @Column("datetime")
   public readonly createdAt!: Date;
