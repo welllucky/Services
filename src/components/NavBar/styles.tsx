@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import { OptionMenuStyleProps } from "@/types";
 import Link from "next/link";
+import styled from "styled-components";
 
 export const ContainerMenu = styled.div<{ color?: string }>`
   position: absolute;
@@ -23,7 +23,10 @@ export const OptionMenuStyle = styled(Link)<OptionMenuStyleProps>`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  background-color: ${({ $isSelected }) => ($isSelected === true ? "#7AC143" : "#F5F5F5")};
+  background-color: ${({ $isSelected }) =>
+    ($isSelected === true ? "#7AC143" : "#F5F5F5")};
+  ${({ $isPreselected, $isSelected }) =>
+    $isPreselected && !$isSelected && "background-color: #c1f599;"};
   /* F8F5F5 */
 `;
 
@@ -34,7 +37,11 @@ export const IconArea = styled.div<OptionMenuStyleProps>`
   border-radius: 16px;
   align-items: center;
   justify-content: center;
-  background-color: ${({ $isSelected, $backgroundColor }) => ($isSelected ? "#7AC143" : $backgroundColor || "#F5F5F5")};
+  background-color: ${({ $isSelected, $backgroundColor }) =>
+    ($isSelected ? "#7AC143" : $backgroundColor || "#F5F5F5")};
+
+  ${({ $isPreselected, $isSelected }) =>
+    $isPreselected && !$isSelected && "background-color: #c1f599;"};
 
   &:active {
     background-color: #c1f599;
@@ -52,6 +59,10 @@ export const TextMenu = styled.p<OptionMenuStyleProps>`
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
-  color: ${({ $isSelected, $highlightTextColor }) => ($isSelected ? $highlightTextColor || "#7AC143" : "#252728")};
+  color: ${({ $isSelected, $highlightTextColor }) =>
+    ($isSelected ? $highlightTextColor || "#7AC143" : "#252728")};
   list-style: none;
+
+  ${({ $isPreselected, $isSelected }) =>
+    $isPreselected && !$isSelected && "color: #51782f;"};
 `;

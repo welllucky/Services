@@ -1,5 +1,6 @@
 import { OptionMenuProps } from "@/types";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import OptionMenu from "./OptionMenu";
 import { ContainerMenu, MenuList } from "./styles";
 
@@ -17,6 +18,7 @@ export const NavigationBar = ({
   // isLoading = false,
 }: NavigationBarProps) => {
   const actualRoute = usePathname();
+  const [optionClicked, setOptionClicked] = useState("");
   return (
     <ContainerMenu color={color}>
       <MenuList>
@@ -24,6 +26,7 @@ export const NavigationBar = ({
           .filter((option) => option.$isVisibled)
           ?.map((option) => (
             <OptionMenu
+              $isPreselected={option.name === optionClicked}
               $highlightTextColor={$highlightTextColor}
               color={color}
               key={option.name}
@@ -31,6 +34,7 @@ export const NavigationBar = ({
               path={option.path}
               alt={option.alt}
               icon={option.icon}
+              onClick={(optionName) => setOptionClicked(optionName)}
               $isSelected={option.path === actualRoute}
             />
           ))}

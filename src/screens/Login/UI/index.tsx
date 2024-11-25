@@ -14,10 +14,17 @@ export interface LoginPageProps {
   loginAction: () => void;
 }
 
-const LoginPageUI = ({ formState, register, loginAction, pageIsLoading }: LoginPageProps) => {
+const LoginPageUI = ({
+  formState,
+  register,
+  loginAction,
+  pageIsLoading,
+}: LoginPageProps) => {
   const { isLoading: formIsLoading, isValid } = formState;
 
   const isLoading = pageIsLoading || formIsLoading;
+
+  console.log({ pageIsLoading, formIsLoading });
 
   return (
     <ScreenContainer>

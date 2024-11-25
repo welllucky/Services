@@ -1,107 +1,49 @@
-import type { Relation } from "typeorm";
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import { Session } from "./Session";
-import { Ticket } from "./Ticket";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity({
-  name: "Users",
-})
-class User extends BaseEntity {
+@Entity({ name: "Users" })
+export class User {
   @PrimaryGeneratedColumn()
-  public id!: string;
+  id!: string;
 
-  @Column({
-    length: 20,
-    type: "varchar",
-    unique: true,
-  })
-  public register!: string;
+  @Column({ length: 20, unique: true })
+  register!: string;
 
-  @Column({
-    length: 100,
-  })
-  public name!: string;
+  @Column({ length: 100 })
+  name!: string;
 
-  @Column({
-    type: "varchar",
-    length: 256,
-    unique: true,
-  })
-  public email!: string;
+  @Column({ length: 256, unique: true })
+  email!: string;
 
-  @Column({
-    type: "varchar",
-    length: 256,
-    nullable: false,
-  })
-  public hash!: string;
+  @Column({ length: 256 })
+  hash!: string;
 
-  @Column({
-    type: "varchar",
-    length: 256,
-    nullable: false,
-  })
-  public salt!: string;
+  @Column({ length: 256 })
+  salt!: string;
 
-  @Column("datetime", {
-    nullable: true,
-  })
+  @Column({ type: "datetime", nullable: true })
   lastConnection!: Date | null;
 
-  @Column("boolean", { default: false })
-  public isBanned!: boolean;
+  @Column({ default: false })
+  isBanned!: boolean;
 
-  @Column("boolean", { default: true })
-  public canCreateTicket!: boolean;
+  @Column({ default: true })
+  canCreateTicket!: boolean;
 
-  @Column("boolean", {
-    default: true,
-  })
-  public canResolveTicket!: boolean;
+  @Column({ default: true })
+  canResolveTicket!: boolean;
 
-  @Column("datetime")
-  public readonly createdAt!: Date;
+  @Column({ type: "datetime", default: () => "CURRENT_TIMESTAMP" })
+  createdAt!: Date;
 
-  @Column("datetime", {
-    nullable: true,
-  })
-  public readonly updatedAt!: Date | null;
+  @Column({ type: "datetime", nullable: true })
+  updatedAt!: Date | null;
 
-  @Column("datetime", {
-    nullable: true,
-  })
-  public readonly deletedAt!: Date | null;
+  @Column({ type: "datetime", nullable: true })
+  deletedAt!: Date | null;
 
-  @Column({
-    type: "varchar",
-    length: 80,
-  })
-  public role!: string;
+  @Column({ length: 80 })
+  role!: string;
 
-  @Column({
-    type: "varchar",
-    length: 80,
-  })
-  public sector!: string;
-
-  @OneToMany(() => Ticket, (ticket) => ticket.createdBy, {
-    cascade: true,
-  })
-  public tickets!: Relation<Ticket[]> | null;
-
-  @OneToMany(() => Ticket, (ticket) => ticket.resolver)
-  public resolvedTickets!: Relation<Ticket[]> | null;
-
-  @OneToMany(() => Session, (session) => session.user, {
-    cascade: true,
-  })
-  public sessions!: Relation<Session[]> | null;
+  @Column({ length: 80 })
+  sector!: string;
 }
-
-export { User };

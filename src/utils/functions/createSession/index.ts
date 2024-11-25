@@ -23,7 +23,10 @@ export const createSession = async (email: string, password: string) => {
 
     return { accessToken, expiresAt };
   } catch (error) {
-    console.log({ error });
-    return { error };
+    return {
+      error: {
+        message: (error as Error).message,
+      },
+    };
   }
 };

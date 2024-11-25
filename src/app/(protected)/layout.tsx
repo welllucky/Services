@@ -49,10 +49,6 @@ const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
     [pagesWithoutHeader, pathName],
   );
 
-  // if (!isAuthenticated) {
-  //   redirect("/login");
-  // }
-
   return (
     <FlexContainer
       $backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}
