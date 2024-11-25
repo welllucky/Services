@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-
 "use client";
 
 import { cookie } from "@/implementations/client";
-import { InvalidLoginError, UserNotExist } from "@/server/models/Errors";
-import { AuthErrorMessage, IHttpError, IUser } from "@/types";
+import { InvalidLoginError } from "@/server/models/Errors";
+import { IUser } from "@/types";
 import { CS_KEY_ACCESS_TOKEN, LS_KEY_USER_DATA } from "@/utils/alias";
 import { closeSession, createSession, getUser } from "@/utils/functions";
 import { useRouter } from "next/navigation";
@@ -25,10 +23,14 @@ interface AuthProviderProps {
 interface AuthContextProps {
   isAuthenticated: boolean;
   user: IUser | null;
-  signOut: () => void;
+  // eslint-disable-next-line no-unused-vars
+  signOut: (soft?: boolean) => void;
   signIn: (
+    // eslint-disable-next-line no-unused-vars
     email: string,
+    // eslint-disable-next-line no-unused-vars
     password: string,
+    // eslint-disable-next-line no-unused-vars
     redirectTo?: string,
   ) => Promise<void>;
   isLoading: boolean;
@@ -61,31 +63,42 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }, [router]);
 
+  const signOut = useCallback(
+    async (soft?: boolean) => {
+      setIsLoading(true);
+      setUser(null);
+      setIsAuthenticated(false);
+      localStorage.removeItem(LS_KEY_USER_DATA);
+
+      if (!soft) {
+        await closeSession();
+        router.push("/login");
+      }
+    },
+    [router],
+  );
+
   const signIn = useCallback(
     async (email: string, password: string, redirectTo?: string) => {
+      await signOut(true);
+      setError("");
       try {
-        setIsLoading(true);
         const { accessToken: newToken, error: sessionError } =
           await createSession(email, password);
+
+        if (sessionError) {
+          throw new Error(sessionError.message);
+        }
 
         const { error: userError, user: rawUser } = await getUser(
           newToken ?? "",
         );
 
-        const signInError = sessionError || userError;
+        if (userError) {
+          throw new Error(userError.message);
+        }
 
-        if (!newToken || signInError) {
-          setIsLoading(false);
-          const errorMessage =
-            (signInError as IHttpError).message ??
-            AuthErrorMessage.UserNotExist;
-
-          setError(errorMessage);
-
-          if (errorMessage === AuthErrorMessage.UserNotExist) {
-            throw new UserNotExist();
-          }
-
+        if (!newToken) {
           throw new InvalidLoginError();
         }
 
@@ -109,24 +122,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setIsAuthenticated(true);
 
         router.push(redirectTo ?? "/");
-      } catch {
+      } catch (err) {
+        setError((err as Error).message);
         setUser(null);
       } finally {
         setIsLoading(false);
       }
     },
-    [router],
+    [router, signOut],
   );
-
-  const signOut = useCallback(async () => {
-    setIsLoading(true);
-    setUser(null);
-    setIsAuthenticated(false);
-    cookie.remove(CS_KEY_ACCESS_TOKEN);
-    localStorage.removeItem(LS_KEY_USER_DATA);
-    await closeSession();
-    router.push("/login");
-  }, [router]);
 
   // const updateUserData = async () => {
   // };

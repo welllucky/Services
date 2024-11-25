@@ -9,36 +9,54 @@ import toast from "react-hot-toast";
 import { LoginPageUI } from "./UI";
 
 export interface LoginPageProps {
-  error?: string;
   redirectTo?: string;
 }
 
-const LoginPage = ({ error, redirectTo }: LoginPageProps) => {
-  const { signIn, isLoading } = useAuth();
-  const { register, formState, handleSubmit } = useForm<ISignIn>({
+const LoginPage = ({ redirectTo }: LoginPageProps) => {
+  const { signIn, isLoading, error, isAuthenticated, user } = useAuth();
+  const {
+    register,
+    formState,
+    handleSubmit,
+    setError,
+    clearErrors,
+    resetField,
+  } = useForm<ISignIn>({
     defaultValues: {
       email: "",
       password: "",
     },
     mode: "onChange",
     reValidateMode: "onChange",
-    shouldFocusError: true,
+    shouldFocusError: false,
+    resetOptions: {
+      keepErrors: false,
+    },
     resolver: zodResolver(SignInSchema),
   });
 
   useEffect(() => {
     if (error) {
       setTimeout(() => {
-        toast.error("Houve um erro ao tentar fazer login, tente novamente");
+        setError("root", {
+          message: error,
+          type: "value",
+        });
+        toast.error(error);
+
+        setTimeout(() => {
+          resetField("password");
+          clearErrors("root");
+        }, 8000);
       }, 200);
     }
-  }, [error]);
+  }, [clearErrors, error, resetField, setError]);
 
   const loginCallback = handleSubmit(async (data) => {
     try {
       await signIn(data.email, data.password, redirectTo ?? "/");
 
-      toast.success("Bem-vindo!");
+      if (isAuthenticated) toast.success(`Bem-vindo ${user?.name}!`);
     } catch {
       toast.error("Email ou senha inválidos");
     }

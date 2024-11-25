@@ -63,8 +63,8 @@ class Ticket extends BaseEntity {
   })
   public events!: Relation<Event[]> | null | undefined;
 
-  @Column("datetime")
-  public readonly createdAt!: Date;
+  @Column({ type: "datetime", default: () => "CURRENT_TIMESTAMP" })
+  createdAt!: Date;
 
   @Column("datetime", {
     nullable: true,

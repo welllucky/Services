@@ -18,6 +18,10 @@ export const getUser = async (accessToken: string) => {
 
     return { user };
   } catch (error) {
-    return { error };
+    return {
+      error: {
+        message: (error as Error).message,
+      },
+    };
   }
 };

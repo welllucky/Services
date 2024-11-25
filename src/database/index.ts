@@ -1,8 +1,17 @@
 /* eslint-disable no-console */
-import fs from "fs";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { Event, Session, Ticket, User } from "../server/entities";
+import {
+  Address,
+  ColorScheme,
+  Enterprise,
+  Event,
+  IssueCategory,
+  Session,
+  Subsidiary,
+  Ticket,
+  User,
+} from "../server/entities";
 import { options } from "./config/config";
 
 // [`${path.resolve(__dirname, "../")}server/entities/*.ts`],
@@ -11,7 +20,17 @@ const sqliteDataSource = new DataSource({
   type: "sqlite",
   database: options.storage,
   migrationsTableName: "migrations",
-  entities: [Event, Ticket, User, Session],
+  entities: [
+    Event,
+    Ticket,
+    User,
+    Session,
+    Address,
+    ColorScheme,
+    Enterprise,
+    IssueCategory,
+    Subsidiary,
+  ],
   synchronize: true,
 });
 
@@ -22,11 +41,24 @@ const mySqlDataSource = new DataSource({
   username: options.username,
   password: options.password,
   database: options.database,
-  entities: [Event, Ticket, User, Session],
-  synchronize: process.env.HOST_ENV !== "production",
-  ssl: {
-    ca: fs.readFileSync("src/database/config/isrgrootx1.pem").toString(),
-  },
+  entities: [
+    Event,
+    Ticket,
+    User,
+    Session,
+    Address,
+    ColorScheme,
+    Enterprise,
+    IssueCategory,
+    Subsidiary,
+  ],
+  synchronize: process.env.NODE_ENV !== "production",
+  ...(process.env.DB_CA && {
+    ssl: {
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
+      ca: process.env.DB_CA,
+    },
+  }),
   logging: options.logging,
 });
 

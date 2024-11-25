@@ -8,7 +8,6 @@ export const TicketTypeSchema = z.enum([
   "incident",
   "problem",
   "change",
-  "",
 ]);
 
 export const TicketStatusSchema = z.enum([
@@ -16,7 +15,6 @@ export const TicketStatusSchema = z.enum([
   "inProgress",
   "blocked",
   "closed",
-  "",
 ]);
 
 export const TicketSchema = z.object({

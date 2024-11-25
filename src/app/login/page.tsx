@@ -7,18 +7,17 @@ const Login = async ({
   searchParams,
 }: {
   searchParams: {
-    code: string;
+    redirectTo: string;
   };
 }) => {
   const cookiesStore = cookies();
   const accessToken = cookiesStore.get(CS_KEY_ACCESS_TOKEN)?.value;
-  const signError = searchParams?.code;
 
   if (accessToken) {
     redirect("/");
   }
 
-  return <LoginPage error={signError} />;
+  return <LoginPage redirectTo={searchParams?.redirectTo} />;
 };
 
 export default Login;

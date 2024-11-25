@@ -1,3 +1,4 @@
+// eslint-disable-next-line consistent-return
 export const closeSession = async () => {
   try {
     const { BASE_URL } = process.env;

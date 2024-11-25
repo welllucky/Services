@@ -11,6 +11,7 @@ type IconProps = {
 
 type OptionMenuStyleProps = {
   $isSelected?: boolean;
+  $isPreselected?: boolean;
   $backgroundColor?: string;
   $highlightTextColor?: string;
 };
@@ -20,8 +21,10 @@ type OptionMenuProps = {
   path: string;
   alt: string;
   icon: ReactNode;
-  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (optionName: string) => void;
   $isSelected?: boolean;
+  $isPreselected?: boolean;
   $isVisibled?: boolean;
   color?: string;
   $highlightTextColor?: string;

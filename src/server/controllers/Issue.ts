@@ -39,7 +39,6 @@ export class IssueController {
         status: 200,
       });
     } catch (error) {
-      console.log({ error });
       return NextResponse.json({ error });
     }
   }
@@ -74,7 +73,6 @@ export class IssueController {
         status: 200,
       });
     } catch (error) {
-      console.log({ error });
       return NextResponse.json({ error });
     }
   }
@@ -100,7 +98,6 @@ export class IssueController {
         status: 201,
       });
     } catch (error) {
-      console.log({ error });
       return NextResponse.json(
         { error },
         {
