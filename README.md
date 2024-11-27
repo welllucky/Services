@@ -40,9 +40,9 @@ Saiba mais clicando no link ao lado: [GNU GPLv3](https://choosealicense.com/lice
 
 **Front-end:** Next 14, Styled Components, Zustand, Typescript
 
-**Back-end:** Node, Sequelize, Next Api Handlers, Sqlite, MySql
+**Back-end:** Node, TypeOrm, Next Api Handlers, MySql
 
-**Testes:** Playwright, React Testign Library
+**Testes:** Playwright, React Testing Library, Jest
 
 ## 💾 Rodando localmente
 
@@ -119,20 +119,6 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 `SENTRY_AUTH_TOKEN`
 
 `CRON_SECRET`
-
-`NEXT_PUBLIC_FIREBASE_API_KEY`
-
-`NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
-
-`NEXT_PUBLIC_FIREBASE_PROJECT_ID`
-
-`NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
-
-`NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
-
-`NEXT_PUBLIC_FIREBASE_APP_ID`
-
-`NEXT_PUBLIC_FIREBASE_DATABASE_URL`
 
 ## Autores
 

@@ -4,42 +4,42 @@ const textThemes: TextTheme[] = [
   {
     theme: "Viagem Espacial",
     title: "Sem Gravidade, Só no Celular 🚀",
-    text: "Parece que você está flutuando pelo espaço, mas para aterrissar nas respostas certas, só no celular! Acesse o Services e retorne à sua órbita de informações.",
+    text: "Parece que você está flutuando pelo espaço, mas para aterrissar nas respostas, só com o celular! Acesse o Services e retorne à sua órbita de informações.",
   },
   {
     theme: "Tesouro Enterrado",
-    title: "X marca o Celular! 🗺️",
-    text: "Você descobriu um tesouro, mas o mapa para respostas está no celular! Desenterrar as soluções requer uma busca digital. Acesse o Services e desvende os segredos!",
+    title: "X Marca o Celular! 🗺️",
+    text: "Você encontrou o mapa do tesouro, mas a chave para as respostas está no celular! Desenterrar as soluções exige uma busca digital. Acesse o Services e desvende os mistérios.",
   },
   {
     theme: "Máquina do Tempo",
     title: "Viagem no Tempo Digital ⏰",
-    text: "Seu bilhete para o passado e futuro está no celular! Acesse o Services e faça uma jornada temporal para solucionar qualquer questão.",
+    text: "Seu bilhete para o passado e futuro está no celular! Acesse o Services e embarque em uma jornada temporal para resolver qualquer questão.",
   },
   {
     theme: "Circo Mágico",
-    title: "Palhaçada Sem Celular? Não Dá! 🎪",
-    text: "Aqui é um circo de ajuda, mas só podemos lançar os truques mágicos pelo celular! Junte-se ao espetáculo no Services e surpreenda-se com as soluções.",
+    title: "Palhaçada Sem Celular? Impossível! 🎪",
+    text: "Estamos em um circo de soluções, mas os truques mágicos só acontecem pelo celular! Junte-se ao espetáculo no Services e descubra as soluções incríveis.",
   },
   {
     theme: "Exploração Submarina",
-    title: "A Profundezas Digitais 🌊",
-    text: "Você mergulhou fundo, mas o mapa do tesouro está no celular! Navegue pelo Services para encontrar as pérolas de conhecimento.",
+    title: "Profundezas Digitais 🌊",
+    text: "Você mergulhou fundo, mas o mapa do tesouro está no celular! Navegue pelo Services e encontre as pérolas de conhecimento.",
   },
   {
     theme: "Selva Amazônica",
-    title: "Selva Digital, Celular é a Chave! 🌿",
-    text: "Você está na selva de dúvidas, mas só o celular pode abrir caminho para as respostas! Explore o Services e desbrave a floresta digital.",
+    title: "Selva Digital: Celular é a Chave! 🌿",
+    text: "Você está perdido na selva de dúvidas, mas o celular é o único caminho para as respostas! Explore o Services e desbrave a floresta digital.",
   },
   {
     theme: "Laboratório Científico",
     title: "Fórmulas no Celular, Não no Papel! 🧪",
-    text: "Você está no laboratório, mas as fórmulas mágicas estão no celular! Acesse o Services para soluções experimentais.",
+    text: "Você está no laboratório, mas as fórmulas mágicas estão no celular! Acesse o Services e experimente as soluções digitais.",
   },
   {
     theme: "Espião Secreto",
     title: "Missão: Celular Essencial! 🕵️",
-    text: "Você é um espião, mas para decifrar os códigos, só no celular! Nossa base secreta é o Services, onde todas as respostas são reveladas.",
+    text: "Você é um espião, mas para decifrar os códigos, só com o celular! Nossa base secreta é o Services, onde todas as respostas são reveladas.",
   },
   {
     theme: "Jardim Encantado",
@@ -49,17 +49,17 @@ const textThemes: TextTheme[] = [
   {
     theme: "Biblioteca Encantada",
     title: "Livros Mágicos, Só no Celular! 📚",
-    text: "Você entrou na biblioteca encantada, mas os livros mágicos só abrem no celular! Acesse o Services e descubra os encantos das respostas.",
+    text: "Você chegou à biblioteca encantada, mas os livros mágicos só se abrem no celular! Acesse o Services e descubra os encantos das respostas.",
   },
   {
     theme: "Festa na Praia",
-    title: "Festa na Areia Digital! 🏖️",
+    title: "Festa Digital na Areia! 🏖️",
     text: "Você chegou à festa na praia, mas as ondas de respostas só batem no celular! Mergulhe no Services e aproveite a brisa digital.",
   },
   {
     theme: "Jogo de Tabuleiro",
-    title: "No Tabuleiro Digital, Só com o Celular! 🎲",
-    text: "Você está no jogo, mas as jogadas vencedoras são só no celular! Avance para o Services e conquiste sua solução.",
+    title: "Jogo Digital: Só com o Celular! 🎲",
+    text: "Você está no jogo, mas as jogadas vencedoras são só no celular! Acesse o Services e conquiste sua solução.",
   },
   {
     theme: "Fábrica de Chocolate",
@@ -68,28 +68,28 @@ const textThemes: TextTheme[] = [
   },
   {
     theme: "Estação Espacial",
-    title: "Viagem Espacial, Só no Celular! 🚀",
-    text: "Você embarcou na estação espacial, mas as respostas cósmicas são só no celular! Navegue pelo Services e descubra os segredos do universo.",
+    title: "Viagem Espacial: Só com o Celular! 🚀",
+    text: "Você embarcou na estação espacial, mas as respostas cósmicas só estão no celular! Navegue pelo Services e descubra os segredos do universo.",
   },
   {
     theme: "Teatro de Marionetes",
     title: "Marionetes Digitais, Só com o Celular! 🎭",
-    text: "Você está no teatro de marionetes, mas os cordões da solução só puxam no celular! Acesse o Services e dê vida às respostas digitais.",
+    text: "Você está no teatro de marionetes, mas os cordões da solução só podem ser puxados no celular! Acesse o Services e dê vida às respostas digitais.",
   },
   {
     theme: "Cidade Subterrânea",
-    title: "Segredo Subterrâneo, Só no Celular! 🕵️‍♂️",
-    text: "Você chegou à cidade subterrânea, mas os segredos só se revelam no celular! Explore o Services e descubra as profundezas digitais.",
+    title: "Segredos Subterrâneos, Só no Celular! 🕵️‍♂️",
+    text: "Você chegou à cidade subterrânea, mas os segredos só se revelam no celular! Explore o Services e desvende as profundezas digitais.",
   },
   {
     theme: "Parque de Aventuras",
     title: "Aventuras Digitais, Só com o Celular! 🌟",
-    text: "Você está no parque de aventuras, mas a verdadeira jornada começa no celular! Acesse o Services e embarque na experiência digital.",
+    text: "Você está no parque de aventuras, mas a verdadeira jornada começa no celular! Acesse o Services e embarque em uma experiência digital única.",
   },
   {
     theme: "Festa do Pijama",
     title: "Pijama Digital, Só no Celular! 🌙",
-    text: "Você chegou à festa do pijama, mas a diversão digital só começa no celular! Acesse o Services e aproveite a noite de respostas.",
+    text: "Você chegou à festa do pijama, mas a diversão digital só começa no celular! Acesse o Services e aproveite a noite cheia de respostas.",
   },
   {
     theme: "Laboratório de Alquimia",
@@ -114,11 +114,12 @@ const textThemes: TextTheme[] = [
   {
     theme: "Baile de Máscaras",
     title: "Máscaras Digitais, Só com o Celular! 🎭",
-    text: "Você está no baile de máscaras, mas as identidades digitais só se revelam no celular! Acesse o Services e dance com as respostas surpreendentes.",
+    text: "Você está no baile de máscaras, mas as identidades digitais só se revelam no celular! Acesse o Services e dance ao ritmo das respostas surpreendentes.",
   },
 ];
 
 export const getTextTheme = (): TextTheme => {
   const randomIndex = Math.floor(Math.random() * textThemes.length);
-  return textThemes[`${randomIndex}`];
+  // eslint-disable-next-line security/detect-object-injection
+  return textThemes[randomIndex];
 };
