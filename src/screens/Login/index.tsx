@@ -1,70 +1,73 @@
 "use client";
 
-import { ISignIn } from "@/types/";
-import { SignInSchema } from "@/types/Interfaces/User";
-import { linkUserSession } from "@/utils";
+import { ISignIn, SignInSchema } from "@/types/";
+import { useAuth } from "@/utils/providers/AuthProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { LoginPageUI } from "./UI";
 
-const LoginPage = () => {
+export interface LoginPageProps {
+  redirectTo?: string;
+}
+
+const LoginPage = ({ redirectTo }: LoginPageProps) => {
+  const { signIn, isLoading, error, isAuthenticated, user } = useAuth();
   const {
     register,
     formState,
-    // handleSubmit,
-    watch,
+    handleSubmit,
+    setError,
+    clearErrors,
+    resetField,
   } = useForm<ISignIn>({
-    shouldUnregister: true,
     defaultValues: {
       email: "",
       password: "",
     },
     mode: "onChange",
-    resetOptions: {
-      keepDefaultValues: true,
-      keepSubmitCount: false,
-    },
     reValidateMode: "onChange",
-    shouldFocusError: true,
+    shouldFocusError: false,
+    resetOptions: {
+      keepErrors: false,
+    },
     resolver: zodResolver(SignInSchema),
   });
 
-  const { errors } = formState;
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError("root", {
+          message: error,
+          type: "value",
+        });
+        toast.error(error);
 
-  const email = watch("email");
-  const password = watch("password");
+        setTimeout(() => {
+          resetField("password");
+          clearErrors("root");
+        }, 8000);
+      }, 200);
+    }
+  }, [clearErrors, error, resetField, setError]);
 
-  const loginCallback = async () => {
-    console.log({
-      email,
-      password,
-      errors,
-    });
-    // handleSubmit(async (data) => {
+  const loginCallback = handleSubmit(async (data) => {
     try {
-      await signIn("credentials", {
-        email,
-        password,
-        redirectTo: "/",
-      });
+      await signIn(data.email, data.password, redirectTo ?? "/");
 
-      await linkUserSession(email, password);
-
-      toast.success("Seja bem vindo!");
-    } catch (error) {
-      console.log({ error });
+      if (isAuthenticated) toast.success(`Bem-vindo ${user?.name}!`);
+    } catch {
       toast.error("Email ou senha inválidos");
     }
-    // });
-  };
+  });
 
   return (
     <LoginPageUI
       formState={formState}
       register={register}
       loginAction={loginCallback}
+      pageIsLoading={isLoading}
     />
   );
 };

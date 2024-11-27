@@ -1,12 +1,9 @@
 "use client";
 
 // import { useMediaQuery } from "@uidotdev/usehooks";
-import { ReactNode, createContext, useContext, useMemo } from "react";
-import {
-  CS_KEY_USER_DEVICE_TYPE,
-  CS_KEY_USER_RELIABLE_AGENT,
-  cookie,
-} from "@/utils";
+import { cookie } from "@/implementations/client";
+import { CS_KEY_USER_DEVICE_TYPE, CS_KEY_USER_RELIABLE_AGENT } from "@/utils";
+import { createContext, ReactNode, useContext, useMemo } from "react";
 
 interface AppContextProps {
   isMobile: boolean;
@@ -25,8 +22,8 @@ interface AppProviderProps {
 
 export const AppContext = createContext({} as unknown as AppContextProps);
 export const AppProvider = ({ children }: Readonly<AppProviderProps>) => {
-  const deviceType: string = cookie.get(CS_KEY_USER_DEVICE_TYPE);
-  const reliableAgent: string = cookie.get(CS_KEY_USER_RELIABLE_AGENT);
+  const deviceType: string = cookie.get(CS_KEY_USER_DEVICE_TYPE) || "";
+  const reliableAgent: string = cookie.get(CS_KEY_USER_RELIABLE_AGENT) || "";
 
   // const isClientSmallMobile = useMediaQuery(
   //   "only screen and (max-width: 320px)",

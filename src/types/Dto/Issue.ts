@@ -8,7 +8,6 @@ export const IssueTypeSchema = z.enum([
   "incident",
   "problem",
   "change",
-  "",
 ]);
 
 export const IssueStatusSchema = z.enum([
@@ -30,9 +29,9 @@ export const IssueSchema = z.object({
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
   closedAt: z.string().or(z.date()).nullable(),
-  createdBy: z.number(),
-  updatedBy: z.number(),
-  closedBy: z.number().nullable(),
+  createdBy: z.string(),
+  updatedBy: z.string(),
+  closedBy: z.string().nullable(),
 });
 
 export type IssueStatus = z.infer<typeof IssueStatusSchema>;

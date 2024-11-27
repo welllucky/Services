@@ -5,4 +5,8 @@ export async function GET(req: NextRequest) {
   return IssueController.getAllIssues(req);
 }
 
+export async function POST(req: NextRequest) {
+  return IssueController.createIssue(req);
+}
+
 export const runtime = "nodejs";
