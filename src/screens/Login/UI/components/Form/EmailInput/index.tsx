@@ -8,13 +8,19 @@ export const EmailInput = ({
 }: Omit<LoginPageProps, "loginAction">) => {
   const { errors, dirtyFields } = formState;
 
+  const getStatus = () => {
+    if (errors?.email || errors.root) return "invalid";
+    if (!dirtyFields?.email) return "none";
+    return "valid";
+  };
+
   return (
     <CustomInput
       register={register}
       id="email"
       type="email"
       placeholder="Digite o seu email"
-      $status={errors?.email ? "invalid" : !dirtyFields?.email ? "none" : "valid"}
+      $status={getStatus()}
       height="58px"
       isRequired
       trailingButton={(

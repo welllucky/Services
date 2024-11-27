@@ -1,18 +1,91 @@
-import { Sequelize } from "sequelize";
-import { SequelizeOptions } from "sequelize-typescript";
-import { options } from "./config/config.mjs";
+/* eslint-disable no-console */
+import "reflect-metadata";
+import { DataSource } from "typeorm";
+import {
+  Address,
+  ColorScheme,
+  Enterprise,
+  Event,
+  IssueCategory,
+  Session,
+  Subsidiary,
+  Ticket,
+  User,
+} from "../server/entities";
+import { options } from "./config/config";
 
-const dbOptions = <SequelizeOptions>options;
+// [`${path.resolve(__dirname, "../")}server/entities/*.ts`],
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-dbOptions.dialectModule = require("sqlite3");
+const sqliteDataSource = new DataSource({
+  type: "sqlite",
+  database: options.storage,
+  migrationsTableName: "migrations",
+  entities: [
+    Event,
+    Ticket,
+    User,
+    Session,
+    Address,
+    ColorScheme,
+    Enterprise,
+    IssueCategory,
+    Subsidiary,
+  ],
+  synchronize: true,
+});
 
-const sequelize = new Sequelize(dbOptions);
+const mySqlDataSource = new DataSource({
+  type: "mysql",
+  host: options.host,
+  port: options.port,
+  username: options.username,
+  password: options.password,
+  database: options.database,
+  entities: [
+    Event,
+    Ticket,
+    User,
+    Session,
+    Address,
+    ColorScheme,
+    Enterprise,
+    IssueCategory,
+    Subsidiary,
+  ],
+  synchronize: process.env.NODE_ENV !== "production",
+  // ...(process.env.DB_CA && {
+  //   ssl: {
+  //     // eslint-disable-next-line security/detect-non-literal-fs-filename
+  //     ca: process.env.DB_CA,
+  //   },
+  // }),
+  logging: options.logging,
+});
 
-const initORM = async () => {
-  await sequelize.sync({ alter: true });
+const AppDataSource =
+  process.env.HOST_ENV === "production" ||
+  process.env.DB_DIALECT === "mysql" ||
+  (process.env.HOST_ENV === "development" &&
+    process.env.NODE_ENV === "production")
+    ? mySqlDataSource
+    : sqliteDataSource;
+
+// const AppDataSource = mySqlDataSource;
+
+// eslint-disable-next-line consistent-return
+const startDBConnection = async () => {
+  "use server";
+
+  try {
+    if (!AppDataSource.isInitialized) {
+      await AppDataSource.initialize();
+      console.log("Data Source has been initialized!");
+    }
+    return AppDataSource;
+  } catch (err) {
+    console.error("Error during Data Source initialization", err);
+  }
 };
 
-initORM();
-
-export default sequelize;
+export default AppDataSource;
+export { startDBConnection };

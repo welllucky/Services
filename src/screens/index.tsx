@@ -5,5 +5,4 @@ export * from "./Login";
 export * from "./NoMobileDevice";
 export * from "./OpenIssue";
 export * from "./Search";
-export * from "./Ticket";
 export * from "./Tickets";

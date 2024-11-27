@@ -1,5 +1,26 @@
 import { z } from "zod";
 
+export const UserTableSchema = z.object({
+  id: z.string(),
+  email: z
+    .string({ required_error: "Email is required" })
+    .min(1, "Email is required")
+    .email("Invalid email"),
+  register: z.string().min(3).max(10),
+  name: z.string().min(5).max(80),
+  role: z.string(),
+  sector: z.string(),
+  lastConnection: z.date().nullish(),
+  isBanned: z.boolean().default(false),
+  canCreateTicket: z.boolean().default(true),
+  canResolveTicket: z.boolean().default(true),
+  hash: z.string(),
+  salt: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date().nullish(),
+  deletedAt: z.date().nullish(),
+});
+
 export const SignInSchema = z.object({
   email: z
     .string({ required_error: "Email is required" })
@@ -12,19 +33,41 @@ export const SignInSchema = z.object({
     .max(32, "Password must be less than 32 characters"),
 });
 
-export type ISignIn = z.infer<typeof SignInSchema>;
-
-export const userSchema = z.object({
+export const UserSchema = z.object({
   register: z.string().min(3).max(10),
   name: z.string().min(5).max(80),
   email: z
     .string({ required_error: "Email is required" })
     .min(1, "Email is required")
     .email("Invalid email"),
-  lastConnection: z.date(),
+  lastConnection: z.date().nullish(),
   isBanned: z.boolean().default(false),
   canCreateTicket: z.boolean().default(true),
   canResolveTicket: z.boolean().default(true),
+  role: z.string(),
+  sector: z.string(),
 });
 
-export type IUser = z.infer<typeof userSchema>;
+export const RegisterUserSchema = z.object({
+  email: z
+    .string({ required_error: "Email is required" })
+    .min(1, "Email is required")
+    .email("Invalid email"),
+  register: z.string().min(3).max(10),
+  name: z.string().min(5).max(80),
+  password: z.string().min(8),
+  role: z.string(),
+  sector: z.string(),
+});
+
+export const CreateUserSchema = z.union([RegisterUserSchema, UserSchema]);
+
+export type IRegisterUser = z.infer<typeof RegisterUserSchema>;
+
+export type IUser = z.infer<typeof UserSchema>;
+
+export type ISignIn = z.infer<typeof SignInSchema>;
+
+export type ICreateUser = z.infer<typeof CreateUserSchema>;
+
+export type IUserTable = z.infer<typeof UserTableSchema>;

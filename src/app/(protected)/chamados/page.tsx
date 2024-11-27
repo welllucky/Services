@@ -1,18 +1,19 @@
-import { auth } from "@/auth";
-import { MyIssuesPage, NoMobileDevicePage } from "@/screens/";
+import { MyIssuesPage } from "@/screens/";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Meus chamados",
 };
 
-const MyIssues = async () => {
-  const session = await auth();
-  if (!session?.user.canCreateTicket) {
-    return <NoMobileDevicePage />;
-  }
+const MyIssues = async () => (
+  // const cookiesStore = cookies();
+  // const accessToken = cookiesStore.get(CS_KEY_ACCESS_TOKEN)?.value || "";
+  // const session = await auth(accessToken);
 
-  return <MyIssuesPage />;
-};
+  // if (!session?.user.canCreateTicket) {
+  //   return <NoMobileDevicePage />;
+  // }
 
+  <MyIssuesPage />
+);
 export default MyIssues;
