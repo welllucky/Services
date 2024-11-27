@@ -1,35 +1,51 @@
-import { EventRepository } from "@/server/repository";
+import { eventRepository, userRepository } from "@/server/repository";
+import { EventRepository } from "@/server/repository/Event";
 import { ITicketEvent } from "@/types";
+import { userModel } from "../models";
 
 export class EventServices {
+  private static readonly repository: EventRepository = eventRepository;
+
+  private static readonly userRepository = userRepository;
+
   static async createEvent(
     userId: string,
     ticketId: string,
     eventData: Omit<ITicketEvent, "id" | "order" | "emitterId" | "createdBy">,
   ) {
     const eventsQuantity =
-      await EventRepository.countEventsByTicketId(ticketId);
-    return EventRepository.createEvent({
-      ...eventData,
-      createdBy: Number(userId),
-      emitterId: Number(ticketId),
-      order: eventsQuantity + 1,
+      await this.repository.countEventsByTicketId(ticketId);
+
+    await userModel.init({
+      register: userId,
     });
+
+    userModel.exists({
+      safe: false,
+    });
+
+    return this.repository.createEvent(
+      {
+        ...eventData,
+        order: eventsQuantity + 1,
+      },
+      userModel.getEntity(),
+    );
   }
 
   static async getEventById(eventId: string) {
-    return EventRepository.findEventById(eventId);
+    return this.repository.findEventById(eventId);
   }
 
   static async getEventsByUserId(userId: string) {
-    return EventRepository.findEventsByUserId(userId);
+    return this.repository.findEventsByUserId(userId);
   }
 
   static async getEventsByTicketId(ticketId: string) {
-    return EventRepository.findAllEventsByTicketId(ticketId);
+    return this.repository.findAllEventsByTicketId(ticketId);
   }
 
   static async getPublicEventsByTicketId(ticketId: string) {
-    return EventRepository.findPublicEventsByTicketId(ticketId);
+    return this.repository.findPublicEventsByTicketId(ticketId);
   }
 }

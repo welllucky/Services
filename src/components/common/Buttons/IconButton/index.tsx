@@ -5,7 +5,6 @@ const IconButton = ({
   icon,
   path,
   onClick,
-  onHover,
   color = "#000000",
   width = "16",
   height = "16",
@@ -16,8 +15,7 @@ const IconButton = ({
         color={color}
         href={path}
         width={width}
-        height={height}
-        onHover={onHover}>
+        height={height}>
         {icon}
       </CustomButtonAsLink>
     ) : (
@@ -25,7 +23,6 @@ const IconButton = ({
         color={color}
         width={width}
         height={height}
-        onHover={onHover}
         onClick={onClick}>
         {icon}
       </CustomButton>

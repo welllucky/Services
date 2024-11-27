@@ -1,3 +1,4 @@
+import { startDBConnection } from "@/database";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { NextRequest, NextResponse } from "next/server";
 import { TicketServices } from "../services";
@@ -5,16 +6,17 @@ import { TicketServices } from "../services";
 class TicketController {
   static async getAllTickets(req: NextRequest) {
     try {
-       const { userId, isAuthenticated } = await getAuthToken(req);
+      await startDBConnection();
+      const { userId, isAuthenticated } = await getAuthToken(req);
 
-       if (!isAuthenticated || !userId) {
-         return NextResponse.json(
-           { error: { message: "User not authenticated" } },
-           {
-             status: 401,
-           },
-         );
-       }
+      if (!isAuthenticated || !userId) {
+        return NextResponse.json(
+          { error: { message: "User not authenticated" } },
+          {
+            status: 401,
+          },
+        );
+      }
 
       const issues = await TicketServices.getAllTickets(userId);
 
@@ -38,16 +40,16 @@ class TicketController {
   static async getTicketById(req: NextRequest, params: { id: string }) {
     try {
       const issueId = params.id;
-       const { userId, isAuthenticated } = await getAuthToken(req);
+      const { userId, isAuthenticated } = await getAuthToken(req);
 
-       if (!isAuthenticated || !userId) {
-         return NextResponse.json(
-           { error: { message: "User not authenticated" } },
-           {
-             status: 401,
-           },
-         );
-       }
+      if (!isAuthenticated || !userId) {
+        return NextResponse.json(
+          { error: { message: "User not authenticated" } },
+          {
+            status: 401,
+          },
+        );
+      }
 
       const issue = await TicketServices.getTicketById(userId, issueId);
 
@@ -71,16 +73,16 @@ class TicketController {
   static async initializeTicket(req: NextRequest, params: { id: string }) {
     try {
       const issueId = params.id;
-       const { userId, isAuthenticated } = await getAuthToken(req);
+      const { userId, isAuthenticated } = await getAuthToken(req);
 
-       if (!isAuthenticated || !userId) {
-         return NextResponse.json(
-           { error: { message: "User not authenticated" } },
-           {
-             status: 401,
-           },
-         );
-       }
+      if (!isAuthenticated || !userId) {
+        return NextResponse.json(
+          { error: { message: "User not authenticated" } },
+          {
+            status: 401,
+          },
+        );
+      }
 
       if (!issueId) {
         return NextResponse.json(

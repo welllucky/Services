@@ -1,6 +1,6 @@
 "use client";
 
-import { issueApi } from "@/utils";
+import { issueApi } from "@/utils/apis";
 import { useRouter } from "next/navigation";
 import { IssuesPageUI } from "./UI";
 

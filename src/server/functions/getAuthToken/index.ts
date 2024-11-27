@@ -11,7 +11,7 @@ const getAuthToken = async (req: NextRequest) => {
     const { cookies, headers } = req;
     const accessToken =
       cookies.get(CS_KEY_ACCESS_TOKEN)?.value ??
-      headers.get("authorization")?.replace("Bearer ", "");
+      headers.get("Authorization")?.replace("Bearer ", "");
 
     if (!accessToken) throw new Error("No access token found");
 
@@ -21,12 +21,21 @@ const getAuthToken = async (req: NextRequest) => {
 
     const session = await SessionService.getSession(userData.register);
 
-    const isAuthenticated = session?.userId === userData.register;
+    if (!session) throw new Error("User could not access this resource");
+
+    const isTokenValid = session.expiresAt.getTime() > Date.now();
+
+    if (!isTokenValid) {
+      await SessionService.closeSession(userData.register);
+    }
+
+    const isAuthenticated = session.isActive && isTokenValid;
 
     return {
       accessToken,
       isAuthenticated,
       userId: String(userData.register),
+      sessionId: String(session.id),
     };
   } catch {
     return {

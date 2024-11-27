@@ -4,6 +4,7 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from "@sentry/nextjs";
+import packageJson from "./package.json";
 
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
@@ -14,7 +15,7 @@ Sentry.init({
 
   environment: process.env.NEXT_PUBLIC_NODE_ENV,
 
-  release: process.env.NEXT_PUBLIC_RELEASE,
+  release: packageJson.version,
 
   spotlight: process.env.NEXT_PUBLIC_NODE_ENV === "development",
 

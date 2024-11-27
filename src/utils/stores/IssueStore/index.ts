@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { createStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-type IssueProps = IssueDto
+type IssueProps = IssueDto;
 
 interface IssueState extends IssueProps {
   initialize: () => void;
@@ -32,11 +32,11 @@ const createIssueStore = (initProps?: Partial<IssueProps>) => {
     type: "problem",
     historic: [],
     closedBy: null,
-    createdBy: 0,
+    createdBy: "0",
     createdAt: new Date(),
     updatedAt: new Date(),
     closedAt: null,
-    updatedBy: 0,
+    updatedBy: "0",
     // sector: "",
     // unity: "",
     date: "",

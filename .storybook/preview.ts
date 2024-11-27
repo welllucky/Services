@@ -1,11 +1,12 @@
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
+// @ts-ignore
 import {
   INITIAL_VIEWPORTS,
   MINIMAL_VIEWPORTS,
 } from "@storybook/addon-viewport";
 import { Preview } from "@storybook/react";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "../src/styles/globals.tsx";
+import { GlobalStyle } from "@/styles";
 import { darkTheme, lightTheme } from "../src/styles/themes";
 
 export const decorators = [

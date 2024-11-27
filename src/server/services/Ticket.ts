@@ -1,13 +1,15 @@
-import { TicketRepository } from "@/server/repository";
+import { ticketRepository } from "@/server/repository";
 import { ITicket } from "@/types";
 
 class TicketServices {
+  private static readonly repository = ticketRepository;
+
   static async getAllTickets(resolverId: string) {
-    return TicketRepository.findAll(resolverId);
+    return this.repository.findAll(resolverId);
   }
 
   static async getTicketById(resolverId: string, ticketId: string) {
-    return TicketRepository.findById(resolverId, ticketId);
+    return this.repository.findById(resolverId, ticketId);
   }
 
   static async updateTicket(
@@ -15,32 +17,27 @@ class TicketServices {
     ticketId: string,
     data: Partial<ITicket>,
   ) {
-    return TicketRepository.update(resolverId, ticketId, data);
-  }
-
-  static async deleteTicket(resolverId: string, ticketId: string) {
-    return TicketRepository.delete(resolverId, ticketId);
+    return this.repository.update(resolverId, ticketId, data);
   }
 
   static async findInProgressTickets(resolverId: string) {
-    return TicketRepository.findAll(resolverId, {
+    return this.repository.findAll(resolverId, {
       status: "inProgress",
     });
   }
 
   static async startTicket(resolverId: string, ticketId: string) {
-    return TicketRepository.update(resolverId, ticketId, {
+    return this.repository.update(resolverId, ticketId, {
       status: "inProgress",
       updatedAt: new Date(),
-      updatedBy: resolverId,
+      // updatedBy: resolverId,
     });
   }
 
   static async resolveTicket(resolverId: string, ticketId: string) {
-    return TicketRepository.update(resolverId, ticketId, {
+    return this.repository.update(resolverId, ticketId, {
       status: "closed",
-      closedAt: new Date(),
-      closedBy: resolverId,
+      // closedBy: resolverId,
     });
   }
 }

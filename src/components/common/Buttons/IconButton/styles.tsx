@@ -1,6 +1,5 @@
-import styled from "styled-components";
 import Link from "next/link";
-import { MouseEventHandler } from "react";
+import styled from "styled-components";
 
 interface CustomButtonProps {
   path?: string;
@@ -8,7 +7,7 @@ interface CustomButtonProps {
   color?: string;
   width?: string;
   height?: string;
-  onHover?: MouseEventHandler<HTMLButtonElement>;
+  hoverColor?: string;
 }
 
 const IconButtonWrapper = styled.div``;
@@ -21,9 +20,10 @@ const CustomButtonAsLink = styled(Link)<CustomButtonProps>`
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+
   &:hover {
     transform: scale(1.1);
-    color: ${(props) => (props.onHover ? "#fff" : "#fff")};
+    color: ${(props) => props?.hoverColor ?? "#fff"};
   }
 `;
 
@@ -37,8 +37,8 @@ const CustomButton = styled.button<CustomButtonProps>`
   transition: all 0.2s ease-in-out;
   &:hover {
     transform: scale(1.1);
-    color: ${(props) => (props.onHover ? "#fff" : "#fff")};
+    color: ${(props) => props.hoverColor ?? "#fff"};
   }
 `;
 
-export { IconButtonWrapper, CustomButton, CustomButtonAsLink };
+export { CustomButton, CustomButtonAsLink, IconButtonWrapper };
