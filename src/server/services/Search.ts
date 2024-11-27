@@ -1,8 +1,10 @@
-import { SearchRepository } from "@/server/repository";
+import { searchRepository } from "@/server/repository";
 
 class SearchServices {
+  private static readonly repository = searchRepository;
+
   static searchTickets(userId: string, searchTerm: string) {
-    return SearchRepository.searchTickets(userId, searchTerm);
+    return this.repository.searchTickets(userId, searchTerm);
   }
 }
 

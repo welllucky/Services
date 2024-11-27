@@ -11,6 +11,12 @@ export const PasswordInput = ({
 
   const { errors, dirtyFields } = formState;
 
+  const getStatus = () => {
+    if (errors?.password || errors.root) return "invalid";
+    if (!dirtyFields?.password) return "none";
+    return "valid";
+  };
+
   return (
     <CustomInput
       id="password"
@@ -39,9 +45,7 @@ export const PasswordInput = ({
         />
       )}
       height="58px"
-      $status={
-        errors?.password ? "invalid" : !dirtyFields?.password ? "none" : "valid"
-      }
+      $status={getStatus()}
       errorText={errors.password?.message}
     />
   );

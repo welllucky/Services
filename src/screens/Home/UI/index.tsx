@@ -4,10 +4,8 @@ import { TicketCard } from "@/components/TicketCard";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { TicketDto } from "@/types";
-import { SS_KEY_USER_PREVIOUS_PAGE, dataFormatter } from "@/utils";
-import { useSession } from "next-auth/react";
+import { SS_KEY_USER_PREVIOUS_PAGE, dataFormatter, useAuth } from "@/utils";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useMemo } from "react";
 import { DefaultTheme } from "styled-components";
 import { ButtonWrapper } from "../styles";
 
@@ -22,9 +20,7 @@ type HomePageUIProps = {
 export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
   const dataLength = data?.length ?? 0;
 
-  const { data: session } = useSession();
-
-  const user = useMemo(() => session?.user, [session?.user]);
+  const { user } = useAuth();
 
   const { push } = router;
   if (isLoading) {
