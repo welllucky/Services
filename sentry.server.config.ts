@@ -12,7 +12,7 @@ Sentry.init({
   tracesSampleRate:
     process.env.NEXT_PUBLIC_NODE_ENV === "development" ? 1.0 : 0.8,
 
-  environment: process.env.NEXT_PUBLIC_NODE_ENV,
+  environment: process.env.NEXT_PUBLIC_HOST_ENV,
 
   release: packageJson.version,
 
