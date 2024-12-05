@@ -173,7 +173,7 @@ export class SessionController {
 
       return NextResponse.json(
         UserView.getUser({
-          error: { message: AuthErrorMessage.InvalidLoginError },
+          error,
           status: 500,
         }),
         {
@@ -247,6 +247,7 @@ export class SessionController {
 
       return NextResponse.redirect(new URL("/login", req.nextUrl.clone()));
     } catch (error) {
+      console.log({ error });
       const err = error as Error;
 
       captureException(error, {

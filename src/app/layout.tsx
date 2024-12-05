@@ -41,14 +41,6 @@ const RootLayout = async ({
   return (
     <html lang="pt-br">
       <head>
-        <script
-          data-project-id="WfTqP43E0gdOt1orJkAjWq1d92P8Fo0Yn3iMHQtz"
-          data-is-production-environment={
-            process.env.NODE_ENV === "production" ||
-            process.env.VERCEL_ENV === "production"
-          }
-          src="https://snippet.meticulous.ai/v1/meticulous.js"
-        />
         <link
           rel="preconnect"
           href="https://fonts.googleapis.com"

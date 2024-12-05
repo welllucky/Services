@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 export * from "./Address";
 export * from "./ColorScheme";
 export * from "./Enterprise";

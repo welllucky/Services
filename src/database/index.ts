@@ -15,8 +15,6 @@ import {
 } from "../server/entities";
 import { options } from "./config/config";
 
-// [`${path.resolve(__dirname, "../")}server/entities/*.ts`],
-
 const sqliteDataSource = new DataSource({
   type: "sqlite",
   database: options.storage,
@@ -42,17 +40,7 @@ const mySqlDataSource = new DataSource({
   username: options.username,
   password: options.password,
   database: options.database,
-  entities: [
-    Event,
-    Ticket,
-    User,
-    Session,
-    Address,
-    ColorScheme,
-    Enterprise,
-    IssueCategory,
-    Subsidiary,
-  ],
+  entities: [Event, Ticket, User, Session],
   // synchronize: process.env.NODE_ENV !== "production",
   synchronize: false,
   ...(process.env.DB_CA && {
@@ -84,6 +72,14 @@ const startDBConnection = async () => {
         category: "database",
         level: "log",
         message: "Data Source has been initialized!",
+        data: {
+          database: options.database,
+          dialect: options.dialect,
+          host: options.host,
+          port: options.port,
+          userName: options.username,
+          storage: options.storage,
+        },
       });
       console.log("Data Source has been initialized!");
     }
@@ -93,6 +89,14 @@ const startDBConnection = async () => {
       category: "database",
       level: "error",
       message: "Error during Data Source initialization",
+      data: {
+        database: options.database,
+        dialect: options.dialect,
+        host: options.host,
+        port: options.port,
+        userName: options.username,
+        storage: options.storage,
+      },
     });
     captureException(err, {
       tags: {
