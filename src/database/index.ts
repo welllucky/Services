@@ -52,13 +52,13 @@ const mySqlDataSource = new DataSource({
     IssueCategory,
     Subsidiary,
   ],
-  synchronize: process.env.NODE_ENV !== "production",
-  // ...(process.env.DB_CA && {
-  //   ssl: {
-  //     // eslint-disable-next-line security/detect-non-literal-fs-filename
-  //     ca: process.env.DB_CA,
-  //   },
-  // }),
+  // synchronize: process.env.NODE_ENV !== "production",
+  synchronize: false,
+  ...(process.env.DB_CA && {
+    ssl: {
+      ca: process.env.DB_CA,
+    },
+  }),
   logging: options.logging,
 });
 
