@@ -2,6 +2,7 @@ import { startDBConnection } from "@/database";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { AuthErrorMessage } from "@/types/Interfaces/Auth";
 import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
+import { addBreadcrumb, captureException } from "@sentry/nextjs";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { getFormattedBody } from "../functions/getFormattedBody";
@@ -22,6 +23,16 @@ export class SessionController {
       const { email, password } = await getFormattedBody<SessionProps>(req);
 
       if (!email || !password) {
+        addBreadcrumb({
+          category: "api",
+          level: "warning",
+          message: "Email or Password is empty.",
+          data: {
+            isEmailEmpty: email === "",
+            isPasswordEmpty: password === "",
+          },
+        });
+
         return NextResponse.json(
           {
             error: {
@@ -35,11 +46,29 @@ export class SessionController {
         );
       }
 
+      addBreadcrumb({
+        category: "api",
+        level: "log",
+        message: "Email and password received",
+        data: {
+          email,
+          password: "***********",
+        },
+      });
+
       await userModel.init({
         email,
       });
 
       if (!userModel.exists({ safe: true })) {
+        addBreadcrumb({
+          category: "api",
+          level: "log",
+          message: "User not exist",
+          data: {
+            email,
+          },
+        });
         return NextResponse.json(
           UserView.getUser({
             user: null,
@@ -52,6 +81,15 @@ export class SessionController {
         );
       }
 
+      addBreadcrumb({
+        category: "api",
+        level: "log",
+        message: "User exist",
+        data: {
+          email,
+        },
+      });
+
       const sessionModel = new SessionModel({
         userModel,
       });
@@ -60,19 +98,51 @@ export class SessionController {
         password,
       });
 
+      addBreadcrumb({
+        category: "api",
+        level: "log",
+        message: "Access Token is created",
+        data: {
+          expiresAt,
+        },
+      });
+
       const session = await SessionService.createSession(
         password,
         userModel,
         expiresAt,
       );
 
-      if (!session) throw new Error("Session not created");
+      if (!session) {
+        addBreadcrumb({
+          category: "api",
+          level: "log",
+          message: "Session not created",
+        });
+
+        throw new Error("Session not created");
+      }
+
+      addBreadcrumb({
+        category: "api",
+        level: "log",
+        message: "Session created",
+        data: {
+          ...session,
+        },
+      });
 
       cookiesStore.set(CS_KEY_ACCESS_TOKEN, accessToken, {
         // secure: process.env.NODE_ENV !== "development",
         // path: "/",
         // sameSite: "lax",
         expires: expiresAt,
+      });
+
+      addBreadcrumb({
+        category: "api",
+        level: "log",
+        message: "Access Token is set in cookies",
       });
 
       return NextResponse.json(
@@ -83,6 +153,14 @@ export class SessionController {
       );
     } catch (error) {
       const err = error as Error;
+
+      captureException(error, {
+        tags: {
+          module: "api",
+          controller: "SessionController",
+          method: "create",
+        },
+      });
 
       if (err.message.includes("Invalid password")) {
         return NextResponse.json(
@@ -112,6 +190,11 @@ export class SessionController {
       const { userId, sessionId } = await getAuthToken(req);
 
       if (!userId) {
+        addBreadcrumb({
+          category: "api",
+          level: "warning",
+          message: "User not authenticated",
+        });
         return NextResponse.json(
           { error: { message: "User not authenticated" } },
           {
@@ -121,6 +204,15 @@ export class SessionController {
       }
 
       if (!sessionId) {
+        addBreadcrumb({
+          category: "api",
+          level: "warning",
+          message: "Session not authenticated",
+          data: {
+            userId,
+            sessionId,
+          },
+        });
         return NextResponse.json(
           { error: { message: "Section not exists" } },
           {
@@ -139,11 +231,31 @@ export class SessionController {
 
       await sessionModel.close(sessionId);
 
+      addBreadcrumb({
+        category: "api",
+        level: "log",
+        message: "Session was closed successfully",
+      });
+
       cookiesStore.delete(CS_KEY_ACCESS_TOKEN);
+
+      addBreadcrumb({
+        category: "api",
+        level: "info",
+        message: "Access Token is deleted from cookies",
+      });
 
       return NextResponse.redirect(new URL("/login", req.nextUrl.clone()));
     } catch (error) {
       const err = error as Error;
+
+      captureException(error, {
+        tags: {
+          module: "api",
+          controller: "SessionController",
+          method: "close",
+        },
+      });
 
       return NextResponse.json(
         UserView.getUser({

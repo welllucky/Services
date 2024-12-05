@@ -1,6 +1,7 @@
 "use client";
 
 import { cookie } from "@/implementations/client";
+import * as Sentry from "@sentry/nextjs";
 import { InvalidLoginError } from "@/server/models/Errors";
 import { IUser } from "@/types";
 import { CS_KEY_ACCESS_TOKEN, LS_KEY_USER_DATA } from "@/utils/alias";
@@ -66,9 +67,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signOut = useCallback(
     async (soft?: boolean) => {
       setIsLoading(true);
-      setUser(null);
       setIsAuthenticated(false);
-      localStorage.removeItem(LS_KEY_USER_DATA);
+      setUser(null);
+      Sentry.setUser(null);
+      sessionStorage.removeItem(LS_KEY_USER_DATA);
 
       if (!soft) {
         await closeSession();
@@ -117,7 +119,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         };
 
         setUser(savedUserData);
-        localStorage.setItem(LS_KEY_USER_DATA, JSON.stringify(savedUserData));
+        Sentry.setUser(savedUserData);
+        sessionStorage.setItem(LS_KEY_USER_DATA, JSON.stringify(savedUserData));
 
         setIsAuthenticated(true);
 
@@ -139,7 +142,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       const storedAccessToken = cookie.get(CS_KEY_ACCESS_TOKEN) ?? "";
       const storedUserDataString =
-        localStorage?.getItem(LS_KEY_USER_DATA) ?? "";
+        sessionStorage?.getItem(LS_KEY_USER_DATA) ?? "";
       const storedUserData = storedUserDataString
         ? JSON.parse(storedUserDataString)
         : {};
@@ -158,6 +161,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           sector: storedUserData?.sector ?? "",
           lastConnection: storedUserData?.lastConnection ?? null,
         });
+        Sentry.setUser(storedUserData);
 
         if (storedUserData.isBanned) {
           signOut();

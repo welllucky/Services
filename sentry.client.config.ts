@@ -11,16 +11,13 @@ Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
   // Adjust this value in production, or use tracesSampler for greater control
-  tracesSampleRate:
-    process.env.NEXT_PUBLIC_NODE_ENV === "development" ? 1.0 : 0.8,
+  tracesSampleRate: 1.0,
 
-  replaysOnErrorSampleRate:
-    process.env.NEXT_PUBLIC_NODE_ENV === "development" ? 1.0 : 0.8,
+  replaysOnErrorSampleRate: 1.0,
 
   // This sets the sample rate to be 10%. You may want this to be 100% while
   // in development and sample at a lower rate in production
-  replaysSessionSampleRate:
-    process.env.NEXT_PUBLIC_NODE_ENV === "development" ? 1.0 : 0.8,
+  replaysSessionSampleRate: 0.5,
 
   // You can remove this option if you're not planning to use the Sentry Session Replay feature:
   integrations: [
@@ -29,7 +26,13 @@ Sentry.init({
       maskAllText: false,
       blockAllMedia: false,
     }),
+    Sentry.browserProfilingIntegration(),
+    Sentry.browserTracingIntegration(),
   ],
+
+  tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.online\/api/],
+
+  profilesSampleRate: 1.0,
 
   environment: process.env.NEXT_PUBLIC_HOST_ENV,
 

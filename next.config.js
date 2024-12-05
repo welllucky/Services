@@ -49,6 +49,25 @@ const nextConfig = {
       process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT,
     SERVICES_COMPANY_ID: process.env.SERVICES_COMPANY_ID,
   },
+  headers: async () => [
+    {
+      source: "/:path*",
+      headers: [
+        {
+          key: "Document-Policy",
+          value: "js-profiling",
+        },
+        {
+          key: "Access-Control-Allow-Headers",
+          value: "sentry-trace",
+        },
+        {
+          key: "Access-Control-Allow-Headers",
+          value: "baggage",
+        },
+      ],
+    },
+  ],
 };
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

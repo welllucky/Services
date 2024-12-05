@@ -1,5 +1,6 @@
 import { startDBConnection } from "@/database";
 import { getAuthToken } from "@/server/functions/getAuthToken";
+import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { TicketServices } from "../services";
 
@@ -33,6 +34,12 @@ class TicketController {
         status: 200,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "TicketController",
+          method: "getAllTickets",
+        },
+      });
       return NextResponse.json({ error });
     }
   }
@@ -66,6 +73,12 @@ class TicketController {
         status: 200,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "TicketController",
+          method: "getTicketById",
+        },
+      });
       return NextResponse.json({ error });
     }
   }
@@ -108,6 +121,12 @@ class TicketController {
         status: 200,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "TicketController",
+          method: "initializeTicket",
+        },
+      });
       return NextResponse.json(
         {
           error,
