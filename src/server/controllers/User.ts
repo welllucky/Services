@@ -1,8 +1,8 @@
-// import { getAuthToken } from "@/server/functions/getAuthToken";
 import { startDBConnection } from "@/database";
 import { UserView } from "@/server/views";
 import { IRegisterUser, RegisterUserSchema } from "@/types";
 import { AuthErrorMessage } from "@/types/Interfaces/Auth";
+import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthToken } from "../functions/getAuthToken";
 import { userModel } from "../models";
@@ -49,7 +49,12 @@ export class UserController {
         },
       );
     } catch (error) {
-      console.log({ error });
+      captureException(error, {
+        tags: {
+          controller: "UserController",
+          method: "authUser",
+        },
+      });
       return NextResponse.json(
         UserView.getUser({
           error: { message: AuthErrorMessage.InvalidLoginError },
@@ -104,6 +109,12 @@ export class UserController {
         status: 201,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "UserController",
+          method: "createUser",
+        },
+      });
       return NextResponse.json(
         UserView.getUser({
           error: { message: error || AuthErrorMessage.InvalidLoginError },

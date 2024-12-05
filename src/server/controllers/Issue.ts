@@ -3,6 +3,7 @@ import { TicketView } from "@/server";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { getFormattedBody } from "@/server/functions/getFormattedBody";
 import { IOpenIssueForm } from "@/types";
+import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { IssueServices } from "../services";
 
@@ -39,6 +40,12 @@ export class IssueController {
         status: 200,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "IssueController",
+          method: "getAllIssues",
+        },
+      });
       return NextResponse.json({ error });
     }
   }
@@ -73,6 +80,12 @@ export class IssueController {
         status: 200,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "IssueController",
+          method: "getIssueById",
+        },
+      });
       return NextResponse.json({ error });
     }
   }
@@ -98,6 +111,12 @@ export class IssueController {
         status: 201,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "IssueController",
+          method: "createIssue",
+        },
+      });
       return NextResponse.json(
         { error },
         {
@@ -136,6 +155,12 @@ export class IssueController {
         status: 200,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "IssueController",
+          method: "getInProgressIssues",
+        },
+      });
       return NextResponse.json(
         { error },
         {
@@ -184,6 +209,12 @@ export class IssueController {
         status: 200,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "IssueController",
+          method: "closeIssue",
+        },
+      });
       return NextResponse.json(
         {
           error,
@@ -234,6 +265,12 @@ export class IssueController {
         status: 200,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "IssueController",
+          method: "startIssue",
+        },
+      });
       return NextResponse.json(
         {
           error,
@@ -284,6 +321,12 @@ export class IssueController {
         status: 200,
       });
     } catch (error) {
+      captureException(error, {
+        tags: {
+          controller: "IssueController",
+          method: "reopenIssue",
+        },
+      });
       return NextResponse.json(
         {
           error,

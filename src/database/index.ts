@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { addBreadcrumb, captureException } from "@sentry/nextjs";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import {
@@ -79,10 +80,26 @@ const startDBConnection = async () => {
   try {
     if (!AppDataSource.isInitialized) {
       await AppDataSource.initialize();
+      addBreadcrumb({
+        category: "database",
+        level: "log",
+        message: "Data Source has been initialized!",
+      });
       console.log("Data Source has been initialized!");
     }
     return AppDataSource;
   } catch (err) {
+    addBreadcrumb({
+      category: "database",
+      level: "error",
+      message: "Error during Data Source initialization",
+    });
+    captureException(err, {
+      tags: {
+        module: "database",
+        method: "startDBConnection",
+      },
+    });
     console.error("Error during Data Source initialization", err);
   }
 };
