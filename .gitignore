@@ -73,3 +73,5 @@ snyk-linux
 # Sentry Config File
 .env.sentry-build-plugin
 node_modules/
+
+*.code-workspace
