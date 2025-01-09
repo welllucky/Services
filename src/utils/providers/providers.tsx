@@ -1,9 +1,11 @@
 "use client";
 
 import { GlobalStyle, theme } from "@/styles";
+// import { SessionProvider } from "next-auth/react";
 import { ReactNode, useEffect } from "react";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
+import { Monitoring } from "react-scan/monitoring/next";
 import { ThemeProvider } from "styled-components";
 import { SWRConfig } from "swr";
 import packageJson from "../../../package.json";
@@ -34,8 +36,15 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
         }}>
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme}>
+            {/* <SessionProvider> */}
             <AuthProvider>
               <AppProvider>
+                <Monitoring
+                  apiKey="WEMYJ-Y4IUmZjN8cEufccWZAKd_SyXN_" // Safe to expose publically
+                  url="https://monitoring.react-scan.com/api/v1/ingest"
+                  commit={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
+                  branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
+                />
                 <GlobalStyle />
                 {children}
                 <Toaster
@@ -51,6 +60,7 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
                 />
               </AppProvider>
             </AuthProvider>
+            {/* </SessionProvider> */}
           </ThemeProvider>
         </StyledComponentsRegistry>
       </CookiesProvider>
