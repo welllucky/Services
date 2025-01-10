@@ -49,6 +49,8 @@ export default function middleware(request: NextRequest) {
   return response;
 }
 
+// export { auth as middleware } from "@/auth";
+
 export const config = {
   matcher: [
     {

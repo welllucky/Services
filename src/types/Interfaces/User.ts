@@ -40,11 +40,12 @@ export const UserSchema = z.object({
     .string({ required_error: "Email is required" })
     .min(1, "Email is required")
     .email("Invalid email"),
-  lastConnection: z.date().nullish(),
+  lastConnection: z.string().nullish(),
   isBanned: z.boolean().default(false),
   canCreateTicket: z.boolean().default(true),
   canResolveTicket: z.boolean().default(true),
   role: z.string(),
+  systemRole: z.string(),
   sector: z.string(),
 });
 

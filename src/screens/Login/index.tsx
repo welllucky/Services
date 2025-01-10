@@ -37,6 +37,7 @@ const LoginPage = ({ redirectTo }: LoginPageProps) => {
 
   useEffect(() => {
     if (error) {
+      console.log({ error });
       setTimeout(() => {
         setError("root", {
           message: error,
@@ -44,10 +45,10 @@ const LoginPage = ({ redirectTo }: LoginPageProps) => {
         });
         toast.error(error);
 
-        setTimeout(() => {
-          resetField("password");
-          clearErrors("root");
-        }, 8000);
+        // setTimeout(() => {
+        //   resetField("password");
+        //   clearErrors("root");
+        // }, 8000);
       }, 200);
     }
   }, [clearErrors, error, resetField, setError]);

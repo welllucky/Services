@@ -1,16 +1,14 @@
+import { cookie } from "@/implementations/client";
+import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
+import { sessionApi } from "@/utils/apis";
+
 // eslint-disable-next-line consistent-return
 export const closeSession = async () => {
   try {
-    const { BASE_URL } = process.env;
+    const accessToken = cookie.get(CS_KEY_ACCESS_TOKEN);
+    const { error } = await sessionApi.closeSession(accessToken);
 
-    const res = await fetch(
-      BASE_URL ? `${BASE_URL}/api/session` : "/api/session",
-      {
-        method: "DELETE",
-      },
-    );
-
-    if (!res) throw new Error("Access token not closed");
+    if (error) throw new Error("Access token not closed");
   } catch (error) {
     return { error };
   }

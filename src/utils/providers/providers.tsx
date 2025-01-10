@@ -1,13 +1,12 @@
 "use client";
 
 import { GlobalStyle, theme } from "@/styles";
-// import { SessionProvider } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 import { ReactNode, useEffect } from "react";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
 import { Monitoring } from "react-scan/monitoring/next";
 import { ThemeProvider } from "styled-components";
-import { SWRConfig } from "swr";
 import packageJson from "../../../package.json";
 import { AppProvider } from "../stores/AppStore";
 import { AuthProvider } from "./AuthProvider";
@@ -24,19 +23,19 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
     window.version = packageJson.version;
   }, []);
   return (
-    <SWRConfig>
-      <CookiesProvider
-        defaultSetOptions={{
-          path: "/",
-          sameSite: true,
-          secure: true,
-          domain: process.env.NEXT_PUBLIC_BASE_URL,
-          expires: new Date(Date.now() + 60 * 60 * 24 * 15),
-          partitioned: false,
-        }}>
-        <StyledComponentsRegistry>
-          <ThemeProvider theme={theme}>
-            {/* <SessionProvider> */}
+    // <SWRConfig>
+    <CookiesProvider
+      defaultSetOptions={{
+        path: "/",
+        sameSite: true,
+        secure: true,
+        domain: process.env.NEXT_PUBLIC_BASE_URL,
+        expires: new Date(Date.now() + 60 * 60 * 24 * 15),
+        partitioned: false,
+      }}>
+      <StyledComponentsRegistry>
+        <ThemeProvider theme={theme}>
+          <SessionProvider>
             <AuthProvider>
               <AppProvider>
                 <Monitoring
@@ -60,10 +59,10 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
                 />
               </AppProvider>
             </AuthProvider>
-            {/* </SessionProvider> */}
-          </ThemeProvider>
-        </StyledComponentsRegistry>
-      </CookiesProvider>
-    </SWRConfig>
+          </SessionProvider>
+        </ThemeProvider>
+      </StyledComponentsRegistry>
+    </CookiesProvider>
+    // </SWRConfig>
   );
 };

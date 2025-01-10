@@ -1,13 +1,10 @@
-import { startDBConnection } from "@/database";
-import { getAuthToken } from "@/server/functions/getAuthToken";
-import { AuthErrorMessage } from "@/types/Interfaces/Auth";
-import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
+// import { getAuthToken } from "@/server/functions/getAuthToken";
+import { IHttpResponse, ISessionResponse } from "@/types";
+// import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
 import { addBreadcrumb, captureException } from "@sentry/nextjs";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { getFormattedBody } from "../functions/getFormattedBody";
-import { SessionModel, userModel } from "../models";
-import { SessionService } from "../services/Session";
 import { UserView } from "../views";
 
 interface SessionProps {
@@ -15,11 +12,12 @@ interface SessionProps {
   password: string;
 }
 
+const sessionApiUrl = `${process.env.APIS_BASE_URL}sessions`;
+
 export class SessionController {
   static async create(req: NextRequest) {
     try {
-      const cookiesStore = cookies();
-      await startDBConnection();
+      // const cookiesStore = cookies();
       const { email, password } = await getFormattedBody<SessionProps>(req);
 
       if (!email || !password) {
@@ -56,99 +54,44 @@ export class SessionController {
         },
       });
 
-      await userModel.init({
-        email,
+      const res = await fetch(sessionApiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       });
 
-      if (!userModel.exists({ safe: true })) {
-        addBreadcrumb({
-          category: "api",
-          level: "log",
-          message: "User not exist",
-          data: {
-            email,
-          },
-        });
+      const resBody = await res.json();
+
+      console.log({ resBody });
+
+      const { data, error, status } = resBody as IHttpResponse<
+        ISessionResponse,
+        { message?: string; title?: string }
+      >;
+
+      if (!data?.token || error?.message) {
         return NextResponse.json(
-          UserView.getUser({
-            user: null,
-            error: { message: AuthErrorMessage.UserNotExist },
-            status: 404,
-          }),
           {
-            status: 404,
+            error: {
+              message: error?.message ?? "Error creating session",
+              title: error?.title ?? "Error",
+            },
+          },
+          {
+            status,
           },
         );
       }
 
-      addBreadcrumb({
-        category: "api",
-        level: "log",
-        message: "User exist",
-        data: {
-          email,
-        },
-      });
-
-      const sessionModel = new SessionModel({
-        userModel,
-      });
-
-      const { accessToken, expiresAt } = await sessionModel.createAccessToken({
-        password,
-      });
-
-      addBreadcrumb({
-        category: "api",
-        level: "log",
-        message: "Access Token is created",
-        data: {
-          expiresAt,
-        },
-      });
-
-      const session = await SessionService.createSession(
-        password,
-        userModel,
-        expiresAt,
-      );
-
-      if (!session) {
-        addBreadcrumb({
-          category: "api",
-          level: "log",
-          message: "Session not created",
-        });
-
-        throw new Error("Session not created");
-      }
-
-      addBreadcrumb({
-        category: "api",
-        level: "log",
-        message: "Session created",
-        data: {
-          ...session,
-        },
-      });
-
-      cookiesStore.set(CS_KEY_ACCESS_TOKEN, accessToken, {
-        // secure: process.env.NODE_ENV !== "development",
-        // path: "/",
-        // sameSite: "lax",
-        expires: expiresAt,
-      });
-
-      addBreadcrumb({
-        category: "api",
-        level: "log",
-        message: "Access Token is set in cookies",
-      });
-
       return NextResponse.json(
-        { accessToken, expiresAt },
+        { ...resBody },
         {
-          status: 201,
+          status,
         },
       );
     } catch (error) {
@@ -183,90 +126,79 @@ export class SessionController {
     }
   }
 
-  static async close(req: NextRequest) {
-    try {
-      await startDBConnection();
-      const cookiesStore = await cookies();
-      const { userId, sessionId } = await getAuthToken(req);
+  // static async close(req: NextRequest) {
+  //   try {
+  //     const cookiesStore = await cookies();
+  //     const { userId, sessionId } = await getAuthToken(req);
 
-      if (!userId) {
-        addBreadcrumb({
-          category: "api",
-          level: "warning",
-          message: "User not authenticated",
-        });
-        return NextResponse.json(
-          { error: { message: "User not authenticated" } },
-          {
-            status: 401,
-          },
-        );
-      }
+  //     if (!userId) {
+  //       addBreadcrumb({
+  //         category: "api",
+  //         level: "warning",
+  //         message: "User not authenticated",
+  //       });
+  //       return NextResponse.json(
+  //         { error: { message: "User not authenticated" } },
+  //         {
+  //           status: 401,
+  //         },
+  //       );
+  //     }
 
-      if (!sessionId) {
-        addBreadcrumb({
-          category: "api",
-          level: "warning",
-          message: "Session not authenticated",
-          data: {
-            userId,
-            sessionId,
-          },
-        });
-        return NextResponse.json(
-          { error: { message: "Section not exists" } },
-          {
-            status: 404,
-          },
-        );
-      }
+  //     if (!sessionId) {
+  //       addBreadcrumb({
+  //         category: "api",
+  //         level: "warning",
+  //         message: "Session not authenticated",
+  //         data: {
+  //           userId,
+  //           sessionId,
+  //         },
+  //       });
+  //       return NextResponse.json(
+  //         { error: { message: "Section not exists" } },
+  //         {
+  //           status: 404,
+  //         },
+  //       );
+  //     }
 
-      await userModel.init({
-        register: userId,
-      });
+  //     addBreadcrumb({
+  //       category: "api",
+  //       level: "log",
+  //       message: "Session was closed successfully",
+  //     });
 
-      const sessionModel = new SessionModel({
-        userModel,
-      });
+  //     cookiesStore.delete(CS_KEY_ACCESS_TOKEN);
 
-      await sessionModel.close(sessionId);
+  //     addBreadcrumb({
+  //       category: "api",
+  //       level: "info",
+  //       message: "Access Token is deleted from cookies",
+  //     });
 
-      addBreadcrumb({
-        category: "api",
-        level: "log",
-        message: "Session was closed successfully",
-      });
+  //     return NextResponse.redirect(new URL("/login", req.nextUrl.clone()));
+  //   } catch (error) {
+  //     console.log({ error });
+  //     const err = error as Error;
 
-      cookiesStore.delete(CS_KEY_ACCESS_TOKEN);
+  //     captureException(error, {
+  //       tags: {
+  //         module: "api",
+  //         controller: "SessionController",
+  //         method: "close",
+  //       },
+  //     });
 
-      addBreadcrumb({
-        category: "api",
-        level: "info",
-        message: "Access Token is deleted from cookies",
-      });
-
-      return NextResponse.redirect(new URL("/login", req.nextUrl.clone()));
-    } catch (error) {
-      console.log({ error });
-      const err = error as Error;
-
-      captureException(error, {
-        tags: {
-          module: "api",
-          controller: "SessionController",
-          method: "close",
-        },
-      });
-
-      return NextResponse.json(
-        UserView.getUser({
-          error: { message: err.message },
-          status: 400,
-        }),
-        {
-          status: 400,
-        },
-      );
-    }
-  }
+  //     return NextResponse.json(
+  //       UserView.getUser({
+  //         error: { message: err.message },
+  //         status: 400,
+  //       }),
+  //       {
+  //         status: 400,
+  //       },
+  //     );
+  //   }
+  // }
 }

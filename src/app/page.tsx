@@ -1,11 +1,8 @@
-import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
-import { cookies } from "next/headers";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import "reflect-metadata";
 
 const EntryPoint = async () => {
-  const cookiesStore = cookies();
-  const accessToken = cookiesStore.get(CS_KEY_ACCESS_TOKEN)?.value || "";
+  const session = await auth();
 
   async function leadUser(isAuthenticated: boolean) {
     "use server";
@@ -13,7 +10,9 @@ const EntryPoint = async () => {
     redirect(isAuthenticated ? "/home" : "/login");
   }
 
-  return leadUser(!!accessToken);
+  return leadUser(!!session?.user);
 };
 
 export default EntryPoint;
+
+export const runtime = "nodejs";
