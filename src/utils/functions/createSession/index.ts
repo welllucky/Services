@@ -1,28 +1,24 @@
-import { ISessionResponse, SignInSchema } from "@/types";
+import { SignInSchema } from "@/types";
+import { SessionApi } from "@/utils/apis/Session";
 
 export const createSession = async (email: string, password: string) => {
+  const sessionApi = new SessionApi();
   try {
-    const { BASE_URL } = process.env;
     const { email: reliableEmail, password: reliablePassword } =
       SignInSchema.parse({ email, password });
 
-    const res = await fetch(
-      BASE_URL ? `${BASE_URL}/api/session` : "/api/session",
-      {
-        body: JSON.stringify({
-          email: reliableEmail,
-          password: reliablePassword,
-        }),
-        method: "POST",
-      },
+    const { data, error } = await sessionApi.createSession(
+      reliableEmail,
+      reliablePassword,
     );
 
-    const { accessToken, expiresAt } = (await res.json()) as ISessionResponse;
+    if (!data?.token || error?.message) {
+      throw new Error(error?.message ?? "Error creating session");
+    }
 
-    if (!accessToken) throw new Error("Access token not created");
-
-    return { accessToken, expiresAt };
+    return { accessToken: data.token };
   } catch (error) {
+    console.log({ error });
     return {
       error: {
         message: (error as Error).message,

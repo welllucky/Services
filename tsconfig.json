@@ -17,6 +17,7 @@
     "experimentalDecorators": true,
     "incremental": true,
     "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
     "plugins": [
       {
         "name": "next"
@@ -34,6 +35,7 @@
     ".next/types/**/*.ts",
     "playwright.config.ts",
     "tests/**/*",
+    "types.d.ts"
   ],
   "exclude": ["node_modules"]
 }

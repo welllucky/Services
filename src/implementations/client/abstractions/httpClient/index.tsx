@@ -30,7 +30,13 @@ export type HttpClientProps = {
 };
 
 type HttpClientResponse<T> = {
-  result?: T;
+  result?: {
+    data?: T;
+    error?: {
+      message?: string;
+      title?: string;
+    };
+  };
   statusCode: number;
   headers?: Record<string, string | number | boolean>;
 };
@@ -99,24 +105,25 @@ export class HTTPClientImplementation {
       } as HttpClientResponse<T>;
     };
 
-    const newRes = !options?.dontRefresh
-      ? useSWR<HttpClientResponse<T>>(shouldFetch ? url : null, fetcher, {
-          refreshInterval: options?.refreshInterval ? 1000 * 60 * 5 : 0,
-          revalidateOnFocus: true,
-          revalidateOnReconnect: true,
-          // errorRetryCount: 3,
-          // errorRetryInterval: 3000,
-          refreshWhenHidden: true,
-          refreshWhenOffline: true,
-        })
-      : useSWRImmutable<HttpClientResponse<T>>(
-          shouldFetch ? url : null,
-          fetcher,
-        );
+    const newRes =
+      !options?.dontRefresh || typeof window === "undefined"
+        ? useSWR<HttpClientResponse<T>>(shouldFetch ? url : null, fetcher, {
+            refreshInterval: options?.refreshInterval ? 1000 * 60 * 5 : 0,
+            revalidateOnFocus: true,
+            revalidateOnReconnect: true,
+            // errorRetryCount: 3,
+            // errorRetryInterval: 3000,
+            refreshWhenHidden: true,
+            refreshWhenOffline: true,
+          })
+        : useSWRImmutable<HttpClientResponse<T>>(
+            shouldFetch ? url : null,
+            fetcher,
+          );
 
     return {
       data: newRes.data?.result as unknown as T,
-      error: newRes.error,
+      error: newRes.data?.result?.error || newRes.error,
       isLoading: (!newRes.data && !newRes.error) || newRes.isLoading,
       statusCode: newRes.data?.statusCode,
       headers: newRes.data?.headers,

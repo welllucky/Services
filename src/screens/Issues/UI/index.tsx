@@ -7,16 +7,17 @@ import {
 } from "@/components";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
-import { TicketDto } from "@/types";
-import { dataFormatter, SS_KEY_USER_PREVIOUS_PAGE, useAuth } from "@/utils";
+import { IUser, TicketDto } from "@/types";
+import { dataFormatter, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useCallback, useMemo } from "react";
 import { ButtonWrapper } from "../styles";
 
 type IssuesPageUIProps = {
-  data: TicketDto[] | undefined;
-  isLoading: boolean;
+  data: TicketDto[] | null;
+  isLoading?: boolean;
   router: AppRouterInstance;
+  user?: IUser | null;
 };
 
 const INITIAL_ISSUE_QUANTITY_LIMIT = 5;
@@ -25,10 +26,9 @@ export const IssuesPageUI = ({
   data,
   isLoading,
   router,
+  user,
 }: IssuesPageUIProps) => {
   const issuesQuantity = data?.length ?? 0;
-
-  const { user } = useAuth();
 
   const showAddIssueButton = useMemo(
     () =>

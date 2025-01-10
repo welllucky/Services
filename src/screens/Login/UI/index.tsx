@@ -24,8 +24,6 @@ const LoginPageUI = ({
 
   const isLoading = pageIsLoading || formIsLoading;
 
-  console.log({ pageIsLoading, formIsLoading });
-
   return (
     <ScreenContainer>
       {isLoading && <Loading $overlayOn />}

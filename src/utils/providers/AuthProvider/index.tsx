@@ -1,11 +1,14 @@
 "use client";
 
-import { cookie } from "@/implementations/client";
-import * as Sentry from "@sentry/nextjs";
-import { InvalidLoginError } from "@/server/models/Errors";
 import { IUser } from "@/types";
-import { CS_KEY_ACCESS_TOKEN, LS_KEY_USER_DATA } from "@/utils/alias";
-import { closeSession, createSession, getUser } from "@/utils/functions";
+import { LS_KEY_USER_DATA } from "@/utils/alias";
+import { closeSession } from "@/utils/functions";
+import * as Sentry from "@sentry/nextjs";
+import {
+  signIn as systemSignIn,
+  signOut as systemSignOut,
+  useSession,
+} from "next-auth/react";
 import { useRouter } from "next/navigation";
 import {
   createContext,
@@ -51,144 +54,79 @@ const AuthContext = createContext<AuthContextProps>({
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
-  const [accessToken, setAccessToken] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const router = useRouter();
+  const { data, status } = useSession();
 
-  useEffect(() => {
-    const storedAccessToken = cookie.get(CS_KEY_ACCESS_TOKEN) ?? "";
-    if (!storedAccessToken) {
-      router.push("/login");
-    }
-  }, [router]);
+  const resetStates = useCallback(() => {
+    setUser(null);
+    setError("");
+    setIsLoading(false);
+    setIsAuthenticated(false);
+  }, []);
 
-  const signOut = useCallback(
-    async (soft?: boolean) => {
-      setIsLoading(true);
-      setIsAuthenticated(false);
-      setUser(null);
-      Sentry.setUser(null);
-      sessionStorage.removeItem(LS_KEY_USER_DATA);
-
-      if (!soft) {
-        await closeSession();
-        router.push("/login");
-      }
-    },
-    [router],
-  );
+  const signOut = useCallback(async () => {
+    resetStates();
+    Sentry.setUser(null);
+    sessionStorage.removeItem(LS_KEY_USER_DATA);
+    await closeSession();
+    await systemSignOut({
+      redirectTo: "/login",
+      redirect: true,
+    });
+  }, [resetStates]);
 
   const signIn = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
     async (email: string, password: string, redirectTo?: string) => {
-      await signOut(true);
-      setError("");
+      resetStates();
       try {
-        const { accessToken: newToken, error: sessionError } =
-          await createSession(email, password);
-
-        if (sessionError) {
-          throw new Error(sessionError.message);
-        }
-
-        const { error: userError, user: rawUser } = await getUser(
-          newToken ?? "",
-        );
-
-        if (userError) {
-          throw new Error(userError.message);
-        }
-
-        if (!newToken) {
-          throw new InvalidLoginError();
-        }
-
-        setAccessToken(newToken);
-
-        const savedUserData = {
-          register: rawUser?.register ?? "",
-          name: rawUser?.name ?? "",
-          email: rawUser?.email ?? "",
-          isBanned: rawUser?.isBanned ?? false,
-          canCreateTicket: rawUser?.canCreateTicket ?? false,
-          canResolveTicket: rawUser?.canResolveTicket ?? false,
-          role: rawUser?.role ?? "",
-          sector: rawUser?.sector ?? "",
-          lastConnection: rawUser?.lastConnection ?? null,
-        };
-
-        setUser(savedUserData);
-        Sentry.setUser(savedUserData);
-        sessionStorage.setItem(LS_KEY_USER_DATA, JSON.stringify(savedUserData));
-
-        setIsAuthenticated(true);
-
-        router.push(redirectTo ?? "/");
+        setIsLoading(true);
+        await systemSignIn("credentials", {
+          email,
+          password,
+        });
       } catch (err) {
+        console.log({ err });
         setError((err as Error).message);
         setUser(null);
       } finally {
         setIsLoading(false);
       }
     },
-    [router, signOut],
+    [resetStates],
   );
 
   // const updateUserData = async () => {
   // };
 
   useEffect(() => {
-    try {
-      const storedAccessToken = cookie.get(CS_KEY_ACCESS_TOKEN) ?? "";
-      const storedUserDataString =
-        sessionStorage?.getItem(LS_KEY_USER_DATA) ?? "";
-      const storedUserData = storedUserDataString
-        ? JSON.parse(storedUserDataString)
-        : {};
+    console.log({ status, data });
+    setIsAuthenticated(status === "authenticated");
 
-      setIsLoading(true);
-
-      if (storedUserData) {
-        setUser({
-          register: storedUserData?.register ?? "",
-          name: storedUserData?.name ?? "",
-          email: storedUserData?.email ?? "",
-          isBanned: storedUserData?.isBanned ?? false,
-          canCreateTicket: storedUserData?.canCreateTicket ?? false,
-          canResolveTicket: storedUserData?.canResolveTicket ?? false,
-          role: storedUserData?.role ?? "",
-          sector: storedUserData?.sector ?? "",
-          lastConnection: storedUserData?.lastConnection ?? null,
-        });
-        Sentry.setUser(storedUserData);
-
-        if (storedUserData.isBanned) {
-          signOut();
-        }
-
-        if (storedUserData.lastConnection) {
-          const lastConnectionDate = new Date(storedUserData.lastConnection);
-          const currentDate = new Date();
-          const diffTime = Math.abs(
-            currentDate.getTime() - lastConnectionDate.getTime(),
-          );
-          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-          if (diffDays > 4) {
-            signOut();
-          }
-        }
-      }
-
-      if (storedAccessToken) {
-        setIsAuthenticated(true);
-        setAccessToken(storedAccessToken);
-      }
-    } finally {
-      setIsLoading(false);
+    if (status === "unauthenticated") {
+      router.push("/login");
     }
-  }, [accessToken, isLoading, router, signOut]);
+  }, [router, status]);
+
+  useEffect(() => {
+    if (!user && data?.user && status === "authenticated") {
+      setUser(data.user);
+      setIsAuthenticated(true);
+      Sentry.setUser(data.user);
+      sessionStorage.setItem(LS_KEY_USER_DATA, JSON.stringify(data.user));
+    }
+
+    if (user && !data && status === "unauthenticated") {
+      resetStates();
+      setUser(null);
+      setIsAuthenticated(false);
+      Sentry.setUser(null);
+      sessionStorage.removeItem(LS_KEY_USER_DATA);
+    }
+  }, [data, resetStates, status, user]);
 
   const memoizedValue = useMemo(
     (): AuthContextProps => ({
@@ -197,10 +135,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       signOut,
       signIn,
       isLoading,
-      accessToken,
       error,
     }),
-    [accessToken, error, isAuthenticated, isLoading, signIn, signOut, user],
+    [error, isAuthenticated, isLoading, signIn, signOut, user],
   );
 
   return (

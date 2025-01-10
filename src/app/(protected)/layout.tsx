@@ -7,7 +7,7 @@ import { useAuth } from "@/utils";
 import { usePathname } from "next/navigation";
 import { ReactNode, useMemo } from "react";
 
-const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
+const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const pathName = usePathname();
   const { user } = useAuth();
 
@@ -49,6 +49,8 @@ const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
     [pagesWithoutHeader, pathName],
   );
 
+  // if (!isAuthenticated) redirect("/login");
+
   return (
     <FlexContainer
       $backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}
@@ -66,4 +68,4 @@ const Template = ({ children }: Readonly<{ children: ReactNode }>) => {
   );
 };
 
-export default Template;
+export default ProtectedLayout;

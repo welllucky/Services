@@ -11,7 +11,7 @@ export const ISessionSchema = z.object({
 });
 
 export const SessionResponseSchema = z.object({
-  accessToken: z.string(),
+  token: z.string(),
   expiresAt: z.string().or(z.date()),
 });
 

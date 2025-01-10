@@ -1,6 +1,5 @@
+import { auth } from "@/auth";
 import { LoginPage } from "@/screens";
-import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 const Login = async ({
@@ -10,10 +9,9 @@ const Login = async ({
     redirectTo: string;
   };
 }) => {
-  const cookiesStore = cookies();
-  const accessToken = cookiesStore.get(CS_KEY_ACCESS_TOKEN)?.value;
+  const session = await auth();
 
-  if (accessToken) {
+  if (session?.user) {
     redirect("/");
   }
 
@@ -21,3 +19,4 @@ const Login = async ({
 };
 
 export default Login;
+export const runtime = "nodejs";
