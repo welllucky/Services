@@ -1,7 +1,7 @@
 {
   "name": "services",
   "version": "0.2.0",
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/welllucky/services.git"
@@ -117,4 +117,3 @@
   "homepage": "https://github.com/welllucky/services#readme",
   "packageManager": "pnpm@9.12.3"
 }
-

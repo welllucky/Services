@@ -4,7 +4,9 @@ import "next-auth/jwt";
 
 declare module "next-auth" {
   interface Session {
-    user: IUser;
+    user: IUser & {
+      accessToken: string;
+    };
   }
   //   type User = IUse
 
@@ -20,10 +22,12 @@ declare module "next-auth" {
     role: string;
     sector: string;
     systemRole: string;
+    accessToken: string;
   }
 }
 declare module "next-auth/jwt" {
   interface JWT extends IUser {
     id?: string;
+    accessToken: string;
   }
 }
