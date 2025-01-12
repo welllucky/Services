@@ -37,7 +37,6 @@ const LoginPage = ({ redirectTo }: LoginPageProps) => {
 
   useEffect(() => {
     if (error) {
-      console.log({ error });
       setTimeout(() => {
         setError("root", {
           message: error,
