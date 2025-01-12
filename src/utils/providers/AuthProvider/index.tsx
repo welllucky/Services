@@ -37,6 +37,8 @@ interface AuthContextProps {
     // eslint-disable-next-line no-unused-vars
     redirectTo?: string,
   ) => Promise<void>;
+  // eslint-disable-next-line no-unused-vars
+  update: (userData: Partial<IUser>) => Promise<void>;
   isLoading: boolean;
   accessToken?: string;
   error: string;
@@ -50,6 +52,7 @@ const AuthContext = createContext<AuthContextProps>({
   signOut: () => {},
   signIn: async () => Promise.resolve(),
   error: "",
+  update: async () => Promise.resolve(),
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
@@ -58,7 +61,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const router = useRouter();
-  const { data, status } = useSession();
+  const { data, status, update: updateUser } = useSession();
 
   const resetStates = useCallback(() => {
     setUser(null);
@@ -71,12 +74,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     resetStates();
     Sentry.setUser(null);
     sessionStorage.removeItem(LS_KEY_USER_DATA);
-    await closeSession();
+    await closeSession(data?.user?.accessToken || "");
     await systemSignOut({
       redirectTo: "/login",
       redirect: true,
     });
-  }, [resetStates]);
+  }, [data?.user.accessToken, resetStates]);
 
   const signIn = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
@@ -87,9 +90,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         await systemSignIn("credentials", {
           email,
           password,
+          redirect: true,
+          redirectTo: redirectTo || "/",
         });
       } catch (err) {
-        console.log({ err });
         setError((err as Error).message);
         setUser(null);
       } finally {
@@ -99,17 +103,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     [resetStates],
   );
 
-  // const updateUserData = async () => {
-  // };
+  const update = useCallback(
+    async (userData: Partial<IUser>) => {
+      await updateUser(userData);
+    },
+    [updateUser],
+  );
 
   useEffect(() => {
-    console.log({ status, data });
     setIsAuthenticated(status === "authenticated");
 
     if (status === "unauthenticated") {
       router.push("/login");
     }
-  }, [router, status]);
+  }, [data, router, status]);
 
   useEffect(() => {
     if (!user && data?.user && status === "authenticated") {
@@ -134,10 +141,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       user,
       signOut,
       signIn,
+      update,
       isLoading,
       error,
     }),
-    [error, isAuthenticated, isLoading, signIn, signOut, user],
+    [error, isAuthenticated, isLoading, signIn, signOut, update, user],
   );
 
   return (

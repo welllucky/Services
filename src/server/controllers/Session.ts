@@ -4,6 +4,7 @@ import { IHttpResponse, ISessionResponse } from "@/types";
 import { addBreadcrumb, captureException } from "@sentry/nextjs";
 // import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { getAuthToken } from "../functions/getAuthToken";
 import { getFormattedBody } from "../functions/getFormattedBody";
 import { UserView } from "../views";
 
@@ -126,79 +127,67 @@ export class SessionController {
     }
   }
 
-  // static async close(req: NextRequest) {
-  //   try {
-  //     const cookiesStore = await cookies();
-  //     const { userId, sessionId } = await getAuthToken(req);
+  static async close(req: NextRequest) {
+    try {
+      const { userId } = await getAuthToken(req);
 
-  //     if (!userId) {
-  //       addBreadcrumb({
-  //         category: "api",
-  //         level: "warning",
-  //         message: "User not authenticated",
-  //       });
-  //       return NextResponse.json(
-  //         { error: { message: "User not authenticated" } },
-  //         {
-  //           status: 401,
-  //         },
-  //       );
-  //     }
+      if (!userId) {
+        addBreadcrumb({
+          category: "api",
+          level: "warning",
+          message: "User not authenticated",
+        });
+        return NextResponse.json(
+          { error: { message: "User not authenticated" } },
+          {
+            status: 401,
+          },
+        );
+      }
 
-  //     if (!sessionId) {
-  //       addBreadcrumb({
-  //         category: "api",
-  //         level: "warning",
-  //         message: "Session not authenticated",
-  //         data: {
-  //           userId,
-  //           sessionId,
-  //         },
-  //       });
-  //       return NextResponse.json(
-  //         { error: { message: "Section not exists" } },
-  //         {
-  //           status: 404,
-  //         },
-  //       );
-  //     }
+      const res = await fetch(`${sessionApiUrl}/close`, {
+        method: "POST",
+        headers: {
+          Authorization: req.headers.get("Authorization") ?? "",
+        },
+      });
 
-  //     addBreadcrumb({
-  //       category: "api",
-  //       level: "log",
-  //       message: "Session was closed successfully",
-  //     });
+      if (res.ok) {
+        addBreadcrumb({
+          category: "api",
+          level: "log",
+          message: "Session was closed successfully",
+        });
 
-  //     cookiesStore.delete(CS_KEY_ACCESS_TOKEN);
+        return NextResponse.redirect(new URL("/login", req.nextUrl.clone()));
+      }
 
-  //     addBreadcrumb({
-  //       category: "api",
-  //       level: "info",
-  //       message: "Access Token is deleted from cookies",
-  //     });
+      return NextResponse.json(
+        { error: { message: "Error closing session" } },
+        {
+          status: 500,
+        },
+      );
+    } catch (error) {
+      const err = error as Error;
 
-  //     return NextResponse.redirect(new URL("/login", req.nextUrl.clone()));
-  //   } catch (error) {
-  //     console.log({ error });
-  //     const err = error as Error;
+      captureException(error, {
+        tags: {
+          module: "api",
+          controller: "SessionController",
+          method: "close",
+        },
+      });
 
-  //     captureException(error, {
-  //       tags: {
-  //         module: "api",
-  //         controller: "SessionController",
-  //         method: "close",
-  //       },
-  //     });
-
-  //     return NextResponse.json(
-  //       UserView.getUser({
-  //         error: { message: err.message },
-  //         status: 400,
-  //       }),
-  //       {
-  //         status: 400,
-  //       },
-  //     );
-  //   }
-  // }
+      return NextResponse.json(
+        UserView.getUser({
+          error: { message: err.message },
+          status: 400,
+        }),
+        {
+          status: 400,
+        },
+      );
+    }
+  }
 }

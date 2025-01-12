@@ -31,32 +31,22 @@ export class SessionApi {
       { message?: string; title?: string }
     >;
 
-    console.log({ data, error });
     return { data, error };
   };
 
-  // closeSession = async (accessToken: string) => {
-  //   if (typeof window === "undefined") {
-  //     const res = await fetch(this.api_url, {
-  //       method: "DELETE",
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
+  closeSession = async (accessToken: string) => {
+    const res = await fetch(this.api_url, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
-  //     const { data, error } = (await res.json()) as IHttpResponse<
-  //       ISessionResponse,
-  //       { message?: string; title?: string }
-  //     >;
+    const { data, error } = (await res.json()) as IHttpResponse<
+      ISessionResponse,
+      { message?: string; title?: string }
+    >;
 
-  //     return { data, error };
-  //   }
-
-  //   return httpClient.delete<ISessionResponse>({
-  //     url: this.api_url,
-  //     headers: {
-  //       Authorization: `Bearer ${accessToken}`,
-  //     },
-  //   });
-  // };
+    return { data, error };
+  };
 }

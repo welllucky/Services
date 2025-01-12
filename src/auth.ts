@@ -24,26 +24,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           String(credentials.password),
         );
 
-        console.log({ accessToken });
-
         if (!accessToken) {
           return null;
         }
 
-        console.log("Well vai da bom");
-
         const { userData } = await getUserByToken(accessToken);
 
-        console.log({ userData });
-
         if (!userData) {
-          console.log("Well deu ruim");
-          // No user found, so this is their first attempt to login
-          // Optionally, this is also the place you could do a user registration
           return null;
         }
-
-        console.log("Well passow");
 
         // return user object with their profile data
         return {
@@ -56,7 +45,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/login",
     newUser: "/register",
-    error: "/login",
+    // error: "/login",
   },
   session: {
     maxAge: 6 * 24 * 60 * 60,
