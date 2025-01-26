@@ -1,4 +1,4 @@
-import { httpClient } from "@/implementations/client";
+import { IHttpClient } from "@/implementations/client/interfaces";
 import { ITicket, TicketDto } from "@/types";
 
 type InitializeTicketType = {
@@ -9,13 +9,16 @@ type InitializeTicketType = {
  * Represents the API for managing tickets, providing methods to fetch and initialize tickets.
  */
 export class TicketApi {
-  private readonly base_url: string | undefined;
+  private readonly baseUrl: string | undefined;
 
-  private readonly api_url: string;
+  private readonly apiUrl: string;
 
-  constructor() {
-    this.base_url = process.env.NEXT_PUBLIC_BASE_URL;
-    this.api_url = `${this.base_url}api/tickets`;
+  private readonly httpClient: IHttpClient;
+
+  constructor(httpClient: IHttpClient) {
+    this.baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    this.apiUrl = `${this.baseUrl}api/tickets`;
+    this.httpClient = httpClient;
   }
 
   /**
@@ -24,8 +27,8 @@ export class TicketApi {
    * @returns An object containing the issue data, any error, and loading state.
    */
   getTicket = (id: string) => {
-    const { data, error, isLoading } = httpClient.get<ITicket>({
-      url: `${this.api_url}/${id}`,
+    const { data, error, isLoading } = this.httpClient.get<ITicket>({
+      url: `${this.apiUrl}/${id}`,
     });
     return { data, error, isLoading };
   };
@@ -35,8 +38,8 @@ export class TicketApi {
    * @returns An object containing an array of issue data, any error, and loading state.
    */
   getTickets = (shouldFetch: boolean) =>
-    httpClient.get<TicketDto[]>({
-      url: `${this.api_url}`,
+    this.httpClient.get<TicketDto[]>({
+      url: `${this.apiUrl}`,
       shouldFetch,
     });
 
@@ -46,8 +49,8 @@ export class TicketApi {
    * @returns A promise resolving with the result of the initialization request.
    */
   initializeTicket = (TicketData: InitializeTicketType) =>
-    httpClient.put({
-      url: `${this.api_url}`,
+    this.httpClient.put({
+      url: `${this.apiUrl}`,
       body: {
         ...TicketData,
       },

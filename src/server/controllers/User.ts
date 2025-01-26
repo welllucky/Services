@@ -1,17 +1,13 @@
-import { startDBConnection } from "@/database";
 import { UserView } from "@/server/views";
 import { IRegisterUser, RegisterUserSchema } from "@/types";
 import { AuthErrorMessage } from "@/types/Interfaces/Auth";
 import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthToken } from "../functions/getAuthToken";
-import { userModel } from "../models";
-import { UserServices } from "../services";
 
 export class UserController {
   static async authUser(req: NextRequest) {
     try {
-      await startDBConnection();
       const { isAuthenticated, userId } = await getAuthToken(req);
 
       if (!isAuthenticated || !userId) {
@@ -23,24 +19,8 @@ export class UserController {
         );
       }
 
-      await userModel.init({
-        register: userId,
-      });
-
-      if (!userModel.exists({ safe: true })) {
-        return NextResponse.json(
-          UserView.getUser({
-            user: null,
-            error: { message: AuthErrorMessage.UserNotExist },
-            status: 404,
-          }),
-          {
-            status: 404,
-          },
-        );
-      }
-
-      const userData = userModel.getData();
+      // @todo call the api
+      const userData = {};
 
       return NextResponse.json(
         UserView.getUser({ user: userData, status: 200 }),
@@ -69,7 +49,6 @@ export class UserController {
 
   static async createUser(req: NextRequest) {
     try {
-      await startDBConnection();
       const data: IRegisterUser = await req.json();
       const { email, password, register } = data;
 
@@ -87,8 +66,10 @@ export class UserController {
           },
         );
       }
+      // @todo call the api
+      const existingUser = {};
 
-      const existingUser = await UserServices.exits(register, email);
+      const user = {};
 
       if (existingUser) {
         return NextResponse.json(
@@ -102,8 +83,6 @@ export class UserController {
           },
         );
       }
-
-      const { user } = await userModel.createUser(data);
 
       return NextResponse.json(UserView.getUser({ user, status: 201 }), {
         status: 201,

@@ -34,12 +34,14 @@ const getAuthToken = async (req: NextRequest) => {
       accessToken,
       userData,
       userId: String(userData.register),
+      isAuthenticated: true,
     };
   } catch {
     return {
       accessToken: "",
       userData: null,
       userId: "",
+      isAuthenticated: false,
     };
   }
 };

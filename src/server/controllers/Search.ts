@@ -1,13 +1,10 @@
 import { getAuthToken } from "@/server/functions/getAuthToken";
-import { SearchServices } from "@/server/services";
-import { NextRequest, NextResponse } from "next/server";
-import { startDBConnection } from "@/database";
 import { captureException } from "@sentry/nextjs";
+import { NextRequest, NextResponse } from "next/server";
 
 export class SearchController {
   static async searchTickets(req: NextRequest) {
     try {
-      await startDBConnection();
       const searchTerm = req.nextUrl.searchParams.get("searchTerm");
 
       const { userId, isAuthenticated } = await getAuthToken(req);
@@ -36,7 +33,10 @@ export class SearchController {
         );
       }
 
-      const tickets = await SearchServices.searchTickets(userId, searchTerm);
+      // @todo call the api
+      // const tickets = await SearchServices.searchTickets(userId, searchTerm);
+
+      const tickets = [];
 
       if (!tickets.length) {
         return NextResponse.json(
@@ -54,12 +54,12 @@ export class SearchController {
         },
       );
     } catch (error) {
-       captureException(error, {
-         tags: {
-           controller: "SearchController",
-           method: "searchTickets",
-         },
-       });
+      captureException(error, {
+        tags: {
+          controller: "SearchController",
+          method: "searchTickets",
+        },
+      });
       return NextResponse.json({ error });
     }
   }

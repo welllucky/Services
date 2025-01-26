@@ -1,17 +1,20 @@
-import { httpClient } from "@/implementations/client";
+import { IHttpClient } from "@/implementations/client/interfaces";
 import { IOpenIssueForm, IssueDto } from "@/types";
 
 /**
  * The `IssueApi` class provides methods to interact with the issues API, including fetching and creating issues.
  */
 export class IssueApi {
-  private readonly base_url: string | undefined;
+  private readonly baseUrl: string | undefined;
 
-  private readonly api_url: string;
+  private readonly apiUrl: string;
 
-  constructor() {
-    this.base_url = process.env.NEXT_PUBLIC_BASE_URL;
-    this.api_url = `${this.base_url}api/issues`;
+  private readonly httpClient: IHttpClient;
+
+  constructor(httpClient: IHttpClient) {
+    this.baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    this.apiUrl = `${this.baseUrl}api/issues`;
+    this.httpClient = httpClient;
   }
 
   /**
@@ -28,8 +31,8 @@ export class IssueApi {
       };
     }
 
-    return httpClient.get<IssueDto>({
-      url: `${this.api_url}/${id}`,
+    return this.httpClient.get<IssueDto>({
+      url: `${this.apiUrl}/${id}`,
     });
   };
 
@@ -38,8 +41,8 @@ export class IssueApi {
    * @returns An object containing an array of issue data, any error that occurred, and a loading state.
    */
   getIssues = () =>
-    httpClient.get<IssueDto[]>({
-      url: `${this.api_url}`,
+    this.httpClient.get<IssueDto[]>({
+      url: `${this.apiUrl}`,
       options: { refreshInterval: true },
     });
 
@@ -50,8 +53,8 @@ export class IssueApi {
    * @returns An object containing any error that occurred and a loading state.
    */
   createIssue = (issueData: IOpenIssueForm, shouldFetch = false) =>
-    httpClient.post<{ id: string | number }>({
-      url: `${this.api_url}`,
+    this.httpClient.post<{ id: string | number }>({
+      url: `${this.apiUrl}`,
       body: {
         ...issueData,
       },
@@ -59,25 +62,25 @@ export class IssueApi {
     });
 
   getInProgressIssues = () =>
-    httpClient.get<IssueDto[]>({
-      url: `${this.api_url}/inProgress`,
+    this.httpClient.get<IssueDto[]>({
+      url: `${this.apiUrl}/inProgress`,
     });
 
   closeIssue = (id: string, shouldFetcher = false) =>
-    httpClient.post<{ id: string }>({
-      url: `${this.api_url}/${id}/close`,
+    this.httpClient.post<{ id: string }>({
+      url: `${this.apiUrl}/${id}/close`,
       shouldFetch: shouldFetcher,
     });
 
   reopenIssue = (id: string, shouldFetcher = false) =>
-    httpClient.post<{ id: string }>({
-      url: `${this.api_url}/${id}/reopen`,
+    this.httpClient.post<{ id: string }>({
+      url: `${this.apiUrl}/${id}/reopen`,
       shouldFetch: shouldFetcher,
     });
 
   startIssue = (id: string, shouldFetcher = false) =>
-    httpClient.post<{ id: string }>({
-      url: `${this.api_url}/${id}/start`,
+    this.httpClient.post<{ id: string }>({
+      url: `${this.apiUrl}/${id}/start`,
       shouldFetch: shouldFetcher,
     });
 }

@@ -1,16 +1,13 @@
-import { startDBConnection } from "@/database";
 import { TicketView } from "@/server";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { getFormattedBody } from "@/server/functions/getFormattedBody";
 import { IOpenIssueForm } from "@/types";
 import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
-import { IssueServices } from "../services";
 
 export class IssueController {
   static async getAllIssues(req: NextRequest) {
     try {
-      await startDBConnection();
       const { isAuthenticated, userId } = await getAuthToken(req);
 
       if (!isAuthenticated || !userId) {
@@ -25,7 +22,8 @@ export class IssueController {
       // const params = req.nextUrl.searchParams;
       // const statuses = params.getAll("status");
 
-      const tickets = await IssueServices.getAllIssues(userId);
+      // @todo call the api
+      const tickets = [];
 
       if (!tickets.length) {
         return NextResponse.json(
@@ -52,7 +50,6 @@ export class IssueController {
 
   static async getIssueById(req: NextRequest, params: { id: string }) {
     try {
-      await startDBConnection();
       const ticketId = params.id;
       const { userId, isAuthenticated } = await getAuthToken(req);
 
@@ -65,7 +62,8 @@ export class IssueController {
         );
       }
 
-      const ticket = (await IssueServices.getIssueById(userId, ticketId)).at(0);
+      // @todo call the api
+      const ticket = {};
 
       if (!ticket) {
         return NextResponse.json(
@@ -92,7 +90,6 @@ export class IssueController {
 
   static async createIssue(req: NextRequest) {
     try {
-      await startDBConnection();
       const body = await getFormattedBody<IOpenIssueForm>(req);
       const { userId, isAuthenticated } = await getAuthToken(req);
 
@@ -105,7 +102,8 @@ export class IssueController {
         );
       }
 
-      const issue = await IssueServices.createIssue(userId, body);
+      // @todo call the api
+      const issue = {};
 
       return NextResponse.json(TicketView.getTicketId(issue), {
         status: 201,
@@ -128,7 +126,6 @@ export class IssueController {
 
   static async getInProgressIssues(req: NextRequest) {
     try {
-      await startDBConnection();
       const { userId, isAuthenticated } = await getAuthToken(req);
 
       if (!isAuthenticated || !userId) {
@@ -140,7 +137,8 @@ export class IssueController {
         );
       }
 
-      const tickets = await IssueServices.getInProgressIssues(userId);
+      // @todo call the api
+      const tickets = [];
 
       if (!tickets?.length) {
         return NextResponse.json(
@@ -172,7 +170,6 @@ export class IssueController {
 
   static async closeIssue(req: NextRequest, params: { id: string }) {
     try {
-      await startDBConnection();
       const ticketId = params.id;
       const { userId, isAuthenticated } = await getAuthToken(req);
 
@@ -194,7 +191,8 @@ export class IssueController {
         );
       }
 
-      const ticket = await IssueServices.closeIssue(userId, ticketId);
+      // @todo call the api
+      const ticket = {};
 
       if (!ticket) {
         return NextResponse.json(
@@ -228,7 +226,6 @@ export class IssueController {
 
   static async startIssue(req: NextRequest, params: { id: string }) {
     try {
-      await startDBConnection();
       const ticketId = params.id;
       const { userId, isAuthenticated } = await getAuthToken(req);
 
@@ -250,7 +247,8 @@ export class IssueController {
         );
       }
 
-      const ticket = await IssueServices.startIssue(userId, ticketId);
+      // @todo call the api
+      const ticket = {};
 
       if (!ticket) {
         return NextResponse.json(
@@ -284,7 +282,6 @@ export class IssueController {
 
   static async reopenIssue(req: NextRequest, params: { id: string }) {
     try {
-      await startDBConnection();
       const ticketId = params.id;
       const { userId, isAuthenticated } = await getAuthToken(req);
 
@@ -306,7 +303,8 @@ export class IssueController {
         );
       }
 
-      const ticket = await IssueServices.reopenIssue(userId, ticketId);
+      // @todo call the api
+      const ticket = {};
 
       if (!ticket) {
         return NextResponse.json(

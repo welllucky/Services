@@ -1,10 +1,15 @@
 import { CustomSelect } from "@/components";
 import { theme } from "@/styles";
+import { sectorApi } from "@/utils";
 import { Control, useFormContext } from "react-hook-form";
 import { Section } from "../components";
 
 export const WhatYouDo = () => {
   const { control } = useFormContext();
+
+  const res = sectorApi.getSectors();
+
+  console.log({ res });
   return (
     <Section
       title="O que você faz?"

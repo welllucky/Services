@@ -1,12 +1,16 @@
+import { IHttpClient } from "@/implementations/client/interfaces";
 import { IHttpResponse, ISessionResponse } from "@/types";
 import { defaultHeaders } from "@/utils/constraints";
 
 export class SessionApi {
-  private readonly api_url: string;
+  private readonly apiUrl: string;
 
-  constructor() {
-    // this.api_url = `${process.env.NEXT_PUBLIC_APIS_BASE_URL}sessions`;
-    this.api_url = `${process.env.NEXT_PUBLIC_BASE_URL}api/sessions`;
+  private readonly httpClient: IHttpClient;
+
+  constructor(httpClient: IHttpClient) {
+    // this.apiUrl = `${process.env.NEXT_PUBLIC_APIS_BASE_URL}sessions`;
+    this.apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}api/sessions`;
+    this.httpClient = httpClient;
   }
 
   createSession = async (
@@ -16,7 +20,7 @@ export class SessionApi {
     data?: ISessionResponse | null;
     error?: { message?: string; title?: string } | null;
   }> => {
-    const res = await fetch(this.api_url, {
+    const res = await fetch(this.apiUrl, {
       method: "POST",
       headers: {
         ...defaultHeaders,
@@ -35,7 +39,7 @@ export class SessionApi {
   };
 
   closeSession = async (accessToken: string) => {
-    const res = await fetch(this.api_url, {
+    const res = await fetch(this.apiUrl, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${accessToken}`,

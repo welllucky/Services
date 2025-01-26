@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ticketUrl } from "../../url";
+import { ticketUrl } from "../../urls";
 
 type Ticket = {
   id: string;
