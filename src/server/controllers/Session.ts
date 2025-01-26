@@ -68,8 +68,6 @@ export class SessionController {
 
       const resBody = await res.json();
 
-      console.log({ resBody });
-
       const { data, error, status } = resBody as IHttpResponse<
         ISessionResponse,
         { message?: string; title?: string }

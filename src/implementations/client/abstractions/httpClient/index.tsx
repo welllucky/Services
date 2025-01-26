@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { HttpClientProps, IHttpResponse } from "@/types";
 import axios, { AxiosResponse } from "axios";
 import useSWR from "swr";
 import useSWRImmutable from "swr/immutable";
+import { IHttpClient, IHttpClientResponse } from "../../interfaces/HttpClient";
 
 /**
  * A generic HTTP client that fetches data from an API endpoint.
@@ -13,35 +15,7 @@ import useSWRImmutable from "swr/immutable";
  * @returns The data fetched from the API endpoint.
  */
 
-type HttpClientOptions = {
-  revalidateOnFocus?: boolean;
-  revalidateOnReconnect?: boolean;
-  refreshInterval?: boolean;
-  dontRefresh?: boolean;
-};
-
-export type HttpClientProps = {
-  url: string;
-  type?: "GET" | "POST" | "PUT" | "DELETE";
-  body?: Record<string, string | number | boolean>;
-  headers?: Record<string, string | number | boolean>;
-  shouldFetch?: boolean;
-  options?: HttpClientOptions;
-};
-
-type HttpClientResponse<T> = {
-  result?: {
-    data?: T;
-    error?: {
-      message?: string;
-      title?: string;
-    };
-  };
-  statusCode: number;
-  headers?: Record<string, string | number | boolean>;
-};
-
-export class HTTPClient {
+export class HTTPClient implements IHttpClient {
   get<T>(props: Omit<HttpClientProps, "type">) {
     return this.httpClient<T>({
       ...props,
@@ -77,7 +51,7 @@ export class HTTPClient {
     headers,
     shouldFetch = true,
     options,
-  }: HttpClientProps) {
+  }: HttpClientProps): IHttpResponse<T, unknown> {
     const fetcher = async () => {
       let res: AxiosResponse<T>;
       switch (type) {
@@ -102,12 +76,12 @@ export class HTTPClient {
         result: res.data,
         statusCode: res.status,
         headers: res.headers,
-      } as HttpClientResponse<T>;
+      } as IHttpClientResponse<T>;
     };
 
     const newRes =
       !options?.dontRefresh || typeof window === "undefined"
-        ? useSWR<HttpClientResponse<T>>(shouldFetch ? url : null, fetcher, {
+        ? useSWR<IHttpClientResponse<T>>(shouldFetch ? url : null, fetcher, {
             refreshInterval: options?.refreshInterval ? 1000 * 60 * 5 : 0,
             revalidateOnFocus: true,
             revalidateOnReconnect: true,
@@ -116,7 +90,7 @@ export class HTTPClient {
             refreshWhenHidden: true,
             refreshWhenOffline: true,
           })
-        : useSWRImmutable<HttpClientResponse<T>>(
+        : useSWRImmutable<IHttpClientResponse<T>>(
             shouldFetch ? url : null,
             fetcher,
           );
@@ -125,7 +99,7 @@ export class HTTPClient {
       data: newRes.data?.result as unknown as T,
       error: newRes.data?.result?.error || newRes.error,
       isLoading: (!newRes.data && !newRes.error) || newRes.isLoading,
-      statusCode: newRes.data?.statusCode,
+      status: newRes.data?.statusCode,
       headers: newRes.data?.headers,
       mutate: newRes.mutate,
       isValidating: newRes.isValidating,

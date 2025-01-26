@@ -1,13 +1,10 @@
-import { startDBConnection } from "@/database";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
-import { TicketServices } from "../services";
 
 class TicketController {
   static async getAllTickets(req: NextRequest) {
     try {
-      await startDBConnection();
       const { userId, isAuthenticated } = await getAuthToken(req);
 
       if (!isAuthenticated || !userId) {
@@ -19,7 +16,8 @@ class TicketController {
         );
       }
 
-      const issues = await TicketServices.getAllTickets(userId);
+      // @todo call the api
+      const issues = [];
 
       if (!issues?.length) {
         return NextResponse.json(
@@ -58,9 +56,10 @@ class TicketController {
         );
       }
 
-      const issue = await TicketServices.getTicketById(userId, issueId);
+      // @todo call the api
+      const issue = {};
 
-      if (!issue?.length) {
+      if (!issue) {
         return NextResponse.json(
           { error: { message: "No issue found" } },
           {
@@ -106,7 +105,8 @@ class TicketController {
         );
       }
 
-      const ticket = await TicketServices.startTicket(userId, issueId);
+      // @todo call the api
+      const ticket = {};
 
       if (!ticket) {
         return NextResponse.json(

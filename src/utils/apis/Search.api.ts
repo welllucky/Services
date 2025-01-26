@@ -1,4 +1,4 @@
-import { httpClient } from "@/implementations/client";
+import { IHttpClient } from "@/implementations/client/interfaces";
 import { TicketDto } from "@/types";
 
 export type SearchResponse = {
@@ -10,18 +10,21 @@ export type SearchResponse = {
 };
 
 export class SearchApi {
-  private readonly base_url: string | undefined;
+  private readonly baseUrl: string | undefined;
 
-  private readonly api_url: string;
+  private readonly apiUrl: string;
 
-  constructor() {
-    this.base_url = process.env.NEXT_PUBLIC_BASE_URL;
-    this.api_url = `${this.base_url}api/search`;
+  private readonly httpClient: IHttpClient;
+
+  constructor(httpClient: IHttpClient) {
+    this.baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    this.apiUrl = `${this.baseUrl}api/search`;
+    this.httpClient = httpClient;
   }
 
   getSearch = (searchTerm: string, shouldFetch: boolean) =>
-    httpClient.get<SearchResponse>({
-      url: `${this.api_url}?searchTerm=${searchTerm}`,
+    this.httpClient.get<SearchResponse>({
+      url: `${this.apiUrl}?searchTerm=${searchTerm}`,
       shouldFetch,
     });
 }
