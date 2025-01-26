@@ -15,7 +15,7 @@ export interface LoginPageProps {
 const LoginPage = ({ redirectTo }: LoginPageProps) => {
   const { signIn, isLoading, error, isAuthenticated, user } = useAuth();
   const {
-    register,
+    control,
     formState,
     handleSubmit,
     setError,
@@ -65,7 +65,7 @@ const LoginPage = ({ redirectTo }: LoginPageProps) => {
   return (
     <LoginPageUI
       formState={formState}
-      register={register}
+      control={control}
       loginAction={loginCallback}
       pageIsLoading={isLoading}
     />

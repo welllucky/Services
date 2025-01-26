@@ -26,6 +26,7 @@ export const BackButton = ({
       }}>
       <CaretLeft
         size={20}
+        weight="bold"
         color={color || "black"}
         alt="voltar"
       />

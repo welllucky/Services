@@ -44,7 +44,7 @@ time, mark, audio, video, textarea, span, input {
 	vertical-align: baseline;
   text-decoration: none;
   border-color: transparent;
-  font-family: Inter, Roboto !important;
+  font-family: Inter, Roboto, Arial, sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
 }
 
 button {

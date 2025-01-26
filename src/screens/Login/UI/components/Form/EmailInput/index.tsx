@@ -1,26 +1,15 @@
 import { ClearIcon, EmailIcon } from "@/assets";
 import { CustomInput } from "@/components";
+import { Control } from "react-hook-form";
 import { LoginPageProps } from "../../..";
 
-export const EmailInput = ({
-  formState,
-  register,
-}: Omit<LoginPageProps, "loginAction">) => {
-  const { errors, dirtyFields } = formState;
-
-  const getStatus = () => {
-    if (errors?.email || errors.root) return "invalid";
-    if (!dirtyFields?.email) return "none";
-    return "valid";
-  };
-
+export const EmailInput = ({ control }: Pick<LoginPageProps, "control">) => {
   return (
     <CustomInput
-      register={register}
+      control={control as unknown as Control}
       id="email"
       type="email"
       placeholder="Digite o seu email"
-      $status={getStatus()}
       height="58px"
       isRequired
       trailingButton={(
@@ -35,7 +24,6 @@ export const EmailInput = ({
           size={32}
         />
       )}
-      errorText={errors.email?.message}
     />
   );
 };

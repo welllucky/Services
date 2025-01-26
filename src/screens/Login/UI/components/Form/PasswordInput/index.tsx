@@ -1,26 +1,16 @@
 import { ClosedEyeIcon, EyeIcon, LockIcon } from "@/assets";
 import { CustomInput } from "@/components";
 import { useState } from "react";
+import { Control } from "react-hook-form";
 import { LoginPageProps } from "../../..";
 
-export const PasswordInput = ({
-  register,
-  formState,
-}: Omit<LoginPageProps, "loginAction">) => {
+export const PasswordInput = ({ control }: Pick<LoginPageProps, "control">) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-
-  const { errors, dirtyFields } = formState;
-
-  const getStatus = () => {
-    if (errors?.password || errors.root) return "invalid";
-    if (!dirtyFields?.password) return "none";
-    return "valid";
-  };
 
   return (
     <CustomInput
       id="password"
-      register={register}
+      control={control as unknown as Control}
       type={passwordVisible ? "text" : "password"}
       placeholder="Digite a sua senha"
       trailingButton={
@@ -45,8 +35,6 @@ export const PasswordInput = ({
         />
       )}
       height="58px"
-      $status={getStatus()}
-      errorText={errors.password?.message}
     />
   );
 };

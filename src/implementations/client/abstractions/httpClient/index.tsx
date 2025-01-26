@@ -41,7 +41,7 @@ type HttpClientResponse<T> = {
   headers?: Record<string, string | number | boolean>;
 };
 
-export class HTTPClientImplementation {
+export class HTTPClient {
   get<T>(props: Omit<HttpClientProps, "type">) {
     return this.httpClient<T>({
       ...props,

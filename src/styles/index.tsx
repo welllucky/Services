@@ -1,4 +1,7 @@
-import { lightTheme } from "./themes";
+import {
+  lightTheme,
+  // darkTheme
+} from "./themes";
 
 const colorTheme = lightTheme;
 

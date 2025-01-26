@@ -1,5 +1,6 @@
 import { FormButtons } from "@/components/Form/FormButtons";
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
 export default {
   title: "Common/Form/FormButtons",
@@ -56,9 +57,23 @@ export default {
       },
       description: "Define a próxima página a ser acessada",
     },
+    onClickNextButton: {
+      table: {
+        category: "Ação",
+      },
+      description: "Função a ser executada ao clicar no botão de próximo",
+    },
+    onClickBackButton: {
+      table: {
+        category: "Ação",
+      },
+      description: "Função a ser executada ao clicar no botão de voltar",
+    },
   },
   args: {
     nextPage: "/home",
+    onClickNextButton: fn(),
+    onClickBackButton: fn(),
   },
   parameters: {
     nextjs: {

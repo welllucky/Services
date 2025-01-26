@@ -4,5 +4,6 @@ export * from "./Issues";
 export * from "./Login";
 export * from "./NoMobileDevice";
 export * from "./OpenIssue";
+export * from "./Register";
 export * from "./Search";
 export * from "./Tickets";

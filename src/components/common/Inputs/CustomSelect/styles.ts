@@ -4,14 +4,9 @@ import styled from "styled-components";
 export const SelectContainer = styled.div<{ $status: string }>`
   width: inherit;
   display: flex;
-  & > div > div {
-    border: ${({ $status }) =>
-      ($status === "invalid"
-        ? "1px solid red"
-        : $status === "valid"
-          ? "1px solid #7ac143"
-          : "1px solid #79747e")};
-  }
+  flex-direction: column;
+
+  
 `;
 export const SelectComponent = styled.select<{ $isPlaceholder?: boolean }>`
   display: flex;

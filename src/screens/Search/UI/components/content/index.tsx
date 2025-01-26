@@ -1,6 +1,6 @@
 import { Loading } from "@/components";
 import { PageContainer } from "@/styles";
-import { SearchResponse } from "@/utils/apis/Search";
+import { SearchResponse } from "@/utils/apis/Search.api";
 import { useMemo } from "react";
 import { EmptyContent } from "./empty";
 import { NoResults } from "./noResults";

@@ -1,16 +1,17 @@
-import { Column } from "@/styles";
+import { Column, theme } from "@/styles";
 import styled from "styled-components";
 
 export const FlexContainer = styled(Column)<{ $backgroundColor?: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 8vw;
-  gap: 8px;
-  overflow: hidden;
+  gap: ${({ $gap }) => $gap || "8px"};
+  /* overflow: hidden; */
   padding-bottom: 82px;
-  background-color: ${({ $backgroundColor }) => $backgroundColor || "#fff"};
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor || theme.colors.neutral.default};
 `;
 
 export const PageStructContainer = styled(Column)`

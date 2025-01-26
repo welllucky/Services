@@ -2,9 +2,9 @@
 import { z } from "zod";
 import {
   IssueStatusSchema,
-  TicketTypeSchema,
   PriorityLevelsSchema,
-} from "../Dto";
+  TicketTypeSchema,
+} from "../dto";
 
 export const ITicketSchema = z.object({
   id: z.string(),
