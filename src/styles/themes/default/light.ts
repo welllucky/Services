@@ -28,6 +28,7 @@ const lightTheme = {
       75: "#DEF0D0",
       85: "#EBF6E3",
       95: "#F8FCF6",
+      145: "#5A8F19",
       195: "#2b4417",
 
       default: "#7AC143",

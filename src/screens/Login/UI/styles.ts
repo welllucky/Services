@@ -11,7 +11,7 @@ export const LoginMobile = styled.div`
   background-color: #f5f5f5;
 `;
 
-export const ButtonSection = styled.div`
+export const ActionSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

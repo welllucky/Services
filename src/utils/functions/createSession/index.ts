@@ -1,5 +1,5 @@
 import { SignInSchema } from "@/types";
-import { SessionApi } from "@/utils/apis/Session";
+import { SessionApi } from "@/utils/apis/Session.api";
 
 export const createSession = async (email: string, password: string) => {
   const sessionApi = new SessionApi();

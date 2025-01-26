@@ -5,19 +5,16 @@ import { PasswordInput } from "./PasswordInput";
 import { FormContainer, InputSection, TextMobile } from "./styles";
 
 export const LoginForm = ({
-  formState,
-  register,
-}: Omit<LoginPageProps, "loginAction">) => (
+  control,
+}: Pick<LoginPageProps, "control">) => (
   <FormContainer>
     <TextMobile>Entrar</TextMobile>
     <InputSection>
       <EmailInput
-        formState={formState}
-        register={register}
+        control={control}
       />
       <PasswordInput
-        formState={formState}
-        register={register}
+        control={control}
       />
     </InputSection>
     <ForgotPassword />

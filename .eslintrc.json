@@ -50,6 +50,7 @@
     "class-methods-use-this": "off",
     "indent": "off",
     "max-len": "off",
-    "import/no-extraneous-dependencies": ["off"]
+    "import/no-extraneous-dependencies": ["off"],
+    "arrow-body-style": "off"
   }
 }

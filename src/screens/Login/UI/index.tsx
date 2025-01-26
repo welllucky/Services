@@ -1,14 +1,14 @@
 import { Loading } from "@/components";
 import { ISignIn } from "@/types";
-import { FormState, UseFormRegister } from "react-hook-form";
+import { Control, FormState } from "react-hook-form";
 import { CreateAccountOption } from "./components/CreateAccountOption";
 import { DisplayImage } from "./components/DisplayImage";
 import { LoginForm } from "./components/Form";
 import { LoginButton } from "./components/Form/LoginButton";
-import { ButtonSection, LoginMobile, ScreenContainer } from "./styles";
+import { ActionSection, LoginMobile, ScreenContainer } from "./styles";
 
 export interface LoginPageProps {
-  register: UseFormRegister<ISignIn>;
+  control: Control<ISignIn>;
   formState: FormState<ISignIn>;
   pageIsLoading?: boolean;
   loginAction: () => void;
@@ -16,7 +16,7 @@ export interface LoginPageProps {
 
 const LoginPageUI = ({
   formState,
-  register,
+  control,
   loginAction,
   pageIsLoading,
 }: LoginPageProps) => {
@@ -29,17 +29,14 @@ const LoginPageUI = ({
       {isLoading && <Loading $overlayOn />}
       <LoginMobile>
         <DisplayImage />
-        <LoginForm
-          formState={formState}
-          register={register}
-        />
-        <ButtonSection>
+        <LoginForm control={control} />
+        <ActionSection>
           <LoginButton
             isDisabled={!isValid}
             callback={loginAction}
           />
           <CreateAccountOption />
-        </ButtonSection>
+        </ActionSection>
       </LoginMobile>
     </ScreenContainer>
   );

@@ -1,144 +1,116 @@
+import { ClearIcon, EmailIcon } from "@/assets";
 import { CustomInput } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
 export default {
   title: "Common/Inputs/CustomInput",
   component: CustomInput,
+  tags: ["input", "form"],
   argTypes: {
-    placeholder: {
-      description: "Texto do placeholder",
-      control: "text",
-      table: {
-        category: "Conteúdo",
-      },
-    },
-
-    backgroundColor: {
-      description: "Cor do input",
-      control: "color",
-      table: {
-        category: "Aparência",
-        disable: true,
-      },
-    },
-
-    style: {
-      description: "Estilo do input",
-      table: {
-        category: "Aparência",
-        disable: true,
-      },
-    },
-
-    $status: {
-      description: "Estado do input",
-      control: {
-        type: "inline-radio",
-        options: ["none", "valid", "invalid", "warning"],
-      },
-      table: {
-        category: "Estado",
-      },
-      name: "status",
-    },
-
-    errorText: {
-      description: "Texto de erro",
-      control: "text",
-      table: {
-        category: "Conteúdo",
-      },
-      if: {
-        arg: "$status",
-        eq: "invalid",
-      },
-    },
-
-    warnText: {
-      description: "Texto de alerta",
-      control: "text",
-      table: {
-        category: "Conteúdo",
-      },
-      if: {
-        arg: "$status",
-        eq: "warning",
-      },
-    },
-
     labelText: {
-      description: "Texto do label",
+      description: "Label text displayed above the input",
       control: "text",
       table: {
-        category: "Conteúdo",
+        category: "Content",
       },
     },
-
-    height: {
-      description: "Altura do input",
+    placeholder: {
+      description: "Placeholder text displayed inside the input",
       control: "text",
       table: {
-        category: "Aparência",
+        category: "Content",
       },
     },
-
-    width: {
-      description: "Largura do input",
+    value: {
+      description: "The value of the input",
       control: "text",
       table: {
-        category: "Aparência",
+        category: "Behavior",
       },
     },
-
-    type: {
-      description: "Tipo do input",
-      control: "select",
-      table: {
-        category: "Estado",
-      },
-    },
-
-    leadingButton: {
-      description: "Botão à esquerda do input",
-      control: { type: "file", accept: ".svg" },
-      table: {
-        category: "Aparência",
-      },
-    },
-
     trailingButton: {
-      description: "Botão à direita do input",
-      control: { type: "file", accept: ".svg" },
+      description: "Element displayed on the right side of the input",
+      control: "object",
       table: {
-        category: "Aparência",
+        category: "Appearance",
       },
     },
-
-    mode: {
-      description: "Modo do input",
+    leadingButton: {
+      description: "Element displayed on the left side of the input",
+      control: "object",
+      table: {
+        category: "Appearance",
+      },
+    },
+    type: {
+      description: "Type of the input",
       control: {
         type: "select",
+        options: [
+          "text",
+          "password",
+          "email",
+          "number",
+          "tel",
+          "search",
+          "url",
+          "date",
+        ],
+      },
+      table: {
+        category: "Behavior",
+      },
+    },
+    mode: {
+      description: "Display mode of the input",
+      control: {
+        type: "inline-radio",
         options: ["filled", "outlined"],
       },
       table: {
-        category: "Aparência",
+        category: "Appearance",
       },
     },
-
-    onChange: {
-      description: "Função de mudança",
+    $status: {
+      description: "Validation status of the input",
+      control: {
+        type: "inline-radio",
+        options: ["none", "invalid", "warning"],
+      },
       table: {
-        category: "Eventos",
+        category: "State",
       },
     },
-
-    value: {
-      description: "Valor do input",
+    errorText: {
+      description: "Error message displayed when status is invalid",
+      control: "text",
       table: {
-        category: "Valor",
+        category: "Content",
+      },
+    },
+    warnText: {
+      description: "Warning message displayed when status is warning",
+      control: "text",
+      table: {
+        category: "Content",
       },
     },
   },
+  args: {
+    width: "355px",
+    height: "58px",
+    placeholder: "Digite um texto",
+    labelText: "Texto",
+    $status: "none",
+    type: "text",
+    mode: "outlined",
+    errorText: "Houve um erro, tente novamente!",
+    register: fn(),
+  },
+} satisfies Meta;
+
+export const Complete: StoryObj = {
   args: {
     placeholder: "Digite um texto",
     labelText: "Texto",
@@ -146,11 +118,21 @@ export default {
     type: "text",
     mode: "outlined",
     errorText: "Houve um erro, tente novamente!",
-    register: () => {},
+    trailingButton: (
+      <ClearIcon
+        color="#49454F"
+        size={32}
+      />
+    ),
+    leadingButton: (
+      <EmailIcon
+        color="#49454F"
+        size={32}
+      />
+    ),
   },
-} satisfies Meta;
+};
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Filled: StoryObj = {
   args: {
     placeholder: "Digite um texto",

@@ -1,5 +1,5 @@
 import { Cookies } from "react-cookie";
-import { HTTPClientImplementation } from "./abstractions";
+import { HTTPClient } from "./abstractions";
 
-export const httpClient = new HTTPClientImplementation();
+export const httpClient = new HTTPClient();
 export const cookie = new Cookies();

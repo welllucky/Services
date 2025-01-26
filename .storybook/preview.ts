@@ -6,7 +6,7 @@ import {
 } from "@storybook/addon-viewport";
 import { Preview } from "@storybook/react";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "@/styles";
+import { GlobalStyle } from "../src/styles";
 import { darkTheme, lightTheme } from "../src/styles/themes";
 
 export const decorators = [
@@ -53,6 +53,7 @@ const preview: Preview = {
       disable: true, // This property disables the panel from all the stories
     },
   },
+  tags: ["autodocs"]
 };
 
 export default preview;

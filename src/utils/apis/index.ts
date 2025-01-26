@@ -1,8 +1,8 @@
-import { IssueApi } from "./Issue";
-import { SearchApi } from "./Search";
-import { SessionApi } from "./Session";
-import { TicketApi } from "./Ticket";
-import { UserApi } from "./User";
+import { IssueApi } from "./Issue.api";
+import { SearchApi } from "./Search.api";
+import { SessionApi } from "./Session.api";
+import { TicketApi } from "./Ticket.api";
+import { UserApi } from "./User.api";
 
 export const ticketApi = new TicketApi();
 export const issueApi = new IssueApi();

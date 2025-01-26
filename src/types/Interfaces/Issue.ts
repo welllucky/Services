@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { z } from "zod";
-import { IssueStatusSchema, IssueTypeSchema } from "../Dto";
-import { PriorityLevelsSchema } from "../Dto/PriorityLevel";
+import { IssueStatusSchema, IssueTypeSchema } from "../dto";
+import { PriorityLevelsSchema } from "../dto/PriorityLevel";
 
 export const IIssueSchema = z.object({
   id: z.string(),

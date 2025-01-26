@@ -4,7 +4,7 @@ export const CreateAccountOption = () => (
   <>
     <span>OU</span>
     <p>
-      Não possui uma conta? <Link href="/cadastro">Cadastre-se </Link>
+      Não possui uma conta? <Link href="/register">Cadastre-se </Link>
     </p>
   </>
 );

@@ -1,7 +1,16 @@
-export const PlusIcon = () => (
+import { theme } from "@/styles";
+import { IconProps } from "@/types";
+
+export const PlusIcon = ({
+  color = theme.colors.primary.default,
+  alt = "Add",
+  height = "26px",
+  width = "26px",
+}: IconProps) => (
   <svg
-    width="26"
-    height="26"
+    width={width}
+    height={height}
+    aria-label={alt}
     viewBox="0 0 26 26"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -12,19 +21,19 @@ export const PlusIcon = () => (
       maskUnits="userSpaceOnUse"
       x="0"
       y="0"
-      width="26"
-      height="26">
+      width={width}
+      height={height}>
       <rect
-        width="26"
-        height="26"
+        width={width}
+        height={height}
         fill="url(#pattern0)"
       />
     </mask>
     <g mask="url(#mask0_84_36559)">
       <rect
-        width="26"
-        height="26"
-        fill="#7AC143"
+        width={width}
+        height={height}
+        fill={color}
       />
     </g>
     <defs>

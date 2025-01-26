@@ -1,4 +1,4 @@
-import { IssueStatus } from "../Dto";
+import { IssueStatus } from "../dto";
 
 export interface TicketFilters {
   status?: IssueStatus[];

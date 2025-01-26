@@ -1,93 +1,143 @@
-import { CustomTextArea } from "@/components";
+import { CustomTextArea, TextAreaProps } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
 export default {
-  component: CustomTextArea,
   title: "Common/Inputs/CustomTextArea",
-  tags: ["fildset", "common", "input"],
+  component: CustomTextArea,
+  tags: ["textarea", "form", "storybook"],
   argTypes: {
     labelText: {
+      description: "Label text displayed above the text area.",
       control: "text",
-      description: "Texto do label",
       table: {
-        category: "Conteúdo",
-        type: {
-          summary: "string",
-        },
+        category: "Content",
       },
     },
     placeholder: {
+      description: "Placeholder text displayed inside the text area.",
       control: "text",
-      description: "Texto do placeholder",
       table: {
-        category: "Conteúdo",
-        type: {
-          summary: "string",
-        },
+        category: "Content",
       },
     },
     value: {
+      description: "The current value of the text area.",
       control: "text",
-      description: "Valor do input",
       table: {
-        category: "Valor",
-        type: {
-          summary: "string",
-        },
-      },
-    },
-    width: {
-      control: "text",
-      description: "Largura do input",
-      table: {
-        category: "Aparência",
-        type: {
-          summary: "string",
-        },
-      },
-    },
-    height: {
-      control: "text",
-      description: "Altura do input",
-      table: {
-        category: "Aparência",
-        type: {
-          summary: "string",
-        },
+        category: "State",
       },
     },
     isRequired: {
+      description: "Marks the text area as required.",
       control: "boolean",
-      description: "Se o input é obrigatório",
       table: {
-        category: "Estado",
-        type: {
-          summary: "boolean",
-        },
+        category: "Behavior",
       },
     },
-    onChange: {
-      description: "Função que é chamada quando o input é alterado",
+    $status: {
+      description: "Validation status of the text area.",
+      control: {
+        type: "inline-radio",
+        options: ["none", "invalid", "warning"],
+      },
       table: {
-        category: "Eventos",
-        type: {
-          summary: "function",
+        category: "State",
+      },
+    },
+    errorText: {
+      description: "Error message displayed when status is invalid.",
+      control: "text",
+      table: {
+        category: "Content",
+      },
+    },
+    warnText: {
+      description: "Warning message displayed when status is warning.",
+      control: "text",
+      table: {
+        category: "Content",
+      },
+    },
+    width: {
+      description: "Width of the text area container.",
+      control: "text",
+      table: {
+        category: "Appearance",
+      },
+    },
+    height: {
+      description: "Height of the text area.",
+      control: "text",
+      table: {
+        category: "Appearance",
+      },
+    },
+    register: {
+      description: "React Hook Form register function.",
+      table: {
+        category: "Form",
+      },
+    },
+    registerOptions: {
+      description: "Additional options to pass to the register function.",
+      control: "object",
+      table: {
+        category: "Form",
+      },
+      onChange: {
+        description: "Function to call when the value changes.",
+        table: {
+          category: "Action",
         },
       },
     },
   },
   args: {
-    labelText: "Descrição",
-    placeholder: "Nos conte mais detalhes sobre o ocorrido...",
-    width: "320px",
-    register: () => {},
+    register: fn(),
   },
-} satisfies Meta;
+} satisfies Meta<TextAreaProps>;
 
-export const TextArea: StoryObj = {
+export const Default: StoryObj<TextAreaProps> = {
   args: {
-    labelText: "Descrição",
-    placeholder: "Nos conte mais detalhes sobre o ocorrido...",
-    value: "",
+    labelText: "Default Text Area",
+    placeholder: "Type your text here...",
+    $status: "none",
+    width: "100%",
+    height: "160px",
+  },
+};
+
+export const WithError: StoryObj<TextAreaProps> = {
+  args: {
+    labelText: "Text Area with Error",
+    placeholder: "Type your text here...",
+    $status: "invalid",
+    errorText: "This field is required.",
+  },
+};
+
+export const WithWarning: StoryObj<TextAreaProps> = {
+  args: {
+    labelText: "Text Area with Warning",
+    placeholder: "Type your text here...",
+    $status: "warning",
+    warnText: "Please check your input.",
+  },
+};
+
+export const WithSuccess: StoryObj<TextAreaProps> = {
+  args: {
+    labelText: "Text Area with Success",
+    placeholder: "Type your text here...",
+    $status: "valid",
+  },
+};
+
+export const Required: StoryObj<TextAreaProps> = {
+  args: {
+    labelText: "Required Text Area",
+    placeholder: "Type your text here...",
+    isRequired: true,
   },
 };

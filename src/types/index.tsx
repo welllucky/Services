@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { ReactNode } from "react";
 
 type IconProps = {
   width?: string | number;
@@ -31,13 +31,12 @@ type OptionMenuProps = {
 };
 
 type IconButtonProps = {
-  path?: string;
   icon: ReactNode;
   color?: string;
   width?: string;
   height?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
-  onHover?: MouseEventHandler<HTMLButtonElement> | undefined;
+  onClick?: () => void;
+  onHover?: () => void;
 };
 
 type NoContentProps = {
@@ -55,9 +54,9 @@ type TextTheme = {
 };
 
 export type * from "./DataTag";
-export * from "./Dto";
+export * from "./dto";
 export * from "./Interfaces";
-export type * from "./Themes";
+export type * from "./themes";
 
 export type {
   IconButtonProps,
