@@ -1,17 +1,25 @@
 import { Column, theme } from "@/styles";
 import styled from "styled-components";
 
-export const FlexContainer = styled(Column)<{ $backgroundColor?: string }>`
+export const FlexContainer = styled(Column)<{
+  $backgroundColor?: string;
+  $hasBottomPadding?: boolean;
+}>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-between; */
+
   padding: 8vw;
   gap: ${({ $gap }) => $gap || "8px"};
-  /* overflow: hidden; */
-  padding-bottom: 82px;
+
   background-color: ${({ $backgroundColor }) =>
     $backgroundColor || theme.colors.neutral.default};
+
+  ${({ $hasBottomPadding }) =>
+    $hasBottomPadding &&
+    `
+     padding-bottom: 82px;
+  `}
 `;
 
 export const PageStructContainer = styled(Column)`

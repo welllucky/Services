@@ -14,10 +14,30 @@ export class AccountApi {
     this.httpClient = httpClient;
   }
 
-  create = ({ data }: { data: CreateAccountDto }) => {
-    return this.httpClient.post<IHttpResponse<IUser, IHttpError>>({
-      url: this.apiUrl,
-      body: data,
+  create = async ({
+    data,
+  }: {
+    data: CreateAccountDto;
+  }): Promise<IHttpResponse<IUser, IHttpError>> => {
+    const res = await fetch(this.apiUrl, {
+      body: JSON.stringify(data),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
+
+    const resBody = (await res.json()) as IHttpResponse<IUser, IHttpError>;
+
+    return {
+      data: resBody.data,
+      error: resBody.error,
+      status: res.status,
+      message: resBody.message,
+    };
+    // return this.httpClient.post<IHttpResponse<IUser, IHttpError>>({
+    //   url: this.apiUrl,
+    //   body: data,
+    // });
   };
 }

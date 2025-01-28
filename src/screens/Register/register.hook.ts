@@ -1,27 +1,40 @@
 "use client";
 
-import { CreateAccountDto, CreateAccountSchema } from "@/types";
+import { CreateAccountDto } from "@/types";
+import { useAuth } from "@/utils";
 import { accountApi } from "@/utils/apis";
 import toast from "react-hot-toast";
 
+const defaultErrorMessage = "Error creating account";
+
 export const useRegister = () => {
+  const { signIn } = useAuth();
+
   const createAccount = async (accountData: CreateAccountDto) => {
-    const { error: dataError } = CreateAccountSchema.safeParse(accountData);
+    try {
+      toast.loading("Creating account...");
 
-    if (dataError) {
-      dataError.errors.map((error) => toast.error(error.message));
-      return { validationError: dataError.errors };
+      const { status, error, message } = await accountApi.create({
+        data: accountData,
+      });
+
+      if (status === 201) {
+        toast.dismiss();
+        toast.success(message || "Account created successfully");
+        signIn(accountData?.email, accountData.password);
+        return;
+      }
+
+      toast.dismiss();
+      const errorMessage: string =
+        (error?.message as string) ||
+        (error?.message as string[])[0] ||
+        defaultErrorMessage;
+
+      toast.error(errorMessage);
+    } catch {
+      toast.error(defaultErrorMessage);
     }
-
-    const { data, status, error } = await accountApi.create({ data: accountData });
-
-    if (status === 201) {
-      toast.success("Account created successfully");
-      return { data };
-    }
-
-    toast.error("Error creating account");
-    return { error };
   };
 
   return { createAccount };

@@ -22,18 +22,18 @@ export interface HttpClientProps {
 export type IHttpClientProps = Pick<HttpClientProps, "options" | "shouldFetch">;
 
 export interface IHttpResponse<T, K> {
-  data?: T | null;
+  data?: T;
   message?: string;
   isLoading?: boolean;
-  error?: K | null;
-  status?: number | null;
-  headers?: Record<string, string | number | boolean> | null;
-  mutate?: KeyedMutator<IHttpClientResponse<T>> | null;
+  error?: K;
+  status?: number;
+  headers?: Record<string, string | number | boolean>;
+  mutate?: KeyedMutator<IHttpClientResponse<T>>;
   isValidating?: boolean;
 }
 
 export interface IHttpError {
   title?: string;
-  message?: string;
+  message?: string | string[];
   level?: ErrorLevel;
 }
