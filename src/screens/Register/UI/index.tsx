@@ -8,7 +8,8 @@ export const RegisterPageUI = ({ onCreateAccount }: RegisterPageUIProps) => (
   <FlexContainer
     overflow
     $full
-    $gap="16px">
+    $gap="16px"
+    $hasBottomPadding={false}>
     <Header />
     <Form onCreateAccount={onCreateAccount} />
   </FlexContainer>

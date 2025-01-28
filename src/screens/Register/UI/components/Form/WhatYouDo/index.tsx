@@ -38,8 +38,6 @@ export const WhatYouDo = () => {
     );
   }, [roles]);
 
-  console.log({ sectorOptions, sectors });
-
   return (
     <Section
       title="O que você faz?"
