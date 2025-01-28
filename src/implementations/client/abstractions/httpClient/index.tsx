@@ -1,5 +1,7 @@
+"use client";
+
 /* eslint-disable react-hooks/rules-of-hooks */
-import { HttpClientProps, IHttpResponse } from "@/types";
+import { HttpClientProps, IHttpError, IHttpResponse } from "@/types";
 import axios, { AxiosResponse } from "axios";
 import useSWR from "swr";
 import useSWRImmutable from "swr/immutable";
@@ -51,7 +53,7 @@ export class HTTPClient implements IHttpClient {
     headers,
     shouldFetch = true,
     options,
-  }: HttpClientProps): IHttpResponse<T, unknown> {
+  }: HttpClientProps): IHttpResponse<T, IHttpError> {
     const fetcher = async () => {
       let res: AxiosResponse<T>;
       switch (type) {
