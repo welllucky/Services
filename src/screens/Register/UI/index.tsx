@@ -1,14 +1,15 @@
 "use client";
 
 import { FlexContainer } from "@/components/PageStruct/style";
-import { Header, Form } from "./components";
+import { RegisterPageUIProps } from "../register.types";
+import { Form, Header } from "./components";
 
-export const RegisterPageUI = () => (
+export const RegisterPageUI = ({ onCreateAccount }: RegisterPageUIProps) => (
   <FlexContainer
     overflow
     $full
     $gap="16px">
     <Header />
-    <Form />
+    <Form onCreateAccount={onCreateAccount} />
   </FlexContainer>
 );

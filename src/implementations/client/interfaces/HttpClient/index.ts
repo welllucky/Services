@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { HttpClientProps, IHttpResponse } from "@/types";
+import { HttpClientProps, IHttpError, IHttpResponse } from "@/types";
 
 export interface IHttpClientResponse<T> {
   result?: {
@@ -14,13 +14,13 @@ export interface IHttpClientResponse<T> {
 }
 
 export interface IHttpClient {
-  get<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, unknown>;
+  get<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, IHttpError>;
 
-  post<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, unknown>;
+  post<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, IHttpError>;
 
-  put<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, unknown>;
+  put<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, IHttpError>;
 
-  delete<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, unknown>;
+  delete<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, IHttpError>;
 
   // patch<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, unknown>;
 }

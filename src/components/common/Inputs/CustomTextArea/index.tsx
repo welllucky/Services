@@ -2,7 +2,9 @@
 import { ErrorText, WarningText } from "@/components";
 import { InputComponentsProps } from "@/types";
 import { ChangeEvent } from "react";
+import { useController } from "react-hook-form";
 import { CustomFieldset } from "../../../Fieldset";
+import { useCustomInput } from "../input.hook";
 import { TextArea, TextAreaContainer } from "./styles";
 
 export interface TextAreaProps extends InputComponentsProps {
@@ -11,6 +13,8 @@ export interface TextAreaProps extends InputComponentsProps {
    */
   // eslint-disable-next-line no-unused-vars
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  hasOverflow?: boolean;
+  $maxHeight?: string;
 }
 
 /**
@@ -48,41 +52,51 @@ export const CustomTextArea = ({
   width = "100%",
   height = "160px",
   value,
-  onChange,
   isRequired = false,
-  register,
   registerOptions,
   $status = "none",
   errorText,
   warnText,
-}: TextAreaProps) => (
-  <TextAreaContainer $status={$status}>
-    <CustomFieldset
-      width={width}
-      $minHeight={height}
-      $maxHeight=""
-      $hasOverflow
-      labelText={labelText ?? ""}>
-      <TextArea
-        {...register(id, {
-          ...registerOptions,
-          required: isRequired
-            ? "This field is required"
-            : registerOptions?.required
-              ? registerOptions?.required
-              : false,
-          onChange: (e) => {
-            if (onChange) onChange(e);
-            if (registerOptions?.onChange) registerOptions.onChange(e);
-          },
-        })}
-        height={height}
-        width="100%"
-        placeholder={placeholder}
-        value={value}
-      />
-    </CustomFieldset>
-    {$status === "invalid" && <ErrorText>{errorText}</ErrorText>}
-    {$status === "warning" && <WarningText>{warnText}</WarningText>}
-  </TextAreaContainer>
-);
+  control,
+  isDisabled,
+  $maxHeight,
+  hasOverflow,
+}: TextAreaProps) => {
+  const { field, fieldState } = useController({
+    name: id,
+    control,
+    rules: { ...registerOptions, required: isRequired },
+    defaultValue: value,
+    disabled: isDisabled,
+  });
+
+  const { errorMessageText, internalStatus } = useCustomInput({
+    errorText,
+    fieldState,
+    status: $status,
+    value: field.value,
+  });
+
+  return (
+    <TextAreaContainer $status={internalStatus}>
+      <CustomFieldset
+        width={width}
+        $minHeight={height}
+        $maxHeight={$maxHeight}
+        $hasOverflow={hasOverflow}
+        labelText={labelText ?? ""}>
+        <TextArea
+          {...field}
+          height={height}
+          width="100%"
+          placeholder={placeholder}
+          value={value}
+        />
+      </CustomFieldset>
+      {internalStatus === "invalid" && (
+        <ErrorText>{errorMessageText}</ErrorText>
+      )}
+      {internalStatus === "warning" && <WarningText>{warnText}</WarningText>}
+    </TextAreaContainer>
+  );
+};

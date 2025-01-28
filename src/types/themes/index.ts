@@ -57,11 +57,10 @@ interface InputComponentsProps {
   style?: InputStylesProps;
   width?: string;
   height?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // register: UseFormRegister<any>;
   control: Control;
   registerOptions?: RegisterOptions;
   isRequired?: boolean;
+  isDisabled?: boolean;
 }
 
 export type { InputComponentsProps, InputStatus, ThemeProps };

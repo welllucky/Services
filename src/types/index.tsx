@@ -53,7 +53,17 @@ type TextTheme = {
   text: string;
 };
 
-export type * from "./DataTag";
+export type DataTag =
+  | "ticket"
+  | "company"
+  | "issue"
+  | "login"
+  | "theme"
+  | "recovery"
+  | "register"
+  | "security"
+  | "user";
+
 export * from "./dto";
 export * from "./Interfaces";
 export type * from "./themes";

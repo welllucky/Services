@@ -6,7 +6,6 @@ import { addBreadcrumb, captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthToken } from "../functions/getAuthToken";
 import { getFormattedBody } from "../functions/getFormattedBody";
-import { UserView } from "../views";
 
 interface SessionProps {
   email: string;
@@ -114,10 +113,10 @@ export class SessionController {
       }
 
       return NextResponse.json(
-        UserView.getUser({
+        {
           error,
           status: 500,
-        }),
+        },
         {
           status: 500,
         },
@@ -178,10 +177,10 @@ export class SessionController {
       });
 
       return NextResponse.json(
-        UserView.getUser({
+        {
           error: { message: err.message },
           status: 400,
-        }),
+        },
         {
           status: 400,
         },

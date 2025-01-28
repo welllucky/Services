@@ -19,14 +19,16 @@ export interface HttpClientProps {
   options?: HttpClientOptions;
 }
 
+export type IHttpClientProps = Pick<HttpClientProps, "options" | "shouldFetch">;
+
 export interface IHttpResponse<T, K> {
-  data?: T;
+  data?: T | null;
   message?: string;
   isLoading?: boolean;
-  error?: K;
-  status?: number;
-  headers?: Record<string, string | number | boolean>;
-  mutate?: KeyedMutator<IHttpClientResponse<T>>;
+  error?: K | null;
+  status?: number | null;
+  headers?: Record<string, string | number | boolean> | null;
+  mutate?: KeyedMutator<IHttpClientResponse<T>> | null;
   isValidating?: boolean;
 }
 

@@ -1,16 +1,9 @@
 import { CustomFieldset, ErrorText, WarningText } from "@/components";
-import { InputComponentsProps } from "@/types";
+import { InputComponentsProps, OptionProps } from "@/types";
 import { ChangeEventHandler } from "react";
 import { useController } from "react-hook-form";
+import { useCustomInput } from "../input.hook";
 import { CustomOption, SelectComponent, SelectContainer } from "./styles";
-
-interface OptionProps {
-  key: string;
-  value: string;
-  text: string;
-  isDisabled?: boolean;
-  isSelected?: boolean;
-}
 
 export interface SelectProps extends InputComponentsProps {
   /**
@@ -78,12 +71,19 @@ export const CustomSelect = ({
   control,
   value,
 }: SelectProps) => {
-  const { field } = useController({
+  const { field, fieldState } = useController({
     name: id,
     control,
     rules: { ...registerOptions, required: isRequired },
     defaultValue: value,
     disabled: isDisabled,
+  });
+
+  const { errorMessageText, internalStatus } = useCustomInput({
+    errorText,
+    fieldState,
+    status: $status,
+    value: field.value,
   });
 
   const colorMapping = {
@@ -94,21 +94,18 @@ export const CustomSelect = ({
   };
 
   return (
-    <SelectContainer $status={$status}>
+    <SelectContainer $status={internalStatus}>
       <CustomFieldset
         width={width}
         $minHeight={height}
         labelText={labelText ?? ""}
-        color={colorMapping[$status]}>
+        // eslint-disable-next-line security/detect-object-injection
+        color={colorMapping[internalStatus]}>
         <SelectComponent
           $isPlaceholder={field.value === ""}
           {...field}
           multiple={multiple}>
-          <CustomOption
-            disabled={!field.value}
-            value="">
-            {placeholder}
-          </CustomOption>
+          <CustomOption value="">{placeholder}</CustomOption>
           {options?.map((option) => (
             <CustomOption
               key={option?.key}
@@ -120,8 +117,10 @@ export const CustomSelect = ({
           ))}
         </SelectComponent>
       </CustomFieldset>
-      {$status === "invalid" && <ErrorText>{errorText}</ErrorText>}
-      {$status === "warning" && <WarningText>{warnText}</WarningText>}
+      {internalStatus === "invalid" && (
+        <ErrorText>{errorMessageText}</ErrorText>
+      )}
+      {internalStatus === "warning" && <WarningText>{warnText}</WarningText>}
     </SelectContainer>
   );
 };

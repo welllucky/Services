@@ -1,4 +1,6 @@
+import { searchUrl } from "@/app/api/urls";
 import { getAuthToken } from "@/server/functions/getAuthToken";
+import { IHttpResponse, TicketDto } from "@/types";
 import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,7 +9,7 @@ export class SearchController {
     try {
       const searchTerm = req.nextUrl.searchParams.get("searchTerm");
 
-      const { userId, isAuthenticated } = await getAuthToken(req);
+      const { userId, isAuthenticated, accessToken } = await getAuthToken(req);
 
       if (!isAuthenticated || !userId) {
         return NextResponse.json(
@@ -18,27 +20,19 @@ export class SearchController {
         );
       }
 
-      if (!searchTerm || searchTerm.length < 3) {
-        return NextResponse.json(
-          {
-            error: {
-              message: !searchTerm
-                ? "Search term is required"
-                : "Search term should be at least 3 characters",
-            },
-          },
-          {
-            status: 400,
-          },
-        );
-      }
+      const res = await fetch(`${searchUrl}?searchTerm=${searchTerm}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
-      // @todo call the api
-      // const tickets = await SearchServices.searchTickets(userId, searchTerm);
+      const resBody = (await res.json()) as IHttpResponse<
+        TicketDto,
+        { message: string }
+      >;
 
-      const tickets = [];
-
-      if (!tickets.length) {
+      if (!resBody.data?.id) {
         return NextResponse.json(
           { error: { message: "No tickets found" }, status: 204 },
           {
@@ -47,12 +41,9 @@ export class SearchController {
         );
       }
 
-      return NextResponse.json(
-        { result: tickets },
-        {
-          status: 200,
-        },
-      );
+      return NextResponse.json(resBody, {
+        ...res,
+      });
     } catch (error) {
       captureException(error, {
         tags: {

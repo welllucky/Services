@@ -1,10 +1,11 @@
 "use client";
 
 import { ErrorText, WarningText } from "@/components/SupportText";
-import { InputComponentsProps, InputStatus } from "@/types";
+import { InputComponentsProps } from "@/types";
 import { StaticImageData } from "next/image";
-import { ChangeEvent, ReactNode, useMemo } from "react";
+import { ChangeEvent, ReactNode } from "react";
 import { Control, useController } from "react-hook-form";
+import { useCustomInput } from "../input.hook";
 import {
   ContentContainer,
   InputComponent,
@@ -102,8 +103,6 @@ const CustomInput = ({
   mode = "filled",
   control,
   isRequired,
-  // onBlur,
-  // onChange,
   disabled,
 }: InputProps) => {
   const { field, fieldState } = useController({
@@ -114,41 +113,12 @@ const CustomInput = ({
     disabled,
   });
 
-  const dateFieldSuccessValidation =
-    typeof field.value !== "undefined" &&
-    field.value !== null &&
-    field.value !== "";
-
-  const hasErrorState = useMemo(
-    () =>
-      Boolean(
-        $status === "invalid" ||
-          Boolean(fieldState.error || fieldState.invalid),
-      ),
-    [fieldState.error, fieldState.invalid, $status],
-  );
-
-  const hasSuccessState = useMemo(() => {
-    return (
-      Boolean($status === "valid" || dateFieldSuccessValidation) &&
-      !hasErrorState
-    );
-  }, [$status, dateFieldSuccessValidation, hasErrorState]);
-
-  const errorMessageText = useMemo(
-    () =>
-      errorText ??
-      fieldState?.error?.message ??
-      fieldState?.error?.root?.message,
-    [fieldState.error?.message, fieldState.error?.root?.message, errorText],
-  );
-
-  const internalStatus: InputStatus = useMemo(() => {
-    if (hasErrorState) return "invalid";
-    if (hasSuccessState) return "valid";
-    if ($status === "warning") return "warning";
-    return "none";
-  }, [hasErrorState, hasSuccessState, $status]);
+  const { errorMessageText, internalStatus } = useCustomInput({
+    errorText,
+    fieldState,
+    status: $status,
+    value: field.value,
+  });
 
   return (
     <InputContainer width={width}>

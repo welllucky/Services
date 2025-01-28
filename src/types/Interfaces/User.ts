@@ -49,30 +49,8 @@ export const UserSchema = z.object({
   sector: z.string(),
 });
 
-export const RegisterUserSchema = z.object({
-  email: z
-    .string({ required_error: "Email is required" })
-    .min(1, "Email is required")
-    .email("Invalid email"),
-  register: z
-    .string()
-    .min(1)
-    .max(10)
-    .regex(/^[0-9]+$/, "Only numbers"),
-  name: z.string().min(5).max(80),
-  password: z.string().min(8),
-  role: z.string().min(4).optional(),
-  sector: z.string().min(2).optional(),
-});
-
-export const CreateUserSchema = z.union([RegisterUserSchema, UserSchema]);
-
-export type IRegisterUser = z.infer<typeof RegisterUserSchema>;
-
 export type IUser = z.infer<typeof UserSchema>;
 
 export type ISignIn = z.infer<typeof SignInSchema>;
-
-export type ICreateUser = z.infer<typeof CreateUserSchema>;
 
 export type IUserTable = z.infer<typeof UserTableSchema>;
