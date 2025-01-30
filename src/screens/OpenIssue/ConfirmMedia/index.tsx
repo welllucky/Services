@@ -35,7 +35,7 @@ export const ConfirmDetailsPage = () => {
     if (data?.id) {
       setCanRegisterIssue(false);
       setTimeout(() => {
-        push(`/chamado/${data?.id}`);
+        push(`/ticket/${data?.id}`);
       }, 3000);
     }
 

@@ -38,7 +38,7 @@ export const IssuesPageUI = ({
 
   const addIssueCallback = useCallback(() => {
     sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, "home");
-    router.push("/abrir-chamado");
+    router.push("/open-ticket");
   }, [router]);
 
   if (isLoading) {
@@ -68,7 +68,7 @@ export const IssuesPageUI = ({
                 date={dataFormatter(issue.date)}
                 $status={issue.status}
                 isUpdated={false}
-                href={`/chamado/${issue.id}`}
+                href={`/ticket/${issue.id}`}
               />
             ))
           )}

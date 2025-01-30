@@ -46,7 +46,7 @@ export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
                 date={dataFormatter(issue.date)}
                 $status={issue.status}
                 isUpdated={false}
-                href={`/chamado/${issue.id}`}
+                href={`/ticket/${issue.id}`}
               />
             ))
           )}
@@ -57,7 +57,7 @@ export const HomePageUI = ({ data, isLoading, router }: HomePageUIProps) => {
               $styles={{ hasShadow: true }}
               onClick={() => {
                 sessionStorage.setItem(SS_KEY_USER_PREVIOUS_PAGE, "home");
-                push("/abrir-chamado");
+                push("/open-ticket");
               }}
             />
           ) : null}

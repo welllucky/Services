@@ -15,7 +15,7 @@ export const Results = ({ result }: ResultsProps) => {
         name={issue.resume}
         date={dataFormatter(issue.date)}
         $status={issue.status}
-        href={`/chamado/${issue.id}`}
+        href={`/ticket/${issue.id}`}
       />
     ));
   }

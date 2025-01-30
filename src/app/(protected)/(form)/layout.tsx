@@ -8,17 +8,17 @@ const Template = async ({ children }: Readonly<{ children: ReactNode }>) => {
 
   const pages = [
     {
-      page: "/abrir-chamado",
+      page: "/open-ticket",
       title: "O que aconteceu?",
       hasBackButton: false,
     },
     // {
-    //   page: "/anexar-midia",
+    //   page: "/add-media",
     //   title: "Anexar mídia",
     //   hasBackButton: true
     // },
     {
-      page: "/confirmar-chamado",
+      page: "/confirm-ticket",
       title: "Confirmar informações",
       hasBackButton: true,
     },
