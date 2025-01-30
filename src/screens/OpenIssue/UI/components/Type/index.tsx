@@ -1,17 +1,16 @@
 /* eslint-disable no-nested-ternary */
 import { CustomSelect } from "@/components";
-import { IOpenIssueForm } from "@/types";
 import { useState } from "react";
-import { FieldError, UseFormRegister } from "react-hook-form";
+import { Control, FieldError } from "react-hook-form";
 
 type TypeSelectProps = {
-  register: UseFormRegister<IOpenIssueForm>;
+  control: Control;
   error: FieldError | undefined;
   defaultValue?: string;
 };
 
 export const TypeSelect = ({
-  register,
+  control,
   error,
   defaultValue,
 }: TypeSelectProps) => {
@@ -20,7 +19,7 @@ export const TypeSelect = ({
   return (
     <CustomSelect
       id="type"
-      register={register}
+      control={control}
       isRequired
       placeholder="Qual o tipo do chamado?"
       labelText="Tipo"

@@ -19,9 +19,9 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
   color: ${({ color, theme }) => color || theme.colors.neutral.white};
 
   border: ${({ $backgroundColor, mode }) =>
-    $backgroundColor && mode === "outlined"
+    ($backgroundColor && mode === "outlined"
       ? `1px solid ${$backgroundColor}`
-      : "none"};
+      : "none")};
 
   ${({ disabled, mode }) =>
     disabled &&
@@ -32,9 +32,9 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
     `};
 
   background-color: ${({ $backgroundColor, mode, theme }) =>
-    $backgroundColor && mode === "filled"
+    ($backgroundColor && mode === "filled"
       ? $backgroundColor
-      : theme.colors.primary[185]};
+      : theme.colors.primary[185])};
 
   ${({ disabled, mode }) =>
     disabled &&

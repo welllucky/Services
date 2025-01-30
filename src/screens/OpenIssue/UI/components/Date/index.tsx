@@ -1,22 +1,21 @@
 /* eslint-disable no-nested-ternary */
 import { OutlinedInput } from "@/components";
-import { IOpenIssueForm } from "@/types";
 import { useState } from "react";
-import { FieldError, UseFormRegister } from "react-hook-form";
+import { Control, FieldError } from "react-hook-form";
 
 type DateInputProps = {
-  register: UseFormRegister<IOpenIssueForm>;
+  control: Control;
   error: FieldError | undefined;
   defaultValue?: string;
 };
 
-export const DateInput = ({ register, error, defaultValue }: DateInputProps) => {
+export const DateInput = ({ control, error, defaultValue }: DateInputProps) => {
   const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
 
   return (
     <OutlinedInput
       id="date"
-      register={register}
+      control={control}
       type="date"
       value={inputValue}
       placeholder="dd/mm/aaaa"

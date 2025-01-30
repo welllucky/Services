@@ -87,7 +87,7 @@ const ConfirmModal = ({
                 $backgroundColor="transparent"
                 height="60px"
                 mode="outlined"
-                $borderColor={theme.colors.neutral.default}
+                // $borderColor={theme.colors.neutral.default}
                 onClick={shouldCloseModal}
               />
             )}
@@ -99,7 +99,7 @@ const ConfirmModal = ({
               height="40px"
               mode="filled"
               onClick={modalCallBack}
-              $borderColor={theme.colors.neutral.default}
+              // $borderColor={theme.colors.neutral.default}
             />
           </ConfirmModalButtons>
         )}

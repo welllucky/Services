@@ -1,6 +1,5 @@
 import { CustomSelect, SelectProps } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 
 export default {
   title: "Common/Inputs/CustomSelect",
@@ -75,7 +74,6 @@ export default {
     },
   },
   args: {
-    register: fn(),
     width: "320px",
   },
 } satisfies Meta<SelectProps>;

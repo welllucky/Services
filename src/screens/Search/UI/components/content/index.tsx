@@ -9,7 +9,7 @@ import { MainContainer } from "./styles";
 
 interface ContentProps {
   isLoading: boolean;
-  searchResults: SearchResponse;
+  searchResults?: SearchResponse;
   searchTerm: string;
 }
 

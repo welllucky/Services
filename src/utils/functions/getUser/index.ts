@@ -14,7 +14,13 @@ export const getUser = async (accessToken: string) => {
       IHttpError
     >;
 
-    if (error) throw new Error(error?.message);
+    if (error) {
+      throw new Error(
+        Array.isArray(error?.message)
+          ? error.message.join(", ")
+          : error?.message,
+      );
+    }
 
     return { user };
   } catch (error) {

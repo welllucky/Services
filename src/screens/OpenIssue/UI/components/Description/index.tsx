@@ -1,17 +1,16 @@
 /* eslint-disable no-nested-ternary */
 import { CustomTextArea } from "@/components";
-import { IOpenIssueForm } from "@/types";
 import { useState } from "react";
-import { FieldError, UseFormRegister } from "react-hook-form";
+import { Control, FieldError } from "react-hook-form";
 
 type DescriptionInputProps = {
-  register: UseFormRegister<IOpenIssueForm>;
+  control: Control;
   error: FieldError | undefined;
   defaultValue?: string;
 };
 
 export const DescriptionInput = ({
-  register,
+  control,
   error,
   defaultValue,
 }: DescriptionInputProps) => {
@@ -32,7 +31,7 @@ export const DescriptionInput = ({
               ? "invalid"
               : "valid"
       }
-      register={register}
+      control={control}
       errorText={error?.message as string}
       warnText={error?.message as string}
       registerOptions={{

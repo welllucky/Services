@@ -14,7 +14,7 @@ import { useCallback, useMemo } from "react";
 import { ButtonWrapper } from "../styles";
 
 type IssuesPageUIProps = {
-  data: TicketDto[] | null;
+  data?: TicketDto[] | null;
   isLoading?: boolean;
   router: AppRouterInstance;
   user?: IUser | null;

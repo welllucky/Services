@@ -3,7 +3,7 @@
 import { IOpenIssueForm } from "@/types";
 import { LS_KEY_1_TICKET_RECORD, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
 import { useEffect, useMemo } from "react";
-import { useFormContext } from "react-hook-form";
+import { Control, useFormContext } from "react-hook-form";
 import toast from "react-hot-toast";
 import { IssuePageContent } from "../styles";
 import {
@@ -16,7 +16,7 @@ import {
 
 export const OpenIssuePageUI = () => {
   const {
-    register,
+    control,
     setValue,
     getValues,
     formState: { errors, isValid, isValidating },
@@ -56,32 +56,32 @@ export const OpenIssuePageUI = () => {
       id="first-step-form"
       as="form">
       <ResumeInput
-        register={register}
+        control={control as unknown as Control}
         error={errors?.resume}
         defaultValue={parsedData?.resume}
       />
 
       <TypeSelect
         error={errors?.type}
-        register={register}
+        control={control as unknown as Control}
         defaultValue={parsedData?.type}
       />
 
       <DescriptionInput
         error={errors.description}
-        register={register}
+        control={control as unknown as Control}
         defaultValue={parsedData?.description}
       />
 
       <DateInput
         error={errors?.date}
-        register={register}
+        control={control as unknown as Control}
         defaultValue={parsedData?.date}
       />
 
       <PriorityInput
         error={errors?.priority}
-        register={register}
+        control={control as unknown as Control}
         defaultValue={parsedData?.priority}
       />
     </IssuePageContent>

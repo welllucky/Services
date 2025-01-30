@@ -1,16 +1,15 @@
 import { OutlinedInput } from "@/components";
-import { IOpenIssueForm } from "@/types";
 import { useState } from "react";
-import { FieldError, UseFormRegister } from "react-hook-form";
+import { Control, FieldError } from "react-hook-form";
 
 type ResumeInputProps = {
-  register: UseFormRegister<IOpenIssueForm>;
+  control: Control;
   error: FieldError | undefined;
   defaultValue?: string;
 };
 
 export const ResumeInput = ({
-  register,
+  control,
   error,
   defaultValue,
 }: ResumeInputProps) => {
@@ -18,7 +17,7 @@ export const ResumeInput = ({
 
   return (
     <OutlinedInput
-      register={register}
+      control={control}
       id="resume"
       type="text"
       placeholder="Do que se trata o chamado?"
