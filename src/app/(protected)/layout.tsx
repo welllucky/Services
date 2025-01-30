@@ -12,7 +12,7 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const { user } = useAuth();
 
   const isRequestsPage = useMemo(
-    () => pathName === "/solicitacoes",
+    () => pathName === "/issues",
     [pathName],
   );
 
@@ -22,12 +22,12 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   );
 
   const pagesWithoutFooter = useMemo(
-    () => ["/abrir-chamado", "/anexar-midia", "/confirmar-chamado"],
+    () => ["/open-ticket", "/add-media", "/confirm-ticket"],
     [],
   );
 
   const pagesWithoutHeader = useMemo(
-    () => [...pagesWithoutFooter, "/chamado", "/solicitacao"],
+    () => [...pagesWithoutFooter, "/ticket", "/issue"],
     [pagesWithoutFooter],
   );
 

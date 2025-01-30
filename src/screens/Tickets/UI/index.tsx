@@ -43,7 +43,7 @@ export const TicketsPageUI = async ({
                 date={dataFormatter(ticket.date ?? "")}
                 $status={ticket.status}
                 isUpdated
-                href={`/solicitacao/${ticket.id}`}
+                href={`/issue/${ticket.id}`}
               />
             ))
           )}

@@ -23,13 +23,13 @@ test.describe(
       [
         "home",
         "ticket/1",
-        "abrir-chamado",
-        "pesquisa",
-        "chamados",
-        "solicitacoes",
+        "open-ticket",
+        "search",
+        "tickets",
+        "issues",
         "login",
         "register",
-        "solicitacao/1",
+        "issue/1",
       ].forEach((pageName) => {
         test(`It should redirect to No Mobile page if user try to access the ${pageName} page by desktop`, async ({
           page,
