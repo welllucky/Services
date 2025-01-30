@@ -45,17 +45,14 @@ next-env.d.ts
 .vsgitbuild
 
 package-lock.json
-/test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 /test-results/
 /playwright-report/
 /blob-report/
-/playwright/.cache/
-/tests/report/*
-/tests/report/index.html
-/tests/output/*
+/tests/playwright/.cache/
+/tests/playwright/output/**
 /tests/playwright/report/**
 
 settings.json
