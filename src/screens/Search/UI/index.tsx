@@ -5,7 +5,7 @@ import { Content, SearchBarComponent } from "./components";
 type SearchPageUIProps = {
   // eslint-disable-next-line no-unused-vars
   setSearchTerm: (value: string) => void;
-  searchResults: SearchResponse;
+  searchResults?: SearchResponse;
   searchTerm: string;
   isLoading: boolean;
 };

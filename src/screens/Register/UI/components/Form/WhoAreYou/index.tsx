@@ -1,11 +1,11 @@
 import { CustomInput } from "@/components";
 import { theme } from "@/styles";
-import { IRegisterUser } from "@/types";
+import { CreateAccountDto } from "@/types";
 import { Control, useFormContext } from "react-hook-form";
 import { Section } from "../components";
 
 export const WhoAreYou = () => {
-  const { control } = useFormContext<IRegisterUser>();
+  const { control } = useFormContext<CreateAccountDto>();
 
   return (
     <Section

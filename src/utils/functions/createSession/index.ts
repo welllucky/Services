@@ -1,8 +1,7 @@
 import { SignInSchema } from "@/types";
-import { SessionApi } from "@/utils/apis/Session.api";
+import { sessionApi } from "@/utils/apis";
 
 export const createSession = async (email: string, password: string) => {
-  const sessionApi = new SessionApi();
   try {
     const { email: reliableEmail, password: reliablePassword } =
       SignInSchema.parse({ email, password });
@@ -18,7 +17,6 @@ export const createSession = async (email: string, password: string) => {
 
     return { accessToken: data.token };
   } catch (error) {
-    console.log({ error });
     return {
       error: {
         message: (error as Error).message,

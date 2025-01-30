@@ -1,16 +1,19 @@
 /* eslint-disable no-nested-ternary */
 import { CustomSelect } from "@/components";
-import { IOpenIssueForm } from "@/types";
 import { useState } from "react";
-import { FieldError, UseFormRegister } from "react-hook-form";
+import { Control, FieldError } from "react-hook-form";
 
 type PriorityInputProps = {
-  register: UseFormRegister<IOpenIssueForm>;
+  control: Control;
   error: FieldError | undefined;
   defaultValue?: string;
 };
 
-export const PriorityInput = ({ register, error, defaultValue }: PriorityInputProps) => {
+export const PriorityInput = ({
+  control,
+  error,
+  defaultValue,
+}: PriorityInputProps) => {
   const [selectValue, setSelectValue] = useState<string>(defaultValue ?? "");
 
   return (
@@ -25,7 +28,7 @@ export const PriorityInput = ({ register, error, defaultValue }: PriorityInputPr
         { key: "2", value: "medium", text: "mais ou menos" },
         { key: "3", value: "high", text: "muito urgente" },
       ]}
-      register={register}
+      control={control}
       registerOptions={{
         required: "É necessário escolher a priority do chamado",
         validate: (value) =>

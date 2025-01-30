@@ -1,6 +1,5 @@
 import { CustomTextArea, TextAreaProps } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 
 export default {
   title: "Common/Inputs/CustomTextArea",
@@ -73,28 +72,6 @@ export default {
         category: "Appearance",
       },
     },
-    register: {
-      description: "React Hook Form register function.",
-      table: {
-        category: "Form",
-      },
-    },
-    registerOptions: {
-      description: "Additional options to pass to the register function.",
-      control: "object",
-      table: {
-        category: "Form",
-      },
-      onChange: {
-        description: "Function to call when the value changes.",
-        table: {
-          category: "Action",
-        },
-      },
-    },
-  },
-  args: {
-    register: fn(),
   },
 } satisfies Meta<TextAreaProps>;
 

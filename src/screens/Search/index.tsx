@@ -19,7 +19,7 @@ const SearchPage = () => {
       setSearchTerm={setSearchTerm}
       searchResults={searchResults}
       searchTerm={searchTerm}
-      isLoading={isLoading}
+      isLoading={Boolean(isLoading)}
     />
   );
 };
