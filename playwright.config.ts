@@ -1,11 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
-
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
 import dotenv from "dotenv";
 import path from "path";
+import authFile from "./tests/playwright/fixture/.auth/user.json";
 
 dotenv.config({ path: path.resolve(__dirname, ".env") });
 
@@ -18,7 +14,8 @@ export default defineConfig({
   outputDir: "./tests/playwright/output/",
 
   // path to the global setup files.
-  // globalSetup: require.resolve('./global-setup'),
+  // globalSetup: require.resolve("./tests/playwright/setup/global-setup.ts"),
+
   testMatch: "**/?(*.)+(e2e|integration).[tj]s?(x)",
 
   /* Run tests in files in parallel */
@@ -30,11 +27,14 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
 
+  maxFailures: process.env.CI ? 10 : undefined,
+
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : 4,
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
+    ["list", { printSteps: true }],
     [
       "html",
       {
@@ -48,8 +48,10 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: "http://localhost:2424",
-    // baseURL: process.env.BASE_URL ?? "http://localhost:3000",
+    // baseURL: "http://localhost:2424",
+    baseURL: process.env.BASE_URL ?? "http://localhost:3000",
+
+    isMobile: true,
 
     // Record trace only when retrying a test for the first time.
     trace: "retain-on-failure",
@@ -90,10 +92,10 @@ export default defineConfig({
     //  },
 
     // Credentials for HTTP authentication.
-    //  httpCredentials: {
-    //    username: 'user',
-    //    password: 'pass',
-    //  },
+    httpCredentials: {
+      username: authFile.email,
+      password: authFile.password,
+    },
 
     // Whether to ignore HTTPS errors during navigation.
     ignoreHTTPSErrors: true,

@@ -2,6 +2,7 @@
 
 import Logo from "public/Icon.png";
 
+import { buildTestIds } from "@/utils";
 import qrCode from "public/qr-code.png";
 import {
   NoMobileContainer,
@@ -13,32 +14,36 @@ import {
   QRCodeImage,
   QRCodeText,
 } from "./styles";
+import { noMobileDeviceTestIds } from "./testObject";
 
 export interface NoMobileDeviceProps {
   title: string;
   text: string;
 }
 
+const { logoAlt, qrCodeAlt, qrCodeTextId, textId, titleId } =
+  noMobileDeviceTestIds;
+
 const NoMobileDevicePage = ({ text, title }: NoMobileDeviceProps) => (
   <NoMobileContainer>
     <NoMobileLogo
       width={100}
       height={100}
-      alt="Services logo"
+      alt={logoAlt}
       src={Logo}
       priority
     />
     <NoMobileContent>
-      <NoMobileTitle>{title}</NoMobileTitle>
-      <NoMobileText>{text}</NoMobileText>
+      <NoMobileTitle {...buildTestIds(titleId)}>{title}</NoMobileTitle>
+      <NoMobileText {...buildTestIds(textId)}>{text}</NoMobileText>
     </NoMobileContent>
     <NoMobileQRCodeSection>
-      <QRCodeText>
+      <QRCodeText {...buildTestIds(qrCodeTextId)}>
         Escaneie o QR Code para acessar o Services pelo seu celular
       </QRCodeText>
       <QRCodeImage
         src={qrCode}
-        alt="QR Code"
+        alt={qrCodeAlt}
         width={160}
         height={160}
         priority
@@ -47,4 +52,4 @@ const NoMobileDevicePage = ({ text, title }: NoMobileDeviceProps) => (
   </NoMobileContainer>
 );
 
-export { NoMobileDevicePage };
+export { NoMobileDevicePage, noMobileDeviceTestIds };
