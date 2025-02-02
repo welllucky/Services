@@ -31,7 +31,7 @@
     "@hookform/resolvers": "^3.9.1",
     "@phosphor-icons/react": "^2.1.7",
     "@react-spring/web": "^9.7.5",
-    "@sentry/nextjs": "^8.37.1",
+    "@sentry/nextjs": "^8.49.0",
     "@spotlightjs/spotlight": "^2.5.0",
     "@uidotdev/usehooks": "^2.4.1",
     "@use-gesture/react": "~10.3.0",
