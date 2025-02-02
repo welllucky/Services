@@ -1,6 +1,7 @@
 import { ticketUrl } from "@/app/api/urls";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { IHttpResponse, TicketDto } from "@/types";
+import { defaultHeaders } from "@/constraints";
 import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -22,6 +23,7 @@ class TicketController {
         method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          ...defaultHeaders,
         },
       });
 
@@ -72,6 +74,7 @@ class TicketController {
         method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          ...defaultHeaders,
         },
       });
 

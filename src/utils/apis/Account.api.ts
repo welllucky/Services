@@ -6,11 +6,14 @@ export class AccountApi {
 
   private readonly apiUrl: string;
 
+  private readonly altApiUrl: string;
+
   private readonly httpClient: IHttpClient;
 
   constructor(httpClient: IHttpClient) {
     this.base_url = process.env.NEXT_PUBLIC_BASE_URL;
     this.apiUrl = `${this.base_url}api/account`;
+    this.altApiUrl = `${this.base_url}api/public/account`;
     this.httpClient = httpClient;
   }
 
@@ -19,12 +22,9 @@ export class AccountApi {
   }: {
     data: CreateAccountDto;
   }): Promise<IHttpResponse<IUser, IHttpError>> => {
-    const res = await fetch(this.apiUrl, {
+    const res = await fetch(this.altApiUrl, {
       body: JSON.stringify(data),
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
 
     const resBody = (await res.json()) as IHttpResponse<IUser, IHttpError>;
@@ -35,9 +35,5 @@ export class AccountApi {
       status: res.status,
       message: resBody.message,
     };
-    // return this.httpClient.post<IHttpResponse<IUser, IHttpError>>({
-    //   url: this.apiUrl,
-    //   body: data,
-    // });
   };
 }

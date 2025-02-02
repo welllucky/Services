@@ -1,8 +1,7 @@
 import { EnterpriseController } from "@/server/controllers";
-import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
-  return EnterpriseController.getSectors(req);
+export async function GET() {
+  return EnterpriseController.getSectors();
 }
 
 export const runtime = "nodejs";

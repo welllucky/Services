@@ -1,11 +1,14 @@
 import { sectorUrl } from "@/app/api/urls";
-import { NextRequest, NextResponse } from "next/server";
+import { defaultHeaders } from "@/constraints";
+import { NextResponse } from "next/server";
 
 export class EnterpriseController {
-  static async getSectors(req: NextRequest) {
+  static async getSectors() {
     const res = await fetch(sectorUrl, {
       method: "GET",
-      headers: req.headers,
+      headers: {
+        ...defaultHeaders,
+      },
     });
 
     const resBody = await res.json();
@@ -15,10 +18,12 @@ export class EnterpriseController {
     });
   }
 
-  static async getRolesBySector(req: NextRequest, sectorId: string) {
+  static async getRolesBySector(sectorId: string) {
     const res = await fetch(`${sectorUrl}/${sectorId}/roles`, {
       method: "GET",
-      headers: req.headers,
+      headers: {
+        ...defaultHeaders,
+      },
     });
 
     const resBody = await res.json();
