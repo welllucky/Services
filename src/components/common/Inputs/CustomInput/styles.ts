@@ -1,12 +1,13 @@
 /* eslint-disable no-nested-ternary */
 import { Row } from "@/styles";
+import { InputStatus } from "@/types";
 import { css, styled } from "styled-components";
 import { InputStylesProps } from ".";
 
 interface ContentContainerProps {
   height?: string;
   mode?: "filled" | "outlined";
-  $status?: "valid" | "invalid" | "warning" | "none";
+  $status?: InputStatus;
   backgroundColor?: string;
 }
 
