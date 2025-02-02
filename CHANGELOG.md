@@ -1,5 +1,69 @@
 # Changelog
 
+## [0.4.0](https://github.com/welllucky/Services/compare/v0.3.0...v0.4.0) (2025-02-02)
+
+
+### Features
+
+* :heavy_plus_sign: Adição do Storybook + Story do Input ([9928cdd](https://github.com/welllucky/Services/commit/9928cdd507d715cb9086e4662c09d7c0108f3ebc))
+* :heavy_plus_sign: Adicionando react-toastify ([f03245e](https://github.com/welllucky/Services/commit/f03245ed33715aa7a6d6c2a6605b62d0bdd70777))
+* :monocle_face: Adiciona envio de logs de erro para o Sentry ([f85e834](https://github.com/welllucky/Services/commit/f85e83453c154bdb5fea06eed2a92c6b2715016a))
+* :safety_vest: Concretização do Services ([fdd183d](https://github.com/welllucky/Services/commit/fdd183d62686f22909e7d01a659eea580a48059c))
+* :sparkles: Adição da rota cron e do vercel.json ([808ecfb](https://github.com/welllucky/Services/commit/808ecfbc458ae070054acd0fdb1b36c112b05141))
+* :sparkles: Adição da rota cron e do vercel.json ([e10e928](https://github.com/welllucky/Services/commit/e10e928302d7f56443ba269fb994a4dc85f91d44))
+* :sparkles: Adiciona autenticação e gerenciamento de sessão com NextAuth ([ff69f45](https://github.com/welllucky/Services/commit/ff69f45709e58e5d2a45601802b7d277116e8a0d))
+* :sparkles: Adiciona monitoramento com React Scan no AppProviders ([c50b855](https://github.com/welllucky/Services/commit/c50b855cdbdd8117b2477be25160d295af7af1bb))
+* :sparkles: Adiciona novas interfaces e refatora APIs, incluindo a implementação de SectorApi e ajustes na estrutura de URLs ([cae25e2](https://github.com/welllucky/Services/commit/cae25e2270f3919620492f11118ffd01bf8f20bf))
+* :sparkles: Adiciona novos controladores e interfaces, refatora a estrutura de exportação e implementa a lógica de registro de usuário ([d6e9015](https://github.com/welllucky/Services/commit/d6e9015087b4b37a28924bf4234e1bb14a42cd54))
+* :sparkles: Adiciona o sequelize no projeto para inicio da implementação do backend na aplicação ([a3c6529](https://github.com/welllucky/Services/commit/a3c6529d5552a901ec2c90fbb2ed088b91899989))
+* :sparkles: Adiciona script de pré-commit para lint e build ([c895e36](https://github.com/welllucky/Services/commit/c895e3681b1e02e609a6fc143a1ad6b69115e332))
+* :sparkles: Adiciona script de release e inclui dependência para versionamento automático ([178c5a2](https://github.com/welllucky/Services/commit/178c5a2c7623035b4681bf203f0a672441d7b75d))
+* :sparkles: Adiciona tela de registro com componentes de formulário e cabeçalho, além de ajustes em estilos e APIs ([8c1ee2f](https://github.com/welllucky/Services/commit/8c1ee2f3b6fd563b49c9b55c46b46ab2d7436a07))
+* :sparkles: Adiciona workflow de release no GitHub Actions ([cf480ef](https://github.com/welllucky/Services/commit/cf480ef52409b215cc38c554ecb9f721f21b03c3))
+* :sparkles: Altera a visibilidade do pacote e adiciona accessToken ao usuário na sessão e JWT ([e2031f1](https://github.com/welllucky/Services/commit/e2031f14b0f8a15b0a3d1f53667d110fc084098a))
+* :sparkles: Aprimoramento da aplicação ([c0680e1](https://github.com/welllucky/Services/commit/c0680e10b05f50a6e2936840048aaae5d271a575))
+* :sparkles: Atualiza configuração de autenticação, adiciona testes para a página sem dispositivo móvel e refatora estrutura de testes ([bde1164](https://github.com/welllucky/Services/commit/bde116449bc0e89e48fb2ca230d3f49b92530260))
+* :sparkles: Atualiza configuração do Playwright, ajusta branches do workflow e remove arquivos de relatório obsoletos ([69ab79a](https://github.com/welllucky/Services/commit/69ab79a79858e47353e26eb9ab4a6d3729896e99))
+* :sparkles: Criação da tela de chamado ([b339015](https://github.com/welllucky/Services/commit/b33901502c8fbf8a3d9da6e10d420b5eba2dbcf3))
+* :sparkles: Criação da tela de confirmação de chamado ([f3f9212](https://github.com/welllucky/Services/commit/f3f92121e507457f5a370f3e050945d4b6acb22b))
+* :sparkles: Criação do componente de ações do chamado ([28f89cd](https://github.com/welllucky/Services/commit/28f89cd060cc63e35a7bf5987dad6f5ed17ad829))
+* :sparkles: Finalização da tela de abrir chamado ([df24878](https://github.com/welllucky/Services/commit/df24878e415b69453c803105833958a44506bff5))
+* :sparkles: Finalização da tela de confirmação de chamado ([153b95c](https://github.com/welllucky/Services/commit/153b95ca6f94b5442425c203fc6819a1dadb5488))
+* :sparkles: Implementa a tela de solicitacao ([ac83376](https://github.com/welllucky/Services/commit/ac8337606472e554edc6f1170643f9264568f5a4))
+* :sparkles: Implementa controlador de conta e refatora a lógica de criação de conta, incluindo melhorias na API e no tratamento de erros ([d312e37](https://github.com/welllucky/Services/commit/d312e377eaff287ed50f3ba0a696b102b7eb19c0))
+* :sparkles: Implementa na rota de api o MVC com o repository e o service ([03afc92](https://github.com/welllucky/Services/commit/03afc929d4a88f30f0262b2423e13e7ee1b760f8))
+* :sparkles: Implementa o endpoint de chamados em andamento na tela pricipal além de adicionar o endpoint de fechamento de chamado ([01e3357](https://github.com/welllucky/Services/commit/01e3357362854e84d597f9fecd1b040692db48dc))
+* :sparkles: Implementa o endpoint de solicitações e de pesquisa ([b775e60](https://github.com/welllucky/Services/commit/b775e6093a762db68958a0eedcabc3204d1e9a35))
+* :sparkles: Implementa o login e protege as rotas internas da aplicação ([357fba8](https://github.com/welllucky/Services/commit/357fba829063980f04307f07f9be8e392cbc8980))
+* :sparkles: Reconstrução da tela de chamado ([7d245b0](https://github.com/welllucky/Services/commit/7d245b053a46ce5d445952772c57e4451d81f920))
+* :sparkles: Refatora componentes de busca e issues, ajusta tipos e remove rotas obsoletas ([fe0f1da](https://github.com/welllucky/Services/commit/fe0f1da792a487fa9bc62e4af455cf82ae278046))
+* :sparkles: Refatora o gerenciamento de sessão, removendo logs desnecessários e melhorando a autenticação ([daeb7ad](https://github.com/welllucky/Services/commit/daeb7adbae3596c955a696642de804dfa0dd7bea))
+* :sparkles: Refatora rotas de sessão e enterprise, ajusta uso de headers padrão e remove dependências obsoletas ([dea8752](https://github.com/welllucky/Services/commit/dea8752521e4b92908e660932a4a9b296a24348b))
+* :sparkles: Renomeia rotas e ajusta links correspondentes na aplicação ([3394d3c](https://github.com/welllucky/Services/commit/3394d3c981d6f00f1be4091dea71daad9011fad2))
+* :tada: Inicio do Services ([18ef24b](https://github.com/welllucky/Services/commit/18ef24b1d1d6ec87b58894775219a73128fc0308))
+* :zap: Adiciona o PNPM no projeto ([cbdda7a](https://github.com/welllucky/Services/commit/cbdda7acd2ea7282cdba188dcf5738dae7b301ae))
+
+
+### Bug Fixes
+
+* :bug: Ajuste no tratamento dos textos no componente de Issue display ([a7a64dc](https://github.com/welllucky/Services/commit/a7a64dc8859b5536724d3ce725e570c5716456ef))
+* :bug: Correção do componente de Fildset ([7f772a3](https://github.com/welllucky/Services/commit/7f772a33bbd57f304a72012f7f124617084f8ca9))
+* :bug: Correção na aparição do toast na tela de abrir chamado ([b2e61fa](https://github.com/welllucky/Services/commit/b2e61fae599e4c50f46c6f80d24cb2977d9f10c9))
+* :bug: Corrige a troca repentina do conteúdo de noMobileDevice ([f323af2](https://github.com/welllucky/Services/commit/f323af27fd1581332d737a2331d783037d837403))
+* :bug: Corrige conexão ssl com banco de dados ([a5942da](https://github.com/welllucky/Services/commit/a5942da042dbdd4b80a2a3e4e8f5e0d7b6ebf0ff))
+* :lipstick: Correção de estilos e ajustes em componentes ([aaf7fb4](https://github.com/welllucky/Services/commit/aaf7fb47ac940faf2b5d1733a077c5c836ea4fc7))
+* :lipstick: Correção do background do Loading Componente ([38262f2](https://github.com/welllucky/Services/commit/38262f262efc9ffe07327bcaf02d898dd5a495a0))
+* package.json to reduce vulnerabilities ([837baa9](https://github.com/welllucky/Services/commit/837baa92949d1f80f95a51a6137914642be907fa))
+* package.json to reduce vulnerabilities ([6e880f4](https://github.com/welllucky/Services/commit/6e880f466ab5642810cee8fc5e695e590e39978f))
+* upgrade next from 13.5.4 to 13.5.6 ([5ea0c57](https://github.com/welllucky/Services/commit/5ea0c571679adf7e598bceebc9a3096d04fd903f))
+* upgrade zustand from 5.0.0-rc.2 to 5.0.0 ([5d7cbe9](https://github.com/welllucky/Services/commit/5d7cbe977e9b20b646153703e0f8fa6cbc86c633))
+
+
+### Performance Improvements
+
+* :wrench: Configura o Sentry na aplicação ([3387dc0](https://github.com/welllucky/Services/commit/3387dc09cd8f556a1d145b5db063e055f56aa690))
+* :zap: Ajustes de performance na aplicação principal ([60ea4a4](https://github.com/welllucky/Services/commit/60ea4a4d0ac1de59260eb6010bfc55b9782f890d))
+
 ## [0.3.0](https://github.com/welllucky/Services/compare/0.2.0...v0.3.0) (2025-02-02)
 
 
