@@ -86,7 +86,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           role: token?.role,
           sector: token?.sector,
           systemRole: token?.systemRole,
-          //temporário
           accessToken: token?.accessToken,
         },
       };
