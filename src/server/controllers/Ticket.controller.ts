@@ -27,7 +27,6 @@ class TicketController {
         },
       });
 
-      // @todo call the api
       const resBody = (await res.json()) as IHttpResponse<
         TicketDto[],
         { message?: string; title?: string }

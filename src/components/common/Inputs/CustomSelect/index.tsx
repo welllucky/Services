@@ -84,13 +84,17 @@ export const CustomSelect = ({
     fieldState,
     status: $status,
     value: field.value,
+    isDisabled,
   });
+
+  console.log({ isDisabled, internalStatus });
 
   const colorMapping = {
     invalid: "#b3261e",
     valid: "#7ac143",
     warning: "#f2994a",
     none: "#79747e",
+    disabled: "#acacac",
   };
 
   return (

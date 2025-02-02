@@ -27,7 +27,8 @@ const CustomFieldset = ({
     width={width}
     $maxHeight={$maxHeight}
     $minHeight={$minHeight}
-    $hasOverflow={$hasOverflow}>
+    $hasOverflow={$hasOverflow}
+    color={color}>
     <Legend {...buildTestIds(`legend-text-${labelText}`)}>{labelText}</Legend>
     <Fieldset
       {...buildTestIds(`fieldset-container-${labelText}`)}

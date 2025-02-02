@@ -1,10 +1,9 @@
-// import { getAuthToken } from "@/server/functions/getAuthToken";
+import { CS_KEY_ACCESS_TOKEN, defaultHeaders } from "@/constraints";
 import { IHttpResponse, ISessionResponse } from "@/types";
-// import { CS_KEY_ACCESS_TOKEN } from "@/constraints/alias";
 import { addBreadcrumb, captureException } from "@sentry/nextjs";
-// import { cookies } from "next/headers";
-import { defaultHeaders } from "@/constraints";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { getAuthToken } from "../functions/getAuthToken";
 import { getFormattedBody } from "../functions/getFormattedBody";
 
 interface SessionProps {
@@ -17,7 +16,7 @@ const sessionApiUrl = `${process.env.APIS_BASE_URL}sessions`;
 export class SessionController {
   static async create(req: NextRequest) {
     try {
-      // const cookiesStore = cookies();
+      const cookiesStore = cookies();
       const { email, password } = await getFormattedBody<SessionProps>(req);
 
       if (!email || !password) {
@@ -86,6 +85,13 @@ export class SessionController {
         );
       }
 
+      cookiesStore.set(CS_KEY_ACCESS_TOKEN, data.token, {
+        expires: new Date(data.expiresAt),
+        path: "/",
+        sameSite: "strict",
+        secure: true,
+      });
+
       return NextResponse.json(
         { ...resBody },
         {
@@ -126,13 +132,19 @@ export class SessionController {
 
   static async close(req: NextRequest) {
     try {
+      const { accessToken } = await getAuthToken(req);
+
+      console.log({ accessToken });
+
       const res = await fetch(`${sessionApiUrl}/close`, {
         method: "POST",
         headers: {
-          Authorization: req.headers.get("Authorization") ?? "",
+          Authorization: `Bearer ${accessToken}`,
           ...defaultHeaders,
         },
       });
+
+      console.log({ res });
 
       if (res.ok) {
         addBreadcrumb({

@@ -28,7 +28,7 @@ export class EnterpriseApi {
     sectorId,
     shouldFetch,
   }: {
-    sectorId: string;
+    sectorId?: string;
     shouldFetch: boolean;
   }) => {
     return this.httpClient.get<IHttpResponse<RoleDto[], IHttpError>>({

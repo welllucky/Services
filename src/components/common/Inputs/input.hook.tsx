@@ -7,6 +7,7 @@ interface InputHookProps {
   fieldState: ControllerFieldState;
   status: InputStatus;
   errorText?: string;
+  isDisabled?: boolean;
 }
 
 export const useCustomInput = ({
@@ -14,6 +15,7 @@ export const useCustomInput = ({
   value,
   status,
   errorText,
+  isDisabled,
 }: InputHookProps) => {
   const dateFieldSuccessValidation =
     typeof value !== "undefined" && value !== null && value !== "";
@@ -42,11 +44,12 @@ export const useCustomInput = ({
   );
 
   const internalStatus: InputStatus = useMemo(() => {
+    if (isDisabled) return "disabled";
     if (hasErrorState) return "invalid";
     if (hasSuccessState) return "valid";
     if (status === "warning") return "warning";
     return "none";
-  }, [hasErrorState, hasSuccessState, status]);
+  }, [hasErrorState, hasSuccessState, isDisabled, status]);
 
   return {
     hasErrorState,

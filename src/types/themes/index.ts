@@ -44,7 +44,7 @@ type ThemeProps = {
   };
 };
 
-type InputStatus = "valid" | "invalid" | "warning" | "none";
+type InputStatus = "valid" | "invalid" | "warning" | "none" | "disabled";
 
 interface InputComponentsProps {
   id: string;

@@ -43,11 +43,6 @@ const LoginPage = ({ redirectTo }: LoginPageProps) => {
           type: "value",
         });
         toast.error(error);
-
-        // setTimeout(() => {
-        //   resetField("password");
-        //   clearErrors("root");
-        // }, 8000);
       }, 200);
     }
   }, [clearErrors, error, resetField, setError]);

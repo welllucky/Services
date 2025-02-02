@@ -47,6 +47,7 @@ export const UserSchema = z.object({
   role: z.string(),
   systemRole: z.string(),
   sector: z.string(),
+  accessToken: z.string().nullable(),
 });
 
 export type IUser = z.infer<typeof UserSchema>;
