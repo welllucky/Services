@@ -1,5 +1,5 @@
+import { defaultHeaders } from "@/constraints";
 import { IHttpResponse, ISessionResponse, SignInSchema } from "@/types";
-import { defaultHeaders } from "@/utils/constraints";
 
 export const createSession = async (email: string, password: string) => {
   try {

@@ -1,10 +1,10 @@
 // import { getAuthToken } from "@/server/functions/getAuthToken";
 import { IHttpResponse, ISessionResponse } from "@/types";
-// import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
+// import { CS_KEY_ACCESS_TOKEN } from "@/constraints/alias";
 import { addBreadcrumb, captureException } from "@sentry/nextjs";
 // import { cookies } from "next/headers";
+import { defaultHeaders } from "@/constraints";
 import { NextRequest, NextResponse } from "next/server";
-import { getAuthToken } from "../functions/getAuthToken";
 import { getFormattedBody } from "../functions/getFormattedBody";
 
 interface SessionProps {
@@ -57,7 +57,7 @@ export class SessionController {
       const res = await fetch(sessionApiUrl, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          ...defaultHeaders,
         },
         body: JSON.stringify({
           email,
@@ -126,26 +126,11 @@ export class SessionController {
 
   static async close(req: NextRequest) {
     try {
-      const { userId } = await getAuthToken(req);
-
-      if (!userId) {
-        addBreadcrumb({
-          category: "api",
-          level: "warning",
-          message: "User not authenticated",
-        });
-        return NextResponse.json(
-          { error: { message: "User not authenticated" } },
-          {
-            status: 401,
-          },
-        );
-      }
-
       const res = await fetch(`${sessionApiUrl}/close`, {
         method: "POST",
         headers: {
           Authorization: req.headers.get("Authorization") ?? "",
+          ...defaultHeaders,
         },
       });
 

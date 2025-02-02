@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: Promise<{ name: string; sectorId: string }> },
 ) {
   const { sectorId } = await params;
-  return EnterpriseController.getRolesBySector(req, sectorId);
+  return EnterpriseController.getRolesBySector(sectorId);
 }
 
 export const runtime = "nodejs";
