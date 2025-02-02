@@ -54,6 +54,7 @@ export class HTTPClient implements IHttpClient {
     shouldFetch = true,
     options,
   }: HttpClientProps): IHttpResponse<T, IHttpError> {
+    const fetchId = shouldFetch ? url : null;
     const fetcher = async () => {
       let res: AxiosResponse<T>;
       switch (type) {
@@ -81,21 +82,17 @@ export class HTTPClient implements IHttpClient {
       } as IHttpClientResponse<T>;
     };
 
-    const newRes =
-      !options?.dontRefresh || typeof window === "undefined"
-        ? useSWR<IHttpClientResponse<T>>(shouldFetch ? url : null, fetcher, {
-            refreshInterval: options?.refreshInterval ? 1000 * 60 * 5 : 0,
-            revalidateOnFocus: true,
-            revalidateOnReconnect: true,
-            // errorRetryCount: 3,
-            // errorRetryInterval: 3000,
-            refreshWhenHidden: true,
-            refreshWhenOffline: true,
-          })
-        : useSWRImmutable<IHttpClientResponse<T>>(
-            shouldFetch ? url : null,
-            fetcher,
-          );
+    const newRes = !options?.dontRefresh
+      ? useSWR<IHttpClientResponse<T>>(fetchId, fetcher, {
+          refreshInterval: options?.refreshInterval ? 1000 * 60 * 10 : 0,
+          revalidateOnFocus: options?.revalidateOnFocus || false,
+          revalidateOnReconnect: options?.revalidateOnReconnect || true,
+          refreshWhenHidden: options?.refreshWhenHidden || true,
+          refreshWhenOffline: options?.refreshWhenOffline || true,
+          errorRetryCount: 3,
+          errorRetryInterval: 30000,
+        })
+      : useSWRImmutable<IHttpClientResponse<T>>(fetchId, fetcher);
 
     return {
       data: newRes.data?.result as unknown as T,

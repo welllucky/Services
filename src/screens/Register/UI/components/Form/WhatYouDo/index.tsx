@@ -1,42 +1,28 @@
 import { CustomSelect } from "@/components";
 import { theme } from "@/styles";
-import { OptionProps } from "@/types";
-import { enterpriseApi } from "@/utils";
+
+import { useRegister } from "@/screens/Register/register.hook";
 import { useMemo } from "react";
 import { Control, useFormContext } from "react-hook-form";
 import { Section } from "../components";
 
 export const WhatYouDo = () => {
-  const { control, watch } = useFormContext();
-  const selectedSector = watch("sector");
+  const { control } = useFormContext();
+  const { roles, sectors, selectedSector } = useRegister();
 
-  const { data: sectors } = enterpriseApi.getSectors();
-  const { data: roles } = enterpriseApi.getRolesBySector({
-    sectorId: selectedSector,
-    shouldFetch: !!selectedSector,
+  const isSectorInputDisabled = useMemo(() => !sectors?.length, [sectors]);
+  const isRoleInputDisabled = useMemo(
+    () => !selectedSector || !roles?.length,
+    [roles, selectedSector],
+  );
+
+  console.log({
+    roles,
+    sectors,
+    selectedSector,
+    isSectorInputDisabled,
+    isRoleInputDisabled,
   });
-
-  const sectorOptions = useMemo(() => {
-    return sectors?.data?.map(
-      (sector) =>
-        ({
-          text: sector?.name,
-          value: sector?.id,
-          key: sector?.id,
-        }) as OptionProps,
-    );
-  }, [sectors]);
-
-  const roleOptions = useMemo(() => {
-    return roles?.data?.map(
-      (role) =>
-        ({
-          text: role?.name,
-          value: role?.id,
-          key: role?.id,
-        }) as OptionProps,
-    );
-  }, [roles]);
 
   return (
     <Section
@@ -48,7 +34,8 @@ export const WhatYouDo = () => {
         width="100%"
         labelText="Setor"
         control={control as unknown as Control}
-        options={sectorOptions}
+        options={sectors}
+        isDisabled={isSectorInputDisabled}
       />
       <CustomSelect
         labelText="Cargo"
@@ -56,8 +43,8 @@ export const WhatYouDo = () => {
         placeholder="Qual o seu cargo?"
         width="100%"
         control={control as unknown as Control}
-        options={roleOptions}
-        isDisabled={!selectedSector}
+        options={roles}
+        isDisabled={isRoleInputDisabled}
       />
     </Section>
   );

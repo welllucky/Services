@@ -1,22 +1,17 @@
 import { CustomButton } from "@/components";
-import { RegisterFormProps } from "@/screens/Register/register.types";
-import { CreateAccountDto, CreateAccountSchema } from "@/types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormProvider, useForm } from "react-hook-form";
+import { useRegister } from "@/screens/Register/register.hook";
+import { FormProvider } from "react-hook-form";
 import { CreateAccess } from "./CreateAccess";
 import { RegisterForm } from "./styles";
 import { WhatYouDo } from "./WhatYouDo";
 import { WhoAreYou } from "./WhoAreYou";
 
-export const Form = ({ onCreateAccount }: RegisterFormProps) => {
-  const methods = useForm<CreateAccountDto>({
-    resolver: zodResolver(CreateAccountSchema),
-    mode: "onChange",
-  });
+export const Form = () => {
+  const { methods, createAccount } = useRegister();
 
   return (
     <FormProvider {...methods}>
-      <RegisterForm onSubmit={methods.handleSubmit(onCreateAccount)}>
+      <RegisterForm onSubmit={methods.handleSubmit(createAccount)}>
         <WhoAreYou />
         <WhatYouDo />
         <CreateAccess />

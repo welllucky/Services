@@ -28,7 +28,7 @@ interface AuthContextProps {
   isAuthenticated: boolean;
   user: IUser | null;
   // eslint-disable-next-line no-unused-vars
-  signOut: (soft?: boolean) => void;
+  signOut: (soft?: boolean) => Promise<void>;
   signIn: (
     // eslint-disable-next-line no-unused-vars
     email: string,
@@ -49,7 +49,7 @@ const AuthContext = createContext<AuthContextProps>({
   user: null,
   isLoading: false,
   accessToken: "",
-  signOut: () => {},
+  signOut: async () => Promise.resolve(),
   signIn: async () => Promise.resolve(),
   error: "",
   update: async () => Promise.resolve(),
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     resetStates();
     Sentry.setUser(null);
     sessionStorage.removeItem(LS_KEY_USER_DATA);
-    await closeSession(data?.user?.accessToken || "");
+    await closeSession(data?.user?.accessToken ?? "");
     await systemSignOut({
       redirectTo: "/login",
       redirect: true,
@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           email,
           password,
           redirect: true,
-          redirectTo: redirectTo || "/",
+          redirectTo: redirectTo ?? "/",
         });
       } catch (err) {
         setError((err as Error).message);

@@ -1,12 +1,22 @@
 /* eslint-disable no-nested-ternary */
-import styled from "styled-components";
+import { InputStatus } from "@/types";
+import styled, { css } from "styled-components";
 
-export const SelectContainer = styled.div<{ $status: string }>`
+export const SelectContainer = styled.div<{ $status: InputStatus }>`
   width: inherit;
   display: flex;
   flex-direction: column;
 
-  
+  ${({ $status }) =>
+    $status === "disabled" &&
+    css`
+      pointer-events: none;
+      cursor: not-allowed;
+
+      select {
+        color: #acacac;
+      }
+    `}
 `;
 export const SelectComponent = styled.select<{ $isPlaceholder?: boolean }>`
   display: flex;

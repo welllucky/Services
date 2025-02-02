@@ -1,11 +1,6 @@
 import * as Sentry from "@sentry/nextjs";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-// import {
-//   CS_KEY_CALLBACK_URL,
-//   CS_KEY_CSRF_TOKEN,
-//   CS_KEY_SESSION_TOKEN,
-// } from "./utils/alias";
 import { createSession } from "./utils/functions/createSession";
 import { getUserByToken } from "./utils/functions/getUserByToken";
 
@@ -24,11 +19,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           String(credentials.password),
         );
 
+        console.log({ accessToken });
+
         if (!accessToken) {
           return null;
         }
 
         const { userData } = await getUserByToken(accessToken);
+
+        console.log({ userData });
 
         if (!userData) {
           return null;
@@ -87,6 +86,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           role: token?.role,
           sector: token?.sector,
           systemRole: token?.systemRole,
+          //temporário
+          accessToken: token?.accessToken,
         },
       };
     },

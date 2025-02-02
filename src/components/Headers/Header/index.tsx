@@ -44,7 +44,7 @@ export const Header = () => {
             </TitleComponent>
           </UserName>
           <IconButton
-            onClick={() => signOut(false)}
+            onClick={signOut}
             icon={<SignOutIcon size={24} />}
           />
         </Row>

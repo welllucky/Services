@@ -38,8 +38,8 @@ export class SessionApi {
   };
 
   closeSession = async (accessToken: string) => {
-    const res = await fetch(this.apiUrl, {
-      method: "DELETE",
+    const res = await fetch(`${this.apiUrl}/close`, {
+      method: "PUT",
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

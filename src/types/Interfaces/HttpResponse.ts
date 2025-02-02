@@ -8,13 +8,17 @@ export type HttpClientOptions = {
   revalidateOnReconnect?: boolean;
   refreshInterval?: boolean;
   dontRefresh?: boolean;
+  refreshWhenHidden?: boolean;
+  refreshWhenOffline?: boolean;
 };
+
+type PrimitiveType = string | number | boolean;
 
 export interface HttpClientProps {
   url: string;
   type?: "GET" | "POST" | "PUT" | "DELETE";
-  body?: Record<string, string | number | boolean>;
-  headers?: Record<string, string | number | boolean>;
+  body?: Record<string, PrimitiveType>;
+  headers?: Record<string, PrimitiveType>;
   shouldFetch?: boolean;
   options?: HttpClientOptions;
 }

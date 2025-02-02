@@ -6,16 +6,19 @@ export const createSession = async (email: string, password: string) => {
     const { email: reliableEmail, password: reliablePassword } =
       SignInSchema.parse({ email, password });
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/sessions`, {
-      method: "POST",
-      headers: {
-        ...defaultHeaders,
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}api/public/session`,
+      {
+        method: "POST",
+        headers: {
+          ...defaultHeaders,
+        },
+        body: JSON.stringify({
+          email: reliableEmail,
+          password: reliablePassword,
+        }),
       },
-      body: JSON.stringify({
-        email: reliableEmail,
-        password: reliablePassword,
-      }),
-    });
+    );
 
     const { data, error } = (await res.json()) as IHttpResponse<
       ISessionResponse,
