@@ -134,8 +134,6 @@ export class SessionController {
     try {
       const { accessToken } = await getAuthToken(req);
 
-      console.log({ accessToken });
-
       const res = await fetch(`${sessionApiUrl}/close`, {
         method: "POST",
         headers: {
@@ -143,8 +141,6 @@ export class SessionController {
           ...defaultHeaders,
         },
       });
-
-      console.log({ res });
 
       if (res.ok) {
         addBreadcrumb({

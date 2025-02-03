@@ -1,5 +1,4 @@
 ![Logo](https://firebasestorage.googleapis.com/v0/b/runnerdois.appspot.com/o/ServicesProject%2FImages%2FServices%20-%20Capa.png?alt=media&token=a5131cc4-2b48-4500-b90f-a22d55352242)
-![](https://api.checklyhq.com/v1/badges/checks/dd6528e6-fac1-4d85-8295-5b0697e16d86?style=flat&theme=dark)
 
 # ⛓️‍💥Desburocratizador do gerenciamento de chamados
 

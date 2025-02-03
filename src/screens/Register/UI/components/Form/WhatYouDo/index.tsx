@@ -16,14 +16,6 @@ export const WhatYouDo = () => {
     [roles, selectedSector],
   );
 
-  console.log({
-    roles,
-    sectors,
-    selectedSector,
-    isSectorInputDisabled,
-    isRoleInputDisabled,
-  });
-
   return (
     <Section
       title="O que você faz?"
