@@ -19,15 +19,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           String(credentials.password),
         );
 
-        console.log({ accessToken });
-
         if (!accessToken) {
           return null;
         }
 
         const { userData } = await getUserByToken(accessToken);
-
-        console.log({ userData });
 
         if (!userData) {
           return null;
@@ -117,11 +113,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       Sentry.captureException(error);
     },
     warn: (code) => {
-      console.log(code);
+      console.warn(code);
     },
     info: console.log,
     debug: (message, metadata) => {
-      console.log({ message, metadata });
+      console.debug({ message, metadata });
     },
   },
 });

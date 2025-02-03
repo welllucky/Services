@@ -87,8 +87,6 @@ export const CustomSelect = ({
     isDisabled,
   });
 
-  console.log({ isDisabled, internalStatus });
-
   const colorMapping = {
     invalid: "#b3261e",
     valid: "#7ac143",
