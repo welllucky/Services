@@ -1,11 +1,12 @@
 import { ClearIcon, EmailIcon } from "@/assets";
 import { CustomInput } from "@/components";
 import { Control } from "react-hook-form";
-import { LoginPageProps } from "../../..";
+import { FormControl } from "../../../../Login.types";
 
-export const EmailInput = ({ control }: Pick<LoginPageProps, "control">) => {
+export const EmailInput = ({ control }: { control: FormControl }) => {
   return (
     <CustomInput
+      autoComplete="username"
       control={control as unknown as Control}
       id="email"
       type="email"

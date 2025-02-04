@@ -1,4 +1,5 @@
 import { InputStylesProps } from "@/components";
+import React from "react";
 import { Control, RegisterOptions } from "react-hook-form";
 
 // type ThemeKey = {
@@ -46,7 +47,7 @@ type ThemeProps = {
 
 type InputStatus = "valid" | "invalid" | "warning" | "none" | "disabled";
 
-interface InputComponentsProps {
+interface InputComponentsProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
   value?: string;
   placeholder: string;

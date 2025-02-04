@@ -1,42 +1,38 @@
-import { Loading } from "@/components";
-import { ISignIn } from "@/types";
-import { Control, FormState } from "react-hook-form";
-import { CreateAccountOption } from "./components/CreateAccountOption";
+import { useEffect, useMemo } from "react";
+import toast from "react-hot-toast";
+import { LoginUIProps } from "../Login.types";
 import { DisplayImage } from "./components/DisplayImage";
 import { LoginForm } from "./components/Form";
-import { LoginButton } from "./components/Form/LoginButton";
-import { ActionSection, LoginMobile, ScreenContainer } from "./styles";
-
-export interface LoginPageProps {
-  control: Control<ISignIn>;
-  formState: FormState<ISignIn>;
-  pageIsLoading?: boolean;
-  loginAction: () => void;
-}
+import { LoginMobile, ScreenContainer } from "./styles";
 
 const LoginPageUI = ({
   formState,
   control,
   loginAction,
   pageIsLoading,
-}: LoginPageProps) => {
+}: LoginUIProps) => {
   const { isLoading: formIsLoading, isValid } = formState;
 
-  const isLoading = pageIsLoading || formIsLoading;
+  const isLoading = useMemo(
+    () => pageIsLoading || formIsLoading,
+    [formIsLoading, pageIsLoading],
+  );
+
+  useEffect(() => {
+    if (isLoading) {
+      toast.loading("Loading...");
+    }
+  }, [isLoading]);
 
   return (
     <ScreenContainer>
-      {isLoading && <Loading $overlayOn />}
       <LoginMobile>
         <DisplayImage />
-        <LoginForm control={control} />
-        <ActionSection>
-          <LoginButton
-            isDisabled={!isValid}
-            callback={loginAction}
-          />
-          <CreateAccountOption />
-        </ActionSection>
+        <LoginForm
+          control={control}
+          isValid={isValid && !isLoading}
+          loginAction={loginAction}
+        />
       </LoginMobile>
     </ScreenContainer>
   );

@@ -4,6 +4,10 @@ import Credentials from "next-auth/providers/credentials";
 import { createSession } from "./utils/functions/createSession";
 import { getUserByToken } from "./utils/functions/getUserByToken";
 
+const companyEmail = process.env.SERVICES_COMPANY_EMAIL_DOMAIN
+  ? `@${process.env.SERVICES_COMPANY_EMAIL_DOMAIN}`
+  : "";
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   debug: process.env.HOST_ENV === "development",
   providers: [
@@ -40,7 +44,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/login",
     newUser: "/register",
-    // error: "/login",
+    error: "/login",
   },
   session: {
     maxAge: 6 * 24 * 60 * 60,
@@ -51,7 +55,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   // useSecureCookies: process.env.NODE_ENV !== "development",
   callbacks: {
-    async jwt({ token, user }) {
+    jwt({ token, user }) {
       return {
         ...token,
         ...user,
@@ -82,41 +86,34 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           role: token?.role,
           sector: token?.sector,
           systemRole: token?.systemRole,
-          accessToken: token?.accessToken,
         },
+        accessToken: token?.accessToken,
       };
     },
+    signIn({ user, profile, credentials }) {
+      const userEmail =
+        user.email ?? profile?.email ?? String(credentials?.email);
+
+      if (!companyEmail) return true;
+
+      return Boolean(userEmail?.endsWith(companyEmail));
+    },
   },
-  // cookies: {
-  //   sessionToken: {
-  //     name: CS_KEY_SESSION_TOKEN,
-  //     options: {
-  //       httpOnly: process.env.NODE_ENV !== "development",
-  //     },
-  //   },
-  //   callbackUrl: {
-  //     name: CS_KEY_CALLBACK_URL,
-  //     options: {
-  //       httpOnly: process.env.NODE_ENV !== "development",
-  //     },
-  //   },
-  //   csrfToken: {
-  //     name: CS_KEY_CSRF_TOKEN,
-  //     options: {
-  //       httpOnly: process.env.NODE_ENV !== "development",
-  //     },
-  //   },
-  // },
+
   logger: {
     error: (error) => {
+      // eslint-disable-next-line no-console
       console.error({ error });
       Sentry.captureException(error);
     },
     warn: (code) => {
+      // eslint-disable-next-line no-console
       console.warn(code);
     },
+    // eslint-disable-next-line no-console
     info: console.log,
     debug: (message, metadata) => {
+      // eslint-disable-next-line no-console
       console.debug({ message, metadata });
     },
   },

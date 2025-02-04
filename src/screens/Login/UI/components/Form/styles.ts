@@ -213,7 +213,7 @@ export const AccessButton = styled.button<AccessButtonProps>`
         `)}
 `;
 
-export const FormContainer = styled.section`
+export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

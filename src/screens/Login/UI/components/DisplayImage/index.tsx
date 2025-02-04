@@ -9,6 +9,7 @@ export const DisplayImage = () => (
       width={80}
       height={80}
       alt="Services"
+      priority
     />
   </LogoContainer>
 );
