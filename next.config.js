@@ -2,24 +2,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: "",
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      // eslint-disable-next-line no-param-reassign
-      config.resolve = {
-        ...config.resolve,
-        fallback: {
-          ...config.resolve.fallback,
-          fs: false,
-        },
-      };
-    }
-    // eslint-disable-next-line no-param-reassign
-    config.module = {
-      ...config.module,
-      exprContextCritical: false,
-    };
-    return config;
-  },
   compiler: {
     styledComponents: true,
     removeConsole: process.env.NODE_ENV === "production",
@@ -79,6 +61,7 @@ module.exports = withPWA(nextConfig);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withSentryConfig } = require("@sentry/nextjs");
+const packageJson = require("./package.json");
 
 module.exports = withSentryConfig(module.exports, {
   // For all available options, see:
@@ -116,5 +99,5 @@ module.exports = withSentryConfig(module.exports, {
   // autoInstrumentMiddleware: true,
   // autoInstrumentAppDirectory: true,
   // telemetry: true,
-  // release: process.env.NEXT_PUBLIC_RELEASE
+  release: packageJson.release,
 });
