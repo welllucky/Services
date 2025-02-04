@@ -7,7 +7,7 @@ import { CustomFieldset } from "../../../Fieldset";
 import { useCustomInput } from "../input.hook";
 import { TextArea, TextAreaContainer } from "./styles";
 
-export interface TextAreaProps extends InputComponentsProps {
+export interface TextAreaProps extends Omit<InputComponentsProps, "onChange"> {
   /**
    * Function triggered on text area value change
    */

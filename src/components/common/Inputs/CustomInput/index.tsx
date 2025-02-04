@@ -104,6 +104,7 @@ const CustomInput = ({
   control,
   isRequired,
   disabled,
+  ...props
 }: InputProps) => {
   const { field, fieldState } = useController({
     name: id,
@@ -134,6 +135,7 @@ const CustomInput = ({
           type={type}
           required={isRequired}
           {...field}
+          {...props}
         />
         {trailingButton}
       </ContentContainer>

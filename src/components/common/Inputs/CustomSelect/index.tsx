@@ -5,7 +5,8 @@ import { useController } from "react-hook-form";
 import { useCustomInput } from "../input.hook";
 import { CustomOption, SelectComponent, SelectContainer } from "./styles";
 
-export interface SelectProps extends InputComponentsProps {
+export interface SelectProps
+  extends Omit<InputComponentsProps, "onChange" | "onBlur"> {
   /**
    * Function triggered on select value change
    */
@@ -112,8 +113,8 @@ export const CustomSelect = ({
             <CustomOption
               key={option?.key}
               value={option.value}
-              selected={!!option?.isSelected}
-              disabled={!!option?.isDisabled}>
+              selected={Boolean(option?.isSelected)}
+              disabled={Boolean(option?.isDisabled)}>
               {option?.text}
             </CustomOption>
           ))}

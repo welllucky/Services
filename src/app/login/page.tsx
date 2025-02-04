@@ -1,21 +1,16 @@
 import { auth } from "@/auth";
 import { LoginPage } from "@/screens";
+import { LoginPageProps } from "@/screens/Login/Login.types";
 import { redirect } from "next/navigation";
 
-const Login = async ({
-  searchParams,
-}: {
-  searchParams: {
-    redirectTo: string;
-  };
-}) => {
+const Login = async ({ searchParams }: LoginPageProps) => {
   const session = await auth();
 
   if (session?.user) {
     redirect("/");
   }
 
-  return <LoginPage redirectTo={searchParams?.redirectTo} />;
+  return <LoginPage searchParams={searchParams} />;
 };
 
 export default Login;

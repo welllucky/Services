@@ -1,67 +1,23 @@
 "use client";
 
-import { ISignIn, SignInSchema } from "@/types/";
 import { useAuth } from "@/utils/providers/AuthProvider";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useLogin } from "./Login.hook";
+import { LoginPageProps } from "./Login.types";
 import { LoginPageUI } from "./UI";
 
-export interface LoginPageProps {
-  redirectTo?: string;
-}
-
-const LoginPage = ({ redirectTo }: LoginPageProps) => {
-  const { signIn, isLoading, error, isAuthenticated, user } = useAuth();
-  const {
-    control,
-    formState,
-    handleSubmit,
-    setError,
-    clearErrors,
-    resetField,
-  } = useForm<ISignIn>({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-    mode: "onChange",
-    reValidateMode: "onChange",
-    shouldFocusError: false,
-    resetOptions: {
-      keepErrors: false,
-    },
-    resolver: zodResolver(SignInSchema),
-  });
-
-  useEffect(() => {
-    if (error) {
-      setTimeout(() => {
-        setError("root", {
-          message: error,
-          type: "value",
-        });
-        toast.error(error);
-      }, 200);
-    }
-  }, [clearErrors, error, resetField, setError]);
-
-  const loginCallback = handleSubmit(async (data) => {
-    try {
-      await signIn(data.email, data.password, redirectTo ?? "/");
-
-      if (isAuthenticated) toast.success(`Bem-vindo ${user?.name}!`);
-    } catch {
-      toast.error("Email ou senha inválidos");
-    }
+const LoginPage = ({ searchParams }: LoginPageProps) => {
+  const { control, formState, loginAction, isLoading } = useLogin({
+    searchParams,
+    toast,
+    useAuth,
   });
 
   return (
     <LoginPageUI
       formState={formState}
       control={control}
-      loginAction={loginCallback}
+      loginAction={loginAction}
       pageIsLoading={isLoading}
     />
   );

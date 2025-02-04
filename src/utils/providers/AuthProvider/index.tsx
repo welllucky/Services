@@ -24,7 +24,7 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-interface AuthContextProps {
+export interface AuthContextProps {
   isAuthenticated: boolean;
   user: IUser | null;
   // eslint-disable-next-line no-unused-vars
@@ -36,7 +36,12 @@ interface AuthContextProps {
     password: string,
     // eslint-disable-next-line no-unused-vars
     redirectTo?: string,
-  ) => Promise<void>;
+  ) => Promise<{
+    successfully: boolean;
+    error: string;
+    status?: number;
+    url?: string | null;
+  }>;
   // eslint-disable-next-line no-unused-vars
   update: (userData: Partial<IUser>) => Promise<void>;
   isLoading: boolean;
@@ -49,10 +54,14 @@ const AuthContext = createContext<AuthContextProps>({
   user: null,
   isLoading: false,
   accessToken: "",
-  signOut: async () => Promise.resolve(),
-  signIn: async () => Promise.resolve(),
   error: "",
-  update: async () => Promise.resolve(),
+  signOut: () => Promise.resolve(),
+  signIn: () =>
+    Promise.resolve({
+      successfully: false,
+      error: "",
+    }),
+  update: () => Promise.resolve(),
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
@@ -74,12 +83,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     resetStates();
     Sentry.setUser(null);
     sessionStorage.removeItem(LS_KEY_USER_DATA);
-    await closeSession(data?.user?.accessToken ?? "");
+    await closeSession(data?.accessToken ?? "");
     await systemSignOut({
       redirectTo: "/login",
       redirect: true,
     });
-  }, [data?.user.accessToken, resetStates]);
+  }, [data, resetStates]);
 
   const signIn = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
@@ -87,20 +96,42 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       resetStates();
       try {
         setIsLoading(true);
-        await systemSignIn("credentials", {
+        const result = await systemSignIn("credentials", {
           email,
           password,
           redirect: true,
           redirectTo: redirectTo ?? "/",
         });
+
+        if (result?.ok) {
+          setIsAuthenticated(true);
+          return {
+            successfully: Boolean(result?.ok),
+            error: result?.error ?? error,
+            status: result?.status,
+            url: result?.url,
+          };
+        }
+
+        return {
+          successfully: false,
+          error: result?.error ?? error,
+          status: result?.status,
+          url: result?.url,
+        };
       } catch (err) {
-        setError((err as Error).message);
+        const internalError = (err as Error).message;
+        setError(internalError);
         setUser(null);
+        return {
+          successfully: false,
+          error: internalError,
+        };
       } finally {
         setIsLoading(false);
       }
     },
-    [resetStates],
+    [error, resetStates],
   );
 
   const update = useCallback(

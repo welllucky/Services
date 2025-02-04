@@ -1,15 +1,20 @@
 import { ClosedEyeIcon, EyeIcon, LockIcon } from "@/assets";
 import { CustomInput } from "@/components";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Control } from "react-hook-form";
-import { LoginPageProps } from "../../..";
+import { FormControl } from "../../../../Login.types";
 
-export const PasswordInput = ({ control }: Pick<LoginPageProps, "control">) => {
+export const PasswordInput = ({ control }: { control: FormControl }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const handlePasswordVisibility = useCallback(() => {
+    setPasswordVisible(!passwordVisible);
+  }, [passwordVisible]);
 
   return (
     <CustomInput
       id="password"
+      autoComplete="current-password"
       control={control as unknown as Control}
       type={passwordVisible ? "text" : "password"}
       placeholder="Digite a sua senha"
@@ -18,13 +23,13 @@ export const PasswordInput = ({ control }: Pick<LoginPageProps, "control">) => {
           <ClosedEyeIcon
             color="#49454F"
             size={32}
-            onClick={() => setPasswordVisible(!passwordVisible)}
+            onClick={handlePasswordVisibility}
           />
         ) : (
           <EyeIcon
             color="#49454F"
             size={32}
-            onClick={() => setPasswordVisible(!passwordVisible)}
+            onClick={handlePasswordVisibility}
           />
         )
       }
