@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse, userAgent } from "next/server";
 import {
+  CS_KEY_COMPANY_ID,
   CS_KEY_USER_DEVICE_TYPE,
   CS_KEY_USER_RELIABLE_AGENT,
   HD_KEY_COMPANY_ID,
@@ -13,38 +14,29 @@ export default function middleware(request: NextRequest) {
   const companyId = process.env.SERVICES_COMPANY_ID ?? "";
   const { device, isBot } = userAgent(request);
   const clientDevice = device.type ?? "desktop";
-
-  if (
-    !request.cookies.get(CS_KEY_USER_DEVICE_TYPE) ||
-    clientDevice !== "mobile" ||
-    (clientDevice === "mobile" &&
-      request.cookies.get(CS_KEY_USER_DEVICE_TYPE)?.value !== "mobile")
-  ) {
-    response.cookies.set(CS_KEY_USER_DEVICE_TYPE, clientDevice);
-  }
+  const isMobile = clientDevice === "mobile";
+  const isEmbed = device.type === "embed";
+  const isReliableAgent = !isBot || !isEmbed;
+  const isNoMobilePage = url.pathname.startsWith("/noMobileDevice");
 
   response.headers.set(HD_KEY_USER_DEVICE_TYPE, clientDevice);
+  response.cookies.set(CS_KEY_USER_DEVICE_TYPE, clientDevice);
 
-  if (url.pathname.startsWith("/noMobileDevice") && clientDevice === "mobile") {
+  response.headers.set(HD_KEY_USER_RELIABLE_AGENT, String(isReliableAgent));
+  response.cookies.set(CS_KEY_USER_RELIABLE_AGENT, String(isReliableAgent));
+
+  if (isNoMobilePage && isMobile && isReliableAgent) {
     return NextResponse.redirect(new URL("/", url));
   }
 
-  if (isBot || device.type === "embed") {
-    response.headers.set(HD_KEY_USER_RELIABLE_AGENT, "false");
-    response.cookies.set(CS_KEY_USER_RELIABLE_AGENT, "false");
-  } else {
-    response.headers.set(HD_KEY_USER_RELIABLE_AGENT, "true");
-    response.cookies.set(CS_KEY_USER_RELIABLE_AGENT, "true");
-  }
-
-  if (
-    (clientDevice !== "mobile" || isBot) &&
-    !url.pathname.startsWith("/noMobileDevice")
-  ) {
+  if ((!isMobile || !isReliableAgent) && !isNoMobilePage) {
     return NextResponse.redirect(new URL("/noMobileDevice", url));
   }
 
-  if (companyId) response.headers.set(HD_KEY_COMPANY_ID, companyId);
+  if (companyId) {
+    response.headers.set(HD_KEY_COMPANY_ID, companyId);
+    response.cookies.set(CS_KEY_COMPANY_ID, companyId);
+  }
 
   return response;
 }
@@ -53,12 +45,6 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    {
-      source: "/((?!api|_next/static|_next/image|favicon.ico|public/).*)",
-      missing: [
-        { type: "header", key: "next-router-prefetch" },
-        { type: "header", key: "purpose", value: "prefetch" },
-      ],
-    },
+    "/((?!api|_next/static|_next/image|favicon*|sitemap.xml|robots.txt|monitoring|public|manifest|android/*).*)",
   ],
 };
