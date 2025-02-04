@@ -12,3 +12,4 @@ export const CS_KEY_CSRF_TOKEN = "@services:application:csrf:token";
 export const HD_KEY_USER_RELIABLE_AGENT = "x-reliable-agent";
 export const HD_KEY_USER_DEVICE_TYPE = "x-user-device-type";
 export const HD_KEY_COMPANY_ID = "x-company-id";
+export const CS_KEY_COMPANY_ID = "@services:company:id";

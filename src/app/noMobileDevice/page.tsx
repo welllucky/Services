@@ -1,8 +1,8 @@
 import { NoMobileDevicePage } from "@/screens";
 import { getTextTheme } from "@/screens/NoMobileDevice/themeTitle";
 
-const NoMobileDevice = () => {
-  const theme = getTextTheme();
+const NoMobileDevice = async () => {
+  const theme = await getTextTheme();
   const { text, title } = theme;
 
   return (

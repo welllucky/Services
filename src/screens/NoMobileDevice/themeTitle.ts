@@ -118,7 +118,9 @@ const textThemes: TextTheme[] = [
   },
 ];
 
-export const getTextTheme = (): TextTheme => {
+export const getTextTheme = async (): Promise<TextTheme> => {
+  "use server";
+
   const randomIndex = Math.floor(Math.random() * textThemes.length);
   // eslint-disable-next-line security/detect-object-injection
   return textThemes[randomIndex];

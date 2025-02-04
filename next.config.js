@@ -18,12 +18,6 @@ const nextConfig = {
       ...config.module,
       exprContextCritical: false,
     };
-    // eslint-disable-next-line no-param-reassign
-    config.resolve.alias["react-native-sqlite-storage"] = false;
-    // eslint-disable-next-line no-param-reassign
-    config.resolve.alias["@sap/hana-client/extension/Stream"] = false;
-    // eslint-disable-next-line no-param-reassign
-    config.resolve.alias["@sap/hana-client"] = false;
     return config;
   },
   compiler: {
@@ -122,5 +116,5 @@ module.exports = withSentryConfig(module.exports, {
   // autoInstrumentMiddleware: true,
   // autoInstrumentAppDirectory: true,
   // telemetry: true,
-  release: process.env.NEXT_PUBLIC_RELEASE,
+  // release: process.env.NEXT_PUBLIC_RELEASE
 });
