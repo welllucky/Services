@@ -123,7 +123,7 @@
     "url": "https://github.com/welllucky/services/issues"
   },
   "homepage": "https://github.com/welllucky/services#readme",
-  "packageManager": "pnpm@9.12.3",
+  "packageManager": "pnpm@10.2.1",
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -139,4 +139,5 @@
     ],
     "branch": "main"
   }
+
 }

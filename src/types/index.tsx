@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 
+type IconType = "fill" | "bold" | "duotone" | "regular" | "light" | "thin";
+
 type IconProps = {
   width?: string | number;
   height?: string | number;
@@ -7,6 +9,7 @@ type IconProps = {
   color?: string;
   alt?: string;
   onClick?: () => void;
+  type?: IconType;
 };
 
 type OptionMenuStyleProps = {
@@ -75,4 +78,5 @@ export type {
   OptionMenuProps,
   OptionMenuStyleProps,
   TextTheme,
+  IconType,
 };

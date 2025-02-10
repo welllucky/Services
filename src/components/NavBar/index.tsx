@@ -1,6 +1,6 @@
 import { OptionMenuProps } from "@/types";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import OptionMenu from "./OptionMenu";
 import { ContainerMenu, MenuList } from "./styles";
 
@@ -8,37 +8,41 @@ interface NavigationBarProps {
   color?: string;
   $highlightTextColor?: string;
   options: OptionMenuProps[];
-  // isLoading?: boolean;
+  isLoading?: boolean;
 }
 
 export const NavigationBar = ({
   color,
   $highlightTextColor,
   options,
-  // isLoading = false,
+  isLoading = false,
 }: NavigationBarProps) => {
   const actualRoute = usePathname();
   const [optionClicked, setOptionClicked] = useState("");
+  const optionCallback = useCallback((optionName: string) => {
+    setOptionClicked(optionName);
+  }, []);
+
+  const OptionsList = options
+    .filter((option) => option.$isVisibled)
+    ?.map((option) => (
+      <OptionMenu
+        $isPreselected={option.name === optionClicked}
+        $highlightTextColor={$highlightTextColor}
+        color={color}
+        key={option.name}
+        name={option.name}
+        path={option.path}
+        alt={option.alt}
+        icon={option.icon}
+        onClick={optionCallback}
+        $isSelected={option.path === actualRoute}
+      />
+    ));
+
   return (
     <ContainerMenu color={color}>
-      <MenuList>
-        {options
-          .filter((option) => option.$isVisibled)
-          ?.map((option) => (
-            <OptionMenu
-              $isPreselected={option.name === optionClicked}
-              $highlightTextColor={$highlightTextColor}
-              color={color}
-              key={option.name}
-              name={option.name}
-              path={option.path}
-              alt={option.alt}
-              icon={option.icon}
-              onClick={(optionName) => setOptionClicked(optionName)}
-              $isSelected={option.path === actualRoute}
-            />
-          ))}
-      </MenuList>
+      <MenuList>{isLoading ? <p>Carregando...</p> : OptionsList}</MenuList>
     </ContainerMenu>
   );
 };

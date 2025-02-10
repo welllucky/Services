@@ -8,5 +8,6 @@ export * from "./Modals";
 export * from "./NavBar";
 export * from "./NoContent";
 export * from "./SearchBar";
+export * from "./Skeleton";
 export * from "./SupportText";
 export * from "./TicketCard";

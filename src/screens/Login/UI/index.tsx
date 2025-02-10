@@ -1,5 +1,4 @@
-import { useEffect, useMemo } from "react";
-import toast from "react-hot-toast";
+import { useMemo } from "react";
 import { LoginUIProps } from "../Login.types";
 import { DisplayImage } from "./components/DisplayImage";
 import { LoginForm } from "./components/Form";
@@ -17,12 +16,6 @@ const LoginPageUI = ({
     () => pageIsLoading || formIsLoading,
     [formIsLoading, pageIsLoading],
   );
-
-  useEffect(() => {
-    if (isLoading) {
-      toast.loading("Loading...");
-    }
-  }, [isLoading]);
 
   return (
     <ScreenContainer>
