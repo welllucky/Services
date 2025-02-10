@@ -47,7 +47,7 @@ export const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
     }
   }, [clearErrors, error, loginError, resetField, setError, toast]);
 
-  const loginCallback = handleSubmit(async (data) => {
+  const loginCallback = handleSubmit((data) => {
     try {
       toast.promise(signIn(data.email, data.password, redirectTo ?? "/"), {
         loading: "Loading...",
