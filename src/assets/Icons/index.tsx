@@ -16,4 +16,5 @@ export * from "./SearchIcon";
 export * from "./SettingsIcon";
 export * from "./ShieldIcon";
 export * from "./StampIcon";
+export * from "./User.icon";
 export * from "./UserExits";

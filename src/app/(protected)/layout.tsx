@@ -62,6 +62,7 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
           color={isRequestsPage ? "#D8FFB9" : "#F8FCF6"}
           $highlightTextColor={isRequestsPage ? "#4D7D28" : "#7AC143"}
           options={navigationOptions}
+          isLoading={!user}
         />
       )}
     </FlexContainer>

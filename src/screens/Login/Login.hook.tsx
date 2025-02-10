@@ -20,7 +20,7 @@ export const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
       email: "",
       password: "",
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: zodResolver(SignInSchema),
@@ -49,7 +49,11 @@ export const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
 
   const loginCallback = handleSubmit(async (data) => {
     try {
-      await signIn(data.email, data.password, redirectTo ?? "/");
+      toast.promise(signIn(data.email, data.password, redirectTo ?? "/"), {
+        loading: "Loading...",
+        success: "Login realized with success!",
+        error: "Error to login, please try again",
+      });
 
       if (isAuthenticated) toast.success(`Bem-vindo ${user?.name}!`);
     } catch (err) {
