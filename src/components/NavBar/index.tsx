@@ -1,6 +1,7 @@
 import { OptionMenuProps } from "@/types";
 import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
+import { Skeleton, SkeletonContainer } from "../Skeleton";
 import OptionMenu from "./OptionMenu";
 import { ContainerMenu, MenuList } from "./styles";
 
@@ -10,6 +11,19 @@ interface NavigationBarProps {
   options: OptionMenuProps[];
   isLoading?: boolean;
 }
+const OptionSkeleton = () => (
+  <SkeletonContainer>
+    <Skeleton
+      width="24px"
+      height="24px"
+    />
+    <Skeleton
+      width="4em"
+      height="0.8em"
+      type="text"
+    />
+  </SkeletonContainer>
+);
 
 export const NavigationBar = ({
   color,
@@ -40,9 +54,21 @@ export const NavigationBar = ({
       />
     ));
 
+  if (isLoading) {
+    return (
+      <ContainerMenu color={color}>
+        <MenuList>
+          {options.map((option) => (
+            <OptionSkeleton key={option.name} />
+          ))}
+        </MenuList>
+      </ContainerMenu>
+    );
+  }
+
   return (
     <ContainerMenu color={color}>
-      <MenuList>{isLoading ? <p>Carregando...</p> : OptionsList}</MenuList>
+      <MenuList>{OptionsList}</MenuList>
     </ContainerMenu>
   );
 };

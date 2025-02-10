@@ -11,10 +11,7 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const pathName = usePathname();
   const { user } = useAuth();
 
-  const isRequestsPage = useMemo(
-    () => pathName === "/issues",
-    [pathName],
-  );
+  const isRequestsPage = useMemo(() => pathName === "/issues", [pathName]);
 
   const navigationOptions = getNavigationOptions(
     user?.canResolveTicket,
@@ -48,8 +45,6 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
       }),
     [pagesWithoutHeader, pathName],
   );
-
-  // if (!isAuthenticated) redirect("/login");
 
   return (
     <FlexContainer

@@ -1,7 +1,8 @@
 import {
   AddNewIssueButton,
-  Loading,
   NoContent,
+  Skeleton,
+  SkeletonContainer,
   SubHeader,
   TicketCard,
 } from "@/components";
@@ -22,13 +23,28 @@ type IssuesPageUIProps = {
 
 const INITIAL_ISSUE_QUANTITY_LIMIT = 5;
 
+const IssuePageSkeleton = () => {
+  return (
+    <SkeletonContainer gap="40px">
+      {Array.from({ length: INITIAL_ISSUE_QUANTITY_LIMIT + 1 }).map(
+        () => (
+          <Skeleton
+            type="card"
+            key="skeleton-card"
+          />
+        ),
+      )}
+    </SkeletonContainer>
+  );
+};
+
 export const IssuesPageUI = ({
   data,
   isLoading,
   router,
   user,
 }: IssuesPageUIProps) => {
-  const issuesQuantity = data?.length ?? 0;
+  const issuesQuantity = useMemo(() => data?.length ?? 0, [data]);
 
   const showAddIssueButton = useMemo(
     () =>
@@ -41,9 +57,23 @@ export const IssuesPageUI = ({
     router.push("/open-ticket");
   }, [router]);
 
-  if (isLoading) {
-    return <Loading fullScreen />;
-  }
+  const hasContent = useMemo(
+    () => Boolean(issuesQuantity !== 0) && !isLoading,
+    [issuesQuantity, isLoading],
+  );
+
+  const showFallback = useMemo(
+    () => !hasContent && !isLoading && !Array.isArray(data),
+    [data, hasContent, isLoading],
+  );
+
+  const showCreateTicketButton = useMemo(
+    () =>
+      Boolean(
+        user?.canCreateTicket && issuesQuantity < INITIAL_ISSUE_QUANTITY_LIMIT,
+      ) && !isLoading,
+    [user?.canCreateTicket, issuesQuantity, isLoading],
+  );
 
   return (
     <>
@@ -53,34 +83,40 @@ export const IssuesPageUI = ({
         addButtonCallback={addIssueCallback}
       />
       <PageContainer>
-        <MainContainer $hasContent={Boolean(issuesQuantity !== 0)}>
-          {data?.length === 0 || !Array.isArray(data) ? (
+        <MainContainer $centerContent={showFallback}>
+          {isLoading && <IssuePageSkeleton />}
+
+          {showFallback && (
             <NoContent
               alt="caixa vazia"
               title="Não há chamados no momento."
             />
-          ) : (
-            data?.map((issue) => (
-              <TicketCard
-                key={issue?.id}
-                id={String(issue?.id)}
-                name={issue?.resume}
-                date={dataFormatter(issue.date)}
-                $status={issue.status}
-                isUpdated={false}
-                href={`/ticket/${issue.id}`}
-              />
-            ))
+          )}
+
+          {hasContent && (
+            // eslint-disable-next-line react/jsx-no-useless-fragment
+            <>
+              {data?.map((issue) => (
+                <TicketCard
+                  key={issue?.id}
+                  id={String(issue?.id)}
+                  name={issue?.resume}
+                  date={dataFormatter(issue.date)}
+                  $status={issue.status}
+                  isUpdated={false}
+                  href={`/ticket/${issue.id}`}
+                />
+              ))}
+            </>
           )}
         </MainContainer>
         <ButtonWrapper>
-          {user?.canCreateTicket &&
-            issuesQuantity < INITIAL_ISSUE_QUANTITY_LIMIT && (
-              <AddNewIssueButton
-                $styles={{ hasShadow: true }}
-                onClick={addIssueCallback}
-              />
-            )}
+          {showCreateTicketButton && (
+            <AddNewIssueButton
+              $styles={{ hasShadow: true }}
+              onClick={addIssueCallback}
+            />
+          )}
         </ButtonWrapper>
       </PageContainer>
     </>

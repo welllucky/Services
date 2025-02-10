@@ -1,4 +1,8 @@
-import { SkeletonCircle, SkeletonRectangle } from "./Skeleton.styles";
+import {
+  SkeletonCircle,
+  SkeletonContainer,
+  SkeletonRectangle,
+} from "./Skeleton.styles";
 import { SkeletonProps } from "./Skeleton.types";
 import {
   AvatarSkeleton,
@@ -86,5 +90,7 @@ export const Skeleton = ({
       );
   }
 };
+
+export { SkeletonContainer };
 
 export type { SkeletonProps } from "./Skeleton.types";
