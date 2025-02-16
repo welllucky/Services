@@ -1,7 +1,7 @@
-import { useIssue } from "@/utils";
+// import { useTicket } from "@/utils";
 import { FileDashed } from "@phosphor-icons/react";
 import { useTheme } from "styled-components";
-import { IssueEventDto } from "@/types";
+import { TicketEventDto } from "@/types";
 import { Loading, NoContent } from "../../../../components";
 import { InfoUnity } from "./InfoUnity";
 import {
@@ -11,7 +11,7 @@ import {
 } from "./styles";
 
 interface InfoHistoryPainelProps {
-  data?: IssueEventDto[];
+  data?: TicketEventDto[];
   isLoading?: boolean;
 }
 
@@ -21,16 +21,20 @@ interface InfoHistoryPainelProps {
  * @param {Object} props.data - The data to display in the panel.
  * @param {boolean} props.isLoading - Indicates if the data is currently loading.
  */
-const InfoHistoryPainel = ({ data, isLoading }: InfoHistoryPainelProps) => {
+const InfoHistoryPainel = ({
+  // data,
+  isLoading }: InfoHistoryPainelProps) => {
   const theme = useTheme();
 
-  const { historic } = useIssue();
+  // const { historic } = useTicket();
 
   if (isLoading) {
     return <Loading color={theme.colors.primary["35"]} />;
   }
 
-  const events = historic || data;
+  // const events = historic || data;
+
+  const events = [] as TicketEventDto[];
 
   if (!events?.length) {
     return (

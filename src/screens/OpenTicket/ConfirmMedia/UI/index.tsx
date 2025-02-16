@@ -1,90 +1,73 @@
 "use client";
 
-import { ConfirmModal, CustomFieldset } from "@/components";
+import { CustomFieldset } from "@/components";
 import { IOpenTicketForm } from "@/types";
 import { buildTestIds, dataFormatter } from "@/utils";
 import { DefaultTheme } from "styled-components";
 import { ConfirmDetailsContainer, SectionInfoForm } from "../styles";
 
 type ConfirmMediaPageUiProps = {
-  isModalOpen: boolean;
-  modalCallback: () => void;
   theme: DefaultTheme;
   data: IOpenTicketForm;
 };
 
 export const ConfirmMediaPageUI = ({
-  isModalOpen,
-  modalCallback,
   theme,
   data,
 }: ConfirmMediaPageUiProps) => (
-  <>
-    <ConfirmModal
-      isOpen={isModalOpen}
-      testId="confirm-issue-modal"
-      successText="Chamado registrado com sucesso!"
-      confirmationText="Deseja realmente abrir
-        o chamado?"
-      hasBackButton
-      confirmCallBack={modalCallback}
-    />
-    <ConfirmDetailsContainer
-      {...buildTestIds("confirm-details-container")}
-    //   overflow
-      $gap="8px">
-      <SectionInfoForm {...buildTestIds("section-info-form")}>
-        <CustomFieldset
-          color={theme.colors.primary.default}
-          labelText="Resumo"
-          // width="100%"
-          // $minHeight="56px"
-          // $maxHeight="80px"
-          // $hasOverflow
-        >
-          {data?.resume}
-        </CustomFieldset>
-      </SectionInfoForm>
-      <SectionInfoForm $gap="16px">
-        <CustomFieldset
-          color={theme.colors.primary.default}
-          labelText="Tipo"
-          // width="100%"
-          // $minHeight="56px"
-        >
-          {data?.type}
-        </CustomFieldset>
-        <CustomFieldset
-          color={theme.colors.primary.default}
-          labelText="Prioridade"
-          // width="60%"
-          // $minHeight="56px"
-        >
-          {data?.priority}
-        </CustomFieldset>
-      </SectionInfoForm>
-      <SectionInfoForm>
-        <CustomFieldset
-          color={theme.colors.primary.default}
-          labelText="Data do ocorrido"
-          // width="100%"
-          // $minHeight="56px"
-        >
-          {dataFormatter(data?.date)}
-        </CustomFieldset>
-      </SectionInfoForm>
-      <SectionInfoForm>
-        <CustomFieldset
-          color={theme.colors.primary.default}
-          labelText="Descrição"
-          // width="100%"
-          // $minHeight="160px"
-          // $maxHeight="240px"
-          // $hasOverflow
-        >
-          {data?.description}
-        </CustomFieldset>
-      </SectionInfoForm>
-    </ConfirmDetailsContainer>
-  </>
+  <ConfirmDetailsContainer
+    {...buildTestIds("confirm-details-container")}
+    $gap="8px">
+    <SectionInfoForm {...buildTestIds("section-info-form")}>
+      <CustomFieldset
+        color={theme.colors.primary.default}
+        labelText="Resumo"
+        $minHeight="56px"
+        $maxHeight="80px"
+        padding="0px 16px"
+        $alignItems="center">
+        {data?.resume}
+      </CustomFieldset>
+    </SectionInfoForm>
+    <SectionInfoForm $gap="16px">
+      <CustomFieldset
+        color={theme.colors.primary.default}
+        labelText="Tipo"
+        $minHeight="56px"
+        padding="0px 16px"
+        $alignItems="center">
+        {data?.type}
+      </CustomFieldset>
+      <CustomFieldset
+        color={theme.colors.primary.default}
+        labelText="Prioridade"
+        width="60%"
+        padding="0px 16px"
+        $alignItems="center"
+        $minHeight="56px">
+        {data?.priority}
+      </CustomFieldset>
+    </SectionInfoForm>
+    <SectionInfoForm>
+      <CustomFieldset
+        color={theme.colors.primary.default}
+        labelText="Data do ocorrido"
+        $alignItems="center"
+        padding="0px 16px"
+        $minHeight="56px">
+        {dataFormatter(data?.date)}
+      </CustomFieldset>
+    </SectionInfoForm>
+    <SectionInfoForm>
+      <CustomFieldset
+        color={theme.colors.primary.default}
+        labelText="Descrição"
+        $minHeight="160px"
+        padding="16px"
+        $maxHeight="240px"
+        $alignItems="start">
+        {data?.description}
+      </CustomFieldset>
+    </SectionInfoForm>
+  </ConfirmDetailsContainer>
 );

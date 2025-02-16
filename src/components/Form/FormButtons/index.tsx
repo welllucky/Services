@@ -3,6 +3,8 @@
 import { CustomButton } from "@/components";
 import { buildTestIds } from "@/utils/functions";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
+import { useTheme } from "styled-components";
 import { ButtonsContainer, FormButtonsContainer } from "./styles";
 
 interface FormButtonsProps {
@@ -16,15 +18,30 @@ interface FormButtonsProps {
 }
 
 const FormButtons = ({
+  nextPage,
+  onClickNextButton,
+  onClickBackButton,
   canBack = true,
   canNext = true,
   hasBackButton = true,
-  nextPage,
   $hasSeparator = true,
-  onClickNextButton,
-  onClickBackButton,
 }: FormButtonsProps) => {
+  const theme = useTheme();
   const { back, push } = useRouter();
+
+  const backButtonFn = useCallback(() => {
+    if (onClickBackButton) onClickBackButton();
+    back();
+  }, [back, onClickBackButton]);
+
+  const nextButtonFn = useCallback(() => {
+    if (onClickNextButton) {
+      onClickNextButton();
+    } else {
+      push(nextPage);
+    }
+  }, [nextPage, onClickNextButton, push]);
+
   return (
     <FormButtonsContainer
       $hasSeparator={$hasSeparator}
@@ -34,14 +51,13 @@ const FormButtons = ({
         {...buildTestIds("form-buttons")}>
         {hasBackButton && (
           <CustomButton
+            color={theme.colors.neutral["15"]}
+            $backgroundColor={theme.colors.neutral["15"]}
             disabled={!canBack}
             height="40px"
             mode="outlined"
             text="Voltar"
-            onClick={() => {
-              if (onClickBackButton) onClickBackButton();
-              back();
-            }}
+            onClick={backButtonFn}
             {...buildTestIds("back-button-form-buttons")}
           />
         )}
@@ -53,13 +69,7 @@ const FormButtons = ({
           text="Próximo"
           height="40px"
           disabled={!canNext}
-          onClick={() => {
-            if (onClickNextButton) {
-              onClickNextButton();
-            } else {
-              push(nextPage);
-            }
-          }}
+          onClick={nextButtonFn}
           {...buildTestIds("next-button-form-buttons")}
         />
       </ButtonsContainer>

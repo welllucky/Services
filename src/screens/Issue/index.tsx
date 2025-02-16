@@ -2,14 +2,14 @@
 
 import { Loading } from "@/components";
 
-import { issueApi, IssueProvider } from "@/utils";
+import { issueApi, TicketProvider } from "@/utils";
 import { buildTestIds, resetForm } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import {
   FormDisplay,
   InfoHistoryPainel,
-  IssueActionButton,
+  // IssueActionButton,
   IssuePageBackButton,
   IssuePageTitle,
 } from "./components";
@@ -38,7 +38,7 @@ const IssuePage = ({ id }: IssuePageProps) => {
   }
 
   return (
-    <IssueProvider data={data}>
+    <TicketProvider data={data}>
       <IssuePageContainer $full>
         <IssuePageBackButton router={router} />
         <IssuePageWrapper>
@@ -53,9 +53,9 @@ const IssuePage = ({ id }: IssuePageProps) => {
             />
           </IssuePageContent>
         </IssuePageWrapper>
-        <IssueActionButton />
+        {/* <IssueActionButton /> */}
       </IssuePageContainer>
-    </IssueProvider>
+    </TicketProvider>
   );
 };
 

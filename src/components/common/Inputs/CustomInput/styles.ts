@@ -107,5 +107,6 @@ export const Label = styled.label<{ mode: "filled" | "outlined" }>`
       margin-left: 0.4rem;
       background-color: #f5f5f5;
       padding: 0 0.4rem;
+      margin-left: 13px;
     `}
 `;

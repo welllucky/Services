@@ -96,8 +96,6 @@ export const CustomSelect = ({
     disabled: "#acacac",
   };
 
-  console.log({ value: field.value });
-
   return (
     <SelectContainer
       width={width}
