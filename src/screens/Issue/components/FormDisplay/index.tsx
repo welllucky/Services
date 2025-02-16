@@ -1,6 +1,6 @@
 import { LargeFieldset } from "@/components/Fieldset/LargeFieldset";
 import { SmallFieldset } from "@/components/Fieldset/SmallFieldset";
-import { SectionInfoForm } from "@/screens/OpenIssue/ConfirmMedia/styles";
+import { SectionInfoForm } from "@/screens/OpenTicket/ConfirmMedia/styles";
 import { IssueDto } from "@/types";
 import { FormDisplayContainer } from "./styles";
 

@@ -3,7 +3,7 @@ export * from "./Auth";
 export * from "./Event";
 export * from "./HttpResponse";
 export * from "./Issue";
-export * from "./OpenIssue";
+export * from "./OpenTicket";
 export * from "./Options";
 export * from "./Session";
 export * from "./Ticket";

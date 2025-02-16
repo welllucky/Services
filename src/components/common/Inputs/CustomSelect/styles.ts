@@ -2,10 +2,15 @@
 import { InputStatus } from "@/types";
 import styled, { css } from "styled-components";
 
-export const SelectContainer = styled.div<{ $status: InputStatus }>`
-  width: inherit;
+export const SelectContainer = styled.div<{
+  $status: InputStatus;
+  width?: string;
+  height?: string;
+}>`
   display: flex;
   flex-direction: column;
+  width: ${({ width }) => width ?? "100%"};
+  position: relative;
 
   ${({ $status }) =>
     $status === "disabled" &&
@@ -18,29 +23,26 @@ export const SelectContainer = styled.div<{ $status: InputStatus }>`
       }
     `}
 `;
-export const SelectComponent = styled.select<{ $isPlaceholder?: boolean }>`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  outline: 0;
+export const SelectComponent = styled.select<{
+  $isPlaceholder?: boolean;
+  width?: string;
+  height?: string;
+}>`
+  width: ${({ width }) => width ?? "100%"};
+  height: ${({ height }) => height ?? "100%"};
   border: none;
+  font-style: normal;
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 24px;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.5px;
-  resize: none;
-  background: transparent;
-  color: ${({ $isPlaceholder }) => ($isPlaceholder ? "#79747e" : "#000")};
-`;
-export const CustomOption = styled.option`
+  font-size: 14px;
+  line-height: 20px;
   display: flex;
   align-items: center;
-  background-color: #ebf6e3;
-  padding-bottom: 10px;
-  width: 20px;
-  border-radius: 0;
-  border: none;
-  font-size: 16px;
+  letter-spacing: 0.4px;
+  color: ${({ $isPlaceholder }) => ($isPlaceholder ? "#79747e" : "#000")};
+  padding: 16px;
+  appearance: none;
+  background: url("/caret-down.svg") no-repeat right center;
+  background-position-x: 96%;
+  background-size: 20px;
 `;
+export const CustomOption = styled.option``;

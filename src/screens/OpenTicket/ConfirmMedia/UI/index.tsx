@@ -1,7 +1,7 @@
 "use client";
 
 import { ConfirmModal, CustomFieldset } from "@/components";
-import { IOpenIssueForm } from "@/types";
+import { IOpenTicketForm } from "@/types";
 import { buildTestIds, dataFormatter } from "@/utils";
 import { DefaultTheme } from "styled-components";
 import { ConfirmDetailsContainer, SectionInfoForm } from "../styles";
@@ -10,7 +10,7 @@ type ConfirmMediaPageUiProps = {
   isModalOpen: boolean;
   modalCallback: () => void;
   theme: DefaultTheme;
-  data: IOpenIssueForm;
+  data: IOpenTicketForm;
 };
 
 export const ConfirmMediaPageUI = ({
@@ -37,10 +37,11 @@ export const ConfirmMediaPageUI = ({
         <CustomFieldset
           color={theme.colors.primary.default}
           labelText="Resumo"
-          width="100%"
-          $minHeight="56px"
-          $maxHeight="80px"
-          $hasOverflow>
+          // width="100%"
+          // $minHeight="56px"
+          // $maxHeight="80px"
+          // $hasOverflow
+        >
           {data?.resume}
         </CustomFieldset>
       </SectionInfoForm>
@@ -48,15 +49,17 @@ export const ConfirmMediaPageUI = ({
         <CustomFieldset
           color={theme.colors.primary.default}
           labelText="Tipo"
-          width="100%"
-          $minHeight="56px">
+          // width="100%"
+          // $minHeight="56px"
+        >
           {data?.type}
         </CustomFieldset>
         <CustomFieldset
           color={theme.colors.primary.default}
           labelText="Prioridade"
-          width="60%"
-          $minHeight="56px">
+          // width="60%"
+          // $minHeight="56px"
+        >
           {data?.priority}
         </CustomFieldset>
       </SectionInfoForm>
@@ -64,8 +67,9 @@ export const ConfirmMediaPageUI = ({
         <CustomFieldset
           color={theme.colors.primary.default}
           labelText="Data do ocorrido"
-          width="100%"
-          $minHeight="56px">
+          // width="100%"
+          // $minHeight="56px"
+        >
           {dataFormatter(data?.date)}
         </CustomFieldset>
       </SectionInfoForm>
@@ -73,10 +77,11 @@ export const ConfirmMediaPageUI = ({
         <CustomFieldset
           color={theme.colors.primary.default}
           labelText="Descrição"
-          width="100%"
-          $minHeight="160px"
-          $maxHeight="240px"
-          $hasOverflow>
+          // width="100%"
+          // $minHeight="160px"
+          // $maxHeight="240px"
+          // $hasOverflow
+        >
           {data?.description}
         </CustomFieldset>
       </SectionInfoForm>

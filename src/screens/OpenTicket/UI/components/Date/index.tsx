@@ -19,7 +19,6 @@ export const DateInput = ({ control, error, defaultValue }: DateInputProps) => {
       type="date"
       value={inputValue}
       placeholder="dd/mm/aaaa"
-      $status={inputValue.length === 0 ? "none" : error ? "invalid" : "valid"}
       errorText={error?.message as string}
       labelText="Data do ocorrido"
       registerOptions={{

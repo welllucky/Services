@@ -1,5 +1,4 @@
 import { OutlinedInput } from "@/components";
-import { useState } from "react";
 import { Control, FieldError } from "react-hook-form";
 
 type ResumeInputProps = {
@@ -13,16 +12,14 @@ export const ResumeInput = ({
   error,
   defaultValue,
 }: ResumeInputProps) => {
-  const [inputValue, setInputValue] = useState<string>(defaultValue ?? "");
-
   return (
     <OutlinedInput
       control={control}
       id="resume"
       type="text"
+      margin="10px 0px 0px 0px"
+      value={defaultValue}
       placeholder="Do que se trata o chamado?"
-      // eslint-disable-next-line no-nested-ternary
-      $status={inputValue.length === 0 ? "none" : error ? "invalid" : "valid"}
       labelText="Resumo"
       errorText={error?.message as string}
       registerOptions={{
@@ -34,9 +31,6 @@ export const ResumeInput = ({
         maxLength: {
           value: 80,
           message: "O resumo deve ter no máximo 80 caracteres",
-        },
-        onChange(event) {
-          setInputValue(event?.target?.value);
         },
       }}
     />

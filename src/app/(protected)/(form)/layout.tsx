@@ -1,10 +1,11 @@
-import { OpenIssueTemplateUI } from "@/screens/OpenIssue/Template";
-import { ICreateIssueFlowPage } from "@/screens/OpenIssue/Template/data";
-// import { auth } from "@/utils/functions/AuthUser";
+import { auth } from "@/auth";
+import { OpenIssueTemplateUI } from "@/screens/OpenTicket/Template";
+import { ICreateIssueFlowPage } from "@/screens/OpenTicket/Template/data";
+import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
 const Template = async ({ children }: Readonly<{ children: ReactNode }>) => {
-  // const session = await auth();
+  const session = await auth();
 
   const pages = [
     {
@@ -24,11 +25,13 @@ const Template = async ({ children }: Readonly<{ children: ReactNode }>) => {
     },
   ] as ICreateIssueFlowPage[];
 
-  // if (!session?.user.canCreateTicket) {
-  //   return <NoMobileDevicePage />;
-  // }
+  if (!session?.user.canCreateTicket) {
+    redirect("/");
+  }
 
   return <OpenIssueTemplateUI pages={pages}>{children}</OpenIssueTemplateUI>;
 };
 
 export default Template;
+
+export const runtime = "nodejs";
