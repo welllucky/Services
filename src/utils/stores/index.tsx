@@ -1,3 +1,3 @@
 export * from "./AppStore";
-export * from "./IssueStore";
+export * from "./TicketStore";
 export * from "./ModalStore";

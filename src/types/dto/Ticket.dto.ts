@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { z } from "zod";
-import { IssueEventSchema as TicketEventSchema } from "./IssueEvent.dto";
+import { TicketEventSchema } from "./TicketEvent.dto";
 import { PriorityLevelsSchema } from "./PriorityLevel.dto";
 
 export const TicketTypeSchema = z.enum([
@@ -8,6 +8,7 @@ export const TicketTypeSchema = z.enum([
   "incident",
   "problem",
   "change",
+  "",
 ]);
 
 export const TicketStatusSchema = z.enum([
@@ -15,14 +16,15 @@ export const TicketStatusSchema = z.enum([
   "inProgress",
   "blocked",
   "closed",
+  "",
 ]);
 
 export const TicketSchema = z.object({
   id: z.string(),
   resume: z.string(),
   description: z.string(),
-  date: z.string().or(z.date()),
-  historic: z.array(TicketEventSchema).nullish(),
+  date: z.string(),
+  historic: z.array(TicketEventSchema),
   priority: PriorityLevelsSchema,
   type: TicketTypeSchema,
   status: TicketStatusSchema,

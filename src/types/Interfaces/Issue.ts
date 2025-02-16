@@ -1,16 +1,15 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { z } from "zod";
-import { IssueStatusSchema, IssueTypeSchema } from "../dto";
+import { TicketStatusSchema, TicketTypeSchema } from "../dto";
 import { PriorityLevelsSchema } from "../dto/PriorityLevel.dto";
 
-export const IIssueSchema = z.object({
+export const ITicketSchema = z.object({
   id: z.string(),
   resume: z.string(),
   description: z.string(),
   date: z.string().or(z.date()),
   priority: PriorityLevelsSchema,
-  type: IssueTypeSchema,
-  status: IssueStatusSchema,
+  type: TicketTypeSchema,
+  status: TicketStatusSchema,
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
   closedAt: z.string().or(z.date()).nullish(),
@@ -19,4 +18,4 @@ export const IIssueSchema = z.object({
   closedBy: z.number().nullish(),
 });
 
-export type IIssue = z.infer<typeof IIssueSchema>;
+export type ITicket = z.infer<typeof ITicketSchema>;

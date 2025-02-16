@@ -1,44 +1,51 @@
 "use client";
 
-import { IssueDto } from "@/types";
-import { createIssueStore, IssueStore } from "@/utils/stores";
-import React, { createContext, useContext, useRef } from "react";
-import { useStore } from "zustand";
+import { TicketDto } from "@/types";
+import { TicketStore, useTicketStore } from "@/utils/stores";
+import React, { createContext, useContext } from "react";
 
-interface IssueProviderProps {
+interface TicketProviderProps {
   children: React.ReactNode;
-  data?: IssueDto;
+  data?: TicketDto;
 }
 
-const IssueContext = createContext<IssueStore | null>(null);
+const TicketContext = createContext<TicketStore | null>(null);
 
-const IssueProvider = ({ children, data }: Readonly<IssueProviderProps>) => {
-  if (!IssueContext) {
-    throw new Error("useIssue must be used within a IssueProvider");
+const TicketProvider = ({
+  children,
+  // data
+}: Readonly<TicketProviderProps>) => {
+  const [ticket, setTicket] = useTicketStore((state) => [
+    state.ticket,
+    state.setTicket,
+  ]);
+
+  const storeRef = React.useRef<TicketStore>(null);
+  if (!storeRef.current) {
+    storeRef.current = { ticket, setTicket };
   }
 
-  const storeRef = useRef<IssueStore | undefined>(undefined);
-  if (!storeRef.current) {
-    storeRef.current = createIssueStore(data);
+  if (!TicketContext) {
+    throw new Error("useTicket must be used within a TicketProvider");
   }
 
   return (
-    <IssueContext.Provider value={storeRef.current}>
+    <TicketContext.Provider value={storeRef.current}>
       {children}
-    </IssueContext.Provider>
+    </TicketContext.Provider>
   );
 };
 
 /**
- * Custom hook for accessing IssueContext. It ensures the context is not null and provides access to it.
- * @returns {object} The IssueContext object providing access to ticket data and actions.
+ * Custom hook for accessing TicketContext. It ensures the context is not null and provides access to it.
+ * @returns {object} The TicketContext object providing access to ticket data and actions.
  */
-const useIssue = () => {
-  const dataContext = useContext(IssueContext);
+const useTicket = () => {
+  const dataContext = useContext(TicketContext);
   if (!dataContext) {
-    throw new Error("useIssue must be used within a IssueProvider");
+    throw new Error("useTicket must be used within a TicketProvider");
   }
-  return useStore(dataContext);
+  return { ...dataContext };
 };
 
-export { IssueProvider, useIssue };
+export { TicketProvider, useTicket };
