@@ -1,32 +1,30 @@
 /* eslint-disable no-nested-ternary */
 import styled from "styled-components";
 
-export const TextAreaContainer = styled.div<{ $status: string }>`
-  width: inherit;
+export const TextAreaContainer = styled.div<{
+  $status: string;
+  width?: string;
+  height?: string;
+}>`
+  width: ${({ width }) => width ?? "100%"};
+
   display: flex;
   flex-direction: column;
-  & > div > div {
-    border: ${({ $status }) =>
-    ($status === "invalid"
-      ? "1px solid red"
-      : $status === "valid"
-        ? "1px solid #7ac143"
-        : "1px solid #79747e")};
-  }
 `;
 export const TextArea = styled.textarea<{ width?: string; height?: string }>`
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
+  width: ${({ width }) => width ?? "100%"};
+  height: ${({ height }) => height ?? "160px"};
   outline: 0;
   border: none;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 20px;
   display: flex;
   align-items: center;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   resize: none;
   background: transparent;
   color: #2b4417;
+  padding: 1rem;
 `;

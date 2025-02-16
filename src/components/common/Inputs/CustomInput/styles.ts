@@ -13,6 +13,8 @@ interface ContentContainerProps {
 
 export const InputContainer = styled.div<InputStylesProps>`
   width: ${({ width }) => width ?? "100%"};
+  margin: ${({ margin }) => margin};
+  padding: ${({ padding }) => padding};
   height: fit-content;
 `;
 
@@ -24,12 +26,12 @@ export const ContentContainer = styled(Row)<ContentContainerProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   padding: 0.5rem 1rem;
   gap: 0.8rem;
+  transition: all 0.5s ease;
 
   ${({ mode }) =>
     mode === "filled" &&
     css`
       border-radius: 4px 4px 0px 0px;
-      /* margin: 0.5rem 0rem 0.1rem 0rem; */
     `}
 
   ${({ mode, $status }) =>
@@ -47,16 +49,19 @@ export const ContentContainer = styled(Row)<ContentContainerProps>`
           ? css`
               background-color: #e5e6e6;
             `
-          : css``)};
+          : null)};
 
   ${({ mode }) =>
     mode === "outlined" &&
     css`
       background-color: transparent;
-      margin: 0.5rem 0rem 0.1rem 0rem;
       border-radius: 4px;
-      margin: -8px 0rem 0.1rem 0rem;
+      margin: -8px 0rem 0rem 0rem;
       color: #1c1b1f;
+
+      /* &:focus-within {
+        border: 1px solid #b3b2a8;
+      } */
     `}
 
   ${({ mode, $status }) =>
@@ -79,17 +84,16 @@ export const InputComponent = styled.input`
   width: 100%;
   height: 100%;
   border: none;
-  font-size: 1rem;
-  color: #1c1b1f;
+  font-style: normal;
   font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.4px;
+  color: #1c1b1f;
   outline: none;
-  /* padding: 1rem; */
   background-color: transparent;
-  ${({ type }) =>
-    type === "date" &&
-    css`
-      padding-top: 1rem;
-    `};
 `;
 
 export const Label = styled.label<{ mode: "filled" | "outlined" }>`

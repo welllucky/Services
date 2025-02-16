@@ -3,7 +3,7 @@
 import { BackButton, FormButtons } from "@/components";
 import { IssuePageContainer } from "@/screens/Issue/styles";
 import { Column, Row, TitleComponent } from "@/styles";
-import { IOpenIssueForm } from "@/types";
+import { IOpenTicketForm } from "@/types";
 import { buildTestIds, resetForm, useModalStore } from "@/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode } from "react";
@@ -25,14 +25,14 @@ export const OpenIssueTemplateUI = ({
 
   const shouldOpenModal = useModalStore((state) => state.open);
 
-  const methods = useForm<IOpenIssueForm>({
+  const methods = useForm<IOpenTicketForm>({
     mode: "onChange",
     defaultValues: {
       resume: "",
       description: "",
       date: "",
-      type: "task",
-      priority: "medium",
+      type: undefined,
+      priority: undefined,
     },
     reValidateMode: "onChange",
     shouldFocusError: true,

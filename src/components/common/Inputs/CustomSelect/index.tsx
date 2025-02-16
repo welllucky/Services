@@ -70,7 +70,7 @@ export const CustomSelect = ({
   multiple = false,
   isDisabled = false,
   control,
-  value,
+  value = "",
 }: SelectProps) => {
   const { field, fieldState } = useController({
     name: id,
@@ -96,15 +96,19 @@ export const CustomSelect = ({
     disabled: "#acacac",
   };
 
+  console.log({ value: field.value });
+
   return (
-    <SelectContainer $status={internalStatus}>
+    <SelectContainer
+      width={width}
+      height={height}
+      $status={internalStatus}>
       <CustomFieldset
-        width={width}
-        $minHeight={height}
         labelText={labelText ?? ""}
-        // eslint-disable-next-line security/detect-object-injection
-        color={colorMapping[internalStatus]}>
+        color={colorMapping[`${internalStatus}`]}>
         <SelectComponent
+          width={width}
+          height={height}
           $isPlaceholder={field.value === ""}
           {...field}
           multiple={multiple}>
@@ -120,10 +124,12 @@ export const CustomSelect = ({
           ))}
         </SelectComponent>
       </CustomFieldset>
-      {internalStatus === "invalid" && (
+      {internalStatus === "invalid" && errorMessageText && (
         <ErrorText>{errorMessageText}</ErrorText>
       )}
-      {internalStatus === "warning" && <WarningText>{warnText}</WarningText>}
+      {internalStatus === "warning" && warnText && (
+        <WarningText>{warnText}</WarningText>
+      )}
     </SelectContainer>
   );
 };

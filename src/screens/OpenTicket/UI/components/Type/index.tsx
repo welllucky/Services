@@ -1,6 +1,5 @@
 /* eslint-disable no-nested-ternary */
 import { CustomSelect } from "@/components";
-import { useState } from "react";
 import { Control, FieldError } from "react-hook-form";
 
 type TypeSelectProps = {
@@ -14,8 +13,6 @@ export const TypeSelect = ({
   error,
   defaultValue,
 }: TypeSelectProps) => {
-  const [selectValue, setSelectValue] = useState<string>(defaultValue ?? "");
-
   return (
     <CustomSelect
       id="type"
@@ -24,12 +21,9 @@ export const TypeSelect = ({
       placeholder="Qual o tipo do chamado?"
       labelText="Tipo"
       errorText={error?.message}
-      value={selectValue}
+      value={defaultValue}
       registerOptions={{
         required: "É necessário adicionar o tipo do chamado",
-        onChange(event) {
-          setSelectValue(event?.target?.value);
-        },
       }}
       options={[
         { key: "1", value: "task", text: "Tarefa" },
@@ -37,7 +31,6 @@ export const TypeSelect = ({
         { key: "3", value: "problem", text: "Problema" },
         { key: "4", value: "change", text: "Mudança" },
       ]}
-      $status={selectValue.length === 0 ? "none" : error ? "invalid" : "valid"}
     />
   );
 };

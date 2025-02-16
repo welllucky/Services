@@ -23,6 +23,8 @@ export interface InputStylesProps {
   height?: string;
   mode?: "filled" | "outlined";
   placeholderColor?: string;
+  padding?: string;
+  margin?: string;
 }
 
 export interface ActionButton {
@@ -76,6 +78,8 @@ export interface InputProps extends InputComponentsProps {
   mode?: "filled" | "outlined";
   control: Control;
   disabled?: boolean;
+  padding?: string;
+  margin?: string;
 }
 
 /**
@@ -104,6 +108,8 @@ const CustomInput = ({
   control,
   isRequired,
   disabled,
+  margin,
+  padding,
   ...props
 }: InputProps) => {
   const { field, fieldState } = useController({
@@ -122,7 +128,7 @@ const CustomInput = ({
   });
 
   return (
-    <InputContainer width={width}>
+    <InputContainer margin={margin} padding={padding} width={width}>
       {labelText && <Label mode={mode}>{labelText}</Label>}
       <ContentContainer
         backgroundColor={style?.$backgroundColor}

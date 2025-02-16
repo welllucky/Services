@@ -3,7 +3,7 @@ import { z } from "zod";
 import { IssueTypeSchema } from "../dto";
 import { PriorityLevelsSchema } from "../dto/PriorityLevel.dto";
 
-export const IOpenIssueFormSchema = z.object({
+export const IOpenTicketFormSchema = z.object({
   resume: z.string(),
   description: z.string(),
   priority: PriorityLevelsSchema,
@@ -11,4 +11,4 @@ export const IOpenIssueFormSchema = z.object({
   type: IssueTypeSchema,
 });
 
-export type IOpenIssueForm = z.infer<typeof IOpenIssueFormSchema>;
+export type IOpenTicketForm = z.infer<typeof IOpenTicketFormSchema>;

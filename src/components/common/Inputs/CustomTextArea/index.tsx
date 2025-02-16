@@ -13,8 +13,6 @@ export interface TextAreaProps extends Omit<InputComponentsProps, "onChange"> {
    */
   // eslint-disable-next-line no-unused-vars
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  hasOverflow?: boolean;
-  $maxHeight?: string;
 }
 
 /**
@@ -47,7 +45,7 @@ export interface TextAreaProps extends Omit<InputComponentsProps, "onChange"> {
  */
 export const CustomTextArea = ({
   id,
-  labelText,
+  labelText = "",
   placeholder,
   width = "100%",
   height = "160px",
@@ -59,8 +57,6 @@ export const CustomTextArea = ({
   warnText,
   control,
   isDisabled,
-  $maxHeight,
-  hasOverflow,
 }: TextAreaProps) => {
   const { field, fieldState } = useController({
     name: id,
@@ -77,20 +73,24 @@ export const CustomTextArea = ({
     value: field.value,
   });
 
+  const colorMapping = {
+    invalid: "#b3261e",
+    valid: "#7ac143",
+    warning: "#f2994a",
+    none: "#79747e",
+    disabled: "#acacac",
+  };
+
   return (
     <TextAreaContainer $status={internalStatus}>
       <CustomFieldset
-        width={width}
-        $minHeight={height}
-        $maxHeight={$maxHeight}
-        $hasOverflow={hasOverflow}
-        labelText={labelText ?? ""}>
+        labelText={labelText}
+        color={colorMapping[`${internalStatus}`]}>
         <TextArea
           {...field}
+          width={width}
           height={height}
-          width="100%"
           placeholder={placeholder}
-          value={value}
         />
       </CustomFieldset>
       {internalStatus === "invalid" && (
