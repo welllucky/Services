@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Control } from "react-hook-form";
+import { Control, FieldError } from "react-hook-form";
 import { useOpenTicket } from "../OpenTicket.hook";
 import { TicketPageContent } from "../OpenTicket.styles";
 import {
@@ -26,30 +26,30 @@ export const OpenTicketPageUI = () => {
       as="form">
       <ResumeInput
         control={control as unknown as Control}
-        error={errors?.resume}
+        error={errors?.resume as FieldError}
         defaultValue={formData?.resume}
       />
 
       <TypeSelect
-        error={errors?.type}
+        error={errors?.type as FieldError}
         control={control as unknown as Control}
         defaultValue={formData?.type}
       />
 
       <DescriptionInput
-        error={errors.description}
+        error={errors.description as FieldError}
         control={control as unknown as Control}
         defaultValue={formData?.description}
       />
 
       <DateInput
-        error={errors?.date}
+        error={errors?.date as FieldError}
         control={control as unknown as Control}
         defaultValue={formData?.date}
       />
 
       <PriorityInput
-        error={errors?.priority}
+        error={errors?.priority as FieldError}
         control={control as unknown as Control}
         defaultValue={formData?.priority}
       />
