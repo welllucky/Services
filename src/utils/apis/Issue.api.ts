@@ -1,5 +1,5 @@
 import { IHttpClient } from "@/implementations/client/interfaces";
-import { IOpenIssueForm, IssueDto } from "@/types";
+import { IOpenTicketForm, TicketDto } from "@/types";
 
 /**
  * The `IssueApi` class provides methods to interact with the issues API, including fetching and creating issues.
@@ -31,7 +31,7 @@ export class IssueApi {
       };
     }
 
-    return this.httpClient.get<IssueDto>({
+    return this.httpClient.get<TicketDto>({
       url: `${this.apiUrl}/${id}`,
     });
   };
@@ -41,18 +41,20 @@ export class IssueApi {
    * @returns An object containing an array of issue data, any error that occurred, and a loading state.
    */
   getIssues = () =>
-    this.httpClient.get<IssueDto[]>({
+    this.httpClient.get<TicketDto[]>({
       url: `${this.apiUrl}`,
       options: { refreshInterval: true },
     });
 
+  createIssueUrl = () => `${this.apiUrl}`;
+
   /**
    * Creates a new issue with the given data.
-   * @param {IOpenIssueForm} issueData The data for the issue to be created.
+   * @param {IOpenTicketForm} issueData The data for the issue to be created.
    * @param shouldFetch
    * @returns An object containing any error that occurred and a loading state.
    */
-  createIssue = (issueData: IOpenIssueForm, shouldFetch = false) =>
+  createIssue = (issueData: IOpenTicketForm, shouldFetch = false) =>
     this.httpClient.post<{ id: string | number }>({
       url: `${this.apiUrl}`,
       body: {
@@ -62,7 +64,7 @@ export class IssueApi {
     });
 
   getInProgressIssues = () =>
-    this.httpClient.get<IssueDto[]>({
+    this.httpClient.get<TicketDto[]>({
       url: `${this.apiUrl}/inProgress`,
     });
 

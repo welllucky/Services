@@ -3,20 +3,19 @@ import {
   SS_KEY_USER_PREVIOUS_PAGE,
 } from "@/constraints";
 import { IOpenTicketForm } from "@/types";
-import { issueApi, useModalStore, useTicketStore } from "@/utils";
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import toast from "react-hot-toast";
+import { recoverFormDataFromLocalStorage } from "./OpenTicket.utils";
 
 export const useOpenTicket = () => {
-  const { push } = useRouter();
-  const [formData, setFormData] = useTicketStore((state) => [
-    state.ticket,
-    state.setTicket,
-  ]);
-  const [canRegisterIssue, setCanRegisterIssue] = useState(false);
-
+  const [formData, setFormData] = useState<IOpenTicketForm>({
+    resume: "",
+    description: "",
+    date: "",
+    type: "",
+    priority: "",
+  });
   const {
     control,
     setValue,
@@ -24,22 +23,17 @@ export const useOpenTicket = () => {
     formState: { errors, isValid, isValidating },
   } = useFormContext<IOpenTicketForm>();
 
-  const isModalOpen = useModalStore((state) => state.isOpen);
-
-  const { data, error } = issueApi.createIssue(formData, canRegisterIssue);
-
   const recoverFormData = useCallback(
-    (showToast?: boolean) => {
+    (showToast?: boolean): IOpenTicketForm | null => {
       const isFromOutsideForm =
         (sessionStorage.getItem(SS_KEY_USER_PREVIOUS_PAGE) as string) !==
         "form";
 
-      const recoveredData = JSON.parse(
-        localStorage.getItem(LS_KEY_1_TICKET_RECORD) as string,
-      );
+      const recoveredData =
+        recoverFormDataFromLocalStorage() as IOpenTicketForm;
 
       if (recoveredData) {
-        setFormData(recoveredData);
+        setFormData({ ...recoveredData });
         setValue("resume", recoveredData?.resume, { shouldValidate: true });
         setValue("description", recoveredData?.description, {
           shouldValidate: true,
@@ -53,14 +47,14 @@ export const useOpenTicket = () => {
         if (isFromOutsideForm && showToast) {
           toast.success("Dados recuperados com sucesso!");
         }
-      }
-    },
-    [setValue],
-  );
 
-  const sendTicketRegister = useCallback(() => {
-    setCanRegisterIssue(true);
-  }, []);
+        return recoveredData;
+      }
+
+      return null;
+    },
+    [setFormData, setValue],
+  );
 
   useEffect(() => {
     if (isValid && !isValidating) {
@@ -71,24 +65,6 @@ export const useOpenTicket = () => {
     }
   }, [getValues, isValid, isValidating]);
 
-  useEffect(() => {
-    if (data?.id) {
-      setCanRegisterIssue(false);
-      setTimeout(() => {
-        push(`/ticket/${data?.id}`);
-      }, 3000);
-    }
-
-    if (error) {
-      toast.error("Erro ao registrar chamado. Tente novamente.");
-      push("/");
-    }
-
-    return () => {
-      setCanRegisterIssue(false);
-    };
-  }, [data?.id, error]);
-
   return {
     recoverFormData,
     control,
@@ -96,7 +72,5 @@ export const useOpenTicket = () => {
     isValid,
     isValidating,
     formData,
-    isModalOpen,
-    sendTicketRegister,
   };
 };

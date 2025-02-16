@@ -27,14 +27,36 @@ export const Fieldset = styled.div<{
   width: 100%;
   border-radius: 4px;
   border: 1px solid ${({ theme, color }) => color ?? theme.colors.neutral["15"]};
-  color: ${({ theme, color }) => color ?? theme.colors.neutral["100"]};
+  color: ${({ theme }) => theme.colors.neutral.inverted};
 `;
 
 export const FieldsetContainer = styled.div<{
   color?: string;
   width?: string;
   height?: string;
+  padding?: string;
+  $minHeight?: string;
+  $maxHeight?: string;
+  $justifyContent?: "start" | "center" | "end";
+  $alignItems?: "start" | "center" | "end";
 }>`
   width: ${({ width }) => width ?? "100%"};
   height: ${({ height }) => height ?? "100%"};
+  min-height: ${({ $minHeight }) => $minHeight};
+  max-height: ${({ $maxHeight }) => $maxHeight};
+
+  ${Fieldset} {
+    display: flex;
+    min-height: ${({ $minHeight }) => $minHeight};
+    max-height: ${({ $maxHeight }) => $maxHeight};
+
+    justify-content: ${({ $justifyContent }) => $justifyContent};
+    align-items: ${({ $alignItems }) => $alignItems};
+  }
+
+  ${FieldSetContent} {
+    padding: ${({ padding }) => padding};
+    word-break: break-all;
+    color: ${({ theme }) => theme.colors.neutral["100"]};
+  }
 `;
