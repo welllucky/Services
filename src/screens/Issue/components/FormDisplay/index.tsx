@@ -1,11 +1,11 @@
 import { LargeFieldset } from "@/components/Fieldset/LargeFieldset";
 import { SmallFieldset } from "@/components/Fieldset/SmallFieldset";
-import { SectionInfoForm } from "@/screens/OpenTicket/ConfirmMedia/styles";
-import { IssueDto } from "@/types";
+import { SectionInfoForm } from "@/screens/OpenTicket/ConfirmTicket/styles";
+import { TicketDto } from "@/types";
 import { FormDisplayContainer } from "./styles";
 
 type FormDisplayProps = {
-  data: IssueDto | undefined;
+  data: TicketDto | undefined;
 };
 
 export const FormDisplay = ({ data }: FormDisplayProps) => (

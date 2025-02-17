@@ -11,7 +11,7 @@ type ConfirmMediaPageUiProps = {
   data: IOpenTicketForm;
 };
 
-export const ConfirmMediaPageUI = ({
+export const ConfirmTicketPageUI = ({
   theme,
   data,
 }: ConfirmMediaPageUiProps) => (

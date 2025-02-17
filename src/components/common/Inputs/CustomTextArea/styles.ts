@@ -25,6 +25,7 @@ export const TextArea = styled.textarea<{ width?: string; height?: string }>`
   letter-spacing: 0.4px;
   resize: none;
   background: transparent;
-  color: #2b4417;
+  color: ${({ theme }) => theme.colors.neutral.inverted};
   padding: 1rem;
+  word-break: auto-phrase;
 `;

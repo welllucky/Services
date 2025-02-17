@@ -175,8 +175,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       update,
       isLoading,
       error,
+      accessToken: data?.accessToken,
     }),
-    [error, isAuthenticated, isLoading, signIn, signOut, update, user],
+    [
+      data?.accessToken,
+      error,
+      isAuthenticated,
+      isLoading,
+      signIn,
+      signOut,
+      update,
+      user,
+    ],
   );
 
   return (

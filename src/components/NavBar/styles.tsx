@@ -3,8 +3,6 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export const ContainerMenu = styled.div<{ color?: string }>`
-  position: absolute;
-  bottom: 0;
   width: 100%;
   padding: 0;
   background-color: ${({ color }) => color || "#f5f5f5"};

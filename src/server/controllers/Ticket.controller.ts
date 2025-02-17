@@ -1,9 +1,16 @@
 import { ticketUrl } from "@/app/api/urls";
-import { getAuthToken } from "@/server/functions/getAuthToken";
-import { IHttpResponse, TicketDto } from "@/types";
 import { defaultHeaders } from "@/constraints";
+import { getAuthToken } from "@/server/functions/getAuthToken";
+import {
+  CreatedTicketDto,
+  IHttpError,
+  IHttpResponse,
+  IOpenTicketForm,
+  TicketDto,
+} from "@/types";
 import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
+import { getFormattedBody } from "../functions/getFormattedBody";
 
 class TicketController {
   static async getAllTickets(req: NextRequest) {
@@ -29,7 +36,7 @@ class TicketController {
 
       const resBody = (await res.json()) as IHttpResponse<
         TicketDto[],
-        { message?: string; title?: string }
+        IHttpError
       >;
 
       if (!resBody.data?.length) {
@@ -92,6 +99,46 @@ class TicketController {
           method: "getTicketById",
         },
       });
+      return NextResponse.json({ error });
+    }
+  }
+
+  static async createTicket(req: NextRequest) {
+    try {
+      const { userId, isAuthenticated, accessToken } = await getAuthToken(req);
+      const newTicketData = await getFormattedBody<IOpenTicketForm>(req);
+
+      if (!isAuthenticated || !userId) {
+        return NextResponse.json(
+          { error: { message: "User not authenticated" } },
+          {
+            status: 401,
+          },
+        );
+      }
+
+      const res = await fetch(`${ticketUrl}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          ...defaultHeaders,
+        },
+        body: JSON.stringify(newTicketData),
+      });
+
+      const resBody = (await res.json()) as IHttpResponse<
+        CreatedTicketDto,
+        IHttpError
+      >;
+
+      if (resBody.error) {
+        return NextResponse.json({ ...resBody.error });
+      }
+
+      return NextResponse.json(resBody, {
+        status: resBody.status,
+      });
+    } catch (error) {
       return NextResponse.json({ error });
     }
   }

@@ -38,7 +38,8 @@ export const SelectComponent = styled.select<{
   display: flex;
   align-items: center;
   letter-spacing: 0.4px;
-  color: ${({ $isPlaceholder }) => ($isPlaceholder ? "#79747e" : "#000")};
+  color: ${({ $isPlaceholder, theme }) =>
+    ($isPlaceholder ? theme.colors.neutral["25"] : theme.colors.neutral.inverted)};
   padding: 16px;
   appearance: none;
   background: url("/caret-down.svg") no-repeat right center;

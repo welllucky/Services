@@ -91,7 +91,7 @@ export const InputComponent = styled.input`
   display: flex;
   align-items: center;
   letter-spacing: 0.4px;
-  color: #1c1b1f;
+  color: ${({ theme }) => theme.colors.neutral.inverted};
   outline: none;
   background-color: transparent;
 `;
@@ -99,7 +99,7 @@ export const InputComponent = styled.input`
 export const Label = styled.label<{ mode: "filled" | "outlined" }>`
   font-size: ${({ mode }) => (mode === "filled" ? "1.2rem" : "12px")};
   font-weight: 400;
-  color: #49454f;
+  color: ${({ theme }) => theme.colors.neutral.inverted};
 
   ${({ mode }) =>
     mode === "outlined" &&

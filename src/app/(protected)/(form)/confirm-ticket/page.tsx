@@ -1,4 +1,4 @@
-import { ConfirmDetailsPage } from "@/screens/OpenTicket/ConfirmMedia";
+import { ConfirmDetailsPage } from "@/screens/OpenTicket/ConfirmTicket";
 
 const ConfirmDetails = () => <ConfirmDetailsPage />;
 

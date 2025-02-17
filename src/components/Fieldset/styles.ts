@@ -3,6 +3,12 @@ import styled from "styled-components";
 export const FieldSetContent = styled.div`
   width: 100%;
   height: 100%;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  word-break: auto-phrase;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.neutral.inverted};
 `;
 
 export const Legend = styled.label`
