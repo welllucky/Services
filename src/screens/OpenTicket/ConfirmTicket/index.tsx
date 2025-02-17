@@ -4,7 +4,7 @@ import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
 import { useEffect } from "react";
 import { useTheme } from "styled-components";
 import { useOpenTicket } from "../OpenTicket.hook";
-import { ConfirmMediaPageUI } from "./UI";
+import { ConfirmTicketPageUI } from "./UI";
 
 export const ConfirmDetailsPage = () => {
   const { formData, recoverFormData } = useOpenTicket();
@@ -23,7 +23,7 @@ export const ConfirmDetailsPage = () => {
   }, []);
 
   return (
-    <ConfirmMediaPageUI
+    <ConfirmTicketPageUI
       theme={theme}
       data={formData}
     />

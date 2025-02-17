@@ -1,17 +1,14 @@
 "use client";
 
 import { BackButton, FormButtons } from "@/components";
-import { LS_KEY_1_TICKET_RECORD } from "@/constraints";
 import { IssuePageContainer } from "@/screens/Issue/styles";
 import { Column, Row, TitleComponent } from "@/styles";
-import { IHttpError, IHttpResponse, IOpenTicketForm, TicketDto } from "@/types";
-import { buildTestIds, issueApi, resetForm } from "@/utils";
+import { IOpenTicketForm } from "@/types";
+import { buildTestIds, resetForm } from "@/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { recoverFormDataFromLocalStorage } from "../OpenTicket.utils";
-import { ICreateIssueFlowPage, useCreateIssueFlow } from "./data";
+import { ICreateIssueFlowPage, useCreateTicketFlow } from "./data";
 
 type OpenIssueTemplateUIProps = {
   pages: ICreateIssueFlowPage[];
@@ -25,43 +22,8 @@ export const OpenIssueTemplateUI = ({
   const pathName = usePathname();
   const { push, back } = useRouter();
 
-  const sendTicketRegister = async () => {
-    try {
-      const formData = recoverFormDataFromLocalStorage();
-      toast.loading("Registrando chamado...");
-      const response = await fetch(issueApi.createIssueUrl(), {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Erro ao registrar chamado. Tente novamente.");
-      }
-
-      const { data } = (await response.json()) as IHttpResponse<
-        TicketDto,
-        IHttpError
-      >;
-
-      toast.dismiss();
-
-      if (data?.id) {
-        localStorage.removeItem(LS_KEY_1_TICKET_RECORD);
-        toast.success("Chamado registrado com sucesso.");
-        push(`/ticket/${data?.id}`);
-      }
-    } catch {
-      push("/");
-      toast.dismiss();
-      toast.error("Erro ao registrar chamado. Tente novamente.");
-    }
-  };
-
   const methods = useForm<IOpenTicketForm>({
-    mode: "onChange",
+    mode: "onBlur",
     defaultValues: {
       resume: "",
       description: "",
@@ -74,10 +36,8 @@ export const OpenIssueTemplateUI = ({
     progressive: true,
   });
 
-  const { actualPage, nextPage, previousPage } = useCreateIssueFlow(
-    pathName,
-    pages,
-  );
+  const { actualPage, nextPage, previousPage, sendTicketRegister } =
+    useCreateTicketFlow(pathName, pages);
 
   return (
     <FormProvider

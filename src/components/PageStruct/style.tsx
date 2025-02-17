@@ -4,16 +4,17 @@ import styled from "styled-components";
 export const FlexContainer = styled(Column)<{
   $backgroundColor?: string;
   $hasBottomPadding?: boolean;
+  padding?: string;
 }>`
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  padding: 8vw;
-  gap: ${({ $gap }) => $gap || "8px"};
+  padding: ${({ padding }) => padding};
+  gap: ${({ $gap }) => $gap};
 
   background-color: ${({ $backgroundColor }) =>
-    $backgroundColor || theme.colors.neutral.default};
+    $backgroundColor ?? theme.colors.neutral.default};
 
   ${({ $hasBottomPadding }) =>
     $hasBottomPadding &&

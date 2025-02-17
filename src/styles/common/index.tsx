@@ -35,13 +35,16 @@ export const Column = styled.section<{
   width?: string;
   height?: string;
   overflow?: boolean;
+  padding?: string;
 }>`
   width: ${({ width }) => width ?? "100%"};
   height: ${({ $full, height }) =>
-    ($full ? "100dvh" : height ?? "fit-content")};
+    ($full ? "100dvh" : (height ?? "fit-content"))};
   display: flex;
   flex-direction: column;
   gap: ${({ $gap }) => $gap};
+
+  padding: ${({ padding }) => padding};
 
   ${({ overflow }) =>
     overflow &&
@@ -62,7 +65,7 @@ export const PageContainer = styled.main`
 
 export const TitleComponent = styled.h1<{ $isSmallClientMobile?: boolean }>`
   font-style: normal;
-  font-weight:600;
+  font-weight: 600;
   font-size: 1rem;
   display: flex;
   align-items: center;
@@ -72,7 +75,7 @@ export const TitleComponent = styled.h1<{ $isSmallClientMobile?: boolean }>`
   ${({ $isSmallClientMobile }) =>
     $isSmallClientMobile &&
     css`
-      font-size: .8rem;
+      font-size: 0.8rem;
       margin-top: 4rem;
       text-align: center;
     `}

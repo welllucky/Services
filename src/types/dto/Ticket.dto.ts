@@ -41,3 +41,5 @@ export type TicketStatus = z.infer<typeof TicketStatusSchema>;
 export type TicketType = z.infer<typeof TicketTypeSchema>;
 
 export type TicketDto = z.infer<typeof TicketSchema>;
+
+export type CreatedTicketDto = Omit<TicketDto, "id">;

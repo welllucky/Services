@@ -1,5 +1,6 @@
+import { defaultHeaders } from "@/constraints";
 import { IHttpClient } from "@/implementations/client/interfaces";
-import { IOpenTicketForm, TicketDto } from "@/types";
+import { IHttpError, IHttpResponse, IOpenTicketForm, TicketDto } from "@/types";
 
 /**
  * The `IssueApi` class provides methods to interact with the issues API, including fetching and creating issues.
@@ -13,7 +14,7 @@ export class IssueApi {
 
   constructor(httpClient: IHttpClient) {
     this.baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    this.apiUrl = `${this.baseUrl}api/issues`;
+    this.apiUrl = `${this.baseUrl}api/tickets`;
     this.httpClient = httpClient;
   }
 
@@ -56,16 +57,20 @@ export class IssueApi {
    */
   createIssue = (issueData: IOpenTicketForm, shouldFetch = false) =>
     this.httpClient.post<{ id: string | number }>({
-      url: `${this.apiUrl}`,
+      url: this.apiUrl,
       body: {
         ...issueData,
       },
       shouldFetch,
     });
 
-  getInProgressIssues = () =>
-    this.httpClient.get<TicketDto[]>({
+  getInProgressIssues = (accessToken: string) =>
+    this.httpClient.get<IHttpResponse<TicketDto[], IHttpError>>({
       url: `${this.apiUrl}/inProgress`,
+      headers: {
+        ...defaultHeaders,
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
 
   closeIssue = (id: string, shouldFetcher = false) =>

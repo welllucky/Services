@@ -3,6 +3,7 @@
 import { Header, NavigationBar } from "@/components";
 import { getNavigationOptions } from "@/components/NavBar/data";
 import { FlexContainer } from "@/components/PageStruct/style";
+import { Column } from "@/styles";
 import { useAuth } from "@/utils";
 import { usePathname } from "next/navigation";
 import { ReactNode, useMemo } from "react";
@@ -48,10 +49,15 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
 
   return (
     <FlexContainer
-      $backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}
-      $full>
-      {shouldShowHeader && <Header />}
-      {children}
+      $full
+      $backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}>
+      <Column
+        padding="8vw 8vw 0 8vw"
+        overflow
+        $full>
+        {shouldShowHeader && <Header />}
+        {children}
+      </Column>
       {shouldShowFooter && (
         <NavigationBar
           color={isRequestsPage ? "#D8FFB9" : "#F8FCF6"}
