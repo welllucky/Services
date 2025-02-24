@@ -1,6 +1,5 @@
 import { TicketCard } from "@/components";
 import { TicketDto } from "@/types";
-import { dataFormatter } from "@/utils";
 
 interface ResultsProps {
   result: TicketDto[] | undefined;
@@ -13,7 +12,7 @@ export const Results = ({ result }: ResultsProps) => {
         key={issue.id}
         id={issue.id}
         name={issue.resume}
-        date={dataFormatter(issue.date)}
+        date={issue.date}
         $status={issue.status}
         href={`/ticket/${issue.id}`}
       />

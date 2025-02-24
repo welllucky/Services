@@ -12,6 +12,7 @@ export const Container = styled.div`
 	width: fit-content;
 	gap: 4px;
 	align-items: center;
+  cursor: pointer;
 `;
 
 export const BackIcon = styled(Image)`

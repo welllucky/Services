@@ -3,7 +3,7 @@
 import { IUser } from "@/types";
 import { issueApi } from "@/utils";
 import { useRouter } from "next/navigation";
-import { IssuesPageUI } from "../Issues/UI";
+import { HomePageUI } from "./UI";
 
 interface HomepageProps {
   user?: IUser | null;
@@ -16,7 +16,7 @@ const Homepage = ({ user }: HomepageProps) => {
   );
 
   return (
-    <IssuesPageUI
+    <HomePageUI
       data={res?.data}
       isLoading={isLoading}
       router={router}

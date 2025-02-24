@@ -3,7 +3,6 @@ import { TicketCard } from "@/components/TicketCard";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { TicketDto } from "@/types";
-import { dataFormatter } from "@/utils/functions/dataFormatter";
 import { DefaultTheme } from "styled-components";
 
 export type TicketsPageUIProps = {
@@ -12,7 +11,7 @@ export type TicketsPageUIProps = {
   theme?: DefaultTheme;
 };
 
-export const TicketsPageUI = async ({
+export const TicketsPageUI = ({
   theme,
   data,
   isLoading = false,
@@ -25,7 +24,7 @@ export const TicketsPageUI = async ({
     <>
       <SubHeader title="Solicitações" />
       <PageContainer>
-        <MainContainer $hasContent={Number(data?.length) !== 0}>
+        <MainContainer>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent
               alt="caixa vazia"
@@ -40,7 +39,7 @@ export const TicketsPageUI = async ({
                 key={ticket.id}
                 id={ticket.id}
                 name={ticket.resume}
-                date={dataFormatter(ticket.date ?? "")}
+                date={ticket.date}
                 $status={ticket.status}
                 isUpdated
                 href={`/issue/${ticket.id}`}

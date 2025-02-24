@@ -9,7 +9,7 @@ import {
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { IUser, TicketDto } from "@/types";
-import { dataFormatter, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
+import { SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useCallback, useMemo } from "react";
 import { ButtonWrapper } from "../styles";
@@ -27,10 +27,11 @@ const IssuePageSkeleton = () => {
   return (
     <SkeletonContainer gap="40px">
       {Array.from({ length: INITIAL_ISSUE_QUANTITY_LIMIT + 1 }).map(
-        () => (
+        (_, index) => (
           <Skeleton
             type="card"
-            key="skeleton-card"
+            // eslint-disable-next-line react/no-array-index-key
+            key={`skeleton-card-${index}`}
           />
         ),
       )}
@@ -101,7 +102,7 @@ export const IssuesPageUI = ({
                   key={issue?.id}
                   id={String(issue?.id)}
                   name={issue?.resume}
-                  date={dataFormatter(issue.date)}
+                  date={issue.date}
                   $status={issue.status}
                   isUpdated={false}
                   href={`/ticket/${issue.id}`}

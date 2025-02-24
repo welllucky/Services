@@ -34,7 +34,7 @@ type OptionMenuProps = {
 };
 
 type IconButtonProps = {
-  icon: ReactNode;
+  children: ReactNode;
   color?: string;
   width?: string;
   height?: string;
