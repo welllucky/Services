@@ -1,29 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
-import { ticketUrl } from "../../urls";
+import { TicketController } from "@/server";
+import { NextRequest } from "next/server";
 
 type Ticket = {
   id: string;
 };
 
-export async function GET(_req: NextRequest, { params }: { params: Ticket }) {
-  try {
-    const { id } = params;
-    const ticketIdUrl = `${ticketUrl}${id}`;
-
-    const response = await fetch(ticketIdUrl, {
-      next: {
-        revalidate: 60 * 3,
-        tags: ["ticket"],
-      },
-      mode: "cors",
-    });
-
-    const data = await response.json();
-
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json({
-      error,
-    });
-  }
+export async function GET(req: NextRequest, { params }: { params: Ticket }) {
+  return TicketController.getTicketById(req, params);
 }
+export const runtime = "nodejs";

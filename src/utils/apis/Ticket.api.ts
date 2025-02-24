@@ -21,6 +21,8 @@ export class TicketApi {
     this.httpClient = httpClient;
   }
 
+  getTicketEndpoint = (id: string) => `${this.apiUrl}/${id}`;
+
   /**
    * Get a specific issue by its ID.
    * @param {string} id The unique identifier of the issue to fetch.
@@ -28,7 +30,7 @@ export class TicketApi {
    */
   getTicket = (id: string) => {
     const { data, error, isLoading } = this.httpClient.get<ITicket>({
-      url: `${this.apiUrl}/${id}`,
+      url: this.getTicketEndpoint(id),
     });
     return { data, error, isLoading };
   };

@@ -10,7 +10,11 @@ type FormDisplayProps = {
 
 export const FormDisplay = ({ data }: FormDisplayProps) => (
   <FormDisplayContainer>
-    <SmallFieldset title="Resumo">{data?.resume}</SmallFieldset>
+    <SmallFieldset
+      title="Resumo"
+      height="52px">
+      {data?.resume}
+    </SmallFieldset>
     <LargeFieldset title="Descrição">{data?.description}</LargeFieldset>
     <SectionInfoForm $gap="16px">
       <SmallFieldset title="Tipo">{data?.type}</SmallFieldset>
