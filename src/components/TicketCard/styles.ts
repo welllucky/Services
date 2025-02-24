@@ -1,5 +1,5 @@
 import { Row } from "@/styles";
-import { IssueStatus } from "@/types";
+import { TicketStatus } from "@/types";
 import Link from "next/link";
 import styled, { css } from "styled-components";
 
@@ -8,7 +8,7 @@ type ContainerStyleProps = {
   $borderColor?: string;
   hoverColor?: string;
   $hasUpdate?: boolean;
-  $status?: IssueStatus;
+  $status?: TicketStatus;
 };
 
 export const TicketWrapper =
@@ -20,6 +20,7 @@ export const TicketWrapper =
   background-color: ${({ color }) => color ?? "#D9F5C5"};
   border-radius: 1rem;
   padding: 0.2rem;
+  border: 0.2rem solid transparent;
 
   &:hover {
     box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.28);

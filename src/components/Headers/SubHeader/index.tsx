@@ -20,10 +20,12 @@ export const SubHeader = ({
         {title}
       </SubTitleComponent>
       {showAddIssueButton && (
-        <IconButton
-          onClick={addButtonCallback}
-          icon={<PlusSquare />}
-        />
+        <IconButton onClick={addButtonCallback}>
+          <PlusSquare
+            width={20}
+            height={20}
+          />
+        </IconButton>
       )}
     </PageTitle>
   </SecondSection>

@@ -14,4 +14,6 @@ export const PageTitle = styled.div<{ $isSmallClientMobile?: boolean }>`
     `}
 `;
 
-export const SecondSection = styled(Row)``;
+export const SecondSection = styled(Row)`
+padding-bottom: 1rem;
+`;

@@ -52,7 +52,7 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
       $full
       $backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}>
       <Column
-        padding="8vw 8vw 0 8vw"
+        padding={`8vmin 5vmin ${shouldShowFooter ? "0" : "8vmin"} 5vmin`}
         overflow
         $full>
         {shouldShowHeader && <Header />}

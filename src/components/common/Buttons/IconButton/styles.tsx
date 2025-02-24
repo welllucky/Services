@@ -28,8 +28,6 @@ const CustomButtonAsLink = styled(Link)<CustomButtonProps>`
 `;
 
 const CustomButton = styled.button<CustomButtonProps>`
-  width: ${(props) => props.width ?? "2.5rem"};
-  height: ${(props) => props.height ?? "2.5rem"};
   color: ${(props) => props.color ?? "#000000"};
   background-color: transparent;
   border: none;

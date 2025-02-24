@@ -1,6 +1,6 @@
-import { useRouter } from "next/navigation";
-import { CaretLeft } from "@phosphor-icons/react";
 import { buildTestIds } from "@/utils/functions";
+import { CaretLeft } from "@phosphor-icons/react";
+import { useRouter } from "next/navigation";
 import { Container, TextBack } from "./styles";
 
 export interface BackButtonProps {
@@ -17,17 +17,22 @@ export const BackButton = ({
   onClick,
 }: BackButtonProps) => {
   const { back } = useRouter();
+
+  const backButtonCallback = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      back();
+    }
+  };
   return (
     <Container
       {...buildTestIds("back-button")}
-      onClick={() => {
-        // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
-        onClick ? onClick() : back();
-      }}>
+      onClick={backButtonCallback}>
       <CaretLeft
         size={20}
         weight="bold"
-        color={color || "black"}
+        color={color ?? "black"}
         alt="voltar"
       />
       <TextBack
