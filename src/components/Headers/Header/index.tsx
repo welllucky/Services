@@ -38,10 +38,9 @@ const GreetingSection = ({
         />
       )}
     </UserName>
-    <IconButton
-      onClick={signOut}
-      icon={<SignOutIcon size={24} />}
-    />
+    <IconButton onClick={signOut}>
+      <SignOutIcon size={24} />
+    </IconButton>
   </Row>
 );
 

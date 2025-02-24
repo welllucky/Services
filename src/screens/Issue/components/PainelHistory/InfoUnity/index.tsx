@@ -1,4 +1,4 @@
-import { IssueEventDto } from "@/types";
+import { TicketEventDto } from "@/types";
 import {
   InfoUnityContainer,
   InfoUnityDescription,
@@ -6,7 +6,7 @@ import {
   InfoUnityId,
 } from "./styles";
 
-export const InfoUnity = ({ description, id }: IssueEventDto) =>
+export const InfoUnity = ({ description, id }: TicketEventDto) =>
   description && (
     <InfoUnityContainer>
       <InfoUnityIcon />
