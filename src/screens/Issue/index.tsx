@@ -1,10 +1,8 @@
 "use client";
 
-import { Loading } from "@/components";
-
-import { issueApi, TicketProvider } from "@/utils";
+import { TicketDto } from "@/types";
+import { TicketProvider } from "@/utils";
 import { buildTestIds, resetForm } from "@/utils/functions";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import {
   FormDisplay,
@@ -20,37 +18,26 @@ import {
 } from "./styles";
 
 export interface IssuePageProps {
-  // data?: IssueDto;
+  data?: TicketDto;
   id: string;
 }
 
-const IssuePage = ({ id }: IssuePageProps) => {
-  const { data, isLoading } = issueApi.getIssue(id);
-
-  const router = useRouter();
-
+const IssuePage = ({ data, id }: IssuePageProps) => {
   useEffect(() => {
     resetForm();
   }, []);
 
-  if (isLoading) {
-    return <Loading $overlayOn />;
-  }
-
   return (
     <TicketProvider data={data}>
       <IssuePageContainer $full>
-        <IssuePageBackButton router={router} />
+        <IssuePageBackButton />
         <IssuePageWrapper>
-          <IssuePageTitle text={`Chamado n° ${data?.id}`} />
+          <IssuePageTitle text={`Chamado n° ${id}`} />
           <IssuePageContent
             {...buildTestIds("content-column")}
             height="100%">
             <FormDisplay data={data} />
-            <InfoHistoryPainel
-              data={data?.historic}
-              isLoading={isLoading}
-            />
+            <InfoHistoryPainel data={data?.historic} />
           </IssuePageContent>
         </IssuePageWrapper>
         {/* <IssueActionButton /> */}

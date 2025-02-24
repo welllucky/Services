@@ -6,16 +6,6 @@ export const dataFormatter = (data: string, fullDate?: boolean) => {
   const hours = date?.getHours().toString().padStart(2, "0");
   const minutes = date?.getMinutes().toString().padStart(2, "0");
 
-  console.log({
-    day,
-    month,
-    year,
-    hours,
-    minutes,
-    date,
-    data,
-  });
-
   const timePart = fullDate ? `às ${hours}:${minutes}` : "";
   return `${day}/${month}/${year} ${timePart}`;
 };

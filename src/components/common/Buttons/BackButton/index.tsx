@@ -39,7 +39,7 @@ export const BackButton = ({
         {...buildTestIds("back-button-text")}
         fontWeight={fontWeight}
         color={color}>
-        {actionText}
+        {actionText ?? "voltar"}
       </TextBack>
     </Container>
   );

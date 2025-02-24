@@ -62,7 +62,6 @@ export const FieldsetContainer = styled.div<{
 
   ${FieldSetContent} {
     padding: ${({ padding }) => padding};
-    word-break: break-all;
     color: ${({ theme }) => theme.colors.neutral["100"]};
   }
 `;
