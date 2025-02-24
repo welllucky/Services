@@ -30,7 +30,7 @@ export const Content = ({
       {isLoading && searchTerm ? (
         <Loading $overlayOn={false} />
       ) : (
-        <MainContainer $hasContent={hasContent}>
+        <MainContainer>
           <Results result={searchResults?.result} />
           <NoResults showNoResults={!hasContent && !isEmpty} />
           <EmptyContent isEmpty={isEmpty && !hasContent} />

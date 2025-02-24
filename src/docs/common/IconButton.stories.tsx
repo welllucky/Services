@@ -12,7 +12,7 @@ export default {
   args: {
     onClick: fn(),
     onHover: fn(),
-    icon: (
+    children: (
       <HomeIcon
         height={24}
         width={24}
@@ -24,7 +24,7 @@ export default {
     color: theme.colors.primary.default,
   },
   argTypes: {
-    icon: {
+    children: {
       description: "The icon displayed inside the button.",
       control: "object",
       table: {

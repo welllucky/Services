@@ -1,11 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import { IssueActionOptionsType } from "@/screens/Issue/components";
+import { TicketActionOptionsType } from "@/screens/Issue/components";
 import {
   ArrowCounterClockwise,
   DotsThreeOutlineVertical,
   Play,
 } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 import { RoundedButton } from "..";
 import { ActionButtonContainer, ActionButtonsContainer } from "./styles";
@@ -13,12 +13,13 @@ import { ActionButtonContainer, ActionButtonsContainer } from "./styles";
 interface ActionButtonProps {
   isOpen: boolean;
   canReopen: boolean;
-  actionOptions: IssueActionOptionsType[];
+  actionOptions: TicketActionOptionsType[];
   openAction: () => void;
   reopenAction: () => void;
 }
 
-interface PrincipalIssueButtonProps extends Pick<ActionButtonProps, "isOpen" | "canReopen">{
+interface PrincipalIssueButtonProps
+  extends Pick<ActionButtonProps, "isOpen" | "canReopen"> {
   action: () => void;
   $isClicked: boolean;
 }
@@ -35,9 +36,7 @@ const PrincipalIssueButton = ({
       action={action}
       $isClicked={$isClicked}
       $hasShadow={isOpen}
-      color={
-        isOpen ? theme.colors.primary["85"] : theme.colors.primary["15"]
-      }
+      color={isOpen ? theme.colors.primary["85"] : theme.colors.primary["15"]}
       icon={
         isOpen ? (
           <DotsThreeOutlineVertical
@@ -80,7 +79,7 @@ const ActionButton = ({
     }
   }, [canReopen]);
 
-  const actionCallback = () => {
+  const actionCallback = useCallback(() => {
     if (isOpen) {
       setIsOptionsOpen((state) => !state);
       return;
@@ -96,7 +95,7 @@ const ActionButton = ({
       openAction();
       setIsOptionsOpen(true);
     }
-  };
+  }, [isOpen, canReopen, openAction, reopenAction]);
 
   return (
     <ActionButtonContainer>

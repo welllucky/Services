@@ -37,12 +37,12 @@ export const useRegister = () => {
     })),
   );
 
- const selectedSectorValue = methods.watch("sector");
+  const selectedSectorValue = methods.watch("sector");
 
   const { data: sectors } = enterpriseApi.getSectors(!sectorsOptions.length);
   const { data: roles } = enterpriseApi.getRolesBySector({
     sectorId: selectedSector,
-    shouldFetch: !!selectedSector,
+    shouldFetch: Boolean(selectedSector),
   });
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export const useRegister = () => {
     if (selectedSectorValue) {
       setSelectedSector(selectedSectorValue);
     }
-  }, [selectedSectorValue]);
+  }, [selectedSectorValue, setSelectedSector]);
 
   const createAccount = async (accountData: CreateAccountDto) => {
     try {
