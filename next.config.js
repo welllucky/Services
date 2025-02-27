@@ -46,24 +46,10 @@ const nextConfig = {
   ],
 };
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const withPWA = require("next-pwa")({
-  dest: "public",
-  // disable: false,
-  disable: process.env.NODE_ENV === "development",
-  register: true,
-  scope: "/",
-  sw: "sw.js",
-  reloadOnOnline: true,
-});
-
-module.exports = withPWA(nextConfig);
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withSentryConfig } = require("@sentry/nextjs");
 const packageJson = require("./package.json");
 
-module.exports = withSentryConfig(module.exports, {
+module.exports = withSentryConfig(nextConfig, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
