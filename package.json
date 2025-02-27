@@ -41,7 +41,6 @@
     "jsonwebtoken": "^9.0.2",
     "next": "~14.2.24",
     "next-auth": "5.0.0-beta.25",
-    "next-pwa": "^5.6.0",
     "react": "^18.3.1",
     "react-cookie": "^7.2.2",
     "react-dom": "^18.3.1",
@@ -62,11 +61,6 @@
     "@babel/preset-react": "^7.25.9",
     "@next/eslint-plugin-next": "^14.2.17",
     "@playwright/test": "^1.48.2",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^13.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/npm": "^12.0.1",
-    "@semantic-release/release-notes-generator": "^14.0.3",
     "@storybook/addon-coverage": "^1.0.5",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
@@ -123,7 +117,7 @@
     "url": "https://github.com/welllucky/services/issues"
   },
   "homepage": "https://github.com/welllucky/services#readme",
-  "packageManager": "pnpm@10.2.1",
+  "packageManager": "pnpm@10.5.2",
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
