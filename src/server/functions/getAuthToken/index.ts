@@ -1,7 +1,7 @@
+import { appMonitoringServer } from "@/implementations/server";
 import { IUser } from "@/types";
 import { CS_KEY_ACCESS_TOKEN } from "@/utils/alias";
-import { addBreadcrumb } from "@sentry/nextjs";
-import jwt from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 import { NextRequest } from "next/server";
 
 const getAuthToken = async (req: NextRequest) => {
@@ -14,7 +14,7 @@ const getAuthToken = async (req: NextRequest) => {
       headers.get("Authorization")?.replace("Bearer ", "");
 
     if (!accessToken) {
-      addBreadcrumb({
+      appMonitoringServer.addBreadcrumb({
         category: "auth",
         level: "warning",
         message: "No access token found",
@@ -26,7 +26,7 @@ const getAuthToken = async (req: NextRequest) => {
       throw new Error("No access token found");
     }
 
-    const userData = jwt.verify(accessToken, process.env.AUTH_SECRET ?? "", {
+    const userData = verify(accessToken, process.env.AUTH_SECRET ?? "", {
       algorithms: ["HS256"],
     }) as unknown as IUser;
 

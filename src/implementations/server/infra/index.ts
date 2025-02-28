@@ -1,2 +1,2 @@
-export * from "./JWT";
-export * from "./Crypto";
+export * from "./CryptoAgent";
+export * from "./JWTClient";

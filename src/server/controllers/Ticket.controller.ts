@@ -1,5 +1,6 @@
 import { ticketUrl } from "@/app/api/urls";
 import { defaultHeaders } from "@/constraints";
+import { appMonitoringServer } from "@/implementations/server";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import {
   CreatedTicketDto,
@@ -8,7 +9,6 @@ import {
   IOpenTicketForm,
   TicketDto,
 } from "@/types";
-import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { getFormattedBody } from "../functions/getFormattedBody";
 
@@ -52,7 +52,7 @@ class TicketController {
         ...res,
       });
     } catch (error) {
-      captureException(error, {
+      appMonitoringServer.captureException(error, {
         tags: {
           controller: "TicketController",
           method: "getAllTickets",
@@ -93,7 +93,7 @@ class TicketController {
         ...res,
       });
     } catch (error) {
-      captureException(error, {
+      appMonitoringServer.captureException(error, {
         tags: {
           controller: "TicketController",
           method: "getTicketById",
@@ -182,7 +182,7 @@ class TicketController {
   //       status: 200,
   //     });
   //   } catch (error) {
-  //     captureException(error, {
+  //     appMonitoringServer.captureException(error, {
   //       tags: {
   //         controller: "TicketController",
   //         method: "initializeTicket",

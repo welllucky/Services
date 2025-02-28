@@ -2,6 +2,7 @@ export * from "./Apis";
 export * from "./Auth";
 export * from "./Event";
 export * from "./HttpResponse";
+export * from "./Monitoring";
 export * from "./OpenTicket";
 export * from "./Options";
 export * from "./Session";

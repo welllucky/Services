@@ -1,9 +1,9 @@
 "use client";
 
+import { appMonitoringClient } from "@/implementations/client";
 import { IUser } from "@/types";
 import { LS_KEY_USER_DATA } from "@/utils/alias";
 import { closeSession } from "@/utils/functions";
-import * as Sentry from "@sentry/nextjs";
 import {
   signIn as systemSignIn,
   signOut as systemSignOut,
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signOut = useCallback(async () => {
     resetStates();
-    Sentry.setUser(null);
+    appMonitoringClient.setUser(null);
     sessionStorage.removeItem(LS_KEY_USER_DATA);
     await closeSession(data?.accessToken ?? "");
     await systemSignOut({
@@ -153,7 +153,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (!user && data?.user && status === "authenticated") {
       setUser(data.user);
       setIsAuthenticated(true);
-      Sentry.setUser(data.user);
+      appMonitoringClient.setUser(data.user);
       sessionStorage.setItem(LS_KEY_USER_DATA, JSON.stringify(data.user));
     }
 
@@ -161,7 +161,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       resetStates();
       setUser(null);
       setIsAuthenticated(false);
-      Sentry.setUser(null);
+      appMonitoringClient.setUser(null);
       sessionStorage.removeItem(LS_KEY_USER_DATA);
     }
   }, [data, resetStates, status, user]);

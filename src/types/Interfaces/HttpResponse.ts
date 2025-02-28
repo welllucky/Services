@@ -1,4 +1,4 @@
-import { IHttpClientResponse } from "@/implementations/client/interfaces";
+import { IHttpClientResponse } from "@/implementations/interfaces";
 import { KeyedMutator } from "swr";
 
 type ErrorLevel = "low" | "medium" | "critical";

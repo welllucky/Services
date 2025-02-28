@@ -1,8 +1,8 @@
 import { searchUrl } from "@/app/api/urls";
+import { defaultHeaders } from "@/constraints";
+import { appMonitoringServer } from "@/implementations/server";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { IHttpResponse, TicketDto } from "@/types";
-import { defaultHeaders } from "@/constraints";
-import { captureException } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
 export class SearchController {
@@ -47,7 +47,7 @@ export class SearchController {
         ...res,
       });
     } catch (error) {
-      captureException(error, {
+      appMonitoringServer.captureException(error, {
         tags: {
           controller: "SearchController",
           method: "searchTickets",
