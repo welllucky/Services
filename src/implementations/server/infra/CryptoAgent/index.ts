@@ -1,5 +1,5 @@
-import { CryptoAbstraction } from "../../infra";
-import { ICrypto } from "../../interfaces";
+import { ICrypto } from "@/implementations/interfaces";
+import { CryptoAbstraction } from "../../abstractions";
 
 export class CryptoAgent implements ICrypto {
   private readonly agent: CryptoAbstraction;

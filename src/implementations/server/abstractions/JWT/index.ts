@@ -1,23 +1,26 @@
-import { JWTAbstraction } from "@/implementations/server/infra";
-import { IJWT } from "@/implementations/server/interfaces";
+import { decode, sign, verify } from "jsonwebtoken";
 
-export class JWTClient implements IJWT {
-  private readonly client: JWTAbstraction;
+export class JWTAbstraction {
+  private secret = "";
 
-  constructor(secret: string, client: JWTAbstraction) {
-    this.client = client;
-    this.client.setSecret(secret);
-  }
-
-  public async decode<T>(token: string): Promise<T> {
-    return this.client.decode<T>(token);
+  public async decode<T>(token: string) {
+    return decode(token) as unknown as T;
   }
 
   public async sign(payload: string | object | Buffer, expiresIn: string) {
-    return this.client.sign(payload, expiresIn);
+    return sign(payload, this.secret, {
+      algorithm: "ES256",
+      expiresIn,
+    });
   }
 
-  public async verify<T>(token: string): Promise<T> {
-    return this.client.verify<T>(token);
+  public async verify<T>(token: string) {
+    return verify(token, this.secret) as unknown as T;
+  }
+
+  setSecret(secret: string) {
+    this.secret = secret;
   }
 }
+
+export const JWT = new JWTAbstraction();

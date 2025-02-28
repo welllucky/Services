@@ -1,8 +1,6 @@
-/* eslint-disable react/function-component-definition */
-
 "use client";
 
-import * as Sentry from "@sentry/nextjs";
+import { appMonitoringClient } from "@/implementations/client";
 import NextError from "next/error";
 import { useEffect } from "react";
 
@@ -12,7 +10,7 @@ const GlobalError = ({
   error: Error & { digest?: string };
 }>) => {
   useEffect(() => {
-    Sentry.captureException(error);
+    appMonitoringClient.captureException(error);
   }, [error]);
 
   return (

@@ -1,6 +1,6 @@
 import { CS_KEY_ACCESS_TOKEN, defaultHeaders } from "@/constraints";
+import { appMonitoringServer } from "@/implementations/server";
 import { IHttpResponse, ISessionResponse } from "@/types";
-import { addBreadcrumb, captureException } from "@sentry/nextjs";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthToken } from "../functions/getAuthToken";
@@ -20,7 +20,7 @@ export class SessionController {
       const { email, password } = await getFormattedBody<SessionProps>(req);
 
       if (!email || !password) {
-        addBreadcrumb({
+        appMonitoringServer.addBreadcrumb({
           category: "api",
           level: "warning",
           message: "Email or Password is empty.",
@@ -43,7 +43,7 @@ export class SessionController {
         );
       }
 
-      addBreadcrumb({
+      appMonitoringServer.addBreadcrumb({
         category: "api",
         level: "log",
         message: "Email and password received",
@@ -101,7 +101,7 @@ export class SessionController {
     } catch (error) {
       const err = error as Error;
 
-      captureException(error, {
+      appMonitoringServer.captureException(error, {
         tags: {
           module: "api",
           controller: "SessionController",
@@ -143,7 +143,7 @@ export class SessionController {
       });
 
       if (res.ok) {
-        addBreadcrumb({
+        appMonitoringServer.addBreadcrumb({
           category: "api",
           level: "log",
           message: "Session was closed successfully",
@@ -161,7 +161,7 @@ export class SessionController {
     } catch (error) {
       const err = error as Error;
 
-      captureException(error, {
+      appMonitoringServer.captureException(error, {
         tags: {
           module: "api",
           controller: "SessionController",

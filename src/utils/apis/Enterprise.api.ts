@@ -1,4 +1,4 @@
-import { IHttpClient } from "@/implementations/client/interfaces";
+import { IHttpClient } from "@/implementations/interfaces";
 import { IHttpError, IHttpResponse, RoleDto, SectorDto } from "@/types";
 
 export class EnterpriseApi {

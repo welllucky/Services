@@ -1,4 +1,4 @@
-import { IHttpClient } from "@/implementations/client/interfaces";
+import { IHttpClient } from "@/implementations/interfaces";
 import { TicketDto } from "@/types";
 
 export type SearchResponse = {

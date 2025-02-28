@@ -1,6 +1,6 @@
-import * as Sentry from "@sentry/nextjs";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { appMonitoringServer } from "./implementations/server";
 import { createSession } from "./utils/functions/createSession";
 import { getUserByToken } from "./utils/functions/getUserByToken";
 
@@ -63,12 +63,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       };
     },
     session({ session, token, user }) {
-      const scope = Sentry.getCurrentScope();
       // eslint-disable-next-line no-param-reassign
       session.user.id = token?.id ?? user?.id ?? "";
-      scope.setUser({
+      appMonitoringServer.setUser({
         id: token?.register,
-        ...(token?.email && { email: token?.email }),
+        email: token?.email ?? "",
+        username: token?.name ?? "",
       });
       return {
         ...session,
@@ -104,7 +104,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: (error) => {
       // eslint-disable-next-line no-console
       console.error({ error });
-      Sentry.captureException(error);
+      appMonitoringServer.captureException(error);
     },
     warn: (code) => {
       // eslint-disable-next-line no-console

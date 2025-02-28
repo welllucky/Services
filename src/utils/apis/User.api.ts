@@ -1,4 +1,4 @@
-import { IHttpClient } from "@/implementations/client/interfaces";
+import { IHttpClient } from "@/implementations/interfaces";
 import { IUser } from "@/types";
 
 export class UserApi {

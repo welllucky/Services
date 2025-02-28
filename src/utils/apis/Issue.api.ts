@@ -1,5 +1,5 @@
 import { defaultHeaders } from "@/constraints";
-import { IHttpClient } from "@/implementations/client/interfaces";
+import { IHttpClient } from "@/implementations/interfaces";
 import { IHttpError, IHttpResponse, IOpenTicketForm, TicketDto } from "@/types";
 
 /**

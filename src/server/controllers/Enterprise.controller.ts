@@ -1,6 +1,6 @@
 import { sectorUrl } from "@/app/api/urls";
 import { defaultHeaders } from "@/constraints";
-import { captureException } from "@sentry/nextjs";
+import { appMonitoringServer } from "@/implementations/server";
 import { NextResponse } from "next/server";
 
 export class EnterpriseController {
@@ -19,7 +19,7 @@ export class EnterpriseController {
         ...res,
       });
     } catch (error) {
-      captureException(error);
+      appMonitoringServer.captureException(error);
       return NextResponse.json({ error }, { status: 500 });
     }
   }

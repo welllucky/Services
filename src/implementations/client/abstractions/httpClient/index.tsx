@@ -1,11 +1,12 @@
-"use client";
-
 /* eslint-disable react-hooks/rules-of-hooks */
 import { HttpClientProps, IHttpError, IHttpResponse } from "@/types";
 import axios, { AxiosResponse } from "axios";
 import useSWR from "swr";
 import useSWRImmutable from "swr/immutable";
-import { IHttpClient, IHttpClientResponse } from "../../interfaces/HttpClient";
+import {
+  IHttpClient,
+  IHttpClientResponse,
+} from "../../../interfaces/IHttpClient.interface";
 
 /**
  * A generic HTTP client that fetches data from an API endpoint.
