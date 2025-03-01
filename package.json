@@ -16,6 +16,8 @@
     "build": "next build",
     "lint": "next lint",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci",
     "e2e:open": "playwright test --ui",
     "e2e:run": "playwright test",
     "e2e:debug": "playwright test --debug",
@@ -23,8 +25,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "pnpm dlx chromatic --project-token=chpt_79aa966e7eb4a6e --auto-accept-changes",
-    "test-storybook": "test-storybook",
-    "release": "standard-version"
+    "test-storybook": "test-storybook"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.3.1",
@@ -51,7 +52,6 @@
     "sharp": "^0.33.5",
     "styled-components": "^6.1.13",
     "swr": "^2.2.5",
-    "typeorm": "^0.3.20",
     "usehooks-ts": "^3.1.0",
     "zod": "^3.23.8",
     "zustand": "^5.0.3"
@@ -91,14 +91,9 @@
     "eslint-plugin-security": "^3.0.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-storybook": "^0.11.2",
-    "lint-staged": "^15.2.10",
-    "postcss-styled-syntax": "^0.6.4",
     "prettier": "3.3.3",
-    "semantic-release": "^24.2.1",
-    "standard-version": "^9.5.0",
     "storybook": "^8.4.7",
     "storybook-addon-mock": "^5.0.0",
-    "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   },
   "browserslist": {
@@ -132,5 +127,8 @@
       "@semantic-release/git"
     ],
     "branch": "main"
+  },
+  "peerDependencies": {
+    "node-notifier": "^10.0.1"
   }
 }
