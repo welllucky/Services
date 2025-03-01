@@ -1,18 +1,23 @@
 "use client";
 
-import { searchApi } from "@/utils";
+import { searchApi, useAuth } from "@/utils";
 import { useDebounce } from "@uidotdev/usehooks";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SearchPageUI } from "./UI";
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 900);
 
-  const { data: searchResults, isLoading } = searchApi.getSearch(
+  const { accessToken } = useAuth();
+
+  const { data: result, isLoading } = searchApi.getSearch(
     debouncedSearchTerm,
-    !!debouncedSearchTerm,
+    accessToken ?? "",
+    Boolean(debouncedSearchTerm && accessToken),
   );
+
+  const searchResults = useMemo(() => result?.data, [result]);
 
   return (
     <SearchPageUI

@@ -1,9 +1,7 @@
-import { Loading } from "@/components";
+import { NoContent, Skeleton } from "@/components";
 import { PageContainer } from "@/styles";
 import { SearchResponse } from "@/utils/apis/Search.api";
 import { useMemo } from "react";
-import { EmptyContent } from "./empty";
-import { NoResults } from "./noResults";
 import { Results } from "./results";
 import { MainContainer } from "./styles";
 
@@ -19,21 +17,51 @@ export const Content = ({
   searchTerm,
 }: ContentProps) => {
   const hasContent = useMemo(
-    () => Boolean(searchResults?.result?.length),
+    () => Boolean(searchResults?.length),
     [searchResults],
   );
 
   const isEmpty = useMemo(() => searchTerm.length === 0, [searchTerm]);
 
+  const showNoResults = useMemo(
+    () => !isLoading && !hasContent && !isEmpty,
+    [isLoading, hasContent, isEmpty],
+  );
+
+  const showEmptyContent = useMemo(
+    () => isEmpty && !hasContent,
+    [isEmpty, hasContent],
+  );
+
+  const showResults = useMemo(
+    () => !isLoading && hasContent,
+    [isLoading, hasContent],
+  );
+
   return (
     <PageContainer>
       {isLoading && searchTerm ? (
-        <Loading $overlayOn={false} />
+        <Skeleton
+          type="page"
+          quantity={5}
+        />
       ) : (
-        <MainContainer>
-          <Results result={searchResults?.result} />
-          <NoResults showNoResults={!hasContent && !isEmpty} />
-          <EmptyContent isEmpty={isEmpty && !hasContent} />
+        <MainContainer $centerContent={!showResults}>
+          {showResults && <Results result={searchResults} />}
+
+          {showNoResults && (
+            <NoContent
+              alt="Sem resultados"
+              title="Nenhum chamado encontrado"
+            />
+          )}
+
+          {showEmptyContent && (
+            <NoContent
+              alt="caixa vazia"
+              title="Procure por chamados e solicitações"
+            />
+          )}
         </MainContainer>
       )}
     </PageContainer>

@@ -7,6 +7,7 @@ import { SkeletonProps } from "./Skeleton.types";
 import {
   AvatarSkeleton,
   CardSkeleton,
+  PageSkeleton,
   RectangleSkeleton,
   TextSkeleton,
 } from "./types";
@@ -21,6 +22,7 @@ export const Skeleton = ({
   highlightColor = "#f0f0f0",
   speed = 1.2,
   radius = "50%",
+  quantity,
 }: SkeletonProps) => {
   switch (type) {
     case "rectangle":
@@ -77,6 +79,9 @@ export const Skeleton = ({
           lines={lines}
         />
       );
+
+    case "page":
+      return <PageSkeleton quantity={quantity} />;
 
     default:
       return (

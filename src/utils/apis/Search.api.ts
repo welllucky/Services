@@ -1,13 +1,7 @@
 import { IHttpClient } from "@/implementations/interfaces";
-import { TicketDto } from "@/types";
+import { IHttpError, IHttpResponse, TicketDto } from "@/types";
 
-export type SearchResponse = {
-  result?: TicketDto[];
-  status?: number;
-  error?: {
-    message: string;
-  };
-};
+export type SearchResponse = TicketDto[];
 
 export class SearchApi {
   private readonly baseUrl: string | undefined;
@@ -22,9 +16,12 @@ export class SearchApi {
     this.httpClient = httpClient;
   }
 
-  getSearch = (searchTerm: string, shouldFetch: boolean) =>
-    this.httpClient.get<SearchResponse>({
+  getSearch = (searchTerm: string, accessToken: string, shouldFetch: boolean) =>
+    this.httpClient.get<IHttpResponse<SearchResponse, IHttpError>>({
       url: `${this.apiUrl}?searchTerm=${searchTerm}`,
       shouldFetch,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
 }

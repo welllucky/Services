@@ -1,12 +1,12 @@
-import { searchUrl } from "@/app/api/urls";
+import { ticketUrl } from "@/app/api/urls";
 import { defaultHeaders } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { IHttpResponse, TicketDto } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
-export class SearchController {
-  static async searchTickets(req: NextRequest) {
+export const SearchController = {
+  async searchTickets(req: NextRequest) {
     try {
       const searchTerm = req.nextUrl.searchParams.get("searchTerm");
 
@@ -21,7 +21,7 @@ export class SearchController {
         );
       }
 
-      const res = await fetch(`${searchUrl}?searchTerm=${searchTerm}`, {
+      const res = await fetch(`${ticketUrl}/search?term=${searchTerm}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -29,22 +29,18 @@ export class SearchController {
         },
       });
 
+      if (res.status === 204) {
+        return new NextResponse(undefined, { status: 204 });
+      }
+
       const resBody = (await res.json()) as IHttpResponse<
         TicketDto,
         { message: string }
       >;
 
-      if (!resBody.data?.id) {
-        return NextResponse.json(
-          { error: { message: "No tickets found" }, status: 204 },
-          {
-            status: 200,
-          },
-        );
-      }
-
       return NextResponse.json(resBody, {
         ...res,
+        status: res.status,
       });
     } catch (error) {
       appMonitoringServer.captureException(error, {
@@ -53,7 +49,13 @@ export class SearchController {
           method: "searchTickets",
         },
       });
-      return NextResponse.json({ error });
+
+      return NextResponse.json(
+        { error },
+        {
+          status: 500,
+        },
+      );
     }
-  }
-}
+  },
+};

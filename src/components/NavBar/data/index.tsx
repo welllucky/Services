@@ -23,7 +23,7 @@ const navigationOptions: OptionMenuProps[] = [
   },
   {
     name: "Pesquisa",
-    path: "/pesquisa",
+    path: "/search",
     alt: "pesquisa",
     icon: (
       <MagnifyingGlass
@@ -35,7 +35,7 @@ const navigationOptions: OptionMenuProps[] = [
   },
   {
     name: "Chamados",
-    path: "/chamados",
+    path: "/tickets",
     alt: "chamados",
     icon: (
       <ListDashes
@@ -47,7 +47,7 @@ const navigationOptions: OptionMenuProps[] = [
   },
   {
     name: "Solicitações",
-    path: "/solicitacoes",
+    path: "/issues",
     alt: "solicitações",
     icon: (
       <ClipboardText

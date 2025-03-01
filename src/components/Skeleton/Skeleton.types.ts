@@ -1,6 +1,12 @@
 import { ReactNode } from "react";
 
-export type SkeletonType = "text" | "circle" | "avatar" | "card" | "rectangle";
+export type SkeletonType =
+  | "text"
+  | "circle"
+  | "avatar"
+  | "card"
+  | "rectangle"
+  | "page";
 
 interface SkeletonCommonProps {
   speed?: number;
@@ -16,6 +22,7 @@ type SkeletonConditionalProps =
       radius?: never;
       children?: never;
       lines?: never;
+      quantity?: never;
     }
   | {
       type?: "text";
@@ -24,6 +31,7 @@ type SkeletonConditionalProps =
       lines?: number;
       radius?: never;
       children?: never;
+      quantity?: never;
     }
   | {
       type?: "circle";
@@ -32,6 +40,7 @@ type SkeletonConditionalProps =
       width?: never;
       height?: never;
       lines?: never;
+      quantity?: never;
     }
   | {
       type?: "avatar";
@@ -40,8 +49,25 @@ type SkeletonConditionalProps =
       height?: never;
       lines?: never;
       children?: never;
+      quantity?: never;
+    }
+  | {
+      type?: "page";
+      width?: string;
+      height?: string;
+      radius?: never;
+      children?: never;
+      lines?: never;
+      quantity?: number;
     };
 
 export type SkeletonProps = SkeletonCommonProps & SkeletonConditionalProps;
 
 export type SkeletonTypeProps = Omit<SkeletonProps, "type">;
+
+export type SkeletonPageProps = Pick<
+  SkeletonTypeProps,
+  "backgroundColor" | "highlightColor" | "speed" | "width" | "height"
+> & {
+  quantity?: number;
+};

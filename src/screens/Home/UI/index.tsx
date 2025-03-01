@@ -2,7 +2,6 @@ import {
   AddNewIssueButton,
   NoContent,
   Skeleton,
-  SkeletonContainer,
   SubHeader,
   TicketCard,
 } from "@/components";
@@ -22,22 +21,6 @@ type HomePageUIProps = {
 };
 
 const INITIAL_ISSUE_QUANTITY_LIMIT = 5;
-
-const IssuePageSkeleton = () => {
-  return (
-    <SkeletonContainer gap="40px">
-      {Array.from({ length: INITIAL_ISSUE_QUANTITY_LIMIT }).map(
-        (_, index) => (
-          <Skeleton
-            type="card"
-            // eslint-disable-next-line react/no-array-index-key
-            key={`skeleton-card-${index}`}
-          />
-        ),
-      )}
-    </SkeletonContainer>
-  );
-};
 
 export const HomePageUI = ({
   data,
@@ -85,7 +68,12 @@ export const HomePageUI = ({
       />
       <PageContainer>
         <MainContainer $centerContent={showFallback}>
-          {isLoading && <IssuePageSkeleton />}
+          {isLoading && (
+            <Skeleton
+              type="page"
+              quantity={INITIAL_ISSUE_QUANTITY_LIMIT}
+            />
+          )}
 
           {showFallback && (
             <NoContent

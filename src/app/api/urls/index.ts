@@ -7,4 +7,3 @@ export const userUrl = `${baseUrl}users`;
 export const sectorUrl = `${baseUrl}sector`;
 export const roleUrl = `${baseUrl}role`;
 export const sessionUrl = `${baseUrl}sessions`;
-export const searchUrl = `${baseUrl}search`;
