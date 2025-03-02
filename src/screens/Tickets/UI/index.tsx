@@ -23,7 +23,7 @@ export const TicketsPageUI = ({
   return (
     <>
       <SubHeader title="Solicitações" />
-      <PageContainer>
+      <PageContainer start={!Boolean(data?.length === 0 || !Array.isArray(data))}>
         <MainContainer>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent

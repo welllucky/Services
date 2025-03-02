@@ -25,14 +25,16 @@ const GreetingSection = ({
     $justifyContent="space-between"
     $alignItems="center">
     <UserName $isSmallClientMobile={false}>
-      <TitleComponent $isSmallClientMobile={false}>
+      <TitleComponent
+        {...buildTestIds("greeting-message")}
+        $isSmallClientMobile={false}>
         {`${greetingMessage},`}
       </TitleComponent>
       {user?.name ? (
-        <TitleComponent $isSmallClientMobile={false}>
-          `$
-          {user?.name ?? "Colaborador"}
-          !`
+        <TitleComponent
+          {...buildTestIds("user-name")}
+          $isSmallClientMobile={false}>
+          {user?.name ?? "Colaborador"}!
         </TitleComponent>
       ) : (
         <Skeleton
@@ -41,8 +43,15 @@ const GreetingSection = ({
         />
       )}
     </UserName>
-    <IconButton onClick={signOut}>
-      <SignOutIcon size={24} />
+    <IconButton
+      name="sign-out"
+      width={24}
+      height={24}
+      onClick={signOut}>
+      <SignOutIcon
+        aria-label="deslogar"
+        size={24}
+      />
     </IconButton>
   </Row>
 );

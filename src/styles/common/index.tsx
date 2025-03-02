@@ -46,21 +46,21 @@ export const Column = styled.section<{
 
   padding: ${({ padding }) => padding};
 
-  ${({ overflow }) =>
-    overflow &&
-    css`
-      overflow-y: auto;
-    `};
+  overflow: ${({ overflow }) => (overflow ? "auto" : "hidden")};
 `;
 
-export const PageContainer = styled.main`
+export const PageContainer = styled.main<{ start?: boolean }>`
   width: 100%;
   height: 100%;
   display: flex;
-  overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  /* padding-bottom: 5rem; */
+  overflow-y: scroll;
+  overflow-x: visible;
+  ${({ start }) =>
+    !start &&
+    css`
+      justify-content: center;
+      align-items: center;
+    `}
 `;
 
 export const TitleComponent = styled.h1<{ $isSmallClientMobile?: boolean }>`

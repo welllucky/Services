@@ -1,19 +1,39 @@
+import { auth } from "@/auth";
+import { appMonitoringServer } from "@/implementations/server";
 import { MyIssuesPage } from "@/screens/";
+import { IHttpError, IHttpResponse, TicketDto } from "@/types";
+import { issueApi } from "@/utils";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Meus chamados",
 };
 
-const MyIssues = async () => (
-  // const cookiesStore = cookies();
-  // const accessToken = cookiesStore.get(CS_KEY_ACCESS_TOKEN)?.value || "";
-  // const session = await auth(accessToken);
+// eslint-disable-next-line consistent-return
+const MyTickets = async () => {
+  try {
+    const session = await auth();
 
-  // if (!session?.user.canCreateTicket) {
-  //   return <NoMobileDevicePage />;
-  // }
+    if (!session?.accessToken) {
+      redirect("/login");
+    }
 
-  <MyIssuesPage />
-);
-export default MyIssues;
+    const res = await fetch(issueApi.getIssuesEndpoint(), {
+      headers: {
+        Authorization: `Bearer ${session?.accessToken}`,
+      },
+    });
+
+    const { data } = (await res.json()) as IHttpResponse<
+      TicketDto[],
+      IHttpError
+    >;
+
+    return <MyIssuesPage data={data} />;
+  } catch (error) {
+    appMonitoringServer.captureException(error);
+    redirect("/");
+  }
+};
+export default MyTickets;

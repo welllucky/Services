@@ -8,7 +8,7 @@ import {
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { IUser, TicketDto } from "@/types";
-import { SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
+import { buildTestIds, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useCallback, useMemo } from "react";
 import { ButtonWrapper } from "../styles";
@@ -66,10 +66,13 @@ export const HomePageUI = ({
         showAddIssueButton={showAddIssueButton}
         addButtonCallback={addIssueCallback}
       />
-      <PageContainer>
-        <MainContainer $centerContent={showFallback}>
+      <PageContainer start={!Boolean(showFallback || !hasContent)}>
+        <MainContainer
+          {...buildTestIds("home-page-content")}
+          $centerContent={showFallback}>
           {isLoading && (
             <Skeleton
+              {...buildTestIds("home-page-skeleton")}
               type="page"
               quantity={INITIAL_ISSUE_QUANTITY_LIMIT}
             />

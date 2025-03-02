@@ -1,14 +1,39 @@
 import { IssuePage, IssuePageProps } from "@/screens";
+import { auth } from "@/auth";
+import { appMonitoringServer } from "@/implementations/server";
+import { IHttpError, IHttpResponse, TicketDto } from "@/types";
+import { redirect } from "next/navigation";
 
-const Issue = async ({ params }: { params: IssuePageProps }) => (
-  // const cookiesStore = cookies();
-  // const accessToken = cookiesStore.get(CS_KEY_ACCESS_TOKEN)?.value || "";
-  // const session = await auth(accessToken);
+// eslint-disable-next-line consistent-return
+const Issue = async ({ params }: { params: IssuePageProps }) => {
+  try {
+    const session = await auth();
 
-  // if (!session?.user.canResolveTicket) {
-  //   return <NoMobileDevicePage />;
-  // }
+    const response = await fetch(
+      `${process.env.BASE_URL}/api/tickets/${params.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
+      },
+    );
 
-  <IssuePage id={params.id} />
-);
+    const { data } = (await response.json()) as IHttpResponse<
+      TicketDto,
+      IHttpError
+    >;
+
+    return (
+      <IssuePage
+        data={data}
+        id={params.id}
+      />
+    );
+  } catch (error) {
+    appMonitoringServer.captureException(error);
+    redirect("/");
+  }
+};
+
 export default Issue;
+export const runtime = "nodejs";

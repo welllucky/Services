@@ -6,7 +6,7 @@ type DescriptionProps = {
 };
 
 export const Description = ({ description }: DescriptionProps) => (
-  <TicketDescription {...buildTestIds("issue-description")}>
+  <TicketDescription {...buildTestIds("ticket-card-description")}>
     {description}
   </TicketDescription>
 );

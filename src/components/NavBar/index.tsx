@@ -1,4 +1,5 @@
 import { OptionMenuProps } from "@/types";
+import { buildTestIds } from "@/utils";
 import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 import { Skeleton, SkeletonContainer } from "../Skeleton";
@@ -57,7 +58,7 @@ export const NavigationBar = ({
   if (isLoading) {
     return (
       <ContainerMenu color={color}>
-        <MenuList>
+        <MenuList {...buildTestIds("nav-bar-loading")}>
           {options.map((option) => (
             <OptionSkeleton key={option.name} />
           ))}
@@ -68,7 +69,7 @@ export const NavigationBar = ({
 
   return (
     <ContainerMenu color={color}>
-      <MenuList>{OptionsList}</MenuList>
+      <MenuList {...buildTestIds("nav-bar-list")}>{OptionsList}</MenuList>
     </ContainerMenu>
   );
 };

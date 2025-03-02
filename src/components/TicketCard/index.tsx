@@ -38,32 +38,35 @@ const TicketCard = ({
 
   return (
     <TicketWrapper
-      {...buildTestIds("issue-wrapper")}
+      {...buildTestIds("ticket-card")}
       color={color}
       $status={$status}
       $borderColor={$borderColor}
       $hasUpdate={isUpdated}
       href={href}>
       {isUpdated && <Signal />}
-      <TicketContainer {...buildTestIds("issue-container")}>
+      <TicketContainer {...buildTestIds("ticket-container")}>
         <TicketContent
-          {...buildTestIds("issue-content")}
+          {...buildTestIds("ticket-content")}
           $hasUpdate={isUpdated}>
           <Id id={id} />
           <Description description={name} />
         </TicketContent>
-        <TicketState {...buildTestIds("issue-state")}>
+        <TicketState {...buildTestIds("ticket-state")}>
           {formattedDate && (
             <Info
-              label="Aberto em:"
+              label="Aberto em"
               text={formattedDate}
             />
           )}
 
-          <Info
-            label="Status"
-            text={$status}
-          />
+          {$status && (
+            <Info
+              label="Status"
+              text={$status}
+              hasHighlight
+            />
+          )}
         </TicketState>
       </TicketContainer>
     </TicketWrapper>

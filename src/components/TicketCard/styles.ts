@@ -19,7 +19,6 @@ export const TicketWrapper =
   position: relative;
   background-color: ${({ color }) => color ?? "#D9F5C5"};
   border-radius: 1rem;
-  padding: 0.2rem;
   border: 0.2rem solid transparent;
 
   &:hover {
@@ -43,7 +42,7 @@ export const TicketWrapper =
 
 export const TicketContainer = styled(Row)`
   display: flex;
-  padding: 0.8rem;
+  padding: 1rem;
   border-radius: 1rem;
   justify-content: space-between;
   transition: 0.3s ease-in-out;

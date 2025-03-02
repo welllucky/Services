@@ -9,10 +9,8 @@ export const FlexContainer = styled(Column)<{
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: ${({ padding }) => padding};
   gap: ${({ $gap }) => $gap};
-
   background-color: ${({ $backgroundColor }) =>
     $backgroundColor ?? theme.colors.neutral.default};
 

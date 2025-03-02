@@ -1,6 +1,6 @@
+import { Skeleton } from "..";
 import { SkeletonContainer } from "../Skeleton.styles";
 import { SkeletonPageProps } from "../Skeleton.types";
-import { CardSkeleton } from "./Card.skeleton";
 
 const PageSkeleton = ({
   quantity = 5,
@@ -13,7 +13,8 @@ const PageSkeleton = ({
   return (
     <SkeletonContainer gap="40px">
       {Array.from({ length: quantity }).map((_, index) => (
-        <CardSkeleton
+        <Skeleton
+          type="card"
           // eslint-disable-next-line react/no-array-index-key
           key={`skeleton-card-${index}`}
           backgroundColor={backgroundColor}

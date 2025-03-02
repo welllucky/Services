@@ -6,6 +6,7 @@ export const HeaderHome = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 1.5rem;
+  padding: 0 1rem;
 `;
 
 export const UserName = styled.div<{ $isSmallClientMobile?: boolean }>`

@@ -1,18 +1,38 @@
+import { auth } from "@/auth";
+import { appMonitoringServer } from "@/implementations/server";
 import { TicketsPage } from "@/screens";
+import { IHttpError, IHttpResponse, TicketDto } from "@/types";
+import { issueApi } from "@/utils";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Solicitações",
 };
 
-const Tickets = async () => (
-  // const cookiesStore = cookies();
-  // const accessToken = cookiesStore.get(CS_KEY_ACCESS_TOKEN)?.value || "";
-  // const session = await auth(accessToken);
-  // if (!session?.user.canResolveTicket) {
-  //   return <NoMobileDevicePage />;
-  // }
+// eslint-disable-next-line consistent-return
+const Tickets = async () => {
+  try {
+    const session = await auth();
 
-  <TicketsPage />
-);
+    if (!session?.accessToken) {
+      redirect("/login");
+    }
+
+    const res = await fetch(issueApi.getIssuesEndpoint(), {
+      headers: {
+        Authorization: `Bearer ${session?.accessToken}`,
+      },
+    });
+
+    const { data } = (await res.json()) as IHttpResponse<
+      TicketDto[],
+      IHttpError
+    >;
+    return <TicketsPage data={data} />;
+  } catch (error) {
+    appMonitoringServer.captureException(error);
+    redirect("/");
+  }
+};
 export default Tickets;

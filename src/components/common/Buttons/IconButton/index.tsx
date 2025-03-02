@@ -1,4 +1,5 @@
 import { IconButtonProps } from "@/types";
+import { buildTestIds } from "@/utils";
 import { CustomButton, IconButtonWrapper } from "./styles";
 
 /**
@@ -28,10 +29,16 @@ const IconButton = ({
   children,
   onClick,
   color = "#000000",
+  height,
+  width,
+  name,
 }: IconButtonProps) => (
   <IconButtonWrapper>
     <CustomButton
+      {...buildTestIds(name ? `${name}-button` : "icon-button")}
       color={color}
+      width={width}
+      height={height}
       onClick={onClick}>
       {children}
     </CustomButton>

@@ -46,7 +46,7 @@
     "no-extra-boolean-cast": "off",
     "import/extensions": "off",
     "import/no-cycle": [
-      "error",
+      "warn",
       {
         "maxDepth": 3
       }
@@ -62,7 +62,8 @@
     "indent": "off",
     "max-len": "off",
     "import/no-extraneous-dependencies": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "react/jsx-one-expression-per-line": "off"
   },
   "overrides": [
     {

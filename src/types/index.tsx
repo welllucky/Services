@@ -36,10 +36,11 @@ type OptionMenuProps = {
 type IconButtonProps = {
   children: ReactNode;
   color?: string;
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
   onClick?: () => void;
   onHover?: () => void;
+  name?: string;
 };
 
 type NoContentProps = {

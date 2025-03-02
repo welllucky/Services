@@ -6,7 +6,7 @@ type IdProps = {
 };
 
 export const Id = ({ id }: IdProps) => (
-  <TicketNumber {...buildTestIds("issue-number")}>
+  <TicketNumber {...buildTestIds("ticket-card-number")}>
     {`Chamado Nº ${id}`}
   </TicketNumber>
 );

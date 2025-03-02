@@ -29,6 +29,11 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     [pagesWithoutFooter],
   );
 
+  const pagesWithoutSidesPadding = useMemo(
+    () => ["/home", "/search", "/issues", "/tickets"],
+    [],
+  );
+
   const shouldShowFooter = useMemo(
     () =>
       !pagesWithoutFooter.some((page) => {
@@ -47,13 +52,19 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     [pagesWithoutHeader, pathName],
   );
 
+  const shouldShowSidesPadding = useMemo(
+    () => !pagesWithoutSidesPadding.includes(pathName),
+    [pagesWithoutSidesPadding, pathName],
+  );
+
+  console.log({ shouldShowSidesPadding, pathName });
+
   return (
     <FlexContainer
       $full
       $backgroundColor={isRequestsPage ? "#E2F3D5" : "#F5F5F5"}>
       <Column
-        padding={`8vmin 5vmin ${shouldShowFooter ? "0" : "8vmin"} 5vmin`}
-        overflow
+        padding={`8vmin ${shouldShowSidesPadding ? "5vmin" : "0"}  ${shouldShowFooter ? "0" : "8vmin"} ${shouldShowSidesPadding ? "5vmin" : "0"}`}
         $full>
         {shouldShowHeader && <Header />}
         {children}

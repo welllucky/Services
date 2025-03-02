@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TicketNumber = styled.p`
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 14px;
   width: 100%;
   display: flex;
   letter-spacing: 0.01em;

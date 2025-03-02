@@ -1,5 +1,6 @@
 import { IconButton } from "@/components/common/Buttons/IconButton";
 import { SubTitleComponent } from "@/styles";
+import { buildTestIds } from "@/utils";
 import { PlusSquare } from "@phosphor-icons/react";
 import { PageTitle, SecondSection } from "./styles";
 
@@ -14,16 +15,20 @@ const SubHeader = ({
   showAddIssueButton = false,
   addButtonCallback,
 }: SubHeaderProps) => (
-  <SecondSection>
+  <SecondSection {...buildTestIds("sub-header")}>
     <PageTitle $isSmallClientMobile={false}>
-      <SubTitleComponent $isSmallClientMobile={false}>
+      <SubTitleComponent
+        $isSmallClientMobile={false}
+        {...buildTestIds("sub-header-title")}>
         {title}
       </SubTitleComponent>
       {showAddIssueButton && (
-        <IconButton onClick={addButtonCallback}>
+        <IconButton
+          name="create-ticket"
+          onClick={addButtonCallback}>
           <PlusSquare
-            width={20}
-            height={20}
+            width={26}
+            height={26}
           />
         </IconButton>
       )}

@@ -1,24 +1,20 @@
 "use client";
 
-import { IUser } from "@/types";
-import { issueApi } from "@/utils";
+import { IUser, TicketDto } from "@/types";
 import { useRouter } from "next/navigation";
 import { HomePageUI } from "./UI";
 
 interface HomepageProps {
   user?: IUser | null;
+  data?: TicketDto[] | null;
 }
 
-const Homepage = ({ user }: HomepageProps) => {
+const Homepage = ({ user, data }: HomepageProps) => {
   const router = useRouter();
-  const { data: res, isLoading } = issueApi.getInProgressIssues(
-    user?.accessToken ?? "",
-  );
 
   return (
     <HomePageUI
-      data={res?.data}
-      isLoading={isLoading}
+      data={data}
       router={router}
       user={user}
     />

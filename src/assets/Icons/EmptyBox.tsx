@@ -6,11 +6,13 @@ export const EmptyBox = ({
   height = 32,
   width = 32,
   size,
+  alt = "caixa vazia",
 }: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
+    aria-label={alt}
     width={size ?? width}
     height={size ?? height}
     viewBox="0 0 24 24"

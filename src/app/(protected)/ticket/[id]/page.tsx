@@ -2,7 +2,9 @@ import { auth } from "@/auth";
 import { appMonitoringServer } from "@/implementations/server";
 import { IssuePage, IssuePageProps } from "@/screens";
 import { IHttpError, IHttpResponse, TicketDto } from "@/types";
+import { redirect } from "next/navigation";
 
+// eslint-disable-next-line consistent-return
 const Ticket = async ({ params }: { params: IssuePageProps }) => {
   try {
     const session = await auth();
@@ -29,7 +31,7 @@ const Ticket = async ({ params }: { params: IssuePageProps }) => {
     );
   } catch (error) {
     appMonitoringServer.captureException(error);
-    return <h1>Erro ao carregar a página</h1>;
+    redirect("/");
   }
 };
 export default Ticket;

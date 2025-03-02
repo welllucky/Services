@@ -1,16 +1,18 @@
 "use client";
 
-import { issueApi } from "@/utils/apis";
+import { TicketDto } from "@/types";
 import { useRouter } from "next/navigation";
 import { IssuesPageUI } from "./UI";
 
-const MyIssuesPage = () => {
+interface MyIssuesPageProps {
+  data?: TicketDto[] | null;
+}
+
+const MyIssuesPage = ({ data }: MyIssuesPageProps) => {
   const router = useRouter();
-  const { data, isLoading } = issueApi.getIssues();
 
   return (
     <IssuesPageUI
-      isLoading={isLoading}
       data={data}
       router={router}
     />

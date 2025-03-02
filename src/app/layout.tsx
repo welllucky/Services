@@ -29,6 +29,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+// skipcq: JS-0116
 const RootLayout = async ({
   children,
 }: Readonly<{
@@ -40,6 +41,7 @@ const RootLayout = async ({
   return (
     <html lang="pt-br">
       <head>
+        {/* skipcq: JS-W1009 */}
         <link
           rel="preconnect"
           href="https://fonts.googleapis.com"

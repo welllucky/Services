@@ -37,14 +37,19 @@ export class IssueApi {
     });
   };
 
+  getIssuesEndpoint = () => this.apiUrl;
+
   /**
    * Fetches all available issues.
    * @returns An object containing an array of issue data, any error that occurred, and a loading state.
    */
-  getIssues = () =>
+  getIssues = (accessToken: string) =>
     this.httpClient.get<TicketDto[]>({
-      url: `${this.apiUrl}`,
+      url: this.getIssuesEndpoint(),
       options: { refreshInterval: true },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
 
   createIssueUrl = () => `${this.apiUrl}`;
@@ -64,9 +69,11 @@ export class IssueApi {
       shouldFetch,
     });
 
+  getInProgressIssuesEndpoint = () => `${this.apiUrl}/inProgress`;
+
   getInProgressIssues = (accessToken: string) =>
     this.httpClient.get<IHttpResponse<TicketDto[], IHttpError>>({
-      url: `${this.apiUrl}/inProgress`,
+      url: this.getInProgressIssuesEndpoint(),
       headers: {
         ...defaultHeaders,
         Authorization: `Bearer ${accessToken}`,

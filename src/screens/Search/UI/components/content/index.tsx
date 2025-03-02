@@ -39,31 +39,28 @@ export const Content = ({
   );
 
   return (
-    <PageContainer>
-      {isLoading && searchTerm ? (
-        <Skeleton
-          type="page"
-          quantity={5}
-        />
-      ) : (
-        <MainContainer $centerContent={!showResults}>
-          {showResults && <Results result={searchResults} />}
+    <PageContainer start={!Boolean(showNoResults || showEmptyContent)}>
+      <MainContainer $centerContent={!showResults}>
+        {isLoading && searchTerm && (
+          <Skeleton
+            type="page"
+            quantity={5}
+          />
+        )}
 
-          {showNoResults && (
-            <NoContent
-              alt="Sem resultados"
-              title="Nenhum chamado encontrado"
-            />
-          )}
+        {showResults && <Results result={searchResults} />}
 
-          {showEmptyContent && (
-            <NoContent
-              alt="caixa vazia"
-              title="Procure por chamados e solicitações"
-            />
-          )}
-        </MainContainer>
-      )}
+        {Boolean(showNoResults || showEmptyContent) && (
+          <NoContent
+            alt="Sem resultados"
+            title={
+              showNoResults
+                ? "Nenhum chamado encontrado"
+                : "Procure por chamados e solicitações"
+            }
+          />
+        )}
+      </MainContainer>
     </PageContainer>
   );
 };

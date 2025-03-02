@@ -83,7 +83,7 @@ export const IssuesPageUI = ({
         showAddIssueButton={showAddIssueButton}
         addButtonCallback={addIssueCallback}
       />
-      <PageContainer>
+      <PageContainer start={!(showFallback || !hasContent)}>
         <MainContainer $centerContent={showFallback}>
           {isLoading && <IssuePageSkeleton />}
 

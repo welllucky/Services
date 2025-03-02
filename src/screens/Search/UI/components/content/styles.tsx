@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
-export const MainContainer = styled.main<{ $centerContent?: boolean }>`
+export const MainContainer = styled.div<{ $centerContent?: boolean }>`
   display: flex;
   flex-direction: column;
-  padding-bottom: 1rem;
   width: 100%;
-  height: inherit;
-  overflow-y: scroll;
-  overflow-x: visible;
+  height: fit-content;
+  padding: 0rem 1rem;
   gap: 1rem;
+  margin-bottom: 1rem;
   justify-content: ${({ $centerContent }) =>
     ($centerContent ? "center" : "flex-start")};
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TicketDescription = styled.p`
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 16px;
   line-height: 120%;
   width: 95%;
   color: ${({ theme }) => theme.colors.neutral.inverted};
