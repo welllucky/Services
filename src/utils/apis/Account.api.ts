@@ -1,5 +1,5 @@
-import { IHttpClient } from "@/implementations/interfaces";
 import { CreateAccountDto, IHttpError, IHttpResponse, IUser } from "@/types";
+import { IHttpClient } from "@/types/abstractions";
 
 export class AccountApi {
   private readonly base_url: string | undefined;

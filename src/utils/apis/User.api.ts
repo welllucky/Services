@@ -1,5 +1,5 @@
-import { IHttpClient } from "@/implementations/interfaces";
 import { IUser } from "@/types";
+import { IHttpClient } from "@/types/abstractions";
 
 export class UserApi {
   private readonly base_url: string | undefined;

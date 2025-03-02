@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import { AddNewIssueButtonProps } from ".";
+import { AddNewIssueButtonProps } from "./types";
 
-export const ButtonNewCalled = styled.button<AddNewIssueButtonProps>`
+const ButtonNewCalled = styled.button<AddNewIssueButtonProps>`
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -34,3 +34,5 @@ export const ButtonNewCalled = styled.button<AddNewIssueButtonProps>`
     }
   }
 `;
+
+export { ButtonNewCalled };

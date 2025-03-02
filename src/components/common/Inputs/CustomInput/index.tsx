@@ -13,20 +13,6 @@ import {
   Label,
 } from "./styles";
 
-export interface InputStylesProps {
-  $backgroundColor?: string;
-  textColor?: string;
-  rightIcon?: string;
-  leftIcon?: string;
-  $borderColor?: string;
-  width?: string;
-  height?: string;
-  mode?: "filled" | "outlined";
-  placeholderColor?: string;
-  padding?: string;
-  margin?: string;
-}
-
 export interface ActionButton {
   onClick?: () => void;
   icon?: ReactNode;
@@ -128,7 +114,10 @@ const CustomInput = ({
   });
 
   return (
-    <InputContainer margin={margin} padding={padding} width={width}>
+    <InputContainer
+      margin={margin}
+      padding={padding}
+      width={width}>
       {labelText && <Label mode={mode}>{labelText}</Label>}
       <ContentContainer
         backgroundColor={style?.$backgroundColor}

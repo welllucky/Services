@@ -1,4 +1,4 @@
-import { IHttpClient } from "@/implementations/interfaces";
+import { IHttpClient } from "./IHttpClient.interface";
 
 export interface IApi {
   httpClient: IHttpClient;

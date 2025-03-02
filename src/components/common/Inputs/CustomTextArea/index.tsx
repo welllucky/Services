@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { ErrorText, WarningText } from "@/components";
+import { ErrorText, WarningText } from "@/components/SupportText";
 import { InputComponentsProps } from "@/types";
 import { ChangeEvent } from "react";
 import { useController } from "react-hook-form";

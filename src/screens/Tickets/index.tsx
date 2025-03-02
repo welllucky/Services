@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 import { TicketsPageUI } from "./UI";
 
-const TicketsPage = async () => {
+const TicketsPage = () => {
   const theme = useTheme();
   const [shouldFetch, setShouldFetch] = useState(true);
 

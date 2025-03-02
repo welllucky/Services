@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { CustomButtonProps } from ".";
+import { CustomButtonProps } from "./types";
 
 interface ButtonComponentProps {
   textSize?: string | number;

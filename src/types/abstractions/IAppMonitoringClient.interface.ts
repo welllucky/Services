@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
+import { Scope } from "@sentry/nextjs";
 import {
   BreadcrumbMonitoringObject,
   MessageMonitoringLevel,
   MonitoringScopeType,
   OptionalDataMonitoring,
   UserMonitoringObject,
-} from "@/types";
-import { Scope } from "@sentry/nextjs";
+} from "../interfaces";
 
 export interface IAppMonitoringClient {
   captureMessage: (message: string, level: MessageMonitoringLevel) => void;

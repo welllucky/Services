@@ -56,6 +56,20 @@ type TextTheme = {
   text: string;
 };
 
+interface InputStylesProps {
+  $backgroundColor?: string;
+  textColor?: string;
+  rightIcon?: string;
+  leftIcon?: string;
+  $borderColor?: string;
+  width?: string;
+  height?: string;
+  mode?: "filled" | "outlined";
+  placeholderColor?: string;
+  padding?: string;
+  margin?: string;
+}
+
 export type DataTag =
   | "ticket"
   | "company"
@@ -68,15 +82,16 @@ export type DataTag =
   | "user";
 
 export * from "./dto";
-export * from "./Interfaces";
+export * from "./interfaces";
 export type * from "./themes";
 
 export type {
   IconButtonProps,
   IconProps,
+  IconType,
+  InputStylesProps,
   NoContentProps,
   OptionMenuProps,
   OptionMenuStyleProps,
   TextTheme,
-  IconType,
 };

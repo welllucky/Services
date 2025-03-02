@@ -1,5 +1,5 @@
-import { IHttpClient } from "@/implementations/interfaces";
 import { IHttpError, IHttpResponse, TicketDto } from "@/types";
+import { IHttpClient } from "@/types/abstractions";
 
 export type SearchResponse = TicketDto[];
 

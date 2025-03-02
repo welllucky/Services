@@ -1,6 +1,6 @@
 import { MonitoringScopeType } from "@/types";
 import * as Sentry from "@sentry/nextjs";
-import { IAppMonitoringClient } from "../../../interfaces";
+import { IAppMonitoringClient } from "../../../../types/abstractions";
 
 export class SentryAbstract implements IAppMonitoringClient {
   client = Sentry;

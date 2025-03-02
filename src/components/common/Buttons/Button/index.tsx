@@ -1,24 +1,8 @@
 import { theme } from "@/styles";
 import { buildTestIds } from "@/utils/functions";
-import { ButtonHTMLAttributes, ReactNode } from "react";
 import { ButtonComponent, ButtonContainer } from "./styles";
+import { CustomButtonProps } from "./types";
 
-export interface CustomButtonProps
-  extends Pick<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    "type" | "form" | "value"
-  > {
-  text?: string;
-  textSize?: string | number;
-  color?: string;
-  $backgroundColor?: string;
-  onClick?: () => void;
-  disabled?: boolean;
-  icon?: ReactNode;
-  width?: string | number;
-  height?: string | number;
-  mode?: "filled" | "outlined";
-}
 /**
  * Custom button
  *
@@ -46,7 +30,7 @@ export interface CustomButtonProps
  *   mode="filled"
  * />
  */
-export const CustomButton = ({
+const CustomButton = ({
   text = "continuar",
   $backgroundColor = theme.colors.primary.default,
   color = theme.colors.neutral.default,
@@ -79,3 +63,5 @@ export const CustomButton = ({
     </ButtonComponent>
   </ButtonContainer>
 );
+
+export { CustomButton };

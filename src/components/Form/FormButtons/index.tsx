@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomButton } from "@/components";
+import { CustomButton } from "@/components/common/Buttons/Button";
 import { buildTestIds } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";

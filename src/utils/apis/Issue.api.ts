@@ -1,6 +1,6 @@
 import { defaultHeaders } from "@/constraints";
-import { IHttpClient } from "@/implementations/interfaces";
 import { IHttpError, IHttpResponse, IOpenTicketForm, TicketDto } from "@/types";
+import { IHttpClient } from "@/types/abstractions";
 
 /**
  * The `IssueApi` class provides methods to interact with the issues API, including fetching and creating issues.

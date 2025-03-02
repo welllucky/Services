@@ -4,7 +4,7 @@ import {
   OptionalDataMonitoring,
   UserMonitoringObject,
 } from "@/types";
-import { IAppMonitoringClient } from "../../../interfaces";
+import { IAppMonitoringClient } from "../../../../types/abstractions";
 
 export class AppMonitoringClient implements IAppMonitoringClient {
   private readonly client: IAppMonitoringClient;

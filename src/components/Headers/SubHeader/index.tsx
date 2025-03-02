@@ -1,4 +1,4 @@
-import { IconButton } from "@/components/common";
+import { IconButton } from "@/components/common/Buttons/IconButton";
 import { SubTitleComponent } from "@/styles";
 import { PlusSquare } from "@phosphor-icons/react";
 import { PageTitle, SecondSection } from "./styles";
@@ -9,7 +9,7 @@ interface SubHeaderProps {
   addButtonCallback?: () => void;
 }
 
-export const SubHeader = ({
+const SubHeader = ({
   title,
   showAddIssueButton = false,
   addButtonCallback,
@@ -30,3 +30,5 @@ export const SubHeader = ({
     </PageTitle>
   </SecondSection>
 );
+
+export { SubHeader };

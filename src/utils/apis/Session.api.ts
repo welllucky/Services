@@ -1,5 +1,5 @@
-import { IHttpClient } from "@/implementations/interfaces";
 import { IHttpResponse, ISessionResponse } from "@/types";
+import { IHttpClient } from "@/types/abstractions";
 
 export class SessionApi {
   private readonly apiUrl: string;

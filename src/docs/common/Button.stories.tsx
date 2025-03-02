@@ -1,5 +1,6 @@
 import { SearchIcon } from "@/assets";
-import { CustomButton, CustomButtonProps } from "@/components";
+import { CustomButton } from "@/components";
+import { CustomButtonProps } from "@/components/common/Buttons/Button/types";
 import { theme } from "@/styles";
 import { Meta, StoryObj } from "@storybook/react";
 

@@ -1,5 +1,5 @@
-import { IHttpClient } from "@/implementations/interfaces";
 import { ITicket, TicketDto } from "@/types";
+import { IHttpClient } from "@/types/abstractions";
 
 type InitializeTicketType = {
   issueId: string;

@@ -1,5 +1,5 @@
-import { IHttpClient } from "@/implementations/interfaces";
 import { IHttpError, IHttpResponse, RoleDto, SectorDto } from "@/types";
+import { IHttpClient } from "@/types/abstractions";
 
 export class EnterpriseApi {
   private readonly baseUrl: string | undefined;

@@ -1,5 +1,5 @@
-import { CustomLink } from "@/components";
 import { OptionMenuProps } from "@/types";
+import { CustomLink } from "../../common/CustomLink";
 import { IconArea, TextMenu } from "../styles";
 
 const OptionMenu = ({

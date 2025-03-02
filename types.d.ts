@@ -1,4 +1,4 @@
-import { IUser } from "@/types/Interfaces/User";
+import { IUser } from "@/types/interfaces/User";
 import "next-auth";
 import "next-auth/jwt";
 

@@ -1,17 +1,19 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": [
     "next/core-web-vitals",
-    "next/typescript",
+    "next",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:storybook/recommended",
     "plugin:security/recommended-legacy",
+    "next/typescript",
     "airbnb"
   ],
   "parser": "@typescript-eslint/parser",
@@ -19,20 +21,21 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "simple-import-sort", "import"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "simple-import-sort"
+  ],
   "rules": {
     "quotes": ["warn", "double"],
     "semi": ["warn", "always"],
     "no-unused-vars": "error",
     "linebreak-style": "off",
-    "import/extensions": "off",
-    "import/prefer-default-export": "off",
-    "react-in-jsx-scope": "off",
-    "react/require-default-props": "off",
     "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
-    "import/no-cycle": "off",
     "react/jsx-closing-bracket-location": "off",
     "react/jsx-curly-newline": "off",
     "no-nested-ternary": "warn",
@@ -40,17 +43,33 @@
     "object-curly-newline": "off",
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
-    "function-paren-newline": "off",
     "no-extra-boolean-cast": "off",
-    "react/jsx-one-expression-per-line": "off",
+    "import/extensions": "off",
+    "import/no-cycle": [
+      "error",
+      {
+        "maxDepth": 3
+      }
+    ],
+    "import/prefer-default-export": "off",
     "react/function-component-definition": [
-      2,
-      { "namedComponents": "arrow-function" }
+      "error",
+      {
+        "namedComponents": "arrow-function"
+      }
     ],
     "class-methods-use-this": "off",
     "indent": "off",
     "max-len": "off",
-    "import/no-extraneous-dependencies": ["off"],
+    "import/no-extraneous-dependencies": "off",
     "arrow-body-style": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/index.spec.tsx", "**/index.spec.ts"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }

@@ -1,8 +1,11 @@
 "use client";
 
 // import { useMediaQuery } from "@uidotdev/usehooks";
+import {
+  CS_KEY_USER_DEVICE_TYPE,
+  CS_KEY_USER_RELIABLE_AGENT,
+} from "@/constraints";
 import { cookie } from "@/implementations/client";
-import { CS_KEY_USER_DEVICE_TYPE, CS_KEY_USER_RELIABLE_AGENT } from "@/utils";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 
 interface AppContextProps {

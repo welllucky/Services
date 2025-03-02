@@ -1,4 +1,4 @@
-import { IJWT } from "@/implementations/interfaces";
+import { IJWT } from "@/types/abstractions";
 import { JWTAbstraction } from "../../abstractions/JWT";
 
 export class JWTClient implements IJWT {

@@ -1,11 +1,13 @@
-import { ICrypto } from "@/implementations/interfaces";
+import { ICrypto } from "@/types/abstractions";
 import { CryptoAbstraction } from "../../abstractions";
 
-export class CryptoAgent implements ICrypto {
+class CryptoAgent implements ICrypto {
   private readonly agent: CryptoAbstraction;
 
   constructor(secret?: string, iv?: string) {
-    if (!secret || !iv) throw new Error("Secret and IV are required to initialize CryptoAgent");
+    if (!secret || !iv) {
+      throw new Error("Secret and IV are required to initialize CryptoAgent");
+    }
 
     this.agent = new CryptoAbstraction(
       Buffer.from(secret, "hex"),
@@ -21,3 +23,5 @@ export class CryptoAgent implements ICrypto {
     return this.agent.cryptoData<T>(data);
   }
 }
+
+export { CryptoAgent };

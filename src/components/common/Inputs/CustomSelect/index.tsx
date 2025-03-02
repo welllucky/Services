@@ -1,4 +1,5 @@
-import { CustomFieldset, ErrorText, WarningText } from "@/components";
+import { CustomFieldset } from "@/components/Fieldset";
+import { ErrorText, WarningText } from "@/components/SupportText";
 import { InputComponentsProps, OptionProps } from "@/types";
 import { ChangeEventHandler } from "react";
 import { useController } from "react-hook-form";
