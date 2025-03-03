@@ -8,9 +8,10 @@ import {
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { IUser, TicketDto } from "@/types";
-import { buildTestIds, SS_KEY_USER_PREVIOUS_PAGE } from "@/utils";
+import { buildTestIds } from "@/utils";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useCallback, useMemo } from "react";
+import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
 import { ButtonWrapper } from "../styles";
 
 type HomePageUIProps = {

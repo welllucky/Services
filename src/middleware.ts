@@ -6,7 +6,7 @@ import {
   HD_KEY_COMPANY_ID,
   HD_KEY_USER_DEVICE_TYPE,
   HD_KEY_USER_RELIABLE_AGENT,
-} from "./utils/alias";
+} from "@/constraints";
 
 export default function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();

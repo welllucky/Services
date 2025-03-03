@@ -18,6 +18,8 @@ export class IssueApi {
     this.httpClient = httpClient;
   }
 
+  getIssueEndpoint = (id: string) => `${this.apiUrl}/${id}`;
+
   /**
    * Fetches a single issue by its ID.
    * @param {string} id The ID of the issue to fetch.
@@ -33,7 +35,7 @@ export class IssueApi {
     }
 
     return this.httpClient.get<TicketDto>({
-      url: `${this.apiUrl}/${id}`,
+      url: this.getIssueEndpoint(id),
     });
   };
 

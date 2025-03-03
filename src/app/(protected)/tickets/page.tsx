@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { DEFAULT_CACHE_TIME } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
 import { MyIssuesPage } from "@/screens/";
 import { IHttpError, IHttpResponse, TicketDto } from "@/types";
@@ -22,6 +23,10 @@ const MyTickets = async () => {
     const res = await fetch(issueApi.getIssuesEndpoint(), {
       headers: {
         Authorization: `Bearer ${session?.accessToken}`,
+      },
+      next: {
+        revalidate: DEFAULT_CACHE_TIME,
+        tags: ["tickets"],
       },
     });
 

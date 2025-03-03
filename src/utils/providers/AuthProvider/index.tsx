@@ -2,7 +2,7 @@
 
 import { appMonitoringClient } from "@/implementations/client";
 import { IUser } from "@/types";
-import { LS_KEY_USER_DATA } from "@/utils/alias";
+import { LS_KEY_USER_DATA } from "@/constraints";
 import { closeSession } from "@/utils/functions";
 import {
   signIn as systemSignIn,
