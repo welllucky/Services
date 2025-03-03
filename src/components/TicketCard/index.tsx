@@ -64,7 +64,7 @@ const TicketCard = ({
             <Info
               label="Status"
               text={$status}
-              hasHighlight
+              $hasHighlight
             />
           )}
         </TicketState>

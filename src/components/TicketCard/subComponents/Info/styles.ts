@@ -18,7 +18,7 @@ export const InfoLabel = styled.label`
 `;
 
 export const InfoText = styled.p<{
-  hasHighlight?: boolean;
+  $hasHighlight?: boolean;
 }>`
   font-weight: 400;
   font-size: 0.8rem;
@@ -28,8 +28,8 @@ export const InfoText = styled.p<{
   word-break: break-all;
   line-break: anywhere;
 
-  ${({ hasHighlight }) =>
-    hasHighlight &&
+  ${({ $hasHighlight }) =>
+    $hasHighlight &&
     `
     font-weight: 600;
   `}
