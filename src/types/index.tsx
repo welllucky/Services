@@ -82,6 +82,7 @@ export type DataTag =
   | "security"
   | "user";
 
+export * from "./abstractions";
 export * from "./dto";
 export * from "./interfaces";
 export type * from "./themes";

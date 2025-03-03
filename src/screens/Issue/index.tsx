@@ -1,5 +1,6 @@
 "use client";
 
+import { featureFlagAgent } from "@/implementations/client";
 import { TicketDto } from "@/types";
 import { TicketProvider } from "@/utils";
 import { buildTestIds, resetForm } from "@/utils/functions";
@@ -27,6 +28,13 @@ const IssuePage = ({ data, id }: IssuePageProps) => {
     resetForm();
   }, []);
 
+  const { get, getAll } = featureFlagAgent;
+
+  const isFeatureEnabled = get<boolean>("isTicketEventsAvailable");
+  const allFlags = getAll();
+
+  console.log({ isFeatureEnabled, allFlags });
+
   return (
     <TicketProvider data={data}>
       <IssuePageContainer $full>
@@ -37,7 +45,7 @@ const IssuePage = ({ data, id }: IssuePageProps) => {
             {...buildTestIds("content-column")}
             height="100%">
             <FormDisplay data={data} />
-            <InfoHistoryPainel data={data?.historic} />
+            {isFeatureEnabled && <InfoHistoryPainel data={data?.historic} />}
           </IssuePageContent>
         </IssuePageWrapper>
         {/* <IssueActionButton /> */}

@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { Monitoring } from "react-scan/monitoring/next";
 import { ThemeProvider } from "styled-components";
 import packageJson from "../../../package.json";
+import { readyToService } from "../functions";
 import { AppProvider } from "../stores/AppStore";
 import { AuthProvider } from "./AuthProvider";
 import StyledComponentsRegistry from "./registry";
@@ -20,8 +21,14 @@ declare global {
 
 export const AppProviders = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
+    const start = async () => {
+      await readyToService();
+    };
+
+    start();
     window.version = packageJson.version;
   }, []);
+
   return (
     // <SWRConfig>
     <CookiesProvider

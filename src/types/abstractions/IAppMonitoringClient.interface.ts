@@ -8,7 +8,7 @@ import {
   UserMonitoringObject,
 } from "../interfaces";
 
-export interface IAppMonitoringClient {
+export interface IAppMonitoring {
   captureMessage: (message: string, level: MessageMonitoringLevel) => void;
   captureException: (
     error: unknown,

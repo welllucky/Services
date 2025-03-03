@@ -4,12 +4,12 @@ import {
   OptionalDataMonitoring,
   UserMonitoringObject,
 } from "@/types";
-import { IAppMonitoringClient } from "../../../../types/abstractions";
+import { IAppMonitoring } from "../../../../types/abstractions";
 
-export class AppMonitoringClient implements IAppMonitoringClient {
-  private readonly client: IAppMonitoringClient;
+export class AppMonitoring implements IAppMonitoring {
+  private readonly client: IAppMonitoring;
 
-  constructor(client: IAppMonitoringClient) {
+  constructor(client: IAppMonitoring) {
     this.client = client;
   }
 
@@ -21,6 +21,8 @@ export class AppMonitoringClient implements IAppMonitoringClient {
     error: unknown,
     optionalData?: OptionalDataMonitoring,
   ) {
+    // eslint-disable-next-line no-console
+    console.error("Error captured: ", error);
     this.client.captureException(error, optionalData);
   }
 

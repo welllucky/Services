@@ -2,7 +2,6 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { enableMapSet, enablePatches } from "immer";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
@@ -35,9 +34,6 @@ const RootLayout = async ({
 }: Readonly<{
   children: ReactNode;
 }>) => {
-  enableMapSet();
-  enablePatches();
-
   return (
     <html lang="pt-br">
       <head>
