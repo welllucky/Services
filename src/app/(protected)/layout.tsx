@@ -57,8 +57,6 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
     [pagesWithoutSidesPadding, pathName],
   );
 
-  console.log({ shouldShowSidesPadding, pathName });
-
   return (
     <FlexContainer
       $full

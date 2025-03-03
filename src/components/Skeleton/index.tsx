@@ -40,6 +40,8 @@ export const Skeleton = ({
       return (
         <SkeletonCircle
           radius={radius}
+          height={height}
+          width={width}
           backgroundColor={backgroundColor}
           highlightColor={highlightColor}
           speed={speed}>

@@ -1,17 +1,17 @@
 "use client";
 
+import { Skeleton, SkeletonContainer } from "@/components";
 import { PageContainer } from "@/styles";
-import Image from "next/image";
 
 const Loading = () => (
   <PageContainer>
-    <Image
-      width={120}
-      height={120}
-      alt="Services logo"
-      src="/Icon.png"
-      />
+    <SkeletonContainer>
+      <div>
+        <Skeleton type="text" />
+      </div>
+      <Skeleton type="page" />
+    </SkeletonContainer>
   </PageContainer>
-  );
+);
 
 export default Loading;

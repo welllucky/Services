@@ -53,14 +53,16 @@ export const SkeletonContainer = styled.div<{
   height?: string;
   direction?: "row" | "column";
   gap?: string;
+  alignItems?: "center" | "start";
+  justifyContent?: "center" | "start";
 }>`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: ${(props) => props.direction ?? "column"};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   gap: ${(props) => props.gap};
+  align-items: ${(props) => props.alignItems ?? "center"};
+  justify-content: ${(props) => props.justifyContent ?? "center"};
 `;
 
 export const SkeletonCardSubContainer = styled.div<{ gap?: string }>`
