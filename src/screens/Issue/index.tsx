@@ -50,4 +50,4 @@ const IssuePage = ({ data, id }: IssuePageProps) => {
   );
 };
 
-export { IssuePage };
+export default IssuePage;

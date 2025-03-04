@@ -4,7 +4,7 @@ import { useAuth } from "@/utils/providers/AuthProvider";
 import toast from "react-hot-toast";
 import { useLogin } from "./Login.hook";
 import { LoginPageProps } from "./Login.types";
-import { LoginPageUI } from "./UI";
+import LoginPageUI from "./UI";
 
 const LoginPage = ({ searchParams }: LoginPageProps) => {
   const { control, formState, loginAction, isLoading } = useLogin({
@@ -23,4 +23,4 @@ const LoginPage = ({ searchParams }: LoginPageProps) => {
   );
 };
 
-export { LoginPage };
+export default LoginPage;

@@ -2,7 +2,7 @@
 
 import { TicketDto } from "@/types";
 import { useRouter } from "next/navigation";
-import { IssuesPageUI } from "./UI";
+import IssuesPageUI from "./UI";
 
 interface MyIssuesPageProps {
   data?: TicketDto[] | null;
@@ -19,4 +19,4 @@ const MyIssuesPage = ({ data }: MyIssuesPageProps) => {
   );
 };
 
-export { MyIssuesPage };
+export default MyIssuesPage;

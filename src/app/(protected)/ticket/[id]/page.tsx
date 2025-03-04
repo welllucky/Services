@@ -1,7 +1,8 @@
 import { auth } from "@/auth";
 import { DEFAULT_CACHE_TIME } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
-import { IssuePage, IssuePageProps } from "@/screens";
+import { IssuePage } from "@/screens";
+import { IssuePageProps } from "@/screens/Issue";
 import { IHttpError, IHttpResponse, TicketDto } from "@/types";
 import { issueApi } from "@/utils";
 import { redirect } from "next/navigation";

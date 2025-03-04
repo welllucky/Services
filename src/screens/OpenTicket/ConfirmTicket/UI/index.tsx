@@ -11,10 +11,7 @@ type ConfirmMediaPageUiProps = {
   data: IOpenTicketForm;
 };
 
-export const ConfirmTicketPageUI = ({
-  theme,
-  data,
-}: ConfirmMediaPageUiProps) => (
+const ConfirmTicketPageUI = ({ theme, data }: ConfirmMediaPageUiProps) => (
   <ConfirmDetailsContainer
     {...buildTestIds("confirm-details-container")}
     $gap="8px">
@@ -71,3 +68,5 @@ export const ConfirmTicketPageUI = ({
     </SectionInfoForm>
   </ConfirmDetailsContainer>
 );
+
+export default ConfirmTicketPageUI;

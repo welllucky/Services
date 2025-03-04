@@ -3,7 +3,7 @@
 import { searchApi, useAuth } from "@/utils";
 import { useDebounce } from "@uidotdev/usehooks";
 import { useMemo, useState } from "react";
-import { SearchPageUI } from "./UI";
+import SearchPageUI from "./UI";
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,4 +29,4 @@ const SearchPage = () => {
   );
 };
 
-export { SearchPage };
+export default SearchPage;

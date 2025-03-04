@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AddNewIssueButton,
   NoContent,
@@ -5,13 +7,13 @@ import {
   SubHeader,
   TicketCard,
 } from "@/components";
+import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { IUser, TicketDto } from "@/types";
 import { buildTestIds } from "@/utils";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useCallback, useMemo } from "react";
-import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
 import { ButtonWrapper } from "../styles";
 
 type HomePageUIProps = {

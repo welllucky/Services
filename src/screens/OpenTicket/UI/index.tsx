@@ -12,12 +12,12 @@ import {
   TypeSelect,
 } from "./components";
 
-export const OpenTicketPageUI = () => {
+const OpenTicketPageUI = () => {
   const { control, errors, recoverFormData, formData } = useOpenTicket();
 
   useEffect(() => {
     recoverFormData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -56,3 +56,5 @@ export const OpenTicketPageUI = () => {
     </TicketPageContent>
   );
 };
+
+export default OpenTicketPageUI;

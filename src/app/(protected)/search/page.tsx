@@ -1,4 +1,4 @@
-import { SearchPage } from "@/screens/Search";
+import { SearchPage } from "@/screens";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

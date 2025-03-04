@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from "react";
 import { LoginUIProps } from "../Login.types";
 import { DisplayImage } from "./components/DisplayImage";
@@ -31,4 +33,4 @@ const LoginPageUI = ({
   );
 };
 
-export { LoginPageUI };
+export default LoginPageUI;

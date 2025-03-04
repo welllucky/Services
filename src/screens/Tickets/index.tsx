@@ -2,7 +2,7 @@
 
 import { TicketDto } from "@/types";
 import { useTheme } from "styled-components";
-import { TicketsPageUI } from "./UI";
+import TicketsPageUI from "./UI";
 
 interface TicketsPageUIProps {
   data?: TicketDto[];
@@ -19,4 +19,4 @@ const TicketsPage = ({ data }: TicketsPageUIProps) => {
   );
 };
 
-export { TicketsPage };
+export default TicketsPage;

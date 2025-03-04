@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { DEFAULT_CACHE_TIME } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
-import { MyIssuesPage } from "@/screens/";
+import { IssuesPage } from "@/screens";
 import { IHttpError, IHttpResponse, TicketDto } from "@/types";
 import { issueApi } from "@/utils";
 import { Metadata } from "next";
@@ -35,7 +35,7 @@ const MyTickets = async () => {
       IHttpError
     >;
 
-    return <MyIssuesPage data={data} />;
+    return <IssuesPage data={data} />;
   } catch (error) {
     appMonitoringServer.captureException(error);
     redirect("/");

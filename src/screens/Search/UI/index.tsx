@@ -1,3 +1,5 @@
+"use client";
+
 import { SubHeader } from "@/components";
 import { SearchResponse } from "@/utils/apis/Search.api";
 import { Content, SearchBarComponent } from "./components";
@@ -27,4 +29,4 @@ const SearchPageUI = ({
   </>
 );
 
-export { SearchPageUI };
+export default SearchPageUI;

@@ -11,7 +11,7 @@ export type TicketsPageUIProps = {
   theme?: DefaultTheme;
 };
 
-export const TicketsPageUI = ({
+const TicketsPageUI = ({
   theme,
   data,
   isLoading = false,
@@ -23,7 +23,8 @@ export const TicketsPageUI = ({
   return (
     <>
       <SubHeader title="Solicitações" />
-      <PageContainer start={!Boolean(data?.length === 0 || !Array.isArray(data))}>
+      <PageContainer
+        start={!Boolean(data?.length === 0 || !Array.isArray(data))}>
         <MainContainer>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent
@@ -51,3 +52,5 @@ export const TicketsPageUI = ({
     </>
   );
 };
+
+export default TicketsPageUI;

@@ -1,10 +1,7 @@
-"use client";
+import RegisterPageUI from "./UI";
 
-import { RegisterPageUI } from "./UI";
-
-export const RegisterPage = () => {
-  return (
-    <RegisterPageUI
-    />
-  );
+const RegisterPage = () => {
+  return <RegisterPageUI />;
 };
+
+export default RegisterPage;

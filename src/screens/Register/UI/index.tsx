@@ -3,7 +3,7 @@
 import { FlexContainer } from "@/components/PageStruct/style";
 import { Form, Header } from "./components";
 
-export const RegisterPageUI = () => (
+const RegisterPageUI = () => (
   <FlexContainer
     overflow
     $full
@@ -13,3 +13,5 @@ export const RegisterPageUI = () => (
     <Form />
   </FlexContainer>
 );
+
+export default RegisterPageUI;

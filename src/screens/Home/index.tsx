@@ -21,4 +21,4 @@ const Homepage = ({ user, data }: HomepageProps) => {
   );
 };
 
-export { Homepage };
+export default Homepage;

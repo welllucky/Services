@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AddNewIssueButton,
   NoContent,
@@ -6,12 +8,12 @@ import {
   SubHeader,
   TicketCard,
 } from "@/components";
+import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { IUser, TicketDto } from "@/types";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useCallback, useMemo } from "react";
-import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
 import { ButtonWrapper } from "../styles";
 
 type IssuesPageUIProps = {
@@ -39,12 +41,7 @@ const IssuePageSkeleton = () => {
   );
 };
 
-export const IssuesPageUI = ({
-  data,
-  isLoading,
-  router,
-  user,
-}: IssuesPageUIProps) => {
+const IssuesPageUI = ({ data, isLoading, router, user }: IssuesPageUIProps) => {
   const issuesQuantity = useMemo(() => data?.length ?? 0, [data]);
 
   const showAddIssueButton = useMemo(
@@ -123,3 +120,5 @@ export const IssuesPageUI = ({
     </>
   );
 };
+
+export default IssuesPageUI;

@@ -4,9 +4,9 @@ import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
 import { useEffect } from "react";
 import { useTheme } from "styled-components";
 import { useOpenTicket } from "../OpenTicket.hook";
-import { ConfirmTicketPageUI } from "./UI";
+import ConfirmTicketPageUI from "./UI";
 
-export const ConfirmDetailsPage = () => {
+const ConfirmDetailsPage = () => {
   const { formData, recoverFormData } = useOpenTicket();
 
   const theme = useTheme();
@@ -29,3 +29,5 @@ export const ConfirmDetailsPage = () => {
     />
   );
 };
+
+export default ConfirmDetailsPage;

@@ -1,9 +1,23 @@
-export * from "./Home";
-export * from "./Issue";
-export * from "./Issues";
-export * from "./Login";
-export * from "./NoMobileDevice";
-export * from "./OpenTicket";
-export * from "./Register";
-export * from "./Search";
-export * from "./Tickets";
+import Homepage from "./Home";
+import IssuePage from "./Issue";
+import IssuesPage from "./Issues";
+import LoginPage from "./Login";
+import { NoMobileDevicePage } from "./NoMobileDevice";
+import OpenTicketPage from "./OpenTicket";
+import ConfirmDetailsPage from "./OpenTicket/ConfirmTicket";
+import RegisterPage from "./Register";
+import SearchPage from "./Search";
+import TicketsPage from "./Tickets";
+
+export {
+  ConfirmDetailsPage,
+  Homepage,
+  IssuePage,
+  IssuesPage,
+  LoginPage,
+  NoMobileDevicePage,
+  OpenTicketPage,
+  RegisterPage,
+  SearchPage,
+  TicketsPage,
+};
