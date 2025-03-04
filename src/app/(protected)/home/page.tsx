@@ -1,5 +1,4 @@
 import { auth } from "@/auth";
-import { DEFAULT_CACHE_TIME } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
 import { Homepage as Home } from "@/screens";
 import { IHttpError, IHttpResponse, TicketDto } from "@/types";
@@ -20,7 +19,7 @@ const Homepage = async () => {
         Authorization: `Bearer ${session?.accessToken}`,
       },
       next: {
-        revalidate: DEFAULT_CACHE_TIME,
+        // revalidate: DEFAULT_CACHE_TIME,
         tags: ["tickets"],
       },
     });

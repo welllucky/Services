@@ -58,7 +58,12 @@ class TicketController {
           method: "getAllTickets",
         },
       });
-      return NextResponse.json({ error });
+      return NextResponse.json(
+        { error },
+        {
+          status: 500,
+        },
+      );
     }
   }
 
@@ -99,7 +104,12 @@ class TicketController {
           method: "getTicketById",
         },
       });
-      return NextResponse.json({ error });
+      return NextResponse.json(
+        { error },
+        {
+          status: 500,
+        },
+      );
     }
   }
 
@@ -139,65 +149,20 @@ class TicketController {
         status: resBody.status,
       });
     } catch (error) {
-      return NextResponse.json({ error });
+      appMonitoringServer.captureException(error, {
+        tags: {
+          controller: "TicketController",
+          method: "getTicketById",
+        },
+      });
+      return NextResponse.json(
+        { error },
+        {
+          status: 500,
+        },
+      );
     }
   }
-
-  // static async initializeTicket(req: NextRequest, params: { id: string }) {
-  //   try {
-  //     const issueId = params.id;
-  //     const { userId, isAuthenticated } = await getAuthToken(req);
-
-  //     if (!isAuthenticated || !userId) {
-  //       return NextResponse.json(
-  //         { error: { message: "User not authenticated" } },
-  //         {
-  //           status: 401,
-  //         },
-  //       );
-  //     }
-
-  //     if (!issueId) {
-  //       return NextResponse.json(
-  //         { error: { message: "Ticket ID not provided" } },
-  //         {
-  //           status: 400,
-  //         },
-  //       );
-  //     }
-
-  //     // @todo call the api
-  //     const ticket = {};
-
-  //     if (!ticket) {
-  //       return NextResponse.json(
-  //         { error: { message: "Ticket not found" } },
-  //         {
-  //           status: 204,
-  //         },
-  //       );
-  //     }
-
-  //     return NextResponse.json("", {
-  //       status: 200,
-  //     });
-  //   } catch (error) {
-  //     appMonitoringServer.captureException(error, {
-  //       tags: {
-  //         controller: "TicketController",
-  //         method: "initializeTicket",
-  //       },
-  //     });
-  //     return NextResponse.json(
-  //       {
-  //         error,
-  //       },
-  //       {
-  //         status: 500,
-  //       },
-  //     );
-  //   }
-  // }
 }
 
 export { TicketController };

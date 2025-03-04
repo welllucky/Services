@@ -1,5 +1,4 @@
 import { Analytics } from "firebase/analytics";
-import { FirebaseApp } from "firebase/app";
 
 export type FirebaseKeys = {
   apikey: string;
@@ -12,6 +11,6 @@ export type FirebaseKeys = {
 };
 
 export interface IFirebase {
-  initializeFirebase(): Promise<FirebaseApp | null>;
   initializeAnalytics(): Promise<Analytics | null>;
+  isAnalyticsInitialized: () => boolean;
 }

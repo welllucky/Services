@@ -1,9 +1,9 @@
 "use client";
 
-import { featureFlagAgent } from "@/implementations/client";
 import { TicketDto } from "@/types";
 import { TicketProvider } from "@/utils";
 import { buildTestIds, resetForm } from "@/utils/functions";
+import { useFeatureFlags } from "@/utils/providers/FeatureFlagProvider";
 import { useEffect } from "react";
 import {
   FormDisplay,
@@ -28,12 +28,13 @@ const IssuePage = ({ data, id }: IssuePageProps) => {
     resetForm();
   }, []);
 
-  const { get, getAll } = featureFlagAgent;
+  const { getFlag, flags } = useFeatureFlags();
+  const isTicketEventsAvailable = getFlag("isTicketEventsAvailable");
 
-  const isFeatureEnabled = get<boolean>("isTicketEventsAvailable");
-  const allFlags = getAll();
-
-  console.log({ isFeatureEnabled, allFlags });
+  console.log({
+    isTicketEventsAvailable,
+    flags,
+  });
 
   return (
     <TicketProvider data={data}>
@@ -45,7 +46,7 @@ const IssuePage = ({ data, id }: IssuePageProps) => {
             {...buildTestIds("content-column")}
             height="100%">
             <FormDisplay data={data} />
-            {isFeatureEnabled && <InfoHistoryPainel data={data?.historic} />}
+            {isTicketEventsAvailable && <InfoHistoryPainel />}
           </IssuePageContent>
         </IssuePageWrapper>
         {/* <IssueActionButton /> */}

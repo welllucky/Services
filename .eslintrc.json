@@ -51,7 +51,7 @@
         "maxDepth": 3
       }
     ],
-    "import/prefer-default-export": "off",
+    "import/prefer-default-export": "warn",
     "react/function-component-definition": [
       "error",
       {
@@ -63,7 +63,8 @@
     "max-len": "off",
     "import/no-extraneous-dependencies": "off",
     "arrow-body-style": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "no-underscore-dangle": "off"
   },
   "overrides": [
     {

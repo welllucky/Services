@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  appMonitoringClient,
+  featureFlagAgent,
+  firebaseAgent,
+} from "@/implementations/client";
 import { GlobalStyle, theme } from "@/styles";
 import { SessionProvider } from "next-auth/react";
 import { ReactNode, useEffect } from "react";
@@ -8,9 +13,10 @@ import { Toaster } from "react-hot-toast";
 import { Monitoring } from "react-scan/monitoring/next";
 import { ThemeProvider } from "styled-components";
 import packageJson from "../../../package.json";
-import { readyToService } from "../functions";
 import { AppProvider } from "../stores/AppStore";
 import { AuthProvider } from "./AuthProvider";
+import { FeatureFlagProvider } from "./FeatureFlagProvider";
+import { FirebaseProvider } from "./FirebaseProvider";
 import StyledComponentsRegistry from "./registry";
 
 declare global {
@@ -21,11 +27,6 @@ declare global {
 
 export const AppProviders = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
-    const start = async () => {
-      await readyToService();
-    };
-
-    start();
     window.version = packageJson.version;
   }, []);
 
@@ -43,29 +44,35 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
       <StyledComponentsRegistry>
         <ThemeProvider theme={theme}>
           <SessionProvider>
-            <AuthProvider>
-              <AppProvider>
-                <Monitoring
-                  apiKey="WEMYJ-Y4IUmZjN8cEufccWZAKd_SyXN_" // Safe to expose publically
-                  url="https://monitoring.react-scan.com/api/v1/ingest"
-                  commit={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
-                  branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-                />
-                <GlobalStyle />
-                {children}
-                <Toaster
-                  position="top-center"
-                  toastOptions={{
-                    ariaProps: {
-                      role: "status",
-                      "aria-live": "polite",
-                    },
-                    className: "services-message-toast",
-                    position: "top-center",
-                  }}
-                />
-              </AppProvider>
-            </AuthProvider>
+            <FirebaseProvider firebaseAgent={firebaseAgent}>
+              <FeatureFlagProvider
+                featureFlagAgent={featureFlagAgent}
+                firebaseAgent={firebaseAgent}>
+                <AuthProvider appMonitoring={appMonitoringClient}>
+                  <AppProvider>
+                    <Monitoring
+                      apiKey="WEMYJ-Y4IUmZjN8cEufccWZAKd_SyXN_"
+                      url="https://monitoring.react-scan.com/api/v1/ingest"
+                      commit={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
+                      branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
+                    />
+                    <GlobalStyle />
+                    {children}
+                    <Toaster
+                      position="top-center"
+                      toastOptions={{
+                        ariaProps: {
+                          role: "status",
+                          "aria-live": "polite",
+                        },
+                        className: "services-message-toast",
+                        position: "top-center",
+                      }}
+                    />
+                  </AppProvider>
+                </AuthProvider>
+              </FeatureFlagProvider>
+            </FirebaseProvider>
           </SessionProvider>
         </ThemeProvider>
       </StyledComponentsRegistry>

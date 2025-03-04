@@ -1,7 +1,6 @@
 "use client";
 
-import { appMonitoringClient } from "@/implementations/client";
-import { IUser } from "@/types";
+import { IAppMonitoring, IUser } from "@/types";
 import { LS_KEY_USER_DATA } from "@/constraints";
 import { closeSession } from "@/utils/functions";
 import {
@@ -22,6 +21,7 @@ import {
 
 interface AuthProviderProps {
   children: ReactNode;
+  appMonitoring: IAppMonitoring
 }
 
 export interface AuthContextProps {
@@ -64,7 +64,7 @@ const AuthContext = createContext<AuthContextProps>({
   update: () => Promise.resolve(),
 });
 
-export const AuthProvider = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({ children, appMonitoring }: AuthProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signOut = useCallback(async () => {
     resetStates();
-    appMonitoringClient.setUser(null);
+    appMonitoring.setUser(null);
     sessionStorage.removeItem(LS_KEY_USER_DATA);
     await closeSession(data?.accessToken ?? "");
     await systemSignOut({
@@ -153,7 +153,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (!user && data?.user && status === "authenticated") {
       setUser(data.user);
       setIsAuthenticated(true);
-      appMonitoringClient.setUser(data.user);
+      appMonitoring.setUser(data.user);
       sessionStorage.setItem(LS_KEY_USER_DATA, JSON.stringify(data.user));
     }
 
@@ -161,7 +161,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       resetStates();
       setUser(null);
       setIsAuthenticated(false);
-      appMonitoringClient.setUser(null);
+      appMonitoring.setUser(null);
       sessionStorage.removeItem(LS_KEY_USER_DATA);
     }
   }, [data, resetStates, status, user]);

@@ -1,0 +1,45 @@
+{
+  "featureFlags": {
+    "isTicketEventsAvailable": false,
+    "isMaintenanceMode": false
+  },
+  "company": {
+    "id": 1,
+    "name": "Services",
+    "location": "Brasil",
+    "emailPrefix": "@l3.com"
+  },
+  "internationalization": {
+    "language": {
+      "default": "portuguese",
+      "available": ["english", "spanish"]
+    },
+    "currency": "BRL",
+    "dateTime": {
+      "date": {
+        "format": "dd/mm/yyyy",
+        "firstDay": "monday"
+      },
+      "time": {
+        "utc": -3,
+        "format": "hh:mm:ss"
+      }
+    }
+  },
+  "application": {
+    "devices": ["mobile"],
+    "backoffice": {
+      "active": false,
+      "url": ""
+    },
+    "features": [
+      "tickets",
+      "issues",
+      "recoverAccount",
+      "login",
+      "register",
+      "createTicket",
+      "resolveIssue"
+    ]
+  }
+}
