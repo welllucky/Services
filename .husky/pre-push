@@ -1,0 +1,2 @@
+# pnpm e2e:run
+pnpm build

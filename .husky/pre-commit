@@ -1,3 +1,1 @@
 pnpm lint --fix
-# pnpm e2e:run
-pnpm build
