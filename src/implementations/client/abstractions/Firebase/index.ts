@@ -2,7 +2,7 @@ import { FirebaseKeys } from "@/types";
 import { Analytics, getAnalytics, isSupported } from "firebase/analytics";
 import { FirebaseApp, initializeApp } from "firebase/app";
 
-export class FirebaseAbstract {
+class FirebaseAbstract {
   private readonly firebaseInstance: FirebaseApp | null = null;
 
   private readonly config: FirebaseKeys;
@@ -55,3 +55,5 @@ export class FirebaseAbstract {
     return this.firebaseInstance;
   }
 }
+
+export { FirebaseAbstract };

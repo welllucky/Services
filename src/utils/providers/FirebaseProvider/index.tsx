@@ -36,7 +36,7 @@ export const FirebaseProvider = ({
     };
 
     initalize();
-  }, []);
+  }, [firebaseAgent]);
 
   const contextValue = useMemo(
     () => ({

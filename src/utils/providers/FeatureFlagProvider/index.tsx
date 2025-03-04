@@ -1,3 +1,4 @@
+import getConfigs from "@/server/functions/getConfigs";
 import {
   FeatureFlagsOptions,
   IFeatureFlags,
@@ -43,7 +44,9 @@ export const FeatureFlagProvider = ({
 
   useEffect(() => {
     const initializeFlags = async () => {
-      const defaultFeatureFlags = await (await fetch("/config.json")).json();
+      const config = await getConfigs();
+
+      const defaultFeatureFlags = config?.featureFlags || {};
 
       featureFlagAgent.setFallbacks(defaultFeatureFlags);
       await featureFlagAgent.lookup();
@@ -52,7 +55,7 @@ export const FeatureFlagProvider = ({
     if (featureFlagAgent && firebaseAgent) {
       initializeFlags();
     }
-  }, [featureFlagAgent]);
+  }, [featureFlagAgent, firebaseAgent]);
 
   const getFlag = useCallback(
     (flagName: string, returnType: ReturnKeyType = "boolean"): ReturnType => {
@@ -71,7 +74,7 @@ export const FeatureFlagProvider = ({
       getFlag,
       refresh,
     }),
-    [flags, getFlag],
+    [flags, getFlag, refresh],
   );
 
   return (

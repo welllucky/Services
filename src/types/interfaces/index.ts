@@ -1,4 +1,5 @@
 export * from "./Auth";
+export * from "./Config";
 export * from "./Event";
 export * from "./HttpResponse";
 export * from "./Monitoring";

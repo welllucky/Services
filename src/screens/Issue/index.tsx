@@ -28,13 +28,8 @@ const IssuePage = ({ data, id }: IssuePageProps) => {
     resetForm();
   }, []);
 
-  const { getFlag, flags } = useFeatureFlags();
+  const { getFlag } = useFeatureFlags();
   const isTicketEventsAvailable = getFlag("isTicketEventsAvailable");
-
-  console.log({
-    isTicketEventsAvailable,
-    flags,
-  });
 
   return (
     <TicketProvider data={data}>

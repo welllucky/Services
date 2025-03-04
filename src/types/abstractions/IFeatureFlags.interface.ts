@@ -1,7 +1,4 @@
-export interface FeatureFlagsOptions {
-  isTicketEventsAvailable?: boolean;
-  isMaintenanceMode?: boolean;
-}
+import { FeatureFlagsOptions } from "../interfaces";
 
 export type ReturnType = string | boolean | number | object;
 

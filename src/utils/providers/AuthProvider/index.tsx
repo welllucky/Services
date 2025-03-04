@@ -88,7 +88,7 @@ export const AuthProvider = ({ children, appMonitoring }: AuthProviderProps) => 
       redirectTo: "/login",
       redirect: true,
     });
-  }, [data, resetStates]);
+  }, [appMonitoring, data?.accessToken, resetStates]);
 
   const signIn = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
@@ -164,7 +164,7 @@ export const AuthProvider = ({ children, appMonitoring }: AuthProviderProps) => 
       appMonitoring.setUser(null);
       sessionStorage.removeItem(LS_KEY_USER_DATA);
     }
-  }, [data, resetStates, status, user]);
+  }, [appMonitoring, data, resetStates, status, user]);
 
   const memoizedValue = useMemo(
     (): AuthContextProps => ({
