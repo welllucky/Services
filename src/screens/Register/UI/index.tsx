@@ -7,6 +7,7 @@ const RegisterPageUI = () => (
   <FlexContainer
     overflow
     $full
+    padding="8vmin 5vmin"
     $gap="16px"
     $hasBottomPadding={false}>
     <Header />

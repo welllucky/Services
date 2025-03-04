@@ -1,10 +1,10 @@
 import { Metadata } from "next";
-import { CreateTicketPage } from "@/screens";
+import { OpenTicketPage } from "@/screens";
 
 export const metadata: Metadata = {
   title: { default: "Abrir chamado", template: "%s | Services" },
 };
 
-const OpenTicket = () => <CreateTicketPage />;
+const OpenTicket = () => <OpenTicketPage />;
 
 export default OpenTicket;

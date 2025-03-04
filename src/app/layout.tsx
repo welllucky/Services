@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     "/favicon.ico",
     "/favicon-16x16.png",
     "/favicon-32x32.png",
-    "/android/android-launchericon-192-192.png",
-    "/android/android-launchericon-512-512.png",
+    "/android/services-android-logo-192.png",
+    "/android/services-android-logo-512.png",
   ],
   manifest: "/manifest.json",
 };

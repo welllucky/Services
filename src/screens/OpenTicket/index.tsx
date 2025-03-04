@@ -1,5 +1,5 @@
 import OpenTicketPageUI from "./UI";
 
-const CreateTicketPage = () => <OpenTicketPageUI />;
+const OpenTicketPage = () => <OpenTicketPageUI />;
 
-export default CreateTicketPage;
+export default OpenTicketPage;
