@@ -1,15 +1,16 @@
 import {
   BreadcrumbMonitoringObject,
+  IAppMonitoring,
+  IAppMonitoringAbstract,
   MessageMonitoringLevel,
   OptionalDataMonitoring,
   UserMonitoringObject,
 } from "@/types";
-import { IAppMonitoring } from "../../../../types/abstractions";
 
-export class AppMonitoring implements IAppMonitoring {
-  private readonly client: IAppMonitoring;
+class AppMonitoringClient implements IAppMonitoring {
+  private readonly client: IAppMonitoringAbstract;
 
-  constructor(client: IAppMonitoring) {
+  constructor(client: IAppMonitoringAbstract) {
     this.client = client;
   }
 
@@ -58,3 +59,5 @@ export class AppMonitoring implements IAppMonitoring {
     return this.client.getContext();
   }
 }
+
+export default AppMonitoringClient;

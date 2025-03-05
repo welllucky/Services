@@ -2,7 +2,7 @@
 
 import {
   appMonitoringClient,
-  featureFlagAgent,
+  featureFlag,
   firebaseAgent,
 } from "@/implementations/client";
 import { GlobalStyle, theme } from "@/styles";
@@ -56,7 +56,7 @@ const AppProviders = ({ children }: { children: ReactNode }) => {
           <SessionProvider>
             <FirebaseProvider firebaseAgent={firebaseAgent}>
               <FeatureFlagProvider
-                featureFlagAgent={featureFlagAgent}
+                featureFlag={featureFlag}
                 firebaseAgent={firebaseAgent}>
                 <AuthProvider appMonitoring={appMonitoringClient}>
                   <AppProvider>

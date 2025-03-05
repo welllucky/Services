@@ -1,9 +1,8 @@
-import { MonitoringScopeType } from "@/types";
+import { IAppMonitoringAbstract, MonitoringScopeType } from "@/types";
 import * as Sentry from "@sentry/nextjs";
-import { IAppMonitoring } from "../../../../types/abstractions";
 
-export class SentryAbstract implements IAppMonitoring {
-  client = Sentry;
+class SentryAbstract implements IAppMonitoringAbstract {
+  private readonly client = Sentry;
 
   captureException(error: unknown, hint?: Sentry.EventHint) {
     this.client.captureException(error, hint);
@@ -73,3 +72,5 @@ export class SentryAbstract implements IAppMonitoring {
     }
   }
 }
+
+export default SentryAbstract;

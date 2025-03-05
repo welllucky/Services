@@ -1,3 +1,5 @@
-export * from "./AppMonitoringClient";
-export * from "./FeatureFlag";
-export * from "./FirebaseAgent";
+import AppMonitoringClient from "./AppMonitoringClient";
+import FeatureFlag from "./FeatureFlag";
+import FirebaseAgent from "./FirebaseAgent";
+
+export { AppMonitoringClient, FeatureFlag, FirebaseAgent };

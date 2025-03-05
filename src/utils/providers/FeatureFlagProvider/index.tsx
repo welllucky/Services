@@ -32,11 +32,11 @@ export const useFeatureFlags = () => useContext(FeatureFlagContext);
 export const FeatureFlagProvider = ({
   children,
   firebaseAgent,
-  featureFlagAgent,
+  featureFlag,
 }: {
   children: ReactNode;
   firebaseAgent: IFirebase;
-  featureFlagAgent: IFeatureFlags;
+  featureFlag: IFeatureFlags;
 }) => {
   const [flags, setFlags] = useState<FeatureFlagsOptions>(
     {} as FeatureFlagsOptions,
@@ -48,25 +48,25 @@ export const FeatureFlagProvider = ({
 
       const defaultFeatureFlags = config?.featureFlags || {};
 
-      featureFlagAgent.setFallbacks(defaultFeatureFlags);
-      await featureFlagAgent.lookup();
-      setFlags(featureFlagAgent.getAll() ?? defaultFeatureFlags);
+      featureFlag.setFallbacks(defaultFeatureFlags);
+      await featureFlag.lookup();
+      setFlags(featureFlag.getAll() ?? defaultFeatureFlags);
     };
-    if (featureFlagAgent && firebaseAgent) {
+    if (featureFlag && firebaseAgent) {
       initializeFlags();
     }
-  }, [featureFlagAgent, firebaseAgent]);
+  }, [featureFlag, firebaseAgent]);
 
   const getFlag = useCallback(
     (flagName: string, returnType: ReturnKeyType = "boolean"): ReturnType => {
-      return featureFlagAgent.get(flagName, returnType);
+      return featureFlag.get(flagName, returnType);
     },
-    [featureFlagAgent],
+    [featureFlag],
   );
 
   const refresh = useCallback(async () => {
-    await featureFlagAgent.lookup();
-  }, [featureFlagAgent]);
+    await featureFlag.lookup();
+  }, [featureFlag]);
 
   const contextValue = useMemo(
     () => ({

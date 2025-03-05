@@ -56,4 +56,5 @@ class FirebaseAbstract {
   }
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export { FirebaseAbstract };

@@ -2,33 +2,54 @@ import {
   FeatureFlagsOptions,
   IAppMonitoring,
   IFeatureFlags,
+  IFeatureFlagsAbstract,
   ReturnKeyType,
 } from "@/types";
-import { RemoteConfig } from "../../abstractions";
 
-export class FeatureFlagAgent implements IFeatureFlags {
-  private readonly agent: RemoteConfig;
+class FeatureFlag implements IFeatureFlags {
+  private readonly client: IFeatureFlagsAbstract | null;
 
-  private readonly appMonitoring: IAppMonitoring;
+  private readonly appMonitoring: IAppMonitoring | null;
 
-  constructor(featureFlagAgent: RemoteConfig, appMonitoring: IAppMonitoring) {
-    this.appMonitoring = appMonitoring;
-    this.agent = featureFlagAgent;
+  constructor(
+    featureFlagAgent: IFeatureFlagsAbstract,
+    appMonitoring: IAppMonitoring,
+  ) {
+    try {
+      if (!featureFlagAgent) {
+        throw new Error("FeatureFlag instance was not initialized.");
+      }
+
+      if (!appMonitoring) {
+        throw new Error("AppMonitoring instance was not initialized.");
+      }
+
+      this.appMonitoring = appMonitoring;
+      this.client = featureFlagAgent;
+    } catch (error) {
+      this.appMonitoring = null;
+      this.client = null;
+      // eslint-disable-next-line no-console
+      console.error("Failed to initialize FeatureFlag: ", { error });
+    }
   }
 
   get(key: string, returnType: ReturnKeyType = "boolean") {
     try {
-      return this.agent.get(key, returnType);
+      return this.client?.get(key, returnType);
     } catch (error) {
-      console.error({ error });
-      this?.appMonitoring.captureException(error);
+      this.appMonitoring?.captureException(error);
       return null;
     }
   }
 
   getAll(): Partial<FeatureFlagsOptions> {
     try {
-      const rawValues = this.agent.getAll();
+      const rawValues = this.client?.getAll();
+
+      if (!rawValues) {
+       throw new Error("Flags are not returned from the client.");
+      }
 
       return Object.entries(rawValues).reduce(
         (convertedValues, [key, value]) => {
@@ -59,25 +80,26 @@ export class FeatureFlagAgent implements IFeatureFlags {
         {} as Partial<FeatureFlagsOptions>,
       ) as FeatureFlagsOptions;
     } catch (error) {
-      console.error({ error });
-      this?.appMonitoring?.captureException?.(error);
+      this.appMonitoring?.captureException(error);
       return {} as FeatureFlagsOptions;
     }
   }
 
   setFallbacks(fallbacks: FeatureFlagsOptions) {
     try {
-      this.agent.setFallbacks(fallbacks);
+      this.client?.setFallbacks(fallbacks);
     } catch (error) {
-      this?.appMonitoring.captureException(error);
+      this.appMonitoring?.captureException(error);
     }
   }
 
   async lookup() {
     try {
-      await this.agent.lookup();
+      await this.client?.lookup();
     } catch (error) {
-      this?.appMonitoring.captureException(error);
+      this.appMonitoring?.captureException(error);
     }
   }
 }
+
+export default FeatureFlag;

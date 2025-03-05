@@ -5,3 +5,4 @@ export * from "./IFeatureFlags.interface";
 export * from "./IFirebase.interface";
 export * from "./IHttpClient.interface";
 export * from "./IJWT.interface";
+export * from "./IMessaging.interface";
