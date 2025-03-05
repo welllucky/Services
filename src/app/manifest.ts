@@ -2,10 +2,11 @@ import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   const url = process.env.BASE_URL;
+  const isProd = process.env.HOST_ENV === "production";
   return {
     id: url ?? "services",
-    name: "Services",
-    short_name: "Services",
+    name: isProd ? "Services" : "Services (Dev)",
+    short_name: isProd ? "Services" : "Services-dev",
     description:
       "Desburocratizador do gerenciamento de chamados, bem vindo ao Services.",
     theme_color: "#57a722",
