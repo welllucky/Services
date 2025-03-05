@@ -7,7 +7,7 @@ import {
   UserMonitoringObject,
 } from "@/types";
 
-class AppMonitoringClient implements IAppMonitoring {
+class AppMonitoring implements IAppMonitoring {
   private readonly client: IAppMonitoringAbstract;
 
   constructor(client: IAppMonitoringAbstract) {
@@ -60,4 +60,4 @@ class AppMonitoringClient implements IAppMonitoring {
   }
 }
 
-export default AppMonitoringClient;
+export default AppMonitoring;

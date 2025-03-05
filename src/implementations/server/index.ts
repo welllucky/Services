@@ -1,5 +1,5 @@
-import { SentryAbstract } from "../client/abstractions/AppMonitoring/Sentry";
-import { AppMonitoring } from "../client/infra/AppMonitoringClient";
+import SentryAbstract from "../client/abstractions/AppMonitoring/Sentry";
+import AppMonitoring from "../client/infra/AppMonitoringClient";
 import { JWTAbstraction } from "./abstractions";
 import { CryptoAgent, JWTClient } from "./infra";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { IFirebase } from "@/types";
+import { IAnalytics, IFirebase } from "@/types";
 import {
   createContext,
   ReactNode,
@@ -11,17 +11,18 @@ import {
 
 interface FirebaseContextType {
   firebaseAgent: IFirebase | null;
+  analytics: IAnalytics | null;
 }
 
 interface FirebaseProviderProps {
   children: ReactNode;
   firebaseAgent: IFirebase;
-  // appMonitoring: AppMonitoring;
+  analytics: IAnalytics;
 }
 
 const FirebaseContext = createContext<FirebaseContextType>({
   firebaseAgent: null,
-
+  analytics: null,
 });
 
 export const useFirebase = () => useContext(FirebaseContext);
@@ -29,20 +30,22 @@ export const useFirebase = () => useContext(FirebaseContext);
 export const FirebaseProvider = ({
   children,
   firebaseAgent,
+  analytics,
 }: FirebaseProviderProps) => {
   useEffect(() => {
     const initalize = async () => {
-      await firebaseAgent.initializeAnalytics();
+      await analytics.initialize();
     };
 
     initalize();
-  }, [firebaseAgent]);
+  }, [analytics]);
 
   const contextValue = useMemo(
     () => ({
       firebaseAgent,
+      analytics,
     }),
-    [firebaseAgent],
+    [firebaseAgent, analytics],
   );
 
   return (

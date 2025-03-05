@@ -1,5 +1,4 @@
 import { FirebaseKeys } from "@/types";
-import { Analytics, getAnalytics, isSupported } from "firebase/analytics";
 import { FirebaseApp, initializeApp } from "firebase/app";
 
 class FirebaseAbstract {
@@ -28,21 +27,6 @@ class FirebaseAbstract {
     }
 
     this.firebaseInstance = app;
-  }
-
-  public async initializeAnalytics(): Promise<Analytics | null> {
-    if (!this.firebaseInstance) {
-      throw new Error("Firebase instance not initialized");
-    }
-
-    const canInitializeAnalytics = await isSupported();
-
-    if (canInitializeAnalytics) {
-      const analytics = getAnalytics(this.firebaseInstance);
-
-      return analytics;
-    }
-    return null;
   }
 
   public getFirebaseApp(): FirebaseApp | null {

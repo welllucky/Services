@@ -59,7 +59,7 @@ export const FeatureFlagProvider = ({
 
   const getFlag = useCallback(
     (flagName: string, returnType: ReturnKeyType = "boolean"): ReturnType => {
-      return featureFlag.get(flagName, returnType);
+      return featureFlag.get(flagName, returnType) ?? false;
     },
     [featureFlag],
   );

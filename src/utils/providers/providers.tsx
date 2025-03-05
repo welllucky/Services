@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  analytics,
   appMonitoringClient,
   featureFlag,
   firebaseAgent,
@@ -54,7 +55,9 @@ const AppProviders = ({ children }: { children: ReactNode }) => {
       <StyledComponentsRegistry>
         <ThemeProvider theme={theme}>
           <SessionProvider>
-            <FirebaseProvider firebaseAgent={firebaseAgent}>
+            <FirebaseProvider
+              firebaseAgent={firebaseAgent}
+              analytics={analytics}>
               <FeatureFlagProvider
                 featureFlag={featureFlag}
                 firebaseAgent={firebaseAgent}>

@@ -3,11 +3,12 @@
 import { Cookies } from "react-cookie";
 import {
   FirebaseAbstract,
+  FirebaseAnalytics,
   HTTPClient,
   RemoteConfig,
   SentryAbstract,
 } from "./abstractions";
-import { AppMonitoringClient, FeatureFlag, FirebaseAgent } from "./infra";
+import { Analytics, AppMonitoring, FeatureFlag, FirebaseAgent } from "./infra";
 
 // Configurations
 const firebaseConfig = {
@@ -26,12 +27,14 @@ const firebaseConfig = {
 const sentry = new SentryAbstract();
 const firebase = new FirebaseAbstract(firebaseConfig);
 const remoteConfig = new RemoteConfig(firebase);
+const firebaseAnalytics = new FirebaseAnalytics(firebase);
 
 // ==============================================
 
 // Implementations
 export const httpClient = new HTTPClient();
 export const cookie = new Cookies();
-export const appMonitoringClient = new AppMonitoringClient(sentry);
+export const appMonitoringClient = new AppMonitoring(sentry);
 export const firebaseAgent = new FirebaseAgent(firebase, appMonitoringClient);
 export const featureFlag = new FeatureFlag(remoteConfig, appMonitoringClient);
+export const analytics = new Analytics(firebaseAnalytics, appMonitoringClient);

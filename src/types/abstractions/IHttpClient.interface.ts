@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { HttpClientProps, IHttpError, IHttpResponse } from "@/types";
+
+import { HttpClientProps, IHttpError, IHttpResponse } from "../interfaces";
 
 export interface IHttpClient {
   get<T>(props: Omit<HttpClientProps, "type">): IHttpResponse<T, IHttpError>;

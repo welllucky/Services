@@ -1,3 +1,4 @@
+export * from "./IAnalytics.interface";
 export * from "./IApis";
 export * from "./IAppMonitoringClient.interface";
 export * from "./ICrypto.interface";
