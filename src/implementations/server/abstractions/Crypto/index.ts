@@ -1,20 +1,23 @@
+// skipcq: JS-C1003
 import * as crypto from "crypto";
 
 export class CryptoAbstraction {
-  private readonly agent: typeof crypto = crypto;
+  private readonly agent = crypto;
 
-  private secret: Buffer;
+  private readonly secret: Buffer;
 
-  private iv: Buffer;
+  private readonly iv: Buffer;
+
+  private readonly algorithm = "aes-256-cbc";
 
   constructor(secret: Buffer, iv: Buffer) {
     this.secret = secret;
     this.iv = iv;
   }
 
-  public async cryptoData<T>(data: string | T) {
+  public cryptoData<T>(data: string | T) {
     const cipher = this.agent.createCipheriv(
-      "aes-256-cbc",
+      this.algorithm,
       this.secret,
       this.iv,
     );
@@ -24,9 +27,9 @@ export class CryptoAbstraction {
     return encrypted;
   }
 
-  public async decryptData<T>(encryptData: string) {
+  public decryptData<T>(encryptData: string) {
     const decipher = this.agent.createDecipheriv(
-      "aes-256-cbc",
+      this.algorithm,
       this.secret,
       this.iv,
     );

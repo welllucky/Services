@@ -2,5 +2,5 @@
 export interface ICrypto {
   encrypt: <T>(text: string | T) => void;
 
-  decrypt: <T>(text: string) => Promise<T | string>;
+  decrypt: <T>(text: string) => T | string;
 }

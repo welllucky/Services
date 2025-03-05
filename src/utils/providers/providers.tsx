@@ -22,12 +22,22 @@ import StyledComponentsRegistry from "./registry";
 declare global {
   interface Window {
     version: string;
+    // eslint-disable-next-line no-unused-vars
+    genSecret: (length: number) => void;
   }
 }
 
-export const AppProviders = ({ children }: { children: ReactNode }) => {
+const AppProviders = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     window.version = packageJson.version;
+    window.genSecret = (length: number) => {
+      const secret = crypto.getRandomValues(new Uint8Array(length));
+      const secretHex = Array.from(secret)
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
+
+      return secretHex;
+    };
   }, []);
 
   return (
@@ -80,3 +90,5 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
     // </SWRConfig>
   );
 };
+
+export default AppProviders;

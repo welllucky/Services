@@ -9,7 +9,7 @@ export class JWTClient implements IJWT {
     this.client.setSecret(secret);
   }
 
-  public decode<T>(token: string): Promise<T> {
+  public decode<T>(token: string): T {
     return this.client.decode<T>(token);
   }
 
@@ -17,7 +17,7 @@ export class JWTClient implements IJWT {
     return this.client.sign(payload, expiresIn);
   }
 
-  public verify<T>(token: string): Promise<T> {
+  public verify<T>(token: string): T {
     return this.client.verify<T>(token);
   }
 }

@@ -1,26 +1,27 @@
-import { decode, sign, verify } from "jsonwebtoken";
+import { IJWT } from "@/types";
+import * as jwt from "jsonwebtoken";
 
-export class JWTAbstraction {
+export class JWTAbstraction implements IJWT {
   private secret = "";
 
-  public async decode<T>(token: string) {
-    return decode(token) as unknown as T;
+  private readonly agent = jwt;
+
+  public decode<T>(token: string) {
+    return this.agent.decode(token) as unknown as T;
   }
 
-  public async sign(payload: string | object | Buffer, expiresIn: string) {
-    return sign(payload, this.secret, {
+  public sign(payload: string | object | Buffer, expiresIn: string) {
+    return this.agent.sign(payload, this.secret, {
       algorithm: "ES256",
-      expiresIn,
+      expiresIn: Number(expiresIn),
     });
   }
 
-  public async verify<T>(token: string) {
-    return verify(token, this.secret) as unknown as T;
+  public verify<T>(token: string) {
+    return this.agent.verify(token, this.secret) as unknown as T;
   }
 
   setSecret(secret: string) {
     this.secret = secret;
   }
 }
-
-export const JWT = new JWTAbstraction();
