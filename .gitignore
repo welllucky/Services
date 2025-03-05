@@ -72,3 +72,5 @@ snyk-linux
 node_modules/
 
 *.code-workspace
+
+certificates
