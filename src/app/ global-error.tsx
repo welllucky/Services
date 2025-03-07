@@ -1,6 +1,7 @@
 "use client";
 
 import { appMonitoringClient } from "@/implementations/client";
+import { ServerErrorPage } from "@/screens";
 import NextError from "next/error";
 import { useEffect } from "react";
 
@@ -22,6 +23,7 @@ const GlobalError = ({
         does not expose status codes for errors, we simply pass 0 to render a
         generic error message. */}
         <NextError statusCode={0} />
+        <ServerErrorPage />
       </body>
     </html>
   );

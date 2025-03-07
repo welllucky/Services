@@ -36,4 +36,4 @@ const SubHeader = ({
   </SecondSection>
 );
 
-export { SubHeader };
+export default SubHeader;

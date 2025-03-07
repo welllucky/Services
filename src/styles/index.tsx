@@ -1,3 +1,4 @@
+import { breakpoints } from "./breakpoints";
 import {
   lightTheme,
   // darkTheme
@@ -7,18 +8,17 @@ const colorTheme = lightTheme;
 
 const theme = {
   media: {
-    mobileS: "320px",
-    mobileM: "375px",
-    mobileL: "425px",
-    mobileXL: "480px",
-    tabletS: "576px",
-    tablet: "768px",
-    laptop: "1024px",
-    laptopL: "1440px",
-    desktopS: "1980px",
-    desktop: "2560px",
+    mobileS: `(min-width: ${breakpoints.mobileS})`,
+    mobileM: `(min-width: ${breakpoints.mobileM})`,
+    mobileL: `(min-width: ${breakpoints.mobileL})`,
+    mobileXL: `(min-width: ${breakpoints.mobileXL})`,
+    tabletS: `(min-width: ${breakpoints.tabletS})`,
+    tablet: `(min-width: ${breakpoints.tablet})`,
+    laptop: `(min-width: ${breakpoints.laptop})`,
+    laptopL: `(min-width: ${breakpoints.laptopL})`,
+    desktopS: `(min-width: ${breakpoints.desktopS})`,
+    desktop: `(min-width: ${breakpoints.desktop})`,
   },
-
   ...colorTheme,
 };
 

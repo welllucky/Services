@@ -41,27 +41,30 @@ const CustomButton = ({
   width,
   height,
   ...props
-}: CustomButtonProps) => (
-  <ButtonContainer
-    {...buildTestIds(`button-container-${text}`)}
-    $backgroundColor={$backgroundColor}
-    disabled={disabled}
-    width={width}
-    height={height}
-    mode={mode}
-    {...props}>
-    {icon}
-    <ButtonComponent
-      {...buildTestIds(`button-component-${text}`)}
-      form={props.form}
-      type={props.type ?? "button"}
-      onClick={onClick}
+}: CustomButtonProps) => {
+  console.log({ color: $backgroundColor });
+  return (
+    <ButtonContainer
+      {...buildTestIds(`button-container-${text}`)}
+      $backgroundColor={$backgroundColor}
       disabled={disabled}
-      color={color}
+      width={width}
+      height={height}
+      mode={mode}
       {...props}>
-      {text}
-    </ButtonComponent>
-  </ButtonContainer>
-);
+      {icon}
+      <ButtonComponent
+        {...buildTestIds(`button-component-${text}`)}
+        form={props.form}
+        type={props.type ?? "button"}
+        onClick={onClick}
+        disabled={disabled}
+        color={color}
+        {...props}>
+        {text}
+      </ButtonComponent>
+    </ButtonContainer>
+  );
+};
 
 export { CustomButton };

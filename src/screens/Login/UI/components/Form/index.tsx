@@ -1,17 +1,13 @@
 import { LoginFormProps } from "../../../Login.types";
 import { ActionSection } from "../../styles";
-import { CreateAccountOption } from "../CreateAccountOption";
+import CreateAccountOption from "../CreateAccountOption";
 import { EmailInput } from "./EmailInput";
 import { ForgotPassword } from "./ForgotPassword";
 import { LoginButton } from "./LoginButton";
 import { PasswordInput } from "./PasswordInput";
 import { FormContainer, InputSection, TextMobile } from "./styles";
 
-export const LoginForm = ({
-  control,
-  isValid,
-  loginAction,
-}: LoginFormProps) => (
+const LoginForm = ({ control, isValid, loginAction }: LoginFormProps) => (
   <FormContainer>
     <TextMobile>Entrar</TextMobile>
     <InputSection>
@@ -28,3 +24,5 @@ export const LoginForm = ({
     </ActionSection>
   </FormContainer>
 );
+
+export default LoginForm;

@@ -13,8 +13,8 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
   font-size: 1rem;
   border-radius: 10rem;
   padding: 10px 24px;
-  width: ${({ width }) => width || "100%"};
-  height: ${({ height }) => height || "100%"};
+  width: ${({ width }) => width || "fit-content"};
+  height: ${({ height }) => height || "fit-content"};
 
   color: ${({ color, theme }) => color || theme.colors.neutral.white};
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { authErrorMessages } from "@/constraints";
 import { ISignIn, SignInSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -5,7 +7,7 @@ import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { UseLoginProps } from "./Login.types";
 
-export const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
+const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
   const { error: pageError, redirectTo } = searchParams;
   const { signIn, isLoading, error, isAuthenticated, user } = useAuth();
   const {
@@ -69,3 +71,5 @@ export const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
     getCustomErrorMessage,
   };
 };
+
+export default useLogin;

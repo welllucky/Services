@@ -2,7 +2,7 @@ import Image from "next/image";
 import Logo from "public/Icon.png";
 import { LogoContainer } from "./styles";
 
-export const DisplayImage = () => (
+const DisplayImage = () => (
   <LogoContainer>
     <Image
       src={Logo}
@@ -13,3 +13,5 @@ export const DisplayImage = () => (
     />
   </LogoContainer>
 );
+
+export default DisplayImage;
