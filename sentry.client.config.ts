@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from "@sentry/browser";
 import packageJson from "./package.json";
 
 Sentry.init({
@@ -17,6 +17,7 @@ Sentry.init({
     }),
     Sentry.browserProfilingIntegration(),
     Sentry.browserTracingIntegration(),
+    Sentry.openFeatureIntegration(),
   ],
 
   tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.online\/api/],

@@ -31,9 +31,22 @@ class Analytics implements IAnalytics {
 
   async initialize() {
     try {
-      await this.client?.initialize();
+      const result = await this.client?.initialize();
+
+      return result ?? false;
     } catch (error) {
       this.appMonitoring?.captureException(error);
+      return false;
+    }
+  }
+
+  async close() {
+    try {
+      const result = this.client?.close();
+      return result ?? false;
+    } catch (error) {
+      this.appMonitoring?.captureException(error);
+      return false;
     }
   }
 }

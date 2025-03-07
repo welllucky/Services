@@ -1,80 +1,141 @@
-import getConfigs from "@/server/functions/getConfigs";
+"use client";
+
+import { FeatureFlagsOptions, ReturnKeyType, ReturnType } from "@/types";
 import {
-  FeatureFlagsOptions,
-  IFeatureFlags,
-  IFirebase,
-  ReturnKeyType,
-  ReturnType,
-} from "@/types";
+  Client,
+  JsonValue,
+  ReactFlagEvaluationOptions,
+} from "@openfeature/react-sdk";
 import {
   createContext,
   ReactNode,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
-  useState,
 } from "react";
 
+interface FeatureFlagProviderProps {
+  children: ReactNode;
+  featureFlag: Client;
+  defaultFeatureFlags?: FeatureFlagsOptions;
+  // featureFlag: IFeatureFlags;
+  // isActive?: boolean;
+}
+
 interface FeatureFlagContextType {
-  flags: FeatureFlagsOptions;
-  // eslint-disable-next-line no-unused-vars
-  getFlag: (flagName: string, returnType?: ReturnKeyType) => ReturnType;
+  getFlag: (
+    // eslint-disable-next-line no-unused-vars
+    flagName: keyof FeatureFlagsOptions,
+    // eslint-disable-next-line no-unused-vars
+    returnType?: ReturnKeyType,
+  ) => ReturnType;
+  // flags: FeatureFlagsOptions;
 }
 
 const FeatureFlagContext = createContext<FeatureFlagContextType>({
-  flags: {},
   getFlag: () => false,
+  // flags: {},
 });
 
-export const useFeatureFlags = () => useContext(FeatureFlagContext);
+export const useFlags = () => useContext(FeatureFlagContext);
+
+const getFlagsOptions = {
+  suspend: true,
+  updateOnConfigurationChanged: true,
+  updateOnContextChanged: true,
+} as ReactFlagEvaluationOptions;
 
 export const FeatureFlagProvider = ({
   children,
-  firebaseAgent,
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   featureFlag,
-}: {
-  children: ReactNode;
-  firebaseAgent: IFirebase;
-  featureFlag: IFeatureFlags;
-}) => {
-  const [flags, setFlags] = useState<FeatureFlagsOptions>(
-    {} as FeatureFlagsOptions,
+  defaultFeatureFlags = {} as FeatureFlagsOptions,
+  // isActive,
+}: FeatureFlagProviderProps) => {
+  // const [flags, setFlags] = useState<FeatureFlagsOptions>(
+  //   {} as FeatureFlagsOptions,
+  // );
+
+  // useEffect(() => {
+  //   const getInitialFlags = async () => {
+  //     setFlags(featureFlag.getAll() ?? defaultFeatureFlags);
+  //   };
+
+  //   if (isActive) {
+  //     getInitialFlags();
+  //   }
+  // }, [defaultFeatureFlags, featureFlag, isActive]);
+
+  // const getFlag = useCallback(
+  //   (flagName: string, returnType: ReturnKeyType = "boolean"): ReturnType => {
+  //     return featureFlag.get(flagName, returnType) ?? false;
+  //   },
+  //   [featureFlag],
+  // );
+
+  // const refresh = useCallback(async () => {
+  //   await featureFlag.lookup();
+  // }, [featureFlag]);
+
+  // const contextValue = useMemo(
+  //   () => ({
+  //     flags,
+  //     getFlag,
+  //     refresh,
+  //   }),
+  //   [flags, getFlag, refresh],
+  // );
+
+  const defaultFlags = useMemo(
+    () => defaultFeatureFlags as Record<string, ReturnType>,
+    [defaultFeatureFlags],
   );
-
-  useEffect(() => {
-    const initializeFlags = async () => {
-      const config = await getConfigs();
-
-      const defaultFeatureFlags = config?.featureFlags || {};
-
-      featureFlag.setFallbacks(defaultFeatureFlags);
-      await featureFlag.lookup();
-      setFlags(featureFlag.getAll() ?? defaultFeatureFlags);
-    };
-    if (featureFlag && firebaseAgent) {
-      initializeFlags();
-    }
-  }, [featureFlag, firebaseAgent]);
 
   const getFlag = useCallback(
-    (flagName: string, returnType: ReturnKeyType = "boolean"): ReturnType => {
-      return featureFlag.get(flagName, returnType) ?? false;
-    },
-    [featureFlag],
-  );
+    (
+      flagName: keyof FeatureFlagsOptions,
+      returnType: ReturnKeyType = "boolean",
+    ): ReturnType => {
+      if (returnType === "string") {
+        return featureFlag.getStringValue(
+          flagName as string,
+          (defaultFlags[`${flagName}`] as string) || "",
+          getFlagsOptions,
+        );
+      }
 
-  const refresh = useCallback(async () => {
-    await featureFlag.lookup();
-  }, [featureFlag]);
+      if (returnType === "number") {
+        return featureFlag.getNumberValue(
+          flagName as string,
+          (defaultFlags[`${flagName}`] as number) || 0,
+          getFlagsOptions,
+        );
+      }
+
+      if (returnType === "object") {
+        return featureFlag.getObjectValue(
+          flagName as string,
+          (defaultFlags[`${flagName}`] as JsonValue) || ({} as JsonValue),
+          getFlagsOptions,
+        ) as object;
+      }
+
+      return featureFlag.getBooleanValue(
+        flagName as string,
+        (defaultFlags[`${flagName}`] as boolean) || false,
+        getFlagsOptions,
+      );
+    },
+    [defaultFlags, featureFlag],
+  );
 
   const contextValue = useMemo(
     () => ({
-      flags,
       getFlag,
-      refresh,
+      // flags,
+      // refresh,
     }),
-    [flags, getFlag, refresh],
+    [getFlag],
   );
 
   return (

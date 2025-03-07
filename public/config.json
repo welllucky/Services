@@ -39,7 +39,10 @@
       "login",
       "register",
       "createTicket",
-      "resolveIssue"
+      "resolveIssue",
+      "featureFlags",
+      "messaging",
+      "analytics"
     ],
     "allowedEnvs": [
       "NODE_ENV",

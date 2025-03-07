@@ -1,10 +1,5 @@
-import { Analytics } from "firebase/analytics";
+import { IFirebaseFeature } from "./IFirebase.interface";
 
-export interface IAnalytics {
-  initialize(): Promise<void>;
-}
+export type IAnalytics = IFirebaseFeature;
 
-export interface IAnalyticsAbstract {
-  initialize(): Promise<Analytics | null | undefined>;
-  getAnalytics(): Analytics | null;
-}
+export type IAnalyticsAbstract = IFirebaseFeature;

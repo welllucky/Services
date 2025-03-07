@@ -1,11 +1,12 @@
 /* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable @next/next/no-page-custom-font */
+import getConfigs from "@/server/functions/getConfigs";
+import { AppProviders } from "@/utils/providers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
-import { AppProviders } from "@/utils/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,8 @@ const RootLayout = async ({
 }: Readonly<{
   children: ReactNode;
 }>) => {
+  const configs = getConfigs();
+
   return (
     <html lang="pt-br">
       <head>
@@ -54,7 +57,7 @@ const RootLayout = async ({
       </head>
       <body className={inter.className}>
         <SpeedInsights />
-        <AppProviders>
+        <AppProviders configs={configs}>
           {children}
           <Analytics />
         </AppProviders>

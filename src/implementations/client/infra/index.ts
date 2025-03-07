@@ -1,6 +1,12 @@
-import AppMonitoring from "./AppMonitoringClient";
-import FeatureFlag from "./FeatureFlag";
-import FirebaseAgent from "./FirebaseAgent";
 import Analytics from "./Analytics";
+import AppMonitoring from "./AppMonitoringClient";
+import { FeatureFlag, ServicesFlagsProvider } from "./FeatureFlag";
+import FirebaseAgent from "./FirebaseAgent";
 
-export { AppMonitoring, FeatureFlag, FirebaseAgent, Analytics };
+export {
+  Analytics,
+  AppMonitoring,
+  FeatureFlag,
+  FirebaseAgent,
+  ServicesFlagsProvider,
+};

@@ -1,97 +1,108 @@
-import {
-  FeatureFlagsOptions,
-  IFeatureFlagsAbstract,
-  RemoteConfigApp,
-  ReturnKeyType,
-  ReturnType,
-} from "@/types";
+/* eslint-disable brace-style */
 import {
   fetchAndActivate,
   getAll,
   getRemoteConfig,
   getValue,
+  // isSupported,
+  RemoteConfig as RemoteConfigApp,
+  RemoteConfigOptions,
   Value,
 } from "firebase/remote-config";
+
+import {
+  FeatureFlagsOptions,
+  FirebaseFeatures,
+  IFeatureFlagsAbstract,
+  ReturnKeyType,
+  ReturnType,
+} from "@/types";
+
 import { FirebaseAbstract } from "../Firebase";
 
-class RemoteConfig implements IFeatureFlagsAbstract {
-  private readonly remoteConfigInstance: RemoteConfigApp | null = null;
-
+class FirebaseRemoteConfig
+  extends FirebaseFeatures<RemoteConfigApp>
+  implements IFeatureFlagsAbstract
+{
+  // eslint-disable-next-line no-useless-constructor
   constructor(firebaseInstance: FirebaseAbstract) {
-    try {
-      const firebaseApp = firebaseInstance.getFirebaseApp();
+    // if (!firebaseInstance) {
+    //   throw new Error("Firebase instance is not provided");
+    // }
 
-      if (!firebaseApp) {
-        throw new Error("Firebase app is not initialized or is not provided");
-      }
+    super(firebaseInstance);
+  }
 
-      this.remoteConfigInstance = getRemoteConfig(firebaseApp);
+  async initialize<T>() {
+    const canInitialize = true;
+    // const canInitialize = await isSupported();
+    await this.initializeFeature<RemoteConfigOptions>(
+      "Remote Config",
+      getRemoteConfig,
+      canInitialize,
+    );
 
-      if (this.remoteConfigInstance) {
-        this.remoteConfigInstance.settings.minimumFetchIntervalMillis =
-          process.env.HOST_ENV === "production"
-            ? 8 * 60 * 60 * 1000
-            : 1 * 60 * 1000;
-        this.remoteConfigInstance.settings.fetchTimeoutMillis =
-          process.env.NODE_ENV === "production"
-            ? 10 * 60 * 1000
-            : 1 * 60 * 1000;
-      }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error("Failed to initialize RemoteConfig:", error);
+    if (this.instance) {
+      this.isInitialized = true;
+      this.instance.settings.minimumFetchIntervalMillis =
+        process.env.HOST_ENV === "production"
+          ? 8 * 60 * 60 * 1000
+          : 1 * 60 * 1000;
+      this.instance.settings.fetchTimeoutMillis =
+        process.env.NODE_ENV === "production" ? 10 * 60 * 1000 : 1 * 60 * 1000;
     }
+
+    return this.instance as T;
   }
 
   get(key: string, returnType: ReturnKeyType = "boolean"): ReturnType | null {
-    if (!this.remoteConfigInstance) {
-      throw new Error("RemoteConfig instance is not initialized");
-    }
+    // if (!this.instance || !this.isInitialized) {
+    //   throw new Error("RemoteConfig instance is not initialized");
+    // }
 
-    if (returnType === "string") {
-      return getValue(this.remoteConfigInstance, key).asString();
-    }
+    if (this.instance) {
+      if (returnType === "string") {
+        return getValue(this.instance, key).asString();
+      }
 
-    if (returnType === "boolean") {
-      return getValue(this.remoteConfigInstance, key).asBoolean();
-    }
+      if (returnType === "boolean") {
+        return getValue(this.instance, key).asBoolean();
+      }
 
-    if (returnType === "number") {
-      return getValue(this.remoteConfigInstance, key).asNumber();
-    }
+      if (returnType === "number") {
+        return getValue(this.instance, key).asNumber();
+      }
 
-    if (returnType === "object") {
-      return JSON.parse(getValue(this.remoteConfigInstance, key).asString());
+      if (returnType === "object") {
+        return JSON.parse(getValue(this.instance, key).asString());
+      }
     }
 
     return null;
   }
 
   getAll(): Record<string, Value> {
-    if (!this.remoteConfigInstance) {
+    if (!this.instance || !this.isInitialized) {
       throw new Error("RemoteConfig instance is not initialized");
     }
 
-    return getAll(this.remoteConfigInstance);
+    return getAll(this.instance);
   }
 
   setFallbacks(fallbacks: FeatureFlagsOptions): void {
-    if (!this.remoteConfigInstance) {
+    if (!this.instance || !this.isInitialized) {
       throw new Error("RemoteConfig instance is not initialized");
     }
-    this.remoteConfigInstance.defaultConfig = fallbacks as Record<
-      string,
-      string
-    >;
+    this.instance.defaultConfig = fallbacks as Record<string, string>;
   }
 
   async lookup() {
-    if (!this.remoteConfigInstance) {
+    if (!this.instance || !this.isInitialized) {
       throw new Error("RemoteConfig instance is not initialized");
     }
 
-    await fetchAndActivate(this.remoteConfigInstance);
+    await fetchAndActivate(this.instance);
   }
 }
 
-export default RemoteConfig;
+export default FirebaseRemoteConfig;

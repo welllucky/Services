@@ -1,14 +1,11 @@
 "use client";
 
 import { TicketDto } from "@/types";
-import { TicketProvider } from "@/utils";
-import { buildTestIds, resetForm } from "@/utils/functions";
-import { useFeatureFlags } from "@/utils/providers/FeatureFlagProvider";
+import { buildTestIds, resetForm, TicketProvider, useFlags } from "@/utils";
 import { useEffect } from "react";
 import {
   FormDisplay,
   InfoHistoryPainel,
-  // IssueActionButton,
   IssuePageBackButton,
   IssuePageTitle,
 } from "./components";
@@ -24,12 +21,12 @@ export interface IssuePageProps {
 }
 
 const IssuePage = ({ data, id }: IssuePageProps) => {
+  const { getFlag } = useFlags();
+  const isTicketEventsAvailable = getFlag("isTicketEventsAvailable") as boolean;
+
   useEffect(() => {
     resetForm();
   }, []);
-
-  const { getFlag } = useFeatureFlags();
-  const isTicketEventsAvailable = getFlag("isTicketEventsAvailable");
 
   return (
     <TicketProvider data={data}>

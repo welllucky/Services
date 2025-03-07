@@ -5,10 +5,12 @@ import {
   appMonitoringClient,
   featureFlag,
   firebaseAgent,
+  servicesFlagsProvider,
 } from "@/implementations/client";
 import { GlobalStyle, theme } from "@/styles";
+import { ConfigType } from "@/types";
 import { SessionProvider } from "next-auth/react";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, use, useEffect } from "react";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
 import { Monitoring } from "react-scan/monitoring/next";
@@ -16,8 +18,7 @@ import { ThemeProvider } from "styled-components";
 import packageJson from "../../../package.json";
 import { AppProvider } from "../stores/AppStore";
 import { AuthProvider } from "./AuthProvider";
-import { FeatureFlagProvider } from "./FeatureFlagProvider";
-import { FirebaseProvider } from "./FirebaseProvider";
+import { ServicesProvider } from "./ServicesProvider";
 import StyledComponentsRegistry from "./registry";
 
 declare global {
@@ -28,7 +29,12 @@ declare global {
   }
 }
 
-const AppProviders = ({ children }: { children: ReactNode }) => {
+interface AppProvidersProps {
+  children: ReactNode;
+  configs: Promise<ConfigType | null>;
+}
+
+const AppProviders = ({ children, configs }: AppProvidersProps) => {
   useEffect(() => {
     window.version = packageJson.version;
     window.genSecret = (length: number) => {
@@ -40,6 +46,8 @@ const AppProviders = ({ children }: { children: ReactNode }) => {
       return secretHex;
     };
   }, []);
+
+  const appConfigs = use(configs);
 
   return (
     // <SWRConfig>
@@ -55,37 +63,36 @@ const AppProviders = ({ children }: { children: ReactNode }) => {
       <StyledComponentsRegistry>
         <ThemeProvider theme={theme}>
           <SessionProvider>
-            <FirebaseProvider
-              firebaseAgent={firebaseAgent}
-              analytics={analytics}>
-              <FeatureFlagProvider
+            <AuthProvider appMonitoring={appMonitoringClient}>
+              <ServicesProvider
+                openFeatureClient={servicesFlagsProvider}
+                appConfigs={appConfigs}
+                firebaseAgent={firebaseAgent}
                 featureFlag={featureFlag}
-                firebaseAgent={firebaseAgent}>
-                <AuthProvider appMonitoring={appMonitoringClient}>
-                  <AppProvider>
-                    <Monitoring
-                      apiKey="WEMYJ-Y4IUmZjN8cEufccWZAKd_SyXN_"
-                      url="https://monitoring.react-scan.com/api/v1/ingest"
-                      commit={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
-                      branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-                    />
-                    <GlobalStyle />
-                    {children}
-                    <Toaster
-                      position="top-center"
-                      toastOptions={{
-                        ariaProps: {
-                          role: "status",
-                          "aria-live": "polite",
-                        },
-                        className: "services-message-toast",
-                        position: "top-center",
-                      }}
-                    />
-                  </AppProvider>
-                </AuthProvider>
-              </FeatureFlagProvider>
-            </FirebaseProvider>
+                analytics={analytics}>
+                <AppProvider>
+                  <Monitoring
+                    apiKey="WEMYJ-Y4IUmZjN8cEufccWZAKd_SyXN_"
+                    url="https://monitoring.react-scan.com/api/v1/ingest"
+                    commit={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
+                    branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
+                  />
+                  <GlobalStyle />
+                  {children}
+                  <Toaster
+                    position="top-center"
+                    toastOptions={{
+                      ariaProps: {
+                        role: "status",
+                        "aria-live": "polite",
+                      },
+                      className: "services-message-toast",
+                      position: "top-center",
+                    }}
+                  />
+                </AppProvider>
+              </ServicesProvider>
+            </AuthProvider>
           </SessionProvider>
         </ThemeProvider>
       </StyledComponentsRegistry>

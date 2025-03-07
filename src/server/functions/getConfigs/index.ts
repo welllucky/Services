@@ -4,7 +4,9 @@ import { ConfigType } from "@/types";
 
 const getConfigs = async (): Promise<ConfigType | null> => {
   try {
-    const configs = await (await fetch("/config.json")).json();
+    const res = await fetch(`${process.env.BASE_URL}config.json`);
+
+    const configs = await res.json();
 
     return configs as ConfigType;
   } catch {
