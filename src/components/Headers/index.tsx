@@ -1,2 +1,4 @@
-export * from "./Header";
-export * from "./SubHeader";
+import Header from "./Header";
+import SubHeader from "./SubHeader";
+
+export { Header, SubHeader };

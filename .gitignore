@@ -7,8 +7,10 @@
 .yarn
 
 .fleet
+.zed
+
+.qodo
 .vscode
-.vscode/*
 
 # testing
 /coverage
@@ -16,6 +18,7 @@ tests/playwright/report/index.html
 
 # next.js
 /.next/*
+.next
 /out/
 
 # production

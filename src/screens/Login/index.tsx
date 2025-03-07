@@ -1,8 +1,6 @@
-"use client";
-
 import { useAuth } from "@/utils/providers/AuthProvider";
 import toast from "react-hot-toast";
-import { useLogin } from "./Login.hook";
+import useLogin from "./Login.hook";
 import { LoginPageProps } from "./Login.types";
 import LoginPageUI from "./UI";
 

@@ -56,7 +56,7 @@ const GreetingSection = ({
   </Row>
 );
 
-export const Header = () => {
+const Header = () => {
   const greetingMessage = useMemo(() => getGreetingMessage(), []);
 
   const { user, signOut } = useAuth();
@@ -89,3 +89,5 @@ export const Header = () => {
     </HeaderHome>
   );
 };
+
+export default Header;

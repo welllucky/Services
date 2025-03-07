@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-export const CreateAccountOption = () => (
+const CreateAccountOption = () => (
   <>
     <span>OU</span>
     <p>
-      Não possui uma conta?
-      {" "}
-      <Link href="/register">Cadastre-se </Link>
+      Não possui uma conta? <Link href="/register">Cadastre-se </Link>
     </p>
   </>
 );
+
+export default CreateAccountOption;

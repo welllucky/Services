@@ -24,8 +24,7 @@
       }
     ],
     "paths": {
-      "@/*": ["src/*"],
-      "test-utils": ["src/utils/test-utils"]
+      "@/*": ["src/*"]
     }
   },
   "include": [
@@ -36,7 +35,7 @@
     ".next/types/**/*.ts",
     "playwright.config.ts",
     "tests/**/*",
-    "types.d.ts",
+    "types.d.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -6,7 +6,9 @@ import {
   CS_KEY_USER_RELIABLE_AGENT,
 } from "@/constraints";
 import { cookie } from "@/implementations/client";
-import { createContext, ReactNode, useContext, useMemo } from "react";
+import { useFlags } from "@/utils/providers";
+import { useRouter } from "next/navigation";
+import { createContext, ReactNode, useContext, useEffect, useMemo } from "react";
 
 interface AppContextProps {
   isMobile: boolean;
@@ -25,6 +27,10 @@ interface AppProviderProps {
 
 export const AppContext = createContext({} as unknown as AppContextProps);
 export const AppProvider = ({ children }: Readonly<AppProviderProps>) => {
+  const router = useRouter();
+  const { getFlag } = useFlags();
+  const isMaintenanceMode = getFlag("isMaintenanceMode");
+
   const deviceType: string = cookie.get(CS_KEY_USER_DEVICE_TYPE) || "";
   const reliableAgent: string = cookie.get(CS_KEY_USER_RELIABLE_AGENT) || "";
 
@@ -57,6 +63,12 @@ export const AppProvider = ({ children }: Readonly<AppProviderProps>) => {
   const isWearable = deviceType === "wearable";
   const isEmbedded = deviceType === "embedded";
   const isReliableAgent = Boolean(reliableAgent);
+
+  useEffect(() => {
+    if (isMaintenanceMode) {
+      router.replace("/maintenance");
+    }
+  }, [isMaintenanceMode, router]);
 
   const AppContextValue = useMemo(
     () => ({

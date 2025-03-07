@@ -2,8 +2,7 @@
 
 import { useMemo } from "react";
 import { LoginUIProps } from "../Login.types";
-import { DisplayImage } from "./components/DisplayImage";
-import { LoginForm } from "./components/Form";
+import { DisplayImage, LoginForm } from "./components";
 import { LoginMobile, ScreenContainer } from "./styles";
 
 const LoginPageUI = ({
