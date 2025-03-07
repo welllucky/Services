@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Scope } from "@sentry/nextjs";
+import { Scope } from "@sentry/browser";
 import {
   BreadcrumbMonitoringObject,
   MessageMonitoringLevel,

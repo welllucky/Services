@@ -24,6 +24,9 @@ export type UserMonitoringObject = {
   username?: string;
   email?: string;
   ip_address?: string;
+  isBanned?: boolean;
+  canCreateTicket?: boolean;
+  canResolveTicket?: boolean;
 };
 
 export type MonitoringScopeType = "local" | "global" | "isolated";

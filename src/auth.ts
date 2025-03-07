@@ -69,6 +69,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         id: token?.register,
         email: token?.email ?? "",
         username: token?.name ?? "",
+        canCreateTicket: token?.canCreateTicket,
+        canResolveTicket: token?.canResolveTicket,
+        isBanned: token?.isBanned,
       });
       return {
         ...session,

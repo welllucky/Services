@@ -1,4 +1,4 @@
-import RemoteConfig from "./RemoteConfig";
+import FirebaseRemoteConfig from "./RemoteConfig";
 
 // eslint-disable-next-line import/prefer-default-export
-export { RemoteConfig };
+export { FirebaseRemoteConfig };

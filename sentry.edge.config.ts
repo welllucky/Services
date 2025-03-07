@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from "@sentry/browser";
 import packageJson from "./package.json";
 
 Sentry.init({

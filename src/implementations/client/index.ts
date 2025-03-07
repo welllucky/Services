@@ -1,14 +1,22 @@
 "use client";
 
+import { OpenFeature } from "@openfeature/react-sdk";
+import { OpenFeatureIntegrationHook } from "@sentry/browser";
 import { Cookies } from "react-cookie";
 import {
   FirebaseAbstract,
   FirebaseAnalytics,
+  FirebaseRemoteConfig,
   HTTPClient,
-  RemoteConfig,
   SentryAbstract,
 } from "./abstractions";
-import { Analytics, AppMonitoring, FeatureFlag, FirebaseAgent } from "./infra";
+import {
+  Analytics,
+  AppMonitoring,
+  FeatureFlag,
+  FirebaseAgent,
+  ServicesFlagsProvider,
+} from "./infra";
 
 // Configurations
 const firebaseConfig = {
@@ -26,7 +34,7 @@ const firebaseConfig = {
 // Third-party abstractions
 const sentry = new SentryAbstract();
 const firebase = new FirebaseAbstract(firebaseConfig);
-const remoteConfig = new RemoteConfig(firebase);
+const firebaseRemoteConfig = new FirebaseRemoteConfig(firebase);
 const firebaseAnalytics = new FirebaseAnalytics(firebase);
 
 // ==============================================
@@ -36,5 +44,14 @@ export const httpClient = new HTTPClient();
 export const cookie = new Cookies();
 export const appMonitoringClient = new AppMonitoring(sentry);
 export const firebaseAgent = new FirebaseAgent(firebase, appMonitoringClient);
-export const featureFlag = new FeatureFlag(remoteConfig, appMonitoringClient);
+export const featureFlag = new FeatureFlag(
+  firebaseRemoteConfig,
+  appMonitoringClient,
+);
 export const analytics = new Analytics(firebaseAnalytics, appMonitoringClient);
+
+export const servicesFlagsProvider = OpenFeature.setProvider(
+  new ServicesFlagsProvider(firebaseRemoteConfig),
+)
+  .addHooks(new OpenFeatureIntegrationHook())
+  .getClient();

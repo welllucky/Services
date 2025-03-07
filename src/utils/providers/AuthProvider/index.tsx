@@ -153,7 +153,14 @@ export const AuthProvider = ({ children, appMonitoring }: AuthProviderProps) => 
     if (!user && data?.user && status === "authenticated") {
       setUser(data.user);
       setIsAuthenticated(true);
-      appMonitoring.setUser(data.user);
+      appMonitoring.setUser({
+        id: data?.user?.register,
+        email: data?.user?.email,
+        username: data?.user?.name,
+        canCreateTicket: data?.user?.canCreateTicket,
+        canResolveTicket: data?.user?.canResolveTicket,
+        isBanned: data?.user?.isBanned,
+      });
       sessionStorage.setItem(LS_KEY_USER_DATA, JSON.stringify(data.user));
     }
 
