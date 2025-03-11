@@ -37,17 +37,17 @@ export const TicketActionButton = () => {
   //   isLoading: isLoadingStart,
   //   data: dataStart,
   //   error: errorStart,
-  // } = issueApi.startTicket(id, actionsState.shouldStart);
+  // } = ticketApi.startTicket(id, actionsState.shouldStart);
   // const {
   //   isLoading: isLoadingClose,
   //   data: dataClose,
   //   error: errorClose,
-  // } = issueApi.closeTicket(id, actionsState.shouldClose);
+  // } = ticketApi.closeTicket(id, actionsState.shouldClose);
   // const {
   //   isLoading: isLoadingReopen,
   //   data: dataReopen,
   //   error: errorReopen,
-  // } = issueApi.reopenTicket(id, actionsState.shouldReopen);
+  // } = ticketApi.reopenTicket(id, actionsState.shouldReopen);
 
   // useEffect(() => {
   //   if (actionsState.shouldStart && !isLoadingStart) {

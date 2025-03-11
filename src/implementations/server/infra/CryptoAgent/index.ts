@@ -24,4 +24,4 @@ class CryptoAgent implements ICrypto {
   }
 }
 
-export { CryptoAgent };
+export default CryptoAgent;

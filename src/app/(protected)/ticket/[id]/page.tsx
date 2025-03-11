@@ -3,14 +3,14 @@ import { DEFAULT_CACHE_TIME } from "@/constraints";
 import { IssuePage } from "@/screens";
 import { IssuePageProps } from "@/screens/Issue";
 import { IHttpError, IHttpResponse, TicketDto } from "@/types";
-import { issueApi } from "@/utils";
+import { ticketApi } from "@/utils";
 import { notFound } from "next/navigation";
 
 // eslint-disable-next-line consistent-return
 const Ticket = async ({ params }: { params: IssuePageProps }) => {
   const session = await auth();
 
-  const response = await fetch(issueApi.getIssueEndpoint(params.id), {
+  const response = await fetch(ticketApi.getTicketEndpoint(params.id), {
     headers: {
       Authorization: `Bearer ${session?.accessToken}`,
     },

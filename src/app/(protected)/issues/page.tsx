@@ -3,7 +3,7 @@ import { DEFAULT_CACHE_TIME } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
 import { TicketsPage } from "@/screens";
 import { IHttpError, IHttpResponse, TicketDto } from "@/types";
-import { issueApi } from "@/utils";
+import { ticketApi } from "@/utils";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
@@ -20,7 +20,7 @@ const Tickets = async () => {
       redirect("/login");
     }
 
-    const res = await fetch(issueApi.getIssuesEndpoint(), {
+    const res = await fetch(ticketApi.getTicketsEndpoint(), {
       headers: {
         Authorization: `Bearer ${session?.accessToken}`,
       },

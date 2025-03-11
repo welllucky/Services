@@ -4,7 +4,7 @@ import { appMonitoringServer } from "@/implementations/server";
 import { IssuePage } from "@/screens";
 import { IssuePageProps } from "@/screens/Issue";
 import { IHttpError, IHttpResponse, TicketDto } from "@/types";
-import { issueApi } from "@/utils";
+import { ticketApi } from "@/utils";
 import { redirect } from "next/navigation";
 
 // eslint-disable-next-line consistent-return
@@ -12,7 +12,7 @@ const Issue = async ({ params }: { params: IssuePageProps }) => {
   try {
     const session = await auth();
 
-    const response = await fetch(issueApi.getIssueEndpoint(params.id), {
+    const response = await fetch(ticketApi.getTicketEndpoint(params.id), {
       headers: {
         Authorization: `Bearer ${session?.accessToken}`,
       },

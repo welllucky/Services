@@ -1,14 +1,11 @@
-import { ITicket, TicketDto } from "@/types";
+import { defaultHeaders } from "@/constraints";
+import { IHttpError, IHttpResponse, IOpenTicketForm, TicketDto } from "@/types";
 import { IHttpClient } from "@/types/abstractions";
 
-type InitializeTicketType = {
-  issueId: string;
-};
-
 /**
- * Represents the API for managing tickets, providing methods to fetch and initialize tickets.
+ * The `TicketApi` class provides methods to interact with the Tickets API, including fetching and creating Tickets.
  */
-export class TicketApi {
+class TicketApi {
   private readonly baseUrl: string | undefined;
 
   private readonly apiUrl: string;
@@ -24,37 +21,84 @@ export class TicketApi {
   getTicketEndpoint = (id: string) => `${this.apiUrl}/${id}`;
 
   /**
-   * Get a specific issue by its ID.
-   * @param {string} id The unique identifier of the issue to fetch.
-   * @returns An object containing the issue data, any error, and loading state.
+   * Fetches a single Ticket by its ID.
+   * @param {string} id The ID of the Ticket to fetch.
+   * @returns An object containing the Ticket data, any error that occurred, and a loading state.
    */
   getTicket = (id: string) => {
-    const { data, error, isLoading } = this.httpClient.get<ITicket>({
+    if (!id) {
+      return {
+        data: undefined,
+        error: { message: "ID is required" },
+        isLoading: false,
+      };
+    }
+
+    return this.httpClient.get<TicketDto>({
       url: this.getTicketEndpoint(id),
     });
-    return { data, error, isLoading };
   };
 
-  /**
-   * Retrieve all tickets.
-   * @returns An object containing an array of issue data, any error, and loading state.
-   */
-  getTickets = (shouldFetch: boolean) =>
-    this.httpClient.get<TicketDto[]>({
-      url: `${this.apiUrl}`,
-      shouldFetch,
-    });
+  getTicketsEndpoint = () => this.apiUrl;
 
   /**
-   * Initialize a new issue with the provided data.
-   * @param {InitializeTicketType} TicketData The data to initialize the issue with.
-   * @returns A promise resolving with the result of the initialization request.
+   * Fetches all available Tickets.
+   * @returns An object containing an array of Ticket data, any error that occurred, and a loading state.
    */
-  initializeTicket = (TicketData: InitializeTicketType) =>
-    this.httpClient.put({
-      url: `${this.apiUrl}`,
+  getTickets = (accessToken: string) =>
+    this.httpClient.get<TicketDto[]>({
+      url: this.getTicketsEndpoint(),
+      options: { refreshInterval: true },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+  createTicketUrl = () => `${this.apiUrl}`;
+
+  /**
+   * Creates a new Ticket with the given data.
+   * @param {IOpenTicketForm} TicketData The data for the Ticket to be created.
+   * @param shouldFetch
+   * @returns An object containing any error that occurred and a loading state.
+   */
+  createTicket = (TicketData: IOpenTicketForm, shouldFetch = false) =>
+    this.httpClient.post<{ id: string | number }>({
+      url: this.apiUrl,
       body: {
         ...TicketData,
       },
+      shouldFetch,
+    });
+
+  getInProgressTicketsEndpoint = () => `${this.apiUrl}/inProgress`;
+
+  getInProgressTickets = (accessToken: string) =>
+    this.httpClient.get<IHttpResponse<TicketDto[], IHttpError>>({
+      url: this.getInProgressTicketsEndpoint(),
+      headers: {
+        ...defaultHeaders,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+  closeTicket = (id: string, shouldFetcher = false) =>
+    this.httpClient.post<{ id: string }>({
+      url: `${this.apiUrl}/${id}/close`,
+      shouldFetch: shouldFetcher,
+    });
+
+  reopenTicket = (id: string, shouldFetcher = false) =>
+    this.httpClient.post<{ id: string }>({
+      url: `${this.apiUrl}/${id}/reopen`,
+      shouldFetch: shouldFetcher,
+    });
+
+  startTicket = (id: string, shouldFetcher = false) =>
+    this.httpClient.post<{ id: string }>({
+      url: `${this.apiUrl}/${id}/start`,
+      shouldFetch: shouldFetcher,
     });
 }
+
+export default TicketApi;

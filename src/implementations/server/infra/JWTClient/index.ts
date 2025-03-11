@@ -1,7 +1,7 @@
 import { IJWT } from "@/types/abstractions";
-import { JWTAbstraction } from "../../abstractions/JWT";
+import { JWTAbstraction } from "../../abstractions";
 
-export class JWTClient implements IJWT {
+class JWTClient implements IJWT {
   private readonly client: JWTAbstraction;
 
   constructor(secret: string, client: JWTAbstraction) {
@@ -21,3 +21,5 @@ export class JWTClient implements IJWT {
     return this.client.verify<T>(token);
   }
 }
+
+export default JWTClient;
