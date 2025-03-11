@@ -42,7 +42,6 @@ const CustomButton = ({
   height,
   ...props
 }: CustomButtonProps) => {
-  console.log({ color: $backgroundColor });
   return (
     <ButtonContainer
       {...buildTestIds(`button-container-${text}`)}

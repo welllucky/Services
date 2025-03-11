@@ -1,3 +1,5 @@
+"use client";
+
 import { useAuth } from "@/utils/providers/AuthProvider";
 import toast from "react-hot-toast";
 import useLogin from "./Login.hook";
