@@ -2,6 +2,8 @@ import { KeyedMutator } from "swr";
 
 type ErrorLevel = "low" | "medium" | "critical";
 
+export type HTTPMethods = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+
 export interface IHttpClientResponse<T> {
   result?: {
     data?: T;
@@ -25,14 +27,43 @@ export type HttpClientOptions = {
 
 type PrimitiveType = string | number | boolean;
 
-export interface HttpClientProps {
+export interface HttpProps {
   url: string;
-  type?: "GET" | "POST" | "PUT" | "DELETE";
+  method?: HTTPMethods;
   body?: Record<string, PrimitiveType>;
   headers?: Record<string, PrimitiveType>;
+}
+
+export interface HttpAgentAbstractionProps extends HttpProps {
+  // eslint-disable-next-line no-undef
+  cache?: RequestCache;
+  keepalive?: boolean;
+  // eslint-disable-next-line no-undef
+  credentials?: RequestCredentials;
+  referrer?: string;
+  // eslint-disable-next-line no-undef
+  referrerPolicy?: ReferrerPolicy;
+  revalidate?: number | false;
+  tags?: string[];
+}
+
+export interface HttpClientProps extends HttpProps {
   shouldFetch?: boolean;
   options?: HttpClientOptions;
 }
+
+export type HttpAgentProps = Omit<HttpProps, "method"> & {
+  options?: Pick<
+    HttpAgentAbstractionProps,
+    | "cache"
+    | "keepalive"
+    | "credentials"
+    | "referrer"
+    | "referrerPolicy"
+    | "revalidate"
+    | "tags"
+  >;
+};
 
 export type IHttpClientProps = Pick<HttpClientProps, "options" | "shouldFetch">;
 

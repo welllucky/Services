@@ -1,7 +1,7 @@
 import SentryAbstract from "../client/abstractions/AppMonitoring/Sentry";
 import AppMonitoring from "../client/infra/AppMonitoringClient";
-import { JWTAbstraction } from "./abstractions";
-import { CryptoAgent, JWTClient } from "./infra";
+import { HttpAbstraction, JWTAbstraction } from "./abstractions";
+import { CryptoAgent, HttpAgent, JWTClient } from "./infra";
 
 export const jwt = new JWTClient(
   process.env.AUTH_SECRET ?? "",
@@ -12,3 +12,4 @@ export const cryptoAgent = new CryptoAgent(
   process.env.IV_KEY,
 );
 export const appMonitoringServer = new AppMonitoring(new SentryAbstract());
+export const http = new HttpAgent(new HttpAbstraction(), appMonitoringServer);

@@ -1,7 +1,7 @@
 // skipcq: JS-C1003
 import * as crypto from "crypto";
 
-export class CryptoAbstraction {
+class CryptoAbstraction {
   private readonly agent = crypto;
 
   private readonly secret: Buffer;
@@ -38,3 +38,5 @@ export class CryptoAbstraction {
     return JSON.parse(decrypted) as T;
   }
 }
+
+export default CryptoAbstraction;

@@ -21,37 +21,44 @@ import useSWRImmutable from "swr/immutable";
  */
 
 class HTTPClient implements IHttpClient {
-  get<T>(props: Omit<HttpClientProps, "type">) {
+  patch<T>(props: Omit<HttpClientProps, "method">): IHttpResponse<T, unknown> {
     return this.httpClient<T>({
       ...props,
-      type: "GET",
+      method: "PATCH",
     });
   }
 
-  post<T>(props: Omit<HttpClientProps, "type">) {
+  get<T>(props: Omit<HttpClientProps, "method">) {
     return this.httpClient<T>({
       ...props,
-      type: "POST",
+      method: "GET",
     });
   }
 
-  put<T>(props: Omit<HttpClientProps, "type">) {
+  post<T>(props: Omit<HttpClientProps, "method">) {
     return this.httpClient<T>({
       ...props,
-      type: "PUT",
+      method: "POST",
     });
   }
 
-  delete<T>(props: Omit<HttpClientProps, "type">) {
+  put<T>(props: Omit<HttpClientProps, "method">) {
     return this.httpClient<T>({
       ...props,
-      type: "DELETE",
+      method: "PUT",
+    });
+  }
+
+  delete<T>(props: Omit<HttpClientProps, "method">) {
+    return this.httpClient<T>({
+      ...props,
+      method: "DELETE",
     });
   }
 
   private httpClient<T>({
     url,
-    type,
+    method,
     body,
     headers,
     shouldFetch = true,
@@ -60,7 +67,7 @@ class HTTPClient implements IHttpClient {
     const fetchId = shouldFetch ? url : null;
     const fetcher = async () => {
       let res: AxiosResponse<T>;
-      switch (type) {
+      switch (method) {
         case "DELETE":
           res = await axios.delete<T>(url, { headers });
           break;

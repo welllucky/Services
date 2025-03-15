@@ -2,7 +2,7 @@
 
 import { LS_KEY_1_TICKET_RECORD } from "@/constraints";
 import { TicketDto } from "@/types";
-import { issueApi, useAuth } from "@/utils";
+import { ticketApi, useAuth } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import toast from "react-hot-toast";
@@ -56,7 +56,7 @@ export const useCreateTicketFlow = (
     try {
       const formData = recoverFormDataFromLocalStorage();
       toast.loading("Registrando chamado...");
-      const response = await fetch(issueApi.createIssueUrl(), {
+      const response = await fetch(ticketApi.createTicketUrl(), {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {

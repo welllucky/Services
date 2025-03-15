@@ -1,7 +1,7 @@
 import { IJWT } from "@/types";
 import * as jwt from "jsonwebtoken";
 
-export class JWTAbstraction implements IJWT {
+class JWTAbstraction implements IJWT {
   private secret = "";
 
   private readonly agent = jwt;
@@ -25,3 +25,5 @@ export class JWTAbstraction implements IJWT {
     this.secret = secret;
   }
 }
+
+export default JWTAbstraction;
