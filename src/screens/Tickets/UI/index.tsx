@@ -24,7 +24,7 @@ const TicketsPageUI = ({
     <>
       <SubHeader title="Solicitações" />
       <PageContainer
-        start={!Boolean(data?.length === 0 || !Array.isArray(data))}>
+        $start={!(data?.length === 0 || !Array.isArray(data))}>
         <MainContainer>
           {data?.length === 0 || !Array.isArray(data) ? (
             <NoContent

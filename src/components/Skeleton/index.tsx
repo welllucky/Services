@@ -98,6 +98,7 @@ export const Skeleton = ({
   }
 };
 
+export * from "./pages";
 export { SkeletonContainer };
 
 export type { SkeletonProps } from "./Skeleton.types";

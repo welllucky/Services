@@ -4,10 +4,10 @@
 
 "use client";
 
-import React, { useState } from "react";
-import { useServerInsertedHTML } from "next/navigation";
-import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 import isPropValid from "@emotion/is-prop-valid";
+import { useServerInsertedHTML } from "next/navigation";
+import React, { useState } from "react";
+import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 
 const StyledComponentsRegistry = ({
   children,
@@ -28,8 +28,8 @@ const StyledComponentsRegistry = ({
 
   return (
     <StyleSheetManager
-      shouldForwardProp={(propName, elementToBeRendered) =>
-        typeof elementToBeRendered === "string" ? isPropValid(propName) : true
+      shouldForwardProp={(propName) =>
+        isPropValid(propName)
       }
       sheet={styledComponentsStyleSheet.instance}>
       {children}

@@ -11,11 +11,7 @@ interface ContentProps {
   searchTerm: string;
 }
 
-export const Content = ({
-  isLoading,
-  searchResults,
-  searchTerm,
-}: ContentProps) => {
+const Content = ({ isLoading, searchResults, searchTerm }: ContentProps) => {
   const hasContent = useMemo(
     () => Boolean(searchResults?.length),
     [searchResults],
@@ -39,7 +35,7 @@ export const Content = ({
   );
 
   return (
-    <PageContainer start={!Boolean(showNoResults || showEmptyContent)}>
+    <PageContainer $start={!Boolean(showNoResults || showEmptyContent)}>
       <MainContainer $centerContent={!showResults}>
         {isLoading && searchTerm && (
           <Skeleton
@@ -64,3 +60,5 @@ export const Content = ({
     </PageContainer>
   );
 };
+
+export { Content };

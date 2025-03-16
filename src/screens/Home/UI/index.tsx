@@ -12,25 +12,20 @@ import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { IUser, TicketDto } from "@/types";
 import { buildTestIds } from "@/utils";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { ButtonWrapper } from "../styles";
 
 type HomePageUIProps = {
   data?: TicketDto[] | null;
   isLoading?: boolean;
-  router: AppRouterInstance;
   user?: IUser | null;
 };
 
 const INITIAL_ISSUE_QUANTITY_LIMIT = 5;
 
-export const HomePageUI = ({
-  data,
-  isLoading,
-  router,
-  user,
-}: HomePageUIProps) => {
+const HomePageUI = ({ data, isLoading, user }: HomePageUIProps) => {
+  const router = useRouter();
   const issuesQuantity = useMemo(() => data?.length ?? 0, [data]);
 
   const showAddIssueButton = useMemo(
@@ -69,7 +64,7 @@ export const HomePageUI = ({
         showAddIssueButton={showAddIssueButton}
         addButtonCallback={addIssueCallback}
       />
-      <PageContainer start={!Boolean(showFallback || !hasContent)}>
+      <PageContainer $start={!(showFallback || !hasContent)}>
         <MainContainer
           {...buildTestIds("home-page-content")}
           $centerContent={showFallback}>
@@ -84,7 +79,7 @@ export const HomePageUI = ({
           {showFallback && (
             <NoContent
               alt="caixa vazia"
-              title="Não há chamados no momento."
+              title="Não há chamados em andamento no momento."
             />
           )}
 
@@ -117,3 +112,5 @@ export const HomePageUI = ({
     </>
   );
 };
+
+export default HomePageUI;

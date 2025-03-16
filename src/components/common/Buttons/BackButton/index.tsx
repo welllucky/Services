@@ -1,3 +1,5 @@
+"use client";
+
 import { buildTestIds } from "@/utils/functions";
 import { CaretLeft } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";

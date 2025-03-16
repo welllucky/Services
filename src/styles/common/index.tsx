@@ -49,14 +49,14 @@ export const Column = styled.section<{
   overflow: ${({ overflow }) => (overflow ? "auto" : "hidden")};
 `;
 
-export const PageContainer = styled.main<{ start?: boolean }>`
+export const PageContainer = styled.main<{ $start?: boolean }>`
   width: 100%;
   height: 100%;
   display: flex;
   overflow-y: scroll;
   overflow-x: visible;
-  ${({ start }) =>
-    !start &&
+  ${({ $start }) =>
+    !$start &&
     css`
       justify-content: center;
       align-items: center;

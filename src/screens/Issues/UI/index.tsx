@@ -80,7 +80,7 @@ const IssuesPageUI = ({ data, isLoading, router, user }: IssuesPageUIProps) => {
         showAddIssueButton={showAddIssueButton}
         addButtonCallback={addIssueCallback}
       />
-      <PageContainer start={!(showFallback || !hasContent)}>
+      <PageContainer $start={!(showFallback || !hasContent)}>
         <MainContainer $centerContent={showFallback}>
           {isLoading && <IssuePageSkeleton />}
 

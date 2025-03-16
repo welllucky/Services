@@ -1,8 +1,5 @@
-"use client";
-
 import { IUser, TicketDto } from "@/types";
-import { useRouter } from "next/navigation";
-import { HomePageUI } from "./UI";
+import HomePageUI from "./UI";
 
 interface HomepageProps {
   user?: IUser | null;
@@ -10,12 +7,9 @@ interface HomepageProps {
 }
 
 const Homepage = ({ user, data }: HomepageProps) => {
-  const router = useRouter();
-
   return (
     <HomePageUI
       data={data}
-      router={router}
       user={user}
     />
   );

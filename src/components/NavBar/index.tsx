@@ -1,3 +1,5 @@
+"use client";
+
 import { OptionMenuProps } from "@/types";
 import { buildTestIds } from "@/utils";
 import { usePathname } from "next/navigation";
