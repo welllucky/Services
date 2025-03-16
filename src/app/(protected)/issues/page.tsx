@@ -21,7 +21,7 @@ const Tickets = async () => {
     }
 
     const { data } = await http.get<TicketDto[]>({
-      url: ticketApi.getTicketsEndpoint(),
+      url: ticketApi.getTicketsEndpoint(true),
       headers: {
         Authorization: `Bearer ${session?.accessToken}`,
       },

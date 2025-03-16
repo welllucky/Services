@@ -1,34 +1,34 @@
 import { auth } from "@/auth";
 import { DEFAULT_CACHE_TIME } from "@/constraints";
-import { appMonitoringServer } from "@/implementations/server";
-import { IssuePage } from "@/screens";
-import { IssuePageProps } from "@/screens/Issue";
-import { IHttpError, IHttpResponse, TicketDto } from "@/types";
+import { appMonitoringServer, http } from "@/implementations/server";
+import { TicketPage } from "@/screens";
+import { IssuePageProps } from "@/screens/Ticket";
+import { TicketDto } from "@/types";
 import { ticketApi } from "@/utils";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 // eslint-disable-next-line consistent-return
 const Issue = async ({ params }: { params: IssuePageProps }) => {
   try {
     const session = await auth();
 
-    const response = await fetch(ticketApi.getTicketEndpoint(params.id), {
+    const { data, status } = await http.get<TicketDto>({
+      url: ticketApi.getTicketEndpoint(params.id, true),
       headers: {
         Authorization: `Bearer ${session?.accessToken}`,
       },
-      next: {
+      options: {
         revalidate: DEFAULT_CACHE_TIME,
         tags: ["issue"],
       },
     });
 
-    const { data } = (await response.json()) as IHttpResponse<
-      TicketDto,
-      IHttpError
-    >;
+    if (status === 404 || !data) {
+      notFound();
+    }
 
     return (
-      <IssuePage
+      <TicketPage
         data={data}
         id={params.id}
       />

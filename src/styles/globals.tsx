@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
 
 html,
 body {
@@ -97,3 +97,5 @@ a{
   -webkit-app-region: drag;
 }
 `;
+
+export default GlobalStyle;

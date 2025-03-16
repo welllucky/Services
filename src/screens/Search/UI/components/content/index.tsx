@@ -35,7 +35,7 @@ const Content = ({ isLoading, searchResults, searchTerm }: ContentProps) => {
   );
 
   return (
-    <PageContainer $start={!Boolean(showNoResults || showEmptyContent)}>
+    <PageContainer $start={!(showNoResults || showEmptyContent)}>
       <MainContainer $centerContent={!showResults}>
         {isLoading && searchTerm && (
           <Skeleton

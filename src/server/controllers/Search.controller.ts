@@ -5,7 +5,7 @@ import { getAuthToken } from "@/server/functions/getAuthToken";
 import { IHttpResponse, TicketDto } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
-export const SearchController = {
+const SearchController = {
   async searchTickets(req: NextRequest) {
     try {
       const searchTerm = req.nextUrl.searchParams.get("searchTerm");
@@ -59,3 +59,5 @@ export const SearchController = {
     }
   },
 };
+
+export { SearchController };

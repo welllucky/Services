@@ -1,6 +1,8 @@
-import { ReactNode } from "react";
+"use client";
+
 import { buildTestIds } from "@/utils";
-import { Fieldset, Content, Legend, LegendText } from "./styles";
+import { ReactNode } from "react";
+import { Content, Fieldset, Legend, LegendText } from "./styles";
 
 export interface ILegendProps {
   legendText?: string;
@@ -27,4 +29,4 @@ export const CallInformation = ({
     </Legend>
     <Content {...buildTestIds("content-container")}>{children}</Content>
   </Fieldset>
-  );
+);

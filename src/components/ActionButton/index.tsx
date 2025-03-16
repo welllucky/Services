@@ -1,4 +1,4 @@
-import { TicketActionOptionsType } from "@/screens/Issue/components";
+import { TicketActionOptionsType } from "@/screens/Ticket/components";
 import {
   ArrowCounterClockwise,
   DotsThreeOutlineVertical,

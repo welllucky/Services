@@ -1,23 +1,33 @@
 import { TicketCard } from "@/components";
 import { TicketDto } from "@/types";
+import { useAuth } from "@/utils";
+import { useCallback } from "react";
 
 interface ResultsProps {
   result: TicketDto[] | undefined;
 }
 
-export const Results = ({ result }: ResultsProps) => {
+const Results = ({ result }: ResultsProps) => {
+  const { user } = useAuth();
+
+  const getTicketPage = useCallback((ticket: TicketDto) => {
+    return user?.register === ticket.createdBy ? "ticket" : "issue";
+  }, [user?.register]);
+
   if (result && result?.length !== 0) {
-    return result?.map((issue) => (
+    return result?.map((ticket) => (
       <TicketCard
-        key={issue.id}
-        id={issue.id}
-        name={issue.resume}
-        date={issue.date}
-        $status={issue.status}
-        href={`/ticket/${issue.id}`}
+        key={ticket.id}
+        id={ticket.id}
+        name={ticket.resume}
+        date={ticket.date}
+        $status={ticket.status}
+        href={`/${getTicketPage(ticket)}/${ticket.id}`}
       />
     ));
   }
 
   return null;
 };
+
+export { Results };

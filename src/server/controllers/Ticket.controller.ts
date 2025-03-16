@@ -15,6 +15,7 @@ import { getFormattedBody } from "../functions/getFormattedBody";
 class TicketController {
   static async getAllTickets(req: NextRequest) {
     try {
+      const isSolver = req.nextUrl.searchParams.get("isSolver");
       const { userId, isAuthenticated, accessToken } = await getAuthToken(req);
 
       if (!isAuthenticated || !userId) {
@@ -26,7 +27,7 @@ class TicketController {
         );
       }
 
-      const res = await fetch(ticketUrl, {
+      const res = await fetch(`${ticketUrl}?isSolver=${isSolver}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -129,6 +130,7 @@ class TicketController {
 
   static async getTicketById(req: NextRequest, params: { id: string }) {
     try {
+      const isSolver = req.nextUrl.searchParams.get("isSolver");
       const issueId = params.id;
       const { userId, isAuthenticated, accessToken } = await getAuthToken(req);
 
@@ -141,7 +143,7 @@ class TicketController {
         );
       }
 
-      const res = await fetch(`${ticketUrl}/${issueId}`, {
+      const res = await fetch(`${ticketUrl}/${issueId}?isSolver=${isSolver}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,

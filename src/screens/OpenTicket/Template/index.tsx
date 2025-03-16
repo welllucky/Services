@@ -1,7 +1,7 @@
 "use client";
 
 import { BackButton, FormButtons } from "@/components";
-import { IssuePageContainer } from "@/screens/Issue/styles";
+import { IssuePageContainer } from "@/screens/Ticket/styles";
 import { Column, Row, TitleComponent } from "@/styles";
 import { IOpenTicketForm } from "@/types";
 import { buildTestIds, resetForm } from "@/utils";

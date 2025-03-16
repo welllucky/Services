@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable no-nested-ternary */
 import { ErrorText, WarningText } from "@/components/SupportText";
 import { InputComponentsProps } from "@/types";

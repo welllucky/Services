@@ -18,14 +18,15 @@ class TicketApi {
     this.httpClient = httpClient;
   }
 
-  getTicketEndpoint = (id: string) => `${this.apiUrl}/${id}`;
+  getTicketEndpoint = (id: string, isSolver: boolean = false) =>
+    `${this.apiUrl}/${id}?isSolver=${isSolver}`;
 
   /**
    * Fetches a single Ticket by its ID.
    * @param {string} id The ID of the Ticket to fetch.
    * @returns An object containing the Ticket data, any error that occurred, and a loading state.
    */
-  getTicket = (id: string) => {
+  getTicket = (id: string, isSolver?: boolean) => {
     if (!id) {
       return {
         data: undefined,
@@ -35,19 +36,21 @@ class TicketApi {
     }
 
     return this.httpClient.get<TicketDto>({
-      url: this.getTicketEndpoint(id),
+      url: this.getTicketEndpoint(id, isSolver),
     });
   };
 
-  getTicketsEndpoint = () => this.apiUrl;
+  getTicketsEndpoint = (isSolver?: boolean) => {
+    return `${this.apiUrl}?isSolver=${isSolver}`;
+  };
 
   /**
    * Fetches all available Tickets.
    * @returns An object containing an array of Ticket data, any error that occurred, and a loading state.
    */
-  getTickets = (accessToken: string) =>
+  getTickets = (accessToken: string, isSolver: boolean) =>
     this.httpClient.get<TicketDto[]>({
-      url: this.getTicketsEndpoint(),
+      url: this.getTicketsEndpoint(isSolver),
       options: { refreshInterval: true },
       headers: {
         Authorization: `Bearer ${accessToken}`,

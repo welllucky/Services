@@ -1,5 +1,4 @@
 import Homepage from "./Home";
-import IssuePage from "./Issue";
 import IssuesPage from "./Issues";
 import LoginPage from "./Login";
 import MaintenancePage from "./Maintenance";
@@ -10,12 +9,13 @@ import ConfirmDetailsPage from "./OpenTicket/ConfirmTicket";
 import RegisterPage from "./Register";
 import SearchPage from "./Search";
 import ServerErrorPage from "./ServerError";
+import TicketPage from "./Ticket";
 import TicketsPage from "./Tickets";
 
 export {
   ConfirmDetailsPage,
   Homepage,
-  IssuePage,
+  TicketPage,
   IssuesPage,
   LoginPage,
   MaintenancePage,

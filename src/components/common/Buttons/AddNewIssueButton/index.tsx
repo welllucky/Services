@@ -1,3 +1,5 @@
+"use client";
+
 import { buildTestIds } from "@/utils";
 import { Plus } from "@phosphor-icons/react";
 import { useDebounce } from "@uidotdev/usehooks";

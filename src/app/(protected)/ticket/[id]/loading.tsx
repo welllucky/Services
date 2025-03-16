@@ -1,4 +1,4 @@
-import { TicketPageSkeleton } from "@/components";
+import { TicketPageSkeleton } from "@/components/Skeleton/pages";
 
 const Loading = () => <TicketPageSkeleton />;
 

@@ -1,8 +1,8 @@
+"use client";
+
 import { breakpoints } from "./breakpoints";
-import {
-  lightTheme,
-  // darkTheme
-} from "./themes";
+import GlobalStyle from "./globals";
+import { lightTheme } from "./themes";
 
 const colorTheme = lightTheme;
 
@@ -22,11 +22,10 @@ const theme = {
   ...colorTheme,
 };
 
-export * from "./globals";
-export * from "./themes";
-export * from "./common";
 export * from "./breakpoints";
+export * from "./common";
+export * from "./themes";
 
 export type ThemeProps = typeof theme;
 
-export { theme };
+export { GlobalStyle, theme };
