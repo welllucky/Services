@@ -3,7 +3,7 @@
 import Logo from "public/Icon.png";
 
 import { buildTestIds } from "@/utils";
-import qrCode from "public/qr-code.png";
+import qrCode from "public/qr-code.svg";
 import {
   NoMobileContainer,
   NoMobileContent,
