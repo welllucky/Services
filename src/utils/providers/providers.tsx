@@ -10,13 +10,13 @@ import {
 import { GlobalStyle, theme } from "@/styles";
 import { ConfigType } from "@/types";
 import { SessionProvider } from "next-auth/react";
-import { ReactNode, use, useEffect } from "react";
+import { ReactNode, Suspense, use, useEffect } from "react";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
 import { Monitoring } from "react-scan/monitoring/next";
 import { ThemeProvider } from "styled-components";
 import packageJson from "../../../package.json";
-import { AppProvider } from "../stores/AppStore";
+import { AppProvider } from "./AppProvider";
 import { AuthProvider } from "./AuthProvider";
 import { ServicesProvider } from "./ServicesProvider";
 import StyledComponentsRegistry from "./registry";
@@ -50,9 +50,9 @@ const AppProviders = ({ children, configs }: AppProvidersProps) => {
   const appConfigs = use(configs);
 
   return (
-    // <SWRConfig>
-    <CookiesProvider
-      defaultSetOptions={{
+    <Suspense>
+      <CookiesProvider
+        defaultSetOptions={{
         path: "/",
         sameSite: true,
         secure: true,
@@ -60,44 +60,44 @@ const AppProviders = ({ children, configs }: AppProvidersProps) => {
         expires: new Date(Date.now() + 60 * 60 * 24 * 15),
         partitioned: false,
       }}>
-      <StyledComponentsRegistry>
-        <ThemeProvider theme={theme}>
-          <SessionProvider>
-            <AuthProvider appMonitoring={appMonitoringClient}>
-              <ServicesProvider
-                openFeatureClient={servicesFlagsProvider}
-                appConfigs={appConfigs}
-                firebaseAgent={firebaseAgent}
-                featureFlag={featureFlag}
-                analytics={analytics}>
-                <AppProvider>
+        <StyledComponentsRegistry>
+          <ThemeProvider theme={theme}>
+            <SessionProvider>
+              <AuthProvider appMonitoring={appMonitoringClient}>
+                <ServicesProvider
+                  openFeatureClient={servicesFlagsProvider}
+                  appConfigs={appConfigs}
+                  firebaseAgent={firebaseAgent}
+                  featureFlag={featureFlag}
+                  analytics={analytics}>
                   <Monitoring
                     apiKey="WEMYJ-Y4IUmZjN8cEufccWZAKd_SyXN_"
                     url="https://monitoring.react-scan.com/api/v1/ingest"
                     commit={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}
                     branch={process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF}
-                  />
+                />
                   <GlobalStyle />
-                  {children}
+
+                  <AppProvider>{children}</AppProvider>
+
                   <Toaster
                     position="top-center"
                     toastOptions={{
-                      ariaProps: {
-                        role: "status",
-                        "aria-live": "polite",
-                      },
-                      className: "services-message-toast",
-                      position: "top-center",
-                    }}
-                  />
-                </AppProvider>
-              </ServicesProvider>
-            </AuthProvider>
-          </SessionProvider>
-        </ThemeProvider>
-      </StyledComponentsRegistry>
-    </CookiesProvider>
-    // </SWRConfig>
+                    ariaProps: {
+                      role: "status",
+                      "aria-live": "polite",
+                    },
+                    className: "services-message-toast",
+                    position: "top-center",
+                  }}
+                />
+                </ServicesProvider>
+              </AuthProvider>
+            </SessionProvider>
+          </ThemeProvider>
+        </StyledComponentsRegistry>
+      </CookiesProvider>
+    </Suspense>
   );
 };
 

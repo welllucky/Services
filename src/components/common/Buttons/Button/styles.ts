@@ -16,7 +16,7 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
   width: ${({ width }) => width || "fit-content"};
   height: ${({ height }) => height || "fit-content"};
 
-  color: ${({ color, theme }) => color || theme.colors.neutral.white};
+  color: ${({ color, theme }) => color || theme.colors.neutral.inverted};
 
   border: ${({ $backgroundColor, mode }) =>
     ($backgroundColor && mode === "outlined"
@@ -34,7 +34,7 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
   background-color: ${({ $backgroundColor, mode, theme }) =>
     ($backgroundColor && mode === "filled"
       ? $backgroundColor
-      : theme.colors.primary[185])};
+      : theme.colors.primary["85"])};
 
   ${({ disabled, mode }) =>
     disabled &&
@@ -47,7 +47,7 @@ export const ButtonContainer = styled.div<CustomButtonProps>`
 
 export const ButtonComponent = styled.button<ButtonComponentProps>`
   background-color: transparent;
-  color: ${({ color, theme }) => color ?? theme.colors.neutral.white};
+  color: ${({ color, theme }) => color ?? theme.colors.neutral.inverted};
   width: 100%;
   height: 100%;
   display: flex;

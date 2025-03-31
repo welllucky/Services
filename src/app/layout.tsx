@@ -57,9 +57,9 @@ const RootLayout = async ({
       </head>
       <body className={inter.className}>
         <SpeedInsights />
+        <Analytics />
         <AppProviders configs={configs}>
           {children}
-          <Analytics />
         </AppProviders>
       </body>
     </html>

@@ -62,6 +62,6 @@ export const FieldsetContainer = styled.div<{
 
   ${FieldSetContent} {
     padding: ${({ padding }) => padding};
-    color: ${({ theme }) => theme.colors.neutral["100"]};
+    color: ${({ theme }) => theme.colors.neutral["95"]};
   }
 `;

@@ -16,23 +16,37 @@ export default function middleware(request: NextRequest) {
   const clientDevice = device.type ?? "desktop";
   const isMobile = clientDevice === "mobile";
   const isEmbed = device.type === "embed";
-  const isReliableAgent = !isBot || !isEmbed;
+  const rdParam = url.searchParams.get("rd");
   const isNoMobilePage = url.pathname.startsWith("/noMobileDevice");
 
+  // Se o parâmetro rd=client, então o redirecionamento já foi iniciado pelo cliente
+  // e não devemos redirecionar no servidor
+  const isRedirectFromClient = rdParam === "client";
+
+  const isReliableAgent = (!isBot && !isEmbed) || rdParam === "1";
+
+  // Configura cookies e headers
   response.headers.set(HD_KEY_USER_DEVICE_TYPE, clientDevice);
   response.cookies.set(CS_KEY_USER_DEVICE_TYPE, clientDevice);
-
   response.headers.set(HD_KEY_USER_RELIABLE_AGENT, String(isReliableAgent));
   response.cookies.set(CS_KEY_USER_RELIABLE_AGENT, String(isReliableAgent));
 
+  // Não redirecionar se vier de um redirecionamento do cliente
+  if (isRedirectFromClient) {
+    return response;
+  }
+
+  // Redireciona para noMobileDevice se não for mobile e não estiver na página noMobileDevice
+  if (!isMobile && !isNoMobilePage) {
+    return NextResponse.redirect(new URL("/noMobileDevice?rd=server", url));
+  }
+
+  // Redireciona para home se for mobile e estiver na página noMobileDevice
   if (isNoMobilePage && isMobile && isReliableAgent) {
-    return NextResponse.redirect(new URL("/", url));
+    return NextResponse.redirect(new URL("/?rd=server", url));
   }
 
-  if ((!isMobile || !isReliableAgent) && !isNoMobilePage) {
-    return NextResponse.redirect(new URL("/noMobileDevice", url));
-  }
-
+  // Configura cookie de companyId
   if (companyId) {
     response.headers.set(HD_KEY_COMPANY_ID, companyId);
     response.cookies.set(CS_KEY_COMPANY_ID, companyId);

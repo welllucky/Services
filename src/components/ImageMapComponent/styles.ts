@@ -11,7 +11,7 @@ interface ImageMapProps {
 export const ImageMapContainer = styled.section`
   width: calc(100%);
   height: 8rem;
-  background-color: ${({ theme }) => theme.colors.primary["085"]};
+  background-color: ${({ theme }) => theme.colors.primary["85"]};
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(1fr, 3fr);
@@ -20,7 +20,7 @@ export const ImageMapContainer = styled.section`
 `;
 
 export const FileContainer = styled.section<ImageMapProps>`
-  background-color: ${({ theme }) => theme.colors.primary["185"]};
+  background-color: ${({ theme }) => theme.colors.primary["85"]};
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -38,12 +38,12 @@ export const downAndUpAnimation = keyframes`
             opacity: 0;
             transform: scale(0);
         }
-        
+
         100% {
             opacity: 1;
             transform: scale(1);
         }
-      
+
 `;
 
 export const TypeFile = styled.section<ImageMapProps>`
@@ -71,7 +71,7 @@ export const Title = styled.h1`
   font-size: 1.4rem;
   font-weight: 600;
   line-height: 2.4rem;
-  color: ${({ theme }) => theme.colors.neutral.black};
+  color: ${({ theme }) => theme.colors.neutral.default};
   padding: 0.8rem;
   width: 20rem;
   text-overflow: ellipsis;
