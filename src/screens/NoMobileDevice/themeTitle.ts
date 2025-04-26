@@ -1,6 +1,7 @@
 import { TextTheme } from "@/types";
 
-const textThemes: TextTheme[] = [
+// eslint-disable-next-line import/prefer-default-export
+export const textThemes: TextTheme[] = [
   {
     theme: "Viagem Espacial",
     title: "Sem Gravidade, Só no Celular 🚀",
@@ -117,11 +118,3 @@ const textThemes: TextTheme[] = [
     text: "Você está no baile de máscaras, mas as identidades digitais só se revelam no celular! Acesse o Services e dance ao ritmo das respostas surpreendentes.",
   },
 ];
-
-export const getTextTheme = async (): Promise<TextTheme> => {
-  "use server";
-
-  const randomIndex = Math.floor(Math.random() * textThemes.length);
-  // eslint-disable-next-line security/detect-object-injection
-  return textThemes[randomIndex];
-};

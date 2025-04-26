@@ -38,3 +38,4 @@ const MyTickets = async () => {
   }
 };
 export default MyTickets;
+export const dynamic = "force-dynamic";

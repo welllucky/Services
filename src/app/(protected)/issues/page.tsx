@@ -37,4 +37,6 @@ const Tickets = async () => {
     redirect("/");
   }
 };
+
 export default Tickets;
+export const dynamic = "force-dynamic";
