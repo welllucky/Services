@@ -50,7 +50,7 @@
     "react-hot-toast": "^2.5.2",
     "react-modal": "^3.16.3",
     "react-scan": "^0.3.2",
-    "sharp": "^0.33.5",
+    "sharp": "^0.34.1",
     "styled-components": "^6.1.15",
     "swr": "^2.3.2",
     "usehooks-ts": "^3.1.1",
