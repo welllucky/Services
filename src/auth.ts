@@ -16,8 +16,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-      authorize: async (credentials, request) => {
+      authorize: async (credentials) => {
         const { accessToken } = await createSession(
           String(credentials.email),
           String(credentials.password),
