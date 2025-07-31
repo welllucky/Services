@@ -2,6 +2,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: "",
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.qrserver.com",
+      },
+    ],
+  },
   compiler: {
     styledComponents: true,
     removeConsole:
