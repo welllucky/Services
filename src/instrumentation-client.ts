@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/browser";
-import packageJson from "./package.json";
+import packageJson from "../package.json";
 
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,

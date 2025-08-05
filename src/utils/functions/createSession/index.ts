@@ -1,5 +1,5 @@
 import { defaultHeaders } from "@/constraints";
-import { IHttpResponse, ISessionResponse, SignInSchema } from "@/types";
+import { IAccessResponse, IHttpResponse, SignInSchema } from "@/types";
 
 export const createSession = async (email: string, password: string) => {
   try {
@@ -21,15 +21,20 @@ export const createSession = async (email: string, password: string) => {
     );
 
     const { data, error } = (await res.json()) as IHttpResponse<
-      ISessionResponse,
+      IAccessResponse,
       { message?: string; title?: string }
     >;
 
-    if (!data?.token || error?.message) {
+    console.log({
+      data,
+      error,
+    });
+
+    if (!data?.accessToken || error?.message) {
       throw new Error(error?.message ?? "Error creating session");
     }
 
-    return { accessToken: data.token };
+    return { accessToken: data.accessToken };
   } catch (error) {
     return {
       error: {

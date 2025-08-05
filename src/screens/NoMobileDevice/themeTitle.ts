@@ -5,7 +5,7 @@ export const textThemes: TextTheme[] = [
   {
     theme: "Viagem Espacial",
     title: "Sem Gravidade, Só no Celular 🚀",
-    text: "Parece que você está flutuando pelo espaço, mas para aterrissar nas respostas, só com o celular! Acesse o Services e retorne à sua órbita de informações.",
+    text: "Você está perdido no espaço, mas o celular é a chave para encontrar as respostas! Acesse o Services e retorne à sua órbita de informações.",
   },
   {
     theme: "Tesouro Enterrado",
@@ -20,7 +20,7 @@ export const textThemes: TextTheme[] = [
   {
     theme: "Circo Mágico",
     title: "Palhaçada Sem Celular? Impossível! 🎪",
-    text: "Estamos em um circo de soluções, mas os truques mágicos só acontecem pelo celular! Junte-se ao espetáculo no Services e descubra as soluções incríveis.",
+    text: "Você está no circo de soluções, mas os truques mágicos só acontecem pelo celular! Junte-se ao espetáculo no Services e descubra as soluções incríveis.",
   },
   {
     theme: "Exploração Submarina",
