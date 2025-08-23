@@ -92,6 +92,5 @@ export const QRCodeImage = styled(Image)`
   @media (min-width: 769px) {
     width: 140px;
     height: 140px;
-    border-radius: 1rem;
   }
 `;

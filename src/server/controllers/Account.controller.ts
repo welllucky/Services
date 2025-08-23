@@ -1,4 +1,4 @@
-import { userUrl } from "@/app/api/urls";
+import { accountUrl } from "@/app/api/urls";
 import { defaultHeaders } from "@/constraints";
 import { CreateAccountDto } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
@@ -9,7 +9,7 @@ export class AccountController {
     try {
       const data = await getFormattedBody<CreateAccountDto>(req);
 
-      const res = await fetch(userUrl, {
+      const res = await fetch(`${accountUrl}/create`, {
         method: "POST",
         headers: {
           ...defaultHeaders,

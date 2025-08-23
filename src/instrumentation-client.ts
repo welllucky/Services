@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/browser";
+import * as Sentry from "@sentry/nextjs";
 import packageJson from "../package.json";
 
 Sentry.init({
@@ -32,3 +32,5 @@ Sentry.init({
 
   transport: Sentry.makeBrowserOfflineTransport(Sentry.makeFetchTransport),
 });
+
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

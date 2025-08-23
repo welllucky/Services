@@ -36,6 +36,7 @@ yarn-error.log*
 
 # local env files
 .env*
+!.env.example
 .DS_Store
 
 # vercel
@@ -77,3 +78,4 @@ node_modules/
 *.code-workspace
 
 certificates
+docs/*

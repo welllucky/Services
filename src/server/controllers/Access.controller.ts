@@ -62,11 +62,6 @@ export class AccessController {
 
       const resBody = await res.json();
 
-      console.log({
-        resBody,
-        res,
-      });
-
       const { data, error, status } = resBody as IHttpResponse<
         IAccessResponse,
         { message?: string; title?: string }
@@ -136,7 +131,7 @@ export class AccessController {
     try {
       const { accessToken } = await getAuthToken(req);
 
-      const res = await fetch(`${accessApiUrl}/close`, {
+      const res = await fetch(`${accessApiUrl}/logout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,

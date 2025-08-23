@@ -13,7 +13,7 @@ import {
 import {
   FeatureFlagsOptions,
   FirebaseFeatures,
-  IFeatureFlagsAbstract,
+  IFeatureFlag,
   ReturnKeyType,
   ReturnType,
 } from "@/types";
@@ -22,7 +22,7 @@ import { FirebaseAbstract } from "../Firebase";
 
 class FirebaseRemoteConfig
   extends FirebaseFeatures<RemoteConfigApp>
-  implements IFeatureFlagsAbstract
+  implements IFeatureFlag
 {
   // eslint-disable-next-line no-useless-constructor
   constructor(firebaseInstance: FirebaseAbstract) {

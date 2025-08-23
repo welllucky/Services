@@ -1,6 +1,6 @@
 "use client";
 
-import { Skeleton } from "..";
+import { Skeleton } from "../Skeleton.component";
 import { SkeletonContainer } from "../Skeleton.styles";
 
 const TicketPageSkeleton = () => (

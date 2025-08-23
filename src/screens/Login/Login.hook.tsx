@@ -1,6 +1,7 @@
 "use client";
 
 import { authErrorMessages } from "@/constraints";
+import { appMonitoringClient } from "@/implementations/client";
 import { ISignIn, SignInSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useMemo } from "react";
@@ -9,24 +10,18 @@ import { UseLoginProps } from "./Login.types";
 
 const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
   const { error: pageError, redirectTo } = searchParams;
-  const { signIn, isLoading, error, isAuthenticated, user } = useAuth();
-  const {
-    control,
-    formState,
-    handleSubmit,
-    setError,
-    clearErrors,
-    resetField,
-  } = useForm<ISignIn>({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-    mode: "onChange",
-    reValidateMode: "onChange",
-    shouldFocusError: true,
-    resolver: zodResolver(SignInSchema),
-  });
+  const { signIn, error } = useAuth();
+  const { control, formState, setError, clearErrors, resetField, getValues } =
+    useForm<ISignIn>({
+      defaultValues: {
+        email: "",
+        password: "",
+      },
+      mode: "onChange",
+      reValidateMode: "onChange",
+      shouldFocusError: true,
+      resolver: zodResolver(SignInSchema),
+    });
 
   const getCustomErrorMessage = (errorType?: string) => {
     return (
@@ -39,35 +34,49 @@ const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
 
   useEffect(() => {
     if (loginError) {
-      setTimeout(() => {
-        setError("root", {
-          message: getCustomErrorMessage(loginError),
-          type: "value",
-        });
-        toast.error(getCustomErrorMessage(loginError));
-      }, 800);
+      toast.error(getCustomErrorMessage(loginError));
     }
   }, [clearErrors, error, loginError, resetField, setError, toast]);
 
-  const loginCallback = handleSubmit((data) => {
+  const handleAsyncLogin = async () => {
     try {
-      toast.promise(signIn(data.email, data.password, redirectTo ?? "/"), {
-        loading: "Loading...",
-        success: "Login realized with success!",
-        error: "Error to login, please try again",
-      });
+    const email = getValues("email");
+    const password = getValues("password");
+      if (!email || !password) {
+        throw new Error("Email e senha são obrigatórios");
+      }
 
-      if (isAuthenticated) toast.success(`Bem-vindo ${user?.name}!`);
+      const result = await signIn(email, password, redirectTo ?? "/");
+
+      if (!result.successfully) {
+        const errorType = result.error || "CredentialsSignin";
+        const errorMessage = getCustomErrorMessage(errorType);
+
+        setError("email", {
+          message: errorMessage,
+          type: "value",
+        });
+
+        setError("password", {
+          message: errorMessage,
+          type: "value",
+        });
+      }
     } catch (err) {
-      toast.error((err as Error).message || "Erro ao fazer login");
+      const errorMessage = getCustomErrorMessage("Default");
+      toast.error(errorMessage);
+      appMonitoringClient.captureException(errorMessage, {
+        data: {
+          rootError: err,
+        },
+      });
     }
-  });
+  };
 
   return {
     control,
     formState,
-    loginAction: loginCallback,
-    isLoading,
+    handleAsyncLogin,
     getCustomErrorMessage,
   };
 };

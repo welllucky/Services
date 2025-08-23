@@ -31,7 +31,6 @@
     "@openfeature/react-sdk": "^0.4.11",
     "@phosphor-icons/react": "^2.1.7",
     "@react-spring/web": "^9.7.5",
-    "@sentry/browser": "^9.5.0",
     "@sentry/nextjs": "^9.3.0",
     "@uidotdev/usehooks": "^2.4.1",
     "@use-gesture/react": "^10.3.1",

@@ -1,7 +1,6 @@
 "use client";
 
 import { OpenFeature } from "@openfeature/react-sdk";
-import { OpenFeatureIntegrationHook } from "@sentry/browser";
 import { Cookies } from "react-cookie";
 import {
   FirebaseAbstract,
@@ -53,5 +52,5 @@ export const analytics = new Analytics(firebaseAnalytics, appMonitoringClient);
 export const servicesFlagsProvider = OpenFeature.setProvider(
   new ServicesFlagsProvider(firebaseRemoteConfig),
 )
-  .addHooks(new OpenFeatureIntegrationHook())
+  // .addHooks(new OpenFeatureIntegrationHook())
   .getClient();

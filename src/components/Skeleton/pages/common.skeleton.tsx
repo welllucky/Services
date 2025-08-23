@@ -2,7 +2,7 @@
 
 // eslint-disable-next-line import/no-unresolved
 import { PageContainer } from "@/styles";
-import { Skeleton } from "..";
+import { Skeleton } from "../Skeleton.component";
 import { SkeletonContainer } from "../Skeleton.styles";
 
 const CommonPageSkeleton = () => {

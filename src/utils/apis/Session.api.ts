@@ -1,4 +1,4 @@
-import { IHttpResponse, ISessionResponse } from "@/types";
+import { IHttpResponse, IAccessResponse } from "@/types";
 import { IHttpClient } from "@/types/abstractions";
 
 export class SessionApi {
@@ -18,7 +18,7 @@ export class SessionApi {
     email: string,
     password: string,
   ): Promise<{
-    data?: ISessionResponse | null;
+    data?: IAccessResponse | null;
     error?: { message?: string; title?: string } | null;
   }> => {
     const res = await fetch(this.altApiUrl, {
@@ -30,7 +30,7 @@ export class SessionApi {
     });
 
     const { data, error } = (await res.json()) as IHttpResponse<
-      ISessionResponse,
+      IAccessResponse,
       { message?: string; title?: string }
     >;
 
@@ -46,7 +46,7 @@ export class SessionApi {
     });
 
     const { data, error } = (await res.json()) as IHttpResponse<
-      ISessionResponse,
+      IAccessResponse,
       { message?: string; title?: string }
     >;
 

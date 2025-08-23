@@ -1,5 +1,5 @@
 import { IAppMonitoringAbstract, MonitoringScopeType } from "@/types";
-import * as Sentry from "@sentry/browser";
+import * as Sentry from "@sentry/nextjs";
 
 class SentryAbstract implements IAppMonitoringAbstract {
   private readonly client = Sentry;

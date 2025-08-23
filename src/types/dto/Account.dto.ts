@@ -17,13 +17,13 @@ export const CreateAccountSchema = z.object({
     .min(1, {
       message: "Sector is required",
     }),
-  role: z
+  position: z
     .string({
-      message: "Invalid role",
-      required_error: "Role is required",
+      message: "Invalid position",
+      required_error: "Position is required",
     })
     .min(1, {
-      message: "Role is required",
+      message: "Position is required",
     }),
   email: z.string().email({
     message: "Invalid email",

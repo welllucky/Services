@@ -37,8 +37,7 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const shouldShowFooter = useMemo(
     () =>
       !pagesWithoutFooter.some((page) => {
-        const regex = new RegExp(`^${page}(/.*)?$`);
-        return regex.test(pathName);
+        return pathName === page || pathName.startsWith(`${page}/`);
       }),
     [pagesWithoutFooter, pathName],
   );
@@ -46,8 +45,7 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const shouldShowHeader = useMemo(
     () =>
       !pagesWithoutHeader.some((page) => {
-        const regex = new RegExp(`^${page}(/.*)?$`);
-        return regex.test(pathName);
+        return pathName === page || pathName.startsWith(`${page}/`);
       }),
     [pagesWithoutHeader, pathName],
   );

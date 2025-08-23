@@ -1,33 +1,20 @@
 "use client";
 
-import { useMemo } from "react";
 import { LoginUIProps } from "../Login.types";
 import { DisplayImage, LoginForm } from "./components";
-import { LoginMobile, ScreenContainer } from "./styles";
+import { LoginContainer, ScreenContainer } from "./styles";
 
-const LoginPageUI = ({
-  formState,
-  control,
-  loginAction,
-  pageIsLoading,
-}: LoginUIProps) => {
-  const { isLoading: formIsLoading, isValid } = formState;
-
-  const isLoading = useMemo(
-    () => pageIsLoading || formIsLoading,
-    [formIsLoading, pageIsLoading],
-  );
-
+const LoginPageUI = ({ formState, control, onAsyncLogin }: LoginUIProps) => {
   return (
     <ScreenContainer>
-      <LoginMobile>
+      <LoginContainer>
         <DisplayImage />
         <LoginForm
+          formState={formState}
           control={control}
-          isValid={isValid && !isLoading}
-          loginAction={loginAction}
+          onAsyncLogin={onAsyncLogin}
         />
-      </LoginMobile>
+      </LoginContainer>
     </ScreenContainer>
   );
 };

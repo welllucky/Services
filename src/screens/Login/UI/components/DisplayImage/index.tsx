@@ -6,8 +6,8 @@ const DisplayImage = () => (
   <LogoContainer>
     <Image
       src={Logo}
-      width={80}
-      height={80}
+      width={160}
+      height={160}
       alt="Services"
       priority
     />

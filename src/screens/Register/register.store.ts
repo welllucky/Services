@@ -1,4 +1,4 @@
-import { IHttpResponse, OptionProps, RoleDto, SectorDto } from "@/types";
+import { OptionProps, RoleDto, SectorDto } from "@/types";
 import { create } from "zustand";
 import { RegisterStoreProps } from "./register.types";
 
@@ -9,26 +9,26 @@ export const registerStore = create<RegisterStoreProps>((set) => ({
       selectedSector: sector,
     }),
   sectorsOptions: [],
-  setSectorsOptions: (sectorData: IHttpResponse<SectorDto[], unknown>) =>
+  setSectorsOptions: (sectors: SectorDto[]) =>
     set({
-      sectorsOptions: sectorData?.data?.map(
+      sectorsOptions: sectors?.map(
         (sector) =>
           ({
             text: sector?.name,
-            value: sector?.id,
+            value: sector?.name,
             key: sector?.id,
           }) as OptionProps,
       ),
     }),
-  rolesOptions: [],
-  setRolesOptions: (roleData: IHttpResponse<RoleDto[], unknown>) =>
+  positionsOptions: [],
+  setPositionsOptions: (positions: RoleDto[]) =>
     set({
-      rolesOptions: roleData?.data?.map(
-        (role) =>
+      positionsOptions: positions?.map(
+        (position) =>
           ({
-            text: role?.name,
-            value: role?.id,
-            key: role?.id,
+            text: position?.name,
+            value: position?.name,
+            key: position?.id,
           }) as OptionProps,
       ),
     }),

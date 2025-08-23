@@ -7,7 +7,7 @@ import { LoginButton } from "./LoginButton";
 import { PasswordInput } from "./PasswordInput";
 import { FormContainer, InputSection, TextMobile } from "./styles";
 
-const LoginForm = ({ control, isValid, loginAction }: LoginFormProps) => (
+const LoginForm = ({ control, formState, onAsyncLogin }: LoginFormProps) => (
   <FormContainer>
     <TextMobile>Entrar</TextMobile>
     <InputSection>
@@ -17,8 +17,8 @@ const LoginForm = ({ control, isValid, loginAction }: LoginFormProps) => (
     <ForgotPassword />
     <ActionSection>
       <LoginButton
-        isDisabled={!isValid}
-        callback={loginAction}
+        isDisabled={!formState?.isValid}
+        onAsyncLogin={onAsyncLogin}
       />
       <CreateAccountOption />
     </ActionSection>

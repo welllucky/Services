@@ -1,8 +1,7 @@
-import { CustomButton } from "@/components";
 import { useRegister } from "@/screens/Register/register.hook";
 import { FormProvider } from "react-hook-form";
 import { CreateAccess } from "./CreateAccess";
-import { RegisterForm } from "./styles";
+import { FormSections, RegisterButton, RegisterForm } from "./styles";
 import { WhatYouDo } from "./WhatYouDo";
 import { WhoAreYou } from "./WhoAreYou";
 
@@ -11,14 +10,19 @@ export const Form = () => {
 
   return (
     <FormProvider {...methods}>
-      <RegisterForm onSubmit={methods.handleSubmit(createAccount)}>
-        <WhoAreYou />
-        <WhatYouDo />
-        <CreateAccess />
-        <CustomButton
-          type="submit"
+      <RegisterForm>
+        <FormSections>
+          <WhoAreYou />
+          <WhatYouDo />
+          <CreateAccess />
+        </FormSections>
+        <RegisterButton
+          type="button"
           text="Cadastrar"
+          loadingText="Cadastrando..."
           disabled={!methods.formState.isValid}
+          width="100%"
+          onAsyncClick={() => createAccount(methods.getValues())}
         />
       </RegisterForm>
     </FormProvider>

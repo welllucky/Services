@@ -8,12 +8,12 @@ import { Section } from "../components";
 
 export const WhatYouDo = () => {
   const { control } = useFormContext();
-  const { roles, sectors, selectedSector } = useRegister();
+  const { positions, sectors, selectedSector } = useRegister();
 
   const isSectorInputDisabled = useMemo(() => !sectors?.length, [sectors]);
-  const isRoleInputDisabled = useMemo(
-    () => !selectedSector || !roles?.length,
-    [roles, selectedSector],
+  const isPositionInputDisabled = useMemo(
+    () => !selectedSector || !positions?.length,
+    [positions, selectedSector],
   );
 
   return (
@@ -31,12 +31,12 @@ export const WhatYouDo = () => {
       />
       <CustomSelect
         labelText="Cargo"
-        id="role"
+        id="position"
         placeholder="Qual o seu cargo?"
         width="100%"
         control={control as unknown as Control}
-        options={roles}
-        isDisabled={isRoleInputDisabled}
+        options={positions}
+        isDisabled={isPositionInputDisabled}
       />
     </Section>
   );

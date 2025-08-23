@@ -12,15 +12,14 @@ export type LoginSearchParams = {
 };
 
 export interface LoginFormProps {
-  loginAction: () => void;
-  isValid: boolean;
+  onAsyncLogin: () => Promise<void>;
+  formState: Partial<FormState<ISignIn>>;
   control: FormControl;
 }
 
 export interface LoginUIProps
-  extends Pick<LoginFormProps, "control" | "loginAction"> {
+  extends Pick<LoginFormProps, "control" | "onAsyncLogin"> {
   formState: FormState<ISignIn>;
-  pageIsLoading?: boolean;
 }
 
 export interface LoginPageProps {
@@ -31,4 +30,8 @@ export interface UseLoginProps {
   toast: typeof toast;
   searchParams: LoginSearchParams;
   useAuth: () => AuthContextProps;
+}
+
+export interface LoginInputProps {
+  control: FormControl;
 }

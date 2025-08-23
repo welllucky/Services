@@ -1,6 +1,8 @@
+import { ThemeProps } from "@/styles";
 import { IUser } from "@/types/interfaces/User";
 import "next-auth";
 import "next-auth/jwt";
+import "styled-components";
 
 declare module "next-auth" {
   interface Session {
@@ -17,9 +19,9 @@ declare module "next-auth" {
     isBanned: boolean;
     canCreateTicket: boolean;
     canResolveTicket: boolean;
-    role: string;
+    position: string;
     sector: string;
-    systemRole: string;
+    role: string;
     accessToken: string;
   }
 }
@@ -27,4 +29,9 @@ declare module "next-auth/jwt" {
   interface JWT extends IUser {
     id?: string;
   }
+}
+
+declare module "styled-components" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  interface DefaultTheme extends ThemeProps {}
 }

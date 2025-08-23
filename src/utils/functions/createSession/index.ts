@@ -7,7 +7,7 @@ export const createSession = async (email: string, password: string) => {
       SignInSchema.parse({ email, password });
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}api/public/session`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/public/session`,
       {
         method: "POST",
         headers: {
@@ -24,11 +24,6 @@ export const createSession = async (email: string, password: string) => {
       IAccessResponse,
       { message?: string; title?: string }
     >;
-
-    console.log({
-      data,
-      error,
-    });
 
     if (!data?.accessToken || error?.message) {
       throw new Error(error?.message ?? "Error creating session");
