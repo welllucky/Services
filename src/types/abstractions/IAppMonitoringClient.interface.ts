@@ -10,7 +10,7 @@ import {
 } from "../interfaces";
 
 export interface IAppMonitoring {
-  captureMessage: (message: string, level: MessageMonitoringLevel) => void;
+  captureMessage: (message: string, level: MessageMonitoringLevel, optionalData?: OptionalDataMonitoring) => void;
   captureException: (
     error: unknown,
     optionalData?: OptionalDataMonitoring,

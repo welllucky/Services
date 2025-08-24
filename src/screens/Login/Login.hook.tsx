@@ -13,6 +13,18 @@ import { UseLoginProps } from "./Login.types";
 const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
   const { error: pageError, redirectTo } = searchParams;
   const { signIn, error } = useAuth();
+
+  // Breadcrumb para início do processo de login
+  appMonitoringClient.addBreadcrumb({
+    message: "Login form initialized",
+    category: "auth",
+    level: "info",
+    data: {
+      hasPageError: !!pageError,
+      redirectTo: redirectTo || "default",
+    },
+  });
+
   const { control, formState, setError, clearErrors, resetField, getValues } =
     useForm<ISignIn>({
       defaultValues: {
@@ -36,15 +48,53 @@ const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
 
   useEffect(() => {
     if (loginError) {
+      appMonitoringClient.addBreadcrumb({
+        message: "Login error detected",
+        category: "auth.error",
+        level: "error",
+        data: {
+          errorType: loginError,
+          errorMessage: getCustomErrorMessage(loginError),
+        },
+      });
+
+      appMonitoringClient.captureException(`Login error: ${loginError}`, {
+        tags: {
+          errorType: "next-auth",
+          source: "login_hook",
+        },
+      });
+
       toast.error(getCustomErrorMessage(loginError));
     }
   }, [clearErrors, error, loginError, resetField, setError, toast]);
 
   const handleAsyncLogin = async () => {
     try {
-    const email = getValues("email");
-    const password = getValues("password");
+      const email = getValues("email");
+      const password = getValues("password");
+
+      appMonitoringClient.addBreadcrumb({
+        message: "Login attempt started",
+        category: "auth.login",
+        level: "info",
+        data: {
+          email: email ? `${email.substring(0, 3)}***` : "empty",
+          hasPassword: !!password,
+          redirectTo: redirectTo ?? "/",
+        },
+      });
+
       if (!email || !password) {
+        appMonitoringClient.addBreadcrumb({
+          message: "Login validation failed",
+          category: "auth.validation",
+          level: "warning",
+          data: {
+            missingEmail: !email,
+            missingPassword: !password,
+          },
+        });
         throw new Error("Email e senha são obrigatórios");
       }
 
@@ -53,6 +103,24 @@ const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
       if (!result.successfully) {
         const errorType = result.error || "CredentialsSignin";
         const errorMessage = getCustomErrorMessage(errorType);
+
+        appMonitoringClient.addBreadcrumb({
+          message: "Login failed",
+          category: "auth.login",
+          level: "error",
+          data: {
+            errorType,
+            errorMessage,
+          },
+        });
+
+        appMonitoringClient.captureException("Login failed for user", {
+          tags: {
+            errorType,
+            email: `${email.substring(0, 3)}***`,
+            source: "login_handler",
+          },
+        });
 
         setError("email", {
           message: errorMessage,
@@ -63,15 +131,37 @@ const useLogin = ({ searchParams, toast, useAuth }: UseLoginProps) => {
           message: errorMessage,
           type: "value",
         });
+      } else {
+        appMonitoringClient.addBreadcrumb({
+          message: "Login successful",
+          category: "auth.login",
+          level: "info",
+          data: {
+            email: `${email.substring(0, 3)}***`,
+            redirectTo: redirectTo ?? "/",
+          },
+        });
       }
     } catch (err) {
       const errorMessage = getCustomErrorMessage("Default");
-      toast.error(errorMessage);
-      appMonitoringClient.captureException(errorMessage, {
+
+      appMonitoringClient.addBreadcrumb({
+        message: "Login exception caught",
+        category: "auth.error",
+        level: "error",
         data: {
-          rootError: err,
+          errorMessage,
         },
       });
+
+      appMonitoringClient.captureException(err, {
+        tags: {
+          source: "login_handler",
+          action: "handleAsyncLogin",
+        },
+      });
+
+      toast.error(errorMessage);
     }
   };
 
