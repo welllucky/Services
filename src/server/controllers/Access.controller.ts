@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
+import { accessUrl } from "@/app/api/urls";
 import { CS_KEY_ACCESS_TOKEN, defaultHeaders } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
 import { IAccessResponse, IHttpResponse } from "@/types";
@@ -12,8 +13,6 @@ interface AccessProps {
   email: string;
   password: string;
 }
-
-const accessApiUrl = `${process.env.APIS_BASE_URL}/v1/auth`;
 
 export class AccessController {
   static async create(req: NextRequest) {
@@ -51,7 +50,7 @@ export class AccessController {
         message: "Email and password received",
       });
 
-      const res = await fetch(`${accessApiUrl}/login`, {
+      const res = await fetch(`${accessUrl}/login`, {
         method: "POST",
         headers: {
           ...defaultHeaders,
@@ -133,7 +132,7 @@ export class AccessController {
     try {
       const { accessToken } = await getAuthToken(req);
 
-      const res = await fetch(`${accessApiUrl}/logout`, {
+      const res = await fetch(`${accessUrl}/logout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,

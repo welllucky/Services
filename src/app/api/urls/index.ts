@@ -7,3 +7,4 @@ export const userUrl = `${baseUrl}/v1/core/users`;
 export const sectorUrl = `${baseUrl}/v1/core/sector`;
 export const roleUrl = `${baseUrl}/v1/core/role`;
 export const sessionUrl = `${baseUrl}/v1/core/sessions`;
+export const accessUrl = `${baseUrl}/v1/auth`;
