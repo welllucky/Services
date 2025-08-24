@@ -17,7 +17,7 @@ class ResolverApi {
 
   constructor(httpClient: IHttpClient) {
     this.baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    this.apiUrl = `${this.baseUrl}api/tickets`;
+    this.apiUrl = `${this.baseUrl}/api/tickets`;
     this.httpClient = httpClient;
   }
 

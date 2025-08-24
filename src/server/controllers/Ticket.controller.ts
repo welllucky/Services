@@ -43,12 +43,9 @@ class TicketController {
       >;
 
       if (!resBody.data?.length) {
-        return NextResponse.json(
-          { error: { message: "No issues found" } },
-          {
-            status: 204,
-          },
-        );
+        return new NextResponse(null, {
+          status: 204,
+        });
       }
 
       return NextResponse.json(resBody, {
@@ -92,28 +89,31 @@ class TicketController {
       });
 
       if (res.status === 204) {
-        return new NextResponse(undefined, {
+        return new NextResponse(null, {
           status: 204,
         });
       }
 
-      const resBody = (await res.json()) as IHttpResponse<
-        TicketDto[],
-        IHttpError
+      if (res.body) {
+        const resBody = (await res.json()) as IHttpResponse<
+          TicketDto[],
+          IHttpError
       >;
 
       if (!resBody.data?.length) {
-        return NextResponse.json(
-          { error: { message: "No issues found" } },
-          {
-            status: 204,
-          },
-        );
+        return new NextResponse(null, {
+          status: 204,
+        });
       }
 
       return NextResponse.json(resBody, {
         ...res,
       });
+    } else {
+      return new NextResponse(null, {
+        status: 204,
+      });
+    }
     } catch (error) {
       appMonitoringServer.captureException(error, {
         tags: {

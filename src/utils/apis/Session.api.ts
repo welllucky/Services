@@ -9,8 +9,8 @@ export class SessionApi {
   private readonly httpClient: IHttpClient;
 
   constructor(httpClient: IHttpClient) {
-    this.apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}api/session`;
-    this.altApiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}api/public/session`;
+    this.apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/session`;
+    this.altApiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/public/session`;
     this.httpClient = httpClient;
   }
 

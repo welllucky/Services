@@ -10,7 +10,7 @@ export class UserApi {
 
   constructor(httpClient: IHttpClient) {
     this.base_url = process.env.NEXT_PUBLIC_BASE_URL;
-    this.apiUrl = `${this.base_url}api/user`;
+    this.apiUrl = `${this.base_url}/api/user`;
     this.httpClient = httpClient;
   }
 

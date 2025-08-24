@@ -12,7 +12,7 @@ export class SearchApi {
 
   constructor(httpClient: IHttpClient) {
     this.baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    this.apiUrl = `${this.baseUrl}api/search`;
+    this.apiUrl = `${this.baseUrl}/api/search`;
     this.httpClient = httpClient;
   }
 
