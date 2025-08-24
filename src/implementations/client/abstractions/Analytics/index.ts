@@ -1,6 +1,8 @@
 /* eslint-disable brace-style */
-import { FirebaseFeatures, IAnalyticsAbstract } from "@/types";
 import { Analytics, getAnalytics, isSupported } from "firebase/analytics";
+
+import { FirebaseFeatures, IAnalyticsAbstract } from "@/types";
+
 import { FirebaseAbstract } from "../Firebase";
 
 class FirebaseAnalytics

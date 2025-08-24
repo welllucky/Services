@@ -5,7 +5,7 @@ export const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-height: 240px;
+  max-height: 500px;
   flex: 1;
-  /* padding: 128px 0; */
+  position: relative;
 `;

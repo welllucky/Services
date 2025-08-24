@@ -1,5 +1,6 @@
-import { IconProps } from "@/types";
 import { EnvelopeSimple } from "@phosphor-icons/react";
+
+import { IconProps } from "@/types";
 
 export const EmailIcon = ({
   color,

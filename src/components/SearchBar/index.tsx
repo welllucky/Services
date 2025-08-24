@@ -1,7 +1,9 @@
 "use client";
 
-import { SearchIcon } from "@/assets";
 import { ChangeEvent, useState } from "react";
+
+import { SearchIcon } from "@/assets";
+
 import { StyledSearchBar, StyledSearchBarContainer } from "./styles";
 
 interface SearchBarProps {

@@ -1,5 +1,6 @@
-import { Skeleton, SkeletonProps } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
+
+import { Skeleton, SkeletonProps } from "@/components";
 
 export default {
   title: "Common/Skeleton",

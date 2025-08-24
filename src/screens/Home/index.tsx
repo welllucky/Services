@@ -1,4 +1,5 @@
 import { IUser, TicketDto } from "@/types";
+
 import HomePageUI from "./UI";
 
 interface HomepageProps {

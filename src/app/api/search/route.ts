@@ -1,5 +1,6 @@
-import { SearchController } from "@/server";
 import { NextRequest } from "next/server";
+
+import { SearchController } from "@/server";
 
 // skipcq: JS-0116
 export async function GET(req: NextRequest) {

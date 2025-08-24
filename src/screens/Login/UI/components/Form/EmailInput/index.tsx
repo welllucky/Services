@@ -1,9 +1,11 @@
-import { ClearIcon, EmailIcon } from "@/assets";
-import { CustomInput } from "@/components";
 import { Control } from "react-hook-form";
-import { FormControl } from "../../../../Login.types";
 
-export const EmailInput = ({ control }: { control: FormControl }) => {
+import { EmailIcon } from "@/assets";
+import { CustomInput } from "@/components";
+
+import { LoginInputProps } from "../../../../Login.types";
+
+export const EmailInput = ({ control }: LoginInputProps) => {
   return (
     <CustomInput
       autoComplete="username"
@@ -13,12 +15,6 @@ export const EmailInput = ({ control }: { control: FormControl }) => {
       placeholder="Digite o seu email"
       height="58px"
       isRequired
-      trailingButton={(
-        <ClearIcon
-          color="#49454F"
-          size={32}
-        />
-      )}
       leadingButton={(
         <EmailIcon
           color="#49454F"

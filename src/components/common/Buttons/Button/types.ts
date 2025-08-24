@@ -15,4 +15,7 @@ export interface CustomButtonProps
   width?: string | number;
   height?: string | number;
   mode?: "filled" | "outlined";
+  isLoading?: boolean;
+  loadingText?: string;
+  onAsyncClick?: () => Promise<void>;
 }

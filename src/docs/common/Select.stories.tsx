@@ -1,5 +1,6 @@
-import { CustomSelect, SelectProps } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
+
+import { CustomSelect, SelectProps } from "@/components";
 
 export default {
   title: "Common/Inputs/CustomSelect",

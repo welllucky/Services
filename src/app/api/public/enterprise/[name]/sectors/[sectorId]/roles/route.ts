@@ -1,5 +1,6 @@
-import { EnterpriseController } from "@/server";
 import { NextRequest } from "next/server";
+
+import { EnterpriseController } from "@/server";
 
 export async function GET(
   req: NextRequest,

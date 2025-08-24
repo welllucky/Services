@@ -1,12 +1,14 @@
 "use client";
 
+import { CaretLeft, House } from "@phosphor-icons/react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+
 import { CustomButton } from "@/components";
-import { CaretLeft, House } from "@phosphor-icons/react";
 import { Row, theme } from "@/styles";
-import Image from "next/image";
 import { buildTestIds } from "@/utils";
+
 import {
   ButtonContainer,
   ContentContainer,

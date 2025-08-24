@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { OpenTicketPage } from "@/screens";
 
 export const metadata: Metadata = {

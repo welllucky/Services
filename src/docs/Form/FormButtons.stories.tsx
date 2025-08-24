@@ -1,6 +1,7 @@
-import { FormButtons } from "@/components/Form/FormButtons";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
+
+import { FormButtons } from "@/components/Form/FormButtons";
 
 export default {
   title: "Common/Form/FormButtons",

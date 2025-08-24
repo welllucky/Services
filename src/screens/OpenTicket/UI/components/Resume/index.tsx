@@ -1,5 +1,6 @@
-import { OutlinedInput } from "@/components";
 import { Control, FieldError } from "react-hook-form";
+
+import { OutlinedInput } from "@/components";
 
 type ResumeInputProps = {
   control: Control;

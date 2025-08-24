@@ -1,7 +1,8 @@
-import { ClearIcon, EmailIcon } from "@/assets";
-import { CustomInput } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
+
+import { ClearIcon, EmailIcon } from "@/assets";
+import { CustomInput } from "@/components";
 
 export default {
   title: "Common/Inputs/CustomInput",

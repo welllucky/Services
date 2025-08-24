@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
+import { UseFormReturn } from "react-hook-form";
+
 import {
   CreateAccountDto,
-  IHttpResponse,
   OptionProps,
   RoleDto,
   SectorDto,
@@ -14,7 +15,15 @@ export interface RegisterStoreProps {
   selectedSector: string;
   setSelectedSector: (sector: string) => void;
   sectorsOptions: OptionProps[];
-  setSectorsOptions: (sectorData: IHttpResponse<SectorDto[], unknown>) => void;
-  rolesOptions: OptionProps[];
-  setRolesOptions: (roleData: IHttpResponse<RoleDto[], unknown>) => void;
+  setSectorsOptions: (sectors: SectorDto[]) => void;
+  positionsOptions: OptionProps[];
+  setPositionsOptions: (positions: RoleDto[]) => void;
+}
+
+export interface RegisterHookProps {
+  createAccount: onCreateAccountType;
+  positions: OptionProps[];
+  sectors: OptionProps[];
+  methods: UseFormReturn<CreateAccountDto>;
+  selectedSector: string;
 }

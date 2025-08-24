@@ -1,8 +1,9 @@
+import { Meta, StoryObj } from "@storybook/react";
+
 import { SearchIcon } from "@/assets";
 import { CustomButton } from "@/components";
 import { CustomButtonProps } from "@/components/common/Buttons/Button/types";
 import { theme } from "@/styles";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Common/Buttons/CustomButton",

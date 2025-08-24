@@ -1,7 +1,8 @@
 /* eslint-disable no-nested-ternary */
-import { OutlinedInput } from "@/components";
 import { useState } from "react";
 import { Control, FieldError } from "react-hook-form";
+
+import { OutlinedInput } from "@/components";
 
 type DateInputProps = {
   control: Control;

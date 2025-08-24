@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+
 import { getAuthToken } from "../getAuthToken";
 
 // eslint-disable-next-line consistent-return

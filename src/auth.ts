@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+
 import { appMonitoringServer } from "./implementations/server";
 import { createSession } from "./utils/functions/createSession";
 import { getUserByToken } from "./utils/functions/getUserByToken";
@@ -9,7 +10,7 @@ const companyEmail = process.env.SERVICES_COMPANY_EMAIL_DOMAIN
   : "";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  debug: process.env.HOST_ENV === "development",
+  debug: process.env.NODE_ENV === "development",
   providers: [
     Credentials({
       credentials: {
@@ -17,26 +18,40 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
-        const { accessToken } = await createSession(
-          String(credentials.email),
-          String(credentials.password),
-        );
+          if (!credentials?.email || !credentials?.password) {
+            return null;
+          }
 
-        if (!accessToken) {
-          return null;
-        }
+          const { accessToken, error } = await createSession(
+            String(credentials.email),
+            String(credentials.password),
+          );
 
-        const { userData } = await getUserByToken(accessToken);
+          if (!accessToken || error) {
+            return null;
+          }
 
-        if (!userData) {
-          return null;
-        }
+          const { userData } = await getUserByToken(accessToken);
 
-        // return user object with their profile data
-        return {
-          ...userData,
-          accessToken,
-        };
+          if (!userData) {
+            return null;
+          }
+
+          // Transform user data to match the User type
+          return {
+            id: userData.register,
+            register: userData.register,
+            name: userData.name,
+            email: userData.email,
+            lastConnection: userData.lastConnection || null,
+            isBanned: userData.isBanned || false,
+            canCreateTicket: userData.canCreateTicket ?? true,
+            canResolveTicket: userData.canResolveTicket ?? true,
+            position: (userData as { position?: string }).position || "",
+            sector: userData.sector || "",
+            role: userData.role || "",
+            accessToken,
+          };
       },
     }),
   ],
@@ -46,50 +61,72 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: "/login",
   },
   session: {
+    strategy: "jwt",
     maxAge: 6 * 24 * 60 * 60,
     updateAge: 1 * 24 * 60 * 60,
   },
   jwt: {
     maxAge: 6 * 24 * 60 * 60,
   },
-  // useSecureCookies: process.env.NODE_ENV !== "development",
+  cookies: {
+    sessionToken: {
+      name: `${process.env.NODE_ENV === "production" ? "__Secure-" : ""}next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
+  },
   callbacks: {
     jwt({ token, user }) {
-      return {
-        ...token,
-        ...user,
-        ...(user && { id: user?.id ?? user.register }),
-      };
+      if (user) {
+        const newToken = { ...token };
+        newToken.id = user.id;
+        newToken.register = user.register;
+        newToken.email = user.email;
+        newToken.name = user.name;
+        newToken.picture = user.image;
+        newToken.canCreateTicket = user.canCreateTicket;
+        newToken.canResolveTicket = user.canResolveTicket;
+        newToken.isBanned = user.isBanned;
+        newToken.lastConnection = user.lastConnection;
+        newToken.position = user.position;
+        newToken.sector = user.sector;
+        newToken.role = user.role;
+        newToken.accessToken = user.accessToken;
+        return newToken;
+      }
+      return token;
     },
-    session({ session, token, user }) {
-      // eslint-disable-next-line no-param-reassign
-      session.user.id = token?.id ?? user?.id ?? "";
+    session({ session, token }) {
       appMonitoringServer.setUser({
-        id: token?.register,
-        email: token?.email ?? "",
-        username: token?.name ?? "",
-        canCreateTicket: token?.canCreateTicket,
-        canResolveTicket: token?.canResolveTicket,
-        isBanned: token?.isBanned,
+        id: token?.register as string,
+        email: token?.email as string ?? "",
+        username: token?.name as string ?? "",
+        canCreateTicket: token?.canCreateTicket as boolean,
+        canResolveTicket: token?.canResolveTicket as boolean,
+        isBanned: token?.isBanned as boolean,
       });
       return {
         ...session,
         user: {
           ...session.user,
-          id: token?.id,
-          canCreateTicket: token?.canCreateTicket,
-          canResolveTicket: token?.canResolveTicket,
-          isBanned: token?.isBanned,
-          register: token?.register,
-          lastConnection: token?.lastConnection,
-          email: token?.email,
-          name: token?.name,
-          image: token?.picture,
-          role: token?.role,
-          sector: token?.sector,
-          systemRole: token?.systemRole,
+          id: token?.id as string ?? "",
+          canCreateTicket: token?.canCreateTicket as boolean,
+          canResolveTicket: token?.canResolveTicket as boolean,
+          isBanned: token?.isBanned as boolean,
+          register: token?.register as string,
+          lastConnection: token?.lastConnection as string,
+          email: token?.email as string,
+          name: token?.name as string,
+          image: token?.picture as string,
+          role: token?.role as string,
+          sector: token?.sector as string,
+          systemRole: token?.systemRole as string,
         },
-        accessToken: token?.accessToken,
+        accessToken: token?.accessToken as string,
       };
     },
     signIn({ user, profile, credentials }) {

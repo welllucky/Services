@@ -1,4 +1,3 @@
-import { TicketActionOptionsType } from "@/screens/Ticket/components";
 import {
   ArrowCounterClockwise,
   DotsThreeOutlineVertical,
@@ -6,6 +5,9 @@ import {
 } from "@phosphor-icons/react";
 import { useCallback, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
+
+import { TicketActionOptionsType } from "@/screens/Ticket/components";
+
 import { RoundedButton } from "..";
 import { ActionButtonContainer, ActionButtonsContainer } from "./styles";
 
@@ -30,34 +32,45 @@ const PrincipalIssueButton = ({
   $isClicked,
 }: PrincipalIssueButtonProps) => {
   const theme = useTheme();
+
+  const getIcon = () => {
+    if (isOpen) {
+      return (
+        <DotsThreeOutlineVertical
+          size={32}
+          color={
+            $isClicked
+              ? theme.colors.neutral.default
+              : theme.colors.primary.default
+          }
+        />
+      );
+    }
+
+    if (canReopen) {
+      return (
+        <ArrowCounterClockwise
+          size={32}
+          color="#FFFFFF"
+        />
+      );
+    }
+
+    return (
+      <Play
+        size={32}
+        color="#FFFFFF"
+      />
+    );
+  };
+
   return (
     <RoundedButton
       action={action}
       $isClicked={$isClicked}
       $hasShadow={isOpen}
       color={isOpen ? theme.colors.primary["85"] : theme.colors.primary["15"]}
-      icon={
-        isOpen ? (
-          <DotsThreeOutlineVertical
-            size={32}
-            color={
-              $isClicked
-                ? theme.colors.neutral.default
-                : theme.colors.primary.default
-            }
-          />
-        ) : canReopen ? (
-          <ArrowCounterClockwise
-            size={32}
-            color="#FFFFFF"
-          />
-        ) : (
-          <Play
-            size={32}
-            color="#FFFFFF"
-          />
-        )
-      }
+      icon={getIcon()}
     />
   );
 };

@@ -1,9 +1,11 @@
 "use client";
 
-import { OptionMenuProps } from "@/types";
-import { buildTestIds } from "@/utils";
 import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
+
+import { OptionMenuProps } from "@/types";
+import { buildTestIds } from "@/utils";
+
 import { Skeleton, SkeletonContainer } from "../Skeleton";
 import OptionMenu from "./OptionMenu";
 import { ContainerMenu, MenuList } from "./styles";

@@ -1,13 +1,15 @@
 "use client";
 
-import { CreateAccountDto, CreateAccountSchema } from "@/types";
-import { useAuth } from "@/utils";
-import { accountApi, enterpriseApi } from "@/utils/apis";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useShallow } from "zustand/react/shallow";
+
+import { CreateAccountDto, CreateAccountSchema } from "@/types";
+import { useAuth } from "@/utils";
+import { accountApi, enterpriseApi } from "@/utils/apis";
+
 import { registerStore } from "./register.store";
 
 const defaultErrorMessage = "Error creating account";
@@ -20,10 +22,10 @@ export const useRegister = () => {
   });
 
   const {
-    rolesOptions,
+    positionsOptions,
     sectorsOptions,
     selectedSector,
-    setRolesOptions,
+    setPositionsOptions,
     setSectorsOptions,
     setSelectedSector,
   } = registerStore(
@@ -32,28 +34,28 @@ export const useRegister = () => {
       setSelectedSector: state.setSelectedSector,
       sectorsOptions: state.sectorsOptions,
       setSectorsOptions: state.setSectorsOptions,
-      rolesOptions: state.rolesOptions,
-      setRolesOptions: state.setRolesOptions,
+      positionsOptions: state.positionsOptions,
+      setPositionsOptions: state.setPositionsOptions,
     })),
   );
 
   const selectedSectorValue = methods.watch("sector");
 
-  const { data: sectors } = enterpriseApi.getSectors(!sectorsOptions.length);
-  const { data: roles } = enterpriseApi.getRolesBySector({
-    sectorId: selectedSector,
+  const { data: sectors } = enterpriseApi.getSectors(sectorsOptions?.length === 0);
+  const { data: positions } = enterpriseApi.getRolesBySector({
+    sectorId: sectorsOptions?.find((sector) => sector.value === selectedSector)?.key,
     shouldFetch: Boolean(selectedSector),
   });
 
   useEffect(() => {
-    if (sectors?.data?.length && !selectedSector) {
-      setSectorsOptions(sectors);
+    if (sectors?.data?.length) {
+      setSectorsOptions(sectors.data);
     }
 
-    if (roles?.data?.length) {
-      setRolesOptions(roles);
+    if (positions?.data?.length) {
+      setPositionsOptions(positions.data);
     }
-  }, [roles, sectors, selectedSector, setRolesOptions, setSectorsOptions]);
+  }, [positions, sectors, setPositionsOptions, setSectorsOptions]);
 
   useEffect(() => {
     if (selectedSectorValue) {
@@ -62,35 +64,32 @@ export const useRegister = () => {
   }, [selectedSectorValue, setSelectedSector]);
 
   const createAccount = async (accountData: CreateAccountDto) => {
-    try {
-      toast.loading("Creating account...");
+    const toastId = toast.loading("Criando conta...");
 
-      const { status, error, message } = await accountApi.create({
+    try {
+      const { status, error } = await accountApi.create({
         data: accountData,
       });
 
       if (status === 201) {
-        toast.dismiss();
-        toast.success(message ?? "Account created successfully");
-        signIn(accountData?.email, accountData.password);
-        return;
-      }
+      signIn(accountData?.email, accountData.password);
+      return;
+    }
 
-      toast.dismiss();
-      const errorMessage: string =
-        (error?.message as string) ||
-        (error?.message as string[])[0] ||
-        defaultErrorMessage;
+    const errorMessage: string =
+      (error?.message as string) ||
+      (error?.message as string[])[0] ||
+      defaultErrorMessage;
 
-      toast.error(errorMessage);
-    } catch {
-      toast.error(defaultErrorMessage);
+    toast.error(errorMessage);
+    } finally {
+      toast.dismiss(toastId);
     }
   };
 
   return {
     createAccount,
-    roles: rolesOptions,
+    positions: positionsOptions,
     sectors: sectorsOptions,
     methods,
     selectedSector,

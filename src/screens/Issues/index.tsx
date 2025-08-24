@@ -1,7 +1,9 @@
 "use client";
 
-import { TicketDto } from "@/types";
 import { useRouter } from "next/navigation";
+
+import { TicketDto } from "@/types";
+
 import IssuesPageUI from "./UI";
 
 interface MyIssuesPageProps {

@@ -1,3 +1,5 @@
+import { NextRequest, NextResponse } from "next/server";
+
 import { ticketUrl } from "@/app/api/urls";
 import { defaultHeaders } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
@@ -9,7 +11,7 @@ import {
   IOpenTicketForm,
   TicketDto,
 } from "@/types";
-import { NextRequest, NextResponse } from "next/server";
+
 import { getFormattedBody } from "../functions/getFormattedBody";
 
 class TicketController {

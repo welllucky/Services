@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
-import { InputStatus } from "@/types";
 import styled, { css } from "styled-components";
+
+import { InputStatus } from "@/types";
 
 export const SelectContainer = styled.div<{
   $status: InputStatus;

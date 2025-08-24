@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+
 import { sectorUrl } from "@/app/api/urls";
 import { defaultHeaders } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
-import { NextResponse } from "next/server";
 
 export class EnterpriseController {
   static async getSectors() {

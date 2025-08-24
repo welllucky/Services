@@ -2,6 +2,7 @@ import { LargeFieldset } from "@/components/Fieldset/LargeFieldset";
 import { SmallFieldset } from "@/components/Fieldset/SmallFieldset";
 import { SectionInfoForm } from "@/screens/OpenTicket/ConfirmTicket/styles";
 import { TicketDto } from "@/types";
+
 import { FormDisplayContainer } from "./styles";
 
 type FormDisplayProps = {

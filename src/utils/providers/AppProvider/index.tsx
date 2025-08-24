@@ -1,14 +1,16 @@
 "use client";
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { createContext, ReactNode, use, useEffect, useMemo } from "react";
+import { useMediaQuery } from "usehooks-ts";
+
 import {
   CS_KEY_USER_DEVICE_TYPE,
   CS_KEY_USER_RELIABLE_AGENT,
 } from "@/constraints";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { createContext, ReactNode, use, useEffect, useMemo } from "react";
-import { useMediaQuery } from "usehooks-ts";
 // eslint-disable-next-line import/no-unresolved
 import { cookie } from "@/implementations/client";
+
 import { useFlags } from "../FeatureFlagProvider";
 
 interface AppContextProps {

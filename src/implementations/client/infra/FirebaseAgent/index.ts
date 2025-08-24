@@ -1,5 +1,7 @@
-import { IAppMonitoring, IFirebase } from "@/types";
 import { FirebaseApp } from "firebase/app";
+
+import { IAppMonitoring, IFirebase } from "@/types";
+
 import { FirebaseAbstract } from "../../abstractions";
 
 class FirebaseAgent implements IFirebase {

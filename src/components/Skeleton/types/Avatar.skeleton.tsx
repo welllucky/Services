@@ -1,5 +1,6 @@
 import { UserIcon } from "@/assets";
 import { theme } from "@/styles";
+
 import { SkeletonCircle } from "../Skeleton.styles";
 import { SkeletonTypeProps } from "../Skeleton.types";
 

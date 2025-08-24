@@ -1,10 +1,12 @@
-import { ClosedEyeIcon, EyeIcon, LockIcon } from "@/assets";
-import { CustomInput } from "@/components";
 import { useCallback, useState } from "react";
 import { Control } from "react-hook-form";
-import { FormControl } from "../../../../Login.types";
 
-export const PasswordInput = ({ control }: { control: FormControl }) => {
+import { ClosedEyeIcon, EyeIcon, LockIcon } from "@/assets";
+import { CustomInput } from "@/components";
+
+import { LoginInputProps } from "../../../../Login.types";
+
+export const PasswordInput = ({ control }: LoginInputProps) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handlePasswordVisibility = useCallback(() => {
