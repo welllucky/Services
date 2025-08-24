@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.1](https://github.com/welllucky/Services/compare/services-v1.9.0...services-v1.9.1) (2025-08-24)
+
+
+### Bug Fixes
+
+* :bug: Muda o endpoint de autenticação da aplicação ([dd7d6e8](https://github.com/welllucky/Services/commit/dd7d6e839b9dd0c340061334c4c6c2455e9e92e1))
+
 ## [1.9.0](https://github.com/welllucky/Services/compare/v1.8.0...v1.9.0) (2025-08-24)
 
 
