@@ -1,7 +1,9 @@
+import { useMemo } from "react";
+
 import { NoContent, Skeleton } from "@/components";
 import { PageContainer } from "@/styles";
 import { SearchResponse } from "@/utils/apis/Search.api";
-import { useMemo } from "react";
+
 import { Results } from "./results";
 import { MainContainer } from "./styles";
 

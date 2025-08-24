@@ -1,5 +1,6 @@
-import { IconProps } from "@/types";
 import { User } from "@phosphor-icons/react";
+
+import { IconProps } from "@/types";
 
 export const UserIcon = ({
   size = 40,

@@ -1,5 +1,6 @@
-import { IJWT } from "@/types";
 import * as jwt from "jsonwebtoken";
+
+import { IJWT } from "@/types";
 
 class JWTAbstraction implements IJWT {
   private secret = "";

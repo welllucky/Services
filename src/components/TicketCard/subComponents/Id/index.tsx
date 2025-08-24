@@ -1,4 +1,5 @@
 import { buildTestIds } from "@/utils";
+
 import { TicketNumber } from "./styles";
 
 type IdProps = {

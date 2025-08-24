@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
-import { CustomSelect } from "@/components";
 import { Control, FieldError } from "react-hook-form";
+
+import { CustomSelect } from "@/components";
 
 type TypeSelectProps = {
   control: Control;

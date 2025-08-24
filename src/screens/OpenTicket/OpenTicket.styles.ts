@@ -1,5 +1,6 @@
-import { Column } from "@/styles";
 import styled from "styled-components";
+
+import { Column } from "@/styles";
 
 export const TicketPageContainer = styled(Column)`
   align-items: center;

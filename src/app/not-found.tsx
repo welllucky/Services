@@ -1,5 +1,6 @@
-import { NotFoundPage } from "@/screens";
 import { Metadata } from "next";
+
+import { NotFoundPage } from "@/screens";
 
 export const metadata: Metadata = {
   title: "Página não encontrada",

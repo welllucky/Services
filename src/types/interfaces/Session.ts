@@ -3,7 +3,7 @@ import { z } from "zod";
 export const ISessionSchema = z.object({
   id: z.string(),
   userId: z.string(),
-  token: z.string(),
+  accessToken: z.string(),
   isActive: z.boolean(),
   expiresAt: z.string().or(z.date()),
   createdAt: z.string().or(z.date()),
@@ -11,10 +11,10 @@ export const ISessionSchema = z.object({
 });
 
 export const SessionResponseSchema = z.object({
-  token: z.string(),
+  accessToken: z.string(),
   expiresAt: z.string().or(z.date()),
 });
 
 export type ISession = z.infer<typeof ISessionSchema>;
 
-export type ISessionResponse = z.infer<typeof SessionResponseSchema>;
+export type IAccessResponse = z.infer<typeof SessionResponseSchema>;

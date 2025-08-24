@@ -1,9 +1,10 @@
+import { DefaultTheme } from "styled-components";
+
 import { Loading, NoContent, SubHeader } from "@/components";
 import { TicketCard } from "@/components/TicketCard";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { TicketDto } from "@/types";
-import { DefaultTheme } from "styled-components";
 
 export type TicketsPageUIProps = {
   data?: TicketDto[];

@@ -1,23 +1,25 @@
-import { CS_KEY_ACCESS_TOKEN, defaultHeaders } from "@/constraints";
-import { appMonitoringServer } from "@/implementations/server";
-import { IHttpResponse, ISessionResponse } from "@/types";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+
+import { CS_KEY_ACCESS_TOKEN, defaultHeaders } from "@/constraints";
+import { appMonitoringServer } from "@/implementations/server";
+import { IAccessResponse, IHttpResponse } from "@/types";
+
 import { getAuthToken } from "../functions/getAuthToken";
 import { getFormattedBody } from "../functions/getFormattedBody";
 
-interface SessionProps {
+interface AccessProps {
   email: string;
   password: string;
 }
 
-const sessionApiUrl = `${process.env.APIS_BASE_URL}sessions`;
+const accessApiUrl = `${process.env.APIS_BASE_URL}/v1/auth`;
 
-export class SessionController {
+export class AccessController {
   static async create(req: NextRequest) {
     try {
       const cookiesStore = cookies();
-      const { email, password } = await getFormattedBody<SessionProps>(req);
+      const { email, password } = await getFormattedBody<AccessProps>(req);
 
       if (!email || !password) {
         appMonitoringServer.addBreadcrumb({
@@ -47,13 +49,9 @@ export class SessionController {
         category: "api",
         level: "log",
         message: "Email and password received",
-        data: {
-          email,
-          password: "***********",
-        },
       });
 
-      const res = await fetch(sessionApiUrl, {
+      const res = await fetch(`${accessApiUrl}/login`, {
         method: "POST",
         headers: {
           ...defaultHeaders,
@@ -67,15 +65,15 @@ export class SessionController {
       const resBody = await res.json();
 
       const { data, error, status } = resBody as IHttpResponse<
-        ISessionResponse,
+        IAccessResponse,
         { message?: string; title?: string }
       >;
 
-      if (!data?.token || error?.message) {
+      if (!data?.accessToken || error?.message) {
         return NextResponse.json(
           {
             error: {
-              message: error?.message ?? "Error creating session",
+              message: error?.message ?? "Error creating Access",
               title: error?.title ?? "Error",
             },
           },
@@ -85,11 +83,12 @@ export class SessionController {
         );
       }
 
-      cookiesStore.set(CS_KEY_ACCESS_TOKEN, data.token, {
+      cookiesStore.set(CS_KEY_ACCESS_TOKEN, data.accessToken, {
         expires: new Date(data.expiresAt),
         path: "/",
         sameSite: "strict",
         secure: true,
+        httpOnly: true,
       });
 
       return NextResponse.json(
@@ -104,7 +103,7 @@ export class SessionController {
       appMonitoringServer.captureException(error, {
         tags: {
           module: "api",
-          controller: "SessionController",
+          controller: "AccessController",
           method: "create",
         },
       });
@@ -134,7 +133,7 @@ export class SessionController {
     try {
       const { accessToken } = await getAuthToken(req);
 
-      const res = await fetch(`${sessionApiUrl}/close`, {
+      const res = await fetch(`${accessApiUrl}/logout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -146,14 +145,14 @@ export class SessionController {
         appMonitoringServer.addBreadcrumb({
           category: "api",
           level: "log",
-          message: "Session was closed successfully",
+          message: "Access was closed successfully",
         });
 
         return NextResponse.redirect(new URL("/login", req.nextUrl.clone()));
       }
 
       return NextResponse.json(
-        { error: { message: "Error closing session" } },
+        { error: { message: "Error closing Access" } },
         {
           status: 500,
         },
@@ -164,7 +163,7 @@ export class SessionController {
       appMonitoringServer.captureException(error, {
         tags: {
           module: "api",
-          controller: "SessionController",
+          controller: "AccessController",
           method: "close",
         },
       });

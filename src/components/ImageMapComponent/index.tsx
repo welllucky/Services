@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
 import {
   ButtonAction,
   ButtonActionContainer,
@@ -11,11 +12,11 @@ import {
   Title,
   TypeFile,
 } from "./styles";
+import close from "./svg/Close.svg";
+import iconTypeImage from "./svg/image.png";
 // import iconFileImage from "./svg/background.svg";
 import iconRestart from "./svg/Restart.svg";
 import iconTrash from "./svg/Trash.svg";
-import close from "./svg/Close.svg";
-import iconTypeImage from "./svg/image.png";
 import iconTypeVideo from "./svg/video.png";
 
 interface ImageMapComponentProps {

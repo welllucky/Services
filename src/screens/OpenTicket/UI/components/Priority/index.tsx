@@ -1,7 +1,8 @@
 /* eslint-disable no-nested-ternary */
-import { CustomSelect } from "@/components";
 import { useState } from "react";
 import { Control, FieldError } from "react-hook-form";
+
+import { CustomSelect } from "@/components";
 
 type PriorityInputProps = {
   control: Control;

@@ -1,13 +1,5 @@
 /* eslint-disable max-classes-per-file */
 import {
-  FeatureFlagsOptions,
-  IAppMonitoring,
-  IFeatureFlags,
-  IFeatureFlagsAbstract,
-  ReturnKeyType,
-} from "@/types";
-
-import {
   AnyProviderEvent,
   ClientProviderStatus,
   EvaluationContext,
@@ -17,6 +9,13 @@ import {
   ProviderEventEmitter,
   ResolutionDetails,
 } from "@openfeature/react-sdk";
+
+import {
+  FeatureFlagsOptions,
+  IAppMonitoring,
+  IFeatureFlag,
+  ReturnKeyType,
+} from "@/types";
 
 const messages = {
   errorTypeMessage: (
@@ -33,13 +32,13 @@ const messages = {
     `Flag value for key: ${flagKey} is ${flagValue}`,
 };
 
-class FeatureFlag implements IFeatureFlags {
-  private readonly client: IFeatureFlagsAbstract | null;
+class FeatureFlag implements IFeatureFlag {
+  private readonly client: IFeatureFlag | null;
 
   private readonly appMonitoring: IAppMonitoring | null;
 
   constructor(
-    featureFlagAgent: IFeatureFlagsAbstract,
+    featureFlagAgent: IFeatureFlag,
     appMonitoring: IAppMonitoring,
   ) {
     try {
@@ -80,18 +79,35 @@ class FeatureFlag implements IFeatureFlags {
 
       return Object.entries(rawValues).reduce(
         (convertedValues, [key, value]) => {
-          if (value.getSource() === "static") return convertedValues;
+          // Check if value has the expected methods
+          if (typeof value === "object" && value !== null && "getSource" in value && typeof (value as { getSource: () => string }).getSource === "function") {
+            if ((value as { getSource: () => string }).getSource() === "static") return convertedValues;
+          }
 
           const flagKey = key as keyof FeatureFlagsOptions;
 
-          const rawValue = value.asString().trim();
+          // Get the raw value, handling both object and primitive types
+          let rawValue: string;
+          if (typeof value === "object" && value !== null && "asString" in value && typeof (value as { asString: () => string }).asString === "function") {
+            rawValue = (value as { asString: () => string }).asString().trim();
+          } else {
+            rawValue = String(value).trim();
+          }
           let parsedValue;
 
           if (rawValue === "true" || rawValue === "false") {
-            parsedValue = value.asBoolean();
+            if (typeof value === "object" && value !== null && "asBoolean" in value && typeof (value as { asBoolean: () => boolean }).asBoolean === "function") {
+              parsedValue = (value as { asBoolean: () => boolean }).asBoolean();
+            } else {
+              parsedValue = rawValue === "true";
+            }
             // eslint-disable-next-line no-restricted-globals
           } else if (!isNaN(Number(rawValue)) && rawValue !== "") {
-            parsedValue = value.asNumber();
+            if (typeof value === "object" && value !== null && "asNumber" in value && typeof (value as { asNumber: () => number }).asNumber === "function") {
+              parsedValue = (value as { asNumber: () => number }).asNumber();
+            } else {
+              parsedValue = Number(rawValue);
+            }
           } else {
             try {
               parsedValue = JSON.parse(rawValue);
@@ -155,7 +171,7 @@ class FeatureFlag implements IFeatureFlags {
 }
 
 class ServicesFlagsProvider implements Provider {
-  private readonly agent: IFeatureFlagsAbstract;
+  private readonly agent: IFeatureFlag;
 
   readonly metadata = {
     name: ServicesFlagsProvider.name,
@@ -171,7 +187,7 @@ class ServicesFlagsProvider implements Provider {
     | ProviderEventEmitter<AnyProviderEvent, Record<string, unknown>>
     | undefined;
 
-  constructor(agent: IFeatureFlagsAbstract) {
+  constructor(agent: IFeatureFlag) {
     this.agent = agent;
   }
 
@@ -342,7 +358,6 @@ class ServicesFlagsProvider implements Provider {
   }
 
   async onClose(): Promise<void> {
-    await this.agent.close();
     this.status = ClientProviderStatus.NOT_READY;
   }
 

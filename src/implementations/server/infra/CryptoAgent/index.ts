@@ -1,4 +1,5 @@
 import { ICrypto } from "@/types/abstractions";
+
 import { CryptoAbstraction } from "../../abstractions";
 
 class CryptoAgent implements ICrypto {

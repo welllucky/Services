@@ -1,14 +1,11 @@
 "use client";
 
-import { IAppMonitoring, IUser } from "@/types";
-import { LS_KEY_USER_DATA } from "@/constraints";
-import { closeSession } from "@/utils/functions";
+import { useRouter } from "next/navigation";
 import {
   signIn as systemSignIn,
   signOut as systemSignOut,
   useSession,
 } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import {
   createContext,
   ReactNode,
@@ -18,6 +15,10 @@ import {
   useMemo,
   useState,
 } from "react";
+
+import { LS_KEY_USER_DATA } from "@/constraints";
+import { IAppMonitoring, IUser } from "@/types";
+import { closeSession } from "@/utils/functions";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -93,29 +94,49 @@ export const AuthProvider = ({ children, appMonitoring }: AuthProviderProps) => 
   const signIn = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
     async (email: string, password: string, redirectTo?: string) => {
+      let errorType = "CredentialsSignin";
       resetStates();
+
       try {
         setIsLoading(true);
         const result = await systemSignIn("credentials", {
           email,
           password,
-          redirect: true,
-          redirectTo: redirectTo ?? "/",
+          redirect: false,
         });
 
-        if (result?.ok) {
-          setIsAuthenticated(true);
+        if (result?.error) {
+          // Se o erro vem como "CredentialsSignin: Read more at..." extrair apenas o tipo
+          if (typeof result.error === "string") {
+            errorType = result.error.split(":")[0].trim() || "CredentialsSignin";
+          } else {
+            errorType = result.error;
+          }
+
+          setError(errorType);
           return {
-            successfully: Boolean(result?.ok),
-            error: result?.error ?? error,
+            successfully: false,
+            error: errorType,
             status: result?.status,
             url: result?.url,
           };
         }
 
+        if (result?.ok) {
+          setIsAuthenticated(true);
+          router.push(redirectTo ?? "/");
+          return {
+            successfully: true,
+            error: "",
+            status: result?.status,
+            url: result?.url,
+          };
+        }
+
+        setError(errorType);
         return {
           successfully: false,
-          error: result?.error ?? error,
+          error: errorType,
           status: result?.status,
           url: result?.url,
         };
@@ -131,7 +152,7 @@ export const AuthProvider = ({ children, appMonitoring }: AuthProviderProps) => 
         setIsLoading(false);
       }
     },
-    [error, resetStates],
+    [resetStates, router],
   );
 
   const update = useCallback(

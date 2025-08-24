@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
-import { CustomTextArea } from "@/components";
 import { Control, FieldError } from "react-hook-form";
+
+import { CustomTextArea } from "@/components";
 
 type DescriptionInputProps = {
   control: Control;

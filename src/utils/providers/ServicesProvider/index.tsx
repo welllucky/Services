@@ -1,6 +1,5 @@
 "use client";
 
-import { ConfigType, IAnalytics, IFeatureFlags, IFirebase } from "@/types";
 import { Client, OpenFeatureProvider } from "@openfeature/react-sdk";
 import {
   createContext,
@@ -10,6 +9,9 @@ import {
   useEffect,
   useMemo,
 } from "react";
+
+import { ConfigType, IAnalytics, IFeatureFlag, IFirebase } from "@/types";
+
 import { FeatureFlagProvider } from "../FeatureFlagProvider";
 
 interface ServicesContextType {
@@ -22,7 +24,7 @@ interface ServicesProviderProps {
   firebaseAgent: IFirebase;
   analytics: IAnalytics;
   openFeatureClient: Client;
-  featureFlag: IFeatureFlags;
+  featureFlag: IFeatureFlag;
   appConfigs: ConfigType | null;
 }
 

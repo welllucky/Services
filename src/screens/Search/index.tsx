@@ -1,8 +1,10 @@
 "use client";
 
-import { searchApi, useAuth } from "@/utils";
 import { useDebounce } from "@uidotdev/usehooks";
 import { useMemo, useState } from "react";
+
+import { searchApi, useAuth } from "@/utils";
+
 import SearchPageUI from "./UI";
 
 const SearchPage = () => {

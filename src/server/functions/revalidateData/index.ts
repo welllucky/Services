@@ -1,7 +1,8 @@
 "use server";
 
-import { DataTag } from "@/types";
 import { revalidateTag } from "next/cache";
+
+import { DataTag } from "@/types";
 
 export const revalidateData = async (key: DataTag) => {
   revalidateTag(key);

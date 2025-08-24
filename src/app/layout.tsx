@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable @next/next/no-page-custom-font */
-import getConfigs from "@/server/functions/getConfigs";
-import { AppProviders } from "@/utils/providers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
+
+import getConfigs from "@/server/functions/getConfigs";
+import { AppProviders } from "@/utils/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 

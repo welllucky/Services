@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { TextTheme } from "@/types";
+
 import { textThemes } from "./themeTitle";
 
 // eslint-disable-next-line import/prefer-default-export

@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+
 import { SkeletonTypeProps } from "./Skeleton.types";
 
 const shimmer = keyframes`

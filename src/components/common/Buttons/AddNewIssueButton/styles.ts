@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 import { AddNewIssueButtonProps } from "./types";
 
 const ButtonNewCalled = styled.button<AddNewIssueButtonProps>`

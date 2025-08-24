@@ -1,7 +1,8 @@
-import { Row } from "@/styles";
-import { TicketStatus } from "@/types";
 import Link from "next/link";
 import styled, { css } from "styled-components";
+
+import { Row } from "@/styles";
+import { TicketStatus } from "@/types";
 
 type ContainerStyleProps = {
   color?: string;

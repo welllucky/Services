@@ -1,10 +1,12 @@
-import { IMessagingAbstract, MessagePayload } from "@/types";
 import {
-  Messaging as FirebaseMessaging,
   getMessaging,
   getToken,
+  Messaging as FirebaseMessaging,
   onMessage,
 } from "firebase/messaging";
+
+import { IMessagingAbstract, MessagePayload } from "@/types";
+
 import { FirebaseAbstract } from "../Firebase";
 
 class Messaging implements IMessagingAbstract {

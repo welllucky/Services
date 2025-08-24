@@ -1,4 +1,4 @@
-import { Skeleton } from "..";
+import { Skeleton } from "../Skeleton.component";
 import { SkeletonContainer } from "../Skeleton.styles";
 import { SkeletonPageProps } from "../Skeleton.types";
 

@@ -1,19 +1,34 @@
+import toast from "react-hot-toast";
+
 import { CustomButton } from "@/components";
 
 interface LoginButtonProps {
   isDisabled: boolean;
-  callback: () => void;
+  onAsyncLogin: () => Promise<void>;
 }
 
-export const LoginButton = ({ isDisabled, callback }: LoginButtonProps) => (
-  <CustomButton
-    $backgroundColor="#EA374D"
-    color="#fff"
-    onClick={callback}
-    type="button"
-    text="Entrar"
-    height="2.6rem"
-    width="100%"
-    disabled={isDisabled}
-  />
-);
+export const LoginButton = ({ isDisabled, onAsyncLogin }: LoginButtonProps) => {
+  const handleAsyncLogin = async () => {
+    const toastId = toast.loading("Realizando login...");
+
+    try {
+      await onAsyncLogin();
+    } finally {
+      toast.dismiss(toastId);
+    }
+  };
+
+  return (
+    <CustomButton
+      $backgroundColor="#EA374D"
+      color="#fff"
+      type="button"
+      text="Entrar"
+      loadingText="Entrando..."
+      height="2.6rem"
+      width="100%"
+      disabled={isDisabled}
+      onAsyncClick={handleAsyncLogin}
+    />
+  );
+};

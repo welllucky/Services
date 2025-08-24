@@ -1,5 +1,6 @@
-import { theme } from "@/styles";
 import styled, { keyframes } from "styled-components";
+
+import { theme } from "@/styles";
 
 const glitch = keyframes`
   0% {

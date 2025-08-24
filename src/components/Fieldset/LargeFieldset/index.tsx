@@ -1,5 +1,7 @@
-import { theme } from "@/styles";
 import { ReactNode } from "react";
+
+import { theme } from "@/styles";
+
 import { CustomFieldset } from "..";
 
 type LargeFieldsetProps = {

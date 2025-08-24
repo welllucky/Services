@@ -1,5 +1,6 @@
-import { IconProps } from "@/types";
 import { XCircle } from "@phosphor-icons/react";
+
+import { IconProps } from "@/types";
 
 export const ClearIcon = ({
   size = 40,

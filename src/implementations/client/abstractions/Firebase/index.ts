@@ -1,5 +1,6 @@
-import { FirebaseKeys, IFirebase } from "@/types";
 import { FirebaseApp, initializeApp } from "firebase/app";
+
+import { FirebaseKeys, IFirebase } from "@/types";
 
 class FirebaseAbstract implements IFirebase {
   private readonly firebaseInstance: FirebaseApp | null = null;

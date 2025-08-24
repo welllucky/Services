@@ -1,13 +1,15 @@
 "use client";
 
-import { useAuth } from "@/utils/providers/AuthProvider";
 import toast from "react-hot-toast";
+
+import { useAuth } from "@/utils/providers/AuthProvider";
+
 import useLogin from "./Login.hook";
 import { LoginPageProps } from "./Login.types";
 import LoginPageUI from "./UI";
 
 const LoginPage = ({ searchParams }: LoginPageProps) => {
-  const { control, formState, loginAction, isLoading } = useLogin({
+  const { control, formState, handleAsyncLogin } = useLogin({
     searchParams,
     toast,
     useAuth,
@@ -17,8 +19,7 @@ const LoginPage = ({ searchParams }: LoginPageProps) => {
     <LoginPageUI
       formState={formState}
       control={control}
-      loginAction={loginAction}
-      pageIsLoading={isLoading}
+      onAsyncLogin={handleAsyncLogin}
     />
   );
 };

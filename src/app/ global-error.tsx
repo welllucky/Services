@@ -1,9 +1,10 @@
 "use client";
 
-import { appMonitoringClient } from "@/implementations/client";
-import { ServerErrorPage } from "@/screens";
 import NextError from "next/error";
 import { useEffect } from "react";
+
+import { appMonitoringClient } from "@/implementations/client";
+import { ServerErrorPage } from "@/screens";
 
 const GlobalError = ({
   error,

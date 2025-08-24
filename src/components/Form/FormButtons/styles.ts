@@ -1,5 +1,6 @@
-import { Column, Row } from "@/styles";
 import styled, { css } from "styled-components";
+
+import { Column, Row } from "@/styles";
 
 export const FormButtonsContainer = styled(Column)<{ $hasSeparator?: boolean }>`
   width: 100%;

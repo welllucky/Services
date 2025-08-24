@@ -1,6 +1,7 @@
-import { InputStatus } from "@/types";
 import { useMemo } from "react";
 import { ControllerFieldState } from "react-hook-form";
+
+import { InputStatus } from "@/types";
 
 interface InputHookProps {
   value: unknown;

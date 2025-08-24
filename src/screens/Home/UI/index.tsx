@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo } from "react";
+
 import {
   AddNewIssueButton,
   NoContent,
@@ -12,8 +15,7 @@ import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { IUser, TicketDto } from "@/types";
 import { buildTestIds } from "@/utils";
-import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+
 import { ButtonWrapper } from "../styles";
 
 type HomePageUIProps = {

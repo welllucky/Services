@@ -1,5 +1,6 @@
-import { IUser } from "@/types";
 import { verify } from "jsonwebtoken";
+
+import { IUser } from "@/types";
 
 export const getUserByToken = async (token: string) => {
   const accessToken = token?.replace("Bearer", "").trimStart().trimEnd();

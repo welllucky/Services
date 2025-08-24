@@ -1,12 +1,13 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { ReactNode, useMemo } from "react";
+
 import { Header, NavigationBar } from "@/components";
 import { getNavigationOptions } from "@/components/NavBar/data";
 import { FlexContainer } from "@/components/PageStruct/style";
 import { Column } from "@/styles";
 import { useAuth } from "@/utils";
-import { usePathname } from "next/navigation";
-import { ReactNode, useMemo } from "react";
 
 const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const pathName = usePathname();
@@ -37,8 +38,7 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const shouldShowFooter = useMemo(
     () =>
       !pagesWithoutFooter.some((page) => {
-        const regex = new RegExp(`^${page}(/.*)?$`);
-        return regex.test(pathName);
+        return pathName === page || pathName.startsWith(`${page}/`);
       }),
     [pagesWithoutFooter, pathName],
   );
@@ -46,8 +46,7 @@ const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const shouldShowHeader = useMemo(
     () =>
       !pagesWithoutHeader.some((page) => {
-        const regex = new RegExp(`^${page}(/.*)?$`);
-        return regex.test(pathName);
+        return pathName === page || pathName.startsWith(`${page}/`);
       }),
     [pagesWithoutHeader, pathName],
   );

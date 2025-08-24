@@ -1,5 +1,6 @@
-import { BackButton } from "@/components";
 import styled from "styled-components";
+
+import { BackButton } from "@/components";
 
 export const Container = styled.header`
   display: flex;

@@ -1,7 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { z } from "zod";
-import { TicketEventSchema } from "./TicketEvent.dto";
+
 import { PriorityLevelsSchema } from "./PriorityLevel.dto";
+import { TicketEventSchema } from "./TicketEvent.dto";
 
 export const TicketTypeSchema = z.enum([
   "task",

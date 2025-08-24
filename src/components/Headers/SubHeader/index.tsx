@@ -1,7 +1,9 @@
+import { PlusSquare } from "@phosphor-icons/react";
+
 import { IconButton } from "@/components/common/Buttons/IconButton";
 import { SubTitleComponent } from "@/styles";
 import { buildTestIds } from "@/utils";
-import { PlusSquare } from "@phosphor-icons/react";
+
 import { PageTitle, SecondSection } from "./styles";
 
 interface SubHeaderProps {

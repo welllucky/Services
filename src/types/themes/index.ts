@@ -1,5 +1,6 @@
 import React from "react";
 import { Control, RegisterOptions } from "react-hook-form";
+
 import { InputStylesProps } from "..";
 
 // type ThemeKey = {

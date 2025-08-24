@@ -1,3 +1,5 @@
+import { NextRequest, NextResponse, userAgent } from "next/server";
+
 import {
   CS_KEY_COMPANY_ID,
   CS_KEY_USER_DEVICE_TYPE,
@@ -6,7 +8,6 @@ import {
   HD_KEY_USER_DEVICE_TYPE,
   HD_KEY_USER_RELIABLE_AGENT,
 } from "@/constraints";
-import { NextRequest, NextResponse, userAgent } from "next/server";
 
 export default function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();

@@ -2,10 +2,9 @@ import { FirebaseApp } from "firebase/app";
 import {
   FetchStatus,
   RemoteConfigSettings,
-  Value,
 } from "firebase/remote-config";
+
 import { FeatureFlagsOptions } from "../interfaces";
-import { IFirebaseFeature } from "./IFirebase.interface";
 
 export type ReturnType = string | boolean | number | object;
 
@@ -21,7 +20,7 @@ export interface RemoteConfigApp {
   lastFetchStatus: FetchStatus;
 }
 
-export interface IFeatureFlags extends IFirebaseFeature {
+export interface IFeatureFlag {
   // eslint-disable-next-line no-unused-vars
   get: (
     // eslint-disable-next-line no-unused-vars
@@ -35,13 +34,6 @@ export interface IFeatureFlags extends IFirebaseFeature {
   lookup: () => Promise<void>;
   // eslint-disable-next-line no-unused-vars
   initialize: (defaultValues?: FeatureFlagsOptions) => Promise<boolean>;
-}
-
-export interface IFeatureFlagsAbstract extends IFirebaseFeature {
-  // eslint-disable-next-line no-unused-vars
-  get: (key: string, returnType?: ReturnKeyType) => ReturnType | null;
-  getAll: () => Record<string, Value> | null;
-  // eslint-disable-next-line no-unused-vars
-  setFallbacks: (fallback: FeatureFlagsOptions) => void;
-  lookup: () => Promise<void>;
+  close: () => Promise<boolean>;
+  isInitialized?: boolean;
 }

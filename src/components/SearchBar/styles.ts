@@ -56,4 +56,4 @@ const Divider = styled.div<DividerProps>`
   background-color: ${({ color }) => color ?? "#000"};
 `;
 
-export { StyledSearchBarContainer, StyledSearchBar, Divider };
+export { Divider,StyledSearchBar, StyledSearchBarContainer };

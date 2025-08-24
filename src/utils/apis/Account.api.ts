@@ -12,8 +12,8 @@ export class AccountApi {
 
   constructor(httpClient: IHttpClient) {
     this.base_url = process.env.NEXT_PUBLIC_BASE_URL;
-    this.apiUrl = `${this.base_url}api/account`;
-    this.altApiUrl = `${this.base_url}api/public/account`;
+    this.apiUrl = `${this.base_url}/api/account`;
+    this.altApiUrl = `${this.base_url}/api/public/account`;
     this.httpClient = httpClient;
   }
 
@@ -25,6 +25,9 @@ export class AccountApi {
     const res = await fetch(this.altApiUrl, {
       body: JSON.stringify(data),
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     const resBody = (await res.json()) as IHttpResponse<IUser, IHttpError>;

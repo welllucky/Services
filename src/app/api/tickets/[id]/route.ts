@@ -1,5 +1,6 @@
-import { TicketController } from "@/server";
 import { NextRequest } from "next/server";
+
+import { TicketController } from "@/server";
 
 type Ticket = {
   id: string;

@@ -1,5 +1,5 @@
 import { defaultHeaders } from "@/constraints";
-import { IHttpResponse, ISessionResponse, SignInSchema } from "@/types";
+import { IAccessResponse, IHttpResponse, SignInSchema } from "@/types";
 
 export const createSession = async (email: string, password: string) => {
   try {
@@ -7,7 +7,7 @@ export const createSession = async (email: string, password: string) => {
       SignInSchema.parse({ email, password });
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}api/public/session`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/public/session`,
       {
         method: "POST",
         headers: {
@@ -21,15 +21,15 @@ export const createSession = async (email: string, password: string) => {
     );
 
     const { data, error } = (await res.json()) as IHttpResponse<
-      ISessionResponse,
+      IAccessResponse,
       { message?: string; title?: string }
     >;
 
-    if (!data?.token || error?.message) {
+    if (!data?.accessToken || error?.message) {
       throw new Error(error?.message ?? "Error creating session");
     }
 
-    return { accessToken: data.token };
+    return { accessToken: data.accessToken };
   } catch (error) {
     return {
       error: {

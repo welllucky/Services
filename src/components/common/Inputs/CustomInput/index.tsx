@@ -1,10 +1,12 @@
 "use client";
 
-import { ErrorText, WarningText } from "@/components/SupportText";
-import { InputComponentsProps } from "@/types";
 import { StaticImageData } from "next/image";
 import { ChangeEvent, ReactNode } from "react";
 import { Control, useController } from "react-hook-form";
+
+import { ErrorText, WarningText } from "@/components/SupportText";
+import { InputComponentsProps } from "@/types";
+
 import { useCustomInput } from "../input.hook";
 import {
   ContentContainer,

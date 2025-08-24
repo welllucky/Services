@@ -1,10 +1,12 @@
 "use client";
 
-import { CustomButton } from "@/components/common/Buttons/Button";
-import { buildTestIds } from "@/utils/functions";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { useTheme } from "styled-components";
+
+import { CustomButton } from "@/components/common/Buttons/Button";
+import { buildTestIds } from "@/utils/functions";
+
 import { ButtonsContainer, FormButtonsContainer } from "./styles";
 
 interface FormButtonsProps {

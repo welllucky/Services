@@ -4,13 +4,11 @@ const GlobalStyle = createGlobalStyle`
 
 html,
 body {
-	max-width: 100vw;
+	max-width: 100dvw;
 	overflow-x: hidden;
-}
-
-body {
-	color: ${({ theme }) => theme.colors.neutral.inverted};
+  color: ${({ theme }) => theme.colors.neutral.inverted};
 	background: ${({ theme }) => theme.colors.neutral.default};
+  transition: 1s ease-in-out;
 }
 
 *,

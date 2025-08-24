@@ -1,5 +1,6 @@
-import { CustomTextArea, TextAreaProps } from "@/components";
 import { Meta, StoryObj } from "@storybook/react";
+
+import { CustomTextArea, TextAreaProps } from "@/components";
 
 export default {
   title: "Common/Inputs/CustomTextArea",

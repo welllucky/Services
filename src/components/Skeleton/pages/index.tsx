@@ -1,4 +1,4 @@
-import TicketPageSkeleton from "./ticket.skeleton";
 import CommonPageSkeleton from "./common.skeleton";
+import TicketPageSkeleton from "./ticket.skeleton";
 
-export { TicketPageSkeleton, CommonPageSkeleton };
+export { CommonPageSkeleton,TicketPageSkeleton };

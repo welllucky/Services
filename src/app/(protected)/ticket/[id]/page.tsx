@@ -1,3 +1,5 @@
+import { notFound, redirect } from "next/navigation";
+
 import { auth } from "@/auth";
 import { DEFAULT_CACHE_TIME } from "@/constraints";
 import { appMonitoringServer, http } from "@/implementations/server";
@@ -5,7 +7,6 @@ import { TicketPage } from "@/screens";
 import { IssuePageProps } from "@/screens/Ticket";
 import { TicketDto } from "@/types";
 import { ticketApi } from "@/utils";
-import { notFound, redirect } from "next/navigation";
 
 // eslint-disable-next-line consistent-return
 const Ticket = async ({ params }: { params: IssuePageProps }) => {

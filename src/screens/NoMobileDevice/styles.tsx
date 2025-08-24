@@ -1,6 +1,7 @@
-import { Row } from "@/styles";
 import Image from "next/image";
 import styled from "styled-components";
+
+import { Row } from "@/styles";
 
 export const NoMobileContainer = styled.main`
   display: flex;
@@ -92,6 +93,5 @@ export const QRCodeImage = styled(Image)`
   @media (min-width: 769px) {
     width: 140px;
     height: 140px;
-    border-radius: 1rem;
   }
 `;

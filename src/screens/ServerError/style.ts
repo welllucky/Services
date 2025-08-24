@@ -1,6 +1,7 @@
 /* eslint-disable no-confusing-arrow */
-import { theme } from "@/styles";
 import styled from "styled-components";
+
+import { theme } from "@/styles";
 
 // Componentes estilizados
 const PageContainer = styled.div`

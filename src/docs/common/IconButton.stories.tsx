@@ -1,9 +1,10 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
+
 import { HomeIcon } from "@/assets";
 import { IconButton } from "@/components";
 import { theme } from "@/styles";
 import { IconButtonProps } from "@/types";
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 
 export default {
   title: "Common/Buttons/IconButton",

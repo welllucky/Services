@@ -1,6 +1,8 @@
-import { buildTestIds } from "@/utils/functions";
 import { ReactNode } from "react";
-import { FieldSetContent, Fieldset, FieldsetContainer, Legend } from "./styles";
+
+import { buildTestIds } from "@/utils/functions";
+
+import { Fieldset, FieldsetContainer, FieldSetContent, Legend } from "./styles";
 
 export type FieldsetProps = {
   children: ReactNode;

@@ -1,9 +1,11 @@
 "use client";
 
+import { DefaultTheme } from "styled-components";
+
 import { CustomFieldset } from "@/components";
 import { IOpenTicketForm } from "@/types";
 import { buildTestIds, dataFormatter } from "@/utils";
-import { DefaultTheme } from "styled-components";
+
 import { ConfirmDetailsContainer, SectionInfoForm } from "../styles";
 
 type ConfirmMediaPageUiProps = {

@@ -1,6 +1,7 @@
 "use client";
 
 import { FlexContainer } from "@/components/PageStruct/style";
+
 import { Form, Header } from "./components";
 
 const RegisterPageUI = () => (
