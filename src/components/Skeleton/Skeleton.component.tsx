@@ -72,7 +72,7 @@ export const Skeleton = ({
 
     case "card":
       return (
-        <SkeletonContainer gap="10px">
+        <SkeletonContainer gap="10px" width={width || "100%"}>
           <SkeletonRectangle
             width={width || "100%"}
             height={height || "200px"}
@@ -114,19 +114,76 @@ export const Skeleton = ({
         </SkeletonContainer>
       );
 
+    case "ticket":
+      return (
+        <SkeletonContainer
+          direction="row"
+          width={width || "100%"}
+          height={height || "112px"}
+          gap="0"
+          alignItems="center"
+          justifyContent="space-between">
+          <SkeletonContainer
+            direction="column"
+            gap="8px"
+            alignItems="start"
+            style={{ flex: 5 }}>
+            <SkeletonRectangle
+              width="80px"
+              height="20px"
+              backgroundColor="#e8e8e8"
+              highlightColor="#fafafa"
+              speed={speed}
+              style={{ borderRadius: "4px" }}
+            />
+            <SkeletonRectangle
+              width="200px"
+              height="24px"
+              backgroundColor="#e8e8e8"
+              highlightColor="#fafafa"
+              speed={speed}
+              style={{ borderRadius: "4px" }}
+            />
+          </SkeletonContainer>
+          <SkeletonContainer
+            direction="column"
+            gap="6px"
+            alignItems="start"
+            style={{ flex: 2 }}>
+            <SkeletonContainer direction="column" gap="8px" alignItems="start">
+              <SkeletonRectangle
+                width="60px"
+                height="10px"
+                backgroundColor="#e8e8e8"
+                highlightColor="#fafafa"
+                speed={speed}
+                style={{ borderRadius: "4px" }}
+              />
+              <SkeletonRectangle
+                width="80px"
+                height="16px"
+                backgroundColor="#e8e8e8"
+                highlightColor="#fafafa"
+                speed={speed}
+                style={{ borderRadius: "4px" }}
+              />
+            </SkeletonContainer>
+          </SkeletonContainer>
+        </SkeletonContainer>
+      );
+
     case "page":
       return (
-        <SkeletonContainer gap="40px">
+        <SkeletonContainer gap="40px" width="100%">
           {Array.from({ length: quantity || 5 }).map((_, index) => (
             <Skeleton
-              type="card"
+              type="ticket"
               // eslint-disable-next-line react/no-array-index-key
-              key={`page-card-${index}`}
+              key={`page-ticket-${index}`}
               backgroundColor={backgroundColor}
-              height={height}
               highlightColor={highlightColor}
               speed={speed}
-              width={width}
+              width={width || "100%"}
             />
           ))}
         </SkeletonContainer>

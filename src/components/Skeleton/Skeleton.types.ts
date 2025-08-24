@@ -6,7 +6,8 @@ export type SkeletonType =
   | "avatar"
   | "card"
   | "rectangle"
-  | "page";
+  | "page"
+  | "ticket";
 
 interface SkeletonCommonProps {
   speed?: number;
@@ -59,6 +60,15 @@ type SkeletonConditionalProps =
       children?: never;
       lines?: never;
       quantity?: number;
+    }
+  | {
+      type?: "ticket";
+      width?: string;
+      height?: string;
+      radius?: never;
+      children?: never;
+      lines?: never;
+      quantity?: never;
     };
 
 export type SkeletonProps = SkeletonCommonProps & SkeletonConditionalProps;

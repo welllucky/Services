@@ -17,7 +17,7 @@ interface NavigationBarProps {
   isLoading?: boolean;
 }
 const OptionSkeleton = () => (
-  <SkeletonContainer>
+  <SkeletonContainer gap="0.4em">
     <Skeleton
       width="24px"
       height="24px"

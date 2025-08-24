@@ -42,6 +42,7 @@ const GreetingSection = ({
         <Skeleton
           type="text"
           width="10em"
+          height="1em"
         />
       )}
     </UserName>

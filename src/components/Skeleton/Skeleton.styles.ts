@@ -46,7 +46,7 @@ export const SkeletonCard = styled(SkeletonBase)``;
 
 export const SkeletonRectangle = styled(SkeletonBase)`
   width: ${(props) => props.width ?? "320px"};
-  height: ${(props) => props.height ?? "80px"};
+  height: ${(props) => props.height ?? "40px"};
 `;
 
 export const SkeletonContainer = styled.div<{
@@ -54,8 +54,9 @@ export const SkeletonContainer = styled.div<{
   height?: string;
   direction?: "row" | "column";
   gap?: string;
-  alignItems?: "center" | "start";
-  justifyContent?: "center" | "start";
+  alignItems?: "center" | "start" | "flex-start" | "flex-end";
+  justifyContent?: "center" | "start" | "space-between" | "space-around" | "flex-start" | "flex-end";
+  padding?: string;
 }>`
   display: flex;
   flex-direction: ${(props) => props.direction ?? "column"};
@@ -64,6 +65,7 @@ export const SkeletonContainer = styled.div<{
   gap: ${(props) => props.gap};
   align-items: ${(props) => props.alignItems ?? "center"};
   justify-content: ${(props) => props.justifyContent ?? "center"};
+  padding: ${(props) => props.padding};
 `;
 
 export const SkeletonCardSubContainer = styled.div<{ gap?: string }>`
