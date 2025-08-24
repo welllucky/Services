@@ -1,13 +1,15 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
+import { ReactNode } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+
 import { BackButton, FormButtons } from "@/components";
 import { IssuePageContainer } from "@/screens/Ticket/styles";
 import { Column, Row, TitleComponent } from "@/styles";
 import { IOpenTicketForm } from "@/types";
 import { buildTestIds, resetForm } from "@/utils";
-import { usePathname, useRouter } from "next/navigation";
-import { ReactNode } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+
 import { ICreateIssueFlowPage, useCreateTicketFlow } from "./data";
 
 type OpenIssueTemplateUIProps = {

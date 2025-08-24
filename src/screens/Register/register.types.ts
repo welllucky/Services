@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
+import { UseFormReturn } from "react-hook-form";
+
 import {
   CreateAccountDto,
   OptionProps,
   RoleDto,
   SectorDto,
 } from "@/types";
-import { UseFormReturn } from "react-hook-form";
 
 // eslint-disable-next-line no-unused-vars
 export type onCreateAccountType = (accountData: CreateAccountDto) => void;

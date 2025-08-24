@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-import { OptionMenuProps } from "@/types";
 import {
   ClipboardText,
   House,
@@ -7,6 +6,8 @@ import {
   MagnifyingGlass,
 } from "@phosphor-icons/react/dist/ssr";
 import { produce } from "immer";
+
+import { OptionMenuProps } from "@/types";
 
 const navigationOptions: OptionMenuProps[] = [
   {

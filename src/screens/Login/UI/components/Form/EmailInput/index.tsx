@@ -1,6 +1,8 @@
+import { Control } from "react-hook-form";
+
 import { EmailIcon } from "@/assets";
 import { CustomInput } from "@/components";
-import { Control } from "react-hook-form";
+
 import { LoginInputProps } from "../../../../Login.types";
 
 export const EmailInput = ({ control }: LoginInputProps) => {

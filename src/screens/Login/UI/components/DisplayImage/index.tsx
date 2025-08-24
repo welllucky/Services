@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Logo from "public/Icon.png";
+
 import { LogoContainer } from "./styles";
 
 const DisplayImage = () => (

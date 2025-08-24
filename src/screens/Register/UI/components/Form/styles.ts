@@ -1,5 +1,6 @@
-import { CustomButton } from "@/components";
 import styled from "styled-components";
+
+import { CustomButton } from "@/components";
 
 export const RegisterForm = styled.form`
   display: flex;

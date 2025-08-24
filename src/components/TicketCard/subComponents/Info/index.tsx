@@ -1,4 +1,5 @@
 import { buildTestIds } from "@/utils";
+
 import { InfoContainer, InfoLabel, InfoText } from "./styles";
 
 interface StatusProps {

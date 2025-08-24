@@ -1,5 +1,6 @@
-import { IconProps } from "@/types";
 import { EyeSlash } from "@phosphor-icons/react";
+
+import { IconProps } from "@/types";
 
 export const ClosedEyeIcon = ({
   size = 40,

@@ -1,13 +1,15 @@
 "use client";
 
-import { CreateAccountDto, CreateAccountSchema } from "@/types";
-import { useAuth } from "@/utils";
-import { accountApi, enterpriseApi } from "@/utils/apis";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useShallow } from "zustand/react/shallow";
+
+import { CreateAccountDto, CreateAccountSchema } from "@/types";
+import { useAuth } from "@/utils";
+import { accountApi, enterpriseApi } from "@/utils/apis";
+
 import { registerStore } from "./register.store";
 
 const defaultErrorMessage = "Error creating account";

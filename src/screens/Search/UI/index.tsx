@@ -2,6 +2,7 @@
 
 import { SubHeader } from "@/components";
 import { SearchResponse } from "@/utils/apis/Search.api";
+
 import { Content, SearchBarComponent } from "./components";
 
 type SearchPageUIProps = {

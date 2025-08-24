@@ -1,4 +1,5 @@
 import { SearchBar } from "@/components";
+
 import { SearchContainer } from "./styles";
 
 type SearchBarProps = {

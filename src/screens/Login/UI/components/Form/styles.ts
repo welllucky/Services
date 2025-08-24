@@ -1,7 +1,8 @@
 "use client";
 
-import { Column } from "@/styles";
 import styled, { css } from "styled-components";
+
+import { Column } from "@/styles";
 
 export const LoginBoxContainer = styled.div`
   display: flex;

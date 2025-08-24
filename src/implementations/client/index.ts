@@ -2,6 +2,7 @@
 
 import { OpenFeature } from "@openfeature/react-sdk";
 import { Cookies } from "react-cookie";
+
 import {
   FirebaseAbstract,
   FirebaseAnalytics,

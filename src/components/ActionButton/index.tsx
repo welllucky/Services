@@ -1,4 +1,3 @@
-import { TicketActionOptionsType } from "@/screens/Ticket/components";
 import {
   ArrowCounterClockwise,
   DotsThreeOutlineVertical,
@@ -6,6 +5,9 @@ import {
 } from "@phosphor-icons/react";
 import { useCallback, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
+
+import { TicketActionOptionsType } from "@/screens/Ticket/components";
+
 import { RoundedButton } from "..";
 import { ActionButtonContainer, ActionButtonsContainer } from "./styles";
 

@@ -1,7 +1,9 @@
 "use client";
 
-import { TicketDto } from "@/types";
 import { useTheme } from "styled-components";
+
+import { TicketDto } from "@/types";
+
 import TicketsPageUI from "./UI";
 
 interface TicketsPageUIProps {

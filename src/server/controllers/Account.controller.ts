@@ -1,7 +1,9 @@
+import { NextRequest, NextResponse } from "next/server";
+
 import { accountUrl } from "@/app/api/urls";
 import { defaultHeaders } from "@/constraints";
 import { CreateAccountDto } from "@/types";
-import { NextRequest, NextResponse } from "next/server";
+
 import { getFormattedBody } from "../functions/getFormattedBody";
 
 export class AccountController {

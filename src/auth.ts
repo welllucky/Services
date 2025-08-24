@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+
 import { appMonitoringServer } from "./implementations/server";
 import { createSession } from "./utils/functions/createSession";
 import { getUserByToken } from "./utils/functions/getUserByToken";

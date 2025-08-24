@@ -1,5 +1,6 @@
-import { SearchPage } from "@/screens";
 import { Metadata } from "next";
+
+import { SearchPage } from "@/screens";
 
 export const metadata: Metadata = {
   title: "Pesquisa",

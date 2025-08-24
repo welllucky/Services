@@ -1,9 +1,10 @@
+import { redirect } from "next/navigation";
+
 import { auth } from "@/auth";
 import { http } from "@/implementations/server";
 import { Homepage as Home } from "@/screens";
 import { TicketDto } from "@/types";
 import { ticketApi } from "@/utils";
-import { redirect } from "next/navigation";
 
 // eslint-disable-next-line consistent-return
 const Homepage = async () => {

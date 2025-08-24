@@ -1,12 +1,5 @@
 /* eslint-disable max-classes-per-file */
 import {
-  FeatureFlagsOptions,
-  IAppMonitoring,
-  IFeatureFlag,
-  ReturnKeyType,
-} from "@/types";
-
-import {
   AnyProviderEvent,
   ClientProviderStatus,
   EvaluationContext,
@@ -16,6 +9,13 @@ import {
   ProviderEventEmitter,
   ResolutionDetails,
 } from "@openfeature/react-sdk";
+
+import {
+  FeatureFlagsOptions,
+  IAppMonitoring,
+  IFeatureFlag,
+  ReturnKeyType,
+} from "@/types";
 
 const messages = {
   errorTypeMessage: (

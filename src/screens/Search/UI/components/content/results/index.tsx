@@ -1,7 +1,8 @@
+import { useCallback } from "react";
+
 import { TicketCard } from "@/components";
 import { TicketDto } from "@/types";
 import { useAuth } from "@/utils";
-import { useCallback } from "react";
 
 interface ResultsProps {
   result: TicketDto[] | undefined;

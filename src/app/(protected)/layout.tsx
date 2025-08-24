@@ -1,12 +1,13 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { ReactNode, useMemo } from "react";
+
 import { Header, NavigationBar } from "@/components";
 import { getNavigationOptions } from "@/components/NavBar/data";
 import { FlexContainer } from "@/components/PageStruct/style";
 import { Column } from "@/styles";
 import { useAuth } from "@/utils";
-import { usePathname } from "next/navigation";
-import { ReactNode, useMemo } from "react";
 
 const ProtectedLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   const pathName = usePathname();

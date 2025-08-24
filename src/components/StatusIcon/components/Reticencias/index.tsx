@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import reticencias from "../svg/reticencias.svg";
 import { ReticenciasContainer } from "./styles";
 

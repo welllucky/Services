@@ -1,5 +1,7 @@
-import { Header } from "@/components";
 import { ReactNode } from "react";
+
+import { Header } from "@/components";
+
 import { FlexContainer, PageStructContainer } from "./style";
 
 const PageStruct = (children: ReactNode) => (

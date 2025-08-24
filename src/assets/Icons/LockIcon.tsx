@@ -1,5 +1,6 @@
-import { IconProps } from "@/types";
 import { Lock } from "@phosphor-icons/react";
+
+import { IconProps } from "@/types";
 
 export const LockIcon = ({
   size = 40,

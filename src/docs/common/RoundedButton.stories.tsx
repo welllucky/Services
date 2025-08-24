@@ -1,7 +1,8 @@
+import { Meta, StoryObj } from "@storybook/react";
+
 import { EmailIcon } from "@/assets";
 import { RoundedButton, RoundedButtonProps } from "@/components";
 import { theme } from "@/styles";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Common/Buttons/RoundedButton",

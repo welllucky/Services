@@ -1,5 +1,6 @@
 import { StampIcon } from "@/assets";
 import { buildTestIds } from "@/utils";
+
 import { SignalContainer } from "./styles";
 
 export const Signal = () => (

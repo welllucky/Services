@@ -1,4 +1,5 @@
 import { theme } from "@/styles";
+
 import { BackToLogin, Container, Text, TextContainer } from "./styles";
 
 export const Header = () => (

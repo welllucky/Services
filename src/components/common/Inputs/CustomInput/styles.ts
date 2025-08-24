@@ -1,7 +1,8 @@
 /* eslint-disable no-nested-ternary */
+import { css, styled } from "styled-components";
+
 import { Row } from "@/styles";
 import { InputStatus, InputStylesProps } from "@/types";
-import { css, styled } from "styled-components";
 
 interface ContentContainerProps {
   height?: string;

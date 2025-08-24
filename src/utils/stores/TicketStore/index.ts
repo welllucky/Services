@@ -1,7 +1,8 @@
-import { TicketDto } from "@/types";
 // import toast from "react-hot-toast";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn as create } from "zustand/traditional";
+
+import { TicketDto } from "@/types";
 
 type State = {
   ticket: TicketDto;
@@ -161,4 +162,4 @@ const useTicketStore = create<State & Actions>()(
 
 type TicketStore = ReturnType<typeof useTicketStore>;
 
-export { useTicketStore, type TicketStore };
+export { type TicketStore,useTicketStore };

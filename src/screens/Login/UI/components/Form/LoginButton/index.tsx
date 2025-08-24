@@ -1,5 +1,6 @@
-import { CustomButton } from "@/components";
 import toast from "react-hot-toast";
+
+import { CustomButton } from "@/components";
 
 interface LoginButtonProps {
   isDisabled: boolean;

@@ -1,8 +1,9 @@
 "use client";
 
+import React, { createContext, useContext } from "react";
+
 import { TicketDto } from "@/types";
 import { TicketStore, useTicketStore } from "@/utils/stores";
-import React, { createContext, useContext } from "react";
 
 interface TicketProviderProps {
   children: React.ReactNode;

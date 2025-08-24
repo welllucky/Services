@@ -2,12 +2,13 @@
 
 "use client";
 
-import { NoContentProps } from "@/types";
-
-import { EmptyBox } from "@/assets";
-import { buildTestIds } from "@/utils";
 import Image from "next/image";
 import { useTheme } from "styled-components";
+
+import { EmptyBox } from "@/assets";
+import { NoContentProps } from "@/types";
+import { buildTestIds } from "@/utils";
+
 import { NoContentContainer, NoContentTitle } from "./styles";
 
 export const NoContent = ({

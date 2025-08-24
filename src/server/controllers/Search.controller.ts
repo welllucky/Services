@@ -1,9 +1,10 @@
+import { NextRequest, NextResponse } from "next/server";
+
 import { ticketUrl } from "@/app/api/urls";
 import { defaultHeaders } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
 import { getAuthToken } from "@/server/functions/getAuthToken";
 import { IHttpResponse, TicketDto } from "@/types";
-import { NextRequest, NextResponse } from "next/server";
 
 const SearchController = {
   async searchTickets(req: NextRequest) {

@@ -1,6 +1,7 @@
-import { Row } from "@/styles";
 import Image from "next/image";
 import styled from "styled-components";
+
+import { Row } from "@/styles";
 
 export const NoMobileContainer = styled.main`
   display: flex;

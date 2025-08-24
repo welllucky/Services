@@ -15,7 +15,6 @@ import TicketsPage from "./Tickets";
 export {
   ConfirmDetailsPage,
   Homepage,
-  TicketPage,
   IssuesPage,
   LoginPage,
   MaintenancePage,
@@ -25,5 +24,6 @@ export {
   RegisterPage,
   SearchPage,
   ServerErrorPage,
+  TicketPage,
   TicketsPage,
 };

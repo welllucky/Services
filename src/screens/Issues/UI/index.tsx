@@ -1,5 +1,8 @@
 "use client";
 
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useCallback, useMemo } from "react";
+
 import {
   AddNewIssueButton,
   NoContent,
@@ -12,8 +15,7 @@ import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
 import { MainContainer } from "@/screens/Search/UI/components/content/styles";
 import { PageContainer } from "@/styles";
 import { IUser, TicketDto } from "@/types";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useCallback, useMemo } from "react";
+
 import { ButtonWrapper } from "../styles";
 
 type IssuesPageUIProps = {

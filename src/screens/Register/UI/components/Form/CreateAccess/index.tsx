@@ -1,8 +1,10 @@
+import { useCallback, useState } from "react";
+import { useFormContext } from "react-hook-form";
+
 import { ClosedEyeIcon, EyeIcon } from "@/assets";
 import { CustomInput } from "@/components";
 import { theme } from "@/styles";
-import { useCallback, useState } from "react";
-import { useFormContext } from "react-hook-form";
+
 import { Section } from "../components";
 
 export const CreateAccess = () => {

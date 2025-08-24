@@ -1,4 +1,4 @@
-import { IHttpResponse, IAccessResponse } from "@/types";
+import { IAccessResponse,IHttpResponse } from "@/types";
 import { IHttpClient } from "@/types/abstractions";
 
 export class SessionApi {

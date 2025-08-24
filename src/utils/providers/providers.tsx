@@ -1,5 +1,12 @@
 "use client";
 
+import { SessionProvider } from "next-auth/react";
+import { ReactNode, Suspense, use, useEffect } from "react";
+import { CookiesProvider } from "react-cookie";
+import { Toaster } from "react-hot-toast";
+import { Monitoring } from "react-scan/monitoring/next";
+import { ThemeProvider } from "styled-components";
+
 import {
   analytics,
   appMonitoringClient,
@@ -9,17 +16,12 @@ import {
 } from "@/implementations/client";
 import { GlobalStyle, theme } from "@/styles";
 import { ConfigType } from "@/types";
-import { SessionProvider } from "next-auth/react";
-import { ReactNode, Suspense, use, useEffect } from "react";
-import { CookiesProvider } from "react-cookie";
-import { Toaster } from "react-hot-toast";
-import { Monitoring } from "react-scan/monitoring/next";
-import { ThemeProvider } from "styled-components";
+
 import packageJson from "../../../package.json";
 import { AppProvider } from "./AppProvider";
 import { AuthProvider } from "./AuthProvider";
-import { ServicesProvider } from "./ServicesProvider";
 import StyledComponentsRegistry from "./registry";
+import { ServicesProvider } from "./ServicesProvider";
 
 declare global {
   interface Window {

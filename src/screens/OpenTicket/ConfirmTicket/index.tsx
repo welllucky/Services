@@ -1,8 +1,10 @@
 "use client";
 
-import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
 import { useEffect } from "react";
 import { useTheme } from "styled-components";
+
+import { SS_KEY_USER_PREVIOUS_PAGE } from "@/constraints";
+
 import { useOpenTicket } from "../OpenTicket.hook";
 import ConfirmTicketPageUI from "./UI";
 

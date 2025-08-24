@@ -1,8 +1,10 @@
 "use client";
 
-import { buildTestIds } from "@/utils";
 import { Plus } from "@phosphor-icons/react";
 import { useDebounce } from "@uidotdev/usehooks";
+
+import { buildTestIds } from "@/utils";
+
 import { ButtonNewCalled } from "./styles";
 import { AddNewIssueButtonProps } from "./types";
 

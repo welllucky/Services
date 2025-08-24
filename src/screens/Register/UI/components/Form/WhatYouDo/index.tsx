@@ -1,9 +1,10 @@
-import { CustomSelect } from "@/components";
-import { theme } from "@/styles";
-
-import { useRegister } from "@/screens/Register/register.hook";
 import { useMemo } from "react";
 import { Control, useFormContext } from "react-hook-form";
+
+import { CustomSelect } from "@/components";
+import { useRegister } from "@/screens/Register/register.hook";
+import { theme } from "@/styles";
+
 import { Section } from "../components";
 
 export const WhatYouDo = () => {

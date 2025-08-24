@@ -1,5 +1,7 @@
-import { OptionProps, RoleDto, SectorDto } from "@/types";
 import { create } from "zustand";
+
+import { OptionProps, RoleDto, SectorDto } from "@/types";
+
 import { RegisterStoreProps } from "./register.types";
 
 export const registerStore = create<RegisterStoreProps>((set) => ({

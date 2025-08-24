@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import comentario from "../svg/comentario.svg";
 import { ComentarioContainer } from "./styles";
 

@@ -1,8 +1,9 @@
+import { verify } from "jsonwebtoken";
+import { NextRequest } from "next/server";
+
 import { CS_KEY_ACCESS_TOKEN } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
 import { IUser } from "@/types";
-import { verify } from "jsonwebtoken";
-import { NextRequest } from "next/server";
 
 // skipcq: JS-0116
 const getAuthToken = async (req: NextRequest) => {

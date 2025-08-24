@@ -1,5 +1,7 @@
-import { useRegister } from "@/screens/Register/register.hook";
 import { FormProvider } from "react-hook-form";
+
+import { useRegister } from "@/screens/Register/register.hook";
+
 import { CreateAccess } from "./CreateAccess";
 import { FormSections, RegisterButton, RegisterForm } from "./styles";
 import { WhatYouDo } from "./WhatYouDo";

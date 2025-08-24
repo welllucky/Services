@@ -1,10 +1,12 @@
-import { Row, TitleComponent } from "@/styles";
-import { IUser } from "@/types";
-import { buildTestIds, getGreetingMessage, useAuth } from "@/utils";
 import { SignOut as SignOutIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 import Logo from "public/Icon.png";
 import { useMemo } from "react";
+
+import { Row, TitleComponent } from "@/styles";
+import { IUser } from "@/types";
+import { buildTestIds, getGreetingMessage, useAuth } from "@/utils";
+
 import { IconButton } from "../../common/Buttons/IconButton";
 import { Skeleton } from "../../Skeleton";
 import { FirstSection, HeaderHome, UserName } from "./styles";

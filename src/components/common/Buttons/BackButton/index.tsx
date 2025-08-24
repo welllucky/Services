@@ -1,8 +1,10 @@
 "use client";
 
-import { buildTestIds } from "@/utils/functions";
 import { CaretLeft } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
+
+import { buildTestIds } from "@/utils/functions";
+
 import { Container, TextBack } from "./styles";
 
 export interface BackButtonProps {

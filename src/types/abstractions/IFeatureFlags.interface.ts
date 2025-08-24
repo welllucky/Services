@@ -3,6 +3,7 @@ import {
   FetchStatus,
   RemoteConfigSettings,
 } from "firebase/remote-config";
+
 import { FeatureFlagsOptions } from "../interfaces";
 
 export type ReturnType = string | boolean | number | object;

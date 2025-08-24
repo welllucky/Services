@@ -1,5 +1,6 @@
-import { Column, theme } from "@/styles";
 import styled from "styled-components";
+
+import { Column, theme } from "@/styles";
 
 export const FlexContainer = styled(Column)<{
   $backgroundColor?: string;

@@ -1,10 +1,12 @@
 "use client";
 
 /* eslint-disable no-nested-ternary */
-import { ErrorText, WarningText } from "@/components/SupportText";
-import { InputComponentsProps } from "@/types";
 import { ChangeEvent } from "react";
 import { useController } from "react-hook-form";
+
+import { ErrorText, WarningText } from "@/components/SupportText";
+import { InputComponentsProps } from "@/types";
+
 import { CustomFieldset } from "../../../Fieldset";
 import { useCustomInput } from "../input.hook";
 import { TextArea, TextAreaContainer } from "./styles";

@@ -1,8 +1,10 @@
+import { cookies } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
+
 import { CS_KEY_ACCESS_TOKEN, defaultHeaders } from "@/constraints";
 import { appMonitoringServer } from "@/implementations/server";
 import { IAccessResponse, IHttpResponse } from "@/types";
-import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+
 import { getAuthToken } from "../functions/getAuthToken";
 import { getFormattedBody } from "../functions/getFormattedBody";
 

@@ -1,14 +1,11 @@
 "use client";
 
-import { LS_KEY_USER_DATA } from "@/constraints";
-import { IAppMonitoring, IUser } from "@/types";
-import { closeSession } from "@/utils/functions";
+import { useRouter } from "next/navigation";
 import {
   signIn as systemSignIn,
   signOut as systemSignOut,
   useSession,
 } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import {
   createContext,
   ReactNode,
@@ -18,6 +15,10 @@ import {
   useMemo,
   useState,
 } from "react";
+
+import { LS_KEY_USER_DATA } from "@/constraints";
+import { IAppMonitoring, IUser } from "@/types";
+import { closeSession } from "@/utils/functions";
 
 interface AuthProviderProps {
   children: ReactNode;

@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import checkedVermelho from "../svg/checkedVermelho.svg";
 import { CheckedVermelhoContainer } from "./styles";
 

@@ -1,6 +1,8 @@
+import { useState } from "react";
+
 import { theme } from "@/styles";
 import { buildTestIds } from "@/utils/functions";
-import { useState } from "react";
+
 import { ButtonComponent, ButtonContainer } from "./styles";
 import { CustomButtonProps } from "./types";
 

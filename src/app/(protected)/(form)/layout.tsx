@@ -1,8 +1,9 @@
+import { redirect } from "next/navigation";
+import { ReactNode } from "react";
+
 import { auth } from "@/auth";
 import { OpenIssueTemplateUI } from "@/screens/OpenTicket/Template";
 import { ICreateIssueFlowPage } from "@/screens/OpenTicket/Template/data";
-import { redirect } from "next/navigation";
-import { ReactNode } from "react";
 
 const Template = async ({ children }: Readonly<{ children: ReactNode }>) => {
   const session = await auth();

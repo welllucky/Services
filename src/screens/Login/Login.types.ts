@@ -1,7 +1,8 @@
-import { ISignIn } from "@/types";
-import { AuthContextProps } from "@/utils";
 import { Control, FormState } from "react-hook-form";
 import toast from "react-hot-toast";
+
+import { ISignIn } from "@/types";
+import { AuthContextProps } from "@/utils";
 
 export type FormControl = Control<ISignIn>;
 

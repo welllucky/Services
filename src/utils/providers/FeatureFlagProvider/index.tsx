@@ -1,6 +1,5 @@
 "use client";
 
-import { FeatureFlagsOptions, ReturnKeyType, ReturnType } from "@/types";
 import {
   Client,
   JsonValue,
@@ -13,6 +12,8 @@ import {
   useContext,
   useMemo,
 } from "react";
+
+import { FeatureFlagsOptions, ReturnKeyType, ReturnType } from "@/types";
 
 interface FeatureFlagProviderProps {
   children: ReactNode;

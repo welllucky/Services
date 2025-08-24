@@ -1,7 +1,9 @@
 "use client";
 
-import { buildTestIds } from "@/utils";
 import { ReactNode } from "react";
+
+import { buildTestIds } from "@/utils";
+
 import { Content, Fieldset, Legend, LegendText } from "./styles";
 
 export interface ILegendProps {

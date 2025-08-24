@@ -1,5 +1,6 @@
-import { CustomLink } from "@/components";
 import styled from "styled-components";
+
+import { CustomLink } from "@/components";
 
 export const ForgotPasswordLink = styled(CustomLink)`
   display: flex;

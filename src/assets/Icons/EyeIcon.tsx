@@ -1,5 +1,6 @@
-import { IconProps } from "@/types";
 import { Eye } from "@phosphor-icons/react";
+
+import { IconProps } from "@/types";
 
 export const EyeIcon = ({
   size = 40,
