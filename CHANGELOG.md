@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.2](https://github.com/welllucky/Services/compare/services-v1.9.1...services-v1.9.2) (2025-08-24)
+
+
+### Bug Fixes
+
+* Corrige os endpoints de autenticação dentro da apis internas do Next ([ff23540](https://github.com/welllucky/Services/commit/ff23540d56a7395df2769c58775e0db8c029dcf2))
+
 ## [1.9.1](https://github.com/welllucky/Services/compare/services-v1.9.0...services-v1.9.1) (2025-08-24)
 
 
