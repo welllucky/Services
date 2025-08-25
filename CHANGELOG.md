@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.3](https://github.com/welllucky/Services/compare/services-v1.9.2...services-v1.9.3) (2025-08-24)
+
+
+### Bug Fixes
+
+* :lipstick: Corrige os skeletons da aplicação ([beab6ff](https://github.com/welllucky/Services/commit/beab6ffa155b5e94516375d0d44fd01111a2e793))
+* :truck: Adiciona barras nos endereços dos endpoints internos ([4df4119](https://github.com/welllucky/Services/commit/4df411929bda7d08dd085ff00c6af57d31dd83f3))
+
 ## [1.9.2](https://github.com/welllucky/Services/compare/services-v1.9.1...services-v1.9.2) (2025-08-24)
 
 
