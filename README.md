@@ -1,4 +1,4 @@
-![Logo](https://services-buckt-dev.s3.us-east-1.amazonaws.com/public/Services+-+Capa.png)
+![Logo](https://assets.welllucky.com.br/repository-platform/projects/services/Services%20-%20Capa.png)
 
 # ⛓️‍💥Desburocratizador do gerenciamento de chamados
 
@@ -18,7 +18,7 @@ O Services vem para trazer uma experiência um pouco diferente na hora de regist
 
 Você não precisa saber para quem enviar, qual o setor responsável, qual é a urgência do seu chamado ou algo do tipo. O Services se encarrega por isso, e não é só isso, o Services:
 
-![Logo](https://services-buckt-dev.s3.us-east-1.amazonaws.com/public/Funcionalidades.png)
+![Logo](https://assets.welllucky.com.br/repository-platform/projects/services/Funcionalidades.png)
 
 ## 📃 Licença
 
